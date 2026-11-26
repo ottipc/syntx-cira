@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "cira.terms.yaml",
+  "type": "object",
+  "required": ["version", "languages", "default", "forbidden_visible", "terms", "enum_terms"],
+  "properties": {
+    "version": {"type": "string"},
+    "languages": {"type": "array", "items": {"type": "string", "enum": ["en", "de"]}},
+    "default": {"type": "string", "enum": ["en"]},
+    "forbidden_visible": {"type": "array", "items": {"type": "string"}},
+    "terms": {"type": "array", "items": {
+      "type": "object", "required": ["key", "internal", "en", "de", "meaning"],
+      "properties": {"key": {"type": "string", "pattern": "^[a-z0-9_]+(\\.[a-z0-9_]+)*$"}, "internal": {"type": "string"},
+                     "en": {"type": "string"}, "de": {"type": "string"}, "meaning": {"type": "string"},
+                     "params": {"type": "array", "items": {"type": "string"}}}}},
+    "enum_terms": {"type": "object"}
+  }
+}

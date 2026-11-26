@@ -1,0 +1,49 @@
+{
+  "name": "cira-frontend",
+  "private": true,
+  "version": "1.0.2",
+  "type": "module",
+  "description": "CIRA workspace (F07) — computation-free projection field",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview --host 127.0.0.1 --port 4173 --strictPort",
+    "gen:contracts": "node scripts/gen-contracts.mjs",
+    "gen:contracts:check": "node scripts/gen-contracts.mjs --check",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "lint:arch": "node scripts/lint-arch.mjs && depcruise src --config .dependency-cruiser.cjs",
+    "test": "vitest run",
+    "test:report": "vitest run --reporter=default --reporter=json --outputFile=test-results/vitest-raw.json && node scripts/vitest-report.mjs",
+    "browser": "node test/browser/run.mjs",
+    "verify": "npm run -s gen:contracts:check && npm run -s typecheck && npm run -s lint:arch && npm run -s test"
+  },
+  "dependencies": {
+    "@fontsource/dejavu-mono": "5.3.0",
+    "@fontsource/ibm-plex-sans": "5.3.0",
+    "@tanstack/react-query": "5.108.4",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "react-router-dom": "7.18.7"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "4.3.5",
+    "@testing-library/react": "16.3.3",
+    "@types/node": "26.6.11",
+    "@types/react": "19.3.3",
+    "@types/react-dom": "19.3.0",
+    "@vitejs/plugin-react": "6.3.0",
+    "axe-core": "4.14.1",
+    "dependency-cruiser": "18.9.0",
+    "fontkit": "3.0.0",
+    "jsdom": "31.0.1",
+    "json-schema-to-typescript": "16.0.0",
+    "pixelmatch": "8.0.0",
+    "playwright-core": "1.65.1",
+    "pngjs": "7.0.0",
+    "tailwindcss": "4.3.5",
+    "typescript": "6.0.3",
+    "vite": "8.3.8",
+    "vitest": "5.1.2",
+    "yaml": "2.9.1"
+  }
+}

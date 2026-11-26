@@ -1,0 +1,2595 @@
+# Product language catalogue (G02, INV-LANG-01–06). Hand-maintained SSOT; generated: src/language/generated/terms.ts
+version: 1.0.2
+languages:
+- en
+- de
+default: en
+forbidden_visible:
+- SYNTX
+- Sweep
+- sweep
+- Systemfeld
+- system field
+- Σ-Feld
+- Kopplungsfeld
+- Semiontik
+- semiontic
+- Feldtupel
+- StageEvent
+- ContentOpenness
+- F01
+- F02
+- F03
+- F04
+- F05
+- F06
+- F07
+- Dual Sweep
+- dual-sweep
+terms:
+- key: product.name
+  internal: 'SYNTX :: CIRA'
+  en: CIRA
+  de: CIRA
+  meaning: product identity
+- key: product.tagline
+  internal: Structural Cognition and Resilience Engineering Architecture
+  en: Structural reconstruction under controlled information
+  de: Strukturelle Rekonstruktion unter kontrollierter Information
+  meaning: research subject (REF 01)
+- key: product.env
+  internal: synthetic service lab
+  en: Synthetic service lab — no real sites or infrastructure
+  de: Synthetisches Service-Labor — keine realen Standorte oder Infrastrukturen
+  meaning: REQ-080
+- key: layer.f01
+  internal: F01_DOMAIN_TOPOLOGY
+  en: Topology
+  de: Topologie
+  meaning: system layer
+- key: layer.f02
+  internal: F02_GOVERNANCE
+  en: Rules & roles
+  de: Regeln & Rollen
+  meaning: system layer
+- key: layer.f03
+  internal: F03_EMULATOR
+  en: Scenario emulator
+  de: Szenario-Emulator
+  meaning: system layer
+- key: layer.f04
+  internal: F04_OBSERVATION
+  en: Observation
+  de: Beobachtung
+  meaning: system layer
+- key: layer.f05
+  internal: F05_SYNTX_ENGINE
+  en: Reconstruction engine
+  de: Rekonstruktions-Engine
+  meaning: system layer
+- key: layer.f06
+  internal: F06_METRICS
+  en: Evaluation
+  de: Auswertung
+  meaning: system layer
+- key: layer.f07
+  internal: F07_INTERFACE
+  en: Workspace
+  de: Arbeitsoberfläche
+  meaning: system layer
+- key: layer.generic
+  internal: system field
+  en: System layer
+  de: Systemschicht
+  meaning: replaces 'field' in the interface
+- key: space.a
+  internal: Ω_A
+  en: Reference state · Ω_A
+  de: Referenzzustand · Ω_A
+  meaning: synthetic ground truth
+- key: space.a.short
+  internal: Ω_A
+  en: Reference
+  de: Referenz
+  meaning: column heading
+- key: space.a.hint
+  internal: —
+  en: Synthetic ground truth — never visible to the engine
+  de: Synthetische Grundwahrheit — für die Engine nie sichtbar
+  meaning: information barrier
+- key: space.o
+  internal: Ω_O
+  en: Observed state · Ω_O
+  de: Beobachteter Zustand · Ω_O
+  meaning: mediated by θ
+- key: space.o.short
+  internal: Ω_O
+  en: Observed
+  de: Beobachtet
+  meaning: column heading
+- key: space.o.hint
+  internal: —
+  en: What the observation window reveals
+  de: Was das Beobachtungsfenster zeigt
+  meaning: ''
+- key: space.r
+  internal: Ω_R
+  en: Reconstructed state · Ω_R
+  de: Rekonstruierter Zustand · Ω_R
+  meaning: result of reconstruction
+- key: space.r.short
+  internal: Ω_R
+  en: Reconstructed
+  de: Rekonstruiert
+  meaning: column heading
+- key: space.r.hint
+  internal: —
+  en: Determined by the engine from observations only
+  de: Von der Engine nur aus Beobachtungen bestimmt
+  meaning: Ω_R(t) = R(Ω_O(0:t))
+- key: obs.known
+  internal: KNOWN
+  en: Observed
+  de: Beobachtet
+  meaning: value from an active source
+- key: obs.known.stale
+  internal: KNOWN stale
+  en: Observed · delayed (t={k})
+  de: Beobachtet · verzögert (t={k})
+  meaning: known delayed value, not an error
+  params:
+  - k
+- key: obs.unknown
+  internal: UNKNOWN
+  en: Not observed
+  de: Nicht beobachtet
+  meaning: no active source value; neither false nor absent
+- key: obs.outside
+  internal: node outside θ
+  en: Outside observation window
+  de: Außerhalb des Beobachtungsfensters
+  meaning: not part of the observable topology
+- key: app.applicable
+  internal: APPLICABLE
+  en: Applicable
+  de: Anwendbar
+  meaning: declared applicable
+- key: app.na
+  internal: NOT_APPLICABLE
+  en: Not applicable
+  de: Nicht anwendbar
+  meaning: from declaration, not counted
+- key: rec.determined
+  internal: DETERMINED
+  en: Reconstructed
+  de: Rekonstruiert
+  meaning: determined value with knowledge class
+- key: rec.undetermined
+  internal: UNDETERMINED
+  en: Not determined
+  de: Nicht bestimmt
+  meaning: engine did not fix a value
+- key: avail.available
+  internal: AVAILABLE
+  en: Available
+  de: Verfügbar
+  meaning: content present
+- key: avail.none
+  internal: NOT_AVAILABLE_AT_TICK
+  en: No reconstruction at t={t}
+  de: Keine Rekonstruktion bei t={t}
+  meaning: no sweep at this tick, regular state
+  params:
+  - t
+- key: dev.mismatch
+  internal: δ(a,r) = 1
+  en: Differs from reference
+  de: Weicht vom Referenzwert ab
+  meaning: delivered by the server (K-63)
+- key: rule.true
+  internal: 'TRUE'
+  en: Satisfied
+  de: Erfüllt
+  meaning: g_j = 1
+- key: rule.false
+  internal: 'FALSE'
+  en: Violated
+  de: Verletzt
+  meaning: g_j = 0
+- key: rule.unevaluable
+  internal: UNEVALUABLE
+  en: Not evaluable · ⊥
+  de: Nicht auswertbar · ⊥
+  meaning: g_j = ⊥, always with reason
+- key: rule.reason.ok
+  internal: OK
+  en: evaluated
+  de: ausgewertet
+  meaning: EvalReason
+- key: rule.reason.unknown_input
+  internal: UNKNOWN_INPUT
+  en: input not observed
+  de: Eingabe nicht beobachtet
+  meaning: EvalReason
+- key: rule.reason.undetermined_input
+  internal: UNDETERMINED_INPUT
+  en: input not determined
+  de: Eingabe nicht bestimmt
+  meaning: EvalReason
+- key: rule.reason.na_input
+  internal: NOT_APPLICABLE_INPUT
+  en: input not applicable
+  de: Eingabe nicht anwendbar
+  meaning: EvalReason
+- key: rule.reason.requirement
+  internal: REQUIREMENT_NOT_MET
+  en: prerequisite rule not satisfied
+  de: Voraussetzungsregel nicht erfüllt
+  meaning: EvalReason
+- key: rule.kind.state
+  internal: STATE
+  en: State rule
+  de: Zustandsregel
+  meaning: RuleKind
+- key: rule.kind.transition
+  internal: TRANSITION
+  en: Transition rule
+  de: Übergangsregel
+  meaning: RuleKind
+- key: rule.kind.function
+  internal: FUNCTION
+  en: Service function
+  de: Servicefunktion
+  meaning: RuleKind
+- key: exec.created
+  internal: CREATED
+  en: Queued
+  de: Eingereiht
+  meaning: ExecutionStatus
+- key: exec.running
+  internal: RUNNING
+  en: Running
+  de: Läuft
+  meaning: ExecutionStatus
+- key: exec.completed
+  internal: COMPLETED
+  en: Completed
+  de: Abgeschlossen
+  meaning: ExecutionStatus
+- key: exec.partial
+  internal: PARTIAL
+  en: Partially completed
+  de: Teilweise abgeschlossen
+  meaning: ExecutionStatus
+- key: exec.failed
+  internal: FAILED
+  en: Failed
+  de: Fehlgeschlagen
+  meaning: ExecutionStatus
+- key: exec.blocked
+  internal: BLOCKED
+  en: Blocked — dependency unavailable
+  de: Blockiert — Abhängigkeit nicht verfügbar
+  meaning: ExecutionStatus
+- key: origin.synthetic
+  internal: SYNTHETIC
+  en: Synthetic
+  de: Synthetisch
+  meaning: emulator/observation
+- key: origin.fixture
+  internal: FIXTURE
+  en: Test fixture — not an engine result
+  de: Testdaten — kein Engine-Ergebnis
+  meaning: P08
+- key: origin.engine
+  internal: ENGINE
+  en: Engine result
+  de: Engine-Ergebnis
+  meaning: real adapter only
+- key: origin.imported
+  internal: IMPORTED
+  en: Imported result
+  de: Importiertes Ergebnis
+  meaning: schema-validated
+- key: origin.illustrative
+  internal: ILLUSTRATIVE
+  en: Illustrative — not measured
+  de: Illustrativ — nicht gemessen
+  meaning: never as measurement
+- key: origin.fixture.signet
+  internal: FIXTURE signet
+  en: TEST FIXTURE
+  de: TESTDATEN
+  meaning: achromatic signet text (INV-VIS-04)
+- key: epi.src_obs
+  internal: SOURCE_OBSERVATION
+  en: From observation
+  de: Aus Beobachtung
+  meaning: EpistemicClass
+- key: epi.src_stmt
+  internal: SOURCE_STATEMENT
+  en: From source statement
+  de: Aus Quellaussage
+  meaning: EpistemicClass
+- key: epi.struct
+  internal: STRUCTURAL_DERIVATION
+  en: Structurally derived
+  de: Strukturell abgeleitet
+  meaning: EpistemicClass
+- key: epi.hyp
+  internal: HYPOTHESIS
+  en: Hypothesis
+  de: Hypothese
+  meaning: EpistemicClass
+- key: epi.open_ref
+  internal: OPEN_REFERENCE
+  en: Open reference
+  de: Offene Referenz
+  meaning: EpistemicClass
+- key: cpl.effective
+  internal: EFFECTIVE
+  en: Active coupling
+  de: Wirksame Kopplung
+  meaning: CouplingStatus
+- key: cpl.possible
+  internal: POSSIBLE
+  en: Possible coupling
+  de: Mögliche Kopplung
+  meaning: CouplingStatus
+- key: cpl.unknown_open
+  internal: UNKNOWN_OPEN
+  en: Unknown — open
+  de: Unbekannt — offen
+  meaning: CouplingStatus
+- key: cpl.absent
+  internal: ABSENT
+  en: No coupling
+  de: Keine Kopplung
+  meaning: CouplingStatus
+- key: ref.resolved
+  internal: RESOLVED
+  en: Resolved
+  de: Aufgelöst
+  meaning: ReferenceStatus
+- key: ref.unresolved
+  internal: UNRESOLVED
+  en: Unresolved
+  de: Nicht aufgelöst
+  meaning: ReferenceStatus
+- key: ref.truncated
+  internal: TRUNCATED
+  en: Truncated
+  de: Abgeschnitten
+  meaning: ReferenceStatus
+- key: ref.external
+  internal: EXTERNAL
+  en: External
+  de: Extern
+  meaning: ReferenceStatus
+- key: run.reconstruction
+  internal: SweepRun
+  en: Reconstruction run
+  de: Rekonstruktionslauf
+  meaning: ''
+- key: run.forward
+  internal: FORWARD
+  en: Forward reconstruction
+  de: Vorwärtsrekonstruktion
+  meaning: without target
+- key: run.inverse
+  internal: INVERSE
+  en: Target-guided reconstruction
+  de: Zielgeführte Rekonstruktion
+  meaning: with observation-based target
+- key: run.merge
+  internal: MERGE
+  en: Combined reconstruction
+  de: Zusammengeführte Rekonstruktion
+  meaning: engine_first/v1
+- key: run.attempt
+  internal: attempt
+  en: Run {n}
+  de: Lauf {n}
+  meaning: attempt number
+  params:
+  - n
+- key: run.stability
+  internal: STABILITY
+  en: Stability re-run
+  de: Stabilitäts-Wiederholung
+  meaning: same observation package
+- key: run.no_target
+  internal: FORWARD target_ref = null
+  en: no target (by design)
+  de: kein Ziel (konstruktionsbedingt)
+  meaning: T08
+- key: run.adapter
+  internal: AdapterDescriptor
+  en: Adapter
+  de: Adapter
+  meaning: ''
+- key: run.context
+  internal: context_version
+  en: Context
+  de: Kontext
+  meaning: ''
+- key: run.steps
+  internal: steps_executed
+  en: '{n} steps'
+  de: '{n} Schritte'
+  meaning: ''
+  params:
+  - n
+- key: merge.conflict
+  internal: MergeConflict
+  en: Forward and target-guided results differ
+  de: Vorwärts- und zielgeführtes Ergebnis weichen ab
+  meaning: ''
+- key: merge.undetermined
+  internal: UNDETERMINED
+  en: left undetermined
+  de: nicht bestimmt belassen
+  meaning: MergeResolution
+- key: merge.engine_resolved
+  internal: ENGINE_RESOLVED
+  en: Resolved by engine
+  de: Durch Engine aufgelöst
+  meaning: only with ENGINE or IMPORTED origin
+- key: merge.engine_resolved.fixture
+  internal: ENGINE_RESOLVED + FIXTURE
+  en: Resolved in test fixture
+  de: In Testdaten aufgelöst
+  meaning: P08 (GK-20)
+- key: term.converged
+  internal: CONVERGED
+  en: Converged
+  de: Konvergiert
+  meaning: TerminationReason
+- key: term.engine_reported_stop
+  internal: ENGINE_REPORTED_STOP
+  en: Stopped by engine
+  de: Von Engine beendet
+  meaning: TerminationReason
+- key: term.budget_exhausted
+  internal: BUDGET_EXHAUSTED
+  en: Budget exhausted
+  de: Budget erschöpft
+  meaning: TerminationReason
+- key: term.truncated
+  internal: TRUNCATED
+  en: Output truncated
+  de: Ausgabe abgeschnitten
+  meaning: TerminationReason
+- key: term.error
+  internal: ERROR
+  en: Error
+  de: Fehler
+  meaning: TerminationReason
+- key: term.cancelled
+  internal: CANCELLED
+  en: Cancelled
+  de: Abgebrochen
+  meaning: TerminationReason
+- key: term.label
+  internal: TerminationRecord
+  en: Termination
+  de: Terminierung
+  meaning: ''
+- key: target
+  internal: TargetDefinition
+  en: Reconstruction target
+  de: Rekonstruktionsziel
+  meaning: observation-based
+- key: target.basis
+  internal: S-07
+  en: based on observable structure only
+  de: nur auf beobachtbarer Struktur
+  meaning: S-07
+- key: target.met
+  internal: MET
+  en: Met
+  de: Erfüllt
+  meaning: TargetAssessment
+- key: target.not_met
+  internal: NOT_MET
+  en: Not met
+  de: Nicht erfüllt
+  meaning: TargetAssessment
+- key: target.undetermined
+  internal: UNDETERMINED
+  en: Not determined
+  de: Nicht bestimmt
+  meaning: TargetAssessment
+- key: target.assessment
+  internal: target_assessment
+  en: Target assessment
+  de: Zielbewertung
+  meaning: ''
+- key: goal.rule_satisfied
+  internal: RULE_SATISFIED
+  en: rule satisfied
+  de: Regel erfüllt
+  meaning: GoalProperty
+- key: goal.attribute_equals
+  internal: ATTRIBUTE_EQUALS
+  en: attribute equals
+  de: Attribut gleich
+  meaning: GoalProperty
+- key: goal.gap_closed
+  internal: GAP_CLOSED
+  en: gap closed
+  de: Lücke geschlossen
+  meaning: GoalProperty
+- key: gap.structural
+  internal: StructuralGap
+  en: Structural gap
+  de: Strukturelle Lücke
+  meaning: with source reference
+- key: gap.open
+  internal: OPEN
+  en: Open
+  de: Offen
+  meaning: ''
+- key: gap.closed
+  internal: CLOSED_IN_RESULT
+  en: Closed in later result
+  de: In späterem Ergebnis geschlossen
+  meaning: ''
+- key: gap.open_relation
+  internal: OpenRelation
+  en: Open relation
+  de: Offene Relation
+  meaning: ''
+- key: gap.sources
+  internal: source_refs
+  en: sources
+  de: Quellen
+  meaning: ''
+- key: gap.subjects
+  internal: subject_refs
+  en: subjects
+  de: Subjekte
+  meaning: ''
+- key: gap.kind
+  internal: kind
+  en: engine kind
+  de: Engine-Art
+  meaning: engine label, datum
+- key: match.tp
+  internal: TP
+  en: Matched
+  de: Zugeordnet
+  meaning: ''
+- key: match.fn
+  internal: FN
+  en: Missed case
+  de: Verfehlter Fall
+  meaning: ''
+- key: match.fp
+  internal: FP
+  en: Unmatched detection
+  de: Nicht zugeordnete Erkennung
+  meaning: ''
+- key: match.subset.all
+  internal: ALL
+  en: All cases
+  de: Alle Fälle
+  meaning: ''
+- key: match.subset.observable
+  internal: OBSERVABLE_CASES
+  en: Observable cases only
+  de: Nur beobachtbare Fälle
+  meaning: ''
+- key: match.by_group
+  internal: class_key
+  en: By node group
+  de: Nach Knotengruppe
+  meaning: ''
+- key: match.matcher
+  internal: gap_matcher
+  en: Matching
+  de: Zuordnung
+  meaning: ''
+- key: proposal
+  internal: RecoveryProposal
+  en: Recovery proposal
+  de: Wiederherstellungsvorschlag
+  meaning: never applied automatically
+- key: proposal.status
+  internal: PROPOSED
+  en: proposed
+  de: vorgeschlagen
+  meaning: ''
+- key: authority
+  internal: AuthorityRecord
+  en: Authorization decision
+  de: Autorisierungsentscheidung
+  meaning: human as authority
+- key: authority.approved
+  internal: APPROVED
+  en: Approved
+  de: Genehmigt
+  meaning: ''
+- key: authority.rejected
+  internal: REJECTED
+  en: Rejected
+  de: Abgelehnt
+  meaning: ''
+- key: loop.recovery
+  internal: mediated recursion
+  en: Recovery loop via human authorization
+  de: Wiederherstellungsschleife über menschliche Autorisierung
+  meaning: '05.5'
+- key: barrier
+  internal: Ω_A ↛ F05
+  en: Information barrier — the engine never sees the reference state
+  de: Informationsbarriere — die Engine sieht den Referenzzustand nie
+  meaning: core invariant
+- key: engine.field
+  internal: SigmaRef
+  en: Engine analysis field
+  de: Engine-Analysefeld
+  meaning: frame for datum
+- key: engine.operator
+  internal: OperatorRef
+  en: Engine operator
+  de: Engine-Operator
+  meaning: frame for symbol or code
+- key: engine.label_source
+  internal: label_from_source
+  en: engine label
+  de: Engine-Bezeichnung
+  meaning: ''
+- key: engine.label_unavailable
+  internal: LABEL_UNAVAILABLE
+  en: Label not yet provided by the engine registry
+  de: Bezeichnung noch nicht von der Engine-Registry geliefert
+  meaning: DEP-08
+- key: engine.code_opaque
+  internal: R/I code
+  en: Engine code — meaning not provided
+  de: Engine-Code — Bedeutung nicht geliefert
+  meaning: DEP-01
+- key: engine.trace
+  internal: SweepTrace
+  en: Trace
+  de: Verlauf
+  meaning: ''
+- key: engine.trace.independent
+  internal: —
+  en: independent of forward run
+  de: unabhängig vom Vorwärtslauf
+  meaning: ''
+- key: obs.setup
+  internal: ObservationConfig θ
+  en: Observation setup
+  de: Beobachtungskonfiguration
+  meaning: ''
+- key: obs.source
+  internal: ObservationSource
+  en: Source
+  de: Quelle
+  meaning: ''
+- key: obs.sources
+  internal: sources
+  en: Sources
+  de: Quellen
+  meaning: ''
+- key: obs.context
+  internal: ContextBundle
+  en: Observation context
+  de: Beobachtungskontext
+  meaning: ''
+- key: obs.budget
+  internal: bundle_budget
+  en: Context budget
+  de: Kontextbudget
+  meaning: bundle level (K-12)
+- key: obs.budget.items
+  internal: observations
+  en: items
+  de: Einträge
+  meaning: ''
+- key: obs.budget.bytes
+  internal: bytes
+  en: bytes
+  de: Bytes
+  meaning: ''
+- key: obs.profile
+  internal: serialization_profile
+  en: Serialization profile
+  de: Serialisierungsprofil
+  meaning: ''
+- key: obs.revision
+  internal: revision
+  en: revision
+  de: Revision
+  meaning: ''
+- key: obs.continuous
+  internal: CONTINUOUS
+  en: Continuous
+  de: Durchgehend
+  meaning: ''
+- key: obs.interrupted
+  internal: INTERRUPTED
+  en: Interrupted
+  de: Unterbrochen
+  meaning: ''
+- key: obs.continuity
+  internal: Continuity
+  en: Continuity
+  de: Kontinuität
+  meaning: ''
+- key: obs.lag
+  internal: lag_ticks
+  en: lag {n}
+  de: Verzögerung {n}
+  meaning: ''
+  params:
+  - n
+- key: obs.list
+  internal: observations
+  en: Observations
+  de: Beobachtungen
+  meaning: ''
+- key: obs.projected
+  internal: ω(i,t)
+  en: projected state at t={t}
+  de: projizierter Zustand bei t={t}
+  meaning: ''
+  params:
+  - t
+- key: obs.no_source
+  internal: source_id = null
+  en: no source
+  de: keine Quelle
+  meaning: ''
+- key: obs.visible_nodes
+  internal: visible_nodes
+  en: Visible components
+  de: Sichtbare Komponenten
+  meaning: ''
+- key: obs.gap_at
+  internal: gaps
+  en: gap
+  de: Lücke
+  meaning: ''
+- key: stage.definitions
+  internal: DEFINITIONS
+  en: Load definitions
+  de: Definitionen laden
+  meaning: StageName
+- key: stage.emulation
+  internal: EMULATION
+  en: Emulate scenario
+  de: Szenario emulieren
+  meaning: StageName
+- key: stage.observation
+  internal: OBSERVATION
+  en: Observe
+  de: Beobachten
+  meaning: StageName
+- key: stage.forward
+  internal: FORWARD
+  en: Forward reconstruction
+  de: Vorwärtsrekonstruktion
+  meaning: StageName
+- key: stage.inverse
+  internal: INVERSE
+  en: Target-guided reconstruction
+  de: Zielgeführte Rekonstruktion
+  meaning: StageName
+- key: stage.merge
+  internal: MERGE
+  en: Combine results
+  de: Ergebnisse zusammenführen
+  meaning: StageName
+- key: stage.stability
+  internal: STABILITY
+  en: Stability re-run
+  de: Stabilitäts-Wiederholung
+  meaning: StageName
+- key: stage.evaluation
+  internal: EVALUATION
+  en: Evaluate
+  de: Auswerten
+  meaning: StageName
+- key: stage.export
+  internal: EXPORT
+  en: Export
+  de: Exportieren
+  meaning: StageName
+- key: stage.pipeline
+  internal: StageEvents
+  en: Pipeline
+  de: Ablauf
+  meaning: ''
+- key: openness
+  internal: ContentOpenness
+  en: Open information
+  de: Offene Information
+  meaning: separate from execution status
+- key: openness.undetermined
+  internal: undetermined
+  en: not determined
+  de: nicht bestimmt
+  meaning: ContentOpenness
+- key: openness.unknown_observations
+  internal: unknown_observations
+  en: not observed
+  de: nicht beobachtet
+  meaning: ContentOpenness
+- key: openness.open_references
+  internal: open_references
+  en: open references
+  de: offene Referenzen
+  meaning: ContentOpenness
+- key: openness.open_relations
+  internal: open_relations
+  en: open relations
+  de: offene Relationen
+  meaning: ContentOpenness
+- key: openness.structural_gaps_open
+  internal: structural_gaps_open
+  en: structural gaps open
+  de: offene strukturelle Lücken
+  meaning: ContentOpenness
+- key: openness.unevaluable_rules
+  internal: unevaluable_rules
+  en: rules not evaluable
+  de: nicht auswertbare Regeln
+  meaning: ContentOpenness
+- key: event.applied
+  internal: APPLIED
+  en: Applied
+  de: Angewendet
+  meaning: ''
+- key: event.rejected
+  internal: REJECTED
+  en: Not applied
+  de: Nicht angewendet
+  meaning: K-66
+- key: event.set_attribute
+  internal: SET_ATTRIBUTE
+  en: set attribute
+  de: Attribut setzen
+  meaning: ''
+- key: event.apply_approval
+  internal: APPLY_APPROVAL
+  en: apply approval
+  de: Freigabe anwenden
+  meaning: ''
+- key: scenario.baseline
+  internal: BASELINE
+  en: Baseline
+  de: Ausgangsszenario
+  meaning: ''
+- key: scenario.recovery
+  internal: RECOVERY
+  en: Recovery variant
+  de: Wiederherstellungsvariante
+  meaning: ''
+- key: cmp.compatible
+  internal: compatible
+  en: Comparable
+  de: Vergleichbar
+  meaning: ''
+- key: cmp.incompatible
+  internal: COMPARISON_INCOMPATIBLE
+  en: Not comparable
+  de: Nicht vergleichbar
+  meaning: K-43
+- key: cmp.resolved
+  internal: resolved
+  en: Resolved
+  de: Aufgelöst
+  meaning: ''
+- key: cmp.persisting
+  internal: persisting
+  en: Persisting
+  de: Bestehend
+  meaning: ''
+- key: cmp.unevaluable
+  internal: unevaluable_in_recovery
+  en: Not evaluable in recovery
+  de: In Wiederherstellung nicht auswertbar
+  meaning: ''
+- key: cmp.new
+  internal: new
+  en: New violation
+  de: Neue Verletzung
+  meaning: ''
+- key: cmp.lineage
+  internal: fixture_lineage_id
+  en: lineage
+  de: Herkunftslinie
+  meaning: ''
+- key: cmp.tau
+  internal: comparison_tick
+  en: τ
+  de: τ
+  meaning: comparison tick
+- key: cmp.select
+  internal: GET /comparisons
+  en: Select comparison
+  de: Vergleich wählen
+  meaning: ''
+- key: cmp.none
+  internal: —
+  en: No comparison selected
+  de: Kein Vergleich gewählt
+  meaning: ''
+- key: cmp.basis
+  internal: closure_basis
+  en: 'basis: state rules, reference state, final step'
+  de: 'Basis: Zustandsregeln, Referenzzustand, letzter Schritt'
+  meaning: S-05
+- key: action.export
+  internal: action
+  en: Export bundle
+  de: Paket exportieren
+  meaning: control
+- key: action.new
+  internal: action
+  en: New experiment
+  de: Neues Experiment
+  meaning: control
+- key: action.resweep
+  internal: action
+  en: Re-run reconstruction
+  de: Rekonstruktion erneut ausführen
+  meaning: control
+- key: action.import_result
+  internal: action
+  en: Import result
+  de: Ergebnis importieren
+  meaning: control
+- key: action.replay
+  internal: action
+  en: Replay experiment
+  de: Experiment wiederholen
+  meaning: control
+- key: action.import_bundle
+  internal: action
+  en: Import bundle
+  de: Paket importieren
+  meaning: control
+- key: action.compare
+  internal: action
+  en: Compare scenarios
+  de: Szenarien vergleichen
+  meaning: control
+- key: action.authorize
+  internal: action
+  en: Record authorization decision
+  de: Autorisierungsentscheidung erfassen
+  meaning: control
+- key: action.reload
+  internal: action
+  en: Reload
+  de: Neu laden
+  meaning: control
+- key: action.confirm
+  internal: action
+  en: Confirm
+  de: Bestätigen
+  meaning: control
+- key: action.cancel
+  internal: action
+  en: Cancel
+  de: Abbrechen
+  meaning: control
+- key: action.control
+  internal: action
+  en: Control
+  de: Steuerung
+  meaning: control
+- key: action.close
+  internal: action
+  en: Close
+  de: Schließen
+  meaning: control
+- key: action.resume_demo
+  internal: action
+  en: Resume demo
+  de: Demo fortsetzen
+  meaning: control
+- key: action.next
+  internal: action
+  en: Next
+  de: Weiter
+  meaning: control
+- key: action.previous
+  internal: action
+  en: Previous
+  de: Zurück
+  meaning: control
+- key: action.authorize.readonly
+  internal: D-49
+  en: Read-only in this version
+  de: In dieser Version nur lesend
+  meaning: D-49
+- key: action.summary
+  internal: —
+  en: Summary
+  de: Zusammenfassung
+  meaning: ''
+- key: action.accepted
+  internal: '202'
+  en: Accepted — running
+  de: Angenommen — läuft
+  meaning: ''
+- key: export.hash
+  internal: bundle_hash
+  en: Bundle hash (from server)
+  de: Paket-Hash (vom Server)
+  meaning: ''
+- key: msg.unavailable
+  internal: VIEW_DATA_UNAVAILABLE
+  en: Data for this time step could not be verified. Reload.
+  de: Daten für diesen Zeitschritt konnten nicht verifiziert werden. Neu laden.
+  meaning: quarantine
+- key: msg.requested
+  internal: requested
+  en: requested
+  de: angefragt
+  meaning: ''
+- key: msg.received
+  internal: received
+  en: received
+  de: erhalten
+  meaning: ''
+- key: msg.undefined.zero
+  internal: ZERO_DENOMINATOR
+  en: Undefined — nothing to measure (0 / 0)
+  de: Undefiniert — nichts zu messen (0 / 0)
+  meaning: never 0
+- key: msg.undefined.missing
+  internal: INPUT_MISSING
+  en: Undefined — input not available
+  de: Undefiniert — Eingabe nicht verfügbar
+  meaning: never 0
+- key: msg.no_composite
+  internal: REQ-049
+  en: No overall score — each metric stands for itself
+  de: Kein Gesamtwert — jede Metrik steht für sich
+  meaning: REQ-049
+- key: msg.viewport
+  internal: min viewport
+  en: This workspace needs at least 1280 × 720.
+  de: Diese Arbeitsoberfläche benötigt mindestens 1280 × 720.
+  meaning: ''
+- key: msg.loading
+  internal: LOADING
+  en: Loading
+  de: Lädt
+  meaning: ''
+- key: msg.select_experiment
+  internal: '#9'
+  en: Select an experiment
+  de: Experiment wählen
+  meaning: ''
+- key: msg.unknown_focus
+  internal: focus
+  en: Focused element is not part of this view
+  de: Fokussiertes Element ist nicht Teil dieser Sicht
+  meaning: ''
+- key: msg.no_data
+  internal: —
+  en: No entries
+  de: Keine Einträge
+  meaning: ''
+- key: msg.fixture_note
+  internal: DEP-02
+  en: Measured on test fixtures — engine connection pending
+  de: Gemessen auf Testdaten — Engine-Anbindung ausstehend
+  meaning: G05.1
+- key: prov.drawer
+  internal: Provenance Drawer
+  en: Provenance
+  de: Herkunft
+  meaning: ''
+- key: prov.technical
+  internal: Raw Contract Fields
+  en: Technical record
+  de: Technischer Datensatz
+  meaning: raw values only here
+- key: prov.header
+  internal: ProjectionHeader
+  en: Header
+  de: Kopf
+  meaning: ''
+- key: prov.sources
+  internal: source_refs
+  en: Sources
+  de: Quellen
+  meaning: ''
+- key: prov.strategies
+  internal: strategies
+  en: Strategies
+  de: Strategien
+  meaning: ''
+- key: prov.experiment
+  internal: experiment_id
+  en: experiment
+  de: Experiment
+  meaning: ''
+- key: prov.schema
+  internal: schema_version
+  en: schema
+  de: Schema
+  meaning: ''
+- key: prov.origin
+  internal: data_origin
+  en: origin
+  de: Herkunft
+  meaning: ''
+- key: prov.guard
+  internal: guard_class
+  en: guard
+  de: Prüfklasse
+  meaning: ''
+- key: view.01
+  internal: SYSTEM_FIELD_OVERVIEW
+  en: System overview
+  de: Systemübersicht
+  meaning: ViewId
+- key: view.02
+  internal: TOPOLOGY_GRAPH
+  en: Topology
+  de: Topologie
+  meaning: ViewId
+- key: view.03
+  internal: TEMPORAL_STATE_EXPLORER
+  en: State comparison
+  de: Zustandsvergleich
+  meaning: ViewId
+- key: view.04
+  internal: OBSERVATION_INSPECTOR
+  en: Observation details
+  de: Beobachtungsdetails
+  meaning: ViewId
+- key: view.05
+  internal: FORWARD_SWEEP_INSPECTOR
+  en: Forward reconstruction
+  de: Vorwärtsrekonstruktion
+  meaning: ViewId
+- key: view.06
+  internal: INVERSE_SWEEP_INSPECTOR
+  en: Target-guided reconstruction
+  de: Zielgeführte Rekonstruktion
+  meaning: ViewId
+- key: view.07
+  internal: STRUCTURAL_GAP_INSPECTOR
+  en: Structural gaps
+  de: Strukturelle Lücken
+  meaning: ViewId
+- key: view.08
+  internal: ARCHITECTURAL_CLOSURE_INSPECTOR
+  en: Closure & recovery
+  de: Schließung & Wiederherstellung
+  meaning: ViewId
+- key: view.09
+  internal: STRUCTURAL_METRICS
+  en: Metrics
+  de: Metriken
+  meaning: ViewId
+- key: view.10
+  internal: SCENARIO_COMPARISON
+  en: Scenario comparison
+  de: Szenariovergleich
+  meaning: ViewId
+- key: view.11
+  internal: EVENT_TIMELINE
+  en: Timeline
+  de: Zeitleiste
+  meaning: ViewId
+- key: metric.m01
+  internal: M01
+  en: Reconstruction distance
+  de: Rekonstruktionsdistanz
+  meaning: metric name
+- key: metric.m01.explain
+  internal: M01
+  en: Share of reconstructed attributes that differ from the reference (weighted). Target 0.
+  de: Anteil rekonstruierter Attribute, die vom Referenzwert abweichen (gewichtet). Ziel 0.
+  meaning: relation named exactly
+- key: metric.m02
+  internal: M02
+  en: Relational coherence
+  de: Relationale Kohärenz
+  meaning: metric name
+- key: metric.m02.explain
+  internal: M02
+  en: Share of evaluable state rules that are satisfied, per state.
+  de: Anteil auswertbarer Zustandsregeln, die erfüllt sind, je Zustand.
+  meaning: relation named exactly
+- key: metric.m03
+  internal: M03
+  en: Temporal state consistency
+  de: Zeitliche Zustandskonsistenz
+  meaning: metric name
+- key: metric.m03.explain
+  internal: M03
+  en: Share of evaluable transitions between consecutive steps that are valid.
+  de: Anteil auswertbarer Übergänge zwischen aufeinanderfolgenden Schritten, die gültig sind.
+  meaning: relation named exactly
+- key: metric.m04
+  internal: M04
+  en: Functional continuity
+  de: Funktionale Kontinuität
+  meaning: metric name
+- key: metric.m04.explain
+  internal: M04
+  en: Share of time steps in which a service function holds.
+  de: Anteil der Zeitschritte, in denen eine Servicefunktion gilt.
+  meaning: relation named exactly
+- key: metric.m05
+  internal: M05
+  en: Reconstruction coverage
+  de: Rekonstruktionsabdeckung
+  meaning: metric name
+- key: metric.m05.explain
+  internal: M05
+  en: Share of applicable attributes the engine determined.
+  de: Anteil anwendbarer Attribute, die die Engine bestimmt hat.
+  meaning: relation named exactly
+- key: metric.m06
+  internal: M06
+  en: Observation completeness
+  de: Beobachtungsvollständigkeit
+  meaning: metric name
+- key: metric.m06.explain
+  internal: M06
+  en: Share of applicable attributes that are observed.
+  de: Anteil anwendbarer Attribute, die beobachtet sind.
+  meaning: relation named exactly
+- key: metric.m07
+  internal: M07
+  en: Gap detection coverage
+  de: Lückenerkennungsabdeckung
+  meaning: metric name
+- key: metric.m07.explain
+  internal: M07
+  en: Share of annotated consistency cases the engine detected.
+  de: Anteil annotierter Konsistenzfälle, die die Engine erkannt hat.
+  meaning: relation named exactly
+- key: metric.m08
+  internal: M08
+  en: Gap detection precision
+  de: Lückenerkennungspräzision
+  meaning: metric name
+- key: metric.m08.explain
+  internal: M08
+  en: Share of detected gaps that match an annotated case.
+  de: Anteil erkannter Lücken, die einem annotierten Fall entsprechen.
+  meaning: relation named exactly
+- key: metric.m09
+  internal: M09
+  en: Gap closure
+  de: Lückenschließung
+  meaning: metric name
+- key: metric.m09.explain
+  internal: M09
+  en: Share of baseline violations resolved in the recovery variant.
+  de: Anteil der Verletzungen des Ausgangsszenarios, die in der Wiederherstellungsvariante aufgelöst sind.
+  meaning: relation named exactly
+- key: metric.m10
+  internal: M10
+  en: Reconstruction stability
+  de: Rekonstruktionsstabilität
+  meaning: metric name
+- key: metric.m10.explain
+  internal: M10
+  en: Agreement of two runs on the same observations.
+  de: Übereinstimmung zweier Läufe auf denselben Beobachtungen.
+  meaning: relation named exactly
+- key: metric.m11
+  internal: M11
+  en: Reconstruction accuracy
+  de: Rekonstruktionsgenauigkeit
+  meaning: metric name
+- key: metric.m11.explain
+  internal: M11
+  en: 1 − reconstruction distance. Target 1.
+  de: 1 − Rekonstruktionsdistanz. Ziel 1.
+  meaning: relation named exactly
+- key: metric.target
+  internal: target_value
+  en: target {v}
+  de: Ziel {v}
+  meaning: ''
+  params:
+  - v
+- key: metric.value
+  internal: MetricResult
+  en: Exact value
+  de: Exakter Wert
+  meaning: ''
+- key: metric.undefined
+  internal: UNDEFINED
+  en: Undefined
+  de: Undefiniert
+  meaning: ''
+- key: metric.band.observation
+  internal: band 1
+  en: Observation (reference vs observed)
+  de: Beobachtung (Referenz gegen Beobachtung)
+  meaning: ''
+- key: metric.band.reconstruction
+  internal: band 2
+  en: Reconstruction (reference × reconstructed)
+  de: Rekonstruktion (Referenz × Rekonstruktion)
+  meaning: ''
+- key: metric.band.gaps
+  internal: band 3
+  en: Gaps · stability · closure
+  de: Lücken · Stabilität · Schließung
+  meaning: ''
+- key: metric.m11_is
+  internal: —
+  en: M11 = 1 − M01
+  de: M11 = 1 − M01
+  meaning: explanatory text, not a computation
+- key: metric.fixture_deterministic
+  internal: S-06
+  en: 'fixture: deterministic'
+  de: 'Testdaten: deterministisch'
+  meaning: M10 with FixtureAdapter
+- key: metric.closure_in_comparison
+  internal: M09
+  en: Gap closure is measured in a scenario comparison
+  de: Die Lückenschließung wird im Szenariovergleich gemessen
+  meaning: ''
+- key: aux.undetermined_count
+  internal: undetermined_count
+  en: not determined
+  de: nicht bestimmt
+  meaning: MetricAux
+- key: aux.hypotheses_excluded
+  internal: hypotheses_excluded
+  en: hypotheses excluded
+  de: ausgeschlossene Hypothesen
+  meaning: MetricAux
+- key: aux.unevaluable_count
+  internal: unevaluable_count
+  en: not evaluable
+  de: nicht auswertbar
+  meaning: MetricAux
+- key: aux.not_in_validity
+  internal: not_in_validity
+  en: not in validity
+  de: außerhalb der Gültigkeit
+  meaning: MetricAux
+- key: aux.stale_known
+  internal: stale_known
+  en: delayed observations
+  de: verzögerte Beobachtungen
+  meaning: MetricAux
+- key: aux.tp
+  internal: tp
+  en: matched
+  de: zugeordnet
+  meaning: MetricAux
+- key: aux.fp
+  internal: fp
+  en: unmatched
+  de: nicht zugeordnet
+  meaning: MetricAux
+- key: aux.fn
+  internal: fn
+  en: missed
+  de: verfehlt
+  meaning: MetricAux
+- key: aux.observable_cases
+  internal: observable_cases
+  en: observable cases
+  de: beobachtbare Fälle
+  meaning: MetricAux
+- key: aux.shared_coverage
+  internal: shared_coverage
+  en: shared coverage
+  de: gemeinsame Abdeckung
+  meaning: MetricAux
+- key: aux.persisting
+  internal: persisting
+  en: persisting
+  de: bestehend
+  meaning: MetricAux
+- key: aux.new_inconsistencies
+  internal: new_inconsistencies
+  en: new
+  de: neu
+  meaning: MetricAux
+- key: aux.unevaluable_in_recovery
+  internal: unevaluable_in_recovery
+  en: not evaluable in recovery
+  de: in Wiederherstellung nicht auswertbar
+  meaning: MetricAux
+- key: aux.ticks_excluded
+  internal: ticks_excluded
+  en: steps excluded
+  de: ausgeschlossene Schritte
+  meaning: MetricAux
+- key: aux.ticks_included
+  internal: ticks_included
+  en: steps included
+  de: einbezogene Schritte
+  meaning: MetricAux
+- key: aux.function_ref
+  internal: function_ref
+  en: service function
+  de: Servicefunktion
+  meaning: MetricAux
+- key: agg.pooled
+  internal: POOLED
+  en: pooled
+  de: gepoolt
+  meaning: Aggregation
+- key: agg.per_tick
+  internal: PER_TICK
+  en: per step
+  de: je Schritt
+  meaning: Aggregation
+- key: agg.time_mean
+  internal: TIME_MEAN_EXPLICIT
+  en: explicit time mean
+  de: expliziter Zeitmittelwert
+  meaning: Aggregation
+- key: agg.label
+  internal: aggregation
+  en: aggregation
+  de: Aggregation
+  meaning: ''
+- key: agg.up_to
+  internal: to_tick
+  en: up to t={t}
+  de: bis t={t}
+  meaning: ''
+  params:
+  - t
+- key: relation.a
+  internal: A
+  en: Reference
+  de: Referenz
+  meaning: EvaluatedRelation
+- key: relation.o
+  internal: O
+  en: Observed
+  de: Beobachtet
+  meaning: EvaluatedRelation
+- key: relation.r
+  internal: R
+  en: Reconstructed
+  de: Rekonstruiert
+  meaning: EvaluatedRelation
+- key: relation.a_o
+  internal: A_O
+  en: Reference vs observed
+  de: Referenz gegen Beobachtung
+  meaning: EvaluatedRelation
+- key: relation.a_r
+  internal: A_R
+  en: Reference × reconstructed
+  de: Referenz × Rekonstruktion
+  meaning: EvaluatedRelation
+- key: relation.annotation_r
+  internal: ANNOTATION_R
+  en: Annotation × reconstructed
+  de: Annotation × Rekonstruktion
+  meaning: EvaluatedRelation
+- key: relation.r1_r2
+  internal: R1_R2
+  en: Run 0 × run 1
+  de: Lauf 0 × Lauf 1
+  meaning: EvaluatedRelation
+- key: relation.baseline_recovery
+  internal: BASELINE_RECOVERY
+  en: Baseline × recovery
+  de: Ausgangsszenario × Wiederherstellung
+  meaning: EvaluatedRelation
+- key: space_kind.attribute
+  internal: ATTRIBUTE
+  en: attributes
+  de: Attribute
+  meaning: ReferenceSpaceKind
+- key: space_kind.rule
+  internal: RULE
+  en: rules
+  de: Regeln
+  meaning: ReferenceSpaceKind
+- key: space_kind.transition
+  internal: TRANSITION
+  en: transitions
+  de: Übergänge
+  meaning: ReferenceSpaceKind
+- key: space_kind.tick
+  internal: TICK
+  en: steps
+  de: Schritte
+  meaning: ReferenceSpaceKind
+- key: space_kind.case
+  internal: CASE
+  en: cases
+  de: Fälle
+  meaning: ReferenceSpaceKind
+- key: space_kind.rule_key
+  internal: RULE_KEY
+  en: rule keys
+  de: Regelschlüssel
+  meaning: ReferenceSpaceKind
+- key: ui.attribute
+  internal: ui
+  en: Attribute
+  de: Attribut
+  meaning: interface label
+- key: ui.rules
+  internal: ui
+  en: Rules
+  de: Regeln
+  meaning: interface label
+- key: ui.tick
+  internal: ui
+  en: t = {t}
+  de: t = {t}
+  meaning: interface label
+  params:
+  - t
+- key: ui.tick_of
+  internal: ui
+  en: t = {t}/{n}
+  de: t = {t}/{n}
+  meaning: interface label
+  params:
+  - t
+  - n
+- key: ui.filter
+  internal: ui
+  en: Filter
+  de: Filter
+  meaning: interface label
+- key: ui.filter.all
+  internal: ui
+  en: All
+  de: Alle
+  meaning: interface label
+- key: ui.filter.changed
+  internal: ui
+  en: Changed
+  de: Geändert
+  meaning: interface label
+- key: ui.filter.open
+  internal: ui
+  en: Open
+  de: Offen
+  meaning: interface label
+- key: ui.filter.differs
+  internal: ui
+  en: Differs
+  de: Abweichend
+  meaning: interface label
+- key: ui.show
+  internal: ui
+  en: Show
+  de: Zeigen
+  meaning: interface label
+- key: ui.legend
+  internal: ui
+  en: Legend
+  de: Legende
+  meaning: interface label
+- key: ui.values
+  internal: ui
+  en: Values
+  de: Werte
+  meaning: interface label
+- key: ui.relations
+  internal: ui
+  en: Relations
+  de: Relationen
+  meaning: interface label
+- key: ui.gaps
+  internal: ui
+  en: Gaps
+  de: Lücken
+  meaning: interface label
+- key: ui.open_relations
+  internal: ui
+  en: Open relations
+  de: Offene Relationen
+  meaning: interface label
+- key: ui.output
+  internal: ui
+  en: Output
+  de: Ausgabe
+  meaning: interface label
+- key: ui.events
+  internal: ui
+  en: events
+  de: Ereignisse
+  meaning: interface label
+- key: ui.reconstruction_step
+  internal: ui
+  en: reconstruction step
+  de: Rekonstruktionsschritt
+  meaning: interface label
+- key: ui.step
+  internal: ui
+  en: Step
+  de: Schritt
+  meaning: interface label
+- key: ui.seq
+  internal: ui
+  en: Seq
+  de: Seq
+  meaning: interface label
+- key: ui.track
+  internal: ui
+  en: Track
+  de: Spur
+  meaning: interface label
+- key: ui.type
+  internal: ui
+  en: Type
+  de: Art
+  meaning: interface label
+- key: ui.status
+  internal: ui
+  en: Status
+  de: Status
+  meaning: interface label
+- key: ui.effect
+  internal: ui
+  en: Effect
+  de: Wirkung
+  meaning: interface label
+- key: ui.track.scenario
+  internal: ui
+  en: scenario
+  de: Szenario
+  meaning: interface label
+- key: ui.track.pipeline
+  internal: ui
+  en: pipeline
+  de: Ablauf
+  meaning: interface label
+- key: ui.tracks
+  internal: ui
+  en: tracks
+  de: Spuren
+  meaning: interface label
+- key: ui.range
+  internal: ui
+  en: range t = {a} … {b}
+  de: Bereich t = {a} … {b}
+  meaning: interface label
+  params:
+  - a
+  - b
+- key: ui.compare_hint
+  internal: ui
+  en: Compare with target-guided result in Closure & recovery
+  de: Mit zielgeführtem Ergebnis in Schließung & Wiederherstellung vergleichen
+  meaning: interface label
+- key: ui.prev_sweep
+  internal: ui
+  en: previous reconstruction step
+  de: vorheriger Rekonstruktionsschritt
+  meaning: interface label
+- key: ui.next_sweep
+  internal: ui
+  en: next reconstruction step
+  de: nächster Rekonstruktionsschritt
+  meaning: interface label
+- key: ui.configuration
+  internal: ui
+  en: Configuration
+  de: Konfiguration
+  meaning: interface label
+- key: ui.quadrant.gaps
+  internal: ui
+  en: Gaps & relations
+  de: Lücken & Relationen
+  meaning: interface label
+- key: ui.quadrant.disagreements
+  internal: ui
+  en: Disagreements & termination
+  de: Abweichungen & Terminierung
+  meaning: interface label
+- key: ui.quadrant.recovery
+  internal: ui
+  en: Recovery loop (human authorization)
+  de: Wiederherstellungsschleife (menschliche Autorisierung)
+  meaning: interface label
+- key: ui.quadrant.closure
+  internal: ui
+  en: Gap closure (comparison)
+  de: Lückenschließung (Vergleich)
+  meaning: interface label
+- key: ui.open_in_comparison
+  internal: ui
+  en: Open in scenario comparison
+  de: Im Szenariovergleich öffnen
+  meaning: interface label
+- key: ui.metric
+  internal: ui
+  en: Metric
+  de: Metrik
+  meaning: interface label
+- key: ui.baseline
+  internal: ui
+  en: Baseline
+  de: Ausgangsszenario
+  meaning: interface label
+- key: ui.recovery
+  internal: ui
+  en: Recovery variant
+  de: Wiederherstellungsvariante
+  meaning: interface label
+- key: ui.vs
+  internal: ui
+  en: vs
+  de: gegen
+  meaning: interface label
+- key: ui.strategies
+  internal: ui
+  en: strategies
+  de: Strategien
+  meaning: interface label
+- key: ui.within_budget
+  internal: ui
+  en: within budget
+  de: innerhalb des Budgets
+  meaning: interface label
+- key: ui.experiment
+  internal: ui
+  en: Experiment
+  de: Experiment
+  meaning: interface label
+- key: ui.language
+  internal: ui
+  en: Language
+  de: Sprache
+  meaning: interface label
+- key: ui.mode.presentation
+  internal: ui
+  en: Presentation
+  de: Präsentation
+  meaning: interface label
+- key: ui.mode.standard
+  internal: ui
+  en: Standard
+  de: Standard
+  meaning: interface label
+- key: ui.demo_step
+  internal: ui
+  en: Step {n}/{m}
+  de: Schritt {n}/{m}
+  meaning: interface label
+  params:
+  - n
+  - m
+- key: ui.nodes
+  internal: ui
+  en: components
+  de: Komponenten
+  meaning: interface label
+- key: ui.component
+  internal: ui
+  en: Component
+  de: Komponente
+  meaning: interface label
+- key: ui.relation.depends_on
+  internal: ui
+  en: depends on
+  de: hängt ab von
+  meaning: interface label
+- key: ui.relation.reports_to
+  internal: ui
+  en: reports to
+  de: berichtet an
+  meaning: interface label
+- key: ui.relation.provides
+  internal: ui
+  en: provides
+  de: stellt bereit
+  meaning: interface label
+- key: ui.id
+  internal: ui
+  en: ID
+  de: ID
+  meaning: interface label
+- key: ui.value
+  internal: ui
+  en: Value
+  de: Wert
+  meaning: interface label
+- key: ui.class
+  internal: ui
+  en: Class
+  de: Klasse
+  meaning: interface label
+- key: ui.source
+  internal: ui
+  en: Source
+  de: Quelle
+  meaning: interface label
+- key: ui.observed_at
+  internal: ui
+  en: delayed t={k}
+  de: verzögert t={k}
+  meaning: interface label
+  params:
+  - k
+- key: ui.run
+  internal: ui
+  en: Run
+  de: Lauf
+  meaning: interface label
+- key: ui.goal
+  internal: ui
+  en: Goal
+  de: Ziel
+  meaning: interface label
+- key: ui.subject
+  internal: ui
+  en: Subject
+  de: Subjekt
+  meaning: interface label
+- key: ui.property
+  internal: ui
+  en: Property
+  de: Eigenschaft
+  meaning: interface label
+- key: ui.engine_label
+  internal: ui
+  en: engine label
+  de: Engine-Bezeichnung
+  meaning: interface label
+- key: ui.coupling
+  internal: ui
+  en: Coupling
+  de: Kopplung
+  meaning: interface label
+- key: ui.pipeline_status
+  internal: ui
+  en: Pipeline
+  de: Ablauf
+  meaning: interface label
+- key: ui.none
+  internal: ui
+  en: none
+  de: keine
+  meaning: interface label
+- key: ui.count
+  internal: ui
+  en: '{n}'
+  de: '{n}'
+  meaning: interface label
+  params:
+  - n
+- key: ui.weight
+  internal: ui
+  en: weight
+  de: Gewicht
+  meaning: interface label
+- key: ui.members
+  internal: ui
+  en: Reference space
+  de: Referenzraum
+  meaning: interface label
+- key: ui.numerator
+  internal: ui
+  en: numerator
+  de: Zähler
+  meaning: interface label
+- key: ui.denominator
+  internal: ui
+  en: denominator
+  de: Nenner
+  meaning: interface label
+- key: ui.case
+  internal: ui
+  en: Case
+  de: Fall
+  meaning: interface label
+- key: ui.gap
+  internal: ui
+  en: Gap
+  de: Lücke
+  meaning: interface label
+- key: ui.verdict
+  internal: ui
+  en: Verdict
+  de: Urteil
+  meaning: interface label
+- key: ui.observable
+  internal: ui
+  en: observable
+  de: beobachtbar
+  meaning: interface label
+- key: ui.not_observable
+  internal: ui
+  en: not observable
+  de: nicht beobachtbar
+  meaning: interface label
+- key: ui.reason
+  internal: ui
+  en: Reason
+  de: Grund
+  meaning: interface label
+- key: ui.message
+  internal: ui
+  en: Message
+  de: Meldung
+  meaning: interface label
+- key: ui.forward_short
+  internal: ui
+  en: forward
+  de: vorwärts
+  meaning: interface label
+- key: ui.inverse_short
+  internal: ui
+  en: target-guided
+  de: zielgeführt
+  meaning: interface label
+- key: ui.adapter_fixture
+  internal: ui
+  en: test fixture adapter
+  de: Testdaten-Adapter
+  meaning: interface label
+- key: ui.adapter_import
+  internal: ui
+  en: import adapter
+  de: Import-Adapter
+  meaning: interface label
+- key: ui.adapter_local
+  internal: ui
+  en: local engine adapter
+  de: lokaler Engine-Adapter
+  meaning: interface label
+- key: ui.adapter_api
+  internal: ui
+  en: engine API adapter
+  de: Engine-API-Adapter
+  meaning: interface label
+- key: ui.scenario
+  internal: ui
+  en: Scenario
+  de: Szenario
+  meaning: interface label
+- key: ui.observation_setup
+  internal: ui
+  en: Observation setup
+  de: Beobachtungskonfiguration
+  meaning: interface label
+- key: ui.target
+  internal: ui
+  en: Target
+  de: Ziel
+  meaning: interface label
+- key: ui.adapter
+  internal: ui
+  en: Adapter
+  de: Adapter
+  meaning: interface label
+- key: ui.schedule
+  internal: ui
+  en: Schedule
+  de: Zeitplan
+  meaning: interface label
+- key: ui.ticks
+  internal: ui
+  en: steps
+  de: Schritte
+  meaning: interface label
+- key: schedule.final
+  internal: FINAL
+  en: final step
+  de: letzter Schritt
+  meaning: ScheduleMode
+- key: schedule.every_tick
+  internal: EVERY_TICK
+  en: every step
+  de: jeder Schritt
+  meaning: ScheduleMode
+- key: schedule.explicit
+  internal: EXPLICIT
+  en: explicit steps
+  de: ausgewählte Schritte
+  meaning: ScheduleMode
+- key: replay.synthetic
+  internal: SYNTHETIC
+  en: synthetic replay
+  de: synthetische Wiederholung
+  meaning: ReplayMode
+- key: replay.preserved
+  internal: PRESERVED_ENGINE
+  en: replay with preserved engine results
+  de: Wiederholung mit erhaltenen Engine-Ergebnissen
+  meaning: ReplayMode
+- key: replay.identical
+  internal: IDENTICAL
+  en: Identical
+  de: Identisch
+  meaning: ''
+- key: replay.divergent
+  internal: DIVERGENT
+  en: Divergent
+  de: Abweichend
+  meaning: ''
+- key: adapter.fixture
+  internal: FIXTURE
+  en: test fixture adapter
+  de: Testdaten-Adapter
+  meaning: AdapterKind
+- key: adapter.local
+  internal: LOCAL
+  en: local engine adapter
+  de: lokaler Engine-Adapter
+  meaning: AdapterKind
+- key: adapter.api
+  internal: API
+  en: engine API adapter
+  de: Engine-API-Adapter
+  meaning: AdapterKind
+- key: adapter.import
+  internal: IMPORT
+  en: import adapter
+  de: Import-Adapter
+  meaning: AdapterKind
+- key: error.invalid_topology
+  internal: INVALID_TOPOLOGY
+  en: Invalid topology
+  de: Ungültige Topologie
+  meaning: ErrorCode
+- key: error.invalid_rule
+  internal: INVALID_RULE
+  en: Invalid rule
+  de: Ungültige Regel
+  meaning: ErrorCode
+- key: error.invalid_transition
+  internal: INVALID_TRANSITION
+  en: Invalid transition
+  de: Ungültiger Übergang
+  meaning: ErrorCode
+- key: error.context_incomplete
+  internal: CONTEXT_INCOMPLETE
+  en: Observation context incomplete
+  de: Beobachtungskontext unvollständig
+  meaning: ErrorCode
+- key: error.engine_unavailable
+  internal: ENGINE_UNAVAILABLE
+  en: Engine unavailable
+  de: Engine nicht verfügbar
+  meaning: ErrorCode
+- key: error.metric_undefined
+  internal: METRIC_UNDEFINED
+  en: Metric undefined
+  de: Metrik undefiniert
+  meaning: ErrorCode
+- key: error.view_data_unavailable
+  internal: VIEW_DATA_UNAVAILABLE
+  en: View data unavailable
+  de: Sichtdaten nicht verfügbar
+  meaning: ErrorCode
+- key: error.schema_violation
+  internal: SCHEMA_VIOLATION
+  en: Request does not match the contract
+  de: Anfrage entspricht nicht dem Vertrag
+  meaning: ErrorCode
+- key: error.not_found
+  internal: NOT_FOUND
+  en: Not found
+  de: Nicht gefunden
+  meaning: ErrorCode
+- key: error.conflict
+  internal: CONFLICT
+  en: Conflict
+  de: Konflikt
+  meaning: ErrorCode
+- key: error.access_violation
+  internal: ACCESS_VIOLATION
+  en: Access violation
+  de: Zugriffsverletzung
+  meaning: ErrorCode
+- key: error.import_invalid
+  internal: IMPORT_INVALID
+  en: Import invalid
+  de: Import ungültig
+  meaning: ErrorCode
+- key: error.comparison_incompatible
+  internal: COMPARISON_INCOMPATIBLE
+  en: Not comparable
+  de: Nicht vergleichbar
+  meaning: ErrorCode
+- key: recovery.submit_valid_definition
+  internal: SUBMIT_VALID_DEFINITION
+  en: submit a valid definition
+  de: gültige Definition einreichen
+  meaning: RecoveryAction
+- key: recovery.revert_to_version
+  internal: REVERT_TO_VERSION
+  en: revert to the last valid version
+  de: zur letzten gültigen Version zurückkehren
+  meaning: RecoveryAction
+- key: recovery.replay_from_initial
+  internal: REPLAY_FROM_INITIAL
+  en: replay from the initial state
+  de: ab dem Initialzustand wiederholen
+  meaning: RecoveryAction
+- key: recovery.reserialize
+  internal: RESERIALIZE
+  en: use the next serialization profile
+  de: nächstes Serialisierungsprofil verwenden
+  meaning: RecoveryAction
+- key: recovery.resweep
+  internal: RESWEEP
+  en: re-run reconstruction
+  de: Rekonstruktion erneut ausführen
+  meaning: RecoveryAction
+- key: recovery.import_result
+  internal: IMPORT_RESULT
+  en: import a result
+  de: Ergebnis importieren
+  meaning: RecoveryAction
+- key: recovery.recompute
+  internal: RECOMPUTE
+  en: recompute
+  de: neu berechnen
+  meaning: RecoveryAction
+- key: recovery.refetch
+  internal: REFETCH
+  en: reload
+  de: neu laden
+  meaning: RecoveryAction
+- key: lang.en
+  internal: en
+  en: English
+  de: Englisch
+  meaning: Lang
+- key: lang.de
+  internal: de
+  en: German
+  de: Deutsch
+  meaning: Lang
+- key: mode.standard
+  internal: standard
+  en: Standard
+  de: Standard
+  meaning: Mode
+- key: mode.presentation
+  internal: presentation
+  en: Presentation
+  de: Präsentation
+  meaning: Mode
+- key: mode.presentation.frame
+  internal: SEM-036
+  en: Presentation mode
+  de: Präsentationsmodus
+  meaning: ''
+- key: guard.timed
+  internal: TIMED
+  en: timed
+  de: timed
+  meaning: GuardClass (technical)
+- key: guard.timeless
+  internal: TIMELESS
+  en: timeless
+  de: timeless
+  meaning: GuardClass (technical)
+- key: guard.range
+  internal: RANGE
+  en: range
+  de: range
+  meaning: GuardClass (technical)
+- key: guard.comparison
+  internal: COMPARISON
+  en: comparison
+  de: comparison
+  meaning: GuardClass (technical)
+- key: guard.global
+  internal: GLOBAL
+  en: global
+  de: global
+  meaning: GuardClass (technical)
+- key: reltype.depends_on
+  internal: depends_on
+  en: depends on
+  de: hängt ab von
+  meaning: RelationType
+- key: reltype.reports_to
+  internal: reports_to
+  en: reports to
+  de: berichtet an
+  meaning: RelationType
+- key: reltype.provides
+  internal: provides
+  en: provides
+  de: stellt bereit
+  meaning: RelationType
+- key: metric.mid
+  internal: MetricId
+  en: '{id}'
+  de: '{id}'
+  meaning: metric id datum
+  params:
+  - id
+- key: dir.forward
+  internal: FORWARD
+  en: Forward
+  de: Vorwärts
+  meaning: ''
+- key: dir.inverse
+  internal: INVERSE
+  en: Target-guided
+  de: Zielgeführt
+  meaning: ''
+- key: view_status.idle
+  internal: IDLE
+  en: Idle
+  de: Bereit
+  meaning: ''
+- key: view_status.loading
+  internal: LOADING
+  en: Loading
+  de: Lädt
+  meaning: ''
+- key: view_status.ready
+  internal: READY
+  en: Ready
+  de: Bereit
+  meaning: ''
+- key: view_status.unavailable
+  internal: VIEW_DATA_UNAVAILABLE
+  en: Data could not be verified
+  de: Daten nicht verifiziert
+  meaning: ''
+- key: focus
+  internal: SEM-034
+  en: Focus
+  de: Fokus
+  meaning: ''
+- key: delta
+  internal: SEM-023
+  en: Change
+  de: Änderung
+  meaning: ''
+- key: exec
+  internal: SEM-032
+  en: Execution status
+  de: Ausführungsstatus
+  meaning: ''
+- key: epi
+  internal: SEM-018
+  en: Knowledge class
+  de: Wissensklasse
+  meaning: ''
+- key: term
+  internal: SEM-029
+  en: Termination
+  de: Terminierung
+  meaning: ''
+- key: obs.continuity.sem
+  internal: SEM-030
+  en: Source continuity
+  de: Quellenkontinuität
+  meaning: ''
+- key: cpl
+  internal: SEM-037
+  en: Coupling
+  de: Kopplung
+  meaning: ''
+- key: demo
+  internal: SEM-033
+  en: Demo
+  de: Demo
+  meaning: ''
+- key: demo.1
+  internal: DemoStep
+  en: Three states of one synthetic system, and a barrier between them
+  de: Drei Zustände eines synthetischen Systems und eine Barriere dazwischen
+  meaning: narration
+- key: demo.2
+  internal: DemoStep
+  en: The reference changes; the observation window sees it
+  de: Der Referenzzustand ändert sich; das Beobachtungsfenster sieht es
+  meaning: narration
+- key: demo.3
+  internal: DemoStep
+  en: What the observation cannot see stays honestly open
+  de: Was die Beobachtung nicht sieht, bleibt ehrlich offen
+  meaning: narration
+- key: demo.4
+  internal: DemoStep
+  en: The engine fills gaps from observations alone, and we see where it differs
+  de: Die Engine füllt Lücken nur aus Beobachtungen, und wir sehen, wo sie abweicht
+  meaning: narration
+- key: demo.5
+  internal: DemoStep
+  en: Two independent reconstruction paths, each with its own trace
+  de: Zwei unabhängige Rekonstruktionswege mit je eigenem Verlauf
+  meaning: narration
+- key: demo.6
+  internal: DemoStep
+  en: Exact fractions, no overall score
+  de: Exakte Brüche, kein Gesamtwert
+  meaning: narration
+- key: demo.7
+  internal: DemoStep
+  en: A recovery variant, approved by a human, measured against the baseline
+  de: Eine von einem Menschen freigegebene Wiederherstellungsvariante, gemessen am Ausgangsszenario
+  meaning: narration
+- key: demo.8
+  internal: DemoStep
+  en: Everything is exportable and reproducible
+  de: Alles ist exportierbar und reproduzierbar
+  meaning: narration
+- key: demo.v1
+  internal: deep path
+  en: How do you know the engine is blind?
+  de: Woher weiß man, dass die Engine blind ist?
+  meaning: deep-dive path
+- key: demo.v2
+  internal: deep path
+  en: Are these real results?
+  de: Sind das echte Ergebnisse?
+  meaning: deep-dive path
+- key: demo.v3
+  internal: deep path
+  en: How exact is the evaluation?
+  de: Wie exakt ist die Auswertung?
+  meaning: deep-dive path
+- key: demo.v4
+  internal: deep path
+  en: What happens with recovery proposals?
+  de: Was passiert mit Wiederherstellungsvorschlägen?
+  meaning: deep-dive path
+- key: demo.v5
+  internal: deep path
+  en: Where are the gaps?
+  de: Wo sind die Lücken?
+  meaning: deep-dive path
+- key: authority.pending
+  internal: PENDING
+  en: Pending
+  de: Ausstehend
+  meaning: Decision3
+enum_terms:
+  StateSpace:
+    A: space.a
+    O: space.o
+    R: space.r
+  Applicability:
+    APPLICABLE: app.applicable
+    NOT_APPLICABLE: app.na
+  ObservationStatus:
+    KNOWN: obs.known
+    UNKNOWN: obs.unknown
+    NOT_APPLICABLE: app.na
+  ReconstructionStatus:
+    DETERMINED: rec.determined
+    UNDETERMINED: rec.undetermined
+    NOT_APPLICABLE: app.na
+  ContentAvailability:
+    AVAILABLE: avail.available
+    NOT_AVAILABLE_AT_TICK: avail.none
+  RuleResult:
+    'TRUE': rule.true
+    'FALSE': rule.false
+    UNEVALUABLE: rule.unevaluable
+  DataOrigin:
+    SYNTHETIC: origin.synthetic
+    FIXTURE: origin.fixture
+    ENGINE: origin.engine
+    IMPORTED: origin.imported
+    ILLUSTRATIVE: origin.illustrative
+  EpistemicClass:
+    SOURCE_OBSERVATION: epi.src_obs
+    SOURCE_STATEMENT: epi.src_stmt
+    STRUCTURAL_DERIVATION: epi.struct
+    HYPOTHESIS: epi.hyp
+    OPEN_REFERENCE: epi.open_ref
+  MetricStatus:
+    EVALUATED: metric.value
+    UNDEFINED: metric.undefined
+  UndefinedReason:
+    ZERO_DENOMINATOR: msg.undefined.zero
+    INPUT_MISSING: msg.undefined.missing
+  GapStatus:
+    OPEN: gap.open
+    CLOSED_IN_RESULT: gap.closed
+  MergeResolution:
+    UNDETERMINED: merge.undetermined
+    ENGINE_RESOLVED: merge.engine_resolved
+  TerminationReason:
+    CONVERGED: term.converged
+    ENGINE_REPORTED_STOP: term.engine_reported_stop
+    BUDGET_EXHAUSTED: term.budget_exhausted
+    TRUNCATED: term.truncated
+    ERROR: term.error
+    CANCELLED: term.cancelled
+  Continuity:
+    CONTINUOUS: obs.continuous
+    INTERRUPTED: obs.interrupted
+  ExecutionStatus:
+    CREATED: exec.created
+    RUNNING: exec.running
+    COMPLETED: exec.completed
+    PARTIAL: exec.partial
+    FAILED: exec.failed
+    BLOCKED: exec.blocked
+  AssessmentStatus:
+    MET: target.met
+    NOT_MET: target.not_met
+    UNDETERMINED: target.undetermined
+  Verdict:
+    TP: match.tp
+    FN: match.fn
+    FP: match.fp
+  EventStatus:
+    APPLIED: event.applied
+    REJECTED: event.rejected
+  CouplingStatus:
+    EFFECTIVE: cpl.effective
+    POSSIBLE: cpl.possible
+    UNKNOWN_OPEN: cpl.unknown_open
+  ViewStatus:
+    IDLE: view_status.idle
+    LOADING: view_status.loading
+    READY: view_status.ready
+    VIEW_DATA_UNAVAILABLE: view_status.unavailable
+  ReferenceStatus:
+    RESOLVED: ref.resolved
+    UNRESOLVED: ref.unresolved
+    TRUNCATED: ref.truncated
+    EXTERNAL: ref.external
+  EvalReason:
+    OK: rule.reason.ok
+    UNKNOWN_INPUT: rule.reason.unknown_input
+    UNDETERMINED_INPUT: rule.reason.undetermined_input
+    NOT_APPLICABLE_INPUT: rule.reason.na_input
+    REQUIREMENT_NOT_MET: rule.reason.requirement
+  RuleKind:
+    STATE: rule.kind.state
+    TRANSITION: rule.kind.transition
+    FUNCTION: rule.kind.function
+  StageName:
+    DEFINITIONS: stage.definitions
+    EMULATION: stage.emulation
+    OBSERVATION: stage.observation
+    FORWARD: stage.forward
+    INVERSE: stage.inverse
+    MERGE: stage.merge
+    STABILITY: stage.stability
+    EVALUATION: stage.evaluation
+    EXPORT: stage.export
+  Aggregation:
+    POOLED: agg.pooled
+    PER_TICK: agg.per_tick
+    TIME_MEAN_EXPLICIT: agg.time_mean
+  CaseSubset:
+    ALL: match.subset.all
+    OBSERVABLE_CASES: match.subset.observable
+  VariantKind:
+    BASELINE: scenario.baseline
+    RECOVERY: scenario.recovery
+  SweepDirection:
+    FORWARD: dir.forward
+    INVERSE: dir.inverse
+  InputEventKind:
+    SET_ATTRIBUTE: event.set_attribute
+    APPLY_APPROVAL: event.apply_approval
+  RelationType:
+    depends_on: reltype.depends_on
+    reports_to: reltype.reports_to
+    provides: reltype.provides
+  GoalProperty:
+    RULE_SATISFIED: goal.rule_satisfied
+    ATTRIBUTE_EQUALS: goal.attribute_equals
+    GAP_CLOSED: goal.gap_closed
+  ViewId:
+    SYSTEM_FIELD_OVERVIEW: view.01
+    TOPOLOGY_GRAPH: view.02
+    TEMPORAL_STATE_EXPLORER: view.03
+    OBSERVATION_INSPECTOR: view.04
+    FORWARD_SWEEP_INSPECTOR: view.05
+    INVERSE_SWEEP_INSPECTOR: view.06
+    STRUCTURAL_GAP_INSPECTOR: view.07
+    ARCHITECTURAL_CLOSURE_INSPECTOR: view.08
+    STRUCTURAL_METRICS: view.09
+    SCENARIO_COMPARISON: view.10
+    EVENT_TIMELINE: view.11
+  ScheduleMode:
+    FINAL: schedule.final
+    EVERY_TICK: schedule.every_tick
+    EXPLICIT: schedule.explicit
+  ReplayMode:
+    SYNTHETIC: replay.synthetic
+    PRESERVED_ENGINE: replay.preserved
+  ReplayVerdict:
+    IDENTICAL: replay.identical
+    DIVERGENT: replay.divergent
+  AdapterKind:
+    FIXTURE: adapter.fixture
+    LOCAL: adapter.local
+    API: adapter.api
+    IMPORT: adapter.import
+  ErrorCodeC:
+    INVALID_TOPOLOGY: error.invalid_topology
+    INVALID_RULE: error.invalid_rule
+    INVALID_TRANSITION: error.invalid_transition
+    CONTEXT_INCOMPLETE: error.context_incomplete
+    ENGINE_UNAVAILABLE: error.engine_unavailable
+    METRIC_UNDEFINED: error.metric_undefined
+    VIEW_DATA_UNAVAILABLE: error.view_data_unavailable
+    SCHEMA_VIOLATION: error.schema_violation
+    NOT_FOUND: error.not_found
+    CONFLICT: error.conflict
+    ACCESS_VIOLATION: error.access_violation
+    IMPORT_INVALID: error.import_invalid
+    COMPARISON_INCOMPATIBLE: error.comparison_incompatible
+  Lang:
+    en: lang.en
+    de: lang.de
+  Mode:
+    standard: mode.standard
+    presentation: mode.presentation
+  GuardClass:
+    TIMED: guard.timed
+    TIMELESS: guard.timeless
+    RANGE: guard.range
+    COMPARISON: guard.comparison
+    GLOBAL: guard.global
+  ReferenceSpaceKind:
+    ATTRIBUTE: space_kind.attribute
+    RULE: space_kind.rule
+    TRANSITION: space_kind.transition
+    TICK: space_kind.tick
+    CASE: space_kind.case
+    RULE_KEY: space_kind.rule_key
+  MetricId:
+    M01: metric.m01
+    M02: metric.m02
+    M03: metric.m03
+    M04: metric.m04
+    M05: metric.m05
+    M06: metric.m06
+    M07: metric.m07
+    M08: metric.m08
+    M09: metric.m09
+    M10: metric.m10
+    M11: metric.m11
+  EvaluatedRelation:
+    A: relation.a
+    O: relation.o
+    R: relation.r
+    A_O: relation.a_o
+    A_R: relation.a_r
+    ANNOTATION_R: relation.annotation_r
+    R1_R2: relation.r1_r2
+    BASELINE_RECOVERY: relation.baseline_recovery
+  RecoveryAction:
+    SUBMIT_VALID_DEFINITION: recovery.submit_valid_definition
+    REVERT_TO_VERSION: recovery.revert_to_version
+    REPLAY_FROM_INITIAL: recovery.replay_from_initial
+    RESERIALIZE: recovery.reserialize
+    RESWEEP: recovery.resweep
+    IMPORT_RESULT: recovery.import_result
+    RECOMPUTE: recovery.recompute
+    REFETCH: recovery.refetch
+  FieldId:
+    F01: layer.f01
+    F02: layer.f02
+    F03: layer.f03
+    F04: layer.f04
+    F05: layer.f05
+    F06: layer.f06
+    F07: layer.f07
+  Decision2:
+    APPROVED: authority.approved
+    REJECTED: authority.rejected
+  Decision3:
+    APPROVED: authority.approved
+    REJECTED: authority.rejected
+    PENDING: authority.pending

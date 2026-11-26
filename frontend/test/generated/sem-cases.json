@@ -1,0 +1,750 @@
+{
+ "SEM-001": {
+  "primitive": "SpaceHeader",
+  "views": [
+   1,
+   2,
+   3,
+   9,
+   10
+  ],
+  "binds": [
+   {
+    "enum": "StateSpace",
+    "values": [
+     "A"
+    ]
+   },
+   {
+    "enum": "Applicability",
+    "values": [
+     "APPLICABLE"
+    ]
+   }
+  ]
+ },
+ "SEM-002": {
+  "primitive": "SpaceHeader",
+  "views": [
+   1,
+   2,
+   3,
+   4,
+   9
+  ],
+  "binds": [
+   {
+    "enum": "StateSpace",
+    "values": [
+     "O"
+    ]
+   }
+  ]
+ },
+ "SEM-003": {
+  "primitive": "SpaceHeader",
+  "views": [
+   1,
+   2,
+   3,
+   5,
+   6,
+   7,
+   8,
+   9
+  ],
+  "binds": [
+   {
+    "enum": "StateSpace",
+    "values": [
+     "R"
+    ]
+   },
+   {
+    "enum": "ReconstructionStatus",
+    "values": [
+     "DETERMINED"
+    ]
+   }
+  ]
+ },
+ "SEM-004": {
+  "primitive": "SpaceCell",
+  "views": [
+   2,
+   3,
+   4
+  ],
+  "binds": [
+   {
+    "enum": "ObservationStatus",
+    "values": [
+     "KNOWN"
+    ]
+   }
+  ]
+ },
+ "SEM-005": {
+  "primitive": "SpaceCell",
+  "views": [
+   3,
+   4,
+   9
+  ],
+  "binds": [
+   {
+    "flag": "ProjectedValue.stale"
+   }
+  ]
+ },
+ "SEM-006": {
+  "primitive": "SpaceCell",
+  "views": [
+   2,
+   3,
+   4
+  ],
+  "binds": [
+   {
+    "enum": "ObservationStatus",
+    "values": [
+     "UNKNOWN"
+    ]
+   }
+  ]
+ },
+ "SEM-007": {
+  "primitive": "SpaceCell",
+  "views": [
+   2,
+   3,
+   5,
+   6,
+   9
+  ],
+  "binds": [
+   {
+    "enum": "ReconstructionStatus",
+    "values": [
+     "UNDETERMINED"
+    ]
+   },
+   {
+    "enum": "AssessmentStatus",
+    "values": [
+     "UNDETERMINED"
+    ]
+   }
+  ]
+ },
+ "SEM-008": {
+  "primitive": "SpaceCell",
+  "views": [
+   2,
+   3,
+   4
+  ],
+  "binds": [
+   {
+    "enum": "Applicability",
+    "values": [
+     "NOT_APPLICABLE"
+    ]
+   },
+   {
+    "enum": "ObservationStatus",
+    "values": [
+     "NOT_APPLICABLE"
+    ]
+   },
+   {
+    "enum": "ReconstructionStatus",
+    "values": [
+     "NOT_APPLICABLE"
+    ]
+   }
+  ]
+ },
+ "SEM-009": {
+  "primitive": "SpaceCell",
+  "views": [
+   3,
+   5,
+   6,
+   7,
+   8
+  ],
+  "binds": [
+   {
+    "enum": "ContentAvailability",
+    "values": [
+     "NOT_AVAILABLE_AT_TICK"
+    ]
+   }
+  ]
+ },
+ "SEM-010": {
+  "primitive": "RuleDiamond",
+  "views": [
+   2,
+   3,
+   6,
+   7,
+   8,
+   9,
+   10,
+   11
+  ],
+  "binds": [
+   {
+    "enum": "RuleResult",
+    "values": [
+     "TRUE"
+    ]
+   },
+   {
+    "enum": "AssessmentStatus",
+    "values": [
+     "MET"
+    ]
+   },
+   {
+    "enum": "Verdict",
+    "values": [
+     "TP"
+    ]
+   },
+   {
+    "enum": "EventStatus",
+    "values": [
+     "APPLIED"
+    ]
+   }
+  ]
+ },
+ "SEM-011": {
+  "primitive": "RuleDiamond",
+  "views": [
+   2,
+   3,
+   6,
+   7,
+   8,
+   9,
+   10,
+   11
+  ],
+  "binds": [
+   {
+    "enum": "RuleResult",
+    "values": [
+     "FALSE"
+    ]
+   },
+   {
+    "enum": "AssessmentStatus",
+    "values": [
+     "NOT_MET"
+    ]
+   },
+   {
+    "enum": "Verdict",
+    "values": [
+     "FN",
+     "FP"
+    ]
+   },
+   {
+    "enum": "EventStatus",
+    "values": [
+     "REJECTED"
+    ]
+   }
+  ]
+ },
+ "SEM-012": {
+  "primitive": "RuleDiamond",
+  "views": [
+   2,
+   3,
+   8,
+   9,
+   10
+  ],
+  "binds": [
+   {
+    "enum": "RuleResult",
+    "values": [
+     "UNEVALUABLE"
+    ]
+   }
+  ]
+ },
+ "SEM-013": {
+  "primitive": "OriginBadge",
+  "views": [
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10,
+   11
+  ],
+  "binds": [
+   {
+    "enum": "DataOrigin",
+    "values": [
+     "FIXTURE"
+    ]
+   }
+  ]
+ },
+ "SEM-014": {
+  "primitive": "OriginBadge",
+  "views": [
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10,
+   11
+  ],
+  "binds": [
+   {
+    "enum": "DataOrigin",
+    "values": [
+     "SYNTHETIC"
+    ]
+   }
+  ]
+ },
+ "SEM-015": {
+  "primitive": "OriginBadge",
+  "views": [
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10,
+   11
+  ],
+  "binds": [
+   {
+    "enum": "DataOrigin",
+    "values": [
+     "ENGINE"
+    ]
+   }
+  ]
+ },
+ "SEM-016": {
+  "primitive": "OriginBadge",
+  "views": [
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10,
+   11
+  ],
+  "binds": [
+   {
+    "enum": "DataOrigin",
+    "values": [
+     "IMPORTED"
+    ]
+   }
+  ]
+ },
+ "SEM-017": {
+  "primitive": "OriginBadge",
+  "views": [
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10,
+   11
+  ],
+  "binds": [
+   {
+    "enum": "DataOrigin",
+    "values": [
+     "ILLUSTRATIVE"
+    ]
+   }
+  ]
+ },
+ "SEM-018": {
+  "primitive": "EpistemicChip",
+  "views": [
+   3,
+   5,
+   6,
+   7
+  ],
+  "binds": [
+   {
+    "enum": "EpistemicClass",
+    "values": [
+     "SOURCE_OBSERVATION",
+     "SOURCE_STATEMENT",
+     "STRUCTURAL_DERIVATION",
+     "HYPOTHESIS",
+     "OPEN_REFERENCE"
+    ]
+   }
+  ]
+ },
+ "SEM-019": {
+  "primitive": "BarrierLine",
+  "views": [
+   1
+  ],
+  "binds": []
+ },
+ "SEM-020": {
+  "primitive": "RecoveryGateLine",
+  "views": [
+   1,
+   8,
+   10
+  ],
+  "binds": []
+ },
+ "SEM-021": {
+  "primitive": "RationalMetric",
+  "views": [
+   9,
+   10,
+   8
+  ],
+  "binds": [
+   {
+    "enum": "MetricStatus",
+    "values": [
+     "EVALUATED"
+    ]
+   }
+  ]
+ },
+ "SEM-022": {
+  "primitive": "UndefinedSlot",
+  "views": [
+   9,
+   10,
+   8
+  ],
+  "binds": [
+   {
+    "enum": "MetricStatus",
+    "values": [
+     "UNDEFINED"
+    ]
+   },
+   {
+    "enum": "UndefinedReason",
+    "values": [
+     "ZERO_DENOMINATOR",
+     "INPUT_MISSING"
+    ]
+   }
+  ]
+ },
+ "SEM-023": {
+  "primitive": "DeltaMark",
+  "views": [
+   2,
+   3,
+   4,
+   11
+  ],
+  "binds": [
+   {
+    "type": "DeltaStateA"
+   },
+   {
+    "type": "DeltaStateO"
+   },
+   {
+    "type": "DeltaStateR"
+   },
+   {
+    "type": "DeltaCoupling"
+   }
+  ]
+ },
+ "SEM-024": {
+  "primitive": "GapMark",
+  "views": [
+   2,
+   7,
+   8
+  ],
+  "binds": [
+   {
+    "enum": "GapStatus",
+    "values": [
+     "OPEN"
+    ]
+   }
+  ]
+ },
+ "SEM-025": {
+  "primitive": "GapMark",
+  "views": [
+   7,
+   8
+  ],
+  "binds": [
+   {
+    "enum": "GapStatus",
+    "values": [
+     "CLOSED_IN_RESULT"
+    ]
+   }
+  ]
+ },
+ "SEM-026": {
+  "primitive": "ConflictBracket",
+  "views": [
+   3,
+   5,
+   6,
+   8
+  ],
+  "binds": [
+   {
+    "enum": "MergeResolution",
+    "values": [
+     "UNDETERMINED",
+     "ENGINE_RESOLVED"
+    ]
+   }
+  ]
+ },
+ "SEM-027": {
+  "primitive": "EngineToken",
+  "views": [
+   5,
+   6
+  ],
+  "binds": [
+   {
+    "type": "OperatorRef"
+   },
+   {
+    "type": "SigmaRef"
+   }
+  ]
+ },
+ "SEM-028": {
+  "primitive": "Quarantine",
+  "views": [
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10,
+   11
+  ],
+  "binds": [
+   {
+    "enum": "ViewStatus",
+    "values": [
+     "VIEW_DATA_UNAVAILABLE"
+    ]
+   }
+  ]
+ },
+ "SEM-029": {
+  "primitive": "TerminationSeal",
+  "views": [
+   5,
+   6,
+   8
+  ],
+  "binds": [
+   {
+    "enum": "TerminationReason",
+    "values": [
+     "CONVERGED",
+     "ENGINE_REPORTED_STOP",
+     "BUDGET_EXHAUSTED",
+     "TRUNCATED",
+     "ERROR",
+     "CANCELLED"
+    ]
+   }
+  ]
+ },
+ "SEM-030": {
+  "primitive": "ContinuityBand",
+  "views": [
+   4,
+   11
+  ],
+  "binds": [
+   {
+    "enum": "Continuity",
+    "values": [
+     "CONTINUOUS",
+     "INTERRUPTED"
+    ]
+   }
+  ]
+ },
+ "SEM-031": {
+  "primitive": "SpaceCell",
+  "views": [
+   2,
+   3,
+   7
+  ],
+  "binds": [
+   {
+    "flag": "Node.outside_theta"
+   }
+  ]
+ },
+ "SEM-032": {
+  "primitive": "ExecPill",
+  "views": [
+   1,
+   5,
+   6,
+   11
+  ],
+  "binds": [
+   {
+    "enum": "ExecutionStatus",
+    "values": [
+     "CREATED",
+     "RUNNING",
+     "COMPLETED",
+     "PARTIAL",
+     "FAILED",
+     "BLOCKED"
+    ]
+   }
+  ]
+ },
+ "SEM-033": {
+  "primitive": "NarrationCard",
+  "views": [
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10,
+   11
+  ],
+  "binds": [
+   {
+    "flag": "Session.demo_step"
+   }
+  ]
+ },
+ "SEM-034": {
+  "primitive": "FocusRing",
+  "views": [
+   2,
+   3,
+   4,
+   7,
+   8
+  ],
+  "binds": [
+   {
+    "flag": "Session.focus"
+   }
+  ]
+ },
+ "SEM-035": {
+  "primitive": "DeviationSeam",
+  "views": [
+   2,
+   3
+  ],
+  "binds": [
+   {
+    "flag": "AttributeMembership.delta"
+   }
+  ]
+ },
+ "SEM-036": {
+  "primitive": "PresentationFrame",
+  "views": [
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10,
+   11
+  ],
+  "binds": [
+   {
+    "flag": "Session.mode_presentation"
+   }
+  ]
+ },
+ "SEM-037": {
+  "primitive": "RelationEdgePath",
+  "views": [
+   2,
+   5,
+   6,
+   8
+  ],
+  "binds": [
+   {
+    "enum": "CouplingStatus",
+    "values": [
+     "EFFECTIVE",
+     "POSSIBLE",
+     "UNKNOWN_OPEN"
+    ]
+   }
+  ]
+ }
+}

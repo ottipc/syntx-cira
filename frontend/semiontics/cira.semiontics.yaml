@@ -1,0 +1,1026 @@
+# SSOT of the visual and semiontic identity (G04.1). Hand-maintained. Generated outputs: tools/gen_semiontics.py
+version: 1.0.1
+source: Package v1.0.2 G03.12, G03.13; GREF SEM-001–030
+tokens:
+  color:
+    surface.void: '#090B0E'
+    surface.field: '#10141A'
+    surface.panel: '#161C24'
+    surface.elevated: '#1D2530'
+    border.hairline: '#242E3B'
+    border.strong: '#39475A'
+    ink.primary: '#E6EDF5'
+    ink.secondary: '#9AA8B8'
+    ink.muted: '#8391A3'
+    space.actual: '#38BDF8'
+    space.observed: '#F59E0B'
+    space.reconstructed: '#A78BFA'
+    space.actual.tint: '#0D2533'
+    space.observed.tint: '#2C200B'
+    space.reconstructed.tint: '#211A36'
+    eval.coherent: '#2DD4BF'
+    eval.violation: '#F43F5E'
+    eval.partial: '#A3E635'
+  alias:
+    open.epistemic: ink.secondary
+    open.absent: ink.muted
+  contrast_rules:
+    text_surfaces:
+    - surface.field
+    - surface.panel
+    - surface.elevated
+    text_tokens:
+    - ink.primary
+    - ink.secondary
+    - ink.muted
+    - space.actual
+    - space.observed
+    - space.reconstructed
+    - eval.coherent
+    - eval.partial
+    text_tokens_field_panel:
+    - eval.violation
+    tint_text:
+    - ink.primary
+    - ink.secondary
+    tints:
+    - space.actual.tint
+    - space.observed.tint
+    - space.reconstructed.tint
+    graphic_min: 3.0
+    text_min: 4.5
+    semantic_pairs_delta_e_min: 15
+    semantic:
+    - space.actual
+    - space.observed
+    - space.reconstructed
+    - eval.coherent
+    - eval.violation
+    - eval.partial
+  type:
+    display:
+      size: 18
+      line: 24
+      weight: 600
+      family: sans
+    section:
+      size: 13
+      line: 18
+      weight: 600
+      family: sans
+      caps: true
+      tracking: 0.06em
+    body:
+      size: 13
+      line: 19
+      weight: 400
+      family: sans
+    mono.value:
+      size: 13
+      line: 18
+      weight: 500
+      family: mono
+      tabular: true
+    mono.id:
+      size: 11
+      line: 16
+      weight: 400
+      family: mono
+      tabular: true
+    mono.operator:
+      size: 14
+      line: 18
+      weight: 500
+      family: mono
+    micro:
+      size: 10
+      line: 14
+      weight: 600
+      family: sans
+      caps: true
+      tracking: 0.08em
+  family:
+    sans: IBM Plex Sans
+    mono: DejaVu Mono
+  presentation_scale: 1.25
+  space:
+    unit: 4
+    grid:
+    - 4
+    - 8
+    - 12
+    - 16
+    - 24
+    - 32
+  border:
+    width.base: 1
+    width.emphasis: 2
+  radius:
+    actual: 0
+    observed: 0
+    observed.chamfer: 6
+    reconstructed: 2
+  pattern:
+    open.hatch:
+      angle: 45
+      size: 6
+      opacity: 0.12
+    fixture.stripe:
+      angle: 45
+      size: 4
+      opacity: 0.3
+    outside.crosshatch:
+      size: 6
+      opacity: 0.1
+  line:
+    topology.depends_on: solid 1.5 ink.secondary triangle
+    topology.reports_to: dash 6/3 ink.secondary open-angle
+    topology.provides: solid 1.5 ink.secondary source-dot
+    coupling.effective: solid 2 space.reconstructed
+    coupling.possible: dash 5/4 eval.partial
+    coupling.unknown: dot 2/4 ink.secondary open-circle
+    barrier: double 2 eval.violation
+    recovery: double 1.5 ink.secondary diamond
+  motion:
+    tick: 180
+    loading: 100
+    quarantine: 0
+    drawer: 160
+    stage: 200
+  graph:
+    node.char_width: 7.8
+    node.padding: 12
+    node.min_width: 160
+    node.height: 64
+    layer_gap: 72
+    node_gap: 32
+  z:
+    canvas: 10
+    chrome: 20
+    drawer: 30
+    quarantine: 40
+    demo: 50
+  zone:
+    a.height: 48
+    b.width: 220
+    b.collapsed: 56
+    c.min_width: 760
+    d.height: 52
+    e.width: 360
+    min_viewport_w: 1280
+    min_viewport_h: 720
+  opacity:
+    loading: 0.35
+signified_enums:
+- StateSpace
+- Applicability
+- ObservationStatus
+- ReconstructionStatus
+- ContentAvailability
+- RuleResult
+- DataOrigin
+- EpistemicClass
+- MetricStatus
+- UndefinedReason
+- GapStatus
+- MergeResolution
+- TerminationReason
+- Continuity
+- ExecutionStatus
+- AssessmentStatus
+- Verdict
+- EventStatus
+- CouplingStatus
+- ViewStatus
+labelled_enums:
+- ReferenceStatus
+- EvalReason
+- RuleKind
+- StageName
+- Aggregation
+- CaseSubset
+- VariantKind
+- SweepDirection
+- InputEventKind
+- RelationType
+- GoalProperty
+- ViewId
+- ScheduleMode
+- ReplayMode
+- ReplayVerdict
+- AdapterKind
+- ErrorCodeC
+- Lang
+- Mode
+- GuardClass
+- ReferenceSpaceKind
+- MetricId
+- EvaluatedRelation
+- RecoveryAction
+- FieldId
+- Decision2
+- Decision3
+internal_enums:
+- TimeIndex
+sems:
+- id: SEM-001
+  name: Space anchor reference
+  channels:
+    shape: rect sharp
+    color: space.actual
+    glyph: null
+    pattern: null
+  binds:
+  - enum: StateSpace
+    values:
+    - A
+  - enum: Applicability
+    values:
+    - APPLICABLE
+  views:
+  - 1
+  - 2
+  - 3
+  - 9
+  - 10
+  primitive: SpaceHeader
+  term: space.a
+  exclusion: never for observed or reconstructed values
+- id: SEM-002
+  name: Space anchor observed
+  channels:
+    shape: rect chamfer
+    color: space.observed
+    glyph: null
+    pattern: null
+  binds:
+  - enum: StateSpace
+    values:
+    - O
+  views:
+  - 1
+  - 2
+  - 3
+  - 4
+  - 9
+  primitive: SpaceHeader
+  term: space.o
+  exclusion: never for Ω_A or system errors
+- id: SEM-003
+  name: Space anchor reconstructed
+  channels:
+    shape: octagon double
+    color: space.reconstructed
+    glyph: null
+    pattern: null
+  binds:
+  - enum: StateSpace
+    values:
+    - R
+  - enum: ReconstructionStatus
+    values:
+    - DETERMINED
+  views:
+  - 1
+  - 2
+  - 3
+  - 5
+  - 6
+  - 7
+  - 8
+  - 9
+  primitive: SpaceHeader
+  term: space.r
+  exclusion: never as secured ground truth
+- id: SEM-004
+  name: Observed value
+  channels:
+    shape: dot filled
+    color: space.observed
+    glyph: ●
+    pattern: null
+  binds:
+  - enum: ObservationStatus
+    values:
+    - KNOWN
+  views:
+  - 2
+  - 3
+  - 4
+  primitive: SpaceCell
+  term: obs.known
+  exclusion: never without source_id
+- id: SEM-005
+  name: Observed delayed
+  channels:
+    shape: dot half
+    color: space.observed
+    glyph: ◐
+    pattern: lag-tag
+  binds:
+  - flag: ProjectedValue.stale
+  views:
+  - 3
+  - 4
+  - 9
+  primitive: SpaceCell
+  term: obs.known.stale
+  exclusion: never as UNKNOWN or FALSE
+- id: SEM-006
+  name: Not observed
+  channels:
+    shape: frame dashed
+    color: open.epistemic
+    glyph: ○?
+    pattern: open.hatch
+  binds:
+  - enum: ObservationStatus
+    values:
+    - UNKNOWN
+  views:
+  - 2
+  - 3
+  - 4
+  primitive: SpaceCell
+  term: obs.unknown
+  exclusion: never red; never FALSE or NOT_APPLICABLE
+- id: SEM-007
+  name: Not determined
+  channels:
+    shape: octagon open slash
+    color: open.epistemic
+    glyph: ○/
+    pattern: open.hatch
+  binds:
+  - enum: ReconstructionStatus
+    values:
+    - UNDETERMINED
+  - enum: AssessmentStatus
+    values:
+    - UNDETERMINED
+  views:
+  - 2
+  - 3
+  - 5
+  - 6
+  - 9
+  primitive: SpaceCell
+  term: rec.undetermined
+  exclusion: never UNKNOWN or FALSE
+- id: SEM-008
+  name: Not applicable
+  channels:
+    shape: rect dotted empty
+    color: open.absent
+    glyph: N/A
+    pattern: null
+  binds:
+  - enum: Applicability
+    values:
+    - NOT_APPLICABLE
+  - enum: ObservationStatus
+    values:
+    - NOT_APPLICABLE
+  - enum: ReconstructionStatus
+    values:
+    - NOT_APPLICABLE
+  views:
+  - 2
+  - 3
+  - 4
+  primitive: SpaceCell
+  term: app.na
+  exclusion: not counted as gap or error
+- id: SEM-009
+  name: No reconstruction at tick
+  channels:
+    shape: gap dotted
+    color: open.absent
+    glyph: —@t
+    pattern: null
+  binds:
+  - enum: ContentAvailability
+    values:
+    - NOT_AVAILABLE_AT_TICK
+  views:
+  - 3
+  - 5
+  - 6
+  - 7
+  - 8
+  primitive: SpaceCell
+  term: avail.none
+  exclusion: not VIEW_DATA_UNAVAILABLE
+- id: SEM-010
+  name: Satisfied
+  channels:
+    shape: diamond
+    color: eval.coherent
+    glyph: ◆1
+    pattern: null
+  binds:
+  - enum: RuleResult
+    values:
+    - 'TRUE'
+  - enum: AssessmentStatus
+    values:
+    - MET
+  - enum: Verdict
+    values:
+    - TP
+  - enum: EventStatus
+    values:
+    - APPLIED
+  views:
+  - 2
+  - 3
+  - 6
+  - 7
+  - 8
+  - 9
+  - 10
+  - 11
+  primitive: RuleDiamond
+  term: rule.true
+  exclusion: never for execution completion
+- id: SEM-011
+  name: Violated
+  channels:
+    shape: diamond
+    color: eval.violation
+    glyph: ◆0
+    pattern: null
+  binds:
+  - enum: RuleResult
+    values:
+    - 'FALSE'
+  - enum: AssessmentStatus
+    values:
+    - NOT_MET
+  - enum: Verdict
+    values:
+    - FN
+    - FP
+  - enum: EventStatus
+    values:
+    - REJECTED
+  views:
+  - 2
+  - 3
+  - 6
+  - 7
+  - 8
+  - 9
+  - 10
+  - 11
+  primitive: RuleDiamond
+  term: rule.false
+  exclusion: never for UNEVALUABLE
+- id: SEM-012
+  name: Not evaluable
+  channels:
+    shape: diamond hatched
+    color: open.epistemic
+    glyph: ◇⊥
+    pattern: open.hatch
+  binds:
+  - enum: RuleResult
+    values:
+    - UNEVALUABLE
+  views:
+  - 2
+  - 3
+  - 8
+  - 9
+  - 10
+  primitive: RuleDiamond
+  term: rule.unevaluable
+  exclusion: always with reason; never FALSE
+- id: SEM-013
+  name: Origin test fixture
+  channels:
+    shape: capsule striped
+    color: ink.secondary
+    glyph: ▨
+    pattern: fixture.stripe
+  binds:
+  - enum: DataOrigin
+    values:
+    - FIXTURE
+  views:
+  - 1
+  - 2
+  - 3
+  - 4
+  - 5
+  - 6
+  - 7
+  - 8
+  - 9
+  - 10
+  - 11
+  primitive: OriginBadge
+  term: origin.fixture
+  exclusion: never hidden (AK-09)
+- id: SEM-014
+  name: Origin synthetic
+  channels:
+    shape: capsule hairline
+    color: ink.secondary
+    glyph: null
+    pattern: null
+  binds:
+  - enum: DataOrigin
+    values:
+    - SYNTHETIC
+  views:
+  - 1
+  - 2
+  - 3
+  - 4
+  - 5
+  - 6
+  - 7
+  - 8
+  - 9
+  - 10
+  - 11
+  primitive: OriginBadge
+  term: origin.synthetic
+  exclusion: never for F05 outputs
+- id: SEM-015
+  name: Origin engine
+  channels:
+    shape: capsule dot
+    color: ink.secondary
+    glyph: ●
+    pattern: null
+  binds:
+  - enum: DataOrigin
+    values:
+    - ENGINE
+  views:
+  - 1
+  - 2
+  - 3
+  - 4
+  - 5
+  - 6
+  - 7
+  - 8
+  - 9
+  - 10
+  - 11
+  primitive: OriginBadge
+  term: origin.engine
+  exclusion: only with a real adapter
+- id: SEM-016
+  name: Origin imported
+  channels:
+    shape: capsule double
+    color: ink.secondary
+    glyph: ⇩
+    pattern: null
+  binds:
+  - enum: DataOrigin
+    values:
+    - IMPORTED
+  views:
+  - 1
+  - 2
+  - 3
+  - 4
+  - 5
+  - 6
+  - 7
+  - 8
+  - 9
+  - 10
+  - 11
+  primitive: OriginBadge
+  term: origin.imported
+  exclusion: distinct from FIXTURE and ENGINE
+- id: SEM-017
+  name: Origin illustrative
+  channels:
+    shape: capsule dashed
+    color: ink.secondary
+    glyph: null
+    pattern: null
+  binds:
+  - enum: DataOrigin
+    values:
+    - ILLUSTRATIVE
+  views:
+  - 1
+  - 2
+  - 3
+  - 4
+  - 5
+  - 6
+  - 7
+  - 8
+  - 9
+  - 10
+  - 11
+  primitive: OriginBadge
+  term: origin.illustrative
+  exclusion: never as measured metric
+- id: SEM-018
+  name: Epistemic class
+  channels:
+    shape: capsule
+    color: ink.secondary
+    glyph: null
+    pattern: null
+  binds:
+  - enum: EpistemicClass
+    values:
+    - SOURCE_OBSERVATION
+    - SOURCE_STATEMENT
+    - STRUCTURAL_DERIVATION
+    - HYPOTHESIS
+    - OPEN_REFERENCE
+  views:
+  - 3
+  - 5
+  - 6
+  - 7
+  primitive: EpistemicChip
+  term: epi
+  exclusion: OPEN_REFERENCE never at DETERMINED
+- id: SEM-019
+  name: Information barrier
+  channels:
+    shape: line double
+    color: eval.violation
+    glyph: ‖
+    pattern: null
+  binds: []
+  views:
+  - 1
+  primitive: BarrierLine
+  term: barrier
+  exclusion: no pass-through or hover connection
+- id: SEM-020
+  name: Recovery loop
+  channels:
+    shape: line double diamond
+    color: ink.secondary
+    glyph: ◇
+    pattern: null
+  binds: []
+  views:
+  - 1
+  - 8
+  - 10
+  primitive: RecoveryGateLine
+  term: loop.recovery
+  exclusion: never a closed automatic loop
+- id: SEM-021
+  name: Rational metric
+  channels:
+    shape: fraction
+    color: ink.primary
+    glyph: null
+    pattern: null
+  binds:
+  - enum: MetricStatus
+    values:
+    - EVALUATED
+  views:
+  - 9
+  - 10
+  - 8
+  primitive: RationalMetric
+  term: metric.value
+  exclusion: never without n/d; never an overall index
+- id: SEM-022
+  name: Undefined metric
+  channels:
+    shape: slot hatched
+    color: open.epistemic
+    glyph: ∅
+    pattern: open.hatch
+  binds:
+  - enum: MetricStatus
+    values:
+    - UNDEFINED
+  - enum: UndefinedReason
+    values:
+    - ZERO_DENOMINATOR
+    - INPUT_MISSING
+  views:
+  - 9
+  - 10
+  - 8
+  primitive: UndefinedSlot
+  term: metric.undefined
+  exclusion: never 0.00 or 0 %
+- id: SEM-023
+  name: State change
+  channels:
+    shape: arrow
+    color: space
+    glyph: ▸
+    pattern: null
+  binds:
+  - type: DeltaStateA
+  - type: DeltaStateO
+  - type: DeltaStateR
+  - type: DeltaCoupling
+  views:
+  - 2
+  - 3
+  - 4
+  - 11
+  primitive: DeltaMark
+  term: delta
+  exclusion: always bound to a space (K-13)
+- id: SEM-024
+  name: Open structural gap
+  channels:
+    shape: frame open
+    color: open.epistemic
+    glyph: ◰
+    pattern: null
+  binds:
+  - enum: GapStatus
+    values:
+    - OPEN
+  views:
+  - 2
+  - 7
+  - 8
+  primitive: GapMark
+  term: gap.open
+  exclusion: always with a source reference
+- id: SEM-025
+  name: Closed structural gap
+  channels:
+    shape: frame closed
+    color: eval.coherent
+    glyph: ◼
+    pattern: null
+  binds:
+  - enum: GapStatus
+    values:
+    - CLOSED_IN_RESULT
+  views:
+  - 7
+  - 8
+  primitive: GapMark
+  term: gap.closed
+  exclusion: bound to the later result
+- id: SEM-026
+  name: Merge conflict
+  channels:
+    shape: bracket
+    color: ink.primary
+    glyph: ⟦≠⟧
+    pattern: null
+  binds:
+  - enum: MergeResolution
+    values:
+    - UNDETERMINED
+    - ENGINE_RESOLVED
+  views:
+  - 3
+  - 5
+  - 6
+  - 8
+  primitive: ConflictBracket
+  term: merge.conflict
+  exclusion: shows UNDETERMINED or resolution by origin
+- id: SEM-027
+  name: Engine datum
+  channels:
+    shape: frame code
+    color: ink.primary
+    glyph: null
+    pattern: null
+  binds:
+  - type: OperatorRef
+  - type: SigmaRef
+  views:
+  - 5
+  - 6
+  primitive: EngineToken
+  term: engine.field
+  exclusion: no guessed translation (K-33)
+- id: SEM-028
+  name: Quarantine
+  channels:
+    shape: frame warning
+    color: eval.violation
+    glyph: ⚠
+    pattern: null
+  binds:
+  - enum: ViewStatus
+    values:
+    - VIEW_DATA_UNAVAILABLE
+  views:
+  - 1
+  - 2
+  - 3
+  - 4
+  - 5
+  - 6
+  - 7
+  - 8
+  - 9
+  - 10
+  - 11
+  primitive: Quarantine
+  term: msg.unavailable
+  exclusion: masks stale data immediately
+- id: SEM-029
+  name: Termination seal
+  channels:
+    shape: seal
+    color: ink.secondary
+    glyph: ▣
+    pattern: null
+  binds:
+  - enum: TerminationReason
+    values:
+    - CONVERGED
+    - ENGINE_REPORTED_STOP
+    - BUDGET_EXHAUSTED
+    - TRUNCATED
+    - ERROR
+    - CANCELLED
+  views:
+  - 5
+  - 6
+  - 8
+  primitive: TerminationSeal
+  term: term
+  exclusion: missing only for BLOCKED
+- id: SEM-030
+  name: Continuity band
+  channels:
+    shape: band
+    color: space.observed
+    glyph: null
+    pattern: null
+  binds:
+  - enum: Continuity
+    values:
+    - CONTINUOUS
+    - INTERRUPTED
+  views:
+  - 4
+  - 11
+  primitive: ContinuityBand
+  term: obs.continuity
+  exclusion: exact tick-range gaps
+- id: SEM-031
+  name: Outside observation window
+  channels:
+    shape: slot crosshatch
+    color: open.absent
+    glyph: ▨
+    pattern: outside.crosshatch
+  binds:
+  - flag: Node.outside_theta
+  views:
+  - 2
+  - 3
+  - 7
+  primitive: SpaceCell
+  term: obs.outside
+  exclusion: never equal to UNKNOWN (SEM-006)
+- id: SEM-032
+  name: Execution status
+  channels:
+    shape: pill
+    color: ink.primary
+    glyph: null
+    pattern: null
+  binds:
+  - enum: ExecutionStatus
+    values:
+    - CREATED
+    - RUNNING
+    - COMPLETED
+    - PARTIAL
+    - FAILED
+    - BLOCKED
+  views:
+  - 1
+  - 5
+  - 6
+  - 11
+  primitive: ExecPill
+  term: exec
+  exclusion: never in cells, never as rule truth
+- id: SEM-033
+  name: Narration card
+  channels:
+    shape: card
+    color: ink.primary
+    glyph: null
+    pattern: null
+  binds:
+  - flag: Session.demo_step
+  views:
+  - 1
+  - 2
+  - 3
+  - 4
+  - 5
+  - 6
+  - 7
+  - 8
+  - 9
+  - 10
+  - 11
+  primitive: NarrationCard
+  term: demo
+  exclusion: never over data values, never modal
+- id: SEM-034
+  name: Focus ring
+  channels:
+    shape: ring
+    color: ink.primary
+    glyph: null
+    pattern: null
+  binds:
+  - flag: Session.focus
+  views:
+  - 2
+  - 3
+  - 4
+  - 7
+  - 8
+  primitive: FocusRing
+  term: focus
+  exclusion: no space or evaluation colour
+- id: SEM-035
+  name: Deviation seam
+  channels:
+    shape: seam
+    color: eval.violation
+    glyph: ┆
+    pattern: null
+  binds:
+  - flag: AttributeMembership.delta
+  views:
+  - 2
+  - 3
+  primitive: DeviationSeam
+  term: dev.mismatch
+  exclusion: never computed on the client
+- id: SEM-036
+  name: Presentation frame
+  channels:
+    shape: frame
+    color: border.strong
+    glyph: null
+    pattern: null
+  binds:
+  - flag: Session.mode_presentation
+  views:
+  - 1
+  - 2
+  - 3
+  - 4
+  - 5
+  - 6
+  - 7
+  - 8
+  - 9
+  - 10
+  - 11
+  primitive: PresentationFrame
+  term: mode.presentation
+  exclusion: no change of meaning
+- id: SEM-037
+  name: Coupling line
+  channels:
+    shape: line
+    color: space.reconstructed
+    glyph: null
+    pattern: null
+  binds:
+  - enum: CouplingStatus
+    values:
+    - EFFECTIVE
+    - POSSIBLE
+    - UNKNOWN_OPEN
+  views:
+  - 2
+  - 5
+  - 6
+  - 8
+  primitive: RelationEdgePath
+  term: cpl
+  exclusion: coupling status, separate from topology relation type (GK-04, ADR-0005)
+unsigned_values:
+  ContentAvailability:
+  - AVAILABLE
+  ViewStatus:
+  - IDLE
+  - LOADING
+  - READY
