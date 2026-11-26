@@ -21,7 +21,12 @@ Freigabe: `docs/architecture/ARCHITECTURE_FREEZE_v1.0.2.md` · gate_mode **AUTO_
   FIXTURE bleibt FIXTURE. Reports in `docs/test-reports/` schreibt nur `tools/report.py`.
 - Kein Löschen, Überspringen, `xfail`, keine gelockerte Erwartung ohne F2-Korrektur oder ADR (E-09).
 - Generierte Artefakte nie von Hand bearbeiten (E-10): `contracts/schemas/*`, `backend/.importlinter`,
-  `synthetic_fixtures/bundles/fx_bundle_tx14.json`, `docs/STATUS.md`, `frontend/src/contracts/generated/*`, `docs/gui/*`.
+  `synthetic_fixtures/bundles/fx_bundle_tx14.json`, `docs/STATUS.md`, `frontend/src/contracts/generated/*`, `docs/gui/*`,
+  `frontend/src/semiontics/generated/*`, `frontend/src/language/generated/*`, `frontend/test/generated/*`,
+  `frontend/test/snapshots/*`, `frontend/.dependency-cruiser.cjs`. Quellen: `frontend/semiontics/*.yaml`, G03.3, Backend.
+- Visuelle Baselines (`frontend/test/visual/baseline/`) nur nach Sichtprüfung ersetzen; ein Lauf mit
+  `CIRA_UPDATE_BASELINES=1` ist absichtlich rot (ADR-0005 Nr. 10).
+- Sichtbarer Text nur aus `frontend/semiontics/cira.terms.yaml` (EN + DE); Rohwerte nur im technischen Datensatz.
 - Keine Ignore-Einträge in Importregeln, Capabilities, Lints ohne ADR (E-16).
 - Keine Geodaten, keine Realnamen, keine realen Infrastrukturmodelle (REQ-080).
 - Keine Secrets committen (`.env` ist ignoriert).
@@ -29,11 +34,12 @@ Freigabe: `docs/architecture/ARCHITECTURE_FREEZE_v1.0.2.md` · gate_mode **AUTO_
 ## Befehle
 | Befehl | Wirkung |
 |---|---|
-| `make sync` | regeneriert Schemas, .importlinter, TX14-Bundle, TS-Typen, Semiontik-Register |
+| `make sync` | regeneriert Schemas, .importlinter, TX14-Bundle, Snapshots, Semiontik, TS-Typen, depcruise-Regeln |
 | `make verify` | alle Tests, mypy strict, import-linter, Drift, trace_check, Lints — 0 Fehler, 0 Skips |
 | `make gate PHASE=0N` | Report `docs/test-reports/phase-0N.json` mit Hash, STATUS neu berechnet |
 | `make status` · `make resume` · `make impact` | Status · Wiedereinstieg · Wirkungsmenge |
 | `make run` | Backend auf 127.0.0.1:8000 |
+| `cd frontend && npm run verify` | TS-Drift, tsc, lint-arch + depcruise, alle vitest-Suiten inkl. Chrome (`CIRA_CHROME`, Standard `/usr/bin/google-chrome`) |
 
 ## Externe Abhängigkeiten (vertragstreu gekapselt)
 DEP-01 (R/I-Semantik) · DEP-02 (reale Engine: nur FIXTURE/IMPORTED, Local/Api als Stubs mit ENGINE_UNAVAILABLE) ·

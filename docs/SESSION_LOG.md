@@ -9,3 +9,18 @@
 - Phase 01: core, 27 Verträge, Schemaexport, TX14-Durchstich, Kopplungsmatrix + import-linter, CAS-Store mit Capabilities,
   topology, governance (K3), Golden Fixtures (22), Oracle, M01–M11, Nachweisfeld (registry, trace_check, report, status).
 - Befunde IC-01–IC-05 (alle F2) → `docs/corrections.md`, ADR-0001, ADR-0002.
+
+## 2026-11-26 — Session 2 (Phasen 02–04, fortgesetzt nach Kontextwechsel)
+- Phase 02: Emulator (Szenariopaar FX-SCN-BASE/REC), Beobachtung (θ, ω, Profile, Budget), Orchestrator-Stufen
+  Definitionen/Emulation/Beobachtung, SYNTHETIC-Replay. Gate 02 bestanden (`810cd5b`).
+- Phase 03: F05-Adapter (Fixture, Import, Local/Api-Stubs mit ENGINE_UNAVAILABLE), unabhängige Sweeps, Merge
+  engine_first/v1, Deltas, Registry-Labels; F06-Bewertung aller drei Räume, Vergleich (M09); 21 API-Einträge mit
+  Projektionstypen; IC-06–IC-09, ADR-0003/0004. Gate 03 bestanden (`fed3197`).
+- Phase 04 (F07): Semiontik-SSOT + Katalog EN/DE → Generatoren; TS-Verträge (Wire-Form); Teilfelder Session, Access,
+  Provenance, Sprache, Shell, Zeit, Steuerung (#21 vorbereitet, gesperrt), Demo; Sichten 01–11; Kompositionswurzel.
+- Prüfwerkzeuge: lint-arch (TX24/TX26/kanonische Zeichen/Token-CSS), dependency-cruiser aus G03.3 (TX25),
+  vitest-Suiten TX15/19/22/23/24/27/30/33, T09, Browser-Suiten TX28/29/32 mit Chrome for Testing 153.
+- Snapshots in Client-URL-Form, viertes Experiment mit dünnem Sweep-Plan (Nicht-Sweep-Ticks).
+- Befunde IC-10–IC-14 (alle F2), ADR-0005. Sichtprüfung der Baselines führte zu Korrekturen (Topologie-Lesbarkeit,
+  Formel-Schreibweise, Zone D) und zu neuen TX28-Regeln.
+- Push weiterhin nicht möglich (Schreibrecht in dieser Umgebung nicht gewährt); alle Commits lokal.

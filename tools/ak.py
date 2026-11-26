@@ -62,4 +62,17 @@ def evaluate_ak(reg: dict[str, Any], rep: dict[str, Any], phase: int) -> list[di
             st = "PASSED" if phase >= 5 and not rc.get("implemented") and not rc.get("missing") and not rc.get("integrated") \
                 else "PENDING"
         out.append({"id": aid, "status": st, "evidence": ev})
+    # K-75: AK-16a/16b are conjunctions of AK-GUI criteria (17.1); evaluated after the individual criteria.
+    by_id = {o["id"]: o for o in out}
+    composite = {"AK-16a": [f"AK-GUI-{i:02d}" for i in (*range(1, 9), *range(11, 16))],
+                 "AK-16b": ["AK-GUI-09", "AK-GUI-10", "AK-GUI-18", "AK-GUI-20"]}
+    for aid, parts in composite.items():
+        if aid not in by_id:
+            continue
+        sts = [by_id[p]["status"] for p in parts if p in by_id]
+        st = "NOT_PASSED" if "NOT_PASSED" in sts else ("PASSED" if sts and all(x == "PASSED" for x in sts) else "PENDING")
+        if aid == "AK-16b" and st == "PENDING" and not rep["environment"].get("browser", {}).get("path"):
+            st = "DEP-07b / EXTERN_AUSZUFÜHREN"
+        by_id[aid]["status"] = st
+        by_id[aid]["evidence"] = " ∧ ".join(parts)
     return out
