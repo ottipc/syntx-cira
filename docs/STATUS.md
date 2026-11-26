@@ -4,10 +4,10 @@
 > machine report. Do not edit by hand (E-10, 15.6).
 
 - Architecture: FROZEN v1.0.2 · gate_mode `AUTO_INTERNAL` · current phase **05**
-- Latest report: `docs/test-reports/phase-05.json` · phase 05 · commit `575ad47`
-- Report hash: `sha256:81ab5b398426f6e9f48cc3a6d20a05756df63789357cb554f456bf938f7b520a`
+- Latest report: `docs/test-reports/phase-05.json` · phase 05 · commit `216f5a6`
+- Report hash: `sha256:7d6c48aabfaa3ece3c8db3467c78ebb6eef2fcfb3e72c7765e7d95c3bba2d364`
 - Gate 05: **PASSED** — gate_tests_present_and_green=ok, no_open_F1_F2=ok, report_written=ok, sync_no_drift=ok, verify_0_errors_0_skips=ok
-- Tests: 727 passed · 0 failed · 0 skipped
+- Tests: 730 passed · 0 failed · 0 skipped
 
 ## Requirement status ladder (15.7)
 
