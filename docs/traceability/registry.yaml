@@ -1302,7 +1302,7 @@ dependencies:
   state: OPEN
 - id: DEP-GUI-01
   state: CLOSED
-  note: DejaVu Sans Mono via @fontsource/dejavu-mono 5.3.0 (G24 candidate); TX30 green in gates 04 and 05 (ADR-0005 Nr. 1)
+  note: DejaVu Sans Mono via @fontsource/dejavu-mono 5.3.0 (candidate named in 24.2); TX30 green in gates 04 and 05 (ADR-0005 Nr. 1)
 - id: DEP-GUI-02
   state: PINNED
   note: exact versions in frontend/package.json + package-lock.json; elkjs replaced by an own layout (ADR-0005 Nr. 2)
