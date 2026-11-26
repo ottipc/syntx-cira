@@ -4,8 +4,8 @@
 > machine report. Do not edit by hand (E-10, 15.6).
 
 - Architecture: FROZEN v1.0.2 · gate_mode `AUTO_INTERNAL` · current phase **05**
-- Latest report: `docs/test-reports/phase-05.json` · phase 05 · commit `7682802`
-- Report hash: `sha256:d0bae63c67149db38fd2ef3da784152c9d24003d33ad64d986ba9f310bbfb77d`
+- Latest report: `docs/test-reports/phase-05.json` · phase 05 · commit `127334f`
+- Report hash: `sha256:196a1a882c8042f0bc6396da4978a4f4e1dded9e9566ac84a7b4996f693e70de`
 - Gate 05: **PASSED** — gate_tests_present_and_green=ok, no_open_F1_F2=ok, report_written=ok, sync_no_drift=ok, verify_0_errors_0_skips=ok
 - Tests: 720 passed · 0 failed · 0 skipped
 
@@ -128,8 +128,8 @@
 | DEP-07a | OPEN | Docker daemon unreachable in the Claude workspace |
 | DEP-07b | AVAILABLE | Chrome for Testing 153 headless |
 | DEP-08 | OPEN |  |
-| DEP-GUI-01 | OPEN | checked by TX30 |
-| DEP-GUI-02 | OPEN |  |
+| DEP-GUI-01 | CLOSED | DejaVu Sans Mono via @fontsource/dejavu-mono 5.3.0 (G24 candidate); TX30 green in gates 04 and 05 (ADR-0005 Nr. 1) |
+| DEP-GUI-02 | PINNED | exact versions in frontend/package.json + package-lock.json; elkjs replaced by an own layout (ADR-0005 Nr. 2) |
 
 ## Review points and proposals (K-73)
 
