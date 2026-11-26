@@ -149,6 +149,7 @@ tokens:
     stage: 200
   graph:
     node.char_width: 7.8
+    node.slot_chars: 12
     node.padding: 12
     node.min_width: 160
     node.height: 64

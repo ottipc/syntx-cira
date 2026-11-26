@@ -54,7 +54,7 @@ export function OutputTabs({ out }: { out: SweepOutput }) {
   return (
     <div className="panel"><h2 className="section-title">{t("ui.output")}</h2>
       <div className="toolbar" role="tablist">{TABS.map(([k, term]) => (
-        <button key={k} type="button" role="tab" className="chip" aria-selected={tab === k} aria-pressed={tab === k} onClick={() => setTab(k)} data-term={term}>{t(term)}</button>))}</div>
+        <button key={k} type="button" role="tab" className="chip" aria-selected={tab === k} onClick={() => setTab(k)} data-term={term}>{t(term)}</button>))}</div>
       {tab === "values" ? <table className="data"><tbody>{out.values.map((v) => (
         <tr key={v.attribute_ref}><td><IdText>{v.attribute_ref}</IdText></td>
           <td><SpaceCell sem={v.status === "DETERMINED" ? "SEM-003" : v.status === "NOT_APPLICABLE" ? "SEM-008" : "SEM-007"} space="R"

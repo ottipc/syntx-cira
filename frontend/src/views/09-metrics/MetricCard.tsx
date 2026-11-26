@@ -13,8 +13,8 @@ export function MetricCard({ m }: { m: MetricVM }) {
         {m.subset ? <span className="secondary">{t(m.subset === "OBSERVABLE_CASES" ? "match.subset.observable" : "match.subset.all")}</span> : null}
         {m.result.aux.function_ref ? <IdText>{m.result.aux.function_ref}</IdText> : null}</header>
       <MetricValue m={m} />
-      <p className="secondary micro">{t(METRIC_EXPLAIN[m.id] ?? "metric.mid")}</p>
-      {m.def ? <p className="mono-id micro" data-datum="formula">{m.def.formula}</p> : null}
+      <p className="secondary explain">{t(METRIC_EXPLAIN[m.id] ?? "metric.mid")}</p>
+      {m.def ? <p className="mono-id" data-datum="formula">{m.def.formula}</p> : null}
     </article>
   );
 }

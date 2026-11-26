@@ -9,7 +9,7 @@ export function TopologyCanvas({ l, nodes, coupling, show, focus }: { l: Layout;
   const t = useT();
   return (
     <div className="topology">
-      <svg viewBox={`0 0 ${l.width} ${l.height}`} role="img" aria-label={t("view.02")} data-layout-width={l.width}>
+      <svg viewBox={`0 0 ${l.width} ${l.height}`} width={l.width} height={l.height} role="img" aria-label={t("view.02")} data-layout-width={l.width}>
         <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
           <path d="M 0 0 L 10 5 L 0 10 z" className="edge" /></marker></defs>
         {l.edges.map((e) => <RelationEdgePath key={e.id} e={e} coupling={coupling.get(e.id) ?? null} />)}

@@ -30,8 +30,10 @@ export function layout(t: TopologyProjectionBody, g: GraphTokens = GRAPH): Layou
     return d;
   };
   for (const n of nodes) visit(n.node_id, new Set());
+  // three slots, each wide enough for graph.node.slot_chars characters (values are not known to the layout)
+  const slot = Math.ceil(g.node_slot_chars * g.node_char_width + g.node_padding);
   const width = (n: { node_id: string; label: string }) =>
-    Math.max(g.node_min_width, Math.ceil(Math.max(n.node_id.length, n.label.length, 26) * g.node_char_width + 2 * g.node_padding));
+    Math.max(g.node_min_width, 3 * slot + g.node_padding, Math.ceil(Math.max(n.node_id.length, n.label.length) * g.node_char_width + 2 * g.node_padding));
   const layers = new Map<number, typeof nodes>();
   for (const n of nodes) layers.set(depth.get(n.node_id) ?? 0, [...(layers.get(depth.get(n.node_id) ?? 0) ?? []), n]);
   const layerKeys = [...layers.keys()].sort((a, b) => a - b);
@@ -41,8 +43,9 @@ export function layout(t: TopologyProjectionBody, g: GraphTokens = GRAPH): Layou
     (layers.get(L) ?? []).forEach((n, i) => {
       const third = colW / 3;
       const p = g.node_padding;
-      boxes.push({ id: n.node_id, label: n.label, layer: L, x: L * (colW + g.layer_gap) + p,
-                   y: i * (g.node_height + g.node_gap) + p, w: colW, h: g.node_height,
+      // layers stack top → bottom (depth 0 first); nodes of one layer sit side by side
+      boxes.push({ id: n.node_id, label: n.label, layer: L, x: i * (colW + g.node_gap) + p,
+                   y: L * (g.node_height + g.layer_gap) + p, w: colW, h: g.node_height,
                    labelAt: { x: p / 1.5, y: p + 4 }, slots: { a: { x: 4, y: 26 }, o: { x: third + 4, y: 26 }, r: { x: 2 * third + 4, y: 26 } },
                    slotBar: { w: 4, h: g.node_height - 36 }, textOffset: { x: 8, y: 18 }, seamAt: { x: colW - 14, y: p + 4 },
                    gapAt: { x: colW - 34, y: p + 4 } });
@@ -53,13 +56,14 @@ export function layout(t: TopologyProjectionBody, g: GraphTokens = GRAPH): Layou
     const s = pos.get(r.source);
     const d = pos.get(r.target);
     if (!s || !d) return [];
-    const x1 = s.x;
-    const y1 = s.y + s.h / 2;
-    const x2 = d.x + d.w;
-    const y2 = d.y + d.h / 2;
-    const mx = (x1 + x2) / 2;
+    // from the top edge of the source to the bottom edge of the target (sources sit deeper)
+    const x1 = s.x + s.w / 2;
+    const y1 = s.y;
+    const x2 = d.x + d.w / 2;
+    const y2 = d.y + d.h;
+    const my = (y1 + y2) / 2;
     return [{ id: r.relation_id, type: r.relation_type, source: r.source, target: r.target,
-              d: `M ${x1.toFixed(1)} ${y1.toFixed(1)} C ${mx.toFixed(1)} ${y1.toFixed(1)}, ${mx.toFixed(1)} ${y2.toFixed(1)}, ${x2.toFixed(1)} ${y2.toFixed(1)}` }];
+              d: `M ${x1.toFixed(1)} ${y1.toFixed(1)} C ${x1.toFixed(1)} ${my.toFixed(1)}, ${x2.toFixed(1)} ${my.toFixed(1)}, ${x2.toFixed(1)} ${y2.toFixed(1)}` }];
   });
   const W = Math.max(...boxes.map((b) => b.x + b.w), 0) + g.node_padding;
   const H = Math.max(...boxes.map((b) => b.y + b.h), 0) + g.node_padding;

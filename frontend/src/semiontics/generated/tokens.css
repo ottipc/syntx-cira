@@ -116,6 +116,7 @@
   --line-recovery-dash: none;
   --line-recovery-color: var(--col-ink-secondary);
   --graph-node-char_width: 7.8;
+  --graph-node-slot_chars: 12;
   --graph-node-padding: 12;
   --graph-node-min_width: 160;
   --graph-node-height: 64;

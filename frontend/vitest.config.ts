@@ -6,7 +6,7 @@ export default defineConfig({
   test: {
     environment: "jsdom",
     include: ["test/**/*.test.ts", "test/**/*.test.tsx"],
-    exclude: ["test/browser/**", "node_modules/**"],
+    exclude: ["node_modules/**", "test/fixtures/**"],
     testTimeout: 30000,
     css: false,
     pool: "threads",

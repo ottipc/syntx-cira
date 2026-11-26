@@ -145,7 +145,7 @@ describe("[TX19][AK-GUI-06] metrics view", () => {
         }
       });
       expect(r.root.querySelector('[data-term="msg.no_composite"]')).not.toBeNull();
-      const formulas = [...r.root.querySelectorAll(".metric-card .mono-id.micro")].map((x) => x.textContent);
+      const formulas = [...r.root.querySelectorAll('.metric-card [data-datum="formula"]')].map((x) => x.textContent);
       for (const d of m.definitions) if (m.report.results.some((x: J) => x.metric_id === d.metric_id)) expect(formulas).toContain(d.formula);
     }
   });

@@ -30,6 +30,10 @@ const ENGINE_TOKEN = "src/semiontics/primitives/EngineToken.tsx";
 const ZONE = Object.values(JSON.parse(/export const ZONE = (\{.*?\}) as const/.exec(readFileSync(join(app, "src/semiontics/generated/tokens.ts"), "utf-8"))[1]));
 const MEDIA_PX = new Set(ZONE.flatMap((v) => [v, v - 1]));
 
+// Defined custom properties: generated token sheets plus any defined in the linted stylesheet itself.
+const DEFINED = new Set(["tokens.css", "tailwind.theme.css"].flatMap((n) =>
+  [...readFileSync(join(app, "src/semiontics/generated", n), "utf-8").matchAll(/(--[\w-]+)\s*:/g)].map((m) => m[1])));
+
 const findings = [];
 const report = (file, node, sf, rule, msg) => {
   const { line, character } = sf.getLineAndCharacterOfPosition(node.getStart(sf));
@@ -59,7 +63,9 @@ function inSortComparator(node) {
 for (const f of files) {
   const text = readFileSync(f, "utf-8");
   if (f.endsWith(".css")) {
+    const local = new Set([...text.matchAll(/(--[\w-]+)\s*:/g)].map((m) => m[1]));
     text.split("\n").forEach((l, i) => {
+      for (const m of l.matchAll(/var\((--[\w-]+)/g)) if (!DEFINED.has(m[1]) && !local.has(m[1])) findings.push(`${rel(f)}:${i + 1} CSS-TOKEN undefined token ${m[1]}`);
       const code = l.replace(/\/\*.*?\*\//g, "");
       if (/#[0-9a-fA-F]{3,8}\b/.test(code)) findings.push(`${rel(f)}:${i + 1} CSS-TOKEN hex colour (use tokens)`);
       if (/\b(rgb|rgba|hsl|hsla|oklch)\(/.test(code)) findings.push(`${rel(f)}:${i + 1} CSS-TOKEN colour function (use tokens)`);
