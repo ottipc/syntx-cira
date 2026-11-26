@@ -24,3 +24,9 @@
 - Befunde IC-10–IC-14 (alle F2), ADR-0005. Sichtprüfung der Baselines führte zu Korrekturen (Topologie-Lesbarkeit,
   Formel-Schreibweise, Zone D) und zu neuen TX28-Regeln.
 - Push weiterhin nicht möglich (Schreibrecht in dieser Umgebung nicht gewährt); alle Commits lokal.
+- Gate 04 bestanden (667 Tests, `sha256:22c44834…`).
+- Phase 05: Demo-Flow-Test (8 Schritte gegen die API), eingefrorene Regressionsbündel (4 Fälle), TX20/TX31 gegen
+  laufendes uvicorn + Produktions-Build in Chrome, Compose/Dockerfiles/Smoke (Daemon fehlt → DEP-07a), README.
+- Befunde IC-15 (07.7-Aggregation unvollständig, gespeichert ≠ Neuaggregation), IC-16 (Fokuszeichen, Maskierung von
+  Mehrfachblöcken), IC-17 (Steuerungsmenü außerhalb des Viewports) — alle F2, ADR-0006.
+- DEP-GUI-01 geschlossen (TX30), DEP-GUI-02 gepinnt.

@@ -1,11 +1,13 @@
 # NEXT
 
-Phase 05 (Kap. 15.1, AK) — Integration, Demo, Abnahme:
-1. `backend/tests/integration/test_demo_flow.py` (T11, AK-11, REQ-076): Demo-Fluss Baseline → Recovery → Vergleich über
-   die API, ohne erfundene Engine-Ergebnisse (FIXTURE), plus eingefrorene Regressions-Bundles (T11).
-2. TX20 (AK-16b, AK-GUI-09/10/20): Headless-Chrome gegen **laufendes** uvicorn + Produktions-Build: Tickwechsel synchron
-   in Sichten 2/3/4/11, Export mit `bundle_hash` vom Server, offline außer lokaler API.
-3. TX31 (AK-GUI-18): Demo-Skript (8 Schritte, Pfade V1–V5) gegen laufendes Backend; jede Schritt-URL zeigt die erwarteten
-   Zeichen; keine POSTs.
-4. `docker-compose.yml` + `tools/smoke.sh` (AK-10): ohne Docker-Daemon → `DEP-07a / EXTERN_AUSZUFÜHREN`, nie simuliert.
-5. README-Startanleitung, Gate 05, Abschlussbericht.
+Phasen 01–05 abgeschlossen (Gate 05 bestanden, Report `docs/test-reports/phase-05.json`). Offen und außerhalb dieser
+Umgebung bzw. dieses Mandats:
+
+1. **AK-10 / DEP-07a** — auf einem Rechner mit Docker-Daemon: `make compose` (compose up --build --wait + `tools/smoke.sh`),
+   danach `make gate PHASE=05`; der Report führt dann die Suite `smoke` und setzt AK-10 nach ihrem Ergebnis.
+2. **DEP-02** — reale Engine anbinden (LocalAdapter/ApiAdapter); bis dahin bleiben alle Rekonstruktionen FIXTURE.
+3. **DEP-01 / DEP-08** — R/I-Operatorsemantik und Σ02–Σ29-Bezeichnungen aus dem Engine-Register; GUI zeigt
+   „Label not yet provided“ (LABEL_UNAVAILABLE).
+4. **RV-GUI-07** — Demo-Zeitfenster und Hauptsequenz bestätigen (`frontend/src/demo/demo.steps.json`, Test AK-11).
+5. Push: Schreibzugriff auf `ottipc/syntx-cira` in dieser Umgebung nicht gewährt — Commits liegen lokal; Übergabe als
+   Git-Bundle/Patch möglich.
