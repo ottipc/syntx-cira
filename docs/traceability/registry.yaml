@@ -2,7 +2,7 @@
 version: 1.0.2
 package: docs/architecture/SYNTX_CIRA_Consolidated_Architecture_Package_v1.0.2.md
 gate_mode: AUTO_INTERNAL
-current_phase: '03'
+current_phase: '04'
 phase_tests:
   '01':
   - T01
@@ -1332,5 +1332,9 @@ adr:
   state: ACCEPTED
 - id: ADR-0004
   title: Präzisierungen F05-Pipeline, Bewertung und API
+  class: F2
+  state: ACCEPTED
+- id: ADR-0005
+  title: Präzisierungen der F07-Umsetzung
   class: F2
   state: ACCEPTED

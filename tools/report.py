@@ -85,6 +85,7 @@ def suites_for(phase: int) -> list[tuple[str, list[str] | str, Path, dict[str, s
     if phase >= 4:
         s += [("drift:semiontics", [PY, "tools/gen_semiontics.py", "--check"], ROOT, {}),
               ("drift:ts-contracts", ["npm", "run", "-s", "gen:contracts:check"], FRONT, {}),
+              ("drift:depcruise-rules", ["node", "scripts/gen-depcruise.mjs", "--check"], FRONT, {}),
               ("tsc", ["npm", "run", "-s", "typecheck"], FRONT, {}),
               ("frontend-lint", ["npm", "run", "-s", "lint:arch"], FRONT, {}),
               ("vitest", ["npm", "run", "-s", "test:report"], FRONT, {})]
@@ -103,8 +104,6 @@ def run(phase: int, out: Path | None) -> dict[str, Any]:
         suites.append({"name": "pytest", "status": "passed" if rc == 0 else "failed", "returncode": rc,
                        "duration_s": round(dur, 2), "tail": outp[-1500:]})
         tests: dict[str, Any] = results["tests"]
-        if (FRONT / "test-results.json").exists() and phase >= 4:
-            pass
         icov: dict[str, float] = {}
         if phase >= 3 and (BACK / "tests" / "integration").exists():
             cov = Path(tmp) / ".coverage"

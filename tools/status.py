@@ -32,7 +32,12 @@ def req_states(reg: dict[str, Any], rep: dict[str, Any] | None) -> list[dict[str
             by_tid.setdefault(x, []).append(t["outcome"])
         for x in t["reqs"]:
             by_req.setdefault(x, []).append(t["outcome"])
-    mypy_ok = any(s["name"] == "mypy" and s["status"] == "passed" for s in (rep or {}).get("suites", []))
+    suites_ok = {s["name"]: s["status"] == "passed" for s in (rep or {}).get("suites", [])}
+    mypy_ok = suites_ok.get("mypy", False)
+    tsc_ok = suites_ok.get("tsc", False)
+    # Frontend runtime evidence: the production build rendered in a real browser (TX28, all green).
+    browser_ok = bool(by_tid_pre := [t["outcome"] for t in (rep or {}).get("tests", {}).values() if "TX28" in t["tids"]]) \
+        and all(o == "passed" for o in by_tid_pre)
     icov: dict[str, float] = (rep or {}).get("integration_coverage", {})
     open_deps = {d["id"] for d in reg["dependencies"] if d["state"] == "OPEN"}
     out = []
@@ -49,10 +54,14 @@ def req_states(reg: dict[str, Any], rep: dict[str, Any] | None) -> list[dict[str
         missing = [c for c in r["components"] if not (ROOT / c).exists()]
         stubs = [str(p.relative_to(ROOT)) for c in r["components"] for p in _py_files(c)
                  if p.exists() and re.search(r"raise NotImplementedError", p.read_text(encoding="utf-8"))]
-        implemented = not missing and not stubs and mypy_ok and bool(r["components"])
+        fe = [c for c in r["components"] if c.startswith("frontend/")]
+        be = [c for c in r["components"] if not c.startswith("frontend/")]
+        implemented = not missing and not stubs and bool(r["components"]) and (mypy_ok or not be) and (tsc_ok or not fe)
         pyfiles = [str(p.relative_to(ROOT)) for c in r["components"] for p in _py_files(c) if p.exists()]
         if r.get("integration") == "not_applicable":
             integrated = implemented  # build-time or test asset; nothing to reach at runtime (registry note)
+        elif fe and not be:
+            integrated = implemented and browser_ok  # F07 modules reached in the production build (TX28)
         elif not pyfiles:
             integrated = implemented and bool(icov)  # data/config components consumed by the integrated runtime
         else:

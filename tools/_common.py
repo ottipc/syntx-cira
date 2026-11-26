@@ -14,6 +14,8 @@ ROOT = Path(__file__).resolve().parents[1]
 REGISTRY = ROOT / "docs" / "traceability" / "registry.yaml"
 TESTS = ROOT / "backend" / "tests"
 REPORTS = ROOT / "docs" / "test-reports"
+FRONT_TESTS = ROOT / "frontend" / "test"
+_TITLE = re.compile(r"""\b(?:describe|it|test)(?:\.each\([\s\S]*?\))?\(\s*(["'`])((?:\\.|(?!\1).)*?)\1""")
 
 
 def registry() -> dict[str, Any]:
@@ -52,6 +54,22 @@ def test_markers(root: Path = TESTS) -> dict[str, dict[str, set[str]]]:
                     ms += _marks(d)
                 key = f"{p.relative_to(ROOT)}::{node.name}"
                 res[key] = {"tid": {v for k, v in ms if k == "tid"}, "req": {v for k, v in ms if k == "req"}}
+    if root == TESTS:
+        res.update(frontend_markers())
+    return res
+
+
+def frontend_markers(root: Path = FRONT_TESTS) -> dict[str, dict[str, set[str]]]:
+    """{frontend/test/…::title: {'tid', 'req'}} from bracket tags in describe/it titles ([TX19], [T09], [REQ-054]),
+    the same tags scripts/vitest-report.mjs reads at run time."""
+    res: dict[str, dict[str, set[str]]] = {}
+    for p in sorted(list(root.rglob("*.test.ts")) + list(root.rglob("*.test.tsx"))):
+        for m in _TITLE.finditer(p.read_text(encoding="utf-8")):
+            title = m.group(2)
+            tids = set(re.findall(r"\[(TX\d{2}|T\d{2}b?)\]", title))
+            reqs = set(re.findall(r"\[(REQ-\d{3})\]", title))
+            if tids or reqs:
+                res[f"{p.relative_to(ROOT)}::{title[:80]}"] = {"tid": tids, "req": reqs}
     return res
 
 

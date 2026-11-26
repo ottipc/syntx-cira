@@ -7,7 +7,7 @@ FRONTEND:= frontend
 .PHONY: help sync verify verify-backend verify-frontend status resume docs gate impact smoke run clean
 
 help:
-	@echo "sync    regenerate every derived artifact (schemas, .importlinter, TX14 bundle, TS types, semiontics)"
+	@echo "sync    regenerate every derived artifact (schemas, .importlinter, TX14 bundle, snapshots, semiontics, TS types, depcruise rules)"
 	@echo "verify  all tests + mypy strict + import-linter + drift checks + trace_check + lints (0 errors, 0 skips)"
 	@echo "gate    PHASE=0N: machine report docs/test-reports/phase-0N.json + recomputed STATUS.md"
 	@echo "status  recompute docs/STATUS.md;  resume  re-entry per 15.8;  impact  impact set of changed files"
@@ -19,13 +19,14 @@ sync:
 	cd $(BACKEND) && $(PY) scripts/build_tx14_bundle.py
 	cd $(BACKEND) && $(PY) scripts/gen_snapshots.py
 	@if [ -f tools/gen_semiontics.py ]; then $(PY) tools/gen_semiontics.py; fi
-	@if [ -f $(FRONTEND)/package.json ] && [ -d $(FRONTEND)/node_modules ]; then cd $(FRONTEND) && npm run -s gen:contracts; fi
+	@if [ -f $(FRONTEND)/package.json ] && [ -d $(FRONTEND)/node_modules ]; then cd $(FRONTEND) && npm run -s gen:contracts && node scripts/gen-depcruise.mjs; fi
 
 verify: verify-backend verify-frontend
 	$(PY) tools/trace_check.py
 	$(PY) tools/lint_operators.py
 	$(PY) tools/fixture_lint.py
-	@git diff --quiet -- contracts/schemas backend/.importlinter synthetic_fixtures/bundles frontend/test/snapshots || \
+	@git diff --quiet -- contracts/schemas backend/.importlinter synthetic_fixtures/bundles frontend/test/snapshots \
+	  frontend/src/contracts/generated frontend/src/semiontics/generated frontend/src/language/generated frontend/.dependency-cruiser.cjs || \
 	  (echo "verify: derived artifacts differ from the committed state; run make sync and commit" && exit 1)
 
 verify-backend:
@@ -37,7 +38,8 @@ verify-backend:
 	cd $(BACKEND) && $(PY) -m pytest -p no:cacheprovider -q
 
 verify-frontend:
-	@if [ -f $(FRONTEND)/package.json ]; then cd $(FRONTEND) && npm run -s verify; else echo "frontend: not present (Phase 04)"; fi
+	$(PY) tools/gen_semiontics.py --check
+	cd $(FRONTEND) && npm run -s verify
 
 gate:
 	$(PY) tools/report.py --phase $(PHASE)

@@ -60,7 +60,8 @@ def check() -> list[str]:
     for p in sorted(adr_dir.glob("ADR-*.md")):
         if not re.search(r"^Status: (ACCEPTED|PROPOSED|SUPERSEDED)", p.read_text(encoding="utf-8"), re.M):
             out.append(f"adr: {p.name} without Status line")
-    for p in sorted((ROOT / "backend" / "app").rglob("*.py")):
+    code = sorted((ROOT / "backend" / "app").rglob("*.py")) + sorted((ROOT / "frontend" / "src").rglob("*.ts*"))
+    for p in code:
         for m in re.findall(r"ADR-\d{4}", p.read_text(encoding="utf-8")):
             if m not in files:
                 out.append(f"{p.relative_to(ROOT)}: marker {m} without ADR file")
