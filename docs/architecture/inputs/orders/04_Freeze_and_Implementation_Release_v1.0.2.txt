@@ -1,0 +1,55 @@
+# CIRA — GLOBAL ARCHITECTURE FREEZE & IMPLEMENTATION RELEASE v1.0.2
+
+**ARCHITECTURE:** `SYNTX_CIRA_Consolidated_Architecture_Package_v1.0.2.md`
+**FREEZE STATUS:** `FROZEN ARCHITECTURE v1.0.2 — OWNER APPROVAL: ACCEPTED`
+**EXECUTION CONTRACT:** `v1.0.2 ACTIVATED (E-01 to E-19)`
+**GATE MODE:** `AUTO_INTERNAL` (Autonomous execution across Phases 01 → 02 → 03 → 04 → 05)
+**PRODUCT IDENTITY:** `CIRA` (SYNTX remains internal architectural foundation only)
+**ENVIRONMENT:** Fully synthetic, abstract civilian software-service laboratory (`REQ-080`; no real sites, no real infrastructure)
+**REPOSITORY:** `https://github.com/ottipc/syntx-cira` (Branch: `main`)
+
+---
+
+## 00 — FINAL ARCHITECTURAL REVIEW & OWNER APPROVAL (`K-73`)
+
+Hiermit werden sämtliche Review-Punkte und `[PROPOSED]`-Elemente des Pakets `v1.0.2` (Kapitel 20, 21, 26.1) als **`ACCEPTED`** freigegeben:
+
+1. **Paket-Review (`RV-01`–`RV-07`):**
+   - `RV-01`: `gate_mode = AUTO_INTERNAL` (`ACCEPTED`).
+   - `RV-02`: Kanonische Unicode-Codepunkte (`K-31`: $\Sigma = \text{U+03A3}$, $\Delta = \text{U+2206}$, $\sum = \text{U+2211}$, 13 Symbole, NFC) (`ACCEPTED`).
+   - `RV-03`–`RV-07`: 27 Artefakttypen (`K-36`), 1:1-Matcher (`K-47`), zweistufige Browser-Abnahme (`K-49`), dynamische Beobachtbarkeit aus $\theta$ (`K-57`), rekonstruierter Repository-Baum (`Q01`) (`ACCEPTED`).
+2. **GUI-Review & Konsolidierung (`RV-GUI-01`–`RV-GUI-11`, `K-58`–`K-76`, `GK-01`–`GK-29`, `D-40`–`D-49`, `A-14`, `X-28`–`X-33`, `SEM-031`–`SEM-036`):**
+   - `K-58`–`K-76` vollständig `ACCEPTED` — einschließlich `K-66` (`F3`: `EventRecord.status = REJECTED` ausschließlich bei `APPLY_APPROVAL` einer Rolle ohne `permits`; strukturelle Fehler führen zu HTTP `422` bzw. `FAILED`).
+   - `RV-GUI-01`–`11` vollständig `ACCEPTED`: Englisch (`en`) als Standardsprache, Deutsch (`de`) vollständig im Katalog `cira.terms.yaml`; ausschließlich `CIRA` als sichtbare Produktidentität (`INV-LANG-01`, `TX24`); dreifache Raumtrennung + achromatische Herkunftskodierung (`GK-01`) + Token-Set `v1.0.1` (`GK-02`, `GK-03`); Endpunkt #21 (`POST /recovery-variants`) in Phase 04 lesend mit vorbereitetem Dialog (`D-49`); 3-Minuten-Demo-Skript (8 Schritte) + Vertiefungspfade `V1–V5` (`D-46`, `G05`); Visueller Prüfzyklus (`VPZ`, `D-48`) mit initialer Visual Baseline aus dem ersten sauberen `G15`-Lauf; Monospace-Schrift (`DEP-GUI-01`) via `@fontsource/*` gebündelt und per `TX30` geprüft.
+
+---
+
+## 01 — REPOSITORY INTEGRATION & FREEZE RECORD
+
+1. Klone und arbeite im bereitgestellten GitHub-Repository `https://github.com/ottipc/syntx-cira` (Branch `main`). Erfasse zunächst vorhandene Struktur, Branches und Dateien.
+2. Entferne eine gegebenenfalls initial angelegte Open-Source-`LICENSE`-Datei zugunsten des proprietären Urheberrechtsschutzes (All Rights Reserved) und lege die projektkonforme `.gitignore` an.
+3. Erhalte sämtliche hochgeladenen Architekturdokumente unter `docs/architecture/` als Entwicklungshistorie, mit `SYNTX_CIRA_Consolidated_Architecture_Package_v1.0.2.md` als führender Single Source of Truth.
+4. Schreibe die verbindliche Freeze-Dokumentation nach `docs/architecture/ARCHITECTURE_FREEZE_v1.0.2.md`.
+
+---
+
+## 02 — AUTONOMOUS EXECUTION ACROSS ALL FIVE PHASES (`01 → 05`)
+
+Die **Execution Boundary** ist aufgehoben. Der **Execution Contract v1.0.2 (`E-01`–`E-19`)** ist aktiviert. Führe alle fünf Phasen gemäß Kapitel 15.1, 15.5 (`RIVZ`), 15.11 und G06.1 im Modus **`AUTO_INTERNAL`** vollständig aus:
+
+- **Phase 01:** Nachweisfeld (`CLAUDE.md`, `docs/traceability/registry.yaml`, `Makefile`, `tools/`), `core` (NFC-JSON, Hashing, Rational, IDs, Kleene-K3, Delta, Unicode), alle 27 Pydantic-Verträge (inkl. `K-58`, `K-59`, `K-63`–`K-65`), Schema-Export (`TX02`, `TX17`), Vertrags-Durchstich (`TX14`), Kopplungsmatrix, `import-linter`, CAS-Store (`TX04`), `F01` Topology, `F02` Governance, Golden Fixtures, unabhängiges `fractions.Fraction`-Oracle (`TX13`) und alle 11 Metriken `M01`–`M11` (`T07`).
+- **Phase 02:** `F03` Emulator (`K-66`), Szenariopaare (`FX-SCN-BASE/REC`), Annotationen, `F04` Observation ($\omega(i,t)$, Budget, `ContextBundle`/`ObservationRecord`), Target-Validierung (`TX06`) und deterministisches Replay `SYNTHETIC` (`T03`, `TX16`).
+- **Phase 03:** `F05` Adapter-Protokoll (`FixtureAdapter`, `ImportExportAdapter`, `ENGINE_UNAVAILABLE`-Stubs `LocalAdapter`/`ApiAdapter`), `OperatorRegistry` (`K-31`–`K-33`), unabhängige Forward-/Inverse-Sweeps, Merge (`engine_first/v1`), Stabilitäts-Re-Sweep (`attempt = 1`, `K-44`), Orchestrator (`StageEvents` `K-35`), `ExperimentBundle` (`T10`, `K-52`), Replay `PRESERVED_ENGINE`, FastAPI-Endpunkte (alle 21 Einträge / 24 Operationen inkl. `K-58`–`K-65`) und Erzeugung der Backend-Projection-Snapshots (`X-22`).
+- **Phase 04 (`F07` CIRA Interface):** Semiontik- und Terminologie-SSOT (`cira.semiontics.yaml`, `cira.terms.yaml` EN/DE, `tools/gen_semiontics`), Lints (`TX22`–`TX26`), gebündelte Monospace-Schrift (`TX30`), URL-Session (`D-20`), `ProjectionHeaderGuard` (`TX27`, `T09`), alle 36 semiontischen Primitiven (`SEM-001`–`SEM-036`), Spatial Shell (Zonen A–E), alle 11 Sichten + globaler Export, Control-Drawer, Demo-Layer (`G05`) sowie Visueller Prüfzyklus (`VPZ`) und Browser-Prüfungen (`TX15`, `TX19`, `TX28`, `TX29`, `TX32`, `TX33`) gegen den statischen Build mit Snapshot-Daten.
+- **Phase 05:** `docker-compose.yml` & `tools/smoke.sh`, End-to-End Demo-Flow (`AK-11`), Regressionsbundles (`T11`), End-to-End-Browserlauf gegen das laufende Backend in Headless Chrome (`TX20`, `TX31`, `AK-16b`, `AK-GUI-01`–`20`) und Gesamtabnahme (`AK-01`–`AK-16b`).
+
+---
+
+## 03 — QUALITY GATES, PERSISTENT STATE & COMPLETION REPORT
+
+1. **Mechanische Phasengates (`15.12`, `15.13`):** Nach jeder Phase müssen `make sync` (0 Drift) und `make verify` (0 Fehler, 0 Skips über alle Tests dieser und früherer Phasen) grün laufen, ein maschineller Report `docs/test-reports/phase-01.json` bis `phase-05.json` (mit Hash) erzeugt und `docs/STATUS.md` neu berechnet werden.
+2. **Persistenter Entwicklungszustand & Git:** Pflege fortlaufend `CLAUDE.md`, `docs/STATUS.md`, `docs/NEXT.md`, `docs/SESSION_LOG.md`, `docs/traceability/registry.yaml`, `docs/adr/` und `docs/test-reports/`. Erstelle saubere, nachvollziehbare Git-Commits je abgeschlossener Einheit (`RIVZ` Schritt 12) und pushe den Stand regelmäßig nach `https://github.com/ottipc/syntx-cira`.
+3. **Ehrliche Abhängigkeits-Kapselung (`E-02`, `E-18`):** Externe Abhängigkeiten (`DEP-01`, `DEP-02`, `DEP-07a` Docker-Daemon falls nicht erreichbar, `DEP-08`) werden vertragstreu dokumentiert und niemals durch erfundene Ergebnisse überbrückt.
+4. **Completion Report:** Liefere am Ende den vollständigen Abschlussbericht gemäß Kapitel 16 (STATUS & Registry-Zusammenfassung, gebündeltes Schema, alle 5 Phasenreports mit Hash & AK-Status, Browser-/Docker-Status, reproduzierbare Startanleitung für Backend & Frontend).
+
+**Beginne unmittelbar mit der Repository-Erfassung (`https://github.com/ottipc/syntx-cira`) und Phase 01.**

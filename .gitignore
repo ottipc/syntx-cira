@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.hypothesis/
+.coverage
+htmlcov/
+*.egg-info/
+.venv/
+# Node / frontend
+node_modules/
+frontend/dist/
+frontend/.vite/
+frontend/test/visual/output/
+frontend/test-results/
+# Runtime store (experiments are reproducible from definitions)
+/experiments/
+/backend/experiments/
+# OS / editor
+.DS_Store
+.idea/
+.vscode/
+*.swp
+# Secrets
+.env
+.env.*

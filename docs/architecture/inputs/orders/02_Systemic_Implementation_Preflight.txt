@@ -1,0 +1,122 @@
+SYNTX CIRA — SYSTEMIC IMPLEMENTATION PREFLIGHT
+
+Referenz: SYNTX_CIRA_Claude_Implementation_Architecture_v1.0.0
+
+Ziel: Vollständige, zusammenhängende und konsistente Implementierung der gesamten Architektur.
+
+Bevor du mit der Programmierung beginnst, möchten wir deine konkrete Implementierungsstrategie für die von dir entwickelte Architektur verstehen.
+
+Beantworte die folgenden Fragen anhand deiner vollständigen Implementierungsarchitektur und ihrer feldübergreifenden Relationen.
+
+01 — Globales Architekturverständnis
+
+Rekonstruiere die vollständige Softwarearchitektur aus deiner Perspektive als implementierendes Modell.
+
+Wie stellst du sicher, dass sämtliche sieben System Fields, ihre Träger, Relationen, Schnittstellen, Invarianten und Kopplungen während der gesamten Implementierung konsistent bleiben?
+
+Wie berücksichtigst du alle 81 Anforderungen, 33 Architekturentscheidungen, 15 Erweiterungen und dokumentierten Abweichungen?
+
+02 — Systemische Implementierungsreihenfolge
+
+Leite aus der Gesamtarchitektur deine optimale Implementierungsreihenfolge ab.
+
+Welche Komponenten müssen vollständig vorliegen, bevor abhängige Komponenten implementiert werden?
+
+Wie stellst du bereits während Phase 01 sicher, dass die entstehenden Verträge sämtliche Anforderungen der Phasen 02–05 tragen?
+
+Identifiziere sämtliche Abhängigkeiten, die andernfalls spätere strukturelle Umbauten verursachen könnten.
+
+03 — Rekursive Konsistenz während der Programmierung
+
+Beschreibe, wie du nach jeder implementierten Komponente deren Auswirkungen auf sämtliche gekoppelten Komponenten untersuchst.
+
+Wie hältst du folgende Artefakte synchron?
+
+* Pydantic-Verträge
+* JSON Schemas
+* TypeScript-Verträge
+* Field Manifests
+* Kopplungs- und Capability-Matrix
+* Importregeln
+* Golden Fixtures
+* Requirement-to-Component-Mapping
+* Architekturentscheidungen
+* Implementierungsstatus
+* Testresultate
+
+Entwickle einen verbindlichen rekursiven Implementierungs- und Validierungszyklus.
+
+04 — Vollständigkeit der Implementierung
+
+Wie stellst du sicher, dass jede Anforderung tatsächlich durch ausführbaren Code realisiert wird?
+
+Wie erkennst du fehlende Implementierungen, unvollständige Schnittstellen, nicht angebundene Komponenten und unerfüllte Abhängigkeiten?
+
+Wie unterscheidest du zwischen architektonisch definierten, implementierten, integrierten und erfolgreich getesteten Komponenten?
+
+05 — Mathematische Integrität
+
+Rekonstruiere die vollständige Implementierungsstrategie für M01–M11.
+
+Untersuche die Konsistenz zwischen mathematischen Definitionen, Referenzräumen, rationaler Arithmetik, Hypothesenpolitik, GAP-Matching, Zeitaggregation und Golden Fixtures.
+
+Identifiziere sämtliche mathematischen oder typbezogenen Widersprüche vor Beginn der Implementierung.
+
+06 — Integrität der System-Field-Grenzen
+
+Erkläre die mechanische Durchsetzung der definierten Feldgrenzen und Zustandsraumtrennung.
+
+Wie prüfst du, dass die implementierten Komponenten ausschließlich über die vorgesehenen Verträge gekoppelt sind?
+
+Wie bleiben die originalen SYNTX-Operatoren und Σ-Felder von der CIRA-Implementierungslogik getrennt?
+
+07 — Persistenter Entwicklungszustand
+
+Wie organisierst du deinen eigenen Arbeitskontext, sodass du die vollständige Architektur auch über mehrere Implementierungssitzungen hinweg konsistent weiterentwickeln kannst?
+
+Welche Repository-Artefakte liest und aktualisierst du bei jedem Implementierungsschritt?
+
+Wie rekonstruierst du deinen exakten Arbeitszustand nach einer Kontextunterbrechung?
+
+08 — Vollständige End-to-End-Integration
+
+Beschreibe, wie du sämtliche fünf Implementierungsphasen zu einem zusammenhängenden, ausführbaren Gesamtsystem integrierst.
+
+Wie stellst du sicher, dass Backend, Frontend, Verträge, mathematische Evaluation, synthetische Experimente, Adapter und Visualisierung am Ende gemeinsam funktionieren?
+
+Definiere die konkreten Abnahmekriterien für das vollständige System einschließlich reproduzierbarer Tests und tatsächlicher Testreports.
+
+09 — Globaler Pre-Implementation Sweep
+
+Untersuche deine eigene Implementierungsarchitektur erneut vollständig vorwärts und rückwärts.
+
+Identifiziere alle noch vorhandenen:
+
+* Architektur-GAPs
+* Vertragswidersprüche
+* Typinkonsistenzen
+* fehlenden Kopplungen
+* mathematischen Inkonsistenzen
+* Implementierungsabhängigkeiten
+* Integrationsprobleme
+* offenen Entscheidungen
+
+Liefere für jeden identifizierten GAP eine konkrete architektonische Schließung.
+
+Unterscheide dabei eigenständig lösbare Implementierungsentscheidungen von Entscheidungen, die eine Rückgabe durch SYNTX benötigen.
+
+10 — Verbindlicher Execution Contract
+
+Formuliere abschließend deinen eigenen vollständigen Execution Contract für die Implementierung von SYNTX CIRA.
+
+Dieser soll deine Arbeitsreihenfolge, rekursive Konsistenzprüfung, Fehlerkorrektur, Kontextpersistenz, Integrationsstrategie und vollständige Systemabnahme verbindlich definieren.
+
+Ziel ist, dass du die Implementierung nach gemeinsamer Architekturfreigabe eigenständig, systemisch und zusammenhängend durchführen kannst.
+
+Sämtliche während der Implementierung erkannten Fehler innerhalb des freigegebenen Architekturrahmens sollen unmittelbar durch dich korrigiert und erneut getestet werden.
+
+Externe Abhängigkeiten und noch ausstehende Architekturentscheidungen bleiben explizit dokumentiert.
+
+Beginne noch nicht mit der Programmierung.
+
+Liefere zunächst die vollständige systemische Implementierungsstrategie zur gemeinsamen Validierung.

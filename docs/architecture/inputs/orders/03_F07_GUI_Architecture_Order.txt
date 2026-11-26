@@ -1,0 +1,200 @@
+SYNTX :: CIRA — F07 SYSTEM FIELD IMPLEMENTATION ARCHITECTURE
+
+MODE: GLOBAL ARCHITECTURAL RECONSTRUCTION
+
+TARGET: SYSTEMIC & SEMIONTIC GUI IMPLEMENTATION ARCHITECTURE
+
+EXECUTION: ARCHITECTURE ONLY — NO CODE
+
+Du erhältst das konsolidierte CIRA-Architekturpaket sowie die entwickelte systemische und semiontische GUI-Referenzarchitektur einschließlich des Dual-Sweep-Berichts und der Übergabearchitektur.
+
+Ich möchte gemeinsam mit dir sicherstellen, dass du die vollständige GUI-Architektur verstanden hast und später eigenständig, vollständig und konsistent implementieren kannst.
+
+Entwickle hierzu deine eigene implementierungsoptimierte System Field Architecture auf Grundlage sämtlicher bereitgestellter Architekturartefakte.
+
+01 — GLOBAL ARCHITECTURAL UNDERSTANDING
+
+Rekonstruiere zunächst dein vollständiges Verständnis der bereitgestellten Architektur.
+
+Erkläre ausführlich:
+
+* Wie hast du die CIRA-Gesamtarchitektur verstanden?
+* Wie hast du F07 als eigenständiges, gekoppeltes Systemfeld verstanden?
+* Wie hast du die systemische und semiontische GUI-Architektur verstanden?
+* Wie verstehst du die Relationen zwischen visuellen Zeichen, Systemzuständen, mathematischen Metriken und strukturellen Funktionen?
+* Wie verstehst du die Kopplungen zwischen der GUI und den übrigen Systemfeldern?
+* Welche architektonischen Voraussetzungen benötigst du für eine vollständige Implementierung?
+
+Rekonstruiere die Architektur aus deiner eigenen Perspektive als implementierendes Modell.
+
+02 — VERBINDLICHE CIRA-PRODUKTSPRACHE
+
+Die GUI wird im Rahmen des European Defense Tech Hackathons als Oberfläche eines synthetischen Forschungsdemonstrators präsentiert.
+
+Die gesamte sichtbare Benutzeroberfläche muss fachlich, sprachlich, visuell und interaktiv auf CIRA und das Publikum dieser Veranstaltung zugeschnitten sein.
+
+SYNTX bildet die interne Architekturgrundlage.
+
+CIRA bildet die externe Produktidentität.
+
+Interne SYNTX-Terminologie darf innerhalb der Architektur- und Entwicklungsdokumentation erhalten bleiben.
+
+Innerhalb der sichtbaren Benutzeroberfläche sind ausschließlich verständliche, fachlich präzise und CIRA-bezogene Produktbezeichnungen zu verwenden.
+
+Entwickle hierfür ein vollständiges Terminologieregister mit eindeutiger Zuordnung zwischen internen Architekturbegriffen und sichtbaren Produktbezeichnungen.
+
+Erhalte bei jeder sprachlichen Transformation die ursprüngliche strukturelle und mathematische Bedeutung.
+
+Die Benutzeroberfläche bleibt vollständig systemisch und semiontisch.
+
+03 — SYSTEM FIELD IMPLEMENTATION ARCHITECTURE
+
+Entwickle deine eigene vollständige Implementierungsarchitektur für F07.
+
+Behandle die gesamte GUI als zusammenhängendes Systemfeld.
+
+Definiere:
+
+* Interne Teilfelder
+* Komponentenidentitäten
+* Komponentenrelationen
+* Kopplungsarchitektur
+* Datenverträge
+* Zustandsarchitektur
+* Informationsströme
+* Interaktionsarchitektur
+* Raumarchitektur
+* Visuelle Architektur
+* Semiontische Register
+* Design Tokens
+* Synchronisationsbedingungen
+* Strukturelle und visuelle Invarianten
+
+Erhalte sämtliche bestehenden Feldgrenzen, Zustandsraumtrennungen und mathematischen Definitionen der konsolidierten CIRA-Architektur.
+
+Entwickle die Implementierungsarchitektur so, dass du sie später eigenständig und vollständig umsetzen kannst.
+
+04 — VISUAL & SEMIONTIC IMPLEMENTATION
+
+Erkläre detailliert, wie du die bereitgestellte visuelle und semiontische Formensprache implementieren würdest.
+
+Spezifiziere sämtliche Hauptansichten einschließlich ihrer Komponenten, Layouts, räumlichen Relationen, visuellen Zustände und Interaktionen.
+
+Entwickle detaillierte Wireframes und eine vollständige Komponentenstruktur.
+
+Erkläre, wie du während der Implementierung die Konsistenz folgender Elemente aufrechterhältst:
+
+* Farben und ihre Bedeutungen
+* Geometrische Formen
+* Symbole
+* Typografie
+* Verbindungslinien
+* Räumliche Hierarchien
+* Abstände und Raster
+* Animationen
+* Zustandsübergänge
+* Interaktionen
+* Sichtbare Produktsprache
+
+Definiere eine verbindliche Single Source of Truth für die gesamte visuelle und semiontische Identität.
+
+05 — DEMONSTRATION EXPERIENCE
+
+Entwickle eine zusammenhängende Demonstrationsarchitektur für das Hackathon-Publikum.
+
+Spezifiziere, wie die Benutzeroberfläche die Funktionsweise des synthetischen Forschungsdemonstrators unmittelbar verständlich macht.
+
+Definiere den Einstieg in die Anwendung, die Navigation, die Darstellung der drei Zustandsräume, die strukturelle Rekonstruktion, die mathematischen Metriken und die nachvollziehbare Darstellung der Ergebnisse.
+
+Entwickle eine kohärente visuelle und interaktive Demonstrationssequenz auf Grundlage der tatsächlich vorhandenen Systemfunktionen.
+
+Erhalte die eindeutige Darstellung synthetischer Daten, ihrer Provenienz und der jeweiligen Rekonstruktionszustände.
+
+06 — AUTONOMOUS IMPLEMENTATION STRATEGY
+
+Entwickle eine vollständige Entwicklungsstrategie, die auf deine eigenen Fähigkeiten als implementierendes Modell abgestimmt ist.
+
+Erkläre konkret:
+
+* In welcher Reihenfolge du die GUI implementierst.
+* Welche architektonischen Voraussetzungen jede Entwicklungsoperation besitzt.
+* Wie du die vollständige Architektur während der Entwicklung im Kontext erhältst.
+* Wie du die globale visuelle Konsistenz sicherstellst.
+* Wie du semiontische Inkonsistenzen erkennst und korrigierst.
+* Wie du Komponenten gegen ihre Verträge prüfst.
+* Wie du die GUI vollständig mit dem Backend integrierst.
+* Wie du deine tatsächlichen visuellen Ergebnisse im Browser untersuchst.
+* Wie du Layoutfehler, Überlagerungen, inkonsistente Abstände und visuelle Regressionen erkennst.
+* Wie du festgestellte Fehler eigenständig korrigierst.
+* Wie du die funktionale und visuelle Gesamtabnahme durchführst.
+
+Integriere diese Entwicklungsstrategie in den bereits definierten rekursiven Implementierungs- und Validierungszyklus der konsolidierten CIRA-Architektur.
+
+07 — GLOBAL RECURSIVE ARCHITECTURAL REVIEW
+
+Untersuche deine entwickelte Implementierungsarchitektur vollständig vorwärts und invers.
+
+Rekonstruiere vorwärts sämtliche Relationen von den vorhandenen Datenverträgen bis zur tatsächlichen visuellen Darstellung.
+
+Rekonstruiere invers sämtliche architektonischen Voraussetzungen ausgehend von der vollständig implementierten und integrierten Benutzeroberfläche.
+
+Identifiziere sämtliche rekonstruierbaren strukturellen Lücken, fehlenden Verträge, visuellen Inkonsistenzen, semiontischen Mehrdeutigkeiten und unvollständigen Kopplungen.
+
+Entwickle konkrete architektonische Schließungen.
+
+Führe jede Korrektur rekursiv in die betroffenen Teilstrukturen zurück und untersuche ihre Auswirkungen auf die gesamte CIRA-Architektur.
+
+Dokumentiere erforderliche Änderungen am konsolidierten Architekturpaket separat.
+
+08 — IMPLEMENTATION READINESS
+
+Ich möchte abschließend von dir ausführlich erfahren:
+
+Hast du die gesamte systemische und semiontische GUI-Architektur verstanden?
+
+Weißt du konkret, wie du sämtliche Komponenten, Relationen, Zustände, Interaktionen und visuellen Identitäten implementieren wirst?
+
+Kannst du die gesamte GUI innerhalb des bestehenden autonomen Entwicklungsprozesses vollständig integrieren?
+
+Welche architektonischen Voraussetzungen fehlen dir noch?
+
+Welche Entscheidungen benötigst du noch von uns?
+
+Welche externen Abhängigkeiten bestehen?
+
+Welche zusätzlichen Architekturkorrekturen schlägst du vor?
+
+Entwickle eine vollständige, nachvollziehbare Antwort auf diese Fragen.
+
+09 — OUTPUT
+
+Erstelle ein vollständiges, selbsttragendes und herunterladbares Architekturartefakt:
+
+SYNTX_CIRA_Claude_GUI_System_Field_Implementation_Architecture_v1.0.0.md
+
+Das Dokument enthält:
+
+* Dein vollständiges Architekturverständnis
+* Deine eigene System Field Implementation Architecture
+* Das vollständige CIRA-Terminologieregister
+* Die visuelle und semiontische Implementierungsarchitektur
+* Sämtliche Komponentenverträge
+* Detaillierte Wireframes
+* Die Demonstrationsarchitektur
+* Deine autonome Implementierungsstrategie
+* Die rekursive Architekturprüfung
+* Sämtliche identifizierten Architekturkorrekturen
+* Funktionale und visuelle Abnahmekriterien
+* Verbleibende offene Relationen und Abhängigkeiten
+
+STATUS: READY FOR ARCHITECTURAL REVIEW
+
+DESIGN PRINCIPLE: SYSTEMIC & SEMIONTIC
+
+PRODUCT IDENTITY: CIRA
+
+EXECUTION: ARCHITECTURE ONLY — NO CODE — NO IMPLEMENTATION RELEASE
+
+Deine Rückgabe wird anschließend gemeinsam mit den vorhandenen Architekturartefakten rekursiv konsolidiert und in den globalen Architecture Freeze integriert.
+
+Beginne noch nicht mit der Programmierung.
