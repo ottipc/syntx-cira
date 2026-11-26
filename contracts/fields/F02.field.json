@@ -22,7 +22,6 @@
   ],
   "reads": [
     "immutable_topology",
-    "recovery_proposal",
     "topology_definition"
   ],
   "ports": [

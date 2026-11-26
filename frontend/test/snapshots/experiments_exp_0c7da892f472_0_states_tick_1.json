@@ -1,0 +1,84 @@
+{
+ "delta": {
+  "changes": [],
+  "from_tick": 0,
+  "space": "A",
+  "to_tick": 1
+ },
+ "header": {
+  "data_origin": "SYNTHETIC",
+  "experiment_id": "exp:0c7da892f472-0",
+  "guard_class": "TIMED",
+  "query_echo": {
+   "aggregation": null,
+   "attempt": null,
+   "comparison_id": null,
+   "direction": null,
+   "from": null,
+   "revision": null,
+   "to": null,
+   "to_tick": null
+  },
+  "schema_version": "cira.state_projection/1.0.2",
+  "source_refs": [
+   {
+    "artifact_id": "art:53f08aad6fa619276a0edcfa0586bd77",
+    "artifact_type": "actual_state",
+    "content_hash": "sha256:2e5c6271c3a0f1fc72223c34327c6ee1c0fe3b19761fdd2c835f54bca7e938ae"
+   }
+  ],
+  "tick": 1
+ },
+ "values": [
+  {
+   "applicability": "APPLICABLE",
+   "attribute_ref": "attr:n01/state",
+   "value": "NOMINAL"
+  },
+  {
+   "applicability": "APPLICABLE",
+   "attribute_ref": "attr:n02/state",
+   "value": "NOMINAL"
+  },
+  {
+   "applicability": "APPLICABLE",
+   "attribute_ref": "attr:n03/state",
+   "value": "DEGRADED"
+  },
+  {
+   "applicability": "APPLICABLE",
+   "attribute_ref": "attr:n04/state",
+   "value": "ACTIVE"
+  },
+  {
+   "applicability": "APPLICABLE",
+   "attribute_ref": "attr:n05/state",
+   "value": "CLOSED"
+  },
+  {
+   "applicability": "APPLICABLE",
+   "attribute_ref": "attr:n06/state",
+   "value": "NOMINAL"
+  },
+  {
+   "applicability": "APPLICABLE",
+   "attribute_ref": "attr:n07/state",
+   "value": "STANDBY"
+  },
+  {
+   "applicability": "APPLICABLE",
+   "attribute_ref": "attr:n08/state",
+   "value": "NOMINAL"
+  },
+  {
+   "applicability": "APPLICABLE",
+   "attribute_ref": "attr:n09/state",
+   "value": "AUTHORIZED"
+  },
+  {
+   "applicability": "APPLICABLE",
+   "attribute_ref": "attr:n10/state",
+   "value": "CRITICAL"
+  }
+ ]
+}

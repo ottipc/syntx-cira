@@ -14,20 +14,25 @@ from typing import Any
 
 from pydantic import BaseModel
 
-from ..contracts.common import (ArtifactRef, ErrorCodeC, ErrorRecord, ExecutionStatus, FieldId, RecoveryAction,
-                                StageEvent, StageName, load, make_ref)
+from ..contracts.common import (AdapterKind, ArtifactRef, DataOrigin, ErrorCodeC, ErrorRecord, ExecutionStatus,
+                                FieldId, RecoveryAction, StageEvent, StageName, load, make_ref)
 from ..contracts.f01 import ImmutableTopology, TopologyDefinition
 from ..contracts.f02 import GovernanceDefinition
 from ..contracts.f03 import ActualState, ExperimentDefinition, ScenarioDefinition
-from ..contracts.f04_public import TargetDefinition
+from ..contracts.f04_public import ObservationBundle, TargetDefinition
 from ..contracts.f04_record import ObservationConfig, ObservationRecord
 from ..core.canonical_json import canonical_bytes
 from ..core.errors import CiraError, ErrorCode
 from ..core.hashing import sha256_hex
 from ..emulator import run_scenario, validate_scenario
+from ..contracts.f05 import ReconstructionResult
 from ..governance import validate_governance
+from ..metrics import EvaluationInputs, evaluate_experiment
 from ..observation import observable_rules, observable_topology, observe, validate_config, validate_target
-from ..store import ArtifactStore, FieldReader, FieldWriter
+from ..store import ArtifactStore, FieldReader, FieldWriter, capabilities
+from ..syntx_adapter import EngineAdapter, SweepOutcome, make_adapter, run_sweeps
+from ..syntx_adapter.adapters.fixture import fixture_configs
+from ..syntx_adapter.adapters.import_export import validate_document
 from ..strategies import ref as sref
 from ..topology import seal
 from . import catalog
@@ -75,8 +80,10 @@ class Orchestrator:
         self.store.stage(exp, StageEvent(seq=self.store.next_stage_seq(exp), stage=st, status=status, tick=tick,
                                          error=error))
 
-    def definition_payloads(self, exp: str, f: str = "F03") -> dict[str, BaseModel]:
-        """Latest definition artifacts, each read by a field allowed to read it."""
+    def definition_payloads(self, exp: str, f: str | None = None) -> dict[str, BaseModel]:
+        """Latest definition artifacts, read with the capability of the field the orchestrator acts for (K-48);
+        types that field may not read fall back to their default reader (they are then not handed to that field)."""
+        caps = capabilities()
         out: dict[str, BaseModel] = {}
         readers = {"topology_definition": "F03", "immutable_topology": "F03", "governance_definition": "F03",
                    "scenario_definition": "F03", "experiment_definition": "F03", "observation_config": "F04",
@@ -85,7 +92,8 @@ class Orchestrator:
         for t, rf in readers.items():
             es = self.store.entries(exp, t)
             if es:
-                out[t] = self.r(exp, rf).get(es[-1]["artifact_id"], t)
+                use = f if f is not None and f in caps[t]["R"] else rf
+                out[t] = self.r(exp, use).get(es[-1]["artifact_id"], t)
         return out
 
     # ---- creation (synchronous validation, 422 on error) ---------------------------------------------
@@ -130,13 +138,19 @@ class Orchestrator:
             "definition_version": VERSION, "scenario_ref": make_ref("scenario_definition", scn).model_dump(),
             "observation_config_ref": make_ref("observation_config", cfg).model_dump(),
             "target_definition_ref": make_ref("target_definition", tgt).model_dump(),
-            "adapter": {"kind": req.adapter, "config_ref": req.adapter_config,
+            "adapter": {"kind": req.adapter, "config_ref": self._adapter_config(req, scn),
                         "merge_policy": sref("merge.policy").model_dump()},
             "sweep_schedule": req.sweep_schedule or {"mode": "EVERY_TICK", "ticks": []},
             "stability": req.stability or {"enabled": True, "tick": None},
             "metric_config": mc, "observation_strategy": {"budget_unit": sref("observation.budget_unit").model_dump()},
             "replay_of": req.replay_of, "replay_mode": req.replay_mode, "label": req.label or scn.label})
         return defs, edef
+
+    @staticmethod
+    def _adapter_config(req: CreateRequest, scn: ScenarioDefinition) -> str:
+        if req.adapter == "FIXTURE" and req.adapter_config == "adcfg:fixture":
+            return next((k for k, v in sorted(fixture_configs().items()) if v == scn.scenario_id), "adcfg:none")
+        return req.adapter_config
 
     def create(self, req: CreateRequest) -> str:
         defs, edef = self.build_definition(req)
@@ -189,11 +203,238 @@ class Orchestrator:
                                                                         e.message, RecoveryAction.REPLAY_FROM_INITIAL))
 
     def _after_observation(self, exp: str, preserved_from: str | None = None) -> None:
-        """Phase 03 extends the pipeline (sweeps, merge, stability, evaluation)."""
+        if preserved_from is not None:
+            self._preserve_engine_outputs(exp, preserved_from)
+        else:
+            self._sweeps(exp)
+            self._stability(exp)
+        self._evaluate(exp)
+
+    # ---- F05 (on behalf of F05: reads with F05 capability only) ---------------------------------------------
+    def edef(self, exp: str) -> ExperimentDefinition:
+        e = self.store.entries(exp, "experiment_definition")[-1]
+        m = self.r(exp, "F03").get(e["artifact_id"], "experiment_definition")
+        assert isinstance(m, ExperimentDefinition)
+        return m
+
+    def sweep_ticks(self, exp: str) -> list[int]:
+        ed = self.edef(exp)
+        n = len(self.store.entries(exp, "actual_state"))
+        mode = ed.sweep_schedule.mode.value
+        if mode == "FINAL":
+            return [n - 1]
+        if mode == "EXPLICIT":
+            return sorted(t for t in set(ed.sweep_schedule.ticks) if 0 <= t < n)
+        return list(range(n))
+
+    def adapter(self, exp: str, documents: dict[tuple[int, int], dict[str, Any]] | None = None) -> EngineAdapter:
+        ed = self.edef(exp)
+        kind = AdapterKind.IMPORT if documents is not None else ed.adapter.kind
+        return make_adapter(kind, ed.adapter.config_ref, documents=documents or {})
+
+    def _bundle(self, exp: str, t: int) -> tuple[ObservationBundle, ArtifactRef] | None:
+        got = self.r(exp, "F05").latest("observation_bundle", f"t{t}")
+        if got is None:
+            return None
+        e, b = got
+        assert isinstance(b, ObservationBundle)
+        return b, ArtifactRef(artifact_id=e["artifact_id"], artifact_type="observation_bundle",
+                              content_hash=e["content_hash"])
+
+    def _target(self, exp: str) -> tuple[TargetDefinition, ArtifactRef]:
+        e = self.store.entries(exp, "target_definition")[-1]
+        t = self.r(exp, "F05").get(e["artifact_id"], "target_definition")
+        assert isinstance(t, TargetDefinition)
+        return t, ArtifactRef(artifact_id=e["artifact_id"], artifact_type="target_definition",
+                              content_hash=e["content_hash"])
+
+    def _previous_recon(self, exp: str, t: int, attempt: int) -> ReconstructionResult | None:
+        prev = sorted(int(e["logical_key"].split(":")[0][1:]) for e in self.store.entries(exp, "reconstruction_result")
+                      if e["logical_key"].endswith(f":a{attempt}") and int(e["logical_key"].split(":")[0][1:]) < t)
+        if not prev:
+            return None
+        got = self.r(exp, "F05").latest("reconstruction_result", f"t{prev[-1]}:a{attempt}")
+        return got[1] if got else None  # type: ignore[return-value]
+
+    def _write_outcome(self, exp: str, oc: SweepOutcome, bundle_ref: ArtifactRef, target_ref: ArtifactRef,
+                       origin: str) -> list[str]:
+        W = self.w(exp, "F05")
+        t, a = oc.forward_run.up_to_tick, oc.forward_run.attempt
+        o_fwd = origin if oc.forward is not None else "SYNTHETIC"
+        o_inv = origin if oc.inverse is not None else "SYNTHETIC"
+        W.put("sweep_run", oc.forward_run, f"fwd:t{t}:a{a}", t, (bundle_ref,), o_fwd)
+        W.put("sweep_run", oc.inverse_run, f"inv:t{t}:a{a}", t, (bundle_ref, target_ref), o_inv)
+        if oc.forward is not None:
+            W.put("forward_result", oc.forward, f"fwd:t{t}:a{a}", t, (bundle_ref,), origin)
+        if oc.inverse is not None:
+            W.put("inverse_result", oc.inverse, f"inv:t{t}:a{a}", t, (bundle_ref, target_ref), origin)
+        if oc.reconstruction is not None:
+            r = W.put("reconstruction_result", oc.reconstruction, f"t{t}:a{a}", t,
+                      (make_ref("forward_result", oc.forward), make_ref("inverse_result", oc.inverse)), origin)  # type: ignore[arg-type]
+            for p in oc.proposals:
+                W.put("recovery_proposal", p, p.proposal_id, t, (_ref(r),), origin)
+        return [oc.forward_run.sweep_id, oc.inverse_run.sweep_id]
+
+    def _sweep_tick(self, exp: str, t: int, attempt: int, adapter: EngineAdapter, origin: str) -> tuple[str, list[str]]:
+        got = self._bundle(exp, t)
+        if got is None:
+            err = _err(ErrorCodeC.CONTEXT_INCOMPLETE, FieldId.F04, f"no bundle for t{t} (all profiles exhausted)",
+                       RecoveryAction.RESERIALIZE, t)
+            self.stage(exp, StageName.FORWARD, ExecutionStatus.BLOCKED, t, err)
+            self.stage(exp, StageName.INVERSE, ExecutionStatus.BLOCKED, t, err)
+            return "BLOCKED", []
+        bundle, bref = got
+        target, tref = self._target(exp)
+        ed = self.edef(exp)
+        oc = run_sweeps(adapter, bundle, bref, target, tref, attempt, ed.adapter.merge_policy,
+                        self._previous_recon(exp, t, attempt))
+        ids = self._write_outcome(exp, oc, bref, tref, origin)
+        for st, run in ((StageName.FORWARD, oc.forward_run), (StageName.INVERSE, oc.inverse_run)):
+            if run.execution_status is not ExecutionStatus.COMPLETED:
+                self.stage(exp, st, run.execution_status, t, run.error)
+        if oc.reconstruction is None:
+            return "BLOCKED", ids
+        return "OK", ids
+
+    def _sweeps(self, exp: str) -> None:
+        adapter = self.adapter(exp)
+        origin = _origin(adapter)
+        self.stage(exp, StageName.FORWARD, ExecutionStatus.RUNNING)
+        self.stage(exp, StageName.INVERSE, ExecutionStatus.RUNNING)
+        res = [self._sweep_tick(exp, t, 0, adapter, origin)[0] for t in self.sweep_ticks(exp)]
+        final = ExecutionStatus.COMPLETED if all(r == "OK" for r in res) else \
+            (ExecutionStatus.BLOCKED if all(r == "BLOCKED" for r in res) else ExecutionStatus.PARTIAL)
+        for st in (StageName.FORWARD, StageName.INVERSE, StageName.MERGE):
+            self.stage(exp, st, final)
+
+    def _stability(self, exp: str) -> None:
+        ed = self.edef(exp)
+        if not ed.stability.enabled:
+            return
+        t = self.stability_tick(exp)
+        if t is None:
+            self.stage(exp, StageName.STABILITY, ExecutionStatus.BLOCKED,
+                       error=_err(ErrorCodeC.METRIC_UNDEFINED, FieldId.F05, "no reconstructed tick for the stability run",
+                                  RecoveryAction.RESWEEP))
+            return
+        adapter = self.adapter(exp)
+        self.stage(exp, StageName.STABILITY, ExecutionStatus.RUNNING, t)
+        r, _ = self._sweep_tick(exp, t, 1, adapter, _origin(adapter))
+        self.stage(exp, StageName.STABILITY, ExecutionStatus.COMPLETED if r == "OK" else ExecutionStatus.BLOCKED, t)
+
+    def stability_tick(self, exp: str) -> int | None:
+        ed = self.edef(exp)
+        if ed.stability.tick is not None:
+            return ed.stability.tick
+        done = [int(e["logical_key"].split(":")[0][1:]) for e in self.store.entries(exp, "reconstruction_result")
+                if e["logical_key"].endswith(":a0")]
+        return max(done) if done else None
+
+    def _preserve_engine_outputs(self, exp: str, original: str) -> None:
+        """PRESERVED_ENGINE replay (K-23): F05 outputs of the original are carried over unchanged."""
+        self.stage(exp, StageName.FORWARD, ExecutionStatus.RUNNING)
+        W = self.w(exp, "F05")
+        R5 = self.r(original, "F05")
+        for t in ("sweep_run", "forward_result", "inverse_result", "reconstruction_result", "recovery_proposal"):
+            for e in self.store.entries(original, t):
+                p = self.store.load_payload(e["artifact_id"], t)
+                prov = e["provenance"]
+                refs = tuple(ArtifactRef.model_validate_json(json.dumps(r)) for r in prov["source_refs"])
+                W.put(t, p, e["logical_key"], e["tick"], refs, prov["data_origin"])
+        _ = R5
+        for st in (StageName.FORWARD, StageName.INVERSE, StageName.MERGE):
+            last = [x for x in self.store.stage_events(original) if x.stage is st]
+            self.stage(exp, st, last[-1].status if last else ExecutionStatus.COMPLETED)
+        stab = [x for x in self.store.stage_events(original) if x.stage is StageName.STABILITY]
+        if stab:
+            self.stage(exp, StageName.STABILITY, stab[-1].status, stab[-1].tick)
+
+    # ---- F06 ----------------------------------------------------------------------------------------------
+    def _evaluate(self, exp: str) -> None:
+        self.stage(exp, StageName.EVALUATION, ExecutionStatus.RUNNING)
+        R6 = self.r(exp, "F06")
+        d = self.definition_payloads(exp, "F06")
+        ed = self.edef(exp)
+        states: list[ActualState] = []
+        for e in sorted(R6.entries("actual_state"), key=lambda e: e["tick"]):
+            states.append(R6.get(e["artifact_id"], "actual_state"))  # type: ignore[arg-type]
+        bundles: dict[int, ObservationBundle] = {}
+        refs: list[ArtifactRef] = []
+        for e in R6.entries("observation_bundle"):
+            got = R6.latest("observation_bundle", e["logical_key"])
+            assert got is not None
+            bundles[int(e["logical_key"][1:])] = got[1]  # type: ignore[assignment]
+        recs: dict[tuple[int, int], ReconstructionResult] = {}
+        origins: set[str] = set()
+        for e in R6.entries("reconstruction_result"):
+            got = R6.latest("reconstruction_result", e["logical_key"])
+            assert got is not None
+            tk, ak = e["logical_key"].split(":")
+            recs[(int(tk[1:]), int(ak[1:]))] = got[1]  # type: ignore[assignment]
+            origins.add(got[0]["provenance"]["data_origin"])
+        for t in ("actual_state", "observation_record", "observation_bundle", "reconstruction_result"):
+            for e in R6.entries(t):
+                refs.append(ArtifactRef(artifact_id=e["artifact_id"], artifact_type=t, content_hash=e["content_hash"]))
+        origin = DataOrigin.IMPORTED if "IMPORTED" in origins else DataOrigin.ENGINE if "ENGINE" in origins else \
+            DataOrigin.FIXTURE if "FIXTURE" in origins else DataOrigin.SYNTHETIC
+        scn = d["scenario_definition"]
+        assert isinstance(scn, ScenarioDefinition)
+        blocked = [x.error for x in self.store.stage_events(exp)
+                   if x.error is not None and x.stage in (StageName.FORWARD, StageName.INVERSE)]
+        inp = EvaluationInputs(topology=d["immutable_topology"], governance=d["governance_definition"],  # type: ignore[arg-type]
+                               weight_set=d["weight_set"], config=d["observation_config"],  # type: ignore[arg-type]
+                               metric_config=ed.metric_config, states=states, bundles=bundles, reconstructions=recs,
+                               sweep_ticks=self.sweep_ticks(exp), stability_tick=self.stability_tick(exp)
+                               if ed.stability.enabled else None,
+                               service_functions=scn.service_function_refs,
+                               annotations=d.get("consistency_annotation_set"),  # type: ignore[arg-type]
+                               input_refs=tuple(refs), data_origin=origin, extra_errors=tuple(e for e in blocked if e))
+        out = evaluate_experiment(inp)
+        W = self.w(exp, "F06")
+        for rs in out.rule_sets:
+            W.put("rule_evaluation_set", rs, f"{rs.space.value}:t{rs.tick}", rs.tick,
+                  (make_ref("governance_definition", d["governance_definition"]),))
+        W.put("evaluation_report", out.report, "report", None, tuple(refs[:0]), origin.value)
+        self.stage(exp, StageName.EVALUATION, out.report.execution_status)
+
+    # ---- control operations (endpoints #15, #16, #17, #18, #19) -------------------------------------------
+    def resweep(self, exp: str, ticks: list[int] | None = None) -> list[str]:
+        adapter = self.adapter(exp)
+        ids: list[str] = []
+        with self._locks.setdefault(exp, threading.Lock()):
+            self.stage(exp, StageName.FORWARD, ExecutionStatus.RUNNING)
+            for t in ticks or self.sweep_ticks(exp):
+                used = [int(e["logical_key"].split(":a")[1]) for e in self.store.entries(exp, "sweep_run")
+                        if e["logical_key"].startswith(f"fwd:t{t}:")]
+                attempt = (max(used) + 1) if used else 0
+                ids += self._sweep_tick(exp, t, attempt, adapter, _origin(adapter))[1]
+            for st in (StageName.FORWARD, StageName.INVERSE, StageName.MERGE):
+                self.stage(exp, st, ExecutionStatus.COMPLETED)
+            self._evaluate(exp)
+        return ids
+
+    def import_results(self, exp: str, doc: dict[str, Any]) -> list[ArtifactRef]:
+        d = validate_document(doc)
+        t, a = d["tick"], d["attempt"]
+        adapter = self.adapter(exp, {(t, a): d})
+        with self._locks.setdefault(exp, threading.Lock()):
+            before = {e["artifact_id"] for e in self.store.entries(exp)}
+            status, _ = self._sweep_tick(exp, t, a, adapter, "IMPORTED")
+            if status != "OK":
+                raise CiraError(ErrorCode.IMPORT_INVALID, f"imported result for t{t} could not be applied", field="F05")
+            for st in (StageName.FORWARD, StageName.INVERSE, StageName.MERGE):
+                self.stage(exp, st, ExecutionStatus.COMPLETED, t)
+            self._evaluate(exp)
+            return [ArtifactRef(artifact_id=e["artifact_id"], artifact_type=e["artifact_type"],
+                                content_hash=e["content_hash"]) for e in self.store.entries(exp)
+                    if e["artifact_id"] not in before and e["artifact_type"] in
+                    ("sweep_run", "forward_result", "inverse_result", "reconstruction_result", "recovery_proposal")]
 
     def _emulate(self, exp: str) -> None:
         self.stage(exp, StageName.EMULATION, ExecutionStatus.RUNNING)
-        d = self.definition_payloads(exp)
+        d2 = self.definition_payloads(exp, "F02")  # F01 → F02: governance re-validated against the stored topology
+        validate_governance(d2["governance_definition"], d2["topology_definition"])  # type: ignore[arg-type]
+        d = self.definition_payloads(exp, "F03")
         scn, itopo, gov = d["scenario_definition"], d["immutable_topology"], d["governance_definition"]
         assert isinstance(scn, ScenarioDefinition) and isinstance(itopo, ImmutableTopology)
         assert isinstance(gov, GovernanceDefinition)
@@ -208,7 +449,7 @@ class Orchestrator:
 
     def _observe(self, exp: str) -> None:
         self.stage(exp, StageName.OBSERVATION, ExecutionStatus.RUNNING)
-        d = self.definition_payloads(exp)
+        d = self.definition_payloads(exp, "F04")
         cfg, itopo, gov = d["observation_config"], d["immutable_topology"], d["governance_definition"]
         assert isinstance(cfg, ObservationConfig) and isinstance(itopo, ImmutableTopology)
         assert isinstance(gov, GovernanceDefinition)
@@ -268,7 +509,15 @@ class Orchestrator:
         return all(s in last for s in self.required_stages())
 
     def required_stages(self) -> tuple[StageName, ...]:
-        return (StageName.DEFINITIONS, StageName.EMULATION, StageName.OBSERVATION)
+        return (StageName.DEFINITIONS, StageName.EMULATION, StageName.OBSERVATION, StageName.FORWARD,
+                StageName.INVERSE, StageName.MERGE, StageName.EVALUATION)
+
+
+def _origin(adapter: EngineAdapter) -> str:
+    d = adapter.descriptor
+    if d.kind is AdapterKind.IMPORT:
+        return "IMPORTED"
+    return "FIXTURE" if d.is_fixture else "ENGINE"
 
 
 def _key(m: BaseModel, id_field: str) -> str:

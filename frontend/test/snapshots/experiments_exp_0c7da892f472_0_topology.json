@@ -1,0 +1,171 @@
+{
+ "header": {
+  "data_origin": "SYNTHETIC",
+  "experiment_id": "exp:0c7da892f472-0",
+  "guard_class": "TIMELESS",
+  "query_echo": {
+   "aggregation": null,
+   "attempt": null,
+   "comparison_id": null,
+   "direction": null,
+   "from": null,
+   "revision": null,
+   "to": null,
+   "to_tick": null
+  },
+  "schema_version": "cira.topology_projection/1.0.2",
+  "source_refs": [
+   {
+    "artifact_id": "art:77270fda2722529fc512330fe393f481",
+    "artifact_type": "immutable_topology",
+    "content_hash": "sha256:0578baed8aef5b407bdbed5e8aa256b875d343f6bc1fdb1aed56ff929eab51c4"
+   }
+  ],
+  "tick": null
+ },
+ "topology": {
+  "nodes": [
+   {
+    "attributes": [
+     "attr:n01/state"
+    ],
+    "label": "Komponente 01",
+    "node_id": "node:n01",
+    "node_type": "type:component"
+   },
+   {
+    "attributes": [
+     "attr:n02/state"
+    ],
+    "label": "Komponente 02",
+    "node_id": "node:n02",
+    "node_type": "type:component"
+   },
+   {
+    "attributes": [
+     "attr:n03/state"
+    ],
+    "label": "Komponente 03",
+    "node_id": "node:n03",
+    "node_type": "type:component"
+   },
+   {
+    "attributes": [
+     "attr:n04/state"
+    ],
+    "label": "Komponente 04",
+    "node_id": "node:n04",
+    "node_type": "type:component"
+   },
+   {
+    "attributes": [
+     "attr:n05/state"
+    ],
+    "label": "Komponente 05",
+    "node_id": "node:n05",
+    "node_type": "type:component"
+   },
+   {
+    "attributes": [
+     "attr:n06/state"
+    ],
+    "label": "Komponente 06",
+    "node_id": "node:n06",
+    "node_type": "type:component"
+   },
+   {
+    "attributes": [
+     "attr:n07/state"
+    ],
+    "label": "Komponente 07",
+    "node_id": "node:n07",
+    "node_type": "type:component"
+   },
+   {
+    "attributes": [
+     "attr:n08/state"
+    ],
+    "label": "Komponente 08",
+    "node_id": "node:n08",
+    "node_type": "type:component"
+   },
+   {
+    "attributes": [
+     "attr:n09/state"
+    ],
+    "label": "Komponente 09",
+    "node_id": "node:n09",
+    "node_type": "type:component"
+   },
+   {
+    "attributes": [
+     "attr:n10/state"
+    ],
+    "label": "Komponente 10",
+    "node_id": "node:n10",
+    "node_type": "type:component"
+   }
+  ],
+  "relations": [
+   {
+    "relation_id": "rel:depends_on:n02:n01",
+    "relation_type": "depends_on",
+    "source": "node:n02",
+    "target": "node:n01"
+   },
+   {
+    "relation_id": "rel:depends_on:n03:n02",
+    "relation_type": "depends_on",
+    "source": "node:n03",
+    "target": "node:n02"
+   },
+   {
+    "relation_id": "rel:depends_on:n04:n03",
+    "relation_type": "depends_on",
+    "source": "node:n04",
+    "target": "node:n03"
+   },
+   {
+    "relation_id": "rel:depends_on:n05:n04",
+    "relation_type": "depends_on",
+    "source": "node:n05",
+    "target": "node:n04"
+   },
+   {
+    "relation_id": "rel:reports_to:n06:n05",
+    "relation_type": "reports_to",
+    "source": "node:n06",
+    "target": "node:n05"
+   },
+   {
+    "relation_id": "rel:depends_on:n07:n04",
+    "relation_type": "depends_on",
+    "source": "node:n07",
+    "target": "node:n04"
+   },
+   {
+    "relation_id": "rel:depends_on:n08:n06",
+    "relation_type": "depends_on",
+    "source": "node:n08",
+    "target": "node:n06"
+   },
+   {
+    "relation_id": "rel:provides:n09:n05",
+    "relation_type": "provides",
+    "source": "node:n09",
+    "target": "node:n05"
+   },
+   {
+    "relation_id": "rel:depends_on:n10:n08",
+    "relation_type": "depends_on",
+    "source": "node:n10",
+    "target": "node:n08"
+   }
+  ],
+  "topology_ref": {
+   "artifact_id": "art:77270fda2722529fc512330fe393f481",
+   "artifact_type": "immutable_topology",
+   "content_hash": "sha256:0578baed8aef5b407bdbed5e8aa256b875d343f6bc1fdb1aed56ff929eab51c4"
+  }
+ }
+}

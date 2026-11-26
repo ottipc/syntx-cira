@@ -1,0 +1,69 @@
+{
+ "header": {
+  "data_origin": "SYNTHETIC",
+  "experiment_id": "exp:a10ff3383bfc-0",
+  "guard_class": "TIMED",
+  "query_echo": {
+   "aggregation": null,
+   "attempt": 0,
+   "comparison_id": null,
+   "direction": "forward",
+   "from": null,
+   "revision": null,
+   "to": null,
+   "to_tick": null
+  },
+  "schema_version": "cira.trace_projection/1.0.2",
+  "source_refs": [
+   {
+    "artifact_id": "art:5310be8daadf477f13714876b029bcaf",
+    "artifact_type": "sweep_run",
+    "content_hash": "sha256:53eee330a1d49f12cee264a5a7caf71be1641ade638d9bbcaddd7d45982095b5"
+   }
+  ],
+  "tick": 5
+ },
+ "registry_labels": [],
+ "sweep": {
+  "adapter": {
+   "adapter_id": "adapter.local",
+   "adapter_version": "1.0.2",
+   "capabilities": {
+    "forward": true,
+    "inverse": true,
+    "merge": true,
+    "trace": true
+   },
+   "engine_version": null,
+   "is_fixture": false,
+   "kind": "LOCAL",
+   "operator_registry_ref": null
+  },
+  "attempt": 0,
+  "context_version": "ctx:5",
+  "direction": "FORWARD",
+  "error": {
+   "code": "ENGINE_UNAVAILABLE",
+   "field": "F05",
+   "message": "adapter.local: no SYNTX engine interface available in this environment (DEP-02)",
+   "recovery": "IMPORT_RESULT",
+   "subject_refs": [],
+   "tick": 5
+  },
+  "execution_status": "BLOCKED",
+  "input_bundle_ref": {
+   "artifact_id": "art:983d527bc3bd8d368a82f4d37ddf8406",
+   "artifact_type": "observation_bundle",
+   "content_hash": "sha256:1141d7ec5f670bd18ac61e4c34a0c5c9ee435a54075130bfe704eb047f62c633"
+  },
+  "sweep_id": "sweep:fwd:t5:a0",
+  "target_ref": null,
+  "termination": null,
+  "up_to_tick": 5
+ },
+ "trace": {
+  "availability": "NOT_AVAILABLE_AT_TICK",
+  "content": null,
+  "origin": null
+ }
+}

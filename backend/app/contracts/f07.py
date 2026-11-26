@@ -7,7 +7,7 @@ from typing import Generic, TypeVar
 
 from pydantic import Field
 
-from .common import (ArtifactRef, ContentAvailability, DataOrigin, ErrorRecord, Frozen, SchemaVersion,
+from .common import (ArtifactRef, ContentAvailability, DataOrigin, ErrorRecord, Frozen, SchemaVersion, StrategyRef,
                      StableId, Tick)
 from .f06 import Aggregation
 
@@ -104,3 +104,229 @@ class ViewState(Frozen):
     data_experiment_id: StableId | None = None
     data_tick: Tick | None = None
     error: ErrorRecord | None = None
+
+
+# ---- projection responses (Kap. 10, K-58–K-65). Not artifacts: no IDs, no replay effect. ------------------------
+from .common import AdapterKind, ErrorCodeC, FieldId, StageEvent, StateSpace  # noqa: E402
+from .experiments import ReplayReport  # noqa: E402
+from .f01 import TopologyProjectionBody  # noqa: E402
+from .f02 import AuthorityRecord, RuleEvaluationSet, RuleView  # noqa: E402
+from .f03 import ActualValue, DeltaStateA, EventRecord, ExperimentView, VariantKind  # noqa: E402
+from .f04_record import ObservationProjectionBody  # noqa: E402
+from .f05 import AdapterDescriptor, ForwardResult, InverseResult, ReconstructionResult, RecoveryProposal, SweepRun  # noqa: E402
+from .f05 import SweepTrace  # noqa: E402
+from .f06 import ComparisonReport, EvaluationReport, MetricDefinition  # noqa: E402
+
+
+class AdapterHealth(Frozen):
+    descriptor: AdapterDescriptor
+    available: bool
+
+
+class HealthResponse(Frozen):
+    status: str
+    service_version: str
+    schema_versions: tuple[str, ...]
+    adapters: tuple[AdapterHealth, ...]
+
+
+class ScenarioEntry(Frozen):
+    scenario_id: StableId
+    version: str
+    variant_kind: VariantKind
+    variant_of: StableId | None = None
+    fixture_lineage_id: StableId
+    tick_count: int
+    is_fixture: bool
+    label: str = ""
+    observation_configs: tuple[StableId, ...] = ()  # K-61
+    targets: tuple[StableId, ...] = ()              # K-61
+
+
+class ScenariosResponse(Frozen):
+    header: ProjectionHeader
+    scenarios: tuple[ScenarioEntry, ...]
+
+
+class Links(Frozen):
+    self_: str = Field(alias="self")
+    view: str
+
+
+class CreatedResponse(Frozen):
+    experiment_id: StableId
+    status: str
+    links: Links
+
+
+class ExperimentViewResponse(Frozen):
+    header: ProjectionHeader
+    experiment: ExperimentView
+
+
+class ExperimentListEntry(Frozen):
+    experiment_id: StableId
+    label: str
+    scenario_id: StableId
+    status: str
+    data_origin: DataOrigin
+
+
+class ExperimentsResponse(Frozen):
+    header: ProjectionHeader
+    experiments: tuple[ExperimentListEntry, ...]
+
+
+class ObservationProjection(Frozen):
+    header: ProjectionHeader
+    observation: Block[ObservationProjectionBody]
+
+
+class ResultsProjection(Frozen):
+    header: ProjectionHeader
+    forward: Block[ForwardResult]
+    inverse: Block[InverseResult]
+    reconstruction: Block[ReconstructionResult]
+    proposals: tuple[RecoveryProposal, ...] = ()
+    authority_records: tuple[AuthorityRecord, ...] = ()  # K-65
+
+
+class MetricsProjection(Frozen):
+    header: ProjectionHeader
+    report: EvaluationReport
+    definitions: tuple[MetricDefinition, ...]            # K-65
+
+
+class TopologyProjection(Frozen):
+    header: ProjectionHeader
+    topology: TopologyProjectionBody
+
+
+class GovernanceProjection(Frozen):
+    header: ProjectionHeader
+    rules: tuple[RuleView, ...]
+    evaluations: Block[RuleEvaluationSet]
+
+
+class StateProjection(Frozen):
+    header: ProjectionHeader
+    values: tuple[ActualValue, ...]
+    delta: DeltaStateA | None = None                      # K-65
+
+
+class EventsProjection(Frozen):
+    header: ProjectionHeader
+    events: tuple[EventRecord, ...]
+    stage_events: tuple[StageEvent, ...]
+
+
+class TraceProjection(Frozen):
+    header: ProjectionHeader
+    sweep: SweepRun
+    trace: Block[SweepTrace]
+    registry_labels: tuple[tuple[str, str], ...]
+
+
+class SweepsCreated(Frozen):
+    sweep_ids: tuple[StableId, ...]
+
+
+class ImportCreated(Frozen):
+    artifact_refs: tuple[ArtifactRef, ...]
+
+
+class ReplayCreated(Frozen):
+    experiment_id: StableId
+
+
+class ReplayReportResponse(Frozen):
+    header: ProjectionHeader
+    report: ReplayReport
+
+
+class ComparisonResponse(Frozen):
+    header: ProjectionHeader
+    comparison: ComparisonReport
+
+
+class ComparisonListEntry(Frozen):
+    comparison_id: StableId
+    baseline: StableId
+    recovery: StableId
+    comparison_tick: Tick
+    compatible: bool
+
+
+class ComparisonsResponse(Frozen):
+    header: ProjectionHeader
+    comparisons: tuple[ComparisonListEntry, ...]
+
+
+class FieldManifest(Frozen):
+    field_id: FieldId
+    name: str
+    purpose: str
+    package: str
+    state_space: StateSpace | None = None
+    writes: tuple[str, ...]
+    reads: tuple[str, ...]
+    ports: tuple[str, ...]
+    stages: tuple[str, ...]
+    stage_status: tuple[tuple[str, str], ...] = ()
+    couplings_out: tuple[FieldId, ...]
+    couplings_in: tuple[FieldId, ...]
+    requirements: tuple[str, ...]
+
+
+class Coupling(Frozen):
+    source: FieldId
+    target: FieldId
+    carrier: str
+
+
+class ConfigurationSnapshot(Frozen):
+    experiment_id: StableId
+    tick: Tick | None = None
+    scenario_id: StableId
+    observation_config_id: StableId
+    target_id: StableId
+    adapter_kind: AdapterKind
+    sweep_schedule: str
+    strategies: tuple[StrategyRef, ...]
+
+
+class FieldsResponse(Frozen):
+    header: ProjectionHeader
+    manifests: tuple[FieldManifest, ...]
+    coupling_matrix: tuple[Coupling, ...]
+    configuration_snapshot: ConfigurationSnapshot | None = None
+
+
+class RecoveryVariantCreated(Frozen):
+    authority_ref: ArtifactRef
+    scenario_ref: ArtifactRef | None = None
+
+
+class ErrorDetail(Frozen):
+    path: str
+    issue: str
+
+
+class ErrorBody(Frozen):
+    code: ErrorCodeC
+    message: str
+    field: FieldId | None = None
+    details: tuple[ErrorDetail, ...] = ()
+    experiment_id: StableId | None = None
+
+
+class ErrorResponse(Frozen):
+    error: ErrorBody
+
+
+PROJECTIONS: tuple[type[Frozen], ...] = (
+    HealthResponse, ScenariosResponse, CreatedResponse, ExperimentViewResponse, ExperimentsResponse,
+    ObservationProjection, ResultsProjection, MetricsProjection, TopologyProjection, GovernanceProjection,
+    StateProjection, EventsProjection, TraceProjection, SweepsCreated, ImportCreated, ReplayCreated,
+    ReplayReportResponse, ComparisonResponse, ComparisonsResponse, FieldsResponse, RecoveryVariantCreated,
+    ErrorResponse)

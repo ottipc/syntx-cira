@@ -1,0 +1,96 @@
+{
+ "delta": {
+  "changes": [
+   {
+    "after": {
+     "applicability": "APPLICABLE",
+     "value": "DEGRADED"
+    },
+    "attribute_ref": "attr:n08/state",
+    "before": {
+     "applicability": "APPLICABLE",
+     "value": "NOMINAL"
+    }
+   }
+  ],
+  "from_tick": 4,
+  "space": "A",
+  "to_tick": 5
+ },
+ "header": {
+  "data_origin": "SYNTHETIC",
+  "experiment_id": "exp:0c7da892f472-0",
+  "guard_class": "TIMED",
+  "query_echo": {
+   "aggregation": null,
+   "attempt": null,
+   "comparison_id": null,
+   "direction": null,
+   "from": null,
+   "revision": null,
+   "to": null,
+   "to_tick": null
+  },
+  "schema_version": "cira.state_projection/1.0.2",
+  "source_refs": [
+   {
+    "artifact_id": "art:57c16dc40e1e212caebf558c04447cb5",
+    "artifact_type": "actual_state",
+    "content_hash": "sha256:629408f2637380f39e4c53705b2fe0aa01c84d97b98a32357f7f021044c4a20d"
+   }
+  ],
+  "tick": 5
+ },
+ "values": [
+  {
+   "applicability": "APPLICABLE",
+   "attribute_ref": "attr:n01/state",
+   "value": "NOMINAL"
+  },
+  {
+   "applicability": "APPLICABLE",
+   "attribute_ref": "attr:n02/state",
+   "value": "NOMINAL"
+  },
+  {
+   "applicability": "APPLICABLE",
+   "attribute_ref": "attr:n03/state",
+   "value": "FAULTY"
+  },
+  {
+   "applicability": "APPLICABLE",
+   "attribute_ref": "attr:n04/state",
+   "value": "ACTIVE"
+  },
+  {
+   "applicability": "APPLICABLE",
+   "attribute_ref": "attr:n05/state",
+   "value": "OPEN"
+  },
+  {
+   "applicability": "APPLICABLE",
+   "attribute_ref": "attr:n06/state",
+   "value": "NOMINAL"
+  },
+  {
+   "applicability": "APPLICABLE",
+   "attribute_ref": "attr:n07/state",
+   "value": "STANDBY"
+  },
+  {
+   "applicability": "APPLICABLE",
+   "attribute_ref": "attr:n08/state",
+   "value": "DEGRADED"
+  },
+  {
+   "applicability": "APPLICABLE",
+   "attribute_ref": "attr:n09/state",
+   "value": "PENDING"
+  },
+  {
+   "applicability": "APPLICABLE",
+   "attribute_ref": "attr:n10/state",
+   "value": "CRITICAL"
+  }
+ ]
+}

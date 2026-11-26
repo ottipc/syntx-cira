@@ -1,0 +1,43 @@
+{
+ "experiments": [
+  {
+   "data_origin": "FIXTURE",
+   "experiment_id": "exp:0c7da892f472-0",
+   "label": "Baseline",
+   "scenario_id": "scn:fx_base",
+   "status": "COMPLETED"
+  },
+  {
+   "data_origin": "FIXTURE",
+   "experiment_id": "exp:1ad306a9d017-0",
+   "label": "Recovery",
+   "scenario_id": "scn:fx_rec",
+   "status": "COMPLETED"
+  },
+  {
+   "data_origin": "SYNTHETIC",
+   "experiment_id": "exp:a10ff3383bfc-0",
+   "label": "Baseline (no engine)",
+   "scenario_id": "scn:fx_base",
+   "status": "BLOCKED"
+  }
+ ],
+ "header": {
+  "data_origin": "SYNTHETIC",
+  "experiment_id": null,
+  "guard_class": "GLOBAL",
+  "query_echo": {
+   "aggregation": null,
+   "attempt": null,
+   "comparison_id": null,
+   "direction": null,
+   "from": null,
+   "revision": null,
+   "to": null,
+   "to_tick": null
+  },
+  "schema_version": "cira.experiments/1.0.2",
+  "source_refs": [],
+  "tick": null
+ }
+}

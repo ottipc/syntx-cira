@@ -1,0 +1,103 @@
+{
+ "adapters": [
+  {
+   "available": true,
+   "descriptor": {
+    "adapter_id": "adapter.fixture",
+    "adapter_version": "1.0.2",
+    "capabilities": {
+     "forward": true,
+     "inverse": true,
+     "merge": false,
+     "trace": true
+    },
+    "engine_version": null,
+    "is_fixture": true,
+    "kind": "FIXTURE",
+    "operator_registry_ref": null
+   }
+  },
+  {
+   "available": true,
+   "descriptor": {
+    "adapter_id": "adapter.import",
+    "adapter_version": "1.0.2",
+    "capabilities": {
+     "forward": true,
+     "inverse": true,
+     "merge": false,
+     "trace": true
+    },
+    "engine_version": null,
+    "is_fixture": false,
+    "kind": "IMPORT",
+    "operator_registry_ref": null
+   }
+  },
+  {
+   "available": false,
+   "descriptor": {
+    "adapter_id": "adapter.local",
+    "adapter_version": "1.0.2",
+    "capabilities": {
+     "forward": true,
+     "inverse": true,
+     "merge": true,
+     "trace": true
+    },
+    "engine_version": null,
+    "is_fixture": false,
+    "kind": "LOCAL",
+    "operator_registry_ref": null
+   }
+  },
+  {
+   "available": false,
+   "descriptor": {
+    "adapter_id": "adapter.api",
+    "adapter_version": "1.0.2",
+    "capabilities": {
+     "forward": true,
+     "inverse": true,
+     "merge": true,
+     "trace": true
+    },
+    "engine_version": null,
+    "is_fixture": false,
+    "kind": "API",
+    "operator_registry_ref": null
+   }
+  }
+ ],
+ "schema_versions": [
+  "cira.actual_state/1.0.2",
+  "cira.authority_record/1.0.2",
+  "cira.comparison_report/1.0.2",
+  "cira.consistency_annotation_set/1.0.2",
+  "cira.evaluation_report/1.0.2",
+  "cira.event_record/1.0.2",
+  "cira.experiment_definition/1.0.2",
+  "cira.forward_result/1.0.2",
+  "cira.governance_definition/1.0.2",
+  "cira.immutable_topology/1.0.2",
+  "cira.inverse_result/1.0.2",
+  "cira.observable_rules/1.0.2",
+  "cira.observable_topology/1.0.2",
+  "cira.observation_bundle/1.0.2",
+  "cira.observation_config/1.0.2",
+  "cira.observation_record/1.0.2",
+  "cira.operator_registry/1.0.2",
+  "cira.reconstruction_result/1.0.2",
+  "cira.recovery_proposal/1.0.2",
+  "cira.replay_report/1.0.2",
+  "cira.rule_evaluation_set/1.0.2",
+  "cira.scenario_definition/1.0.2",
+  "cira.source_register/1.0.2",
+  "cira.sweep_run/1.0.2",
+  "cira.target_definition/1.0.2",
+  "cira.topology_definition/1.0.2",
+  "cira.weight_set/1.0.2"
+ ],
+ "service_version": "1.0.2",
+ "status": "ok"
+}

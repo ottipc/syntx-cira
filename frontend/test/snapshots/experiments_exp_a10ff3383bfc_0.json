@@ -1,0 +1,288 @@
+{
+ "experiment": {
+  "comparisons": [],
+  "data_origin": "SYNTHETIC",
+  "definition_ref": {
+   "artifact_id": "art:48ad3740fcef5fae5c1894af05f9072d",
+   "artifact_type": "experiment_definition",
+   "content_hash": "sha256:a10ff3383bfcbbcdd2687d264a416c0d0662b3cea2d3769e4fb07da5c2db2684"
+  },
+  "errors": [
+   {
+    "code": "ENGINE_UNAVAILABLE",
+    "field": "F05",
+    "message": "adapter.local: no SYNTX engine interface available in this environment (DEP-02)",
+    "recovery": "IMPORT_RESULT",
+    "subject_refs": [],
+    "tick": 0
+   },
+   {
+    "code": "ENGINE_UNAVAILABLE",
+    "field": "F05",
+    "message": "adapter.local: no SYNTX engine interface available in this environment (DEP-02)",
+    "recovery": "IMPORT_RESULT",
+    "subject_refs": [],
+    "tick": 0
+   },
+   {
+    "code": "ENGINE_UNAVAILABLE",
+    "field": "F05",
+    "message": "adapter.local: no SYNTX engine interface available in this environment (DEP-02)",
+    "recovery": "IMPORT_RESULT",
+    "subject_refs": [],
+    "tick": 1
+   },
+   {
+    "code": "ENGINE_UNAVAILABLE",
+    "field": "F05",
+    "message": "adapter.local: no SYNTX engine interface available in this environment (DEP-02)",
+    "recovery": "IMPORT_RESULT",
+    "subject_refs": [],
+    "tick": 1
+   },
+   {
+    "code": "ENGINE_UNAVAILABLE",
+    "field": "F05",
+    "message": "adapter.local: no SYNTX engine interface available in this environment (DEP-02)",
+    "recovery": "IMPORT_RESULT",
+    "subject_refs": [],
+    "tick": 2
+   },
+   {
+    "code": "ENGINE_UNAVAILABLE",
+    "field": "F05",
+    "message": "adapter.local: no SYNTX engine interface available in this environment (DEP-02)",
+    "recovery": "IMPORT_RESULT",
+    "subject_refs": [],
+    "tick": 2
+   },
+   {
+    "code": "ENGINE_UNAVAILABLE",
+    "field": "F05",
+    "message": "adapter.local: no SYNTX engine interface available in this environment (DEP-02)",
+    "recovery": "IMPORT_RESULT",
+    "subject_refs": [],
+    "tick": 3
+   },
+   {
+    "code": "ENGINE_UNAVAILABLE",
+    "field": "F05",
+    "message": "adapter.local: no SYNTX engine interface available in this environment (DEP-02)",
+    "recovery": "IMPORT_RESULT",
+    "subject_refs": [],
+    "tick": 3
+   },
+   {
+    "code": "ENGINE_UNAVAILABLE",
+    "field": "F05",
+    "message": "adapter.local: no SYNTX engine interface available in this environment (DEP-02)",
+    "recovery": "IMPORT_RESULT",
+    "subject_refs": [],
+    "tick": 4
+   },
+   {
+    "code": "ENGINE_UNAVAILABLE",
+    "field": "F05",
+    "message": "adapter.local: no SYNTX engine interface available in this environment (DEP-02)",
+    "recovery": "IMPORT_RESULT",
+    "subject_refs": [],
+    "tick": 4
+   },
+   {
+    "code": "ENGINE_UNAVAILABLE",
+    "field": "F05",
+    "message": "adapter.local: no SYNTX engine interface available in this environment (DEP-02)",
+    "recovery": "IMPORT_RESULT",
+    "subject_refs": [],
+    "tick": 5
+   },
+   {
+    "code": "ENGINE_UNAVAILABLE",
+    "field": "F05",
+    "message": "adapter.local: no SYNTX engine interface available in this environment (DEP-02)",
+    "recovery": "IMPORT_RESULT",
+    "subject_refs": [],
+    "tick": 5
+   },
+   {
+    "code": "METRIC_UNDEFINED",
+    "field": "F05",
+    "message": "no reconstructed tick for the stability run",
+    "recovery": "RESWEEP",
+    "subject_refs": [],
+    "tick": null
+   }
+  ],
+  "experiment_id": "exp:a10ff3383bfc-0",
+  "label": "Baseline (no engine)",
+  "openness": {
+   "open_references": 0,
+   "open_relations": 0,
+   "structural_gaps_open": 0,
+   "undetermined": 0,
+   "unevaluable_rules": 0,
+   "unknown_observations": 0
+  },
+  "stage_status": [
+   {
+    "stage": "DEFINITIONS",
+    "status": "COMPLETED"
+   },
+   {
+    "stage": "EMULATION",
+    "status": "COMPLETED"
+   },
+   {
+    "stage": "OBSERVATION",
+    "status": "COMPLETED"
+   },
+   {
+    "stage": "FORWARD",
+    "status": "BLOCKED"
+   },
+   {
+    "stage": "INVERSE",
+    "status": "BLOCKED"
+   },
+   {
+    "stage": "MERGE",
+    "status": "BLOCKED"
+   },
+   {
+    "stage": "STABILITY",
+    "status": "BLOCKED"
+   },
+   {
+    "stage": "EVALUATION",
+    "status": "PARTIAL"
+   }
+  ],
+  "status": "BLOCKED",
+  "sweeps": [
+   {
+    "attempt": 0,
+    "data_origin": "SYNTHETIC",
+    "direction": "FORWARD",
+    "execution_status": "BLOCKED",
+    "sweep_id": "sweep:fwd:t0:a0",
+    "up_to_tick": 0
+   },
+   {
+    "attempt": 0,
+    "data_origin": "SYNTHETIC",
+    "direction": "INVERSE",
+    "execution_status": "BLOCKED",
+    "sweep_id": "sweep:inv:t0:a0",
+    "up_to_tick": 0
+   },
+   {
+    "attempt": 0,
+    "data_origin": "SYNTHETIC",
+    "direction": "FORWARD",
+    "execution_status": "BLOCKED",
+    "sweep_id": "sweep:fwd:t1:a0",
+    "up_to_tick": 1
+   },
+   {
+    "attempt": 0,
+    "data_origin": "SYNTHETIC",
+    "direction": "INVERSE",
+    "execution_status": "BLOCKED",
+    "sweep_id": "sweep:inv:t1:a0",
+    "up_to_tick": 1
+   },
+   {
+    "attempt": 0,
+    "data_origin": "SYNTHETIC",
+    "direction": "FORWARD",
+    "execution_status": "BLOCKED",
+    "sweep_id": "sweep:fwd:t2:a0",
+    "up_to_tick": 2
+   },
+   {
+    "attempt": 0,
+    "data_origin": "SYNTHETIC",
+    "direction": "INVERSE",
+    "execution_status": "BLOCKED",
+    "sweep_id": "sweep:inv:t2:a0",
+    "up_to_tick": 2
+   },
+   {
+    "attempt": 0,
+    "data_origin": "SYNTHETIC",
+    "direction": "FORWARD",
+    "execution_status": "BLOCKED",
+    "sweep_id": "sweep:fwd:t3:a0",
+    "up_to_tick": 3
+   },
+   {
+    "attempt": 0,
+    "data_origin": "SYNTHETIC",
+    "direction": "INVERSE",
+    "execution_status": "BLOCKED",
+    "sweep_id": "sweep:inv:t3:a0",
+    "up_to_tick": 3
+   },
+   {
+    "attempt": 0,
+    "data_origin": "SYNTHETIC",
+    "direction": "FORWARD",
+    "execution_status": "BLOCKED",
+    "sweep_id": "sweep:fwd:t4:a0",
+    "up_to_tick": 4
+   },
+   {
+    "attempt": 0,
+    "data_origin": "SYNTHETIC",
+    "direction": "INVERSE",
+    "execution_status": "BLOCKED",
+    "sweep_id": "sweep:inv:t4:a0",
+    "up_to_tick": 4
+   },
+   {
+    "attempt": 0,
+    "data_origin": "SYNTHETIC",
+    "direction": "FORWARD",
+    "execution_status": "BLOCKED",
+    "sweep_id": "sweep:fwd:t5:a0",
+    "up_to_tick": 5
+   },
+   {
+    "attempt": 0,
+    "data_origin": "SYNTHETIC",
+    "direction": "INVERSE",
+    "execution_status": "BLOCKED",
+    "sweep_id": "sweep:inv:t5:a0",
+    "up_to_tick": 5
+   }
+  ],
+  "ticks": {
+   "first": 0,
+   "last": 5
+  }
+ },
+ "header": {
+  "data_origin": "SYNTHETIC",
+  "experiment_id": "exp:a10ff3383bfc-0",
+  "guard_class": "TIMELESS",
+  "query_echo": {
+   "aggregation": null,
+   "attempt": null,
+   "comparison_id": null,
+   "direction": null,
+   "from": null,
+   "revision": null,
+   "to": null,
+   "to_tick": null
+  },
+  "schema_version": "cira.experiment_view/1.0.2",
+  "source_refs": [
+   {
+    "artifact_id": "art:48ad3740fcef5fae5c1894af05f9072d",
+    "artifact_type": "experiment_definition",
+    "content_hash": "sha256:a10ff3383bfcbbcdd2687d264a416c0d0662b3cea2d3769e4fb07da5c2db2684"
+   }
+  ],
+  "tick": null
+ }
+}

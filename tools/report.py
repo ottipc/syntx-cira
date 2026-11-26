@@ -71,10 +71,17 @@ def suites_for(phase: int) -> list[tuple[str, list[str] | str, Path, dict[str, s
         ("import-linter", ["lint-imports", "--config", ".importlinter"], BACK, {}),
         ("drift:schemas", [PY, "scripts/export_schemas.py", "--check"], BACK, {}),
         ("drift:importlinter", [PY, "scripts/gen_importlinter.py", "--check"], BACK, {}),
+        ("drift:tx14-bundle", [PY, "-c", "import sys,runpy;sys.argv=['x'];"
+                               "import importlib.util as u;s=u.spec_from_file_location('b','scripts/build_tx14_bundle.py');"
+                               "m=u.module_from_spec(s);s.loader.exec_module(m);import tempfile,pathlib;"
+                               "p=pathlib.Path(tempfile.mkdtemp())/'b.json';m.build(p);"
+                               "sys.exit(0 if p.read_bytes()==m.OUT.read_bytes() else 1)"], BACK, {}),
         ("trace_check", [PY, "tools/trace_check.py"], ROOT, {}),
         ("lint_operators", [PY, "tools/lint_operators.py"], ROOT, {}),
         ("fixture_lint", [PY, "tools/fixture_lint.py"], ROOT, {}),
     ]
+    if phase >= 3:
+        s.insert(3, ("drift:snapshots", [PY, "scripts/gen_snapshots.py", "--check"], BACK, {}))
     if phase >= 4:
         s += [("drift:semiontics", [PY, "tools/gen_semiontics.py", "--check"], ROOT, {}),
               ("drift:ts-contracts", ["npm", "run", "-s", "gen:contracts:check"], FRONT, {}),

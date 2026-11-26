@@ -1,0 +1,2205 @@
+{
+ "definitions": [
+  {
+   "formula": "Σ_{D_det} w·δ(a,r) / W(D_det)",
+   "metric_id": "M01",
+   "name": "Reconstruction Distance",
+   "relations": [
+    "A_R"
+   ],
+   "target_value": {
+    "d": 1,
+    "n": 0
+   },
+   "tick_set": "sweep ticks, attempt 0",
+   "unit": "ratio",
+   "version": "1.0.0"
+  },
+  {
+   "formula": "#(g_j = TRUE) / #(g_j ∈ {TRUE, FALSE}) over valid STATE rules",
+   "metric_id": "M02",
+   "name": "Relational Coherence",
+   "relations": [
+    "A",
+    "O",
+    "R"
+   ],
+   "target_value": {
+    "d": 1,
+    "n": 1
+   },
+   "tick_set": "A, O: all ticks; R: sweep ticks",
+   "unit": "ratio",
+   "version": "1.0.0"
+  },
+  {
+   "formula": "#(g_j(s_t, s_t+1) = TRUE) / #(… ∈ {TRUE, FALSE}) over TRANSITION rules",
+   "metric_id": "M03",
+   "name": "Temporal State Consistency",
+   "relations": [
+    "A",
+    "O",
+    "R"
+   ],
+   "target_value": {
+    "d": 1,
+    "n": 1
+   },
+   "tick_set": "consecutive available tick pairs",
+   "unit": "ratio",
+   "version": "1.0.0"
+  },
+  {
+   "formula": "#(f(t) = 1) / #(f(t) ∈ {0, 1})",
+   "metric_id": "M04",
+   "name": "Functional Continuity",
+   "relations": [
+    "A"
+   ],
+   "target_value": {
+    "d": 1,
+    "n": 1
+   },
+   "tick_set": "all ticks (A_only/v1)",
+   "unit": "ratio",
+   "version": "1.0.0"
+  },
+  {
+   "formula": "W(D_det) / W(D_ref)",
+   "metric_id": "M05",
+   "name": "Reconstruction Coverage",
+   "relations": [
+    "A_R"
+   ],
+   "target_value": {
+    "d": 1,
+    "n": 1
+   },
+   "tick_set": "sweep ticks, attempt 0",
+   "unit": "ratio",
+   "version": "1.0.0"
+  },
+  {
+   "formula": "W(D_obs) / W(D_ref)",
+   "metric_id": "M06",
+   "name": "Observation Completeness",
+   "relations": [
+    "A_O"
+   ],
+   "target_value": {
+    "d": 1,
+    "n": 1
+   },
+   "tick_set": "all ticks",
+   "unit": "ratio",
+   "version": "1.0.0"
+  },
+  {
+   "formula": "TP / (TP + FN)",
+   "metric_id": "M07",
+   "name": "GAP Detection Coverage",
+   "relations": [
+    "ANNOTATION_R"
+   ],
+   "target_value": {
+    "d": 1,
+    "n": 1
+   },
+   "tick_set": "sweep ticks; ALL and OBSERVABLE_CASES",
+   "unit": "ratio",
+   "version": "1.0.0"
+  },
+  {
+   "formula": "TP / (TP + FP)",
+   "metric_id": "M08",
+   "name": "GAP Detection Precision",
+   "relations": [
+    "ANNOTATION_R"
+   ],
+   "target_value": {
+    "d": 1,
+    "n": 1
+   },
+   "tick_set": "sweep ticks",
+   "unit": "ratio",
+   "version": "1.0.0"
+  },
+  {
+   "formula": "#resolved / #original",
+   "metric_id": "M09",
+   "name": "GAP Closure",
+   "relations": [
+    "BASELINE_RECOVERY"
+   ],
+   "target_value": {
+    "d": 1,
+    "n": 1
+   },
+   "tick_set": "comparison_tick",
+   "unit": "ratio",
+   "version": "1.0.0"
+  },
+  {
+   "formula": "(W(S) − Σ_S w·δ(r1, r2)) / W(S)",
+   "metric_id": "M10",
+   "name": "Reconstruction Stability",
+   "relations": [
+    "R1_R2"
+   ],
+   "target_value": {
+    "d": 1,
+    "n": 1
+   },
+   "tick_set": "stability tick",
+   "unit": "ratio",
+   "version": "1.0.0"
+  },
+  {
+   "formula": "(W(D_det) − Σ_{D_det} w·δ) / W(D_det)",
+   "metric_id": "M11",
+   "name": "Reconstruction Accuracy",
+   "relations": [
+    "A_R"
+   ],
+   "target_value": {
+    "d": 1,
+    "n": 1
+   },
+   "tick_set": "sweep ticks, attempt 0",
+   "unit": "ratio",
+   "version": "1.0.0"
+  }
+ ],
+ "header": {
+  "data_origin": "FIXTURE",
+  "experiment_id": "exp:1ad306a9d017-0",
+  "guard_class": "TIMED",
+  "query_echo": {
+   "aggregation": "PER_TICK",
+   "attempt": null,
+   "comparison_id": null,
+   "direction": null,
+   "from": null,
+   "revision": null,
+   "to": null,
+   "to_tick": null
+  },
+  "schema_version": "cira.metrics_projection/1.0.2",
+  "source_refs": [
+   {
+    "artifact_id": "art:1d3276d956dad5e23ebc5475235cb92c",
+    "artifact_type": "evaluation_report",
+    "content_hash": "sha256:c597e8dca168df30b3d599a94ab7f9d6f149720bf6c7de6ca44bcfc1dfc6f44c"
+   }
+  ],
+  "tick": 3
+ },
+ "report": {
+  "attribute_membership": [
+   {
+    "attribute_ref": "attr:n01/state",
+    "delta": 0,
+    "in_d_det": true,
+    "in_d_obs": true,
+    "in_d_ref": true,
+    "tick": 3,
+    "weight": {
+     "d": 1,
+     "n": 1
+    }
+   },
+   {
+    "attribute_ref": "attr:n02/state",
+    "delta": 0,
+    "in_d_det": true,
+    "in_d_obs": true,
+    "in_d_ref": true,
+    "tick": 3,
+    "weight": {
+     "d": 1,
+     "n": 1
+    }
+   },
+   {
+    "attribute_ref": "attr:n03/state",
+    "delta": 0,
+    "in_d_det": true,
+    "in_d_obs": true,
+    "in_d_ref": true,
+    "tick": 3,
+    "weight": {
+     "d": 1,
+     "n": 1
+    }
+   },
+   {
+    "attribute_ref": "attr:n04/state",
+    "delta": 0,
+    "in_d_det": true,
+    "in_d_obs": true,
+    "in_d_ref": true,
+    "tick": 3,
+    "weight": {
+     "d": 1,
+     "n": 1
+    }
+   },
+   {
+    "attribute_ref": "attr:n05/state",
+    "delta": 0,
+    "in_d_det": true,
+    "in_d_obs": true,
+    "in_d_ref": true,
+    "tick": 3,
+    "weight": {
+     "d": 1,
+     "n": 1
+    }
+   },
+   {
+    "attribute_ref": "attr:n06/state",
+    "delta": 0,
+    "in_d_det": true,
+    "in_d_obs": true,
+    "in_d_ref": true,
+    "tick": 3,
+    "weight": {
+     "d": 1,
+     "n": 1
+    }
+   },
+   {
+    "attribute_ref": "attr:n07/state",
+    "delta": null,
+    "in_d_det": false,
+    "in_d_obs": false,
+    "in_d_ref": true,
+    "tick": 3,
+    "weight": {
+     "d": 1,
+     "n": 1
+    }
+   },
+   {
+    "attribute_ref": "attr:n08/state",
+    "delta": 0,
+    "in_d_det": true,
+    "in_d_obs": false,
+    "in_d_ref": true,
+    "tick": 3,
+    "weight": {
+     "d": 1,
+     "n": 1
+    }
+   },
+   {
+    "attribute_ref": "attr:n09/state",
+    "delta": 0,
+    "in_d_det": true,
+    "in_d_obs": false,
+    "in_d_ref": true,
+    "tick": 3,
+    "weight": {
+     "d": 1,
+     "n": 1
+    }
+   },
+   {
+    "attribute_ref": "attr:n10/state",
+    "delta": null,
+    "in_d_det": false,
+    "in_d_obs": false,
+    "in_d_ref": true,
+    "tick": 3,
+    "weight": {
+     "d": 1,
+     "n": 1
+    }
+   }
+  ],
+  "data_origin": "FIXTURE",
+  "errors": [],
+  "execution_status": "COMPLETED",
+  "gap_matches": [
+   {
+    "case_id": null,
+    "class_key": [
+     "node:n08"
+    ],
+    "gap_id": "gap:t3:unobserved_n08",
+    "matcher": {
+     "point": "metrics.gap_matcher",
+     "variant": "subjects_tickwindow_1to1",
+     "version": 1
+    },
+    "observable": null,
+    "tick": 3,
+    "verdict": "FP"
+   },
+   {
+    "case_id": "case:hidden_critical",
+    "class_key": [
+     "node:n10"
+    ],
+    "gap_id": null,
+    "matcher": {
+     "point": "metrics.gap_matcher",
+     "variant": "subjects_tickwindow_1to1",
+     "version": 1
+    },
+    "observable": false,
+    "tick": 3,
+    "verdict": "FN"
+   }
+  ],
+  "inputs": [
+   {
+    "artifact_id": "art:0fa99d3a736048fb3b695024175fd528",
+    "artifact_type": "actual_state",
+    "content_hash": "sha256:7272307f271ab2a93caeeb1ee910e49936a68064186c59bc57f2b8a6138b595b"
+   },
+   {
+    "artifact_id": "art:966cc9ecf1105e4822852a7ee676a88e",
+    "artifact_type": "actual_state",
+    "content_hash": "sha256:3acf86ddbe15927bb777c0a93769f3357fa3dcbc55c5ca975b3c31c66ba0dc5f"
+   },
+   {
+    "artifact_id": "art:1b5f51e83038373685e5058076f28113",
+    "artifact_type": "actual_state",
+    "content_hash": "sha256:e68f5e524f7f890eb76a8426bef3ffb7591d7820d65f6b7226a1d1ea78a5ae03"
+   },
+   {
+    "artifact_id": "art:6904018cdf767a202275af79661d4ce8",
+    "artifact_type": "actual_state",
+    "content_hash": "sha256:fc77dd9c2d536aa42cfffe681be207df8933195c9f1b5ce4c38ebcaa0e28d662"
+   },
+   {
+    "artifact_id": "art:9a53982d360e533755efadf2c36ae360",
+    "artifact_type": "actual_state",
+    "content_hash": "sha256:daee080727de3b467301b5f903bbeaacc6f69ec8d30fbe811af9dcb0a7537dcc"
+   },
+   {
+    "artifact_id": "art:208bfacdf3653affa5e3bd0f807129e9",
+    "artifact_type": "actual_state",
+    "content_hash": "sha256:f9911ca8971e84f939c4b920372ed3b639117f2ffd5f1b5cdcb214fb2734fa99"
+   },
+   {
+    "artifact_id": "art:1cc5fccc3f8f7b0c7eabb7767627c957",
+    "artifact_type": "observation_record",
+    "content_hash": "sha256:9b8e187f09cac9d6ff63802736a9198e339ffa2ce940338c0898b29d4f24c338"
+   },
+   {
+    "artifact_id": "art:ed0332327c971dd75b1850ca4163ec61",
+    "artifact_type": "observation_record",
+    "content_hash": "sha256:f5fd42d93a5d5921dca113ac2025936dd06a6aa3b901341ba46bb04c2186aebe"
+   },
+   {
+    "artifact_id": "art:299387141e68ca27dec52b1c504a9bfe",
+    "artifact_type": "observation_record",
+    "content_hash": "sha256:c40c5b2f28ec1c25e70b45f669e6504e33970cc95213bc0c50f1452969d72023"
+   },
+   {
+    "artifact_id": "art:41baf098899d777aa3b7c51472a1e519",
+    "artifact_type": "observation_record",
+    "content_hash": "sha256:4d8b20683c43fa8114a05180bf615363aeb420360e9f2bf53e4cecdfcf9beb88"
+   },
+   {
+    "artifact_id": "art:9f1296d0e175be366597c28297c5ba69",
+    "artifact_type": "observation_record",
+    "content_hash": "sha256:136768f885ca5870e8154c362d4ac06a32e76f277474d84b14c560a1dd712ddb"
+   },
+   {
+    "artifact_id": "art:10731245b07bea6497e32914d9116ea5",
+    "artifact_type": "observation_record",
+    "content_hash": "sha256:72f310ec053ef0f7ab209c57138ea4875191f5cee00daae4735f8e5529673abd"
+   },
+   {
+    "artifact_id": "art:80bf15bf2f3bda041a5b64986fc72fa3",
+    "artifact_type": "observation_bundle",
+    "content_hash": "sha256:89892209eccd7c6292613f0ef4268fa4a6c957a7da94909ad238a71ea41ad4f6"
+   },
+   {
+    "artifact_id": "art:e7dd2a4db0d5713da5cbb3ca95a08a19",
+    "artifact_type": "observation_bundle",
+    "content_hash": "sha256:d5c47b34c630d265b48c0fde155f85e4c28d54c37e546c2effb31b6c8c9e60bd"
+   },
+   {
+    "artifact_id": "art:e3bfb264b684e25eeb254bbdc3e8f390",
+    "artifact_type": "observation_bundle",
+    "content_hash": "sha256:b3505da7f969a2154f947dd06ba3e6a37563a1cf200ef59373e1b45bce257ca6"
+   },
+   {
+    "artifact_id": "art:a3677524e6537ab1fca93702a4d52f8b",
+    "artifact_type": "observation_bundle",
+    "content_hash": "sha256:ba0b202d6b39e939c4d12213ae74d8d910100ef574b0523f4037a2190280a8b5"
+   },
+   {
+    "artifact_id": "art:91876d9f368c5808d82ff1c2c3ed6ee2",
+    "artifact_type": "observation_bundle",
+    "content_hash": "sha256:c10e3792e498c5d99a040eca74ec6435cf53b34ead084feb2e2774b0f1c65436"
+   },
+   {
+    "artifact_id": "art:96dc134390bf84da48da4fca6bcaaaf8",
+    "artifact_type": "observation_bundle",
+    "content_hash": "sha256:f78a4334038abd4697e293aea2943b0ea5f4b1af942ebdb7f30a0af0e4e47f59"
+   },
+   {
+    "artifact_id": "art:12855030e8144597e4e7ee6b13d8c45f",
+    "artifact_type": "reconstruction_result",
+    "content_hash": "sha256:8e36df5e2dff2fef33802a616ee35bf350660be8c86bf537bbdef734a3e29b86"
+   },
+   {
+    "artifact_id": "art:1fa41ce4bebd351a581256ee7878070d",
+    "artifact_type": "reconstruction_result",
+    "content_hash": "sha256:30076104cd15858b3c92e498561a96ff49093a256384a924e36fc219224d3842"
+   },
+   {
+    "artifact_id": "art:0c5ce052229aee6150ffd82322b0a59a",
+    "artifact_type": "reconstruction_result",
+    "content_hash": "sha256:b63722a5dc1b3656f9e99271d149a003d97b089eac2bcc96275155b59005470f"
+   },
+   {
+    "artifact_id": "art:e92f5171e27e0f352fd9d72f8c02d721",
+    "artifact_type": "reconstruction_result",
+    "content_hash": "sha256:2edd0e12c64a715f836ea35db3d21a1b3d73a72a0c9e1a7db7d2c6040a27b745"
+   },
+   {
+    "artifact_id": "art:53c8245756f8959da1c210364e17c481",
+    "artifact_type": "reconstruction_result",
+    "content_hash": "sha256:e446de2493400027549b51be8cfea113881e858023e0bf83eed1ac559f915339"
+   },
+   {
+    "artifact_id": "art:ab5d47be09b3cd71c156ae699b486d58",
+    "artifact_type": "reconstruction_result",
+    "content_hash": "sha256:ed5d59aafbe64a0e5087c29ad2f2739cf32983ddab91b9dd7f771381871be81f"
+   },
+   {
+    "artifact_id": "art:8b6741ed3d7e1c2459932333e9cdac4d",
+    "artifact_type": "reconstruction_result",
+    "content_hash": "sha256:bd0abe3da463ed161eca6c3245bea0a0e8d4664bc4139a8a96a7a305aa9a65ed"
+   }
+  ],
+  "reference_spaces": [
+   {
+    "kind": "ATTRIBUTE",
+    "members": [
+     "attr:n01/state",
+     "attr:n02/state",
+     "attr:n03/state",
+     "attr:n04/state",
+     "attr:n05/state",
+     "attr:n06/state",
+     "attr:n07/state",
+     "attr:n08/state",
+     "attr:n09/state",
+     "attr:n10/state"
+    ],
+    "reference_space_id": "space:attribute:pooled",
+    "space_hash": "sha256:1386ce732cfb24ff26ad5e070578bfc667f5bfe16e0dd2e2615bf1d9d8b15a5d",
+    "tick": null,
+    "weight_set_ref": "ws:fx_default"
+   },
+   {
+    "kind": "ATTRIBUTE",
+    "members": [
+     "attr:n01/state",
+     "attr:n02/state",
+     "attr:n03/state",
+     "attr:n04/state",
+     "attr:n05/state",
+     "attr:n06/state",
+     "attr:n07/state",
+     "attr:n08/state",
+     "attr:n09/state",
+     "attr:n10/state"
+    ],
+    "reference_space_id": "space:attribute:t0",
+    "space_hash": "sha256:c9f73383fc7a3af769439412e440316a5446b86782470b64bb414d8401804544",
+    "tick": 0,
+    "weight_set_ref": "ws:fx_default"
+   },
+   {
+    "kind": "ATTRIBUTE",
+    "members": [
+     "attr:n01/state",
+     "attr:n02/state",
+     "attr:n03/state",
+     "attr:n04/state",
+     "attr:n05/state",
+     "attr:n06/state",
+     "attr:n07/state",
+     "attr:n08/state",
+     "attr:n09/state",
+     "attr:n10/state"
+    ],
+    "reference_space_id": "space:attribute:t1",
+    "space_hash": "sha256:e2cb13a79358e607be8f1114ebd27c2e441e15c4b141ee734c9b021a4fd3b8e5",
+    "tick": 1,
+    "weight_set_ref": "ws:fx_default"
+   },
+   {
+    "kind": "ATTRIBUTE",
+    "members": [
+     "attr:n01/state",
+     "attr:n02/state",
+     "attr:n03/state",
+     "attr:n04/state",
+     "attr:n05/state",
+     "attr:n06/state",
+     "attr:n07/state",
+     "attr:n08/state",
+     "attr:n09/state",
+     "attr:n10/state"
+    ],
+    "reference_space_id": "space:attribute:t2",
+    "space_hash": "sha256:17a3b3fb8ea93c0e89f6e9d321d7b00233fce23045142881f19eeda4424585a2",
+    "tick": 2,
+    "weight_set_ref": "ws:fx_default"
+   },
+   {
+    "kind": "ATTRIBUTE",
+    "members": [
+     "attr:n01/state",
+     "attr:n02/state",
+     "attr:n03/state",
+     "attr:n04/state",
+     "attr:n05/state",
+     "attr:n06/state",
+     "attr:n07/state",
+     "attr:n08/state",
+     "attr:n09/state",
+     "attr:n10/state"
+    ],
+    "reference_space_id": "space:attribute:t3",
+    "space_hash": "sha256:af5dc0bdd38a6b7af99bd654fc4b51dffa2a09d55ced6a2cb8a248f2804684c5",
+    "tick": 3,
+    "weight_set_ref": "ws:fx_default"
+   },
+   {
+    "kind": "ATTRIBUTE",
+    "members": [
+     "attr:n01/state",
+     "attr:n02/state",
+     "attr:n03/state",
+     "attr:n04/state",
+     "attr:n05/state",
+     "attr:n06/state",
+     "attr:n07/state",
+     "attr:n08/state",
+     "attr:n09/state",
+     "attr:n10/state"
+    ],
+    "reference_space_id": "space:attribute:t4",
+    "space_hash": "sha256:f573a3ad6949c5772f19bbecf4b3a1a5427a36584d2e8762eb0221b6d31ed824",
+    "tick": 4,
+    "weight_set_ref": "ws:fx_default"
+   },
+   {
+    "kind": "ATTRIBUTE",
+    "members": [
+     "attr:n01/state",
+     "attr:n02/state",
+     "attr:n03/state",
+     "attr:n04/state",
+     "attr:n05/state",
+     "attr:n06/state",
+     "attr:n07/state",
+     "attr:n08/state",
+     "attr:n09/state",
+     "attr:n10/state"
+    ],
+    "reference_space_id": "space:attribute:t5",
+    "space_hash": "sha256:8c00913d622d5bbd25112a8c268017e308e19e640bfbc0d6a7efa6a49ca7d792",
+    "tick": 5,
+    "weight_set_ref": "ws:fx_default"
+   },
+   {
+    "kind": "ATTRIBUTE",
+    "members": [
+     "attr:n01/state",
+     "attr:n02/state",
+     "attr:n03/state",
+     "attr:n04/state",
+     "attr:n05/state",
+     "attr:n06/state",
+     "attr:n07/state",
+     "attr:n08/state",
+     "attr:n09/state",
+     "attr:n10/state"
+    ],
+    "reference_space_id": "space:attribute:t5:stability",
+    "space_hash": "sha256:8c00913d622d5bbd25112a8c268017e308e19e640bfbc0d6a7efa6a49ca7d792",
+    "tick": 5,
+    "weight_set_ref": "ws:fx_default"
+   },
+   {
+    "kind": "CASE",
+    "members": [
+     "case:gate_unauthorized",
+     "case:n03_fault",
+     "case:hidden_critical"
+    ],
+    "reference_space_id": "space:case:pooled",
+    "space_hash": "sha256:ec1658acd725bede629d39de386daa46c36b9efff4607a2605e01042c4adf72e",
+    "tick": null,
+    "weight_set_ref": null
+   },
+   {
+    "kind": "CASE",
+    "members": [
+     "case:gate_unauthorized",
+     "case:n03_fault",
+     "case:hidden_critical"
+    ],
+    "reference_space_id": "space:case:pooled:observable",
+    "space_hash": "sha256:ec1658acd725bede629d39de386daa46c36b9efff4607a2605e01042c4adf72e",
+    "tick": null,
+    "weight_set_ref": null
+   },
+   {
+    "kind": "CASE",
+    "members": [
+     "case:gate_unauthorized",
+     "case:n03_fault",
+     "case:hidden_critical"
+    ],
+    "reference_space_id": "space:case:t0",
+    "space_hash": "sha256:22f6471c06bfe9e792f37a0788b8038af1030c8036157e7e74e333c3806056cc",
+    "tick": 0,
+    "weight_set_ref": null
+   },
+   {
+    "kind": "CASE",
+    "members": [
+     "case:gate_unauthorized",
+     "case:n03_fault",
+     "case:hidden_critical"
+    ],
+    "reference_space_id": "space:case:t0:observable",
+    "space_hash": "sha256:22f6471c06bfe9e792f37a0788b8038af1030c8036157e7e74e333c3806056cc",
+    "tick": 0,
+    "weight_set_ref": null
+   },
+   {
+    "kind": "CASE",
+    "members": [
+     "case:gate_unauthorized",
+     "case:n03_fault",
+     "case:hidden_critical"
+    ],
+    "reference_space_id": "space:case:t1",
+    "space_hash": "sha256:4333110a42ca5d86a8556ef56e57a4aad818099e9b360b193c3e81156368f2b9",
+    "tick": 1,
+    "weight_set_ref": null
+   },
+   {
+    "kind": "CASE",
+    "members": [
+     "case:gate_unauthorized",
+     "case:n03_fault",
+     "case:hidden_critical"
+    ],
+    "reference_space_id": "space:case:t1:observable",
+    "space_hash": "sha256:4333110a42ca5d86a8556ef56e57a4aad818099e9b360b193c3e81156368f2b9",
+    "tick": 1,
+    "weight_set_ref": null
+   },
+   {
+    "kind": "CASE",
+    "members": [
+     "case:gate_unauthorized",
+     "case:n03_fault",
+     "case:hidden_critical"
+    ],
+    "reference_space_id": "space:case:t2",
+    "space_hash": "sha256:17c9416c0513ce321ae95a3748f5ca20be229817cfa6bb67fb2cdf8cbc4ab7cc",
+    "tick": 2,
+    "weight_set_ref": null
+   },
+   {
+    "kind": "CASE",
+    "members": [
+     "case:gate_unauthorized",
+     "case:n03_fault",
+     "case:hidden_critical"
+    ],
+    "reference_space_id": "space:case:t2:observable",
+    "space_hash": "sha256:17c9416c0513ce321ae95a3748f5ca20be229817cfa6bb67fb2cdf8cbc4ab7cc",
+    "tick": 2,
+    "weight_set_ref": null
+   },
+   {
+    "kind": "CASE",
+    "members": [
+     "case:gate_unauthorized",
+     "case:n03_fault",
+     "case:hidden_critical"
+    ],
+    "reference_space_id": "space:case:t3",
+    "space_hash": "sha256:20089fa92eb3c1d3bf0905c1147734466006885ac09257ce67e17ca8c378f11c",
+    "tick": 3,
+    "weight_set_ref": null
+   },
+   {
+    "kind": "CASE",
+    "members": [
+     "case:gate_unauthorized",
+     "case:n03_fault",
+     "case:hidden_critical"
+    ],
+    "reference_space_id": "space:case:t3:observable",
+    "space_hash": "sha256:20089fa92eb3c1d3bf0905c1147734466006885ac09257ce67e17ca8c378f11c",
+    "tick": 3,
+    "weight_set_ref": null
+   },
+   {
+    "kind": "CASE",
+    "members": [
+     "case:gate_unauthorized",
+     "case:n03_fault",
+     "case:hidden_critical"
+    ],
+    "reference_space_id": "space:case:t4",
+    "space_hash": "sha256:603b1c08ce2276df5fb0abf818b55890fe5891335700065792479e2279300158",
+    "tick": 4,
+    "weight_set_ref": null
+   },
+   {
+    "kind": "CASE",
+    "members": [
+     "case:gate_unauthorized",
+     "case:n03_fault",
+     "case:hidden_critical"
+    ],
+    "reference_space_id": "space:case:t4:observable",
+    "space_hash": "sha256:603b1c08ce2276df5fb0abf818b55890fe5891335700065792479e2279300158",
+    "tick": 4,
+    "weight_set_ref": null
+   },
+   {
+    "kind": "CASE",
+    "members": [
+     "case:gate_unauthorized",
+     "case:n03_fault",
+     "case:hidden_critical"
+    ],
+    "reference_space_id": "space:case:t5",
+    "space_hash": "sha256:f1ee572c1e790d738a2201a53ab633fd2bbaad8830e0eba9676bdfd82f999f45",
+    "tick": 5,
+    "weight_set_ref": null
+   },
+   {
+    "kind": "CASE",
+    "members": [
+     "case:gate_unauthorized",
+     "case:n03_fault",
+     "case:hidden_critical"
+    ],
+    "reference_space_id": "space:case:t5:observable",
+    "space_hash": "sha256:f1ee572c1e790d738a2201a53ab633fd2bbaad8830e0eba9676bdfd82f999f45",
+    "tick": 5,
+    "weight_set_ref": null
+   },
+   {
+    "kind": "RULE",
+    "members": [
+     "rule:gate_auth",
+     "rule:health_n03",
+     "rule:hidden_ok",
+     "rule:dependency",
+     "rule:follow_n08"
+    ],
+    "reference_space_id": "space:rule:pooled:a",
+    "space_hash": "sha256:7c77fe60268945099c8478d249098d96675642745ee2b872d57e8d8b81c8966a",
+    "tick": null,
+    "weight_set_ref": null
+   },
+   {
+    "kind": "RULE",
+    "members": [
+     "rule:gate_auth",
+     "rule:health_n03",
+     "rule:hidden_ok",
+     "rule:dependency",
+     "rule:follow_n08"
+    ],
+    "reference_space_id": "space:rule:pooled:o",
+    "space_hash": "sha256:7c77fe60268945099c8478d249098d96675642745ee2b872d57e8d8b81c8966a",
+    "tick": null,
+    "weight_set_ref": null
+   },
+   {
+    "kind": "RULE",
+    "members": [
+     "rule:gate_auth",
+     "rule:health_n03",
+     "rule:hidden_ok",
+     "rule:dependency",
+     "rule:follow_n08"
+    ],
+    "reference_space_id": "space:rule:pooled:r",
+    "space_hash": "sha256:7c77fe60268945099c8478d249098d96675642745ee2b872d57e8d8b81c8966a",
+    "tick": null,
+    "weight_set_ref": null
+   },
+   {
+    "kind": "RULE",
+    "members": [
+     "rule:gate_auth",
+     "rule:health_n03",
+     "rule:hidden_ok",
+     "rule:dependency",
+     "rule:follow_n08"
+    ],
+    "reference_space_id": "space:rule:t0:a",
+    "space_hash": "sha256:4da9f3a8f1d0d025e0a7727f020a15fa275d20fd0e7d2a81789760b18244446b",
+    "tick": 0,
+    "weight_set_ref": null
+   },
+   {
+    "kind": "RULE",
+    "members": [
+     "rule:gate_auth",
+     "rule:health_n03",
+     "rule:hidden_ok",
+     "rule:dependency",
+     "rule:follow_n08"
+    ],
+    "reference_space_id": "space:rule:t0:o",
+    "space_hash": "sha256:4da9f3a8f1d0d025e0a7727f020a15fa275d20fd0e7d2a81789760b18244446b",
+    "tick": 0,
+    "weight_set_ref": null
+   },
+   {
+    "kind": "RULE",
+    "members": [
+     "rule:gate_auth",
+     "rule:health_n03",
+     "rule:hidden_ok",
+     "rule:dependency",
+     "rule:follow_n08"
+    ],
+    "reference_space_id": "space:rule:t0:r",
+    "space_hash": "sha256:4da9f3a8f1d0d025e0a7727f020a15fa275d20fd0e7d2a81789760b18244446b",
+    "tick": 0,
+    "weight_set_ref": null
+   },
+   {
+    "kind": "RULE",
+    "members": [
+     "rule:gate_auth",
+     "rule:health_n03",
+     "rule:hidden_ok",
+     "rule:dependency",
+     "rule:follow_n08"
+    ],
+    "reference_space_id": "space:rule:t1:a",
+    "space_hash": "sha256:7127f7125cc3d050d86f383f85465a6b0c34a6e23393f827cae6e97d1bc27a96",
+    "tick": 1,
+    "weight_set_ref": null
+   },
+   {
+    "kind": "RULE",
+    "members": [
+     "rule:gate_auth",
+     "rule:health_n03",
+     "rule:hidden_ok",
+     "rule:dependency",
+     "rule:follow_n08"
+    ],
+    "reference_space_id": "space:rule:t1:o",
+    "space_hash": "sha256:7127f7125cc3d050d86f383f85465a6b0c34a6e23393f827cae6e97d1bc27a96",
+    "tick": 1,
+    "weight_set_ref": null
+   },
+   {
+    "kind": "RULE",
+    "members": [
+     "rule:gate_auth",
+     "rule:health_n03",
+     "rule:hidden_ok",
+     "rule:dependency",
+     "rule:follow_n08"
+    ],
+    "reference_space_id": "space:rule:t1:r",
+    "space_hash": "sha256:7127f7125cc3d050d86f383f85465a6b0c34a6e23393f827cae6e97d1bc27a96",
+    "tick": 1,
+    "weight_set_ref": null
+   },
+   {
+    "kind": "RULE",
+    "members": [
+     "rule:gate_auth",
+     "rule:health_n03",
+     "rule:hidden_ok",
+     "rule:dependency",
+     "rule:follow_n08"
+    ],
+    "reference_space_id": "space:rule:t2:a",
+    "space_hash": "sha256:5503dfb9cce03e8a3e0e64854fbb409ee2bdfefce0ccf80cf6142bce6b5337c2",
+    "tick": 2,
+    "weight_set_ref": null
+   },
+   {
+    "kind": "RULE",
+    "members": [
+     "rule:gate_auth",
+     "rule:health_n03",
+     "rule:hidden_ok",
+     "rule:dependency",
+     "rule:follow_n08"
+    ],
+    "reference_space_id": "space:rule:t2:o",
+    "space_hash": "sha256:5503dfb9cce03e8a3e0e64854fbb409ee2bdfefce0ccf80cf6142bce6b5337c2",
+    "tick": 2,
+    "weight_set_ref": null
+   },
+   {
+    "kind": "RULE",
+    "members": [
+     "rule:gate_auth",
+     "rule:health_n03",
+     "rule:hidden_ok",
+     "rule:dependency",
+     "rule:follow_n08"
+    ],
+    "reference_space_id": "space:rule:t2:r",
+    "space_hash": "sha256:5503dfb9cce03e8a3e0e64854fbb409ee2bdfefce0ccf80cf6142bce6b5337c2",
+    "tick": 2,
+    "weight_set_ref": null
+   },
+   {
+    "kind": "RULE",
+    "members": [
+     "rule:gate_auth",
+     "rule:health_n03",
+     "rule:hidden_ok",
+     "rule:dependency",
+     "rule:follow_n08"
+    ],
+    "reference_space_id": "space:rule:t3:a",
+    "space_hash": "sha256:9a0e177e69448c08066131696ce46d995e06c57a3862a0de27ee157c27585f0d",
+    "tick": 3,
+    "weight_set_ref": null
+   },
+   {
+    "kind": "RULE",
+    "members": [
+     "rule:gate_auth",
+     "rule:health_n03",
+     "rule:hidden_ok",
+     "rule:dependency",
+     "rule:follow_n08"
+    ],
+    "reference_space_id": "space:rule:t3:o",
+    "space_hash": "sha256:9a0e177e69448c08066131696ce46d995e06c57a3862a0de27ee157c27585f0d",
+    "tick": 3,
+    "weight_set_ref": null
+   },
+   {
+    "kind": "RULE",
+    "members": [
+     "rule:gate_auth",
+     "rule:health_n03",
+     "rule:hidden_ok",
+     "rule:dependency",
+     "rule:follow_n08"
+    ],
+    "reference_space_id": "space:rule:t3:r",
+    "space_hash": "sha256:9a0e177e69448c08066131696ce46d995e06c57a3862a0de27ee157c27585f0d",
+    "tick": 3,
+    "weight_set_ref": null
+   },
+   {
+    "kind": "RULE",
+    "members": [
+     "rule:gate_auth",
+     "rule:health_n03",
+     "rule:hidden_ok",
+     "rule:dependency",
+     "rule:follow_n08"
+    ],
+    "reference_space_id": "space:rule:t4:a",
+    "space_hash": "sha256:7ab8ef2cab85f1342dbd8056365e6ee79e69eb64a51b08fc9ced62cab49446af",
+    "tick": 4,
+    "weight_set_ref": null
+   },
+   {
+    "kind": "RULE",
+    "members": [
+     "rule:gate_auth",
+     "rule:health_n03",
+     "rule:hidden_ok",
+     "rule:dependency",
+     "rule:follow_n08"
+    ],
+    "reference_space_id": "space:rule:t4:o",
+    "space_hash": "sha256:7ab8ef2cab85f1342dbd8056365e6ee79e69eb64a51b08fc9ced62cab49446af",
+    "tick": 4,
+    "weight_set_ref": null
+   },
+   {
+    "kind": "RULE",
+    "members": [
+     "rule:gate_auth",
+     "rule:health_n03",
+     "rule:hidden_ok",
+     "rule:dependency",
+     "rule:follow_n08"
+    ],
+    "reference_space_id": "space:rule:t4:r",
+    "space_hash": "sha256:7ab8ef2cab85f1342dbd8056365e6ee79e69eb64a51b08fc9ced62cab49446af",
+    "tick": 4,
+    "weight_set_ref": null
+   },
+   {
+    "kind": "RULE",
+    "members": [
+     "rule:gate_auth",
+     "rule:health_n03",
+     "rule:hidden_ok",
+     "rule:dependency",
+     "rule:follow_n08"
+    ],
+    "reference_space_id": "space:rule:t5:a",
+    "space_hash": "sha256:49bba442b444dafa9e6106301aa1a670139df4f7af10b1c41be2df6159681394",
+    "tick": 5,
+    "weight_set_ref": null
+   },
+   {
+    "kind": "RULE",
+    "members": [
+     "rule:gate_auth",
+     "rule:health_n03",
+     "rule:hidden_ok",
+     "rule:dependency",
+     "rule:follow_n08"
+    ],
+    "reference_space_id": "space:rule:t5:o",
+    "space_hash": "sha256:49bba442b444dafa9e6106301aa1a670139df4f7af10b1c41be2df6159681394",
+    "tick": 5,
+    "weight_set_ref": null
+   },
+   {
+    "kind": "RULE",
+    "members": [
+     "rule:gate_auth",
+     "rule:health_n03",
+     "rule:hidden_ok",
+     "rule:dependency",
+     "rule:follow_n08"
+    ],
+    "reference_space_id": "space:rule:t5:r",
+    "space_hash": "sha256:49bba442b444dafa9e6106301aa1a670139df4f7af10b1c41be2df6159681394",
+    "tick": 5,
+    "weight_set_ref": null
+   },
+   {
+    "kind": "TICK",
+    "members": [
+     "0",
+     "1",
+     "2",
+     "3",
+     "4",
+     "5"
+    ],
+    "reference_space_id": "space:tick:pooled:all_functions",
+    "space_hash": "sha256:f86c5ae1dc21a37368779144166f37c29351a6f247b682e82a7710a859a844cf",
+    "tick": null,
+    "weight_set_ref": null
+   },
+   {
+    "kind": "TICK",
+    "members": [
+     "0",
+     "1",
+     "2",
+     "3",
+     "4",
+     "5"
+    ],
+    "reference_space_id": "space:tick:pooled:rule:svc_gate",
+    "space_hash": "sha256:f86c5ae1dc21a37368779144166f37c29351a6f247b682e82a7710a859a844cf",
+    "tick": null,
+    "weight_set_ref": null
+   },
+   {
+    "kind": "TICK",
+    "members": [
+     "0",
+     "1",
+     "2",
+     "3",
+     "4",
+     "5"
+    ],
+    "reference_space_id": "space:tick:pooled:rule:svc_supply",
+    "space_hash": "sha256:f86c5ae1dc21a37368779144166f37c29351a6f247b682e82a7710a859a844cf",
+    "tick": null,
+    "weight_set_ref": null
+   },
+   {
+    "kind": "TICK",
+    "members": [
+     "0"
+    ],
+    "reference_space_id": "space:tick:t0:rule:svc_gate",
+    "space_hash": "sha256:8ec40790a8cf03752d63b0543cb4d3275fb5d739510466168cbc91daf9bb47f7",
+    "tick": 0,
+    "weight_set_ref": null
+   },
+   {
+    "kind": "TICK",
+    "members": [
+     "0"
+    ],
+    "reference_space_id": "space:tick:t0:rule:svc_supply",
+    "space_hash": "sha256:8ec40790a8cf03752d63b0543cb4d3275fb5d739510466168cbc91daf9bb47f7",
+    "tick": 0,
+    "weight_set_ref": null
+   },
+   {
+    "kind": "TICK",
+    "members": [
+     "1"
+    ],
+    "reference_space_id": "space:tick:t1:rule:svc_gate",
+    "space_hash": "sha256:27d4a6e506f5527be4756845433b712cb98a63fadda365fa9f37f101587a22ae",
+    "tick": 1,
+    "weight_set_ref": null
+   },
+   {
+    "kind": "TICK",
+    "members": [
+     "1"
+    ],
+    "reference_space_id": "space:tick:t1:rule:svc_supply",
+    "space_hash": "sha256:27d4a6e506f5527be4756845433b712cb98a63fadda365fa9f37f101587a22ae",
+    "tick": 1,
+    "weight_set_ref": null
+   },
+   {
+    "kind": "TICK",
+    "members": [
+     "2"
+    ],
+    "reference_space_id": "space:tick:t2:rule:svc_gate",
+    "space_hash": "sha256:5edb658d2219151be6be0b271c2b9665ff665f3726339f479144ad1c41caaf59",
+    "tick": 2,
+    "weight_set_ref": null
+   },
+   {
+    "kind": "TICK",
+    "members": [
+     "2"
+    ],
+    "reference_space_id": "space:tick:t2:rule:svc_supply",
+    "space_hash": "sha256:5edb658d2219151be6be0b271c2b9665ff665f3726339f479144ad1c41caaf59",
+    "tick": 2,
+    "weight_set_ref": null
+   },
+   {
+    "kind": "TICK",
+    "members": [
+     "3"
+    ],
+    "reference_space_id": "space:tick:t3:rule:svc_gate",
+    "space_hash": "sha256:b8573164537f534b52ccc3958e5e1d3d58c44a32c61544d3817fea660b519e8b",
+    "tick": 3,
+    "weight_set_ref": null
+   },
+   {
+    "kind": "TICK",
+    "members": [
+     "3"
+    ],
+    "reference_space_id": "space:tick:t3:rule:svc_supply",
+    "space_hash": "sha256:b8573164537f534b52ccc3958e5e1d3d58c44a32c61544d3817fea660b519e8b",
+    "tick": 3,
+    "weight_set_ref": null
+   },
+   {
+    "kind": "TICK",
+    "members": [
+     "4"
+    ],
+    "reference_space_id": "space:tick:t4:rule:svc_gate",
+    "space_hash": "sha256:f92fbde3c5c3c5f5a8ae8d46c7c8ee89fa3e34d3c9486d698377e5a8114d1716",
+    "tick": 4,
+    "weight_set_ref": null
+   },
+   {
+    "kind": "TICK",
+    "members": [
+     "4"
+    ],
+    "reference_space_id": "space:tick:t4:rule:svc_supply",
+    "space_hash": "sha256:f92fbde3c5c3c5f5a8ae8d46c7c8ee89fa3e34d3c9486d698377e5a8114d1716",
+    "tick": 4,
+    "weight_set_ref": null
+   },
+   {
+    "kind": "TICK",
+    "members": [
+     "5"
+    ],
+    "reference_space_id": "space:tick:t5:rule:svc_gate",
+    "space_hash": "sha256:f12c34a28094137af7a31e6435e63a488fa9b87ab3aa92c9024566f25a2adfe6",
+    "tick": 5,
+    "weight_set_ref": null
+   },
+   {
+    "kind": "TICK",
+    "members": [
+     "5"
+    ],
+    "reference_space_id": "space:tick:t5:rule:svc_supply",
+    "space_hash": "sha256:f12c34a28094137af7a31e6435e63a488fa9b87ab3aa92c9024566f25a2adfe6",
+    "tick": 5,
+    "weight_set_ref": null
+   },
+   {
+    "kind": "TRANSITION",
+    "members": [
+     "rule:mode_steps",
+     "rule:gate_steps"
+    ],
+    "reference_space_id": "space:transition:pooled:a",
+    "space_hash": "sha256:1104cc515b4a0dc6754dc63e89b6a30681092645e270ec36445772bc7b1e633c",
+    "tick": null,
+    "weight_set_ref": null
+   },
+   {
+    "kind": "TRANSITION",
+    "members": [
+     "rule:mode_steps",
+     "rule:gate_steps"
+    ],
+    "reference_space_id": "space:transition:pooled:o",
+    "space_hash": "sha256:1104cc515b4a0dc6754dc63e89b6a30681092645e270ec36445772bc7b1e633c",
+    "tick": null,
+    "weight_set_ref": null
+   },
+   {
+    "kind": "TRANSITION",
+    "members": [
+     "rule:mode_steps",
+     "rule:gate_steps"
+    ],
+    "reference_space_id": "space:transition:pooled:r",
+    "space_hash": "sha256:1104cc515b4a0dc6754dc63e89b6a30681092645e270ec36445772bc7b1e633c",
+    "tick": null,
+    "weight_set_ref": null
+   },
+   {
+    "kind": "TRANSITION",
+    "members": [
+     "rule:mode_steps",
+     "rule:gate_steps"
+    ],
+    "reference_space_id": "space:transition:t0:a",
+    "space_hash": "sha256:e7b4487d40a3239c6f70fc99902602e5a4f574463b7083a1afd80c4601f3eab1",
+    "tick": 0,
+    "weight_set_ref": null
+   },
+   {
+    "kind": "TRANSITION",
+    "members": [
+     "rule:mode_steps",
+     "rule:gate_steps"
+    ],
+    "reference_space_id": "space:transition:t0:o",
+    "space_hash": "sha256:e7b4487d40a3239c6f70fc99902602e5a4f574463b7083a1afd80c4601f3eab1",
+    "tick": 0,
+    "weight_set_ref": null
+   },
+   {
+    "kind": "TRANSITION",
+    "members": [
+     "rule:mode_steps",
+     "rule:gate_steps"
+    ],
+    "reference_space_id": "space:transition:t0:r",
+    "space_hash": "sha256:e7b4487d40a3239c6f70fc99902602e5a4f574463b7083a1afd80c4601f3eab1",
+    "tick": 0,
+    "weight_set_ref": null
+   },
+   {
+    "kind": "TRANSITION",
+    "members": [
+     "rule:mode_steps",
+     "rule:gate_steps"
+    ],
+    "reference_space_id": "space:transition:t1:a",
+    "space_hash": "sha256:7fedb32977852472e9ae24102b7c861313711fa41de1a0376c61bdab9c0477c6",
+    "tick": 1,
+    "weight_set_ref": null
+   },
+   {
+    "kind": "TRANSITION",
+    "members": [
+     "rule:mode_steps",
+     "rule:gate_steps"
+    ],
+    "reference_space_id": "space:transition:t1:o",
+    "space_hash": "sha256:7fedb32977852472e9ae24102b7c861313711fa41de1a0376c61bdab9c0477c6",
+    "tick": 1,
+    "weight_set_ref": null
+   },
+   {
+    "kind": "TRANSITION",
+    "members": [
+     "rule:mode_steps",
+     "rule:gate_steps"
+    ],
+    "reference_space_id": "space:transition:t1:r",
+    "space_hash": "sha256:7fedb32977852472e9ae24102b7c861313711fa41de1a0376c61bdab9c0477c6",
+    "tick": 1,
+    "weight_set_ref": null
+   },
+   {
+    "kind": "TRANSITION",
+    "members": [
+     "rule:mode_steps",
+     "rule:gate_steps"
+    ],
+    "reference_space_id": "space:transition:t2:a",
+    "space_hash": "sha256:7a2cb3e5ea067638f9d4abe6b7456d400bca075ebc1c11ef315b92fe6cc3d098",
+    "tick": 2,
+    "weight_set_ref": null
+   },
+   {
+    "kind": "TRANSITION",
+    "members": [
+     "rule:mode_steps",
+     "rule:gate_steps"
+    ],
+    "reference_space_id": "space:transition:t2:o",
+    "space_hash": "sha256:7a2cb3e5ea067638f9d4abe6b7456d400bca075ebc1c11ef315b92fe6cc3d098",
+    "tick": 2,
+    "weight_set_ref": null
+   },
+   {
+    "kind": "TRANSITION",
+    "members": [
+     "rule:mode_steps",
+     "rule:gate_steps"
+    ],
+    "reference_space_id": "space:transition:t2:r",
+    "space_hash": "sha256:7a2cb3e5ea067638f9d4abe6b7456d400bca075ebc1c11ef315b92fe6cc3d098",
+    "tick": 2,
+    "weight_set_ref": null
+   },
+   {
+    "kind": "TRANSITION",
+    "members": [
+     "rule:mode_steps",
+     "rule:gate_steps"
+    ],
+    "reference_space_id": "space:transition:t3:a",
+    "space_hash": "sha256:aae53d5b84c8a5312230c375fd6f0830df155e04302649649703c31d8286ad0b",
+    "tick": 3,
+    "weight_set_ref": null
+   },
+   {
+    "kind": "TRANSITION",
+    "members": [
+     "rule:mode_steps",
+     "rule:gate_steps"
+    ],
+    "reference_space_id": "space:transition:t3:o",
+    "space_hash": "sha256:aae53d5b84c8a5312230c375fd6f0830df155e04302649649703c31d8286ad0b",
+    "tick": 3,
+    "weight_set_ref": null
+   },
+   {
+    "kind": "TRANSITION",
+    "members": [
+     "rule:mode_steps",
+     "rule:gate_steps"
+    ],
+    "reference_space_id": "space:transition:t3:r",
+    "space_hash": "sha256:aae53d5b84c8a5312230c375fd6f0830df155e04302649649703c31d8286ad0b",
+    "tick": 3,
+    "weight_set_ref": null
+   },
+   {
+    "kind": "TRANSITION",
+    "members": [
+     "rule:mode_steps",
+     "rule:gate_steps"
+    ],
+    "reference_space_id": "space:transition:t4:a",
+    "space_hash": "sha256:6fe6d7d919528dcbbd725da4a9b14622eb2d71ac8239f9bdf6286fcca2e4c5e5",
+    "tick": 4,
+    "weight_set_ref": null
+   },
+   {
+    "kind": "TRANSITION",
+    "members": [
+     "rule:mode_steps",
+     "rule:gate_steps"
+    ],
+    "reference_space_id": "space:transition:t4:o",
+    "space_hash": "sha256:6fe6d7d919528dcbbd725da4a9b14622eb2d71ac8239f9bdf6286fcca2e4c5e5",
+    "tick": 4,
+    "weight_set_ref": null
+   },
+   {
+    "kind": "TRANSITION",
+    "members": [
+     "rule:mode_steps",
+     "rule:gate_steps"
+    ],
+    "reference_space_id": "space:transition:t4:r",
+    "space_hash": "sha256:6fe6d7d919528dcbbd725da4a9b14622eb2d71ac8239f9bdf6286fcca2e4c5e5",
+    "tick": 4,
+    "weight_set_ref": null
+   }
+  ],
+  "report_key": "report:evaluation",
+  "results": [
+   {
+    "aggregation": "PER_TICK",
+    "aux": {
+     "fn": null,
+     "fp": null,
+     "function_ref": null,
+     "hypotheses_excluded": null,
+     "new_inconsistencies": null,
+     "not_applicable_excluded": null,
+     "not_in_validity": 0,
+     "observable_cases": null,
+     "persisting": null,
+     "shared_coverage": null,
+     "shared_coverage_undefined": null,
+     "stale_known": null,
+     "ticks_excluded": null,
+     "ticks_included": null,
+     "tp": null,
+     "undetermined_count": null,
+     "unevaluable_count": 0,
+     "unevaluable_in_recovery": null
+    },
+    "case_subset": null,
+    "denominator": {
+     "d": 1,
+     "n": 5
+    },
+    "metric_id": "M02",
+    "numerator": {
+     "d": 1,
+     "n": 4
+    },
+    "reference_space": "space:rule:t3:a",
+    "relation": "A",
+    "status": "EVALUATED",
+    "tick": 3,
+    "undefined_reason": null,
+    "unit": "ratio",
+    "value": 0.8,
+    "version": "1.0.0"
+   },
+   {
+    "aggregation": "PER_TICK",
+    "aux": {
+     "fn": null,
+     "fp": null,
+     "function_ref": null,
+     "hypotheses_excluded": null,
+     "new_inconsistencies": null,
+     "not_applicable_excluded": null,
+     "not_in_validity": null,
+     "observable_cases": null,
+     "persisting": null,
+     "shared_coverage": null,
+     "shared_coverage_undefined": null,
+     "stale_known": null,
+     "ticks_excluded": null,
+     "ticks_included": null,
+     "tp": null,
+     "undetermined_count": null,
+     "unevaluable_count": 0,
+     "unevaluable_in_recovery": null
+    },
+    "case_subset": null,
+    "denominator": {
+     "d": 1,
+     "n": 2
+    },
+    "metric_id": "M03",
+    "numerator": {
+     "d": 1,
+     "n": 2
+    },
+    "reference_space": "space:transition:t3:a",
+    "relation": "A",
+    "status": "EVALUATED",
+    "tick": 3,
+    "undefined_reason": null,
+    "unit": "ratio",
+    "value": 1.0,
+    "version": "1.0.0"
+   },
+   {
+    "aggregation": "PER_TICK",
+    "aux": {
+     "fn": null,
+     "fp": null,
+     "function_ref": null,
+     "hypotheses_excluded": null,
+     "new_inconsistencies": null,
+     "not_applicable_excluded": null,
+     "not_in_validity": 0,
+     "observable_cases": null,
+     "persisting": null,
+     "shared_coverage": null,
+     "shared_coverage_undefined": null,
+     "stale_known": null,
+     "ticks_excluded": null,
+     "ticks_included": null,
+     "tp": null,
+     "undetermined_count": null,
+     "unevaluable_count": 3,
+     "unevaluable_in_recovery": null
+    },
+    "case_subset": null,
+    "denominator": {
+     "d": 1,
+     "n": 2
+    },
+    "metric_id": "M02",
+    "numerator": {
+     "d": 1,
+     "n": 2
+    },
+    "reference_space": "space:rule:t3:o",
+    "relation": "O",
+    "status": "EVALUATED",
+    "tick": 3,
+    "undefined_reason": null,
+    "unit": "ratio",
+    "value": 1.0,
+    "version": "1.0.0"
+   },
+   {
+    "aggregation": "PER_TICK",
+    "aux": {
+     "fn": null,
+     "fp": null,
+     "function_ref": null,
+     "hypotheses_excluded": null,
+     "new_inconsistencies": null,
+     "not_applicable_excluded": null,
+     "not_in_validity": null,
+     "observable_cases": null,
+     "persisting": null,
+     "shared_coverage": null,
+     "shared_coverage_undefined": null,
+     "stale_known": null,
+     "ticks_excluded": null,
+     "ticks_included": null,
+     "tp": null,
+     "undetermined_count": null,
+     "unevaluable_count": 0,
+     "unevaluable_in_recovery": null
+    },
+    "case_subset": null,
+    "denominator": {
+     "d": 1,
+     "n": 2
+    },
+    "metric_id": "M03",
+    "numerator": {
+     "d": 1,
+     "n": 2
+    },
+    "reference_space": "space:transition:t3:o",
+    "relation": "O",
+    "status": "EVALUATED",
+    "tick": 3,
+    "undefined_reason": null,
+    "unit": "ratio",
+    "value": 1.0,
+    "version": "1.0.0"
+   },
+   {
+    "aggregation": "PER_TICK",
+    "aux": {
+     "fn": null,
+     "fp": null,
+     "function_ref": null,
+     "hypotheses_excluded": null,
+     "new_inconsistencies": null,
+     "not_applicable_excluded": null,
+     "not_in_validity": 0,
+     "observable_cases": null,
+     "persisting": null,
+     "shared_coverage": null,
+     "shared_coverage_undefined": null,
+     "stale_known": null,
+     "ticks_excluded": null,
+     "ticks_included": null,
+     "tp": null,
+     "undetermined_count": null,
+     "unevaluable_count": 1,
+     "unevaluable_in_recovery": null
+    },
+    "case_subset": null,
+    "denominator": {
+     "d": 1,
+     "n": 4
+    },
+    "metric_id": "M02",
+    "numerator": {
+     "d": 1,
+     "n": 4
+    },
+    "reference_space": "space:rule:t3:r",
+    "relation": "R",
+    "status": "EVALUATED",
+    "tick": 3,
+    "undefined_reason": null,
+    "unit": "ratio",
+    "value": 1.0,
+    "version": "1.0.0"
+   },
+   {
+    "aggregation": "PER_TICK",
+    "aux": {
+     "fn": null,
+     "fp": null,
+     "function_ref": null,
+     "hypotheses_excluded": null,
+     "new_inconsistencies": null,
+     "not_applicable_excluded": null,
+     "not_in_validity": null,
+     "observable_cases": null,
+     "persisting": null,
+     "shared_coverage": null,
+     "shared_coverage_undefined": null,
+     "stale_known": null,
+     "ticks_excluded": null,
+     "ticks_included": null,
+     "tp": null,
+     "undetermined_count": null,
+     "unevaluable_count": 0,
+     "unevaluable_in_recovery": null
+    },
+    "case_subset": null,
+    "denominator": {
+     "d": 1,
+     "n": 2
+    },
+    "metric_id": "M03",
+    "numerator": {
+     "d": 1,
+     "n": 2
+    },
+    "reference_space": "space:transition:t3:r",
+    "relation": "R",
+    "status": "EVALUATED",
+    "tick": 3,
+    "undefined_reason": null,
+    "unit": "ratio",
+    "value": 1.0,
+    "version": "1.0.0"
+   },
+   {
+    "aggregation": "PER_TICK",
+    "aux": {
+     "fn": null,
+     "fp": null,
+     "function_ref": "rule:svc_gate",
+     "hypotheses_excluded": null,
+     "new_inconsistencies": null,
+     "not_applicable_excluded": null,
+     "not_in_validity": null,
+     "observable_cases": null,
+     "persisting": null,
+     "shared_coverage": null,
+     "shared_coverage_undefined": null,
+     "stale_known": null,
+     "ticks_excluded": 0,
+     "ticks_included": null,
+     "tp": null,
+     "undetermined_count": null,
+     "unevaluable_count": null,
+     "unevaluable_in_recovery": null
+    },
+    "case_subset": null,
+    "denominator": {
+     "d": 1,
+     "n": 1
+    },
+    "metric_id": "M04",
+    "numerator": {
+     "d": 1,
+     "n": 1
+    },
+    "reference_space": "space:tick:t3:rule:svc_gate",
+    "relation": "A",
+    "status": "EVALUATED",
+    "tick": 3,
+    "undefined_reason": null,
+    "unit": "ratio",
+    "value": 1.0,
+    "version": "1.0.0"
+   },
+   {
+    "aggregation": "PER_TICK",
+    "aux": {
+     "fn": null,
+     "fp": null,
+     "function_ref": "rule:svc_supply",
+     "hypotheses_excluded": null,
+     "new_inconsistencies": null,
+     "not_applicable_excluded": null,
+     "not_in_validity": null,
+     "observable_cases": null,
+     "persisting": null,
+     "shared_coverage": null,
+     "shared_coverage_undefined": null,
+     "stale_known": null,
+     "ticks_excluded": 0,
+     "ticks_included": null,
+     "tp": null,
+     "undetermined_count": null,
+     "unevaluable_count": null,
+     "unevaluable_in_recovery": null
+    },
+    "case_subset": null,
+    "denominator": {
+     "d": 1,
+     "n": 1
+    },
+    "metric_id": "M04",
+    "numerator": {
+     "d": 1,
+     "n": 1
+    },
+    "reference_space": "space:tick:t3:rule:svc_supply",
+    "relation": "A",
+    "status": "EVALUATED",
+    "tick": 3,
+    "undefined_reason": null,
+    "unit": "ratio",
+    "value": 1.0,
+    "version": "1.0.0"
+   },
+   {
+    "aggregation": "PER_TICK",
+    "aux": {
+     "fn": null,
+     "fp": null,
+     "function_ref": null,
+     "hypotheses_excluded": 0,
+     "new_inconsistencies": null,
+     "not_applicable_excluded": null,
+     "not_in_validity": null,
+     "observable_cases": null,
+     "persisting": null,
+     "shared_coverage": null,
+     "shared_coverage_undefined": null,
+     "stale_known": null,
+     "ticks_excluded": null,
+     "ticks_included": null,
+     "tp": null,
+     "undetermined_count": 2,
+     "unevaluable_count": null,
+     "unevaluable_in_recovery": null
+    },
+    "case_subset": null,
+    "denominator": {
+     "d": 1,
+     "n": 8
+    },
+    "metric_id": "M01",
+    "numerator": {
+     "d": 1,
+     "n": 0
+    },
+    "reference_space": "space:attribute:t3",
+    "relation": "A_R",
+    "status": "EVALUATED",
+    "tick": 3,
+    "undefined_reason": null,
+    "unit": "ratio",
+    "value": 0.0,
+    "version": "1.0.0"
+   },
+   {
+    "aggregation": "PER_TICK",
+    "aux": {
+     "fn": null,
+     "fp": null,
+     "function_ref": null,
+     "hypotheses_excluded": null,
+     "new_inconsistencies": null,
+     "not_applicable_excluded": null,
+     "not_in_validity": null,
+     "observable_cases": null,
+     "persisting": null,
+     "shared_coverage": null,
+     "shared_coverage_undefined": null,
+     "stale_known": null,
+     "ticks_excluded": null,
+     "ticks_included": null,
+     "tp": null,
+     "undetermined_count": null,
+     "unevaluable_count": null,
+     "unevaluable_in_recovery": null
+    },
+    "case_subset": null,
+    "denominator": {
+     "d": 1,
+     "n": 10
+    },
+    "metric_id": "M05",
+    "numerator": {
+     "d": 1,
+     "n": 8
+    },
+    "reference_space": "space:attribute:t3",
+    "relation": "A_R",
+    "status": "EVALUATED",
+    "tick": 3,
+    "undefined_reason": null,
+    "unit": "ratio",
+    "value": 0.8,
+    "version": "1.0.0"
+   },
+   {
+    "aggregation": "PER_TICK",
+    "aux": {
+     "fn": null,
+     "fp": null,
+     "function_ref": null,
+     "hypotheses_excluded": null,
+     "new_inconsistencies": null,
+     "not_applicable_excluded": null,
+     "not_in_validity": null,
+     "observable_cases": null,
+     "persisting": null,
+     "shared_coverage": null,
+     "shared_coverage_undefined": null,
+     "stale_known": null,
+     "ticks_excluded": null,
+     "ticks_included": null,
+     "tp": null,
+     "undetermined_count": null,
+     "unevaluable_count": null,
+     "unevaluable_in_recovery": null
+    },
+    "case_subset": null,
+    "denominator": {
+     "d": 1,
+     "n": 8
+    },
+    "metric_id": "M11",
+    "numerator": {
+     "d": 1,
+     "n": 8
+    },
+    "reference_space": "space:attribute:t3",
+    "relation": "A_R",
+    "status": "EVALUATED",
+    "tick": 3,
+    "undefined_reason": null,
+    "unit": "ratio",
+    "value": 1.0,
+    "version": "1.0.0"
+   },
+   {
+    "aggregation": "PER_TICK",
+    "aux": {
+     "fn": null,
+     "fp": null,
+     "function_ref": null,
+     "hypotheses_excluded": null,
+     "new_inconsistencies": null,
+     "not_applicable_excluded": null,
+     "not_in_validity": null,
+     "observable_cases": null,
+     "persisting": null,
+     "shared_coverage": null,
+     "shared_coverage_undefined": null,
+     "stale_known": 0,
+     "ticks_excluded": null,
+     "ticks_included": null,
+     "tp": null,
+     "undetermined_count": null,
+     "unevaluable_count": null,
+     "unevaluable_in_recovery": null
+    },
+    "case_subset": null,
+    "denominator": {
+     "d": 1,
+     "n": 10
+    },
+    "metric_id": "M06",
+    "numerator": {
+     "d": 1,
+     "n": 6
+    },
+    "reference_space": "space:attribute:t3",
+    "relation": "A_O",
+    "status": "EVALUATED",
+    "tick": 3,
+    "undefined_reason": null,
+    "unit": "ratio",
+    "value": 0.6,
+    "version": "1.0.0"
+   },
+   {
+    "aggregation": "PER_TICK",
+    "aux": {
+     "fn": 1,
+     "fp": null,
+     "function_ref": null,
+     "hypotheses_excluded": null,
+     "new_inconsistencies": null,
+     "not_applicable_excluded": null,
+     "not_in_validity": null,
+     "observable_cases": 1,
+     "persisting": null,
+     "shared_coverage": null,
+     "shared_coverage_undefined": null,
+     "stale_known": null,
+     "ticks_excluded": null,
+     "ticks_included": null,
+     "tp": 0,
+     "undetermined_count": null,
+     "unevaluable_count": null,
+     "unevaluable_in_recovery": null
+    },
+    "case_subset": "ALL",
+    "denominator": {
+     "d": 1,
+     "n": 1
+    },
+    "metric_id": "M07",
+    "numerator": {
+     "d": 1,
+     "n": 0
+    },
+    "reference_space": "space:case:t3",
+    "relation": "ANNOTATION_R",
+    "status": "EVALUATED",
+    "tick": 3,
+    "undefined_reason": null,
+    "unit": "ratio",
+    "value": 0.0,
+    "version": "1.0.0"
+   },
+   {
+    "aggregation": "PER_TICK",
+    "aux": {
+     "fn": 0,
+     "fp": null,
+     "function_ref": null,
+     "hypotheses_excluded": null,
+     "new_inconsistencies": null,
+     "not_applicable_excluded": null,
+     "not_in_validity": null,
+     "observable_cases": 0,
+     "persisting": null,
+     "shared_coverage": null,
+     "shared_coverage_undefined": null,
+     "stale_known": null,
+     "ticks_excluded": null,
+     "ticks_included": null,
+     "tp": 0,
+     "undetermined_count": null,
+     "unevaluable_count": null,
+     "unevaluable_in_recovery": null
+    },
+    "case_subset": "OBSERVABLE_CASES",
+    "denominator": {
+     "d": 1,
+     "n": 0
+    },
+    "metric_id": "M07",
+    "numerator": {
+     "d": 1,
+     "n": 0
+    },
+    "reference_space": "space:case:t3:observable",
+    "relation": "ANNOTATION_R",
+    "status": "UNDEFINED",
+    "tick": 3,
+    "undefined_reason": "ZERO_DENOMINATOR",
+    "unit": "ratio",
+    "value": null,
+    "version": "1.0.0"
+   },
+   {
+    "aggregation": "PER_TICK",
+    "aux": {
+     "fn": null,
+     "fp": 1,
+     "function_ref": null,
+     "hypotheses_excluded": null,
+     "new_inconsistencies": null,
+     "not_applicable_excluded": null,
+     "not_in_validity": null,
+     "observable_cases": null,
+     "persisting": null,
+     "shared_coverage": null,
+     "shared_coverage_undefined": null,
+     "stale_known": null,
+     "ticks_excluded": null,
+     "ticks_included": null,
+     "tp": 0,
+     "undetermined_count": null,
+     "unevaluable_count": null,
+     "unevaluable_in_recovery": null
+    },
+    "case_subset": null,
+    "denominator": {
+     "d": 1,
+     "n": 1
+    },
+    "metric_id": "M08",
+    "numerator": {
+     "d": 1,
+     "n": 0
+    },
+    "reference_space": "space:case:t3",
+    "relation": "ANNOTATION_R",
+    "status": "EVALUATED",
+    "tick": 3,
+    "undefined_reason": null,
+    "unit": "ratio",
+    "value": 0.0,
+    "version": "1.0.0"
+   }
+  ],
+  "rule_evaluations": [
+   {
+    "artifact_id": "art:41314cef5ce874dca08d3fc060f3e463",
+    "artifact_type": "rule_evaluation_set",
+    "content_hash": "sha256:f58da45bf22a39d6a3616982f1e41ac176c2b9a6f054b16e096e9a29f1c716c2"
+   },
+   {
+    "artifact_id": "art:5f89270304461a07228bd75e703c9786",
+    "artifact_type": "rule_evaluation_set",
+    "content_hash": "sha256:99708f1b8e1b86286f509b325de5f950b1b9171f2fdd317c8a4af8f6367dab1c"
+   },
+   {
+    "artifact_id": "art:0d6f9ec2f5b3623e1fbca90466f8d92b",
+    "artifact_type": "rule_evaluation_set",
+    "content_hash": "sha256:73abcbd666dcdad2b0902ac2ac2a09de8d1b335448c99c2a4b950d66c2f2ea80"
+   },
+   {
+    "artifact_id": "art:0ba7719fceb7ebc4897d5a8fbcd0118c",
+    "artifact_type": "rule_evaluation_set",
+    "content_hash": "sha256:a90cc08b4143d5e89a5f9f8a3ea96acb55130986628e3b8ff08f012811dacafb"
+   },
+   {
+    "artifact_id": "art:2d5072f5633a4a86077fc080517eedb9",
+    "artifact_type": "rule_evaluation_set",
+    "content_hash": "sha256:f2d21d6c06bb40fe74d1ce033e02d459bf24c90844dfb158381c01b446608adc"
+   },
+   {
+    "artifact_id": "art:8e2424eb8db63e122450e7e90e3e0358",
+    "artifact_type": "rule_evaluation_set",
+    "content_hash": "sha256:ebc2a49a063aa6112d31923616b592f1e6315829212ad16b7ce2e87a8a9816a6"
+   },
+   {
+    "artifact_id": "art:9205f60ec33f2de087b330c92b86f029",
+    "artifact_type": "rule_evaluation_set",
+    "content_hash": "sha256:3682b9997b3269549ed3972705510cfb3b21a73b7751ba5746b117a96b7e513b"
+   },
+   {
+    "artifact_id": "art:61951e6852d475fca122d025efd31202",
+    "artifact_type": "rule_evaluation_set",
+    "content_hash": "sha256:7329da8b128ce608442e2b60f7fd86b1d023772f9a84070e3ce2b3a5f4bcb1aa"
+   },
+   {
+    "artifact_id": "art:c2018a6b9995db6d722de6d254593c81",
+    "artifact_type": "rule_evaluation_set",
+    "content_hash": "sha256:ec9b670bf6288adff56b2efb47e6d51ffa12249b631c7940860b08ac475eec7d"
+   },
+   {
+    "artifact_id": "art:6ba6d924e905c2a28d9e130b528a9e60",
+    "artifact_type": "rule_evaluation_set",
+    "content_hash": "sha256:127525a77b891c5e39e75d32ee434f910bd486a59c5ec9097f9dc14859f59a38"
+   },
+   {
+    "artifact_id": "art:6ce870f7e7a8e6ce0a47d62af02536cb",
+    "artifact_type": "rule_evaluation_set",
+    "content_hash": "sha256:ff10a686777f421f2ca23168955277acf1baca7a0f1e0ee50880c7f9d8339966"
+   },
+   {
+    "artifact_id": "art:09f53f17e494daf6e8730d18d7f6cdbc",
+    "artifact_type": "rule_evaluation_set",
+    "content_hash": "sha256:7c06381f4e5f460ee8c11a4337481af942812fb615813d27ead9ae9c5553e19a"
+   },
+   {
+    "artifact_id": "art:905d8a685eb6860c7cf1f5c8a7a25761",
+    "artifact_type": "rule_evaluation_set",
+    "content_hash": "sha256:c70c0699699bfa91daf6ee3150b4f9bcad8813870136ca93b616880123cc84f6"
+   },
+   {
+    "artifact_id": "art:feabb9b471feadc89034b9a4f8d8b6ae",
+    "artifact_type": "rule_evaluation_set",
+    "content_hash": "sha256:018c84860a3a2b14d049b5cfc9db4328fadf2ba26894d8a3b9549dd1c4ea252d"
+   },
+   {
+    "artifact_id": "art:86cfb46deaf2dcb77908eaea66d27bf7",
+    "artifact_type": "rule_evaluation_set",
+    "content_hash": "sha256:6a905afe31277d75fb5fc4bf695aae58ab9dae526655300492fd07a137faa3ad"
+   },
+   {
+    "artifact_id": "art:d0583e4fb21e316036e79bb8b15e1c91",
+    "artifact_type": "rule_evaluation_set",
+    "content_hash": "sha256:e2a81f472283b0d2ede3cb7f0c75434bae5d93d9500fb48f0c038ce293e2581b"
+   },
+   {
+    "artifact_id": "art:2414b821aaf0e1d8fcccff7b654184c5",
+    "artifact_type": "rule_evaluation_set",
+    "content_hash": "sha256:da5321a8fd7e13d3b9cc1d1b4022fddc299cecfdf42a60012e90353e05e925d1"
+   },
+   {
+    "artifact_id": "art:0d082c286a062d8fbd8a43c91976b401",
+    "artifact_type": "rule_evaluation_set",
+    "content_hash": "sha256:7849de5491326c72f6b5094db060b9d0641439d453597179c4cc4895f952904b"
+   }
+  ],
+  "strategies": [
+   {
+    "point": "metrics.hypothesis_policy",
+    "variant": "include",
+    "version": 1
+   },
+   {
+    "point": "metrics.coverage_weighting",
+    "variant": "weighted",
+    "version": 1
+   },
+   {
+    "point": "metrics.service_function_spaces",
+    "variant": "a_only",
+    "version": 1
+   },
+   {
+    "point": "metrics.closure_basis",
+    "variant": "state_rules_a_final_tick",
+    "version": 1
+   },
+   {
+    "point": "metrics.stability_source",
+    "variant": "resweep_same_bundle",
+    "version": 1
+   },
+   {
+    "point": "metrics.gap_matcher",
+    "variant": "subjects_tickwindow_1to1",
+    "version": 1
+   }
+  ],
+  "version": "1.0.2"
+ }
+}

@@ -1,0 +1,56 @@
+{
+ "header": {
+  "data_origin": "SYNTHETIC",
+  "experiment_id": null,
+  "guard_class": "GLOBAL",
+  "query_echo": {
+   "aggregation": null,
+   "attempt": null,
+   "comparison_id": null,
+   "direction": null,
+   "from": null,
+   "revision": null,
+   "to": null,
+   "to_tick": null
+  },
+  "schema_version": "cira.scenarios/1.0.2",
+  "source_refs": [],
+  "tick": null
+ },
+ "scenarios": [
+  {
+   "fixture_lineage_id": "lin:fx_04_11",
+   "is_fixture": true,
+   "label": "Baseline (fixture)",
+   "observation_configs": [
+    "ocfg:fx_partial",
+    "ocfg:fx_tight"
+   ],
+   "scenario_id": "scn:fx_base",
+   "targets": [
+    "tgt:fx"
+   ],
+   "tick_count": 6,
+   "variant_kind": "BASELINE",
+   "variant_of": null,
+   "version": "1.0.0"
+  },
+  {
+   "fixture_lineage_id": "lin:fx_04_11",
+   "is_fixture": true,
+   "label": "Recovery (fixture)",
+   "observation_configs": [
+    "ocfg:fx_partial",
+    "ocfg:fx_tight"
+   ],
+   "scenario_id": "scn:fx_rec",
+   "targets": [
+    "tgt:fx"
+   ],
+   "tick_count": 6,
+   "variant_kind": "RECOVERY",
+   "variant_of": "scn:fx_base",
+   "version": "1.0.0"
+  }
+ ]
+}

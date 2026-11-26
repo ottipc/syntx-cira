@@ -1,0 +1,156 @@
+{
+ "events": [],
+ "header": {
+  "data_origin": "SYNTHETIC",
+  "experiment_id": "exp:a10ff3383bfc-0",
+  "guard_class": "RANGE",
+  "query_echo": {
+   "aggregation": null,
+   "attempt": null,
+   "comparison_id": null,
+   "direction": null,
+   "from": 0,
+   "revision": null,
+   "to": 0,
+   "to_tick": null
+  },
+  "schema_version": "cira.events_projection/1.0.2",
+  "source_refs": [],
+  "tick": null
+ },
+ "stage_events": [
+  {
+   "error": null,
+   "seq": 0,
+   "stage": "DEFINITIONS",
+   "status": "RUNNING",
+   "tick": null
+  },
+  {
+   "error": null,
+   "seq": 1,
+   "stage": "DEFINITIONS",
+   "status": "COMPLETED",
+   "tick": null
+  },
+  {
+   "error": null,
+   "seq": 2,
+   "stage": "EMULATION",
+   "status": "RUNNING",
+   "tick": null
+  },
+  {
+   "error": null,
+   "seq": 3,
+   "stage": "EMULATION",
+   "status": "COMPLETED",
+   "tick": null
+  },
+  {
+   "error": null,
+   "seq": 4,
+   "stage": "OBSERVATION",
+   "status": "RUNNING",
+   "tick": null
+  },
+  {
+   "error": null,
+   "seq": 5,
+   "stage": "OBSERVATION",
+   "status": "COMPLETED",
+   "tick": null
+  },
+  {
+   "error": null,
+   "seq": 6,
+   "stage": "FORWARD",
+   "status": "RUNNING",
+   "tick": null
+  },
+  {
+   "error": null,
+   "seq": 7,
+   "stage": "INVERSE",
+   "status": "RUNNING",
+   "tick": null
+  },
+  {
+   "error": {
+    "code": "ENGINE_UNAVAILABLE",
+    "field": "F05",
+    "message": "adapter.local: no SYNTX engine interface available in this environment (DEP-02)",
+    "recovery": "IMPORT_RESULT",
+    "subject_refs": [],
+    "tick": 0
+   },
+   "seq": 8,
+   "stage": "FORWARD",
+   "status": "BLOCKED",
+   "tick": 0
+  },
+  {
+   "error": {
+    "code": "ENGINE_UNAVAILABLE",
+    "field": "F05",
+    "message": "adapter.local: no SYNTX engine interface available in this environment (DEP-02)",
+    "recovery": "IMPORT_RESULT",
+    "subject_refs": [],
+    "tick": 0
+   },
+   "seq": 9,
+   "stage": "INVERSE",
+   "status": "BLOCKED",
+   "tick": 0
+  },
+  {
+   "error": null,
+   "seq": 20,
+   "stage": "FORWARD",
+   "status": "BLOCKED",
+   "tick": null
+  },
+  {
+   "error": null,
+   "seq": 21,
+   "stage": "INVERSE",
+   "status": "BLOCKED",
+   "tick": null
+  },
+  {
+   "error": null,
+   "seq": 22,
+   "stage": "MERGE",
+   "status": "BLOCKED",
+   "tick": null
+  },
+  {
+   "error": {
+    "code": "METRIC_UNDEFINED",
+    "field": "F05",
+    "message": "no reconstructed tick for the stability run",
+    "recovery": "RESWEEP",
+    "subject_refs": [],
+    "tick": null
+   },
+   "seq": 23,
+   "stage": "STABILITY",
+   "status": "BLOCKED",
+   "tick": null
+  },
+  {
+   "error": null,
+   "seq": 24,
+   "stage": "EVALUATION",
+   "status": "RUNNING",
+   "tick": null
+  },
+  {
+   "error": null,
+   "seq": 25,
+   "stage": "EVALUATION",
+   "status": "PARTIAL",
+   "tick": null
+  }
+ ]
+}

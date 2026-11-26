@@ -1,5 +1,54 @@
 {
   "$defs": {
+    "AChange": {
+      "additionalProperties": false,
+      "properties": {
+        "after": {
+          "$ref": "#/$defs/AValueState"
+        },
+        "attribute_ref": {
+          "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+          "title": "Attribute Ref",
+          "type": "string"
+        },
+        "before": {
+          "$ref": "#/$defs/AValueState"
+        }
+      },
+      "required": [
+        "attribute_ref",
+        "before",
+        "after"
+      ],
+      "title": "AChange",
+      "type": "object"
+    },
+    "AValueState": {
+      "additionalProperties": false,
+      "properties": {
+        "applicability": {
+          "$ref": "#/$defs/Applicability"
+        },
+        "value": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Z][A-Z0-9_]{0,63}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Value"
+        }
+      },
+      "required": [
+        "applicability"
+      ],
+      "title": "AValueState",
+      "type": "object"
+    },
     "ActualState": {
       "additionalProperties": false,
       "properties": {
@@ -155,6 +204,24 @@
         "capabilities"
       ],
       "title": "AdapterDescriptor",
+      "type": "object"
+    },
+    "AdapterHealth": {
+      "additionalProperties": false,
+      "properties": {
+        "available": {
+          "title": "Available",
+          "type": "boolean"
+        },
+        "descriptor": {
+          "$ref": "#/$defs/AdapterDescriptor"
+        }
+      },
+      "required": [
+        "descriptor",
+        "available"
+      ],
+      "title": "AdapterHealth",
       "type": "object"
     },
     "AdapterKind": {
@@ -527,6 +594,216 @@
       "title": "AuthorityRecord",
       "type": "object"
     },
+    "Block_ForwardResult_": {
+      "additionalProperties": false,
+      "properties": {
+        "availability": {
+          "$ref": "#/$defs/ContentAvailability"
+        },
+        "content": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ForwardResult"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "origin": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/DataOrigin"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "availability"
+      ],
+      "title": "Block[ForwardResult]",
+      "type": "object"
+    },
+    "Block_InverseResult_": {
+      "additionalProperties": false,
+      "properties": {
+        "availability": {
+          "$ref": "#/$defs/ContentAvailability"
+        },
+        "content": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/InverseResult"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "origin": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/DataOrigin"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "availability"
+      ],
+      "title": "Block[InverseResult]",
+      "type": "object"
+    },
+    "Block_ObservationProjectionBody_": {
+      "additionalProperties": false,
+      "properties": {
+        "availability": {
+          "$ref": "#/$defs/ContentAvailability"
+        },
+        "content": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ObservationProjectionBody"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "origin": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/DataOrigin"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "availability"
+      ],
+      "title": "Block[ObservationProjectionBody]",
+      "type": "object"
+    },
+    "Block_ReconstructionResult_": {
+      "additionalProperties": false,
+      "properties": {
+        "availability": {
+          "$ref": "#/$defs/ContentAvailability"
+        },
+        "content": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ReconstructionResult"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "origin": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/DataOrigin"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "availability"
+      ],
+      "title": "Block[ReconstructionResult]",
+      "type": "object"
+    },
+    "Block_RuleEvaluationSet_": {
+      "additionalProperties": false,
+      "properties": {
+        "availability": {
+          "$ref": "#/$defs/ContentAvailability"
+        },
+        "content": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/RuleEvaluationSet"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "origin": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/DataOrigin"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "availability"
+      ],
+      "title": "Block[RuleEvaluationSet]",
+      "type": "object"
+    },
+    "Block_SweepTrace_": {
+      "additionalProperties": false,
+      "properties": {
+        "availability": {
+          "$ref": "#/$defs/ContentAvailability"
+        },
+        "content": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/SweepTrace"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "origin": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/DataOrigin"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "availability"
+      ],
+      "title": "Block[SweepTrace]",
+      "type": "object"
+    },
     "BudgetUsage": {
       "additionalProperties": false,
       "properties": {
@@ -658,6 +935,44 @@
       "title": "CaseSubset",
       "type": "string"
     },
+    "ComparisonListEntry": {
+      "additionalProperties": false,
+      "properties": {
+        "baseline": {
+          "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+          "title": "Baseline",
+          "type": "string"
+        },
+        "comparison_id": {
+          "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+          "title": "Comparison Id",
+          "type": "string"
+        },
+        "comparison_tick": {
+          "minimum": 0,
+          "title": "Comparison Tick",
+          "type": "integer"
+        },
+        "compatible": {
+          "title": "Compatible",
+          "type": "boolean"
+        },
+        "recovery": {
+          "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+          "title": "Recovery",
+          "type": "string"
+        }
+      },
+      "required": [
+        "comparison_id",
+        "baseline",
+        "recovery",
+        "comparison_tick",
+        "compatible"
+      ],
+      "title": "ComparisonListEntry",
+      "type": "object"
+    },
     "ComparisonReport": {
       "additionalProperties": false,
       "properties": {
@@ -762,6 +1077,107 @@
       "title": "ComparisonReport",
       "type": "object"
     },
+    "ComparisonResponse": {
+      "additionalProperties": false,
+      "properties": {
+        "comparison": {
+          "$ref": "#/$defs/ComparisonReport"
+        },
+        "header": {
+          "$ref": "#/$defs/ProjectionHeader"
+        }
+      },
+      "required": [
+        "header",
+        "comparison"
+      ],
+      "title": "ComparisonResponse",
+      "type": "object"
+    },
+    "ComparisonsResponse": {
+      "additionalProperties": false,
+      "properties": {
+        "comparisons": {
+          "items": {
+            "$ref": "#/$defs/ComparisonListEntry"
+          },
+          "title": "Comparisons",
+          "type": "array"
+        },
+        "header": {
+          "$ref": "#/$defs/ProjectionHeader"
+        }
+      },
+      "required": [
+        "header",
+        "comparisons"
+      ],
+      "title": "ComparisonsResponse",
+      "type": "object"
+    },
+    "ConfigurationSnapshot": {
+      "additionalProperties": false,
+      "properties": {
+        "adapter_kind": {
+          "$ref": "#/$defs/AdapterKind"
+        },
+        "experiment_id": {
+          "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+          "title": "Experiment Id",
+          "type": "string"
+        },
+        "observation_config_id": {
+          "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+          "title": "Observation Config Id",
+          "type": "string"
+        },
+        "scenario_id": {
+          "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+          "title": "Scenario Id",
+          "type": "string"
+        },
+        "strategies": {
+          "items": {
+            "$ref": "#/$defs/StrategyRef"
+          },
+          "title": "Strategies",
+          "type": "array"
+        },
+        "sweep_schedule": {
+          "title": "Sweep Schedule",
+          "type": "string"
+        },
+        "target_id": {
+          "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+          "title": "Target Id",
+          "type": "string"
+        },
+        "tick": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Tick"
+        }
+      },
+      "required": [
+        "experiment_id",
+        "scenario_id",
+        "observation_config_id",
+        "target_id",
+        "adapter_kind",
+        "sweep_schedule",
+        "strategies"
+      ],
+      "title": "ConfigurationSnapshot",
+      "type": "object"
+    },
     "ConsistencyAnnotationSet": {
       "additionalProperties": false,
       "properties": {
@@ -843,6 +1259,14 @@
       ],
       "title": "ConsistencyCase",
       "type": "object"
+    },
+    "ContentAvailability": {
+      "enum": [
+        "AVAILABLE",
+        "NOT_AVAILABLE_AT_TICK"
+      ],
+      "title": "ContentAvailability",
+      "type": "string"
     },
     "ContentOpenness": {
       "additionalProperties": false,
@@ -936,6 +1360,28 @@
       "title": "Continuity",
       "type": "string"
     },
+    "Coupling": {
+      "additionalProperties": false,
+      "properties": {
+        "carrier": {
+          "title": "Carrier",
+          "type": "string"
+        },
+        "source": {
+          "$ref": "#/$defs/FieldId"
+        },
+        "target": {
+          "$ref": "#/$defs/FieldId"
+        }
+      },
+      "required": [
+        "source",
+        "target",
+        "carrier"
+      ],
+      "title": "Coupling",
+      "type": "object"
+    },
     "CouplingChange": {
       "additionalProperties": false,
       "properties": {
@@ -985,6 +1431,30 @@
       ],
       "title": "CouplingStatus",
       "type": "string"
+    },
+    "CreatedResponse": {
+      "additionalProperties": false,
+      "properties": {
+        "experiment_id": {
+          "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+          "title": "Experiment Id",
+          "type": "string"
+        },
+        "links": {
+          "$ref": "#/$defs/Links"
+        },
+        "status": {
+          "title": "Status",
+          "type": "string"
+        }
+      },
+      "required": [
+        "experiment_id",
+        "status",
+        "links"
+      ],
+      "title": "CreatedResponse",
+      "type": "object"
     },
     "DataOrigin": {
       "enum": [
@@ -1041,6 +1511,76 @@
         "changes"
       ],
       "title": "DeltaCoupling",
+      "type": "object"
+    },
+    "DeltaStateA": {
+      "additionalProperties": false,
+      "properties": {
+        "changes": {
+          "items": {
+            "$ref": "#/$defs/AChange"
+          },
+          "title": "Changes",
+          "type": "array"
+        },
+        "from_tick": {
+          "minimum": 0,
+          "title": "From Tick",
+          "type": "integer"
+        },
+        "space": {
+          "const": "A",
+          "title": "Space",
+          "type": "string"
+        },
+        "to_tick": {
+          "minimum": 0,
+          "title": "To Tick",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "space",
+        "from_tick",
+        "to_tick",
+        "changes"
+      ],
+      "title": "DeltaStateA",
+      "type": "object"
+    },
+    "DeltaStateO": {
+      "additionalProperties": false,
+      "properties": {
+        "changes": {
+          "items": {
+            "$ref": "#/$defs/OChange"
+          },
+          "title": "Changes",
+          "type": "array"
+        },
+        "from_tick": {
+          "minimum": 0,
+          "title": "From Tick",
+          "type": "integer"
+        },
+        "space": {
+          "const": "O",
+          "title": "Space",
+          "type": "string"
+        },
+        "to_tick": {
+          "minimum": 0,
+          "title": "To Tick",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "space",
+        "from_tick",
+        "to_tick",
+        "changes"
+      ],
+      "title": "DeltaStateO",
       "type": "object"
     },
     "DeltaStateR": {
@@ -3233,6 +3773,56 @@
       "title": "Eq",
       "type": "object"
     },
+    "ErrorBody": {
+      "additionalProperties": false,
+      "properties": {
+        "code": {
+          "$ref": "#/$defs/ErrorCodeC"
+        },
+        "details": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/ErrorDetail"
+          },
+          "title": "Details",
+          "type": "array"
+        },
+        "experiment_id": {
+          "anyOf": [
+            {
+              "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Experiment Id"
+        },
+        "field": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/FieldId"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "message": {
+          "title": "Message",
+          "type": "string"
+        }
+      },
+      "required": [
+        "code",
+        "message"
+      ],
+      "title": "ErrorBody",
+      "type": "object"
+    },
     "ErrorCodeC": {
       "enum": [
         "INVALID_TOPOLOGY",
@@ -3251,6 +3841,25 @@
       ],
       "title": "ErrorCodeC",
       "type": "string"
+    },
+    "ErrorDetail": {
+      "additionalProperties": false,
+      "properties": {
+        "issue": {
+          "title": "Issue",
+          "type": "string"
+        },
+        "path": {
+          "title": "Path",
+          "type": "string"
+        }
+      },
+      "required": [
+        "path",
+        "issue"
+      ],
+      "title": "ErrorDetail",
+      "type": "object"
     },
     "ErrorRecord": {
       "additionalProperties": false,
@@ -3298,6 +3907,19 @@
         "recovery"
       ],
       "title": "ErrorRecord",
+      "type": "object"
+    },
+    "ErrorResponse": {
+      "additionalProperties": false,
+      "properties": {
+        "error": {
+          "$ref": "#/$defs/ErrorBody"
+        }
+      },
+      "required": [
+        "error"
+      ],
+      "title": "ErrorResponse",
       "type": "object"
     },
     "EvalReason": {
@@ -3479,6 +4101,35 @@
       ],
       "title": "EventStatus",
       "type": "string"
+    },
+    "EventsProjection": {
+      "additionalProperties": false,
+      "properties": {
+        "events": {
+          "items": {
+            "$ref": "#/$defs/EventRecord"
+          },
+          "title": "Events",
+          "type": "array"
+        },
+        "header": {
+          "$ref": "#/$defs/ProjectionHeader"
+        },
+        "stage_events": {
+          "items": {
+            "$ref": "#/$defs/StageEvent"
+          },
+          "title": "Stage Events",
+          "type": "array"
+        }
+      },
+      "required": [
+        "header",
+        "events",
+        "stage_events"
+      ],
+      "title": "EventsProjection",
+      "type": "object"
     },
     "ExecutionStatus": {
       "enum": [
@@ -3745,6 +4396,41 @@
       "title": "ExperimentDefinition",
       "type": "object"
     },
+    "ExperimentListEntry": {
+      "additionalProperties": false,
+      "properties": {
+        "data_origin": {
+          "$ref": "#/$defs/DataOrigin"
+        },
+        "experiment_id": {
+          "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+          "title": "Experiment Id",
+          "type": "string"
+        },
+        "label": {
+          "title": "Label",
+          "type": "string"
+        },
+        "scenario_id": {
+          "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+          "title": "Scenario Id",
+          "type": "string"
+        },
+        "status": {
+          "title": "Status",
+          "type": "string"
+        }
+      },
+      "required": [
+        "experiment_id",
+        "label",
+        "scenario_id",
+        "status",
+        "data_origin"
+      ],
+      "title": "ExperimentListEntry",
+      "type": "object"
+    },
     "ExperimentSession": {
       "additionalProperties": false,
       "properties": {
@@ -3969,6 +4655,44 @@
       "title": "ExperimentView",
       "type": "object"
     },
+    "ExperimentViewResponse": {
+      "additionalProperties": false,
+      "properties": {
+        "experiment": {
+          "$ref": "#/$defs/ExperimentView"
+        },
+        "header": {
+          "$ref": "#/$defs/ProjectionHeader"
+        }
+      },
+      "required": [
+        "header",
+        "experiment"
+      ],
+      "title": "ExperimentViewResponse",
+      "type": "object"
+    },
+    "ExperimentsResponse": {
+      "additionalProperties": false,
+      "properties": {
+        "experiments": {
+          "items": {
+            "$ref": "#/$defs/ExperimentListEntry"
+          },
+          "title": "Experiments",
+          "type": "array"
+        },
+        "header": {
+          "$ref": "#/$defs/ProjectionHeader"
+        }
+      },
+      "required": [
+        "header",
+        "experiments"
+      ],
+      "title": "ExperimentsResponse",
+      "type": "object"
+    },
     "ExternalOperatorRef": {
       "additionalProperties": false,
       "properties": {
@@ -4008,6 +4732,159 @@
       ],
       "title": "FieldId",
       "type": "string"
+    },
+    "FieldManifest": {
+      "additionalProperties": false,
+      "properties": {
+        "couplings_in": {
+          "items": {
+            "$ref": "#/$defs/FieldId"
+          },
+          "title": "Couplings In",
+          "type": "array"
+        },
+        "couplings_out": {
+          "items": {
+            "$ref": "#/$defs/FieldId"
+          },
+          "title": "Couplings Out",
+          "type": "array"
+        },
+        "field_id": {
+          "$ref": "#/$defs/FieldId"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "package": {
+          "title": "Package",
+          "type": "string"
+        },
+        "ports": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Ports",
+          "type": "array"
+        },
+        "purpose": {
+          "title": "Purpose",
+          "type": "string"
+        },
+        "reads": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Reads",
+          "type": "array"
+        },
+        "requirements": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Requirements",
+          "type": "array"
+        },
+        "stage_status": {
+          "default": [],
+          "items": {
+            "maxItems": 2,
+            "minItems": 2,
+            "prefixItems": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "type": "array"
+          },
+          "title": "Stage Status",
+          "type": "array"
+        },
+        "stages": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Stages",
+          "type": "array"
+        },
+        "state_space": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/StateSpace"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "writes": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Writes",
+          "type": "array"
+        }
+      },
+      "required": [
+        "field_id",
+        "name",
+        "purpose",
+        "package",
+        "writes",
+        "reads",
+        "ports",
+        "stages",
+        "couplings_out",
+        "couplings_in",
+        "requirements"
+      ],
+      "title": "FieldManifest",
+      "type": "object"
+    },
+    "FieldsResponse": {
+      "additionalProperties": false,
+      "properties": {
+        "configuration_snapshot": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ConfigurationSnapshot"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "coupling_matrix": {
+          "items": {
+            "$ref": "#/$defs/Coupling"
+          },
+          "title": "Coupling Matrix",
+          "type": "array"
+        },
+        "header": {
+          "$ref": "#/$defs/ProjectionHeader"
+        },
+        "manifests": {
+          "items": {
+            "$ref": "#/$defs/FieldManifest"
+          },
+          "title": "Manifests",
+          "type": "array"
+        }
+      },
+      "required": [
+        "header",
+        "manifests",
+        "coupling_matrix"
+      ],
+      "title": "FieldsResponse",
+      "type": "object"
     },
     "ForwardResult": {
       "additionalProperties": false,
@@ -4158,6 +5035,31 @@
       "title": "GovernanceDefinition",
       "type": "object"
     },
+    "GovernanceProjection": {
+      "additionalProperties": false,
+      "properties": {
+        "evaluations": {
+          "$ref": "#/$defs/Block_RuleEvaluationSet_"
+        },
+        "header": {
+          "$ref": "#/$defs/ProjectionHeader"
+        },
+        "rules": {
+          "items": {
+            "$ref": "#/$defs/RuleView"
+          },
+          "title": "Rules",
+          "type": "array"
+        }
+      },
+      "required": [
+        "header",
+        "rules",
+        "evaluations"
+      ],
+      "title": "GovernanceProjection",
+      "type": "object"
+    },
     "GuardClass": {
       "enum": [
         "TIMED",
@@ -4168,6 +5070,41 @@
       ],
       "title": "GuardClass",
       "type": "string"
+    },
+    "HealthResponse": {
+      "additionalProperties": false,
+      "properties": {
+        "adapters": {
+          "items": {
+            "$ref": "#/$defs/AdapterHealth"
+          },
+          "title": "Adapters",
+          "type": "array"
+        },
+        "schema_versions": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Schema Versions",
+          "type": "array"
+        },
+        "service_version": {
+          "title": "Service Version",
+          "type": "string"
+        },
+        "status": {
+          "title": "Status",
+          "type": "string"
+        }
+      },
+      "required": [
+        "status",
+        "service_version",
+        "schema_versions",
+        "adapters"
+      ],
+      "title": "HealthResponse",
+      "type": "object"
     },
     "IOperatorRef": {
       "additionalProperties": false,
@@ -4308,6 +5245,23 @@
         "then"
       ],
       "title": "Implies",
+      "type": "object"
+    },
+    "ImportCreated": {
+      "additionalProperties": false,
+      "properties": {
+        "artifact_refs": {
+          "items": {
+            "$ref": "#/$defs/ArtifactRef"
+          },
+          "title": "Artifact Refs",
+          "type": "array"
+        }
+      },
+      "required": [
+        "artifact_refs"
+      ],
+      "title": "ImportCreated",
       "type": "object"
     },
     "In": {
@@ -4463,6 +5417,25 @@
       ],
       "title": "Lang",
       "type": "string"
+    },
+    "Links": {
+      "additionalProperties": false,
+      "properties": {
+        "self": {
+          "title": "Self",
+          "type": "string"
+        },
+        "view": {
+          "title": "View",
+          "type": "string"
+        }
+      },
+      "required": [
+        "self",
+        "view"
+      ],
+      "title": "Links",
+      "type": "object"
     },
     "ManifestEntry": {
       "additionalProperties": false,
@@ -5062,6 +6035,31 @@
       "title": "MetricStatus",
       "type": "string"
     },
+    "MetricsProjection": {
+      "additionalProperties": false,
+      "properties": {
+        "definitions": {
+          "items": {
+            "$ref": "#/$defs/MetricDefinition"
+          },
+          "title": "Definitions",
+          "type": "array"
+        },
+        "header": {
+          "$ref": "#/$defs/ProjectionHeader"
+        },
+        "report": {
+          "$ref": "#/$defs/EvaluationReport"
+        }
+      },
+      "required": [
+        "header",
+        "report",
+        "definitions"
+      ],
+      "title": "MetricsProjection",
+      "type": "object"
+    },
     "Mode": {
       "enum": [
         "standard",
@@ -5217,6 +6215,55 @@
         "arg"
       ],
       "title": "Not",
+      "type": "object"
+    },
+    "OChange": {
+      "additionalProperties": false,
+      "properties": {
+        "after": {
+          "$ref": "#/$defs/OValueState"
+        },
+        "attribute_ref": {
+          "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+          "title": "Attribute Ref",
+          "type": "string"
+        },
+        "before": {
+          "$ref": "#/$defs/OValueState"
+        }
+      },
+      "required": [
+        "attribute_ref",
+        "before",
+        "after"
+      ],
+      "title": "OChange",
+      "type": "object"
+    },
+    "OValueState": {
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "$ref": "#/$defs/ObservationStatus"
+        },
+        "value": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Z][A-Z0-9_]{0,63}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Value"
+        }
+      },
+      "required": [
+        "status"
+      ],
+      "title": "OValueState",
       "type": "object"
     },
     "ObservableRules": {
@@ -5459,6 +6506,23 @@
       "title": "ObservationConfig",
       "type": "object"
     },
+    "ObservationProjection": {
+      "additionalProperties": false,
+      "properties": {
+        "header": {
+          "$ref": "#/$defs/ProjectionHeader"
+        },
+        "observation": {
+          "$ref": "#/$defs/Block_ObservationProjectionBody_"
+        }
+      },
+      "required": [
+        "header",
+        "observation"
+      ],
+      "title": "ObservationProjection",
+      "type": "object"
+    },
     "ObservationProjectionBody": {
       "additionalProperties": false,
       "properties": {
@@ -5470,6 +6534,17 @@
         },
         "context": {
           "$ref": "#/$defs/ContextBundle"
+        },
+        "delta": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/DeltaStateO"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
         },
         "projected": {
           "items": {
@@ -6322,6 +7397,30 @@
       "title": "RecoveryProposal",
       "type": "object"
     },
+    "RecoveryVariantCreated": {
+      "additionalProperties": false,
+      "properties": {
+        "authority_ref": {
+          "$ref": "#/$defs/ArtifactRef"
+        },
+        "scenario_ref": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ArtifactRef"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "authority_ref"
+      ],
+      "title": "RecoveryVariantCreated",
+      "type": "object"
+    },
     "ReferenceSpace": {
       "additionalProperties": false,
       "properties": {
@@ -6669,6 +7768,21 @@
       "title": "RelationView",
       "type": "object"
     },
+    "ReplayCreated": {
+      "additionalProperties": false,
+      "properties": {
+        "experiment_id": {
+          "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+          "title": "Experiment Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "experiment_id"
+      ],
+      "title": "ReplayCreated",
+      "type": "object"
+    },
     "ReplayMatch": {
       "additionalProperties": false,
       "properties": {
@@ -6772,6 +7886,23 @@
       "title": "ReplayReport",
       "type": "object"
     },
+    "ReplayReportResponse": {
+      "additionalProperties": false,
+      "properties": {
+        "header": {
+          "$ref": "#/$defs/ProjectionHeader"
+        },
+        "report": {
+          "$ref": "#/$defs/ReplayReport"
+        }
+      },
+      "required": [
+        "header",
+        "report"
+      ],
+      "title": "ReplayReportResponse",
+      "type": "object"
+    },
     "ReplayVerdict": {
       "enum": [
         "IDENTICAL",
@@ -6779,6 +7910,47 @@
       ],
       "title": "ReplayVerdict",
       "type": "string"
+    },
+    "ResultsProjection": {
+      "additionalProperties": false,
+      "properties": {
+        "authority_records": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/AuthorityRecord"
+          },
+          "title": "Authority Records",
+          "type": "array"
+        },
+        "forward": {
+          "$ref": "#/$defs/Block_ForwardResult_"
+        },
+        "header": {
+          "$ref": "#/$defs/ProjectionHeader"
+        },
+        "inverse": {
+          "$ref": "#/$defs/Block_InverseResult_"
+        },
+        "proposals": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/RecoveryProposal"
+          },
+          "title": "Proposals",
+          "type": "array"
+        },
+        "reconstruction": {
+          "$ref": "#/$defs/Block_ReconstructionResult_"
+        }
+      },
+      "required": [
+        "header",
+        "forward",
+        "inverse",
+        "reconstruction"
+      ],
+      "title": "ResultsProjection",
+      "type": "object"
     },
     "RoleDecl": {
       "additionalProperties": false,
@@ -7223,6 +8395,103 @@
       "title": "ScenarioDefinition",
       "type": "object"
     },
+    "ScenarioEntry": {
+      "additionalProperties": false,
+      "properties": {
+        "fixture_lineage_id": {
+          "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+          "title": "Fixture Lineage Id",
+          "type": "string"
+        },
+        "is_fixture": {
+          "title": "Is Fixture",
+          "type": "boolean"
+        },
+        "label": {
+          "default": "",
+          "title": "Label",
+          "type": "string"
+        },
+        "observation_configs": {
+          "default": [],
+          "items": {
+            "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+            "type": "string"
+          },
+          "title": "Observation Configs",
+          "type": "array"
+        },
+        "scenario_id": {
+          "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+          "title": "Scenario Id",
+          "type": "string"
+        },
+        "targets": {
+          "default": [],
+          "items": {
+            "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+            "type": "string"
+          },
+          "title": "Targets",
+          "type": "array"
+        },
+        "tick_count": {
+          "title": "Tick Count",
+          "type": "integer"
+        },
+        "variant_kind": {
+          "$ref": "#/$defs/VariantKind"
+        },
+        "variant_of": {
+          "anyOf": [
+            {
+              "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Variant Of"
+        },
+        "version": {
+          "title": "Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "scenario_id",
+        "version",
+        "variant_kind",
+        "fixture_lineage_id",
+        "tick_count",
+        "is_fixture"
+      ],
+      "title": "ScenarioEntry",
+      "type": "object"
+    },
+    "ScenariosResponse": {
+      "additionalProperties": false,
+      "properties": {
+        "header": {
+          "$ref": "#/$defs/ProjectionHeader"
+        },
+        "scenarios": {
+          "items": {
+            "$ref": "#/$defs/ScenarioEntry"
+          },
+          "title": "Scenarios",
+          "type": "array"
+        }
+      },
+      "required": [
+        "header",
+        "scenarios"
+      ],
+      "title": "ScenariosResponse",
+      "type": "object"
+    },
     "ScheduleMode": {
       "enum": [
         "FINAL",
@@ -7411,6 +8680,38 @@
         "status"
       ],
       "title": "StageStatus",
+      "type": "object"
+    },
+    "StateProjection": {
+      "additionalProperties": false,
+      "properties": {
+        "delta": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/DeltaStateA"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "header": {
+          "$ref": "#/$defs/ProjectionHeader"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/$defs/ActualValue"
+          },
+          "title": "Values",
+          "type": "array"
+        }
+      },
+      "required": [
+        "header",
+        "values"
+      ],
+      "title": "StateProjection",
       "type": "object"
     },
     "StateSpace": {
@@ -7712,6 +9013,24 @@
         "reference_status"
       ],
       "title": "SweepTrace",
+      "type": "object"
+    },
+    "SweepsCreated": {
+      "additionalProperties": false,
+      "properties": {
+        "sweep_ids": {
+          "items": {
+            "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+            "type": "string"
+          },
+          "title": "Sweep Ids",
+          "type": "array"
+        }
+      },
+      "required": [
+        "sweep_ids"
+      ],
+      "title": "SweepsCreated",
       "type": "object"
     },
     "SymbolPair": {
@@ -8024,6 +9343,23 @@
       "title": "TopologyDefinition",
       "type": "object"
     },
+    "TopologyProjection": {
+      "additionalProperties": false,
+      "properties": {
+        "header": {
+          "$ref": "#/$defs/ProjectionHeader"
+        },
+        "topology": {
+          "$ref": "#/$defs/TopologyProjectionBody"
+        }
+      },
+      "required": [
+        "header",
+        "topology"
+      ],
+      "title": "TopologyProjection",
+      "type": "object"
+    },
     "TopologyProjectionBody": {
       "additionalProperties": false,
       "properties": {
@@ -8051,6 +9387,45 @@
         "relations"
       ],
       "title": "TopologyProjectionBody",
+      "type": "object"
+    },
+    "TraceProjection": {
+      "additionalProperties": false,
+      "properties": {
+        "header": {
+          "$ref": "#/$defs/ProjectionHeader"
+        },
+        "registry_labels": {
+          "items": {
+            "maxItems": 2,
+            "minItems": 2,
+            "prefixItems": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "type": "array"
+          },
+          "title": "Registry Labels",
+          "type": "array"
+        },
+        "sweep": {
+          "$ref": "#/$defs/SweepRun"
+        },
+        "trace": {
+          "$ref": "#/$defs/Block_SweepTrace_"
+        }
+      },
+      "required": [
+        "header",
+        "sweep",
+        "trace",
+        "registry_labels"
+      ],
+      "title": "TraceProjection",
       "type": "object"
     },
     "TraceStep": {

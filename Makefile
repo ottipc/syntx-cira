@@ -17,6 +17,7 @@ sync:
 	cd $(BACKEND) && $(PY) scripts/export_schemas.py
 	cd $(BACKEND) && $(PY) scripts/gen_importlinter.py
 	cd $(BACKEND) && $(PY) scripts/build_tx14_bundle.py
+	cd $(BACKEND) && $(PY) scripts/gen_snapshots.py
 	@if [ -f tools/gen_semiontics.py ]; then $(PY) tools/gen_semiontics.py; fi
 	@if [ -f $(FRONTEND)/package.json ] && [ -d $(FRONTEND)/node_modules ]; then cd $(FRONTEND) && npm run -s gen:contracts; fi
 
@@ -24,12 +25,13 @@ verify: verify-backend verify-frontend
 	$(PY) tools/trace_check.py
 	$(PY) tools/lint_operators.py
 	$(PY) tools/fixture_lint.py
-	@git diff --quiet -- contracts/schemas backend/.importlinter synthetic_fixtures/bundles || \
+	@git diff --quiet -- contracts/schemas backend/.importlinter synthetic_fixtures/bundles frontend/test/snapshots || \
 	  (echo "verify: derived artifacts differ from the committed state; run make sync and commit" && exit 1)
 
 verify-backend:
 	cd $(BACKEND) && $(PY) scripts/export_schemas.py --check
 	cd $(BACKEND) && $(PY) scripts/gen_importlinter.py --check
+	cd $(BACKEND) && $(PY) scripts/gen_snapshots.py --check
 	cd $(BACKEND) && mypy
 	cd $(BACKEND) && lint-imports --config .importlinter
 	cd $(BACKEND) && $(PY) -m pytest -p no:cacheprovider -q
@@ -56,7 +58,7 @@ smoke:
 	bash tools/smoke.sh
 
 run:
-	cd $(BACKEND) && CIRA_DATA=../experiments $(PY) -m uvicorn app.api.main:app --host 127.0.0.1 --port 8000
+	cd $(BACKEND) && CIRA_DATA=../experiments $(PY) -m uvicorn --factory app.api.main:create_app --host 127.0.0.1 --port 8000
 
 clean:
 	rm -rf experiments $(FRONTEND)/dist

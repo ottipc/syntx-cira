@@ -1,0 +1,107 @@
+{
+ "delta": {
+  "changes": [
+   {
+    "after": {
+     "applicability": "APPLICABLE",
+     "value": "OPEN"
+    },
+    "attribute_ref": "attr:n05/state",
+    "before": {
+     "applicability": "APPLICABLE",
+     "value": "CLOSED"
+    }
+   },
+   {
+    "after": {
+     "applicability": "APPLICABLE",
+     "value": "PENDING"
+    },
+    "attribute_ref": "attr:n09/state",
+    "before": {
+     "applicability": "APPLICABLE",
+     "value": "AUTHORIZED"
+    }
+   }
+  ],
+  "from_tick": 1,
+  "space": "A",
+  "to_tick": 2
+ },
+ "header": {
+  "data_origin": "SYNTHETIC",
+  "experiment_id": "exp:a10ff3383bfc-0",
+  "guard_class": "TIMED",
+  "query_echo": {
+   "aggregation": null,
+   "attempt": null,
+   "comparison_id": null,
+   "direction": null,
+   "from": null,
+   "revision": null,
+   "to": null,
+   "to_tick": null
+  },
+  "schema_version": "cira.state_projection/1.0.2",
+  "source_refs": [
+   {
+    "artifact_id": "art:381e8995f43204b7ee0e1a8ca3048670",
+    "artifact_type": "actual_state",
+    "content_hash": "sha256:1b4729b20361c744fe402c86875c5de499f058bc48ed295b3164219fe41c2279"
+   }
+  ],
+  "tick": 2
+ },
+ "values": [
+  {
+   "applicability": "APPLICABLE",
+   "attribute_ref": "attr:n01/state",
+   "value": "NOMINAL"
+  },
+  {
+   "applicability": "APPLICABLE",
+   "attribute_ref": "attr:n02/state",
+   "value": "NOMINAL"
+  },
+  {
+   "applicability": "APPLICABLE",
+   "attribute_ref": "attr:n03/state",
+   "value": "DEGRADED"
+  },
+  {
+   "applicability": "APPLICABLE",
+   "attribute_ref": "attr:n04/state",
+   "value": "ACTIVE"
+  },
+  {
+   "applicability": "APPLICABLE",
+   "attribute_ref": "attr:n05/state",
+   "value": "OPEN"
+  },
+  {
+   "applicability": "APPLICABLE",
+   "attribute_ref": "attr:n06/state",
+   "value": "NOMINAL"
+  },
+  {
+   "applicability": "APPLICABLE",
+   "attribute_ref": "attr:n07/state",
+   "value": "STANDBY"
+  },
+  {
+   "applicability": "APPLICABLE",
+   "attribute_ref": "attr:n08/state",
+   "value": "NOMINAL"
+  },
+  {
+   "applicability": "APPLICABLE",
+   "attribute_ref": "attr:n09/state",
+   "value": "PENDING"
+  },
+  {
+   "applicability": "APPLICABLE",
+   "attribute_ref": "attr:n10/state",
+   "value": "CRITICAL"
+  }
+ ]
+}

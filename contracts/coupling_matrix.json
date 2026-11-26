@@ -37,6 +37,11 @@
     ],
     [
       "F01",
+      "F06",
+      "ReferenceState (topology, A-02)"
+    ],
+    [
+      "F01",
       "F07",
       "TopologyProjection"
     ],
@@ -324,7 +329,6 @@
         "F05"
       ],
       "R": [
-        "F02",
         "F06",
         "F07"
       ]
@@ -556,5 +560,17 @@
       ]
     }
   },
-  "import_rules_note": "Forbidden contracts are checked transitively. Field modules F03-F05 are pure: the orchestrator persists their outputs through the FieldWriter of that field (K-48). See docs/adr/ADR-0002."
+  "import_rules_note": "Forbidden contracts are checked transitively. Field modules F03-F05 are pure: the orchestrator persists their outputs through the FieldWriter of that field (K-48). See docs/adr/ADR-0002.",
+  "mediated": [
+    [
+      "F05",
+      "F03",
+      "RecoveryProposal → AuthorityRecord (F02) → new RECOVERY variant (05.5)"
+    ],
+    [
+      "F07",
+      "F03",
+      "control via API"
+    ]
+  ]
 }

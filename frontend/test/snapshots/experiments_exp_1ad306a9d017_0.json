@@ -1,0 +1,201 @@
+{
+ "experiment": {
+  "comparisons": [
+   "cmp:0c7da892f472-0:1ad306a9d017-0:t5"
+  ],
+  "data_origin": "FIXTURE",
+  "definition_ref": {
+   "artifact_id": "art:ec90c8873894928850176b0cef11d3c7",
+   "artifact_type": "experiment_definition",
+   "content_hash": "sha256:1ad306a9d0178cb56794db96c7d9a1c14bdc9a5044a2be9d792fd13f7159e0ee"
+  },
+  "errors": [],
+  "experiment_id": "exp:1ad306a9d017-0",
+  "label": "Recovery",
+  "openness": {
+   "open_references": 0,
+   "open_relations": 1,
+   "structural_gaps_open": 1,
+   "undetermined": 0,
+   "unevaluable_rules": 0,
+   "unknown_observations": 2
+  },
+  "stage_status": [
+   {
+    "stage": "DEFINITIONS",
+    "status": "COMPLETED"
+   },
+   {
+    "stage": "EMULATION",
+    "status": "COMPLETED"
+   },
+   {
+    "stage": "OBSERVATION",
+    "status": "COMPLETED"
+   },
+   {
+    "stage": "FORWARD",
+    "status": "COMPLETED"
+   },
+   {
+    "stage": "INVERSE",
+    "status": "COMPLETED"
+   },
+   {
+    "stage": "MERGE",
+    "status": "COMPLETED"
+   },
+   {
+    "stage": "STABILITY",
+    "status": "COMPLETED"
+   },
+   {
+    "stage": "EVALUATION",
+    "status": "COMPLETED"
+   }
+  ],
+  "status": "COMPLETED",
+  "sweeps": [
+   {
+    "attempt": 0,
+    "data_origin": "FIXTURE",
+    "direction": "FORWARD",
+    "execution_status": "COMPLETED",
+    "sweep_id": "sweep:fwd:t0:a0",
+    "up_to_tick": 0
+   },
+   {
+    "attempt": 0,
+    "data_origin": "FIXTURE",
+    "direction": "INVERSE",
+    "execution_status": "COMPLETED",
+    "sweep_id": "sweep:inv:t0:a0",
+    "up_to_tick": 0
+   },
+   {
+    "attempt": 0,
+    "data_origin": "FIXTURE",
+    "direction": "FORWARD",
+    "execution_status": "COMPLETED",
+    "sweep_id": "sweep:fwd:t1:a0",
+    "up_to_tick": 1
+   },
+   {
+    "attempt": 0,
+    "data_origin": "FIXTURE",
+    "direction": "INVERSE",
+    "execution_status": "COMPLETED",
+    "sweep_id": "sweep:inv:t1:a0",
+    "up_to_tick": 1
+   },
+   {
+    "attempt": 0,
+    "data_origin": "FIXTURE",
+    "direction": "FORWARD",
+    "execution_status": "COMPLETED",
+    "sweep_id": "sweep:fwd:t2:a0",
+    "up_to_tick": 2
+   },
+   {
+    "attempt": 0,
+    "data_origin": "FIXTURE",
+    "direction": "INVERSE",
+    "execution_status": "COMPLETED",
+    "sweep_id": "sweep:inv:t2:a0",
+    "up_to_tick": 2
+   },
+   {
+    "attempt": 0,
+    "data_origin": "FIXTURE",
+    "direction": "FORWARD",
+    "execution_status": "COMPLETED",
+    "sweep_id": "sweep:fwd:t3:a0",
+    "up_to_tick": 3
+   },
+   {
+    "attempt": 0,
+    "data_origin": "FIXTURE",
+    "direction": "INVERSE",
+    "execution_status": "COMPLETED",
+    "sweep_id": "sweep:inv:t3:a0",
+    "up_to_tick": 3
+   },
+   {
+    "attempt": 0,
+    "data_origin": "FIXTURE",
+    "direction": "FORWARD",
+    "execution_status": "COMPLETED",
+    "sweep_id": "sweep:fwd:t4:a0",
+    "up_to_tick": 4
+   },
+   {
+    "attempt": 0,
+    "data_origin": "FIXTURE",
+    "direction": "INVERSE",
+    "execution_status": "COMPLETED",
+    "sweep_id": "sweep:inv:t4:a0",
+    "up_to_tick": 4
+   },
+   {
+    "attempt": 0,
+    "data_origin": "FIXTURE",
+    "direction": "FORWARD",
+    "execution_status": "COMPLETED",
+    "sweep_id": "sweep:fwd:t5:a0",
+    "up_to_tick": 5
+   },
+   {
+    "attempt": 0,
+    "data_origin": "FIXTURE",
+    "direction": "INVERSE",
+    "execution_status": "COMPLETED",
+    "sweep_id": "sweep:inv:t5:a0",
+    "up_to_tick": 5
+   },
+   {
+    "attempt": 1,
+    "data_origin": "FIXTURE",
+    "direction": "FORWARD",
+    "execution_status": "COMPLETED",
+    "sweep_id": "sweep:fwd:t5:a1",
+    "up_to_tick": 5
+   },
+   {
+    "attempt": 1,
+    "data_origin": "FIXTURE",
+    "direction": "INVERSE",
+    "execution_status": "COMPLETED",
+    "sweep_id": "sweep:inv:t5:a1",
+    "up_to_tick": 5
+   }
+  ],
+  "ticks": {
+   "first": 0,
+   "last": 5
+  }
+ },
+ "header": {
+  "data_origin": "FIXTURE",
+  "experiment_id": "exp:1ad306a9d017-0",
+  "guard_class": "TIMELESS",
+  "query_echo": {
+   "aggregation": null,
+   "attempt": null,
+   "comparison_id": null,
+   "direction": null,
+   "from": null,
+   "revision": null,
+   "to": null,
+   "to_tick": null
+  },
+  "schema_version": "cira.experiment_view/1.0.2",
+  "source_refs": [
+   {
+    "artifact_id": "art:ec90c8873894928850176b0cef11d3c7",
+    "artifact_type": "experiment_definition",
+    "content_hash": "sha256:1ad306a9d0178cb56794db96c7d9a1c14bdc9a5044a2be9d792fd13f7159e0ee"
+   }
+  ],
+  "tick": null
+ }
+}

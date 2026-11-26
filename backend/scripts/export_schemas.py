@@ -25,7 +25,7 @@ from app.contracts.registry import ARTIFACT_TYPES, CONTRACT_VERSION, ENVELOPES, 
 EXTRA: list[type[BaseModel]] = [
     ExperimentBundle, ErrorRecord, f01.TopologyProjectionBody, f02.RuleView, f03.ExperimentView,
     f04_record.ObservationProjectionBody, f06.MetricDefinition, f06.MetricResult, f07.ProjectionHeader,
-    f07.QueryEcho, f07.ExperimentSession, f07.ViewState,
+    f07.QueryEcho, f07.ExperimentSession, f07.ViewState, *f07.PROJECTIONS,
 ]
 
 

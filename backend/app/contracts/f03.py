@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from enum import Enum
+from typing import Literal
 
 from pydantic import model_validator
 
@@ -128,6 +129,24 @@ class ActualState(Frozen):
         if refs != sorted(refs) or len(set(refs)) != len(refs):
             raise ValueError("values must be sorted and unique by attribute_ref")
         return self
+
+
+class AValueState(Frozen):
+    applicability: Applicability
+    value: Symbol | None = None
+
+
+class AChange(Frozen):
+    attribute_ref: StableId
+    before: AValueState
+    after: AValueState
+
+
+class DeltaStateA(Frozen):  # K-13
+    space: Literal["A"]
+    from_tick: Tick
+    to_tick: Tick
+    changes: tuple[AChange, ...]
 
 
 class ReferenceState(Frozen):

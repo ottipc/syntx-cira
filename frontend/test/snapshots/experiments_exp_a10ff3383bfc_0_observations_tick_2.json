@@ -1,0 +1,281 @@
+{
+ "header": {
+  "data_origin": "SYNTHETIC",
+  "experiment_id": "exp:a10ff3383bfc-0",
+  "guard_class": "TIMED",
+  "query_echo": {
+   "aggregation": null,
+   "attempt": null,
+   "comparison_id": null,
+   "direction": null,
+   "from": null,
+   "revision": null,
+   "to": null,
+   "to_tick": null
+  },
+  "schema_version": "cira.observation_projection/1.0.2",
+  "source_refs": [
+   {
+    "artifact_id": "art:e3bfb264b684e25eeb254bbdc3e8f390",
+    "artifact_type": "observation_bundle",
+    "content_hash": "sha256:b3505da7f969a2154f947dd06ba3e6a37563a1cf200ef59373e1b45bce257ca6"
+   }
+  ],
+  "tick": 2
+ },
+ "observation": {
+  "availability": "AVAILABLE",
+  "content": {
+   "budget_usage": {
+    "bytes": 5452,
+    "observations": 27
+   },
+   "bundle_budget": {
+    "max_bytes": 10000000,
+    "max_observations": 10000
+   },
+   "context": {
+    "context_version": "ctx:2",
+    "observations": [
+     {
+      "attribute_ref": "attr:n08/state",
+      "observation_id": "obs:none:n08/state:t2",
+      "observed_at_tick": 2,
+      "references": [],
+      "source_id": null,
+      "status": "UNKNOWN",
+      "tick": 2,
+      "value": null
+     },
+     {
+      "attribute_ref": "attr:n09/state",
+      "observation_id": "obs:none:n09/state:t2",
+      "observed_at_tick": 2,
+      "references": [],
+      "source_id": null,
+      "status": "UNKNOWN",
+      "tick": 2,
+      "value": null
+     },
+     {
+      "attribute_ref": "attr:n01/state",
+      "observation_id": "obs:s01:n01/state:t2",
+      "observed_at_tick": 2,
+      "references": [],
+      "source_id": "src:s01",
+      "status": "KNOWN",
+      "tick": 2,
+      "value": "NOMINAL"
+     },
+     {
+      "attribute_ref": "attr:n02/state",
+      "observation_id": "obs:s01:n02/state:t2",
+      "observed_at_tick": 2,
+      "references": [
+       "rel:depends_on:n02:n01"
+      ],
+      "source_id": "src:s01",
+      "status": "KNOWN",
+      "tick": 2,
+      "value": "NOMINAL"
+     },
+     {
+      "attribute_ref": "attr:n03/state",
+      "observation_id": "obs:s01:n03/state:t2",
+      "observed_at_tick": 2,
+      "references": [
+       "rel:depends_on:n03:n02"
+      ],
+      "source_id": "src:s01",
+      "status": "KNOWN",
+      "tick": 2,
+      "value": "DEGRADED"
+     },
+     {
+      "attribute_ref": "attr:n04/state",
+      "observation_id": "obs:s01:n04/state:t2",
+      "observed_at_tick": 2,
+      "references": [
+       "rel:depends_on:n04:n03"
+      ],
+      "source_id": "src:s01",
+      "status": "KNOWN",
+      "tick": 2,
+      "value": "ACTIVE"
+     },
+     {
+      "attribute_ref": "attr:n05/state",
+      "observation_id": "obs:s01:n05/state:t2",
+      "observed_at_tick": 2,
+      "references": [
+       "rel:depends_on:n05:n04"
+      ],
+      "source_id": "src:s01",
+      "status": "KNOWN",
+      "tick": 2,
+      "value": "OPEN"
+     },
+     {
+      "attribute_ref": "attr:n06/state",
+      "observation_id": "obs:s01:n06/state:t2",
+      "observed_at_tick": 2,
+      "references": [
+       "rel:reports_to:n06:n05"
+      ],
+      "source_id": "src:s01",
+      "status": "KNOWN",
+      "tick": 2,
+      "value": "NOMINAL"
+     },
+     {
+      "attribute_ref": "attr:n07/state",
+      "observation_id": "obs:s02:n07/state:t2",
+      "observed_at_tick": 1,
+      "references": [
+       "rel:depends_on:n07:n04"
+      ],
+      "source_id": "src:s02",
+      "status": "KNOWN",
+      "tick": 2,
+      "value": "STANDBY"
+     }
+    ],
+    "previous_context_ref": "ctx:1",
+    "sequence": 2,
+    "tick": 2
+   },
+   "delta": {
+    "changes": [
+     {
+      "after": {
+       "status": "KNOWN",
+       "value": "OPEN"
+      },
+      "attribute_ref": "attr:n05/state",
+      "before": {
+       "status": "KNOWN",
+       "value": "CLOSED"
+      }
+     }
+    ],
+    "from_tick": 1,
+    "space": "O",
+    "to_tick": 2
+   },
+   "projected": [
+    {
+     "attribute_ref": "attr:n01/state",
+     "observed_at_tick": 2,
+     "source_id": "src:s01",
+     "stale": false,
+     "status": "KNOWN",
+     "value": "NOMINAL"
+    },
+    {
+     "attribute_ref": "attr:n02/state",
+     "observed_at_tick": 2,
+     "source_id": "src:s01",
+     "stale": false,
+     "status": "KNOWN",
+     "value": "NOMINAL"
+    },
+    {
+     "attribute_ref": "attr:n03/state",
+     "observed_at_tick": 2,
+     "source_id": "src:s01",
+     "stale": false,
+     "status": "KNOWN",
+     "value": "DEGRADED"
+    },
+    {
+     "attribute_ref": "attr:n04/state",
+     "observed_at_tick": 2,
+     "source_id": "src:s01",
+     "stale": false,
+     "status": "KNOWN",
+     "value": "ACTIVE"
+    },
+    {
+     "attribute_ref": "attr:n05/state",
+     "observed_at_tick": 2,
+     "source_id": "src:s01",
+     "stale": false,
+     "status": "KNOWN",
+     "value": "OPEN"
+    },
+    {
+     "attribute_ref": "attr:n06/state",
+     "observed_at_tick": 2,
+     "source_id": "src:s01",
+     "stale": false,
+     "status": "KNOWN",
+     "value": "NOMINAL"
+    },
+    {
+     "attribute_ref": "attr:n07/state",
+     "observed_at_tick": 1,
+     "source_id": "src:s02",
+     "stale": true,
+     "status": "KNOWN",
+     "value": "STANDBY"
+    },
+    {
+     "attribute_ref": "attr:n08/state",
+     "observed_at_tick": null,
+     "source_id": null,
+     "stale": false,
+     "status": "UNKNOWN",
+     "value": null
+    },
+    {
+     "attribute_ref": "attr:n09/state",
+     "observed_at_tick": null,
+     "source_id": null,
+     "stale": false,
+     "status": "UNKNOWN",
+     "value": null
+    },
+    {
+     "attribute_ref": "attr:n10/state",
+     "observed_at_tick": null,
+     "source_id": null,
+     "stale": false,
+     "status": "UNKNOWN",
+     "value": null
+    }
+   ],
+   "revision": 0,
+   "serialization_profile": "full",
+   "source_register": {
+    "entries": [
+     {
+      "continuity": "CONTINUOUS",
+      "first_tick": 0,
+      "gaps": [],
+      "last_tick": 2,
+      "source_id": "src:s01"
+     },
+     {
+      "continuity": "CONTINUOUS",
+      "first_tick": 1,
+      "gaps": [],
+      "last_tick": 2,
+      "source_id": "src:s02"
+     }
+    ]
+   },
+   "visible_nodes": [
+    "node:n01",
+    "node:n02",
+    "node:n03",
+    "node:n04",
+    "node:n05",
+    "node:n06",
+    "node:n07",
+    "node:n08",
+    "node:n09"
+   ]
+  },
+  "origin": "SYNTHETIC"
+ }
+}

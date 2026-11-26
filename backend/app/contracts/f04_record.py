@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from typing import Literal
+
 from .common import ArtifactRef, Frozen, ObservationStatus, SemVer, StableId, Symbol, Tick
 from .f03 import ActualState  # noqa: F401  (record links Ω_A; kept here, never in f04_public)
 from .f04_public import BudgetUsage, ContextBundle, ObservationSource, SourceReferenceRegister
@@ -39,6 +41,24 @@ class ProjectedValue(Frozen):
     source_id: StableId | None = None
 
 
+class OValueState(Frozen):
+    status: ObservationStatus
+    value: Symbol | None = None
+
+
+class OChange(Frozen):
+    attribute_ref: StableId
+    before: OValueState
+    after: OValueState
+
+
+class DeltaStateO(Frozen):  # K-13
+    space: Literal["O"]
+    from_tick: Tick
+    to_tick: Tick
+    changes: tuple[OChange, ...]
+
+
 class ObservationProjectionBody(Frozen):
     context: ContextBundle
     projected: tuple[ProjectedValue, ...]
@@ -48,3 +68,4 @@ class ObservationProjectionBody(Frozen):
     serialization_profile: str           # K-65
     revision: int                        # K-65
     visible_nodes: tuple[StableId, ...]  # K-65
+    delta: DeltaStateO | None = None     # K-65

@@ -1,0 +1,934 @@
+{
+ "authority_records": [],
+ "forward": {
+  "availability": "AVAILABLE",
+  "content": {
+   "output": {
+    "gaps": [
+     {
+      "epistemic_class": "STRUCTURAL_DERIVATION",
+      "gap_id": "gap:t5:unobserved_n08",
+      "kind": "fixture.unobserved_dependency",
+      "source_refs": [
+       "rel:depends_on:n08:n06"
+      ],
+      "status": "OPEN",
+      "subject_refs": [
+       "node:n08"
+      ]
+     },
+     {
+      "epistemic_class": "STRUCTURAL_DERIVATION",
+      "gap_id": "gap:t5:gate_evidence",
+      "kind": "fixture.missing_authorization_evidence",
+      "source_refs": [
+       "obs:s01:n05/state:t5"
+      ],
+      "status": "OPEN",
+      "subject_refs": [
+       "node:n05",
+       "node:n09"
+      ]
+     },
+     {
+      "epistemic_class": "SOURCE_OBSERVATION",
+      "gap_id": "gap:t5:upstream_fault",
+      "kind": "fixture.component_fault",
+      "source_refs": [
+       "obs:s01:n03/state:t5"
+      ],
+      "status": "OPEN",
+      "subject_refs": [
+       "node:n03"
+      ]
+     },
+     {
+      "epistemic_class": "STRUCTURAL_DERIVATION",
+      "gap_id": "gap:t5:dependency",
+      "kind": "fixture.dependency_inconsistency",
+      "source_refs": [
+       "obs:s01:n03/state:t5",
+       "obs:s01:n04/state:t5"
+      ],
+      "status": "OPEN",
+      "subject_refs": [
+       "node:n03",
+       "node:n04"
+      ]
+     }
+    ],
+    "open_relations": [
+     {
+      "reason": "no source observes component 09",
+      "reference_status": "UNRESOLVED",
+      "relation_key": "rel:provides:n09:n05",
+      "subject_refs": [
+       "node:n09",
+       "node:n05"
+      ]
+     }
+    ],
+    "relations": [
+     {
+      "coupling_status": "POSSIBLE",
+      "derived_from": [
+       "obs:s01:n06/state:t5"
+      ],
+      "epistemic_class": "STRUCTURAL_DERIVATION",
+      "relation_key": "rel:depends_on:n08:n06",
+      "relation_type": "depends_on",
+      "source": "node:n08",
+      "target": "node:n06"
+     },
+     {
+      "coupling_status": "EFFECTIVE",
+      "derived_from": [
+       "obs:s01:n05/state:t5"
+      ],
+      "epistemic_class": "STRUCTURAL_DERIVATION",
+      "relation_key": "rel:provides:n09:n05",
+      "relation_type": "provides",
+      "source": "node:n09",
+      "target": "node:n05"
+     }
+    ],
+    "values": [
+     {
+      "attribute_ref": "attr:n01/state",
+      "derived_from": [
+       "obs:s01:n01/state:t5"
+      ],
+      "epistemic_class": "SOURCE_OBSERVATION",
+      "reference_status": "RESOLVED",
+      "status": "DETERMINED",
+      "value": "NOMINAL"
+     },
+     {
+      "attribute_ref": "attr:n02/state",
+      "derived_from": [
+       "obs:s01:n02/state:t5"
+      ],
+      "epistemic_class": "SOURCE_OBSERVATION",
+      "reference_status": "RESOLVED",
+      "status": "DETERMINED",
+      "value": "NOMINAL"
+     },
+     {
+      "attribute_ref": "attr:n03/state",
+      "derived_from": [
+       "obs:s01:n03/state:t5"
+      ],
+      "epistemic_class": "SOURCE_OBSERVATION",
+      "reference_status": "RESOLVED",
+      "status": "DETERMINED",
+      "value": "FAULTY"
+     },
+     {
+      "attribute_ref": "attr:n04/state",
+      "derived_from": [
+       "obs:s01:n04/state:t5"
+      ],
+      "epistemic_class": "SOURCE_OBSERVATION",
+      "reference_status": "RESOLVED",
+      "status": "DETERMINED",
+      "value": "ACTIVE"
+     },
+     {
+      "attribute_ref": "attr:n05/state",
+      "derived_from": [
+       "obs:s01:n05/state:t5"
+      ],
+      "epistemic_class": "SOURCE_OBSERVATION",
+      "reference_status": "RESOLVED",
+      "status": "DETERMINED",
+      "value": "OPEN"
+     },
+     {
+      "attribute_ref": "attr:n06/state",
+      "derived_from": [
+       "obs:s01:n06/state:t5"
+      ],
+      "epistemic_class": "SOURCE_OBSERVATION",
+      "reference_status": "RESOLVED",
+      "status": "DETERMINED",
+      "value": "NOMINAL"
+     },
+     {
+      "attribute_ref": "attr:n07/state",
+      "derived_from": [
+       "obs:s02:n07/state:t5"
+      ],
+      "epistemic_class": "SOURCE_OBSERVATION",
+      "reference_status": "RESOLVED",
+      "status": "DETERMINED",
+      "value": "STANDBY"
+     },
+     {
+      "attribute_ref": "attr:n08/state",
+      "derived_from": [
+       "obs:s01:n06/state:t5",
+       "rel:depends_on:n08:n06"
+      ],
+      "epistemic_class": "STRUCTURAL_DERIVATION",
+      "reference_status": "RESOLVED",
+      "status": "DETERMINED",
+      "value": "NOMINAL"
+     },
+     {
+      "attribute_ref": "attr:n09/state",
+      "derived_from": [],
+      "epistemic_class": "OPEN_REFERENCE",
+      "reference_status": "UNRESOLVED",
+      "status": "UNDETERMINED",
+      "value": null
+     }
+    ]
+   },
+   "sweep": {
+    "adapter": {
+     "adapter_id": "adapter.fixture",
+     "adapter_version": "1.0.2",
+     "capabilities": {
+      "forward": true,
+      "inverse": true,
+      "merge": false,
+      "trace": true
+     },
+     "engine_version": null,
+     "is_fixture": true,
+     "kind": "FIXTURE",
+     "operator_registry_ref": null
+    },
+    "attempt": 0,
+    "context_version": "ctx:5",
+    "direction": "FORWARD",
+    "error": null,
+    "execution_status": "COMPLETED",
+    "input_bundle_ref": {
+     "artifact_id": "art:983d527bc3bd8d368a82f4d37ddf8406",
+     "artifact_type": "observation_bundle",
+     "content_hash": "sha256:1141d7ec5f670bd18ac61e4c34a0c5c9ee435a54075130bfe704eb047f62c633"
+    },
+    "sweep_id": "sweep:fwd:t5:a0",
+    "target_ref": null,
+    "termination": {
+     "budget": 64,
+     "engine_message": "fixture: converged",
+     "last_step_seq": 3,
+     "reason": "CONVERGED",
+     "steps_executed": 4
+    },
+    "up_to_tick": 5
+   },
+   "trace": {
+    "reference_status": "RESOLVED",
+    "steps": [
+     {
+      "engine_note": "fixture trace step — no engine executed; operator semantics not asserted (DEP-01, DEP-08)",
+      "epistemic_class": "SOURCE_OBSERVATION",
+      "input_refs": [
+       "ctx:5"
+      ],
+      "operator_ref": {
+       "namespace": "CANONICAL_V181",
+       "registry_version": "v1.8.1",
+       "symbol": "⊕"
+      },
+      "output_refs": [
+       "attr:n01/state"
+      ],
+      "sigma_ref": {
+       "registry_version": "v1.8.1",
+       "sigma_id": "Σ01"
+      },
+      "step_id": "step:fwd:t5:a0:0",
+      "step_seq": 0
+     },
+     {
+      "engine_note": "fixture trace step — no engine executed; operator semantics not asserted (DEP-01, DEP-08)",
+      "epistemic_class": "STRUCTURAL_DERIVATION",
+      "input_refs": [
+       "ctx:5"
+      ],
+      "operator_ref": null,
+      "output_refs": [
+       "attr:n02/state"
+      ],
+      "sigma_ref": {
+       "registry_version": "v1.8.1",
+       "sigma_id": "Σ02"
+      },
+      "step_id": "step:fwd:t5:a0:1",
+      "step_seq": 1
+     },
+     {
+      "engine_note": "fixture trace step — no engine executed; operator semantics not asserted (DEP-01, DEP-08)",
+      "epistemic_class": "STRUCTURAL_DERIVATION",
+      "input_refs": [
+       "ctx:5"
+      ],
+      "operator_ref": {
+       "namespace": "CANONICAL_V181",
+       "registry_version": "v1.8.1",
+       "symbol": "⊗"
+      },
+      "output_refs": [
+       "attr:n03/state"
+      ],
+      "sigma_ref": {
+       "registry_version": "v1.8.1",
+       "sigma_id": "Σ03"
+      },
+      "step_id": "step:fwd:t5:a0:2",
+      "step_seq": 2
+     },
+     {
+      "engine_note": "fixture trace step — no engine executed; operator semantics not asserted (DEP-01, DEP-08)",
+      "epistemic_class": "SOURCE_OBSERVATION",
+      "input_refs": [
+       "ctx:5"
+      ],
+      "operator_ref": null,
+      "output_refs": [
+       "attr:n04/state"
+      ],
+      "sigma_ref": {
+       "registry_version": "v1.8.1",
+       "sigma_id": "Σ04"
+      },
+      "step_id": "step:fwd:t5:a0:3",
+      "step_seq": 3
+     }
+    ],
+    "sweep_id": "sweep:fwd:t5:a0"
+   }
+  },
+  "origin": "FIXTURE"
+ },
+ "header": {
+  "data_origin": "FIXTURE",
+  "experiment_id": "exp:0c7da892f472-0",
+  "guard_class": "TIMED",
+  "query_echo": {
+   "aggregation": null,
+   "attempt": 0,
+   "comparison_id": null,
+   "direction": "merged",
+   "from": null,
+   "revision": null,
+   "to": null,
+   "to_tick": null
+  },
+  "schema_version": "cira.results_projection/1.0.2",
+  "source_refs": [
+   {
+    "artifact_id": "art:f7cbe613f5e761d24814eca633691ead",
+    "artifact_type": "forward_result",
+    "content_hash": "sha256:70ffa8de2faf38a39491ea243aa30941b73b891aa739d832138fa07fea664e4e"
+   },
+   {
+    "artifact_id": "art:67e81f0b5357e5df972d98e31803a487",
+    "artifact_type": "inverse_result",
+    "content_hash": "sha256:a8d6cc536e092d6afee1a46d8d95c3fe8a409acbc3513a4a6e4c3234c0ef4498"
+   },
+   {
+    "artifact_id": "art:d20c03a54e6a319508d72e59762dbfab",
+    "artifact_type": "reconstruction_result",
+    "content_hash": "sha256:3dfdbfa2d2c542b8adf2c73807f62ebc1f06444835dae3347cad66e5a98490aa"
+   }
+  ],
+  "tick": 5
+ },
+ "inverse": {
+  "availability": "AVAILABLE",
+  "content": {
+   "output": {
+    "gaps": [
+     {
+      "epistemic_class": "STRUCTURAL_DERIVATION",
+      "gap_id": "gap:t5:unobserved_n08",
+      "kind": "fixture.unobserved_dependency",
+      "source_refs": [
+       "rel:depends_on:n08:n06"
+      ],
+      "status": "OPEN",
+      "subject_refs": [
+       "node:n08"
+      ]
+     },
+     {
+      "epistemic_class": "STRUCTURAL_DERIVATION",
+      "gap_id": "gap:t5:gate_evidence",
+      "kind": "fixture.missing_authorization_evidence",
+      "source_refs": [
+       "obs:s01:n05/state:t5"
+      ],
+      "status": "OPEN",
+      "subject_refs": [
+       "node:n05",
+       "node:n09"
+      ]
+     },
+     {
+      "epistemic_class": "SOURCE_OBSERVATION",
+      "gap_id": "gap:t5:upstream_fault",
+      "kind": "fixture.component_fault",
+      "source_refs": [
+       "obs:s01:n03/state:t5"
+      ],
+      "status": "OPEN",
+      "subject_refs": [
+       "node:n03"
+      ]
+     },
+     {
+      "epistemic_class": "STRUCTURAL_DERIVATION",
+      "gap_id": "gap:t5:dependency",
+      "kind": "fixture.dependency_inconsistency",
+      "source_refs": [
+       "obs:s01:n03/state:t5",
+       "obs:s01:n04/state:t5"
+      ],
+      "status": "OPEN",
+      "subject_refs": [
+       "node:n03",
+       "node:n04"
+      ]
+     }
+    ],
+    "open_relations": [
+     {
+      "reason": "no source observes component 09",
+      "reference_status": "UNRESOLVED",
+      "relation_key": "rel:provides:n09:n05",
+      "subject_refs": [
+       "node:n09",
+       "node:n05"
+      ]
+     }
+    ],
+    "relations": [
+     {
+      "coupling_status": "POSSIBLE",
+      "derived_from": [
+       "obs:s01:n06/state:t5"
+      ],
+      "epistemic_class": "STRUCTURAL_DERIVATION",
+      "relation_key": "rel:depends_on:n08:n06",
+      "relation_type": "depends_on",
+      "source": "node:n08",
+      "target": "node:n06"
+     },
+     {
+      "coupling_status": "EFFECTIVE",
+      "derived_from": [
+       "obs:s01:n05/state:t5"
+      ],
+      "epistemic_class": "STRUCTURAL_DERIVATION",
+      "relation_key": "rel:provides:n09:n05",
+      "relation_type": "provides",
+      "source": "node:n09",
+      "target": "node:n05"
+     }
+    ],
+    "values": [
+     {
+      "attribute_ref": "attr:n01/state",
+      "derived_from": [
+       "obs:s01:n01/state:t5"
+      ],
+      "epistemic_class": "SOURCE_OBSERVATION",
+      "reference_status": "RESOLVED",
+      "status": "DETERMINED",
+      "value": "NOMINAL"
+     },
+     {
+      "attribute_ref": "attr:n02/state",
+      "derived_from": [
+       "obs:s01:n02/state:t5"
+      ],
+      "epistemic_class": "SOURCE_OBSERVATION",
+      "reference_status": "RESOLVED",
+      "status": "DETERMINED",
+      "value": "NOMINAL"
+     },
+     {
+      "attribute_ref": "attr:n03/state",
+      "derived_from": [
+       "obs:s01:n03/state:t5"
+      ],
+      "epistemic_class": "SOURCE_OBSERVATION",
+      "reference_status": "RESOLVED",
+      "status": "DETERMINED",
+      "value": "FAULTY"
+     },
+     {
+      "attribute_ref": "attr:n04/state",
+      "derived_from": [
+       "obs:s01:n04/state:t5"
+      ],
+      "epistemic_class": "SOURCE_OBSERVATION",
+      "reference_status": "RESOLVED",
+      "status": "DETERMINED",
+      "value": "ACTIVE"
+     },
+     {
+      "attribute_ref": "attr:n05/state",
+      "derived_from": [
+       "obs:s01:n05/state:t5"
+      ],
+      "epistemic_class": "SOURCE_OBSERVATION",
+      "reference_status": "RESOLVED",
+      "status": "DETERMINED",
+      "value": "OPEN"
+     },
+     {
+      "attribute_ref": "attr:n06/state",
+      "derived_from": [
+       "obs:s01:n06/state:t5"
+      ],
+      "epistemic_class": "SOURCE_OBSERVATION",
+      "reference_status": "RESOLVED",
+      "status": "DETERMINED",
+      "value": "NOMINAL"
+     },
+     {
+      "attribute_ref": "attr:n07/state",
+      "derived_from": [
+       "obs:s02:n07/state:t5"
+      ],
+      "epistemic_class": "SOURCE_OBSERVATION",
+      "reference_status": "RESOLVED",
+      "status": "DETERMINED",
+      "value": "STANDBY"
+     },
+     {
+      "attribute_ref": "attr:n08/state",
+      "derived_from": [
+       "obs:s01:n06/state:t5",
+       "rel:depends_on:n08:n06"
+      ],
+      "epistemic_class": "STRUCTURAL_DERIVATION",
+      "reference_status": "RESOLVED",
+      "status": "DETERMINED",
+      "value": "NOMINAL"
+     },
+     {
+      "attribute_ref": "attr:n09/state",
+      "derived_from": [
+       "goal:n03_healthy",
+       "rel:provides:n09:n05"
+      ],
+      "epistemic_class": "HYPOTHESIS",
+      "reference_status": "RESOLVED",
+      "status": "DETERMINED",
+      "value": "AUTHORIZED"
+     }
+    ]
+   },
+   "sweep": {
+    "adapter": {
+     "adapter_id": "adapter.fixture",
+     "adapter_version": "1.0.2",
+     "capabilities": {
+      "forward": true,
+      "inverse": true,
+      "merge": false,
+      "trace": true
+     },
+     "engine_version": null,
+     "is_fixture": true,
+     "kind": "FIXTURE",
+     "operator_registry_ref": null
+    },
+    "attempt": 0,
+    "context_version": "ctx:5",
+    "direction": "INVERSE",
+    "error": null,
+    "execution_status": "COMPLETED",
+    "input_bundle_ref": {
+     "artifact_id": "art:983d527bc3bd8d368a82f4d37ddf8406",
+     "artifact_type": "observation_bundle",
+     "content_hash": "sha256:1141d7ec5f670bd18ac61e4c34a0c5c9ee435a54075130bfe704eb047f62c633"
+    },
+    "sweep_id": "sweep:inv:t5:a0",
+    "target_ref": {
+     "artifact_id": "art:4ffdc059bcd601ca01acf3e9f97076f3",
+     "artifact_type": "target_definition",
+     "content_hash": "sha256:104f7c70edf666287a4dc8071739cf778253018e67b19db8c881b0f9d927048b"
+    },
+    "termination": {
+     "budget": 64,
+     "engine_message": "fixture: target-guided stop",
+     "last_step_seq": 4,
+     "reason": "ENGINE_REPORTED_STOP",
+     "steps_executed": 5
+    },
+    "up_to_tick": 5
+   },
+   "target_assessment": [
+    {
+     "derived_from": [
+      "obs:s01:n03/state:t5"
+     ],
+     "goal_id": "goal:n03_healthy",
+     "status": "NOT_MET"
+    },
+    {
+     "derived_from": [
+      "obs:s01:n04/state:t5"
+     ],
+     "goal_id": "goal:n04_active",
+     "status": "MET"
+    },
+    {
+     "derived_from": [],
+     "goal_id": "goal:n07_gap",
+     "status": "UNDETERMINED"
+    }
+   ],
+   "trace": {
+    "reference_status": "RESOLVED",
+    "steps": [
+     {
+      "engine_note": "fixture trace step — no engine executed; operator semantics not asserted (DEP-01, DEP-08)",
+      "epistemic_class": "SOURCE_OBSERVATION",
+      "input_refs": [
+       "ctx:5"
+      ],
+      "operator_ref": {
+       "namespace": "CANONICAL_V181",
+       "registry_version": "v1.8.1",
+       "symbol": "⊕"
+      },
+      "output_refs": [
+       "attr:n01/state"
+      ],
+      "sigma_ref": {
+       "registry_version": "v1.8.1",
+       "sigma_id": "Σ01"
+      },
+      "step_id": "step:inv:t5:a0:0",
+      "step_seq": 0
+     },
+     {
+      "engine_note": "fixture trace step — no engine executed; operator semantics not asserted (DEP-01, DEP-08)",
+      "epistemic_class": "STRUCTURAL_DERIVATION",
+      "input_refs": [
+       "ctx:5"
+      ],
+      "operator_ref": null,
+      "output_refs": [
+       "attr:n02/state"
+      ],
+      "sigma_ref": {
+       "registry_version": "v1.8.1",
+       "sigma_id": "Σ02"
+      },
+      "step_id": "step:inv:t5:a0:1",
+      "step_seq": 1
+     },
+     {
+      "engine_note": "fixture trace step — no engine executed; operator semantics not asserted (DEP-01, DEP-08)",
+      "epistemic_class": "STRUCTURAL_DERIVATION",
+      "input_refs": [
+       "ctx:5"
+      ],
+      "operator_ref": {
+       "namespace": "CANONICAL_V181",
+       "registry_version": "v1.8.1",
+       "symbol": "⊗"
+      },
+      "output_refs": [
+       "attr:n03/state"
+      ],
+      "sigma_ref": {
+       "registry_version": "v1.8.1",
+       "sigma_id": "Σ03"
+      },
+      "step_id": "step:inv:t5:a0:2",
+      "step_seq": 2
+     },
+     {
+      "engine_note": "fixture trace step — no engine executed; operator semantics not asserted (DEP-01, DEP-08)",
+      "epistemic_class": "SOURCE_OBSERVATION",
+      "input_refs": [
+       "ctx:5"
+      ],
+      "operator_ref": null,
+      "output_refs": [
+       "attr:n04/state"
+      ],
+      "sigma_ref": {
+       "registry_version": "v1.8.1",
+       "sigma_id": "Σ04"
+      },
+      "step_id": "step:inv:t5:a0:3",
+      "step_seq": 3
+     },
+     {
+      "engine_note": "fixture trace step — no engine executed; operator semantics not asserted (DEP-01, DEP-08)",
+      "epistemic_class": "STRUCTURAL_DERIVATION",
+      "input_refs": [
+       "ctx:5"
+      ],
+      "operator_ref": {
+       "namespace": "CANONICAL_V181",
+       "registry_version": "v1.8.1",
+       "symbol": "∆"
+      },
+      "output_refs": [
+       "attr:n05/state"
+      ],
+      "sigma_ref": {
+       "registry_version": "v1.8.1",
+       "sigma_id": "Σ05"
+      },
+      "step_id": "step:inv:t5:a0:4",
+      "step_seq": 4
+     }
+    ],
+    "sweep_id": "sweep:inv:t5:a0"
+   }
+  },
+  "origin": "FIXTURE"
+ },
+ "proposals": [],
+ "reconstruction": {
+  "availability": "AVAILABLE",
+  "content": {
+   "attempt": 0,
+   "context_version": "ctx:5",
+   "delta_coupling": {
+    "changes": [],
+    "from_tick": 4,
+    "to_tick": 5
+   },
+   "delta_state": {
+    "changes": [],
+    "from_tick": 4,
+    "space": "R",
+    "to_tick": 5
+   },
+   "merge": {
+    "conflicts": [],
+    "engine_merged": false,
+    "forward_ref": {
+     "artifact_id": "art:f7cbe613f5e761d24814eca633691ead",
+     "artifact_type": "forward_result",
+     "content_hash": "sha256:70ffa8de2faf38a39491ea243aa30941b73b891aa739d832138fa07fea664e4e"
+    },
+    "inverse_ref": {
+     "artifact_id": "art:67e81f0b5357e5df972d98e31803a487",
+     "artifact_type": "inverse_result",
+     "content_hash": "sha256:a8d6cc536e092d6afee1a46d8d95c3fe8a409acbc3513a4a6e4c3234c0ef4498"
+    },
+    "policy": {
+     "point": "merge.policy",
+     "variant": "engine_first",
+     "version": 1
+    }
+   },
+   "openness": {
+    "open_references": 0,
+    "open_relations": 1,
+    "structural_gaps_open": 4,
+    "undetermined": 0,
+    "unevaluable_rules": 0,
+    "unknown_observations": 2
+   },
+   "output": {
+    "gaps": [
+     {
+      "epistemic_class": "STRUCTURAL_DERIVATION",
+      "gap_id": "gap:t5:dependency",
+      "kind": "fixture.dependency_inconsistency",
+      "source_refs": [
+       "obs:s01:n03/state:t5",
+       "obs:s01:n04/state:t5"
+      ],
+      "status": "OPEN",
+      "subject_refs": [
+       "node:n03",
+       "node:n04"
+      ]
+     },
+     {
+      "epistemic_class": "STRUCTURAL_DERIVATION",
+      "gap_id": "gap:t5:gate_evidence",
+      "kind": "fixture.missing_authorization_evidence",
+      "source_refs": [
+       "obs:s01:n05/state:t5"
+      ],
+      "status": "OPEN",
+      "subject_refs": [
+       "node:n05",
+       "node:n09"
+      ]
+     },
+     {
+      "epistemic_class": "STRUCTURAL_DERIVATION",
+      "gap_id": "gap:t5:unobserved_n08",
+      "kind": "fixture.unobserved_dependency",
+      "source_refs": [
+       "rel:depends_on:n08:n06"
+      ],
+      "status": "OPEN",
+      "subject_refs": [
+       "node:n08"
+      ]
+     },
+     {
+      "epistemic_class": "SOURCE_OBSERVATION",
+      "gap_id": "gap:t5:upstream_fault",
+      "kind": "fixture.component_fault",
+      "source_refs": [
+       "obs:s01:n03/state:t5"
+      ],
+      "status": "OPEN",
+      "subject_refs": [
+       "node:n03"
+      ]
+     }
+    ],
+    "open_relations": [
+     {
+      "reason": "no source observes component 09",
+      "reference_status": "UNRESOLVED",
+      "relation_key": "rel:provides:n09:n05",
+      "subject_refs": [
+       "node:n09",
+       "node:n05"
+      ]
+     }
+    ],
+    "relations": [
+     {
+      "coupling_status": "POSSIBLE",
+      "derived_from": [
+       "obs:s01:n06/state:t5"
+      ],
+      "epistemic_class": "STRUCTURAL_DERIVATION",
+      "relation_key": "rel:depends_on:n08:n06",
+      "relation_type": "depends_on",
+      "source": "node:n08",
+      "target": "node:n06"
+     },
+     {
+      "coupling_status": "EFFECTIVE",
+      "derived_from": [
+       "obs:s01:n05/state:t5"
+      ],
+      "epistemic_class": "STRUCTURAL_DERIVATION",
+      "relation_key": "rel:provides:n09:n05",
+      "relation_type": "provides",
+      "source": "node:n09",
+      "target": "node:n05"
+     }
+    ],
+    "values": [
+     {
+      "attribute_ref": "attr:n01/state",
+      "derived_from": [
+       "obs:s01:n01/state:t5"
+      ],
+      "epistemic_class": "SOURCE_OBSERVATION",
+      "reference_status": "RESOLVED",
+      "status": "DETERMINED",
+      "value": "NOMINAL"
+     },
+     {
+      "attribute_ref": "attr:n02/state",
+      "derived_from": [
+       "obs:s01:n02/state:t5"
+      ],
+      "epistemic_class": "SOURCE_OBSERVATION",
+      "reference_status": "RESOLVED",
+      "status": "DETERMINED",
+      "value": "NOMINAL"
+     },
+     {
+      "attribute_ref": "attr:n03/state",
+      "derived_from": [
+       "obs:s01:n03/state:t5"
+      ],
+      "epistemic_class": "SOURCE_OBSERVATION",
+      "reference_status": "RESOLVED",
+      "status": "DETERMINED",
+      "value": "FAULTY"
+     },
+     {
+      "attribute_ref": "attr:n04/state",
+      "derived_from": [
+       "obs:s01:n04/state:t5"
+      ],
+      "epistemic_class": "SOURCE_OBSERVATION",
+      "reference_status": "RESOLVED",
+      "status": "DETERMINED",
+      "value": "ACTIVE"
+     },
+     {
+      "attribute_ref": "attr:n05/state",
+      "derived_from": [
+       "obs:s01:n05/state:t5"
+      ],
+      "epistemic_class": "SOURCE_OBSERVATION",
+      "reference_status": "RESOLVED",
+      "status": "DETERMINED",
+      "value": "OPEN"
+     },
+     {
+      "attribute_ref": "attr:n06/state",
+      "derived_from": [
+       "obs:s01:n06/state:t5"
+      ],
+      "epistemic_class": "SOURCE_OBSERVATION",
+      "reference_status": "RESOLVED",
+      "status": "DETERMINED",
+      "value": "NOMINAL"
+     },
+     {
+      "attribute_ref": "attr:n07/state",
+      "derived_from": [
+       "obs:s02:n07/state:t5"
+      ],
+      "epistemic_class": "SOURCE_OBSERVATION",
+      "reference_status": "RESOLVED",
+      "status": "DETERMINED",
+      "value": "STANDBY"
+     },
+     {
+      "attribute_ref": "attr:n08/state",
+      "derived_from": [
+       "obs:s01:n06/state:t5",
+       "rel:depends_on:n08:n06"
+      ],
+      "epistemic_class": "STRUCTURAL_DERIVATION",
+      "reference_status": "RESOLVED",
+      "status": "DETERMINED",
+      "value": "NOMINAL"
+     },
+     {
+      "attribute_ref": "attr:n09/state",
+      "derived_from": [
+       "goal:n03_healthy",
+       "rel:provides:n09:n05"
+      ],
+      "epistemic_class": "HYPOTHESIS",
+      "reference_status": "RESOLVED",
+      "status": "DETERMINED",
+      "value": "AUTHORIZED"
+     }
+    ]
+   },
+   "previous_reconstruction_ref": {
+    "artifact_id": "art:1605a88c2fcdd6aea9d6c3bbb53c1357",
+    "artifact_type": "reconstruction_result",
+    "content_hash": "sha256:0291aa73a4ef6fb9107e9b6985db12a6f84d994345fb85a2cca3c8f3cad9a995"
+   },
+   "reconstruction_id": "recon:t5:a0",
+   "up_to_tick": 5
+  },
+  "origin": "FIXTURE"
+ }
+}

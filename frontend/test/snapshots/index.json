@@ -1,0 +1,1208 @@
+{
+ "comparison": "cmp:0c7da892f472-0:1ad306a9d017-0:t5",
+ "experiments": {
+  "baseline": "exp:0c7da892f472-0",
+  "blocked": "exp:a10ff3383bfc-0",
+  "recovery": "exp:1ad306a9d017-0"
+ },
+ "generated_by": "backend/scripts/gen_snapshots.py",
+ "routes": {
+  "/comparisons/cmp:0c7da892f472-0:1ad306a9d017-0:t5": {
+   "file": "comparisons_cmp_0c7da892f472_0_1ad306a9d017_0_t5.json",
+   "status": 200
+  },
+  "/comparisons?experiment_id=exp:0c7da892f472-0": {
+   "file": "comparisons_experiment_id_exp_0c7da892f472_0.json",
+   "status": 200
+  },
+  "/experiments": {
+   "file": "experiments.json",
+   "status": 200
+  },
+  "/experiments/exp:0c7da892f472-0": {
+   "file": "experiments_exp_0c7da892f472_0.json",
+   "status": 200
+  },
+  "/experiments/exp:0c7da892f472-0/events": {
+   "file": "experiments_exp_0c7da892f472_0_events.json",
+   "status": 200
+  },
+  "/experiments/exp:0c7da892f472-0/events?from=0&to=0": {
+   "file": "experiments_exp_0c7da892f472_0_events_from_0_to_0.json",
+   "status": 200
+  },
+  "/experiments/exp:0c7da892f472-0/events?from=0&to=1": {
+   "file": "experiments_exp_0c7da892f472_0_events_from_0_to_1.json",
+   "status": 200
+  },
+  "/experiments/exp:0c7da892f472-0/events?from=0&to=2": {
+   "file": "experiments_exp_0c7da892f472_0_events_from_0_to_2.json",
+   "status": 200
+  },
+  "/experiments/exp:0c7da892f472-0/events?from=0&to=3": {
+   "file": "experiments_exp_0c7da892f472_0_events_from_0_to_3.json",
+   "status": 200
+  },
+  "/experiments/exp:0c7da892f472-0/events?from=0&to=4": {
+   "file": "experiments_exp_0c7da892f472_0_events_from_0_to_4.json",
+   "status": 200
+  },
+  "/experiments/exp:0c7da892f472-0/events?from=0&to=5": {
+   "file": "experiments_exp_0c7da892f472_0_events_from_0_to_5.json",
+   "status": 200
+  },
+  "/experiments/exp:0c7da892f472-0/export": {
+   "file": "experiments_exp_0c7da892f472_0_export.json",
+   "status": 200
+  },
+  "/experiments/exp:0c7da892f472-0/governance?tick=0&space=A": {
+   "file": "experiments_exp_0c7da892f472_0_governance_tick_0_space_A.json",
+   "status": 200
+  },
+  "/experiments/exp:0c7da892f472-0/governance?tick=0&space=O": {
+   "file": "experiments_exp_0c7da892f472_0_governance_tick_0_space_O.json",
+   "status": 200
+  },
+  "/experiments/exp:0c7da892f472-0/governance?tick=0&space=R": {
+   "file": "experiments_exp_0c7da892f472_0_governance_tick_0_space_R.json",
+   "status": 200
+  },
+  "/experiments/exp:0c7da892f472-0/governance?tick=1&space=A": {
+   "file": "experiments_exp_0c7da892f472_0_governance_tick_1_space_A.json",
+   "status": 200
+  },
+  "/experiments/exp:0c7da892f472-0/governance?tick=1&space=O": {
+   "file": "experiments_exp_0c7da892f472_0_governance_tick_1_space_O.json",
+   "status": 200
+  },
+  "/experiments/exp:0c7da892f472-0/governance?tick=1&space=R": {
+   "file": "experiments_exp_0c7da892f472_0_governance_tick_1_space_R.json",
+   "status": 200
+  },
+  "/experiments/exp:0c7da892f472-0/governance?tick=2&space=A": {
+   "file": "experiments_exp_0c7da892f472_0_governance_tick_2_space_A.json",
+   "status": 200
+  },
+  "/experiments/exp:0c7da892f472-0/governance?tick=2&space=O": {
+   "file": "experiments_exp_0c7da892f472_0_governance_tick_2_space_O.json",
+   "status": 200
+  },
+  "/experiments/exp:0c7da892f472-0/governance?tick=2&space=R": {
+   "file": "experiments_exp_0c7da892f472_0_governance_tick_2_space_R.json",
+   "status": 200
+  },
+  "/experiments/exp:0c7da892f472-0/governance?tick=3&space=A": {
+   "file": "experiments_exp_0c7da892f472_0_governance_tick_3_space_A.json",
+   "status": 200
+  },
+  "/experiments/exp:0c7da892f472-0/governance?tick=3&space=O": {
+   "file": "experiments_exp_0c7da892f472_0_governance_tick_3_space_O.json",
+   "status": 200
+  },
+  "/experiments/exp:0c7da892f472-0/governance?tick=3&space=R": {
+   "file": "experiments_exp_0c7da892f472_0_governance_tick_3_space_R.json",
+   "status": 200
+  },
+  "/experiments/exp:0c7da892f472-0/governance?tick=4&space=A": {
+   "file": "experiments_exp_0c7da892f472_0_governance_tick_4_space_A.json",
+   "status": 200
+  },
+  "/experiments/exp:0c7da892f472-0/governance?tick=4&space=O": {
+   "file": "experiments_exp_0c7da892f472_0_governance_tick_4_space_O.json",
+   "status": 200
+  },
+  "/experiments/exp:0c7da892f472-0/governance?tick=4&space=R": {
+   "file": "experiments_exp_0c7da892f472_0_governance_tick_4_space_R.json",
+   "status": 200
+  },
+  "/experiments/exp:0c7da892f472-0/governance?tick=5&space=A": {
+   "file": "experiments_exp_0c7da892f472_0_governance_tick_5_space_A.json",
+   "status": 200
+  },
+  "/experiments/exp:0c7da892f472-0/governance?tick=5&space=O": {
+   "file": "experiments_exp_0c7da892f472_0_governance_tick_5_space_O.json",
+   "status": 200
+  },
+  "/experiments/exp:0c7da892f472-0/governance?tick=5&space=R": {
+   "file": "experiments_exp_0c7da892f472_0_governance_tick_5_space_R.json",
+   "status": 200
+  },
+  "/experiments/exp:0c7da892f472-0/metrics": {
+   "file": "experiments_exp_0c7da892f472_0_metrics.json",
+   "status": 200
+  },
+  "/experiments/exp:0c7da892f472-0/metrics?aggregation=PER_TICK&tick=0": {
+   "file": "experiments_exp_0c7da892f472_0_metrics_aggregation_PER_TICK_tick_0.json",
+   "status": 200
+  },
+  "/experiments/exp:0c7da892f472-0/metrics?aggregation=PER_TICK&tick=1": {
+   "file": "experiments_exp_0c7da892f472_0_metrics_aggregation_PER_TICK_tick_1.json",
+   "status": 200
+  },
+  "/experiments/exp:0c7da892f472-0/metrics?aggregation=PER_TICK&tick=2": {
+   "file": "experiments_exp_0c7da892f472_0_metrics_aggregation_PER_TICK_tick_2.json",
+   "status": 200
+  },
+  "/experiments/exp:0c7da892f472-0/metrics?aggregation=PER_TICK&tick=3": {
+   "file": "experiments_exp_0c7da892f472_0_metrics_aggregation_PER_TICK_tick_3.json",
+   "status": 200
+  },
+  "/experiments/exp:0c7da892f472-0/metrics?aggregation=PER_TICK&tick=4": {
+   "file": "experiments_exp_0c7da892f472_0_metrics_aggregation_PER_TICK_tick_4.json",
+   "status": 200
+  },
+  "/experiments/exp:0c7da892f472-0/metrics?aggregation=PER_TICK&tick=5": {
+   "file": "experiments_exp_0c7da892f472_0_metrics_aggregation_PER_TICK_tick_5.json",
+   "status": 200
+  },
+  "/experiments/exp:0c7da892f472-0/metrics?aggregation=TIME_MEAN_EXPLICIT": {
+   "file": "experiments_exp_0c7da892f472_0_metrics_aggregation_TIME_MEAN_EXPLICIT.json",
+   "status": 200
+  },
+  "/experiments/exp:0c7da892f472-0/metrics?to_tick=0": {
+   "file": "experiments_exp_0c7da892f472_0_metrics_to_tick_0.json",
+   "status": 200
+  },
+  "/experiments/exp:0c7da892f472-0/metrics?to_tick=1": {
+   "file": "experiments_exp_0c7da892f472_0_metrics_to_tick_1.json",
+   "status": 200
+  },
+  "/experiments/exp:0c7da892f472-0/metrics?to_tick=2": {
+   "file": "experiments_exp_0c7da892f472_0_metrics_to_tick_2.json",
+   "status": 200
+  },
+  "/experiments/exp:0c7da892f472-0/metrics?to_tick=3": {
+   "file": "experiments_exp_0c7da892f472_0_metrics_to_tick_3.json",
+   "status": 200
+  },
+  "/experiments/exp:0c7da892f472-0/metrics?to_tick=4": {
+   "file": "experiments_exp_0c7da892f472_0_metrics_to_tick_4.json",
+   "status": 200
+  },
+  "/experiments/exp:0c7da892f472-0/metrics?to_tick=5": {
+   "file": "experiments_exp_0c7da892f472_0_metrics_to_tick_5.json",
+   "status": 200
+  },
+  "/experiments/exp:0c7da892f472-0/observations?tick=0": {
+   "file": "experiments_exp_0c7da892f472_0_observations_tick_0.json",
+   "status": 200
+  },
+  "/experiments/exp:0c7da892f472-0/observations?tick=1": {
+   "file": "experiments_exp_0c7da892f472_0_observations_tick_1.json",
+   "status": 200
+  },
+  "/experiments/exp:0c7da892f472-0/observations?tick=2": {
+   "file": "experiments_exp_0c7da892f472_0_observations_tick_2.json",
+   "status": 200
+  },
+  "/experiments/exp:0c7da892f472-0/observations?tick=3": {
+   "file": "experiments_exp_0c7da892f472_0_observations_tick_3.json",
+   "status": 200
+  },
+  "/experiments/exp:0c7da892f472-0/observations?tick=4": {
+   "file": "experiments_exp_0c7da892f472_0_observations_tick_4.json",
+   "status": 200
+  },
+  "/experiments/exp:0c7da892f472-0/observations?tick=5": {
+   "file": "experiments_exp_0c7da892f472_0_observations_tick_5.json",
+   "status": 200
+  },
+  "/experiments/exp:0c7da892f472-0/results": {
+   "file": "experiments_exp_0c7da892f472_0_results.json",
+   "status": 200
+  },
+  "/experiments/exp:0c7da892f472-0/results/sweep:fwd:t0:a0/trace": {
+   "file": "experiments_exp_0c7da892f472_0_results_sweep_fwd_t0_a0_trace.json",
+   "status": 200
+  },
+  "/experiments/exp:0c7da892f472-0/results/sweep:fwd:t1:a0/trace": {
+   "file": "experiments_exp_0c7da892f472_0_results_sweep_fwd_t1_a0_trace.json",
+   "status": 200
+  },
+  "/experiments/exp:0c7da892f472-0/results/sweep:fwd:t2:a0/trace": {
+   "file": "experiments_exp_0c7da892f472_0_results_sweep_fwd_t2_a0_trace.json",
+   "status": 200
+  },
+  "/experiments/exp:0c7da892f472-0/results/sweep:fwd:t3:a0/trace": {
+   "file": "experiments_exp_0c7da892f472_0_results_sweep_fwd_t3_a0_trace.json",
+   "status": 200
+  },
+  "/experiments/exp:0c7da892f472-0/results/sweep:fwd:t4:a0/trace": {
+   "file": "experiments_exp_0c7da892f472_0_results_sweep_fwd_t4_a0_trace.json",
+   "status": 200
+  },
+  "/experiments/exp:0c7da892f472-0/results/sweep:fwd:t5:a0/trace": {
+   "file": "experiments_exp_0c7da892f472_0_results_sweep_fwd_t5_a0_trace.json",
+   "status": 200
+  },
+  "/experiments/exp:0c7da892f472-0/results/sweep:inv:t0:a0/trace": {
+   "file": "experiments_exp_0c7da892f472_0_results_sweep_inv_t0_a0_trace.json",
+   "status": 200
+  },
+  "/experiments/exp:0c7da892f472-0/results/sweep:inv:t1:a0/trace": {
+   "file": "experiments_exp_0c7da892f472_0_results_sweep_inv_t1_a0_trace.json",
+   "status": 200
+  },
+  "/experiments/exp:0c7da892f472-0/results/sweep:inv:t2:a0/trace": {
+   "file": "experiments_exp_0c7da892f472_0_results_sweep_inv_t2_a0_trace.json",
+   "status": 200
+  },
+  "/experiments/exp:0c7da892f472-0/results/sweep:inv:t3:a0/trace": {
+   "file": "experiments_exp_0c7da892f472_0_results_sweep_inv_t3_a0_trace.json",
+   "status": 200
+  },
+  "/experiments/exp:0c7da892f472-0/results/sweep:inv:t4:a0/trace": {
+   "file": "experiments_exp_0c7da892f472_0_results_sweep_inv_t4_a0_trace.json",
+   "status": 200
+  },
+  "/experiments/exp:0c7da892f472-0/results/sweep:inv:t5:a0/trace": {
+   "file": "experiments_exp_0c7da892f472_0_results_sweep_inv_t5_a0_trace.json",
+   "status": 200
+  },
+  "/experiments/exp:0c7da892f472-0/results?tick=0": {
+   "file": "experiments_exp_0c7da892f472_0_results_tick_0.json",
+   "status": 200
+  },
+  "/experiments/exp:0c7da892f472-0/results?tick=0&direction=forward": {
+   "file": "experiments_exp_0c7da892f472_0_results_tick_0_direction_forward.json",
+   "status": 200
+  },
+  "/experiments/exp:0c7da892f472-0/results?tick=0&direction=inverse": {
+   "file": "experiments_exp_0c7da892f472_0_results_tick_0_direction_inverse.json",
+   "status": 200
+  },
+  "/experiments/exp:0c7da892f472-0/results?tick=0&direction=merged": {
+   "file": "experiments_exp_0c7da892f472_0_results_tick_0_direction_merged.json",
+   "status": 200
+  },
+  "/experiments/exp:0c7da892f472-0/results?tick=1": {
+   "file": "experiments_exp_0c7da892f472_0_results_tick_1.json",
+   "status": 200
+  },
+  "/experiments/exp:0c7da892f472-0/results?tick=1&direction=forward": {
+   "file": "experiments_exp_0c7da892f472_0_results_tick_1_direction_forward.json",
+   "status": 200
+  },
+  "/experiments/exp:0c7da892f472-0/results?tick=1&direction=inverse": {
+   "file": "experiments_exp_0c7da892f472_0_results_tick_1_direction_inverse.json",
+   "status": 200
+  },
+  "/experiments/exp:0c7da892f472-0/results?tick=1&direction=merged": {
+   "file": "experiments_exp_0c7da892f472_0_results_tick_1_direction_merged.json",
+   "status": 200
+  },
+  "/experiments/exp:0c7da892f472-0/results?tick=2": {
+   "file": "experiments_exp_0c7da892f472_0_results_tick_2.json",
+   "status": 200
+  },
+  "/experiments/exp:0c7da892f472-0/results?tick=2&direction=forward": {
+   "file": "experiments_exp_0c7da892f472_0_results_tick_2_direction_forward.json",
+   "status": 200
+  },
+  "/experiments/exp:0c7da892f472-0/results?tick=2&direction=inverse": {
+   "file": "experiments_exp_0c7da892f472_0_results_tick_2_direction_inverse.json",
+   "status": 200
+  },
+  "/experiments/exp:0c7da892f472-0/results?tick=2&direction=merged": {
+   "file": "experiments_exp_0c7da892f472_0_results_tick_2_direction_merged.json",
+   "status": 200
+  },
+  "/experiments/exp:0c7da892f472-0/results?tick=3": {
+   "file": "experiments_exp_0c7da892f472_0_results_tick_3.json",
+   "status": 200
+  },
+  "/experiments/exp:0c7da892f472-0/results?tick=3&direction=forward": {
+   "file": "experiments_exp_0c7da892f472_0_results_tick_3_direction_forward.json",
+   "status": 200
+  },
+  "/experiments/exp:0c7da892f472-0/results?tick=3&direction=inverse": {
+   "file": "experiments_exp_0c7da892f472_0_results_tick_3_direction_inverse.json",
+   "status": 200
+  },
+  "/experiments/exp:0c7da892f472-0/results?tick=3&direction=merged": {
+   "file": "experiments_exp_0c7da892f472_0_results_tick_3_direction_merged.json",
+   "status": 200
+  },
+  "/experiments/exp:0c7da892f472-0/results?tick=4": {
+   "file": "experiments_exp_0c7da892f472_0_results_tick_4.json",
+   "status": 200
+  },
+  "/experiments/exp:0c7da892f472-0/results?tick=4&direction=forward": {
+   "file": "experiments_exp_0c7da892f472_0_results_tick_4_direction_forward.json",
+   "status": 200
+  },
+  "/experiments/exp:0c7da892f472-0/results?tick=4&direction=inverse": {
+   "file": "experiments_exp_0c7da892f472_0_results_tick_4_direction_inverse.json",
+   "status": 200
+  },
+  "/experiments/exp:0c7da892f472-0/results?tick=4&direction=merged": {
+   "file": "experiments_exp_0c7da892f472_0_results_tick_4_direction_merged.json",
+   "status": 200
+  },
+  "/experiments/exp:0c7da892f472-0/results?tick=5": {
+   "file": "experiments_exp_0c7da892f472_0_results_tick_5.json",
+   "status": 200
+  },
+  "/experiments/exp:0c7da892f472-0/results?tick=5&attempt=1": {
+   "file": "experiments_exp_0c7da892f472_0_results_tick_5_attempt_1.json",
+   "status": 200
+  },
+  "/experiments/exp:0c7da892f472-0/results?tick=5&direction=forward": {
+   "file": "experiments_exp_0c7da892f472_0_results_tick_5_direction_forward.json",
+   "status": 200
+  },
+  "/experiments/exp:0c7da892f472-0/results?tick=5&direction=inverse": {
+   "file": "experiments_exp_0c7da892f472_0_results_tick_5_direction_inverse.json",
+   "status": 200
+  },
+  "/experiments/exp:0c7da892f472-0/results?tick=5&direction=merged": {
+   "file": "experiments_exp_0c7da892f472_0_results_tick_5_direction_merged.json",
+   "status": 200
+  },
+  "/experiments/exp:0c7da892f472-0/states?tick=0": {
+   "file": "experiments_exp_0c7da892f472_0_states_tick_0.json",
+   "status": 200
+  },
+  "/experiments/exp:0c7da892f472-0/states?tick=1": {
+   "file": "experiments_exp_0c7da892f472_0_states_tick_1.json",
+   "status": 200
+  },
+  "/experiments/exp:0c7da892f472-0/states?tick=2": {
+   "file": "experiments_exp_0c7da892f472_0_states_tick_2.json",
+   "status": 200
+  },
+  "/experiments/exp:0c7da892f472-0/states?tick=3": {
+   "file": "experiments_exp_0c7da892f472_0_states_tick_3.json",
+   "status": 200
+  },
+  "/experiments/exp:0c7da892f472-0/states?tick=4": {
+   "file": "experiments_exp_0c7da892f472_0_states_tick_4.json",
+   "status": 200
+  },
+  "/experiments/exp:0c7da892f472-0/states?tick=5": {
+   "file": "experiments_exp_0c7da892f472_0_states_tick_5.json",
+   "status": 200
+  },
+  "/experiments/exp:0c7da892f472-0/topology": {
+   "file": "experiments_exp_0c7da892f472_0_topology.json",
+   "status": 200
+  },
+  "/experiments/exp:1ad306a9d017-0": {
+   "file": "experiments_exp_1ad306a9d017_0.json",
+   "status": 200
+  },
+  "/experiments/exp:1ad306a9d017-0/events": {
+   "file": "experiments_exp_1ad306a9d017_0_events.json",
+   "status": 200
+  },
+  "/experiments/exp:1ad306a9d017-0/events?from=0&to=0": {
+   "file": "experiments_exp_1ad306a9d017_0_events_from_0_to_0.json",
+   "status": 200
+  },
+  "/experiments/exp:1ad306a9d017-0/events?from=0&to=1": {
+   "file": "experiments_exp_1ad306a9d017_0_events_from_0_to_1.json",
+   "status": 200
+  },
+  "/experiments/exp:1ad306a9d017-0/events?from=0&to=2": {
+   "file": "experiments_exp_1ad306a9d017_0_events_from_0_to_2.json",
+   "status": 200
+  },
+  "/experiments/exp:1ad306a9d017-0/events?from=0&to=3": {
+   "file": "experiments_exp_1ad306a9d017_0_events_from_0_to_3.json",
+   "status": 200
+  },
+  "/experiments/exp:1ad306a9d017-0/events?from=0&to=4": {
+   "file": "experiments_exp_1ad306a9d017_0_events_from_0_to_4.json",
+   "status": 200
+  },
+  "/experiments/exp:1ad306a9d017-0/events?from=0&to=5": {
+   "file": "experiments_exp_1ad306a9d017_0_events_from_0_to_5.json",
+   "status": 200
+  },
+  "/experiments/exp:1ad306a9d017-0/governance?tick=0&space=A": {
+   "file": "experiments_exp_1ad306a9d017_0_governance_tick_0_space_A.json",
+   "status": 200
+  },
+  "/experiments/exp:1ad306a9d017-0/governance?tick=0&space=O": {
+   "file": "experiments_exp_1ad306a9d017_0_governance_tick_0_space_O.json",
+   "status": 200
+  },
+  "/experiments/exp:1ad306a9d017-0/governance?tick=0&space=R": {
+   "file": "experiments_exp_1ad306a9d017_0_governance_tick_0_space_R.json",
+   "status": 200
+  },
+  "/experiments/exp:1ad306a9d017-0/governance?tick=1&space=A": {
+   "file": "experiments_exp_1ad306a9d017_0_governance_tick_1_space_A.json",
+   "status": 200
+  },
+  "/experiments/exp:1ad306a9d017-0/governance?tick=1&space=O": {
+   "file": "experiments_exp_1ad306a9d017_0_governance_tick_1_space_O.json",
+   "status": 200
+  },
+  "/experiments/exp:1ad306a9d017-0/governance?tick=1&space=R": {
+   "file": "experiments_exp_1ad306a9d017_0_governance_tick_1_space_R.json",
+   "status": 200
+  },
+  "/experiments/exp:1ad306a9d017-0/governance?tick=2&space=A": {
+   "file": "experiments_exp_1ad306a9d017_0_governance_tick_2_space_A.json",
+   "status": 200
+  },
+  "/experiments/exp:1ad306a9d017-0/governance?tick=2&space=O": {
+   "file": "experiments_exp_1ad306a9d017_0_governance_tick_2_space_O.json",
+   "status": 200
+  },
+  "/experiments/exp:1ad306a9d017-0/governance?tick=2&space=R": {
+   "file": "experiments_exp_1ad306a9d017_0_governance_tick_2_space_R.json",
+   "status": 200
+  },
+  "/experiments/exp:1ad306a9d017-0/governance?tick=3&space=A": {
+   "file": "experiments_exp_1ad306a9d017_0_governance_tick_3_space_A.json",
+   "status": 200
+  },
+  "/experiments/exp:1ad306a9d017-0/governance?tick=3&space=O": {
+   "file": "experiments_exp_1ad306a9d017_0_governance_tick_3_space_O.json",
+   "status": 200
+  },
+  "/experiments/exp:1ad306a9d017-0/governance?tick=3&space=R": {
+   "file": "experiments_exp_1ad306a9d017_0_governance_tick_3_space_R.json",
+   "status": 200
+  },
+  "/experiments/exp:1ad306a9d017-0/governance?tick=4&space=A": {
+   "file": "experiments_exp_1ad306a9d017_0_governance_tick_4_space_A.json",
+   "status": 200
+  },
+  "/experiments/exp:1ad306a9d017-0/governance?tick=4&space=O": {
+   "file": "experiments_exp_1ad306a9d017_0_governance_tick_4_space_O.json",
+   "status": 200
+  },
+  "/experiments/exp:1ad306a9d017-0/governance?tick=4&space=R": {
+   "file": "experiments_exp_1ad306a9d017_0_governance_tick_4_space_R.json",
+   "status": 200
+  },
+  "/experiments/exp:1ad306a9d017-0/governance?tick=5&space=A": {
+   "file": "experiments_exp_1ad306a9d017_0_governance_tick_5_space_A.json",
+   "status": 200
+  },
+  "/experiments/exp:1ad306a9d017-0/governance?tick=5&space=O": {
+   "file": "experiments_exp_1ad306a9d017_0_governance_tick_5_space_O.json",
+   "status": 200
+  },
+  "/experiments/exp:1ad306a9d017-0/governance?tick=5&space=R": {
+   "file": "experiments_exp_1ad306a9d017_0_governance_tick_5_space_R.json",
+   "status": 200
+  },
+  "/experiments/exp:1ad306a9d017-0/metrics": {
+   "file": "experiments_exp_1ad306a9d017_0_metrics.json",
+   "status": 200
+  },
+  "/experiments/exp:1ad306a9d017-0/metrics?aggregation=PER_TICK&tick=0": {
+   "file": "experiments_exp_1ad306a9d017_0_metrics_aggregation_PER_TICK_tick_0.json",
+   "status": 200
+  },
+  "/experiments/exp:1ad306a9d017-0/metrics?aggregation=PER_TICK&tick=1": {
+   "file": "experiments_exp_1ad306a9d017_0_metrics_aggregation_PER_TICK_tick_1.json",
+   "status": 200
+  },
+  "/experiments/exp:1ad306a9d017-0/metrics?aggregation=PER_TICK&tick=2": {
+   "file": "experiments_exp_1ad306a9d017_0_metrics_aggregation_PER_TICK_tick_2.json",
+   "status": 200
+  },
+  "/experiments/exp:1ad306a9d017-0/metrics?aggregation=PER_TICK&tick=3": {
+   "file": "experiments_exp_1ad306a9d017_0_metrics_aggregation_PER_TICK_tick_3.json",
+   "status": 200
+  },
+  "/experiments/exp:1ad306a9d017-0/metrics?aggregation=PER_TICK&tick=4": {
+   "file": "experiments_exp_1ad306a9d017_0_metrics_aggregation_PER_TICK_tick_4.json",
+   "status": 200
+  },
+  "/experiments/exp:1ad306a9d017-0/metrics?aggregation=PER_TICK&tick=5": {
+   "file": "experiments_exp_1ad306a9d017_0_metrics_aggregation_PER_TICK_tick_5.json",
+   "status": 200
+  },
+  "/experiments/exp:1ad306a9d017-0/metrics?aggregation=TIME_MEAN_EXPLICIT": {
+   "file": "experiments_exp_1ad306a9d017_0_metrics_aggregation_TIME_MEAN_EXPLICIT.json",
+   "status": 200
+  },
+  "/experiments/exp:1ad306a9d017-0/metrics?to_tick=0": {
+   "file": "experiments_exp_1ad306a9d017_0_metrics_to_tick_0.json",
+   "status": 200
+  },
+  "/experiments/exp:1ad306a9d017-0/metrics?to_tick=1": {
+   "file": "experiments_exp_1ad306a9d017_0_metrics_to_tick_1.json",
+   "status": 200
+  },
+  "/experiments/exp:1ad306a9d017-0/metrics?to_tick=2": {
+   "file": "experiments_exp_1ad306a9d017_0_metrics_to_tick_2.json",
+   "status": 200
+  },
+  "/experiments/exp:1ad306a9d017-0/metrics?to_tick=3": {
+   "file": "experiments_exp_1ad306a9d017_0_metrics_to_tick_3.json",
+   "status": 200
+  },
+  "/experiments/exp:1ad306a9d017-0/metrics?to_tick=4": {
+   "file": "experiments_exp_1ad306a9d017_0_metrics_to_tick_4.json",
+   "status": 200
+  },
+  "/experiments/exp:1ad306a9d017-0/metrics?to_tick=5": {
+   "file": "experiments_exp_1ad306a9d017_0_metrics_to_tick_5.json",
+   "status": 200
+  },
+  "/experiments/exp:1ad306a9d017-0/observations?tick=0": {
+   "file": "experiments_exp_1ad306a9d017_0_observations_tick_0.json",
+   "status": 200
+  },
+  "/experiments/exp:1ad306a9d017-0/observations?tick=1": {
+   "file": "experiments_exp_1ad306a9d017_0_observations_tick_1.json",
+   "status": 200
+  },
+  "/experiments/exp:1ad306a9d017-0/observations?tick=2": {
+   "file": "experiments_exp_1ad306a9d017_0_observations_tick_2.json",
+   "status": 200
+  },
+  "/experiments/exp:1ad306a9d017-0/observations?tick=3": {
+   "file": "experiments_exp_1ad306a9d017_0_observations_tick_3.json",
+   "status": 200
+  },
+  "/experiments/exp:1ad306a9d017-0/observations?tick=4": {
+   "file": "experiments_exp_1ad306a9d017_0_observations_tick_4.json",
+   "status": 200
+  },
+  "/experiments/exp:1ad306a9d017-0/observations?tick=5": {
+   "file": "experiments_exp_1ad306a9d017_0_observations_tick_5.json",
+   "status": 200
+  },
+  "/experiments/exp:1ad306a9d017-0/results": {
+   "file": "experiments_exp_1ad306a9d017_0_results.json",
+   "status": 200
+  },
+  "/experiments/exp:1ad306a9d017-0/results/sweep:fwd:t0:a0/trace": {
+   "file": "experiments_exp_1ad306a9d017_0_results_sweep_fwd_t0_a0_trace.json",
+   "status": 200
+  },
+  "/experiments/exp:1ad306a9d017-0/results/sweep:fwd:t1:a0/trace": {
+   "file": "experiments_exp_1ad306a9d017_0_results_sweep_fwd_t1_a0_trace.json",
+   "status": 200
+  },
+  "/experiments/exp:1ad306a9d017-0/results/sweep:fwd:t2:a0/trace": {
+   "file": "experiments_exp_1ad306a9d017_0_results_sweep_fwd_t2_a0_trace.json",
+   "status": 200
+  },
+  "/experiments/exp:1ad306a9d017-0/results/sweep:fwd:t3:a0/trace": {
+   "file": "experiments_exp_1ad306a9d017_0_results_sweep_fwd_t3_a0_trace.json",
+   "status": 200
+  },
+  "/experiments/exp:1ad306a9d017-0/results/sweep:fwd:t4:a0/trace": {
+   "file": "experiments_exp_1ad306a9d017_0_results_sweep_fwd_t4_a0_trace.json",
+   "status": 200
+  },
+  "/experiments/exp:1ad306a9d017-0/results/sweep:fwd:t5:a0/trace": {
+   "file": "experiments_exp_1ad306a9d017_0_results_sweep_fwd_t5_a0_trace.json",
+   "status": 200
+  },
+  "/experiments/exp:1ad306a9d017-0/results/sweep:inv:t0:a0/trace": {
+   "file": "experiments_exp_1ad306a9d017_0_results_sweep_inv_t0_a0_trace.json",
+   "status": 200
+  },
+  "/experiments/exp:1ad306a9d017-0/results/sweep:inv:t1:a0/trace": {
+   "file": "experiments_exp_1ad306a9d017_0_results_sweep_inv_t1_a0_trace.json",
+   "status": 200
+  },
+  "/experiments/exp:1ad306a9d017-0/results/sweep:inv:t2:a0/trace": {
+   "file": "experiments_exp_1ad306a9d017_0_results_sweep_inv_t2_a0_trace.json",
+   "status": 200
+  },
+  "/experiments/exp:1ad306a9d017-0/results/sweep:inv:t3:a0/trace": {
+   "file": "experiments_exp_1ad306a9d017_0_results_sweep_inv_t3_a0_trace.json",
+   "status": 200
+  },
+  "/experiments/exp:1ad306a9d017-0/results/sweep:inv:t4:a0/trace": {
+   "file": "experiments_exp_1ad306a9d017_0_results_sweep_inv_t4_a0_trace.json",
+   "status": 200
+  },
+  "/experiments/exp:1ad306a9d017-0/results/sweep:inv:t5:a0/trace": {
+   "file": "experiments_exp_1ad306a9d017_0_results_sweep_inv_t5_a0_trace.json",
+   "status": 200
+  },
+  "/experiments/exp:1ad306a9d017-0/results?tick=0": {
+   "file": "experiments_exp_1ad306a9d017_0_results_tick_0.json",
+   "status": 200
+  },
+  "/experiments/exp:1ad306a9d017-0/results?tick=0&direction=forward": {
+   "file": "experiments_exp_1ad306a9d017_0_results_tick_0_direction_forward.json",
+   "status": 200
+  },
+  "/experiments/exp:1ad306a9d017-0/results?tick=0&direction=inverse": {
+   "file": "experiments_exp_1ad306a9d017_0_results_tick_0_direction_inverse.json",
+   "status": 200
+  },
+  "/experiments/exp:1ad306a9d017-0/results?tick=0&direction=merged": {
+   "file": "experiments_exp_1ad306a9d017_0_results_tick_0_direction_merged.json",
+   "status": 200
+  },
+  "/experiments/exp:1ad306a9d017-0/results?tick=1": {
+   "file": "experiments_exp_1ad306a9d017_0_results_tick_1.json",
+   "status": 200
+  },
+  "/experiments/exp:1ad306a9d017-0/results?tick=1&direction=forward": {
+   "file": "experiments_exp_1ad306a9d017_0_results_tick_1_direction_forward.json",
+   "status": 200
+  },
+  "/experiments/exp:1ad306a9d017-0/results?tick=1&direction=inverse": {
+   "file": "experiments_exp_1ad306a9d017_0_results_tick_1_direction_inverse.json",
+   "status": 200
+  },
+  "/experiments/exp:1ad306a9d017-0/results?tick=1&direction=merged": {
+   "file": "experiments_exp_1ad306a9d017_0_results_tick_1_direction_merged.json",
+   "status": 200
+  },
+  "/experiments/exp:1ad306a9d017-0/results?tick=2": {
+   "file": "experiments_exp_1ad306a9d017_0_results_tick_2.json",
+   "status": 200
+  },
+  "/experiments/exp:1ad306a9d017-0/results?tick=2&direction=forward": {
+   "file": "experiments_exp_1ad306a9d017_0_results_tick_2_direction_forward.json",
+   "status": 200
+  },
+  "/experiments/exp:1ad306a9d017-0/results?tick=2&direction=inverse": {
+   "file": "experiments_exp_1ad306a9d017_0_results_tick_2_direction_inverse.json",
+   "status": 200
+  },
+  "/experiments/exp:1ad306a9d017-0/results?tick=2&direction=merged": {
+   "file": "experiments_exp_1ad306a9d017_0_results_tick_2_direction_merged.json",
+   "status": 200
+  },
+  "/experiments/exp:1ad306a9d017-0/results?tick=3": {
+   "file": "experiments_exp_1ad306a9d017_0_results_tick_3.json",
+   "status": 200
+  },
+  "/experiments/exp:1ad306a9d017-0/results?tick=3&direction=forward": {
+   "file": "experiments_exp_1ad306a9d017_0_results_tick_3_direction_forward.json",
+   "status": 200
+  },
+  "/experiments/exp:1ad306a9d017-0/results?tick=3&direction=inverse": {
+   "file": "experiments_exp_1ad306a9d017_0_results_tick_3_direction_inverse.json",
+   "status": 200
+  },
+  "/experiments/exp:1ad306a9d017-0/results?tick=3&direction=merged": {
+   "file": "experiments_exp_1ad306a9d017_0_results_tick_3_direction_merged.json",
+   "status": 200
+  },
+  "/experiments/exp:1ad306a9d017-0/results?tick=4": {
+   "file": "experiments_exp_1ad306a9d017_0_results_tick_4.json",
+   "status": 200
+  },
+  "/experiments/exp:1ad306a9d017-0/results?tick=4&direction=forward": {
+   "file": "experiments_exp_1ad306a9d017_0_results_tick_4_direction_forward.json",
+   "status": 200
+  },
+  "/experiments/exp:1ad306a9d017-0/results?tick=4&direction=inverse": {
+   "file": "experiments_exp_1ad306a9d017_0_results_tick_4_direction_inverse.json",
+   "status": 200
+  },
+  "/experiments/exp:1ad306a9d017-0/results?tick=4&direction=merged": {
+   "file": "experiments_exp_1ad306a9d017_0_results_tick_4_direction_merged.json",
+   "status": 200
+  },
+  "/experiments/exp:1ad306a9d017-0/results?tick=5": {
+   "file": "experiments_exp_1ad306a9d017_0_results_tick_5.json",
+   "status": 200
+  },
+  "/experiments/exp:1ad306a9d017-0/results?tick=5&direction=forward": {
+   "file": "experiments_exp_1ad306a9d017_0_results_tick_5_direction_forward.json",
+   "status": 200
+  },
+  "/experiments/exp:1ad306a9d017-0/results?tick=5&direction=inverse": {
+   "file": "experiments_exp_1ad306a9d017_0_results_tick_5_direction_inverse.json",
+   "status": 200
+  },
+  "/experiments/exp:1ad306a9d017-0/results?tick=5&direction=merged": {
+   "file": "experiments_exp_1ad306a9d017_0_results_tick_5_direction_merged.json",
+   "status": 200
+  },
+  "/experiments/exp:1ad306a9d017-0/states?tick=0": {
+   "file": "experiments_exp_1ad306a9d017_0_states_tick_0.json",
+   "status": 200
+  },
+  "/experiments/exp:1ad306a9d017-0/states?tick=1": {
+   "file": "experiments_exp_1ad306a9d017_0_states_tick_1.json",
+   "status": 200
+  },
+  "/experiments/exp:1ad306a9d017-0/states?tick=2": {
+   "file": "experiments_exp_1ad306a9d017_0_states_tick_2.json",
+   "status": 200
+  },
+  "/experiments/exp:1ad306a9d017-0/states?tick=3": {
+   "file": "experiments_exp_1ad306a9d017_0_states_tick_3.json",
+   "status": 200
+  },
+  "/experiments/exp:1ad306a9d017-0/states?tick=4": {
+   "file": "experiments_exp_1ad306a9d017_0_states_tick_4.json",
+   "status": 200
+  },
+  "/experiments/exp:1ad306a9d017-0/states?tick=5": {
+   "file": "experiments_exp_1ad306a9d017_0_states_tick_5.json",
+   "status": 200
+  },
+  "/experiments/exp:1ad306a9d017-0/topology": {
+   "file": "experiments_exp_1ad306a9d017_0_topology.json",
+   "status": 200
+  },
+  "/experiments/exp:a10ff3383bfc-0": {
+   "file": "experiments_exp_a10ff3383bfc_0.json",
+   "status": 200
+  },
+  "/experiments/exp:a10ff3383bfc-0/events": {
+   "file": "experiments_exp_a10ff3383bfc_0_events.json",
+   "status": 200
+  },
+  "/experiments/exp:a10ff3383bfc-0/events?from=0&to=0": {
+   "file": "experiments_exp_a10ff3383bfc_0_events_from_0_to_0.json",
+   "status": 200
+  },
+  "/experiments/exp:a10ff3383bfc-0/events?from=0&to=1": {
+   "file": "experiments_exp_a10ff3383bfc_0_events_from_0_to_1.json",
+   "status": 200
+  },
+  "/experiments/exp:a10ff3383bfc-0/events?from=0&to=2": {
+   "file": "experiments_exp_a10ff3383bfc_0_events_from_0_to_2.json",
+   "status": 200
+  },
+  "/experiments/exp:a10ff3383bfc-0/events?from=0&to=3": {
+   "file": "experiments_exp_a10ff3383bfc_0_events_from_0_to_3.json",
+   "status": 200
+  },
+  "/experiments/exp:a10ff3383bfc-0/events?from=0&to=4": {
+   "file": "experiments_exp_a10ff3383bfc_0_events_from_0_to_4.json",
+   "status": 200
+  },
+  "/experiments/exp:a10ff3383bfc-0/events?from=0&to=5": {
+   "file": "experiments_exp_a10ff3383bfc_0_events_from_0_to_5.json",
+   "status": 200
+  },
+  "/experiments/exp:a10ff3383bfc-0/governance?tick=0&space=A": {
+   "file": "experiments_exp_a10ff3383bfc_0_governance_tick_0_space_A.json",
+   "status": 200
+  },
+  "/experiments/exp:a10ff3383bfc-0/governance?tick=0&space=O": {
+   "file": "experiments_exp_a10ff3383bfc_0_governance_tick_0_space_O.json",
+   "status": 200
+  },
+  "/experiments/exp:a10ff3383bfc-0/governance?tick=0&space=R": {
+   "file": "experiments_exp_a10ff3383bfc_0_governance_tick_0_space_R.json",
+   "status": 200
+  },
+  "/experiments/exp:a10ff3383bfc-0/governance?tick=1&space=A": {
+   "file": "experiments_exp_a10ff3383bfc_0_governance_tick_1_space_A.json",
+   "status": 200
+  },
+  "/experiments/exp:a10ff3383bfc-0/governance?tick=1&space=O": {
+   "file": "experiments_exp_a10ff3383bfc_0_governance_tick_1_space_O.json",
+   "status": 200
+  },
+  "/experiments/exp:a10ff3383bfc-0/governance?tick=1&space=R": {
+   "file": "experiments_exp_a10ff3383bfc_0_governance_tick_1_space_R.json",
+   "status": 200
+  },
+  "/experiments/exp:a10ff3383bfc-0/governance?tick=2&space=A": {
+   "file": "experiments_exp_a10ff3383bfc_0_governance_tick_2_space_A.json",
+   "status": 200
+  },
+  "/experiments/exp:a10ff3383bfc-0/governance?tick=2&space=O": {
+   "file": "experiments_exp_a10ff3383bfc_0_governance_tick_2_space_O.json",
+   "status": 200
+  },
+  "/experiments/exp:a10ff3383bfc-0/governance?tick=2&space=R": {
+   "file": "experiments_exp_a10ff3383bfc_0_governance_tick_2_space_R.json",
+   "status": 200
+  },
+  "/experiments/exp:a10ff3383bfc-0/governance?tick=3&space=A": {
+   "file": "experiments_exp_a10ff3383bfc_0_governance_tick_3_space_A.json",
+   "status": 200
+  },
+  "/experiments/exp:a10ff3383bfc-0/governance?tick=3&space=O": {
+   "file": "experiments_exp_a10ff3383bfc_0_governance_tick_3_space_O.json",
+   "status": 200
+  },
+  "/experiments/exp:a10ff3383bfc-0/governance?tick=3&space=R": {
+   "file": "experiments_exp_a10ff3383bfc_0_governance_tick_3_space_R.json",
+   "status": 200
+  },
+  "/experiments/exp:a10ff3383bfc-0/governance?tick=4&space=A": {
+   "file": "experiments_exp_a10ff3383bfc_0_governance_tick_4_space_A.json",
+   "status": 200
+  },
+  "/experiments/exp:a10ff3383bfc-0/governance?tick=4&space=O": {
+   "file": "experiments_exp_a10ff3383bfc_0_governance_tick_4_space_O.json",
+   "status": 200
+  },
+  "/experiments/exp:a10ff3383bfc-0/governance?tick=4&space=R": {
+   "file": "experiments_exp_a10ff3383bfc_0_governance_tick_4_space_R.json",
+   "status": 200
+  },
+  "/experiments/exp:a10ff3383bfc-0/governance?tick=5&space=A": {
+   "file": "experiments_exp_a10ff3383bfc_0_governance_tick_5_space_A.json",
+   "status": 200
+  },
+  "/experiments/exp:a10ff3383bfc-0/governance?tick=5&space=O": {
+   "file": "experiments_exp_a10ff3383bfc_0_governance_tick_5_space_O.json",
+   "status": 200
+  },
+  "/experiments/exp:a10ff3383bfc-0/governance?tick=5&space=R": {
+   "file": "experiments_exp_a10ff3383bfc_0_governance_tick_5_space_R.json",
+   "status": 200
+  },
+  "/experiments/exp:a10ff3383bfc-0/metrics": {
+   "file": "experiments_exp_a10ff3383bfc_0_metrics.json",
+   "status": 200
+  },
+  "/experiments/exp:a10ff3383bfc-0/metrics?aggregation=PER_TICK&tick=0": {
+   "file": "experiments_exp_a10ff3383bfc_0_metrics_aggregation_PER_TICK_tick_0.json",
+   "status": 200
+  },
+  "/experiments/exp:a10ff3383bfc-0/metrics?aggregation=PER_TICK&tick=1": {
+   "file": "experiments_exp_a10ff3383bfc_0_metrics_aggregation_PER_TICK_tick_1.json",
+   "status": 200
+  },
+  "/experiments/exp:a10ff3383bfc-0/metrics?aggregation=PER_TICK&tick=2": {
+   "file": "experiments_exp_a10ff3383bfc_0_metrics_aggregation_PER_TICK_tick_2.json",
+   "status": 200
+  },
+  "/experiments/exp:a10ff3383bfc-0/metrics?aggregation=PER_TICK&tick=3": {
+   "file": "experiments_exp_a10ff3383bfc_0_metrics_aggregation_PER_TICK_tick_3.json",
+   "status": 200
+  },
+  "/experiments/exp:a10ff3383bfc-0/metrics?aggregation=PER_TICK&tick=4": {
+   "file": "experiments_exp_a10ff3383bfc_0_metrics_aggregation_PER_TICK_tick_4.json",
+   "status": 200
+  },
+  "/experiments/exp:a10ff3383bfc-0/metrics?aggregation=PER_TICK&tick=5": {
+   "file": "experiments_exp_a10ff3383bfc_0_metrics_aggregation_PER_TICK_tick_5.json",
+   "status": 200
+  },
+  "/experiments/exp:a10ff3383bfc-0/metrics?aggregation=TIME_MEAN_EXPLICIT": {
+   "file": "experiments_exp_a10ff3383bfc_0_metrics_aggregation_TIME_MEAN_EXPLICIT.json",
+   "status": 200
+  },
+  "/experiments/exp:a10ff3383bfc-0/metrics?to_tick=0": {
+   "file": "experiments_exp_a10ff3383bfc_0_metrics_to_tick_0.json",
+   "status": 200
+  },
+  "/experiments/exp:a10ff3383bfc-0/metrics?to_tick=1": {
+   "file": "experiments_exp_a10ff3383bfc_0_metrics_to_tick_1.json",
+   "status": 200
+  },
+  "/experiments/exp:a10ff3383bfc-0/metrics?to_tick=2": {
+   "file": "experiments_exp_a10ff3383bfc_0_metrics_to_tick_2.json",
+   "status": 200
+  },
+  "/experiments/exp:a10ff3383bfc-0/metrics?to_tick=3": {
+   "file": "experiments_exp_a10ff3383bfc_0_metrics_to_tick_3.json",
+   "status": 200
+  },
+  "/experiments/exp:a10ff3383bfc-0/metrics?to_tick=4": {
+   "file": "experiments_exp_a10ff3383bfc_0_metrics_to_tick_4.json",
+   "status": 200
+  },
+  "/experiments/exp:a10ff3383bfc-0/metrics?to_tick=5": {
+   "file": "experiments_exp_a10ff3383bfc_0_metrics_to_tick_5.json",
+   "status": 200
+  },
+  "/experiments/exp:a10ff3383bfc-0/observations?tick=0": {
+   "file": "experiments_exp_a10ff3383bfc_0_observations_tick_0.json",
+   "status": 200
+  },
+  "/experiments/exp:a10ff3383bfc-0/observations?tick=1": {
+   "file": "experiments_exp_a10ff3383bfc_0_observations_tick_1.json",
+   "status": 200
+  },
+  "/experiments/exp:a10ff3383bfc-0/observations?tick=2": {
+   "file": "experiments_exp_a10ff3383bfc_0_observations_tick_2.json",
+   "status": 200
+  },
+  "/experiments/exp:a10ff3383bfc-0/observations?tick=3": {
+   "file": "experiments_exp_a10ff3383bfc_0_observations_tick_3.json",
+   "status": 200
+  },
+  "/experiments/exp:a10ff3383bfc-0/observations?tick=4": {
+   "file": "experiments_exp_a10ff3383bfc_0_observations_tick_4.json",
+   "status": 200
+  },
+  "/experiments/exp:a10ff3383bfc-0/observations?tick=5": {
+   "file": "experiments_exp_a10ff3383bfc_0_observations_tick_5.json",
+   "status": 200
+  },
+  "/experiments/exp:a10ff3383bfc-0/results": {
+   "file": "experiments_exp_a10ff3383bfc_0_results.json",
+   "status": 200
+  },
+  "/experiments/exp:a10ff3383bfc-0/results/sweep:fwd:t0:a0/trace": {
+   "file": "experiments_exp_a10ff3383bfc_0_results_sweep_fwd_t0_a0_trace.json",
+   "status": 200
+  },
+  "/experiments/exp:a10ff3383bfc-0/results/sweep:fwd:t1:a0/trace": {
+   "file": "experiments_exp_a10ff3383bfc_0_results_sweep_fwd_t1_a0_trace.json",
+   "status": 200
+  },
+  "/experiments/exp:a10ff3383bfc-0/results/sweep:fwd:t2:a0/trace": {
+   "file": "experiments_exp_a10ff3383bfc_0_results_sweep_fwd_t2_a0_trace.json",
+   "status": 200
+  },
+  "/experiments/exp:a10ff3383bfc-0/results/sweep:fwd:t3:a0/trace": {
+   "file": "experiments_exp_a10ff3383bfc_0_results_sweep_fwd_t3_a0_trace.json",
+   "status": 200
+  },
+  "/experiments/exp:a10ff3383bfc-0/results/sweep:fwd:t4:a0/trace": {
+   "file": "experiments_exp_a10ff3383bfc_0_results_sweep_fwd_t4_a0_trace.json",
+   "status": 200
+  },
+  "/experiments/exp:a10ff3383bfc-0/results/sweep:fwd:t5:a0/trace": {
+   "file": "experiments_exp_a10ff3383bfc_0_results_sweep_fwd_t5_a0_trace.json",
+   "status": 200
+  },
+  "/experiments/exp:a10ff3383bfc-0/results/sweep:inv:t0:a0/trace": {
+   "file": "experiments_exp_a10ff3383bfc_0_results_sweep_inv_t0_a0_trace.json",
+   "status": 200
+  },
+  "/experiments/exp:a10ff3383bfc-0/results/sweep:inv:t1:a0/trace": {
+   "file": "experiments_exp_a10ff3383bfc_0_results_sweep_inv_t1_a0_trace.json",
+   "status": 200
+  },
+  "/experiments/exp:a10ff3383bfc-0/results/sweep:inv:t2:a0/trace": {
+   "file": "experiments_exp_a10ff3383bfc_0_results_sweep_inv_t2_a0_trace.json",
+   "status": 200
+  },
+  "/experiments/exp:a10ff3383bfc-0/results/sweep:inv:t3:a0/trace": {
+   "file": "experiments_exp_a10ff3383bfc_0_results_sweep_inv_t3_a0_trace.json",
+   "status": 200
+  },
+  "/experiments/exp:a10ff3383bfc-0/results/sweep:inv:t4:a0/trace": {
+   "file": "experiments_exp_a10ff3383bfc_0_results_sweep_inv_t4_a0_trace.json",
+   "status": 200
+  },
+  "/experiments/exp:a10ff3383bfc-0/results/sweep:inv:t5:a0/trace": {
+   "file": "experiments_exp_a10ff3383bfc_0_results_sweep_inv_t5_a0_trace.json",
+   "status": 200
+  },
+  "/experiments/exp:a10ff3383bfc-0/results?tick=0": {
+   "file": "experiments_exp_a10ff3383bfc_0_results_tick_0.json",
+   "status": 200
+  },
+  "/experiments/exp:a10ff3383bfc-0/results?tick=0&direction=forward": {
+   "file": "experiments_exp_a10ff3383bfc_0_results_tick_0_direction_forward.json",
+   "status": 200
+  },
+  "/experiments/exp:a10ff3383bfc-0/results?tick=0&direction=inverse": {
+   "file": "experiments_exp_a10ff3383bfc_0_results_tick_0_direction_inverse.json",
+   "status": 200
+  },
+  "/experiments/exp:a10ff3383bfc-0/results?tick=0&direction=merged": {
+   "file": "experiments_exp_a10ff3383bfc_0_results_tick_0_direction_merged.json",
+   "status": 200
+  },
+  "/experiments/exp:a10ff3383bfc-0/results?tick=1": {
+   "file": "experiments_exp_a10ff3383bfc_0_results_tick_1.json",
+   "status": 200
+  },
+  "/experiments/exp:a10ff3383bfc-0/results?tick=1&direction=forward": {
+   "file": "experiments_exp_a10ff3383bfc_0_results_tick_1_direction_forward.json",
+   "status": 200
+  },
+  "/experiments/exp:a10ff3383bfc-0/results?tick=1&direction=inverse": {
+   "file": "experiments_exp_a10ff3383bfc_0_results_tick_1_direction_inverse.json",
+   "status": 200
+  },
+  "/experiments/exp:a10ff3383bfc-0/results?tick=1&direction=merged": {
+   "file": "experiments_exp_a10ff3383bfc_0_results_tick_1_direction_merged.json",
+   "status": 200
+  },
+  "/experiments/exp:a10ff3383bfc-0/results?tick=2": {
+   "file": "experiments_exp_a10ff3383bfc_0_results_tick_2.json",
+   "status": 200
+  },
+  "/experiments/exp:a10ff3383bfc-0/results?tick=2&direction=forward": {
+   "file": "experiments_exp_a10ff3383bfc_0_results_tick_2_direction_forward.json",
+   "status": 200
+  },
+  "/experiments/exp:a10ff3383bfc-0/results?tick=2&direction=inverse": {
+   "file": "experiments_exp_a10ff3383bfc_0_results_tick_2_direction_inverse.json",
+   "status": 200
+  },
+  "/experiments/exp:a10ff3383bfc-0/results?tick=2&direction=merged": {
+   "file": "experiments_exp_a10ff3383bfc_0_results_tick_2_direction_merged.json",
+   "status": 200
+  },
+  "/experiments/exp:a10ff3383bfc-0/results?tick=3": {
+   "file": "experiments_exp_a10ff3383bfc_0_results_tick_3.json",
+   "status": 200
+  },
+  "/experiments/exp:a10ff3383bfc-0/results?tick=3&direction=forward": {
+   "file": "experiments_exp_a10ff3383bfc_0_results_tick_3_direction_forward.json",
+   "status": 200
+  },
+  "/experiments/exp:a10ff3383bfc-0/results?tick=3&direction=inverse": {
+   "file": "experiments_exp_a10ff3383bfc_0_results_tick_3_direction_inverse.json",
+   "status": 200
+  },
+  "/experiments/exp:a10ff3383bfc-0/results?tick=3&direction=merged": {
+   "file": "experiments_exp_a10ff3383bfc_0_results_tick_3_direction_merged.json",
+   "status": 200
+  },
+  "/experiments/exp:a10ff3383bfc-0/results?tick=4": {
+   "file": "experiments_exp_a10ff3383bfc_0_results_tick_4.json",
+   "status": 200
+  },
+  "/experiments/exp:a10ff3383bfc-0/results?tick=4&direction=forward": {
+   "file": "experiments_exp_a10ff3383bfc_0_results_tick_4_direction_forward.json",
+   "status": 200
+  },
+  "/experiments/exp:a10ff3383bfc-0/results?tick=4&direction=inverse": {
+   "file": "experiments_exp_a10ff3383bfc_0_results_tick_4_direction_inverse.json",
+   "status": 200
+  },
+  "/experiments/exp:a10ff3383bfc-0/results?tick=4&direction=merged": {
+   "file": "experiments_exp_a10ff3383bfc_0_results_tick_4_direction_merged.json",
+   "status": 200
+  },
+  "/experiments/exp:a10ff3383bfc-0/results?tick=5": {
+   "file": "experiments_exp_a10ff3383bfc_0_results_tick_5.json",
+   "status": 200
+  },
+  "/experiments/exp:a10ff3383bfc-0/results?tick=5&direction=forward": {
+   "file": "experiments_exp_a10ff3383bfc_0_results_tick_5_direction_forward.json",
+   "status": 200
+  },
+  "/experiments/exp:a10ff3383bfc-0/results?tick=5&direction=inverse": {
+   "file": "experiments_exp_a10ff3383bfc_0_results_tick_5_direction_inverse.json",
+   "status": 200
+  },
+  "/experiments/exp:a10ff3383bfc-0/results?tick=5&direction=merged": {
+   "file": "experiments_exp_a10ff3383bfc_0_results_tick_5_direction_merged.json",
+   "status": 200
+  },
+  "/experiments/exp:a10ff3383bfc-0/states?tick=0": {
+   "file": "experiments_exp_a10ff3383bfc_0_states_tick_0.json",
+   "status": 200
+  },
+  "/experiments/exp:a10ff3383bfc-0/states?tick=1": {
+   "file": "experiments_exp_a10ff3383bfc_0_states_tick_1.json",
+   "status": 200
+  },
+  "/experiments/exp:a10ff3383bfc-0/states?tick=2": {
+   "file": "experiments_exp_a10ff3383bfc_0_states_tick_2.json",
+   "status": 200
+  },
+  "/experiments/exp:a10ff3383bfc-0/states?tick=3": {
+   "file": "experiments_exp_a10ff3383bfc_0_states_tick_3.json",
+   "status": 200
+  },
+  "/experiments/exp:a10ff3383bfc-0/states?tick=4": {
+   "file": "experiments_exp_a10ff3383bfc_0_states_tick_4.json",
+   "status": 200
+  },
+  "/experiments/exp:a10ff3383bfc-0/states?tick=5": {
+   "file": "experiments_exp_a10ff3383bfc_0_states_tick_5.json",
+   "status": 200
+  },
+  "/experiments/exp:a10ff3383bfc-0/topology": {
+   "file": "experiments_exp_a10ff3383bfc_0_topology.json",
+   "status": 200
+  },
+  "/fields": {
+   "file": "fields.json",
+   "status": 200
+  },
+  "/fields?experiment_id=exp:0c7da892f472-0": {
+   "file": "fields_experiment_id_exp_0c7da892f472_0.json",
+   "status": 200
+  },
+  "/fields?experiment_id=exp:0c7da892f472-0&tick=0": {
+   "file": "fields_experiment_id_exp_0c7da892f472_0_tick_0.json",
+   "status": 200
+  },
+  "/fields?experiment_id=exp:0c7da892f472-0&tick=1": {
+   "file": "fields_experiment_id_exp_0c7da892f472_0_tick_1.json",
+   "status": 200
+  },
+  "/fields?experiment_id=exp:0c7da892f472-0&tick=2": {
+   "file": "fields_experiment_id_exp_0c7da892f472_0_tick_2.json",
+   "status": 200
+  },
+  "/fields?experiment_id=exp:0c7da892f472-0&tick=3": {
+   "file": "fields_experiment_id_exp_0c7da892f472_0_tick_3.json",
+   "status": 200
+  },
+  "/fields?experiment_id=exp:0c7da892f472-0&tick=4": {
+   "file": "fields_experiment_id_exp_0c7da892f472_0_tick_4.json",
+   "status": 200
+  },
+  "/fields?experiment_id=exp:0c7da892f472-0&tick=5": {
+   "file": "fields_experiment_id_exp_0c7da892f472_0_tick_5.json",
+   "status": 200
+  },
+  "/fields?experiment_id=exp:1ad306a9d017-0": {
+   "file": "fields_experiment_id_exp_1ad306a9d017_0.json",
+   "status": 200
+  },
+  "/fields?experiment_id=exp:1ad306a9d017-0&tick=0": {
+   "file": "fields_experiment_id_exp_1ad306a9d017_0_tick_0.json",
+   "status": 200
+  },
+  "/fields?experiment_id=exp:1ad306a9d017-0&tick=1": {
+   "file": "fields_experiment_id_exp_1ad306a9d017_0_tick_1.json",
+   "status": 200
+  },
+  "/fields?experiment_id=exp:1ad306a9d017-0&tick=2": {
+   "file": "fields_experiment_id_exp_1ad306a9d017_0_tick_2.json",
+   "status": 200
+  },
+  "/fields?experiment_id=exp:1ad306a9d017-0&tick=3": {
+   "file": "fields_experiment_id_exp_1ad306a9d017_0_tick_3.json",
+   "status": 200
+  },
+  "/fields?experiment_id=exp:1ad306a9d017-0&tick=4": {
+   "file": "fields_experiment_id_exp_1ad306a9d017_0_tick_4.json",
+   "status": 200
+  },
+  "/fields?experiment_id=exp:1ad306a9d017-0&tick=5": {
+   "file": "fields_experiment_id_exp_1ad306a9d017_0_tick_5.json",
+   "status": 200
+  },
+  "/fields?experiment_id=exp:a10ff3383bfc-0": {
+   "file": "fields_experiment_id_exp_a10ff3383bfc_0.json",
+   "status": 200
+  },
+  "/fields?experiment_id=exp:a10ff3383bfc-0&tick=0": {
+   "file": "fields_experiment_id_exp_a10ff3383bfc_0_tick_0.json",
+   "status": 200
+  },
+  "/fields?experiment_id=exp:a10ff3383bfc-0&tick=1": {
+   "file": "fields_experiment_id_exp_a10ff3383bfc_0_tick_1.json",
+   "status": 200
+  },
+  "/fields?experiment_id=exp:a10ff3383bfc-0&tick=2": {
+   "file": "fields_experiment_id_exp_a10ff3383bfc_0_tick_2.json",
+   "status": 200
+  },
+  "/fields?experiment_id=exp:a10ff3383bfc-0&tick=3": {
+   "file": "fields_experiment_id_exp_a10ff3383bfc_0_tick_3.json",
+   "status": 200
+  },
+  "/fields?experiment_id=exp:a10ff3383bfc-0&tick=4": {
+   "file": "fields_experiment_id_exp_a10ff3383bfc_0_tick_4.json",
+   "status": 200
+  },
+  "/fields?experiment_id=exp:a10ff3383bfc-0&tick=5": {
+   "file": "fields_experiment_id_exp_a10ff3383bfc_0_tick_5.json",
+   "status": 200
+  },
+  "/health": {
+   "file": "health.json",
+   "status": 200
+  },
+  "/scenarios": {
+   "file": "scenarios.json",
+   "status": 200
+  }
+ },
+ "version": "1.0.2"
+}

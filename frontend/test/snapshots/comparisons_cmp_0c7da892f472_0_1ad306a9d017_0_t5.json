@@ -1,0 +1,99 @@
+{
+ "comparison": {
+  "baseline_experiment_id": "exp:0c7da892f472-0",
+  "basis": {
+   "point": "metrics.closure_basis",
+   "variant": "state_rules_a_final_tick",
+   "version": 1
+  },
+  "comparison_key": "cmp:0c7da892f472-0:1ad306a9d017-0:t5",
+  "comparison_tick": 5,
+  "compatible": true,
+  "fixture_lineage_id": "lin:fx_04_11",
+  "incompatibility": [],
+  "new": [],
+  "original": [
+   "rule:dependency|node:n03,node:n04",
+   "rule:gate_auth|node:n05,node:n09",
+   "rule:health_n03|node:n03",
+   "rule:hidden_ok|node:n10"
+  ],
+  "persisting": [
+   "rule:hidden_ok|node:n10"
+  ],
+  "recovery_experiment_id": "exp:1ad306a9d017-0",
+  "resolved": [
+   "rule:dependency|node:n03,node:n04",
+   "rule:gate_auth|node:n05,node:n09",
+   "rule:health_n03|node:n03"
+  ],
+  "results": [
+   {
+    "aggregation": "PER_TICK",
+    "aux": {
+     "fn": null,
+     "fp": null,
+     "function_ref": null,
+     "hypotheses_excluded": null,
+     "new_inconsistencies": 0,
+     "not_applicable_excluded": null,
+     "not_in_validity": null,
+     "observable_cases": null,
+     "persisting": 1,
+     "shared_coverage": null,
+     "shared_coverage_undefined": null,
+     "stale_known": null,
+     "ticks_excluded": null,
+     "ticks_included": null,
+     "tp": null,
+     "undetermined_count": null,
+     "unevaluable_count": null,
+     "unevaluable_in_recovery": 0
+    },
+    "case_subset": null,
+    "denominator": {
+     "d": 1,
+     "n": 4
+    },
+    "metric_id": "M09",
+    "numerator": {
+     "d": 1,
+     "n": 3
+    },
+    "reference_space": "space:rule_key:t5",
+    "relation": "BASELINE_RECOVERY",
+    "status": "EVALUATED",
+    "tick": 5,
+    "undefined_reason": null,
+    "unit": "ratio",
+    "value": 0.75,
+    "version": "1.0.0"
+   }
+  ],
+  "unevaluable_in_recovery": []
+ },
+ "header": {
+  "data_origin": "SYNTHETIC",
+  "experiment_id": null,
+  "guard_class": "COMPARISON",
+  "query_echo": {
+   "aggregation": null,
+   "attempt": null,
+   "comparison_id": "cmp:0c7da892f472-0:1ad306a9d017-0:t5",
+   "direction": null,
+   "from": null,
+   "revision": null,
+   "to": null,
+   "to_tick": null
+  },
+  "schema_version": "cira.comparison_report/1.0.2",
+  "source_refs": [
+   {
+    "artifact_id": "art:251e8b1fc46842519fdcccfef03023d3",
+    "artifact_type": "comparison_report",
+    "content_hash": "sha256:5f2fcb0e53e0784ac18ef8b13c2768c466f90d8abe826fc7dac3e0e42544a0d3"
+   }
+  ],
+  "tick": null
+ }
+}

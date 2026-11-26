@@ -31,6 +31,7 @@ class ArtifactStore:
         (self.root / "objects").mkdir(parents=True, exist_ok=True)
         (self.root / "experiments").mkdir(parents=True, exist_ok=True)
         self._lock = threading.RLock()
+        self.memory_access: list[dict[str, Any]] = []  # projection reads (F07) — not persisted into experiment indices
 
     # ---- objects -------------------------------------------------------------------------
     def _obj_path(self, aid: str) -> Path:
@@ -148,6 +149,10 @@ class ArtifactStore:
 
     def log_access(self, experiment_id: str | None, field: FieldId, artifact_type: str, op: str) -> None:
         if experiment_id is None:
+            with self._lock:
+                self.memory_access.append({"kind": "access", "field": field.value, "artifact_type": artifact_type,
+                                           "op": op})
+                del self.memory_access[:-10000]
             return
         self._append(experiment_id, {"kind": "access", "experiment_id": experiment_id, "field": field.value,
                                      "artifact_type": artifact_type, "op": op})
