@@ -1,0 +1,26 @@
+{
+  "target_id": "tgt:fx",
+  "version": "1.0.0",
+  "authored_by": "fixture author (observation-based, S-07)",
+  "is_fixture": true,
+  "for_config": "ocfg:fx_partial",
+  "goals": [
+    {
+      "goal_id": "goal:n03_healthy",
+      "subject_ref": "node:n03",
+      "property": "RULE_SATISFIED",
+      "rule_ref": "rule:health_n03"
+    },
+    {
+      "goal_id": "goal:n04_active",
+      "subject_ref": "attr:n04/state",
+      "property": "ATTRIBUTE_EQUALS",
+      "value": "ACTIVE"
+    },
+    {
+      "goal_id": "goal:n07_gap",
+      "subject_ref": "node:n07",
+      "property": "GAP_CLOSED"
+    }
+  ]
+}

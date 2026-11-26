@@ -1,0 +1,294 @@
+{
+  "registry_id": "oreg:placeholder",
+  "version": "0.0.1",
+  "is_fixture": true,
+  "source": "placeholder — SYNTX_SIGMA_STATE_ENGINE_v1.8.1 source document not available (DEP-08)",
+  "operators": [
+    {
+      "ref": {
+        "namespace": "CANONICAL_V181",
+        "symbol": ">",
+        "registry_version": "v1.8.1"
+      },
+      "label_from_source": "LABEL_UNAVAILABLE"
+    },
+    {
+      "ref": {
+        "namespace": "CANONICAL_V181",
+        "symbol": "<",
+        "registry_version": "v1.8.1"
+      },
+      "label_from_source": "LABEL_UNAVAILABLE"
+    },
+    {
+      "ref": {
+        "namespace": "CANONICAL_V181",
+        "symbol": "≈",
+        "registry_version": "v1.8.1"
+      },
+      "label_from_source": "LABEL_UNAVAILABLE"
+    },
+    {
+      "ref": {
+        "namespace": "CANONICAL_V181",
+        "symbol": "→",
+        "registry_version": "v1.8.1"
+      },
+      "label_from_source": "LABEL_UNAVAILABLE"
+    },
+    {
+      "ref": {
+        "namespace": "CANONICAL_V181",
+        "symbol": "↔",
+        "registry_version": "v1.8.1"
+      },
+      "label_from_source": "LABEL_UNAVAILABLE"
+    },
+    {
+      "ref": {
+        "namespace": "CANONICAL_V181",
+        "symbol": "⊕",
+        "registry_version": "v1.8.1"
+      },
+      "label_from_source": "LABEL_UNAVAILABLE"
+    },
+    {
+      "ref": {
+        "namespace": "CANONICAL_V181",
+        "symbol": "⊖",
+        "registry_version": "v1.8.1"
+      },
+      "label_from_source": "LABEL_UNAVAILABLE"
+    },
+    {
+      "ref": {
+        "namespace": "CANONICAL_V181",
+        "symbol": "⊗",
+        "registry_version": "v1.8.1"
+      },
+      "label_from_source": "LABEL_UNAVAILABLE"
+    },
+    {
+      "ref": {
+        "namespace": "CANONICAL_V181",
+        "symbol": "⊘",
+        "registry_version": "v1.8.1"
+      },
+      "label_from_source": "LABEL_UNAVAILABLE"
+    },
+    {
+      "ref": {
+        "namespace": "CANONICAL_V181",
+        "symbol": "∆",
+        "registry_version": "v1.8.1"
+      },
+      "label_from_source": "LABEL_UNAVAILABLE"
+    },
+    {
+      "ref": {
+        "namespace": "CANONICAL_V181",
+        "symbol": "∇",
+        "registry_version": "v1.8.1"
+      },
+      "label_from_source": "LABEL_UNAVAILABLE"
+    },
+    {
+      "ref": {
+        "namespace": "CANONICAL_V181",
+        "symbol": "∑",
+        "registry_version": "v1.8.1"
+      },
+      "label_from_source": "LABEL_UNAVAILABLE"
+    },
+    {
+      "ref": {
+        "namespace": "CANONICAL_V181",
+        "symbol": "∂",
+        "registry_version": "v1.8.1"
+      },
+      "label_from_source": "LABEL_UNAVAILABLE"
+    }
+  ],
+  "sigma_fields": [
+    {
+      "ref": {
+        "sigma_id": "Σ01",
+        "registry_version": "v1.8.1"
+      }
+    },
+    {
+      "ref": {
+        "sigma_id": "Σ02",
+        "registry_version": "v1.8.1"
+      }
+    },
+    {
+      "ref": {
+        "sigma_id": "Σ03",
+        "registry_version": "v1.8.1"
+      }
+    },
+    {
+      "ref": {
+        "sigma_id": "Σ04",
+        "registry_version": "v1.8.1"
+      }
+    },
+    {
+      "ref": {
+        "sigma_id": "Σ05",
+        "registry_version": "v1.8.1"
+      }
+    },
+    {
+      "ref": {
+        "sigma_id": "Σ06",
+        "registry_version": "v1.8.1"
+      }
+    },
+    {
+      "ref": {
+        "sigma_id": "Σ07",
+        "registry_version": "v1.8.1"
+      }
+    },
+    {
+      "ref": {
+        "sigma_id": "Σ08",
+        "registry_version": "v1.8.1"
+      }
+    },
+    {
+      "ref": {
+        "sigma_id": "Σ09",
+        "registry_version": "v1.8.1"
+      }
+    },
+    {
+      "ref": {
+        "sigma_id": "Σ10",
+        "registry_version": "v1.8.1"
+      }
+    },
+    {
+      "ref": {
+        "sigma_id": "Σ11",
+        "registry_version": "v1.8.1"
+      }
+    },
+    {
+      "ref": {
+        "sigma_id": "Σ12",
+        "registry_version": "v1.8.1"
+      }
+    },
+    {
+      "ref": {
+        "sigma_id": "Σ13",
+        "registry_version": "v1.8.1"
+      }
+    },
+    {
+      "ref": {
+        "sigma_id": "Σ14",
+        "registry_version": "v1.8.1"
+      }
+    },
+    {
+      "ref": {
+        "sigma_id": "Σ15",
+        "registry_version": "v1.8.1"
+      }
+    },
+    {
+      "ref": {
+        "sigma_id": "Σ16",
+        "registry_version": "v1.8.1"
+      }
+    },
+    {
+      "ref": {
+        "sigma_id": "Σ17",
+        "registry_version": "v1.8.1"
+      }
+    },
+    {
+      "ref": {
+        "sigma_id": "Σ18",
+        "registry_version": "v1.8.1"
+      }
+    },
+    {
+      "ref": {
+        "sigma_id": "Σ19",
+        "registry_version": "v1.8.1"
+      }
+    },
+    {
+      "ref": {
+        "sigma_id": "Σ20",
+        "registry_version": "v1.8.1"
+      }
+    },
+    {
+      "ref": {
+        "sigma_id": "Σ21",
+        "registry_version": "v1.8.1"
+      }
+    },
+    {
+      "ref": {
+        "sigma_id": "Σ22",
+        "registry_version": "v1.8.1"
+      }
+    },
+    {
+      "ref": {
+        "sigma_id": "Σ23",
+        "registry_version": "v1.8.1"
+      }
+    },
+    {
+      "ref": {
+        "sigma_id": "Σ24",
+        "registry_version": "v1.8.1"
+      }
+    },
+    {
+      "ref": {
+        "sigma_id": "Σ25",
+        "registry_version": "v1.8.1"
+      }
+    },
+    {
+      "ref": {
+        "sigma_id": "Σ26",
+        "registry_version": "v1.8.1"
+      }
+    },
+    {
+      "ref": {
+        "sigma_id": "Σ27",
+        "registry_version": "v1.8.1"
+      }
+    },
+    {
+      "ref": {
+        "sigma_id": "Σ28",
+        "registry_version": "v1.8.1"
+      }
+    },
+    {
+      "ref": {
+        "sigma_id": "Σ29",
+        "registry_version": "v1.8.1"
+      }
+    },
+    {
+      "ref": {
+        "sigma_id": "Σ30",
+        "registry_version": "v1.8.1"
+      }
+    }
+  ]
+}

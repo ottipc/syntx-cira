@@ -1,0 +1,10 @@
+{
+  "weight_set_id": "ws:fx_default",
+  "version": "1.0.0",
+  "default_weight": {
+    "n": 1,
+    "d": 1
+  },
+  "weights": [],
+  "is_fixture": true
+}

@@ -1,12 +1,10 @@
-"""F04_OBSERVATION facade (Kap. 04 F04). Behaviour in Phase 02 (15.3)."""
+"""F04_OBSERVATION facade (Kap. 04 F04): Ω_O(t) = O_θ(Ω_A(t)), θ versioned."""
 
 from __future__ import annotations
 
-from typing import Any
+from .bundle import ObservationRun, TickObservation, observe, serialize, source_register, usage
+from .observer import observe_context, omega
+from .theta import observable_rules, observable_topology, validate_config, validate_target
 
-
-def observe(*args: Any, **kwargs: Any) -> Any:
-    raise NotImplementedError("F04 observe — Phase 02")
-
-
-__all__ = ["observe"]
+__all__ = ["observe", "observe_context", "omega", "validate_config", "validate_target", "observable_topology",
+           "observable_rules", "ObservationRun", "TickObservation", "serialize", "source_register", "usage"]

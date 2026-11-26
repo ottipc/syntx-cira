@@ -1,0 +1,73 @@
+{
+  "config_id": "ocfg:fx_tight",
+  "version": "1.0.0",
+  "is_fixture": true,
+  "sources": [
+    {
+      "source_id": "src:s01",
+      "label": "Source 01",
+      "observes": [
+        "attr:n01/state",
+        "attr:n02/state",
+        "attr:n03/state",
+        "attr:n04/state",
+        "attr:n05/state",
+        "attr:n06/state"
+      ],
+      "active": [
+        {
+          "from_tick": 0
+        }
+      ],
+      "lag_ticks": 0
+    },
+    {
+      "source_id": "src:s02",
+      "label": "Source 02",
+      "observes": [
+        "attr:n07/state"
+      ],
+      "active": [
+        {
+          "from_tick": 0,
+          "to_tick": 2
+        },
+        {
+          "from_tick": 4
+        }
+      ],
+      "lag_ticks": 1
+    }
+  ],
+  "visible_nodes": [
+    "node:n01",
+    "node:n02",
+    "node:n03",
+    "node:n04",
+    "node:n05",
+    "node:n06",
+    "node:n07"
+  ],
+  "visible_relations": [
+    "rel:depends_on:n02:n01",
+    "rel:depends_on:n03:n02",
+    "rel:depends_on:n04:n03",
+    "rel:depends_on:n05:n04",
+    "rel:reports_to:n06:n05",
+    "rel:depends_on:n07:n04"
+  ],
+  "visible_rules": [
+    "rule:health_n03",
+    "rule:dependency",
+    "rule:mode_steps",
+    "rule:svc_supply"
+  ],
+  "bundle_budget": {
+    "max_observations": 41,
+    "max_bytes": 10000000
+  },
+  "serialization_profiles": [
+    "full",
+    "compact"
+  ]
+}
