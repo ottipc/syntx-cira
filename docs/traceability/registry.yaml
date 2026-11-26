@@ -1,0 +1,1318 @@
+# Nachweisregister (Hand-SSOT, X-16). Checked by tools/trace_check.py (TX12).
+version: 1.0.2
+package: docs/architecture/SYNTX_CIRA_Consolidated_Architecture_Package_v1.0.2.md
+gate_mode: AUTO_INTERNAL
+current_phase: '01'
+phase_tests:
+  '01':
+  - T01
+  - T02
+  - T04
+  - T07
+  - TX01
+  - TX02
+  - TX04
+  - TX07
+  - TX08
+  - TX09
+  - TX11
+  - TX12
+  - TX13
+  - TX14
+  - TX17
+  - TX21
+  '02':
+  - T03
+  - T06
+  - TX03
+  - TX06
+  - TX16
+  '03':
+  - T04b
+  - T05
+  - T08
+  - T10
+  - T12
+  - TX04
+  - TX05
+  - TX10
+  - TX18
+  '04':
+  - T09
+  - TX02
+  - TX15
+  - TX19
+  - TX22
+  - TX23
+  - TX24
+  - TX25
+  - TX26
+  - TX27
+  - TX28
+  - TX29
+  - TX30
+  - TX32
+  - TX33
+  '05':
+  - T11
+  - TX20
+  - TX31
+requirements:
+- id: REQ-001
+  title: sieben Feldidentitäten
+  realization: Pakete F01–F07, Manifeste, Fassaden
+  components:
+  - contracts/fields
+  - backend/app/topology
+  - backend/app/governance
+  - backend/app/emulator
+  - backend/app/observation
+  - backend/app/syntx_adapter
+  - backend/app/metrics
+  - backend/app/api
+  tests:
+  - TX01
+  phase: '01'
+  arch_state: ACCEPTED
+  kind: product
+  deps: []
+- id: REQ-002
+  title: drei Zustandsräume getrennt
+  realization: contracts f03/f04/f05, P02
+  components:
+  - backend/app/contracts/f03.py
+  - backend/app/contracts/f04_public.py
+  - backend/app/contracts/f05.py
+  tests:
+  - T04
+  phase: '01'
+  arch_state: ACCEPTED
+  kind: product
+  deps: []
+- id: REQ-003
+  title: S_t = C(J_t,R_t)
+  realization: 03.1, /fields
+  components:
+  - contracts/fields
+  - contracts/coupling_matrix.json
+  tests:
+  - TX01
+  phase: '01'
+  arch_state: ACCEPTED
+  kind: product
+  deps: []
+- id: REQ-004
+  title: strukturelle Unterscheidungen
+  realization: '03.2'
+  components:
+  - backend/app/contracts/common.py
+  tests:
+  - TX01
+  phase: '01'
+  arch_state: ACCEPTED
+  kind: product
+  deps: []
+- id: REQ-005
+  title: Kopplungsstatus getrennt
+  realization: CouplingStatus
+  components:
+  - backend/app/contracts/common.py
+  tests:
+  - T02
+  phase: '01'
+  arch_state: ACCEPTED
+  kind: product
+  deps: []
+- id: REQ-006
+  title: fünf epistemische Klassen
+  realization: EpistemicClass, K-14
+  components:
+  - backend/app/contracts/common.py
+  - backend/app/contracts/f05.py
+  tests:
+  - T02
+  phase: '01'
+  arch_state: ACCEPTED
+  kind: product
+  deps: []
+- id: REQ-007
+  title: Softwarefelder ≠ Σ-Felder
+  realization: FieldId vs. SigmaRef, K-29/K-33
+  components:
+  - backend/app/core/unicode.py
+  - backend/app/contracts/f05.py
+  tests:
+  - TX11
+  - TX21
+  phase: '01'
+  arch_state: ACCEPTED
+  kind: product
+  deps:
+  - DEP-08
+- id: REQ-008
+  title: Operatoren über Adapter, Semantik unverändert
+  realization: OperatorRef-Union, Registry
+  components:
+  - backend/app/contracts/f05.py
+  - backend/app/syntx_adapter/registry.py
+  tests:
+  - T05
+  - TX11
+  phase: '03'
+  arch_state: ACCEPTED
+  kind: product
+  deps:
+  - DEP-01
+- id: REQ-009
+  title: Feldtupel + Vertragsinhalte
+  realization: 04, Manifeste
+  components:
+  - contracts/fields
+  tests:
+  - TX01
+  phase: '01'
+  arch_state: ACCEPTED
+  kind: product
+  deps: []
+- id: REQ-010
+  title: typisierter gerichteter Graph
+  realization: contracts.f01, topology
+  components:
+  - backend/app/contracts/f01.py
+  - backend/app/topology/validate.py
+  tests:
+  - T01
+  phase: '01'
+  arch_state: ACCEPTED
+  kind: product
+  deps: []
+- id: REQ-011
+  title: eindeutige IDs, auflösbare Referenzen
+  realization: topology.validate, K-01
+  components:
+  - backend/app/topology/validate.py
+  - backend/app/core/ids.py
+  tests:
+  - T01
+  phase: '01'
+  arch_state: ACCEPTED
+  kind: product
+  deps: []
+- id: REQ-012
+  title: Topologie je Run unveränderlich, Versionen
+  realization: ImmutableTopology, CAS
+  components:
+  - backend/app/topology/validate.py
+  - backend/app/store/cas.py
+  tests:
+  - T01
+  - T10
+  phase: '01'
+  arch_state: ACCEPTED
+  kind: product
+  deps: []
+- id: REQ-013
+  title: INVALID_TOPOLOGY + Wiederherstellung
+  realization: ErrorRecord, 422
+  components:
+  - backend/app/topology/validate.py
+  - backend/app/core/errors.py
+  tests:
+  - T01
+  phase: '01'
+  arch_state: ACCEPTED
+  kind: product
+  deps: []
+- id: REQ-014
+  title: 'g_j: X → {0,1,⊥}'
+  realization: governance.evaluator (K3)
+  components:
+  - backend/app/governance/evaluate.py
+  - backend/app/core/logic3.py
+  tests:
+  - TX07
+  phase: '01'
+  arch_state: ACCEPTED
+  kind: product
+  deps: []
+- id: REQ-015
+  title: Definition ≠ Evaluation
+  realization: GovernanceDefinition / RuleEvaluation
+  components:
+  - backend/app/contracts/f02.py
+  tests:
+  - T02
+  phase: '01'
+  arch_state: ACCEPTED
+  kind: product
+  deps: []
+- id: REQ-016
+  title: menschliche Freigaben als Zustände
+  realization: ApprovalRecord, AuthorityRecord (f02)
+  components:
+  - backend/app/contracts/f02.py
+  - backend/app/emulator/runner.py
+  tests:
+  - T03
+  phase: '02'
+  arch_state: ACCEPTED
+  kind: product
+  deps: []
+- id: REQ-017
+  title: versionierte Regeländerungen, INVALID_RULE
+  realization: seal/version
+  components:
+  - backend/app/governance/validate.py
+  tests:
+  - TX07
+  phase: '01'
+  arch_state: ACCEPTED
+  kind: product
+  deps: []
+- id: REQ-018
+  title: diskrete Zeit, monotone Tick/Seq
+  realization: emulator.runner
+  components:
+  - backend/app/emulator/runner.py
+  tests:
+  - T03
+  phase: '02'
+  arch_state: ACCEPTED
+  kind: product
+  deps: []
+- id: REQ-019
+  title: Ω_A(t+1) = T(Ω_A(t), u_t) deterministisch
+  realization: emulator.transition
+  components:
+  - backend/app/emulator/transition.py
+  tests:
+  - T03
+  - TX16
+  phase: '02'
+  arch_state: ACCEPTED
+  kind: product
+  deps: []
+- id: REQ-020
+  title: vergleichbare Baseline-/Recovery-Fixtures
+  realization: lineage, K-43
+  components:
+  - backend/app/metrics/comparison.py
+  - synthetic_fixtures/f03_scenarios
+  tests:
+  - T07
+  phase: 01/02
+  arch_state: ACCEPTED
+  kind: product
+  deps: []
+- id: REQ-021
+  title: Initialzustand, Konfiguration, Historie versioniert
+  realization: ScenarioDefinition, EventRecord, StageEvents
+  components:
+  - backend/app/contracts/f03.py
+  - backend/app/emulator/runner.py
+  tests:
+  - T03
+  - T10
+  phase: '02'
+  arch_state: ACCEPTED
+  kind: product
+  deps: []
+- id: REQ-022
+  title: INVALID_TRANSITION + Replay
+  realization: Runner-Validierung, Replay
+  components:
+  - backend/app/emulator/runner.py
+  tests:
+  - T03
+  phase: '02'
+  arch_state: ACCEPTED
+  kind: product
+  deps: []
+- id: REQ-023
+  title: F03 ohne F04/F05-Abhängigkeit
+  realization: Importregeln, K-08
+  components:
+  - backend/.importlinter
+  tests:
+  - TX03
+  phase: '02'
+  arch_state: ACCEPTED
+  kind: product
+  deps: []
+- id: REQ-024
+  title: Ω_O = O_θ(Ω_A), θ versioniert
+  realization: observation.observer
+  components:
+  - backend/app/observation/observer.py
+  tests:
+  - T06
+  phase: '02'
+  arch_state: ACCEPTED
+  kind: product
+  deps: []
+- id: REQ-025
+  title: KNOWN/UNKNOWN/N.A.; UNKNOWN ≠ falsch
+  realization: Validatoren, ω, K3
+  components:
+  - backend/app/contracts/f04_public.py
+  - backend/app/observation/observer.py
+  tests:
+  - T04
+  - TX07
+  phase: '01'
+  arch_state: ACCEPTED
+  kind: product
+  deps: []
+- id: REQ-026
+  title: Quellenkontinuität, Budget, Historie, Kontextversion
+  realization: ContextBundle, Register, K-12
+  components:
+  - backend/app/observation/bundle.py
+  tests:
+  - T06
+  phase: '02'
+  arch_state: ACCEPTED
+  kind: product
+  deps: []
+- id: REQ-027
+  title: CONTEXT_INCOMPLETE + Re-Serialisierung
+  realization: Profile, Revision
+  components:
+  - backend/app/observation/bundle.py
+  tests:
+  - T06
+  phase: '02'
+  arch_state: ACCEPTED
+  kind: product
+  deps: []
+- id: REQ-028
+  title: F05-Eingabe nur Bundle + Target
+  realization: Fassade, K-11, K-48
+  components:
+  - backend/app/syntx_adapter/__init__.py
+  tests:
+  - T04b
+  - TX05
+  phase: '03'
+  arch_state: ACCEPTED
+  kind: product
+  deps: []
+- id: REQ-029
+  title: unabhängige Forward/Inverse, dann Reconstruction
+  realization: sweep, merge (S-03)
+  components:
+  - backend/app/syntx_adapter/sweep.py
+  - backend/app/syntx_adapter/merge.py
+  tests:
+  - T08
+  phase: '03'
+  arch_state: ACCEPTED
+  kind: product
+  deps: []
+- id: REQ-030
+  title: Ω_R(t) = R(Ω_O(0:t))
+  realization: Bundle 0..t
+  components:
+  - backend/app/syntx_adapter/sweep.py
+  tests:
+  - T08
+  phase: '03'
+  arch_state: ACCEPTED
+  kind: product
+  deps: []
+- id: REQ-031
+  title: DeltaState / DeltaCoupling getrennt
+  realization: core.delta, K-13
+  components:
+  - backend/app/core/delta.py
+  tests: []
+  phase: 01/03
+  arch_state: ACCEPTED
+  kind: product
+  deps: []
+- id: REQ-032
+  title: GAPs mit Quellbezug, offene Relationen, Terminierung
+  realization: StructuralGap, OpenRelation, TerminationRecord
+  components:
+  - backend/app/contracts/f05.py
+  tests:
+  - T06
+  - T12
+  phase: '03'
+  arch_state: ACCEPTED
+  kind: product
+  deps: []
+- id: REQ-033
+  title: kontinuierliche Beobachtung
+  realization: SweepSchedule, context_version
+  components:
+  - backend/app/experiments/orchestrator.py
+  tests:
+  - T08
+  phase: '03'
+  arch_state: ACCEPTED
+  kind: product
+  deps: []
+- id: REQ-034
+  title: ENGINE_UNAVAILABLE, Re-Sweep/Import
+  realization: BLOCKED, Endpunkte 15/16
+  components:
+  - backend/app/syntx_adapter/adapters/local.py
+  - backend/app/api/routers.py
+  tests:
+  - T05
+  phase: '03'
+  arch_state: ACCEPTED
+  kind: product
+  deps: []
+- id: REQ-035
+  title: keine Kenntnis des Actual State
+  realization: '05.4'
+  components:
+  - backend/.importlinter
+  - backend/app/store/capabilities.py
+  tests:
+  - T04b
+  - TX04
+  - TX05
+  phase: 01–03
+  arch_state: ACCEPTED
+  kind: product
+  deps: []
+- id: REQ-036
+  title: Adaptervarianten
+  realization: adapters/* (S-02)
+  components:
+  - backend/app/syntx_adapter/adapters
+  tests:
+  - T05
+  phase: '03'
+  arch_state: ACCEPTED
+  kind: product
+  deps:
+  - DEP-02
+- id: REQ-037
+  title: keine erfundene Engine-Ausführung
+  realization: is_fixture, data_origin
+  components:
+  - backend/app/syntx_adapter/adapters/fixture.py
+  tests:
+  - T05
+  - TX10
+  phase: '03'
+  arch_state: ACCEPTED
+  kind: product
+  deps: []
+- id: REQ-038
+  title: keine automatische Anwendung; Recovery separat
+  realization: RecoveryProposal, AuthorityRecord, 05.5
+  components:
+  - backend/app/contracts/f05.py
+  - backend/app/contracts/f02.py
+  tests:
+  - T08
+  phase: 03/05
+  arch_state: ACCEPTED
+  kind: product
+  deps: []
+- id: REQ-039
+  title: elf Metriken
+  realization: metrics/m01…m11
+  components:
+  - backend/app/metrics/m01.py
+  - backend/app/metrics/m02.py
+  - backend/app/metrics/m03.py
+  - backend/app/metrics/m04.py
+  - backend/app/metrics/m05.py
+  - backend/app/metrics/m06.py
+  - backend/app/metrics/m07.py
+  - backend/app/metrics/m08.py
+  - backend/app/metrics/m09.py
+  - backend/app/metrics/m10.py
+  - backend/app/metrics/m11.py
+  tests:
+  - T07
+  phase: '01'
+  arch_state: ACCEPTED
+  kind: product
+  deps: []
+- id: REQ-040
+  title: identischer Referenzraum
+  realization: ReferenceSpace, space_hash
+  components:
+  - backend/app/metrics/spaces.py
+  - backend/app/contracts/f06.py
+  tests:
+  - T07
+  phase: '01'
+  arch_state: ACCEPTED
+  kind: product
+  deps: []
+- id: REQ-041
+  title: getrennte Metriken je Raum
+  realization: EvaluatedRelation
+  components:
+  - backend/app/contracts/f06.py
+  tests:
+  - T07
+  phase: '01'
+  arch_state: ACCEPTED
+  kind: product
+  deps: []
+- id: REQ-042
+  title: Nullnenner ⇒ UNDEFINED/null
+  realization: ratio()
+  components:
+  - backend/app/metrics/result.py
+  - backend/app/core/rational.py
+  tests:
+  - T07
+  phase: '01'
+  arch_state: ACCEPTED
+  kind: product
+  deps: []
+- id: REQ-043
+  title: Nicht auswertbares separat
+  realization: aux
+  components:
+  - backend/app/metrics/result.py
+  tests:
+  - T07
+  phase: '01'
+  arch_state: ACCEPTED
+  kind: product
+  deps: []
+- id: REQ-044
+  title: NOT_APPLICABLE ausgeschlossen
+  realization: D_ref
+  components:
+  - backend/app/metrics/spaces.py
+  tests:
+  - T07
+  phase: '01'
+  arch_state: ACCEPTED
+  kind: product
+  deps: []
+- id: REQ-045
+  title: Gewichte versioniert, Default 1
+  realization: WeightSet
+  components:
+  - backend/app/metrics/views.py
+  - backend/app/contracts/f06.py
+  tests:
+  - T07
+  phase: '01'
+  arch_state: ACCEPTED
+  kind: product
+  deps: []
+- id: REQ-046
+  title: Stability + gemeinsame Coverage
+  realization: M10 (S-06, K-44)
+  components:
+  - backend/app/metrics/m10.py
+  tests:
+  - T07
+  phase: 01/03
+  arch_state: ACCEPTED
+  kind: product
+  deps: []
+- id: REQ-047
+  title: Closure + neue Inkonsistenzen
+  realization: M09 (S-05, K-43)
+  components:
+  - backend/app/metrics/m09.py
+  - backend/app/metrics/comparison.py
+  tests:
+  - T07
+  phase: '01'
+  arch_state: ACCEPTED
+  kind: product
+  deps: []
+- id: REQ-048
+  title: Zeitaggregation
+  realization: aggregation
+  components:
+  - backend/app/metrics/aggregation.py
+  tests:
+  - T07
+  phase: '01'
+  arch_state: ACCEPTED
+  kind: product
+  deps: []
+- id: REQ-049
+  title: kein Gesamtindex
+  realization: bewusst nicht vorhanden
+  components: []
+  tests: []
+  phase: —
+  arch_state: ACCEPTED
+  kind: process
+  deps: []
+- id: REQ-050
+  title: MetricResult-Felder + numerator/denominator/tick
+  realization: '08.7'
+  components:
+  - backend/app/contracts/f06.py
+  tests:
+  - T02
+  phase: '01'
+  arch_state: ACCEPTED
+  kind: product
+  deps: []
+- id: REQ-051
+  title: Fixture 04.11
+  realization: FX-04.11, 12.1
+  components:
+  - synthetic_fixtures/f06_metric_fixtures/fx_04_11.json
+  - synthetic_fixtures/f01_topology/fx_04_11.json
+  tests:
+  - T07
+  phase: '01'
+  arch_state: ACCEPTED
+  kind: product
+  deps: []
+- id: REQ-052
+  title: Fixtures übrige Metriken + Nullnenner
+  realization: '12.2'
+  components:
+  - synthetic_fixtures/f06_metric_fixtures
+  tests:
+  - T07
+  phase: '01'
+  arch_state: ACCEPTED
+  kind: product
+  deps: []
+- id: REQ-053
+  title: METRIC_UNDEFINED + Neuberechnung
+  realization: undefined_reason, Revision
+  components:
+  - backend/app/metrics/result.py
+  tests:
+  - T07
+  phase: 01/03
+  arch_state: ACCEPTED
+  kind: product
+  deps: []
+- id: REQ-054
+  title: Sichten F07
+  realization: Kap. 11, G04.4
+  components:
+  - frontend/src/views
+  tests:
+  - T09
+  - TX19
+  phase: '04'
+  arch_state: ACCEPTED
+  kind: product
+  deps: []
+- id: REQ-055
+  title: gemeinsame Zeit- und Experimentreferenz
+  realization: URL-Session G03.7, Guard-Klassen G03.14 (K-58)
+  components:
+  - frontend/src/session
+  - frontend/src/access
+  tests:
+  - T09
+  - TX27
+  phase: '04'
+  arch_state: ACCEPTED
+  kind: product
+  deps: []
+- id: REQ-056
+  title: VIEW_DATA_UNAVAILABLE + erneuter Abruf
+  realization: ViewState
+  components:
+  - frontend/src/access
+  tests:
+  - T09
+  phase: '04'
+  arch_state: ACCEPTED
+  kind: product
+  deps: []
+- id: REQ-057
+  title: illustrativ vs. gemessen
+  realization: DataOrigin, achromatische Herkunftskapsel (GK-01)
+  components:
+  - frontend/src/provenance
+  tests:
+  - T09
+  - TX10
+  - TX19
+  phase: 03/04
+  arch_state: ACCEPTED
+  kind: product
+  deps: []
+- id: REQ-058
+  title: Kopplung mit Run-ID, Schema, Zeit, Provenienz
+  realization: ArtifactEnvelope, K-40
+  components:
+  - backend/app/contracts/registry.py
+  - backend/app/store/cas.py
+  tests:
+  - T02
+  - T06
+  phase: '01'
+  arch_state: ACCEPTED
+  kind: product
+  deps: []
+- id: REQ-059
+  title: Steuerungsfluss
+  realization: orchestrator, StageEvents
+  components:
+  - backend/app/experiments/orchestrator.py
+  tests: []
+  phase: '03'
+  arch_state: ACCEPTED
+  kind: product
+  deps: []
+- id: REQ-060
+  title: Zugriffsmatrix
+  realization: Capability-Matrix
+  components:
+  - contracts/coupling_matrix.json
+  - backend/app/store/capabilities.py
+  tests:
+  - TX04
+  - TX18
+  phase: 01/03
+  arch_state: ACCEPTED
+  kind: product
+  deps: []
+- id: REQ-061
+  title: kein indirekter Ω_A-Fluss
+  realization: 05.4, K-56
+  components:
+  - backend/app/experiments/orchestrator.py
+  tests:
+  - TX05
+  phase: '03'
+  arch_state: ACCEPTED
+  kind: product
+  deps: []
+- id: REQ-062
+  title: Pydantic-SSOT, keine Doppelschemas
+  realization: export_schemas, TS-Generierung
+  components:
+  - backend/scripts/export_schemas.py
+  - contracts/schemas/cira.contracts.schema.json
+  tests:
+  - TX02
+  phase: 01/04
+  arch_state: ACCEPTED
+  kind: product
+  deps: []
+- id: REQ-063
+  title: forbid/strict/frozen, tief unveränderlich
+  realization: ConfigDict, Tupel
+  components:
+  - backend/app/contracts/common.py
+  tests:
+  - T02
+  phase: '01'
+  arch_state: ACCEPTED
+  kind: product
+  deps: []
+- id: REQ-064
+  title: JSON-Roundtrip
+  realization: Property-Test
+  components:
+  - backend/app/contracts
+  tests:
+  - T02
+  phase: '01'
+  arch_state: ACCEPTED
+  kind: product
+  deps: []
+- id: REQ-065
+  title: JSON-Schema-Form
+  realization: gebündelter Export
+  components:
+  - contracts/schemas/cira.contracts.schema.json
+  tests:
+  - T02
+  phase: '01'
+  arch_state: ACCEPTED
+  kind: product
+  deps: []
+- id: REQ-066
+  title: ArtifactEnvelope-Felder
+  realization: '08.1'
+  components:
+  - backend/app/contracts/registry.py
+  tests:
+  - T02
+  - TX17
+  phase: '01'
+  arch_state: ACCEPTED
+  kind: product
+  deps: []
+- id: REQ-067
+  title: typisierte Payloads
+  realization: diskriminierte Union
+  components:
+  - backend/app/contracts/registry.py
+  tests:
+  - TX17
+  phase: '01'
+  arch_state: ACCEPTED
+  kind: product
+  deps: []
+- id: REQ-068
+  title: Ergebnisstatus; Offenheit separat
+  realization: ExecutionStatus, ContentOpenness, K-35
+  components:
+  - backend/app/contracts/common.py
+  tests:
+  - T02
+  phase: '01'
+  arch_state: ACCEPTED
+  kind: product
+  deps: []
+- id: REQ-069
+  title: Repository-Struktur
+  realization: 09
+  components:
+  - CLAUDE.md
+  - Makefile
+  tests: []
+  phase: '01'
+  arch_state: ACCEPTED
+  kind: process
+  deps: []
+- id: REQ-070
+  title: Stack
+  realization: D-01, D-02, A-12, K-68
+  components:
+  - backend/pyproject.toml
+  tests: []
+  phase: alle
+  arch_state: ACCEPTED
+  kind: process
+  deps: []
+- id: REQ-071
+  title: API-Verträge und Fehlersemantik
+  realization: '10'
+  components:
+  - backend/app/api/routers.py
+  tests: []
+  phase: '03'
+  arch_state: ACCEPTED
+  kind: product
+  deps: []
+- id: REQ-072
+  title: Tests T01–T12
+  realization: '13.1'
+  components:
+  - backend/tests
+  tests: []
+  phase: 01–05
+  arch_state: ACCEPTED
+  kind: process
+  deps: []
+- id: REQ-073
+  title: Phasen mit Gates und tatsächlichen Ergebnissen
+  realization: 15.11, 15.12
+  components:
+  - tools/report.py
+  - docs/test-reports
+  tests: []
+  phase: alle
+  arch_state: ACCEPTED
+  kind: process
+  deps: []
+- id: REQ-074
+  title: ExperimentBundle-Inhalt
+  realization: '08.9'
+  components:
+  - backend/app/experiments/bundle.py
+  tests:
+  - T10
+  phase: '03'
+  arch_state: ACCEPTED
+  kind: product
+  deps: []
+- id: REQ-075
+  title: Replay synthetisch; Engine-Ausgaben erhalten
+  realization: Replay-Modi
+  components:
+  - backend/app/experiments/replay.py
+  tests:
+  - T03
+  - T10
+  phase: 02/03
+  arch_state: ACCEPTED
+  kind: product
+  deps: []
+- id: REQ-076
+  title: Jury-Demo-Inhalte
+  realization: Demo-Flow-Test, Demo-Layer G05
+  components:
+  - backend/tests/integration/test_demo_flow.py
+  - frontend/src/demo
+  tests:
+  - T11
+  - AK-11
+  - TX31
+  phase: '05'
+  arch_state: ACCEPTED
+  kind: product
+  deps: []
+- id: REQ-077
+  title: Baseline vs. Recovery
+  realization: ComparisonReport, Sicht 10
+  components:
+  - backend/app/contracts/f06.py
+  - backend/app/metrics/comparison.py
+  tests:
+  - T07
+  phase: 01/04
+  arch_state: ACCEPTED
+  kind: product
+  deps: []
+- id: REQ-078
+  title: separates Architekturartefakt mit Mapping, Register, Reihenfolge
+  realization: ARCH, STRAT, dieses Paket
+  components:
+  - docs/architecture
+  tests: []
+  phase: '00'
+  arch_state: ACCEPTED
+  kind: process
+  deps: []
+- id: REQ-079
+  title: keine Implementierung vor Validierung
+  realization: Execution Boundary, E-03
+  components:
+  - docs/architecture/ARCHITECTURE_FREEZE_v1.0.2.md
+  tests: []
+  phase: '00'
+  arch_state: ACCEPTED
+  kind: process
+  deps: []
+- id: REQ-080
+  title: keine realen Standorte/Infrastrukturmodelle
+  realization: Fixture-Lint, generische Namen
+  components:
+  - tools/fixture_lint.py
+  tests:
+  - TX09
+  phase: '01'
+  arch_state: ACCEPTED
+  kind: product
+  deps: []
+- id: REQ-081
+  title: GAP-Register erhalten
+  realization: '18'
+  components:
+  - docs/architecture
+  tests: []
+  phase: alle
+  arch_state: ACCEPTED
+  kind: process
+  deps: []
+tests:
+- id: T01
+  condition: gültige Topologie; ungültige Referenzen zurückweisen
+  phase: '01'
+- id: T02
+  condition: verlustfreier JSON-Roundtrip und Schemaexport
+  phase: '01'
+- id: T03
+  condition: identische synthetische Replay-Ergebnisse
+  phase: 02 (SYNTHETIC), 03 (PRESERVED_ENGINE)
+- id: T04
+  condition: getrennte Zustandsmodelle
+  phase: '01'
+- id: T04b
+  condition: F05 ohne ActualState-/Emulator-Abhängigkeit
+  phase: Abnahme 03
+- id: T05
+  condition: Adapter-Vertragstreue
+  phase: '03'
+- id: T06
+  condition: auflösbare Quellenreferenzen
+  phase: '02'
+- id: T07
+  condition: elf Metriken, Referenz-Fixtures, Nullnenner
+  phase: '01'
+- id: T08
+  condition: unabhängige Sweep-Artefakte
+  phase: '03'
+- id: T09
+  condition: konsistente UI-Zeit- und Run-Referenzen
+  phase: '04'
+- id: T10
+  condition: Experimentexport-Roundtrip
+  phase: '03'
+- id: T11
+  condition: dokumentierte Regressionen
+  phase: '05'
+- id: T12
+  condition: dokumentierte Terminierung
+  phase: '03'
+- id: TX01
+  condition: Field Manifests vollständig und konsistent mit Code und Matrix
+  phase: '01'
+- id: TX02
+  condition: Schema- und TS-Drift
+  phase: 01 / 04
+- id: TX03
+  condition: emulator ohne observation, syntx_adapter, contracts.f05
+  phase: '02'
+- id: TX04
+  condition: Store-Capabilities inkl. Orchestrator im Auftrag
+  phase: 01 / 03
+- id: TX05
+  condition: Leckfreiheit (Mutationstest L5)
+  phase: '03'
+- id: TX06
+  condition: TargetDefinition beobachtungsbasiert
+  phase: '02'
+- id: TX07
+  condition: K3-Wahrheitstabellen, `requires`, Gültigkeit, `at`
+  phase: '01'
+- id: TX08
+  condition: keine Wanduhr und kein Zufall in Feldmodulen
+  phase: '01'
+- id: TX09
+  condition: Fixture-Lint (keine Geo- oder Realnamen, is_fixture)
+  phase: '01'
+- id: TX10
+  condition: data_origin-Propagation
+  phase: '03'
+- id: TX11
+  condition: 'Operator-/Σ-Lint: kein Vergleich oder Match auf `OperatorRef.symbol`, `.code`, `.namespace` oder `SigmaRef.sigma_id`
+    außerhalb von `syntx_adapter/registry` und Tests (attributbasiert, nicht literalbasiert)'
+  phase: '01'
+- id: TX12
+  condition: trace_check (REQ, Komponenten, Tests, ADR-Marker)
+  phase: '01'
+- id: TX13
+  condition: Oracle-Differenztest + Golden-Gegenrechnung
+  phase: '01'
+- id: TX14
+  condition: Vertrags-Durchstich über alle 27 Typen
+  phase: '01'
+- id: TX15
+  condition: Frontend gegen Projection-Snapshots
+  phase: '04'
+- id: TX16
+  condition: Replay-Identität inhaltsadressierter IDs
+  phase: '02'
+- id: TX17
+  condition: Envelope-Diskriminierung über AnyEnvelope
+  phase: '01'
+- id: TX18
+  condition: beobachteter Kopplungsgraph ⊆ Matrix, keine toten Kanten
+  phase: '03'
+- id: TX19
+  condition: DOM-Render aller elf Sichten gegen Snapshots inkl. Tick-Synchronisation und OriginBadge
+  phase: '04'
+- id: TX20
+  condition: Headless-Browser-End-to-End gegen laufendes Backend (AK-16b)
+  phase: 05, umgebungsabhängig (DEP-07)
+- id: TX21
+  condition: Codepunkte, NFC und Hash-Stabilität (FX-SIGMA)
+  phase: '01'
+- id: TX22
+  condition: 'Semiontik-SSOT vollständig: jeder darstellbare Enum-Wert ↦ genau ein SEM und ein TERM; keine Kanal-Kollision'
+  phase: '04'
+- id: TX23
+  condition: 'Farbregeln: Text ≥ 4,5 : 1, Grafik ≥ 3 : 1, gemeinsam auftretende semantische Farben ΔE00 ≥ 15'
+  phase: '04'
+- id: TX24
+  condition: 'Produktsprache: kein Rohstring, Laufzeitscan gegen Sperrliste, Katalog EN und DE vollständig'
+  phase: '04'
+- id: TX25
+  condition: interne F07-Grenzen (dependency-cruiser, aus G03.3 generiert)
+  phase: '04'
+- id: TX26
+  condition: Rechenverbot im Frontend (AST-Lint für ViewModels und Komponenten)
+  phase: '04'
+- id: TX27
+  condition: 'Guard-Matrix: Mismatch je Klasse und Parameter ⇒ Quarantäne; NOT_AVAILABLE_AT_TICK bleibt READY'
+  phase: '04'
+- id: TX28
+  condition: 'Geometrie im Browser: Überlappung, Überlauf, Raster, Zonen, z-Reihenfolge, reduced-motion'
+  phase: 04, Browser (DEP-07b)
+- id: TX29
+  condition: Visual Regression gegen freigegebene Baselines
+  phase: 04, Browser (DEP-07b)
+- id: TX30
+  condition: Glyphenabdeckung (Font-cmap) und Glyphen-Bounding-Boxes
+  phase: '04'
+- id: TX31
+  condition: Demo-Skript-Durchlauf gegen laufendes Backend
+  phase: 05, Browser (DEP-07b)
+- id: TX32
+  condition: Barrierefreiheit (axe-core, Tastatur, Fokus)
+  phase: 04, Browser (DEP-07b)
+- id: TX33
+  condition: deterministisches Graph-Layout (reine Funktion, Koordinaten byte-identisch)
+  phase: '04'
+acceptance:
+- id: AK-01
+  criterion: '`make verify` grün auf sauberem Checkout'
+  evidence: Report
+- id: AK-02
+  criterion: alle umsetzbaren REQ VERIFIED, sonst BLOCKED_DEP oder PROVISIONAL mit Ursache
+  evidence: STATUS
+- id: AK-03
+  criterion: T01–T12, T04b und TX01–TX33 grün, keine Skips; TX20 und TX31 nur bei verfügbarer Browser-Laufzeit, sonst Vermerk
+    DEP-07b
+  evidence: Report
+- id: AK-04
+  criterion: Golden Fixtures exakt (Kern = Oracle = Erwartung)
+  evidence: T07, TX13
+- id: AK-05
+  criterion: Replay IDENTICAL für FX-SCN-BASE und FX-SCN-REC in beiden Modi
+  evidence: T03, TX16
+- id: AK-06
+  criterion: Export → Import → Export mit identischem bundle_hash
+  evidence: T10
+- id: AK-07
+  criterion: Leckfreiheit (L5)
+  evidence: TX05
+- id: AK-08
+  criterion: beobachteter Kopplungsgraph ⊆ Matrix, keine toten Kanten
+  evidence: TX18
+- id: AK-09
+  criterion: korrektes data_origin an jeder F05-Ausgabe und jedem angezeigten Wert
+  evidence: TX10, T09, AK-GUI-03
+- id: AK-10
+  criterion: '`docker compose up` → Healthcheck → `tools/smoke.sh` grün; ohne Docker-Daemon Vermerk „DEP-07a / EXTERN_AUSZUFÜHREN“,
+    ohne Blockade der übrigen AK'
+  evidence: Smoke-Report
+- id: AK-11
+  criterion: Demo-Flow-Test grün
+  evidence: Report
+- id: AK-12
+  criterion: elf Sichten rendern mit Snapshots, Tickwechsel synchron
+  evidence: T09, TX15
+- id: AK-13
+  criterion: Regressionsbundles reproduzieren
+  evidence: T11
+- id: AK-14
+  criterion: Reports maschinell erzeugt, Hash im STATUS
+  evidence: Report
+- id: AK-15
+  criterion: offene DEP, Review-Punkte und nicht angenommene Vorschläge vollständig gelistet
+  evidence: STATUS
+- id: AK-16a
+  criterion: DOM-Render aller elf Sichten gegen Snapshots; erfüllt, wenn AK-GUI-01–08 und AK-GUI-11–15 erfüllt sind [K-75]
+  evidence: TX19 und AK-GUI-Nachweise
+- id: AK-16b
+  criterion: Browserlauf aller elf Sichten gegen laufendes Backend; erfüllt, wenn AK-GUI-09, -10, -18 und -20 erfüllt sind;
+    ohne Browser-Laufzeit Vermerk DEP-07b [K-75]
+  evidence: TX20, TX31
+- id: AK-GUI-01
+  criterion: elf Sichten rendern gegen Snapshots; 0 Konsolenfehler; 0 fehlende Pflichtblöcke
+  evidence: TX15, TX19
+- id: AK-GUI-02
+  criterion: jeder Header-Mismatch (alle Guard-Klassen, alle gespiegelten Parameter) ⇒ Quarantäne ohne Altdaten
+  evidence: T09, TX27
+- id: AK-GUI-03
+  criterion: Herkunftskapsel an jedem Datenblock, korrekt, achromatisch kodiert
+  evidence: TX19, TX20
+- id: AK-GUI-04
+  criterion: Offenheitszeichen {SEM-006, 007, 008, 009, 012, 031} paarweise verschieden, nie Verletzungsfarbe
+  evidence: TX19
+- id: AK-GUI-05
+  criterion: 'Nicht-Sweep-Tick: Ω_R regulär „No reconstruction at t“, Ω_A und Ω_O vollständig'
+  evidence: TX19
+- id: AK-GUI-06
+  criterion: 'Metriken: alle mit n/d, Gründe für Undefiniertheit, M07 ALL und OBSERVABLE, kein Gesamtwert, Definitionen vom
+    Server'
+  evidence: TX19
+- id: AK-GUI-07
+  criterion: kanonische Zeichen unverfälscht (Codepunkt und Glyph); fehlende Bezeichnungen als DEP-08 gekennzeichnet
+  evidence: TX19, TX30
+- id: AK-GUI-08
+  criterion: Graph-Layout byte-identisch
+  evidence: TX33
+- id: AK-GUI-09
+  criterion: Tickwechsel im Browser synchron über die Sichten 2, 3, 4, 11
+  evidence: TX20
+- id: AK-GUI-10
+  criterion: 'Export im Browser: gültiges Bundle, bundle_hash vom Server angezeigt'
+  evidence: TX20
+- id: AK-GUI-11
+  criterion: keine Domänenrechnung im Frontend (inkl. Symbolvergleich zwischen Räumen, Regelzählung)
+  evidence: TX26
+- id: AK-GUI-12
+  criterion: TS-Drift-Freiheit
+  evidence: TX02
+- id: AK-GUI-13
+  criterion: kein interner Begriff sichtbar; jeder Text aus dem Katalog; EN und DE vollständig
+  evidence: TX24
+- id: AK-GUI-14
+  criterion: Tokens erfüllen Kontrast- und Farbabstandsregeln
+  evidence: TX23
+- id: AK-GUI-15
+  criterion: keine Überlappung, kein abgeschnittener Text, Raster eingehalten, Zonen korrekt bei 1920 × 1080, 1440 × 900,
+    1280 × 720 in beiden Modi
+  evidence: TX28
+- id: AK-GUI-16
+  criterion: Visual Regression gegen freigegebene Baselines innerhalb der Toleranz
+  evidence: TX29
+- id: AK-GUI-17
+  criterion: Glyphenabdeckung der gebündelten Monospace für alle kanonischen Zeichen; einheitliche Glyphenhöhe
+  evidence: TX30
+- id: AK-GUI-18
+  criterion: Demo-Skript vollständig, jede Schritt-URL zeigt die erwarteten Zeichen, keine POSTs
+  evidence: TX31
+- id: AK-GUI-19
+  criterion: axe-core ohne schwere Befunde; vollständige Tastaturbedienung; sichtbarer Fokus
+  evidence: TX32
+- id: AK-GUI-20
+  criterion: App lädt und funktioniert ohne Netz außer zur lokalen API
+  evidence: TX20 (offline)
+dependencies:
+- id: DEP-01
+  state: OPEN
+- id: DEP-02
+  state: OPEN
+- id: DEP-03
+  state: PARTIAL
+- id: DEP-04
+  state: CLOSED
+  note: v1.0.2 accepted by owner (freeze record)
+- id: DEP-05
+  state: FIXTURE_AUTHORED
+- id: DEP-06
+  state: PINNED
+  note: backend/pyproject.toml
+- id: DEP-07a
+  state: OPEN
+  note: Docker daemon unreachable in the Claude workspace
+- id: DEP-07b
+  state: AVAILABLE
+  note: Chrome for Testing 153 headless
+- id: DEP-08
+  state: OPEN
+- id: DEP-GUI-01
+  state: OPEN
+  note: checked by TX30
+- id: DEP-GUI-02
+  state: OPEN
+registers:
+  K: K-01..K-76
+  GK: GK-01..GK-29
+  D: D-01..D-49
+  S: S-01..S-08
+  A: A-01..A-14
+  X: X-01..X-33
+  G: G01..G39
+  H: H-01..H-34
+  C: C-01..C-35
+  SEM: SEM-001..SEM-036
+  RV: RV-01..RV-07, RV-GUI-01..RV-GUI-11 (all ACCEPTED, freeze record)
+adr:
+- id: ADR-0001
+  title: Vertragspräzisionen Phase 01
+  class: F2
+  state: ACCEPTED
+- id: ADR-0002
+  title: Reine Feldmodule, Persistenz im Auftrag
+  class: F2
+  state: ACCEPTED
