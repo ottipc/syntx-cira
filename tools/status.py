@@ -58,14 +58,14 @@ def req_states(reg: dict[str, Any], rep: dict[str, Any] | None) -> list[dict[str
         be = [c for c in r["components"] if not c.startswith("frontend/")]
         implemented = not missing and not stubs and bool(r["components"]) and (mypy_ok or not be) and (tsc_ok or not fe)
         pyfiles = [str(p.relative_to(ROOT)) for c in r["components"] for p in _py_files(c) if p.exists()]
+        runtime_py = [f for f in pyfiles if "/tests/" not in f]  # a listed test file is evidence, not runtime code
+        data_be = [c for c in be if "/tests/" not in c and not any(f.startswith(c) for f in runtime_py)]
         if r.get("integration") == "not_applicable":
             integrated = implemented  # build-time or test asset; nothing to reach at runtime (registry note)
-        elif fe and not be:
-            integrated = implemented and browser_ok  # F07 modules reached in the production build (TX28)
-        elif not pyfiles:
-            integrated = implemented and bool(icov)  # data/config components consumed by the integrated runtime
         else:
-            integrated = implemented and all(icov.get(f, 0.0) > 0 for f in pyfiles)
+            be_ok = all(icov.get(f, 0.0) > 0 for f in runtime_py) and (bool(icov) if data_be else True)
+            fe_ok = browser_ok if fe else True  # F07 modules reached in the production build (TX28)
+            integrated = implemented and be_ok and fe_ok
         gate = {x for p in range(1, 6) for x in gates.get(f"{p:02d}", [])}
         outcomes = list(by_req.get(r["id"], [])) + [o for t in r["tests"] if t in gate for o in by_tid.get(t, [])]
         unmet = [t for t in r["tests"] if t in gate and not by_tid.get(t)]
