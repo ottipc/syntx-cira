@@ -5,6 +5,9 @@ import type { TermKey } from "../language";
 import type { SemId } from "../semiontics";
 import STEPS from "./demo.steps.json";
 
+/** Hands-free playback: each step stays this long on screen (demo.steps.json). */
+export const SECONDS_PER_STEP: number = STEPS.seconds_per_step;
+
 export interface DemoConfig { baseline: string; recovery: string; comparisonId: string | null }
 export interface DemoStep { url: string; narration: TermKey; expect: readonly SemId[] }
 

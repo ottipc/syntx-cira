@@ -994,6 +994,18 @@ terms:
   en: Resume demo
   de: Demo fortsetzen
   meaning: control
+- key: action.play_demo
+  internal: action
+  en: Play demo ({s} s)
+  de: Demo abspielen ({s} s)
+  meaning: hands-free run of all demo steps for recording
+  params:
+  - s
+- key: action.stop_demo
+  internal: action
+  en: Stop demo
+  de: Demo anhalten
+  meaning: control
 - key: action.next
   internal: action
   en: Next

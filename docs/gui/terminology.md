@@ -195,6 +195,8 @@
 | `action.control` | action | Control | Steuerung | control |
 | `action.close` | action | Close | Schließen | control |
 | `action.resume_demo` | action | Resume demo | Demo fortsetzen | control |
+| `action.play_demo` | action | Play demo ({s} s) | Demo abspielen ({s} s) | hands-free run of all demo steps for recording |
+| `action.stop_demo` | action | Stop demo | Demo anhalten | control |
 | `action.next` | action | Next | Weiter | control |
 | `action.previous` | action | Previous | Zurück | control |
 | `action.authorize.readonly` | D-49 | Read-only in this version | In dieser Version nur lesend | D-49 |

@@ -24,3 +24,7 @@ Datum: 2026-11-26 · Phase 05 · Klasse F2 (ohne Semantikwirkung, E-07)
 4. **Laufzeitkette.** `docker-compose.yml` (Backend mit Healthcheck, statischer Frontend-Build) und `tools/smoke.sh`
    gegen eine laufende Instanz. Ohne Docker-Daemon wird AK-10 als `DEP-07a / EXTERN_AUSZUFÜHREN` geführt, nie simuliert.
    TX20/TX31 laufen gegen ein echtes uvicorn mit dem Produktions-Build im Browser (DEP-07b gemessen).
+5. **Freihändige Wiedergabe für Aufnahmen.** „Play demo“ in der Demo-Leiste geht alle Schritte selbst durch,
+   `seconds_per_step` (10 s) aus `demo.steps.json`, also 80 s für 8 Schritte, im Präsentationsmodus. Reine Navigation
+   (INV-FUN-07, kein POST); Escape, „Stop“ oder jede manuelle Navigation beenden die Wiedergabe. Belegt durch einen
+   DOM-Test mit Zeitraffer und einen 80-s-Lauf in Chrome gegen das laufende Backend (TX31).

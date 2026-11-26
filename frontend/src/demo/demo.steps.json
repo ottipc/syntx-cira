@@ -1,13 +1,98 @@
 {
-  "_comment": "G05.3 demo script as data. Read by demo/script.ts (navigation) and backend/tests/integration/test_demo_flow.py (claims verified against the API, AK-11). Parameters follow the fixture data: inputs at t act on t+1 (ADR-0003), so the first reference change is at t=2.",
+  "_comment": "G05.3 demo script as data. Read by demo/script.ts (navigation) and backend/tests/integration/test_demo_flow.py (claims verified against the API, AK-11). Parameters follow the fixture data: inputs at t act on t+1 (ADR-0003), so the first reference change is at t=2. seconds_per_step drives the hands-free playback (8 × 10 s = 80 s video).",
+  "seconds_per_step": 10,
   "steps": [
-    { "n": 1, "view": "SYSTEM_FIELD_OVERVIEW", "tick": 0, "narration": "demo.1", "expect": ["SEM-019", "SEM-020", "SEM-032"] },
-    { "n": 2, "view": "TEMPORAL_STATE_EXPLORER", "tick": 2, "focus": "attr:n05/state", "narration": "demo.2", "expect": ["SEM-001", "SEM-004", "SEM-023", "SEM-034"] },
-    { "n": 3, "view": "TEMPORAL_STATE_EXPLORER", "tick": 3, "filter": "open", "narration": "demo.3", "expect": ["SEM-006", "SEM-007", "SEM-031"] },
-    { "n": 4, "view": "TEMPORAL_STATE_EXPLORER", "tick": 3, "focus": "attr:n08/state", "narration": "demo.4", "expect": ["SEM-003", "SEM-034", "SEM-035"] },
-    { "n": 5, "view": "FORWARD_SWEEP_INSPECTOR", "tick": 3, "narration": "demo.5", "expect": ["SEM-013", "SEM-027", "SEM-029"] },
-    { "n": 6, "view": "STRUCTURAL_METRICS", "tick": 5, "aggregation": "POOLED", "narration": "demo.6", "expect": ["SEM-013", "SEM-021"] },
-    { "n": 7, "view": "SCENARIO_COMPARISON", "tick": 5, "comparison": true, "narration": "demo.7", "expect": ["SEM-010", "SEM-020", "SEM-021"] },
-    { "n": 8, "view": "SYSTEM_FIELD_OVERVIEW", "tick": 5, "narration": "demo.8", "expect": ["SEM-013", "SEM-019"] }
+    {
+      "n": 1,
+      "view": "SYSTEM_FIELD_OVERVIEW",
+      "tick": 0,
+      "narration": "demo.1",
+      "expect": [
+        "SEM-019",
+        "SEM-020",
+        "SEM-032"
+      ]
+    },
+    {
+      "n": 2,
+      "view": "TEMPORAL_STATE_EXPLORER",
+      "tick": 2,
+      "focus": "attr:n05/state",
+      "narration": "demo.2",
+      "expect": [
+        "SEM-001",
+        "SEM-004",
+        "SEM-023",
+        "SEM-034"
+      ]
+    },
+    {
+      "n": 3,
+      "view": "TEMPORAL_STATE_EXPLORER",
+      "tick": 3,
+      "filter": "open",
+      "narration": "demo.3",
+      "expect": [
+        "SEM-006",
+        "SEM-007",
+        "SEM-031"
+      ]
+    },
+    {
+      "n": 4,
+      "view": "TEMPORAL_STATE_EXPLORER",
+      "tick": 3,
+      "focus": "attr:n08/state",
+      "narration": "demo.4",
+      "expect": [
+        "SEM-003",
+        "SEM-034",
+        "SEM-035"
+      ]
+    },
+    {
+      "n": 5,
+      "view": "FORWARD_SWEEP_INSPECTOR",
+      "tick": 3,
+      "narration": "demo.5",
+      "expect": [
+        "SEM-013",
+        "SEM-027",
+        "SEM-029"
+      ]
+    },
+    {
+      "n": 6,
+      "view": "STRUCTURAL_METRICS",
+      "tick": 5,
+      "aggregation": "POOLED",
+      "narration": "demo.6",
+      "expect": [
+        "SEM-013",
+        "SEM-021"
+      ]
+    },
+    {
+      "n": 7,
+      "view": "SCENARIO_COMPARISON",
+      "tick": 5,
+      "comparison": true,
+      "narration": "demo.7",
+      "expect": [
+        "SEM-010",
+        "SEM-020",
+        "SEM-021"
+      ]
+    },
+    {
+      "n": 8,
+      "view": "SYSTEM_FIELD_OVERVIEW",
+      "tick": 5,
+      "narration": "demo.8",
+      "expect": [
+        "SEM-013",
+        "SEM-019"
+      ]
+    }
   ]
 }

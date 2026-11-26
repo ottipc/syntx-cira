@@ -192,6 +192,8 @@ export type TermKey =
   | "action.control"
   | "action.close"
   | "action.resume_demo"
+  | "action.play_demo"
+  | "action.stop_demo"
   | "action.next"
   | "action.previous"
   | "action.authorize.readonly"
@@ -656,6 +658,8 @@ export const TERMS: Readonly<Record<TermKey, TermEntry>> = {
   "action.control": { en: "Control", de: "Steuerung", params: [] },
   "action.close": { en: "Close", de: "Schließen", params: [] },
   "action.resume_demo": { en: "Resume demo", de: "Demo fortsetzen", params: [] },
+  "action.play_demo": { en: "Play demo ({s} s)", de: "Demo abspielen ({s} s)", params: ["s"] },
+  "action.stop_demo": { en: "Stop demo", de: "Demo anhalten", params: [] },
   "action.next": { en: "Next", de: "Weiter", params: [] },
   "action.previous": { en: "Previous", de: "Zurück", params: [] },
   "action.authorize.readonly": { en: "Read-only in this version", de: "In dieser Version nur lesend", params: [] },

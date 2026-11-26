@@ -115,6 +115,32 @@ describe("[TX31][AK-GUI-18][REQ-076] demo script against the running backend", (
     await p.context().close();
   }, 180000);
 
+  it("[TX31] Play demo runs hands-free for 80 s against the live backend: 8 steps in order, ~10 s each, then stops", async () => {
+    const { p, traffic } = await page(live, `/exp/${ids.baseline}/SYSTEM_FIELD_OVERVIEW?tick=0`, { width: 1920, height: 1080 });
+    const t0 = Date.now();
+    await p.click('[data-term="action.play_demo"]');
+    const seen: { step: string; at: number }[] = [];
+    while (Date.now() - t0 < 95000) {
+      const s = new URL(p.url()).searchParams.get("demoStep") ?? "";
+      if (seen.at(-1)?.step !== s) seen.push({ step: s, at: Date.now() - t0 });
+      expect(await p.locator('[data-zone="C"] [data-sem="SEM-028"]').count(), `quarantine at step ${s}`).toBe(0);
+      if (await p.locator('[data-playing="false"]').count()) break;
+      await p.waitForTimeout(250);
+    }
+    expect(seen.map((x) => x.step)).toEqual(["1", "2", "3", "4", "5", "6", "7", "8"]);
+    for (let i = 1; i < seen.length; i += 1) {
+      const gap = seen[i]!.at - seen[i - 1]!.at;
+      expect(gap, `step ${seen[i]!.step} after ${gap} ms`).toBeGreaterThan(9000);
+      expect(gap).toBeLessThan(11500);
+    }
+    const total = Date.now() - t0;
+    expect(total, `playback ended after ${total} ms`).toBeGreaterThan(79000);
+    expect(total).toBeLessThan(84000);
+    expect(traffic.requests.filter((r) => r.method !== "GET")).toEqual([]);
+    expect(traffic.errors).toEqual([]);
+    await p.context().close();
+  }, 150000);
+
   it.each(DEEP_PATHS.map((d) => [d.key, d.views] as const))("[TX31] deep path %s opens without quarantine", async (_k, views) => {
     for (const v of views) {
       const { p, traffic } = await page(live, `/exp/${ids.baseline}/${v}?tick=3${v === "SCENARIO_COMPARISON" ? `&comparisonId=${encodeURIComponent(ids.comparison)}` : ""}`);
