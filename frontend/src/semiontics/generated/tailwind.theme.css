@@ -22,6 +22,7 @@
   --color-eval-coherent: var(--col-eval-coherent);
   --color-eval-violation: var(--col-eval-violation);
   --color-eval-partial: var(--col-eval-partial);
+  --color-brand-core: var(--col-brand-core);
   --color-open-epistemic: var(--col-open-epistemic);
   --color-open-absent: var(--col-open-absent);
   --font-sans: var(--font-sans);

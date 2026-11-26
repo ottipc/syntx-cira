@@ -1343,3 +1343,7 @@ adr:
   title: Präzisierungen Phase 05
   class: F2
   state: ACCEPTED
+- id: ADR-0007
+  title: Marke und Dekor im Arbeitsbereich
+  class: F2
+  state: ACCEPTED

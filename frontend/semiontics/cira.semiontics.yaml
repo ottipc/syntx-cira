@@ -3,12 +3,12 @@ version: 1.0.1
 source: Package v1.0.2 G03.12, G03.13; GREF SEM-001–030
 tokens:
   color:
-    surface.void: '#090B0E'
-    surface.field: '#10141A'
-    surface.panel: '#161C24'
-    surface.elevated: '#1D2530'
-    border.hairline: '#242E3B'
-    border.strong: '#39475A'
+    surface.void: '#05080B'
+    surface.field: '#090D11'
+    surface.panel: '#0F161D'
+    surface.elevated: '#16202A'
+    border.hairline: '#1C2833'
+    border.strong: '#33475A'
     ink.primary: '#E6EDF5'
     ink.secondary: '#9AA8B8'
     ink.muted: '#8391A3'
@@ -21,6 +21,7 @@ tokens:
     eval.coherent: '#2DD4BF'
     eval.violation: '#F43F5E'
     eval.partial: '#A3E635'
+    brand.core: '#BFEFF4'
   alias:
     open.epistemic: ink.secondary
     open.absent: ink.muted
@@ -50,6 +51,11 @@ tokens:
     graphic_min: 3.0
     text_min: 4.5
     semantic_pairs_delta_e_min: 15
+    decorative:
+    - brand.core
+    decorative_delta_e_min: 15
+    network_surface: surface.field
+    network_max_opacity: network.max
     semantic:
     - space.actual
     - space.observed
@@ -147,6 +153,7 @@ tokens:
     quarantine: 0
     drawer: 160
     stage: 200
+    network.pulse: 9000
   graph:
     node.char_width: 7.8
     node.slot_chars: 12
@@ -173,6 +180,25 @@ tokens:
     min_viewport_h: 720
   opacity:
     loading: 0.35
+    network.line: 0.06
+    network.max: 0.08
+    glow: 0.45
+decorative:
+- id: DEC-01
+  name: brand mark
+  where: zone A, favicon
+  form: emblem image (circle with antlers) in brand.core glow
+  meaning: none — identity of the workspace only; never a state, value or rule
+- id: DEC-02
+  name: neural field
+  where: zone C background, behind all blocks
+  form: fixed node mesh in brand.core at ≤ opacity network.max, slow pulse (none under reduced motion)
+  meaning: none — never encodes data; generated from a fixed seed, independent of any projection
+- id: DEC-03
+  name: chain connector
+  where: view 01 layer chain
+  form: brand.core line with glow between consecutive fields
+  meaning: only the fixed order F01 → F07; couplings and the barrier keep their own signs (SEM-019, SEM-037)
 signified_enums:
 - StateSpace
 - Applicability

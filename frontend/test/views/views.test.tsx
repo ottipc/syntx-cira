@@ -120,6 +120,24 @@ describe("[TX19] cross-view focus (SEM-034)", () => {
   });
 });
 
+describe("[TX22] decoration carries no statement", () => {
+  it("[TX22] brand mark and neural field are hidden from assistive technology and carry no sign", async () => {
+    const r = await renderAt(url(EXP.baseline, "SYSTEM_FIELD_OVERVIEW", "tick=0"));
+    const mark = r.root.querySelector(".brand-mark");
+    expect(mark?.getAttribute("alt")).toBe("");
+    expect(mark?.getAttribute("aria-hidden")).toBe("true");
+    const nf = r.root.querySelector(".neural-field");
+    expect(nf?.getAttribute("aria-hidden")).toBe("true");
+    expect(nf?.querySelector("[data-sem]")).toBeNull();
+    expect(r.root.querySelectorAll(".chain-link:not(.cut)[data-sem]").length).toBe(0);
+    const cut = [...r.root.querySelectorAll(".chain-link.cut")];
+    expect(cut.length, "exactly one cut: between observation and engine").toBe(1);
+    expect(cut[0]!.getAttribute("data-sem")).toBe("SEM-019");
+    expect(cut[0]!.nextElementSibling?.getAttribute("data-field")).toBe("F05");
+    expect(cut[0]!.previousElementSibling?.getAttribute("data-field")).toBe("F04");
+  });
+});
+
 describe("[TX19][AK-GUI-04] openness signs pairwise distinct, never violation colour", () => {
   it("[TX19] SEM-006/007/008/009/012/031 differ in glyph or pattern and never use eval.violation", async () => {
     const reg = await import("../../src/semiontics/generated/sem");

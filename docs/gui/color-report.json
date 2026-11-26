@@ -3,167 +3,167 @@
   [
    "ink.primary",
    "surface.field",
-   15.65
+   16.52
   ],
   [
    "ink.secondary",
    "surface.field",
-   7.62
+   8.05
   ],
   [
    "ink.muted",
    "surface.field",
-   5.76
+   6.07
   ],
   [
    "space.actual",
    "surface.field",
-   8.62
+   9.1
   ],
   [
    "space.observed",
    "surface.field",
-   8.6
+   9.08
   ],
   [
    "space.reconstructed",
    "surface.field",
-   6.79
+   7.16
   ],
   [
    "eval.coherent",
    "surface.field",
-   9.92
+   10.47
   ],
   [
    "eval.partial",
    "surface.field",
-   12.25
+   12.93
   ],
   [
    "eval.violation",
    "surface.field",
-   5.03
+   5.31
   ],
   [
    "ink.primary",
    "surface.panel",
-   14.52
+   15.44
   ],
   [
    "ink.secondary",
    "surface.panel",
-   7.07
+   7.52
   ],
   [
    "ink.muted",
    "surface.panel",
-   5.34
-  ],
-  [
-   "space.actual",
-   "surface.panel",
-   8.0
-  ],
-  [
-   "space.observed",
-   "surface.panel",
-   7.98
-  ],
-  [
-   "space.reconstructed",
-   "surface.panel",
-   6.3
-  ],
-  [
-   "eval.coherent",
-   "surface.panel",
-   9.2
-  ],
-  [
-   "eval.partial",
-   "surface.panel",
-   11.36
-  ],
-  [
-   "eval.violation",
-   "surface.panel",
-   4.67
-  ],
-  [
-   "ink.primary",
-   "surface.elevated",
-   13.09
-  ],
-  [
-   "ink.secondary",
-   "surface.elevated",
-   6.38
-  ],
-  [
-   "ink.muted",
-   "surface.elevated",
-   4.81
-  ],
-  [
-   "space.actual",
-   "surface.elevated",
-   7.21
-  ],
-  [
-   "space.observed",
-   "surface.elevated",
-   7.19
-  ],
-  [
-   "space.reconstructed",
-   "surface.elevated",
    5.68
   ],
   [
+   "space.actual",
+   "surface.panel",
+   8.5
+  ],
+  [
+   "space.observed",
+   "surface.panel",
+   8.48
+  ],
+  [
+   "space.reconstructed",
+   "surface.panel",
+   6.69
+  ],
+  [
+   "eval.coherent",
+   "surface.panel",
+   9.79
+  ],
+  [
+   "eval.partial",
+   "surface.panel",
+   12.08
+  ],
+  [
+   "eval.violation",
+   "surface.panel",
+   4.96
+  ],
+  [
+   "ink.primary",
+   "surface.elevated",
+   13.97
+  ],
+  [
+   "ink.secondary",
+   "surface.elevated",
+   6.8
+  ],
+  [
+   "ink.muted",
+   "surface.elevated",
+   5.14
+  ],
+  [
+   "space.actual",
+   "surface.elevated",
+   7.69
+  ],
+  [
+   "space.observed",
+   "surface.elevated",
+   7.67
+  ],
+  [
+   "space.reconstructed",
+   "surface.elevated",
+   6.06
+  ],
+  [
    "eval.coherent",
    "surface.elevated",
-   8.3
+   8.85
   ],
   [
    "eval.partial",
    "surface.elevated",
-   10.24
+   10.93
   ],
   [
    "ink.secondary",
    "surface.field (graphic)",
-   7.62
+   8.05
   ],
   [
    "space.actual",
    "surface.field (graphic)",
-   8.62
+   9.1
   ],
   [
    "space.observed",
    "surface.field (graphic)",
-   8.6
+   9.08
   ],
   [
    "space.reconstructed",
    "surface.field (graphic)",
-   6.79
+   7.16
   ],
   [
    "eval.coherent",
    "surface.field (graphic)",
-   9.92
+   10.47
   ],
   [
    "eval.violation",
    "surface.field (graphic)",
-   5.03
+   5.31
   ],
   [
    "eval.partial",
    "surface.field (graphic)",
-   12.25
+   12.93
   ]
  ],
  "tints": [
@@ -273,6 +273,85 @@
    "eval.violation",
    "eval.partial",
    76.0
+  ]
+ ],
+ "decorative": [
+  [
+   "brand.core",
+   "space.actual",
+   20.2
+  ],
+  [
+   "brand.core",
+   "space.observed",
+   40.9
+  ],
+  [
+   "brand.core",
+   "space.reconstructed",
+   30.2
+  ],
+  [
+   "brand.core",
+   "eval.coherent",
+   18.0
+  ],
+  [
+   "brand.core",
+   "eval.violation",
+   54.0
+  ],
+  [
+   "brand.core",
+   "eval.partial",
+   34.2
+  ]
+ ],
+ "network": [
+  [
+   "ink.primary",
+   "surface.field + brand.core @ 0.08",
+   14.13
+  ],
+  [
+   "ink.secondary",
+   "surface.field + brand.core @ 0.08",
+   6.88
+  ],
+  [
+   "ink.muted",
+   "surface.field + brand.core @ 0.08",
+   5.2
+  ],
+  [
+   "space.actual",
+   "surface.field + brand.core @ 0.08",
+   7.79
+  ],
+  [
+   "space.observed",
+   "surface.field + brand.core @ 0.08",
+   7.77
+  ],
+  [
+   "space.reconstructed",
+   "surface.field + brand.core @ 0.08",
+   6.13
+  ],
+  [
+   "eval.coherent",
+   "surface.field + brand.core @ 0.08",
+   8.96
+  ],
+  [
+   "eval.partial",
+   "surface.field + brand.core @ 0.08",
+   11.06
+  ],
+  [
+   "eval.violation",
+   "surface.field + brand.core @ 0.08",
+   4.54
   ]
  ]
 }

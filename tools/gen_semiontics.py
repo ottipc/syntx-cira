@@ -138,6 +138,24 @@ def color_report(tok: dict[str, Any]) -> tuple[dict[str, Any], list[str]]:
         out["pairs"].append([a, b, d])
         if d < rules["semantic_pairs_delta_e_min"]:
             errs.append(f"TX23: ΔE00({a}, {b}) = {d} < {rules['semantic_pairs_delta_e_min']}")
+    # decoration (DEC-xx) must never read as a sign, and text stays readable over the neural field (ADR-0007)
+    out["decorative"], out["network"] = [], []
+    for d_ in rules.get("decorative", []):
+        for sem_ in rules["semantic"]:
+            d = round(ciede2000(col[d_], col[sem_]), 1)
+            out["decorative"].append([d_, sem_, d])
+            if d < rules["decorative_delta_e_min"]:
+                errs.append(f"TX23: decorative ΔE00({d_}, {sem_}) = {d} < {rules['decorative_delta_e_min']}")
+        if "network_surface" in rules:
+            a = float(tok["opacity"][rules["network_max_opacity"]])
+            surf = col[rules["network_surface"]]
+            mix = "#" + "".join(f"{round(int(surf[i:i + 2], 16) + a * (int(col[d_][i:i + 2], 16) - int(surf[i:i + 2], 16))):02X}"
+                                for i in (1, 3, 5))
+            for t in rules["text_tokens"] + rules["text_tokens_field_panel"]:
+                c = round(contrast(col[t], mix), 2)
+                out["network"].append([t, f"{rules['network_surface']} + {d_} @ {a}", c])
+                if c < rules["text_min"]:
+                    errs.append(f"TX23: {t} over neural field = {c} < {rules['text_min']}")
     for t in ["ink.secondary"] + rules["semantic"]:
         c = round(contrast(col[t], col["surface.field"]), 2)
         out["text"].append([t, "surface.field (graphic)", c])
@@ -293,6 +311,12 @@ def docs_register(doc: dict[str, Any]) -> str:
                       for x in s["binds"]) or "—"
         L.append(f"| {s['id']} | {s['name']} | {c['shape']} | `{c['color']}` | {c['glyph'] or '—'} | {c['pattern'] or '—'} | {b} | "
                  f"{', '.join(map(str, s['views']))} | {s['primitive']} | `{s['term']}` | {s['exclusion']} |")
+    if doc.get("decorative"):
+        L += ["", "## Decoration (no sign)", "", "> Decorative elements carry no statement. They never use a sign colour, never "
+              "carry `data-sem`, and stay below the text contrast limits (TX22, TX23).", "",
+              "| DEC | Name | Where | Form | Meaning |", "|---|---|---|---|---|"]
+        for d in doc["decorative"]:
+            L.append(f"| {d['id']} | {d['name']} | {d['where']} | {d['form']} | {d['meaning']} |")
     return "\n".join(L) + "\n"
 
 
@@ -305,6 +329,9 @@ def docs_terms(t: dict[str, Any]) -> str:
 
 
 def check(doc: dict[str, Any], terms: dict[str, Any], enums: dict[str, list[str]]) -> list[str]:
+    deco_cols = set(doc["tokens"]["contrast_rules"].get("decorative", []))
+    deco_errs = [f"TX22: {s['id']} uses decorative colour {s['channels']['color']}" for s in doc["sems"]
+                 if s["channels"]["color"] in deco_cols]
     errs: list[str] = []
     errs += validate(doc, json.loads((SEMI / "semiontics.schema.json").read_text(encoding="utf-8")))
     errs += validate(terms, json.loads((SEMI / "terms.schema.json").read_text(encoding="utf-8")))
@@ -355,7 +382,7 @@ def check(doc: dict[str, Any], terms: dict[str, Any], enums: dict[str, list[str]
                 if p not in x.get("params", []):
                     errs.append(f"terms: {x['key']} uses undeclared parameter {p}")
     _, cerr = color_report(doc["tokens"])
-    return errs + cerr
+    return errs + cerr + deco_errs
 
 
 def generate() -> dict[Path, str]:

@@ -37,15 +37,19 @@ button { font: inherit; color: inherit; }
   overflow-y: auto; z-index: var(--z-chrome); }
 .zone-c { grid-area: c; display: flex; flex-direction: column; overflow: hidden; background: var(--col-surface-field); position: relative;
   z-index: var(--z-canvas); min-width: var(--zone-c-min_width); min-height: 0; }
-.zone-c-content { flex: 1 1 auto; min-height: 0; overflow: auto; padding: var(--space-16) var(--space-24); }
+.zone-c-content { position: relative; z-index: 1; flex: 1 1 auto; min-height: 0; overflow: auto; padding: var(--space-16) var(--space-24); }
 .zone-d { grid-area: d; display: flex; align-items: center; gap: var(--space-12); padding: 0 var(--space-16);
   background: var(--col-surface-panel); border-top: var(--border-width-base) solid var(--col-border-hairline); z-index: var(--z-chrome); }
 .zone-e { grid-area: e; width: var(--zone-e-width); background: var(--col-surface-elevated); border-left: var(--border-width-base) solid var(--col-border-strong);
   overflow-y: auto; padding: var(--space-16); z-index: var(--z-drawer); }
 .zone-e[hidden] { display: none; }
 @media (max-width: 1599px) { .zone-e { position: fixed; right: 0; top: var(--zone-a-height); bottom: var(--zone-d-height); } }
+/* DEC-01 brand: emblem + name with a soft glow (decorative; the name stays ink.primary for contrast) */
+.brand { display: inline-flex; align-items: center; gap: var(--space-8); }
+.brand-mark { width: var(--space-32); height: var(--space-32); filter: drop-shadow(0 0 var(--space-4) color-mix(in srgb, var(--col-brand-core) 55%, transparent)); }
 .wordmark { font-size: var(--type-display-size); line-height: var(--type-display-line); font-weight: var(--type-display-weight);
-  letter-spacing: var(--type-section-tracking); white-space: nowrap; }
+  letter-spacing: var(--type-section-tracking); white-space: nowrap; color: var(--col-ink-primary);
+  text-shadow: 0 0 var(--space-12) color-mix(in srgb, var(--col-brand-core) 45%, transparent); }
 .zone-a .spacer { flex: 1 1 auto; }
 .ctx-exp { display: flex; gap: var(--space-8); align-items: center; min-width: 0; overflow: hidden; white-space: nowrap; }
 .rail { list-style: none; margin: 0; padding: var(--space-8) 0; }
@@ -162,8 +166,23 @@ table.data th { font-size: var(--type-section-size); text-transform: var(--type-
 .state-grid { display: grid; grid-template-columns: minmax(calc(var(--space-32) * 5), 1fr) repeat(3, minmax(calc(var(--space-32) * 6), 2fr));
   gap: var(--space-4) var(--space-8); align-items: stretch; }
 .state-grid .attr { display: flex; align-items: center; gap: var(--space-8); }
-.layer-chain { display: grid; grid-template-columns: repeat(5, 1fr); gap: var(--space-12); align-items: stretch; }
-.layer { border: var(--border-width-base) solid var(--col-border-strong); padding: var(--space-12); background: var(--col-surface-panel); cursor: pointer; text-align: left; }
+/* view 01: the seven fields as one chain (DEC-03 links), cut by the barrier between observation and engine (SEM-019) */
+.layer-chain { display: flex; flex-wrap: wrap; align-items: flex-start; row-gap: var(--space-16); padding-bottom: var(--space-24); }
+.layer { flex: 1 1 calc(var(--space-32) * 4); min-width: calc(var(--space-32) * 4); display: flex; flex-direction: column; gap: var(--space-4);
+  border: var(--border-width-base) solid color-mix(in srgb, var(--col-brand-core) 28%, var(--col-border-strong)); padding: var(--space-12);
+  background: var(--col-surface-panel); cursor: pointer; text-align: left; color: inherit; text-decoration: none;
+  box-shadow: 0 0 var(--space-16) color-mix(in srgb, var(--col-brand-core) 10%, transparent); }
+.layer:hover { border-color: color-mix(in srgb, var(--col-brand-core) 60%, var(--col-border-strong)); }
+.layer-id { font-family: var(--font-mono); font-size: var(--type-mono-id-size); color: var(--col-ink-secondary); }
+.cascade-1 { margin-top: var(--space-4); } .cascade-2 { margin-top: var(--space-8); } .cascade-3 { margin-top: var(--space-12); }
+.cascade-4 { margin-top: var(--space-16); } .cascade-5 { margin-top: var(--space-24); } .cascade-6 { margin-top: var(--space-32); }
+.chain-link { flex: 0 0 var(--space-24); align-self: stretch; position: relative; min-height: var(--space-32); }
+.chain-link::before { content: ""; position: absolute; left: 0; right: 0; top: calc(var(--space-32) + var(--space-4)); height: var(--border-width-base);
+  background: var(--col-brand-core); opacity: var(--opacity-glow); box-shadow: 0 0 var(--space-8) var(--col-brand-core); }
+.chain-link.cut::before { display: none; }
+.chain-link.cut { display: flex; justify-content: center; border-left: calc(var(--border-width-emphasis) * 2) double var(--col-eval-violation);
+  border-right: calc(var(--border-width-emphasis) * 2) double var(--col-eval-violation); margin: 0 var(--space-4); flex-basis: var(--space-16); }
+.cut-glyph { color: var(--col-eval-violation); font-family: var(--font-mono); padding-top: var(--space-24); }
 .metric-card { display: grid; grid-template-columns: minmax(calc(var(--space-32) * 7), 1fr) 3fr; gap: var(--space-8); padding: var(--space-8) 0;
   border-bottom: var(--border-width-base) solid var(--col-border-hairline); }
 /* the graph keeps its natural size (legibility, TX28); the panel scrolls horizontally instead of scaling it down */
@@ -204,3 +223,18 @@ button.link { background: none; border: 0; padding: 0; color: inherit; cursor: p
 .control-panel { position: absolute; top: calc(100% + var(--space-4)); right: 0; width: var(--zone-e-width); z-index: var(--z-drawer);
   max-height: calc(100vh - var(--zone-a-height) - var(--zone-d-height)); overflow-y: auto; }
 ul.plain { list-style: none; margin: 0; padding: 0; }
+/* DEC-02 neural field: behind all blocks of zone C; ≤ opacity.network.max (TX23 over-network contrast) */
+.neural-field { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
+.neural-field .nf-all { opacity: var(--opacity-network-max); }
+.neural-field .nf-lines path { stroke: var(--col-brand-core); stroke-width: var(--border-width-base); fill: none;
+  opacity: calc(var(--opacity-network-line) / var(--opacity-network-max)); }
+.neural-field .nf-nodes circle { fill: var(--col-brand-core); }
+.neural-field .nf-pulse { stroke: var(--col-brand-core); stroke-width: var(--border-width-emphasis); fill: none; opacity: 0;
+  animation: nf-pulse var(--motion-network-pulse) ease-in-out infinite; }
+.nf-delay-1 { animation-delay: calc(var(--motion-network-pulse) / -6); } .nf-delay-2 { animation-delay: calc(var(--motion-network-pulse) / -3); }
+.nf-delay-3 { animation-delay: calc(var(--motion-network-pulse) / -2); } .nf-delay-4 { animation-delay: calc(var(--motion-network-pulse) / -1.5); }
+.nf-delay-5 { animation-delay: calc(var(--motion-network-pulse) / -1.2); }
+@keyframes nf-pulse { 0%, 100% { opacity: 0; } 50% { opacity: 1; } }
+/* panels: a hairline of brand light along the top edge (decorative) */
+.panel { border-top-color: color-mix(in srgb, var(--col-brand-core) 22%, var(--col-border-hairline)); }
+.layer > * { align-self: flex-start; }

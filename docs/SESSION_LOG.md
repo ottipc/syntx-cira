@@ -30,3 +30,6 @@
 - Befunde IC-15 (07.7-Aggregation unvollständig, gespeichert ≠ Neuaggregation), IC-16 (Fokuszeichen, Maskierung von
   Mehrfachblöcken), IC-17 (Steuerungsmenü außerhalb des Viewports) — alle F2, ADR-0006.
 - DEP-GUI-01 geschlossen (TX30), DEP-GUI-02 gepinnt.
+- Nach Gate 05: freihändige 80-s-Demo („Play demo“), IC-18 (Lesen während Lauf), Push durch OB von seinem Rechner.
+- Gestaltung nach Auftrag OB (ADR-0007): Logo-Zeichen (ohne Schriftzug), Markenfarbe, neuronales Feld, Kette in Sicht 01,
+  Dekor als eigener bedeutungsfreier Registerabschnitt mit Prüfungen.

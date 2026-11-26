@@ -134,6 +134,20 @@ describe("[TX23][AK-GUI-14] colour rules on the token set", () => {
       expect(de2000(col[sem[i]!]!, col[sem[j]!]!), `${sem[i]} / ${sem[j]}`).toBeGreaterThanOrEqual(cr.semantic_pairs_delta_e_min);
     }
   });
+  it("[TX23] decoration never reads as a sign: brand colour ΔE00 ≥ 15 to every sign colour, and no SEM uses it", () => {
+    for (const d of cr.decorative as string[]) {
+      for (const s of cr.semantic as string[]) expect(de2000(col[d]!, col[s]!), `${d} / ${s}`).toBeGreaterThanOrEqual(cr.decorative_delta_e_min);
+      for (const sem of reg.sems as J[]) expect(sem.channels.color, sem.id).not.toBe(d);
+    }
+    expect((reg.decorative as J[]).map((d) => d.id)).toEqual(["DEC-01", "DEC-02", "DEC-03"]);
+  });
+  it("[TX23] text over the neural field at its maximum opacity keeps ≥ 4.5 : 1", () => {
+    const a = Number(reg.tokens.opacity[cr.network_max_opacity]);
+    const bg = col[cr.network_surface]!; const fg = col[cr.decorative[0]]!;
+    const ch = (h: string, i: number) => parseInt(h.slice(i, i + 2), 16);
+    const mix = "#" + [1, 3, 5].map((i) => Math.round(ch(bg, i) + a * (ch(fg, i) - ch(bg, i))).toString(16).padStart(2, "0")).join("");
+    for (const t of [...cr.text_tokens, ...cr.text_tokens_field_panel] as string[]) expect(contrast(col[t]!, mix), t).toBeGreaterThanOrEqual(cr.text_min);
+  });
   it("[TX23] the generated colour report agrees with this independent computation", () => {
     const rep: J = JSON.parse(readFileSync(join(root, "../docs/gui/color-report.json"), "utf-8"));
     for (const [t, s, v] of rep.text as [string, string, number][]) {

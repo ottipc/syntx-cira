@@ -41,3 +41,13 @@
 | SEM-035 | Deviation seam | seam | `eval.violation` | ┆ | — | AttributeMembership.delta | 2, 3 | DeviationSeam | `dev.mismatch` | never computed on the client |
 | SEM-036 | Presentation frame | frame | `border.strong` | — | — | Session.mode_presentation | 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 | PresentationFrame | `mode.presentation` | no change of meaning |
 | SEM-037 | Coupling line | line | `space.reconstructed` | — | — | CouplingStatus=EFFECTIVE/POSSIBLE/UNKNOWN_OPEN | 2, 5, 6, 8 | RelationEdgePath | `cpl` | coupling status, separate from topology relation type (GK-04, ADR-0005) |
+
+## Decoration (no sign)
+
+> Decorative elements carry no statement. They never use a sign colour, never carry `data-sem`, and stay below the text contrast limits (TX22, TX23).
+
+| DEC | Name | Where | Form | Meaning |
+|---|---|---|---|---|
+| DEC-01 | brand mark | zone A, favicon | emblem image (circle with antlers) in brand.core glow | none — identity of the workspace only; never a state, value or rule |
+| DEC-02 | neural field | zone C background, behind all blocks | fixed node mesh in brand.core at ≤ opacity network.max, slow pulse (none under reduced motion) | none — never encodes data; generated from a fixed seed, independent of any projection |
+| DEC-03 | chain connector | view 01 layer chain | brand.core line with glow between consecutive fields | only the fixed order F01 → F07; couplings and the barrier keep their own signs (SEM-019, SEM-037) |

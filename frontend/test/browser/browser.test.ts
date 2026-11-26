@@ -104,9 +104,24 @@ describe("[TX28][AK-GUI-15] geometry in the browser", () => {
       }
       // nothing of zone C content may escape to the left of zone C or above it
       const zc = c.getBoundingClientRect();
-      for (const el of c.querySelectorAll<HTMLElement>("*")) {
-        const r = el.getBoundingClientRect();
-        if (r.width && r.height && (r.left < zc.left - 1 || r.top < zc.top - 1) && el.offsetParent !== null) { out.push(`escapes zone C: ${el.tagName}.${el.className}`); break; }
+      // visible rectangle = own box clipped by every clipping ancestor up to zone C (overflow ≠ visible, outer <svg> viewport)
+      const visible = (el: Element) => {
+        let r = el.getBoundingClientRect();
+        let [l, t, rr, b] = [r.left, r.top, r.right, r.bottom];
+        for (let a = el.parentElement; a && a !== c; a = a.parentElement) {
+          const cs = getComputedStyle(a);
+          const clips = cs.overflowX !== "visible" || cs.overflowY !== "visible" || (a.tagName.toLowerCase() === "svg" && !(a.parentElement?.closest("svg")));
+          if (!clips) continue;
+          r = a.getBoundingClientRect();
+          [l, t, rr, b] = [Math.max(l, r.left), Math.max(t, r.top), Math.min(rr, r.right), Math.min(b, r.bottom)];
+        }
+        return { l, t, w: rr - l, h: b - t };
+      };
+      for (const el of c.querySelectorAll<Element>("*")) {
+        const v = visible(el);
+        if (v.w > 0 && v.h > 0 && (v.l < zc.left - 1 || v.t < zc.top - 1)) {
+          out.push(`escapes zone C: ${el.tagName}.${typeof el.className === "string" ? el.className : el.getAttribute("class")}`); break;
+        }
       }
       return out;
     });
