@@ -1,0 +1,97 @@
+{
+  "$defs": {
+    "GoalProperty": {
+      "enum": [
+        "RULE_SATISFIED",
+        "ATTRIBUTE_EQUALS",
+        "GAP_CLOSED"
+      ],
+      "title": "GoalProperty",
+      "type": "string"
+    },
+    "TargetGoal": {
+      "additionalProperties": false,
+      "properties": {
+        "goal_id": {
+          "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+          "title": "Goal Id",
+          "type": "string"
+        },
+        "property": {
+          "$ref": "#/$defs/GoalProperty"
+        },
+        "rule_ref": {
+          "anyOf": [
+            {
+              "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Rule Ref"
+        },
+        "subject_ref": {
+          "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+          "title": "Subject Ref",
+          "type": "string"
+        },
+        "value": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Z][A-Z0-9_]{0,63}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Value"
+        }
+      },
+      "required": [
+        "goal_id",
+        "subject_ref",
+        "property"
+      ],
+      "title": "TargetGoal",
+      "type": "object"
+    }
+  },
+  "$id": "cira.target_definition/1.0.2",
+  "additionalProperties": false,
+  "properties": {
+    "authored_by": {
+      "title": "Authored By",
+      "type": "string"
+    },
+    "goals": {
+      "items": {
+        "$ref": "#/$defs/TargetGoal"
+      },
+      "title": "Goals",
+      "type": "array"
+    },
+    "target_id": {
+      "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+      "title": "Target Id",
+      "type": "string"
+    },
+    "version": {
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "title": "Version",
+      "type": "string"
+    }
+  },
+  "required": [
+    "target_id",
+    "version",
+    "goals",
+    "authored_by"
+  ],
+  "title": "TargetDefinition",
+  "type": "object"
+}

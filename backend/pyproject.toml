@@ -1,0 +1,35 @@
+[project]
+name = "cira-backend"
+version = "1.0.2"
+description = "CIRA synthetic research demonstrator — backend (contracts, fields F01–F06, API)"
+requires-python = ">=3.12"
+dependencies = [
+  "pydantic==2.13.5",
+  "fastapi==0.165.0",
+  "uvicorn==0.54.0",
+  "PyYAML==6.0.3",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest==9.1.1",
+  "hypothesis==6.170.17",
+  "httpx==0.28.1",
+  "import-linter==2.17",
+  "mypy==2.3.1",
+  "coverage==7.17.5",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = [
+  "req(id): requirement covered by this test (REQ-xxx)",
+  "tid(id): architecture test id (T01 … TX33)",
+]
+addopts = "-q --strict-markers"
+
+[tool.mypy]
+python_version = "3.13"
+strict = true
+plugins = ["pydantic.mypy"]
+packages = ["app"]

@@ -1,0 +1,294 @@
+{
+  "$defs": {
+    "AdapterKind": {
+      "enum": [
+        "FIXTURE",
+        "LOCAL",
+        "API",
+        "IMPORT"
+      ],
+      "title": "AdapterKind",
+      "type": "string"
+    },
+    "AdapterSelection": {
+      "additionalProperties": false,
+      "properties": {
+        "config_ref": {
+          "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+          "title": "Config Ref",
+          "type": "string"
+        },
+        "kind": {
+          "$ref": "#/$defs/AdapterKind"
+        },
+        "merge_policy": {
+          "$ref": "#/$defs/StrategyRef"
+        }
+      },
+      "required": [
+        "kind",
+        "config_ref",
+        "merge_policy"
+      ],
+      "title": "AdapterSelection",
+      "type": "object"
+    },
+    "ArtifactRef": {
+      "additionalProperties": false,
+      "properties": {
+        "artifact_id": {
+          "pattern": "^art:[0-9a-f]{32}$",
+          "title": "Artifact Id",
+          "type": "string"
+        },
+        "artifact_type": {
+          "title": "Artifact Type",
+          "type": "string"
+        },
+        "content_hash": {
+          "pattern": "^sha256:[0-9a-f]{64}$",
+          "title": "Content Hash",
+          "type": "string"
+        }
+      },
+      "required": [
+        "artifact_id",
+        "artifact_type",
+        "content_hash"
+      ],
+      "title": "ArtifactRef",
+      "type": "object"
+    },
+    "MetricConfig": {
+      "additionalProperties": false,
+      "properties": {
+        "closure_basis": {
+          "$ref": "#/$defs/StrategyRef"
+        },
+        "comparison_tick": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Comparison Tick"
+        },
+        "coverage_weighting": {
+          "$ref": "#/$defs/StrategyRef"
+        },
+        "gap_matcher": {
+          "$ref": "#/$defs/StrategyRef"
+        },
+        "hypothesis_policy": {
+          "$ref": "#/$defs/StrategyRef"
+        },
+        "service_function_spaces": {
+          "$ref": "#/$defs/StrategyRef"
+        },
+        "stability_source": {
+          "$ref": "#/$defs/StrategyRef"
+        },
+        "weight_set_ref": {
+          "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+          "title": "Weight Set Ref",
+          "type": "string"
+        }
+      },
+      "required": [
+        "weight_set_ref",
+        "hypothesis_policy",
+        "coverage_weighting",
+        "service_function_spaces",
+        "closure_basis",
+        "stability_source",
+        "gap_matcher"
+      ],
+      "title": "MetricConfig",
+      "type": "object"
+    },
+    "ObservationStrategy": {
+      "additionalProperties": false,
+      "properties": {
+        "budget_unit": {
+          "$ref": "#/$defs/StrategyRef"
+        }
+      },
+      "required": [
+        "budget_unit"
+      ],
+      "title": "ObservationStrategy",
+      "type": "object"
+    },
+    "ReplayMode": {
+      "enum": [
+        "SYNTHETIC",
+        "PRESERVED_ENGINE"
+      ],
+      "title": "ReplayMode",
+      "type": "string"
+    },
+    "ScheduleMode": {
+      "enum": [
+        "FINAL",
+        "EVERY_TICK",
+        "EXPLICIT"
+      ],
+      "title": "ScheduleMode",
+      "type": "string"
+    },
+    "StabilityConfig": {
+      "additionalProperties": false,
+      "properties": {
+        "enabled": {
+          "default": true,
+          "title": "Enabled",
+          "type": "boolean"
+        },
+        "tick": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Tick"
+        }
+      },
+      "title": "StabilityConfig",
+      "type": "object"
+    },
+    "StrategyRef": {
+      "additionalProperties": false,
+      "properties": {
+        "point": {
+          "pattern": "^[a-z_]+\\.[a-z_]+$",
+          "title": "Point",
+          "type": "string"
+        },
+        "variant": {
+          "pattern": "^[a-z0-9_]+$",
+          "title": "Variant",
+          "type": "string"
+        },
+        "version": {
+          "minimum": 1,
+          "title": "Version",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "point",
+        "variant",
+        "version"
+      ],
+      "title": "StrategyRef",
+      "type": "object"
+    },
+    "SweepSchedule": {
+      "additionalProperties": false,
+      "properties": {
+        "mode": {
+          "$ref": "#/$defs/ScheduleMode"
+        },
+        "ticks": {
+          "default": [],
+          "items": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "title": "Ticks",
+          "type": "array"
+        }
+      },
+      "required": [
+        "mode"
+      ],
+      "title": "SweepSchedule",
+      "type": "object"
+    }
+  },
+  "$id": "cira.experiment_definition/1.0.2",
+  "additionalProperties": false,
+  "properties": {
+    "adapter": {
+      "$ref": "#/$defs/AdapterSelection"
+    },
+    "definition_version": {
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "title": "Definition Version",
+      "type": "string"
+    },
+    "label": {
+      "default": "",
+      "title": "Label",
+      "type": "string"
+    },
+    "metric_config": {
+      "$ref": "#/$defs/MetricConfig"
+    },
+    "observation_config_ref": {
+      "$ref": "#/$defs/ArtifactRef"
+    },
+    "observation_strategy": {
+      "$ref": "#/$defs/ObservationStrategy"
+    },
+    "replay_mode": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/ReplayMode"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "replay_of": {
+      "anyOf": [
+        {
+          "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Replay Of"
+    },
+    "scenario_ref": {
+      "$ref": "#/$defs/ArtifactRef"
+    },
+    "stability": {
+      "$ref": "#/$defs/StabilityConfig"
+    },
+    "sweep_schedule": {
+      "$ref": "#/$defs/SweepSchedule"
+    },
+    "target_definition_ref": {
+      "$ref": "#/$defs/ArtifactRef"
+    }
+  },
+  "required": [
+    "definition_version",
+    "scenario_ref",
+    "observation_config_ref",
+    "target_definition_ref",
+    "adapter",
+    "sweep_schedule",
+    "stability",
+    "metric_config",
+    "observation_strategy"
+  ],
+  "title": "ExperimentDefinition",
+  "type": "object"
+}

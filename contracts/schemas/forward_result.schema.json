@@ -1,0 +1,946 @@
+{
+  "$defs": {
+    "AdapterCapabilities": {
+      "additionalProperties": false,
+      "properties": {
+        "forward": {
+          "title": "Forward",
+          "type": "boolean"
+        },
+        "inverse": {
+          "title": "Inverse",
+          "type": "boolean"
+        },
+        "merge": {
+          "title": "Merge",
+          "type": "boolean"
+        },
+        "trace": {
+          "title": "Trace",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "forward",
+        "inverse",
+        "merge",
+        "trace"
+      ],
+      "title": "AdapterCapabilities",
+      "type": "object"
+    },
+    "AdapterDescriptor": {
+      "additionalProperties": false,
+      "properties": {
+        "adapter_id": {
+          "title": "Adapter Id",
+          "type": "string"
+        },
+        "adapter_version": {
+          "pattern": "^\\d+\\.\\d+\\.\\d+$",
+          "title": "Adapter Version",
+          "type": "string"
+        },
+        "capabilities": {
+          "$ref": "#/$defs/AdapterCapabilities"
+        },
+        "engine_version": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Engine Version"
+        },
+        "is_fixture": {
+          "title": "Is Fixture",
+          "type": "boolean"
+        },
+        "kind": {
+          "$ref": "#/$defs/AdapterKind"
+        },
+        "operator_registry_ref": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ArtifactRef"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "adapter_id",
+        "kind",
+        "adapter_version",
+        "is_fixture",
+        "capabilities"
+      ],
+      "title": "AdapterDescriptor",
+      "type": "object"
+    },
+    "AdapterKind": {
+      "enum": [
+        "FIXTURE",
+        "LOCAL",
+        "API",
+        "IMPORT"
+      ],
+      "title": "AdapterKind",
+      "type": "string"
+    },
+    "ArtifactRef": {
+      "additionalProperties": false,
+      "properties": {
+        "artifact_id": {
+          "pattern": "^art:[0-9a-f]{32}$",
+          "title": "Artifact Id",
+          "type": "string"
+        },
+        "artifact_type": {
+          "title": "Artifact Type",
+          "type": "string"
+        },
+        "content_hash": {
+          "pattern": "^sha256:[0-9a-f]{64}$",
+          "title": "Content Hash",
+          "type": "string"
+        }
+      },
+      "required": [
+        "artifact_id",
+        "artifact_type",
+        "content_hash"
+      ],
+      "title": "ArtifactRef",
+      "type": "object"
+    },
+    "CanonicalOperatorRef": {
+      "additionalProperties": false,
+      "properties": {
+        "namespace": {
+          "const": "CANONICAL_V181",
+          "title": "Namespace",
+          "type": "string"
+        },
+        "registry_version": {
+          "const": "v1.8.1",
+          "title": "Registry Version",
+          "type": "string"
+        },
+        "symbol": {
+          "title": "Symbol",
+          "type": "string"
+        }
+      },
+      "required": [
+        "namespace",
+        "symbol",
+        "registry_version"
+      ],
+      "title": "CanonicalOperatorRef",
+      "type": "object"
+    },
+    "CouplingStatus": {
+      "enum": [
+        "EFFECTIVE",
+        "POSSIBLE",
+        "UNKNOWN_OPEN"
+      ],
+      "title": "CouplingStatus",
+      "type": "string"
+    },
+    "EpistemicClass": {
+      "enum": [
+        "SOURCE_OBSERVATION",
+        "SOURCE_STATEMENT",
+        "STRUCTURAL_DERIVATION",
+        "HYPOTHESIS",
+        "OPEN_REFERENCE"
+      ],
+      "title": "EpistemicClass",
+      "type": "string"
+    },
+    "ErrorCodeC": {
+      "enum": [
+        "INVALID_TOPOLOGY",
+        "INVALID_RULE",
+        "INVALID_TRANSITION",
+        "CONTEXT_INCOMPLETE",
+        "ENGINE_UNAVAILABLE",
+        "METRIC_UNDEFINED",
+        "VIEW_DATA_UNAVAILABLE",
+        "SCHEMA_VIOLATION",
+        "NOT_FOUND",
+        "CONFLICT",
+        "ACCESS_VIOLATION",
+        "IMPORT_INVALID",
+        "COMPARISON_INCOMPATIBLE"
+      ],
+      "title": "ErrorCodeC",
+      "type": "string"
+    },
+    "ErrorRecord": {
+      "additionalProperties": false,
+      "properties": {
+        "code": {
+          "$ref": "#/$defs/ErrorCodeC"
+        },
+        "field": {
+          "$ref": "#/$defs/FieldId"
+        },
+        "message": {
+          "title": "Message",
+          "type": "string"
+        },
+        "recovery": {
+          "$ref": "#/$defs/RecoveryAction"
+        },
+        "subject_refs": {
+          "default": [],
+          "items": {
+            "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+            "type": "string"
+          },
+          "title": "Subject Refs",
+          "type": "array"
+        },
+        "tick": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Tick"
+        }
+      },
+      "required": [
+        "code",
+        "field",
+        "message",
+        "recovery"
+      ],
+      "title": "ErrorRecord",
+      "type": "object"
+    },
+    "ExecutionStatus": {
+      "enum": [
+        "CREATED",
+        "RUNNING",
+        "COMPLETED",
+        "PARTIAL",
+        "FAILED",
+        "BLOCKED"
+      ],
+      "title": "ExecutionStatus",
+      "type": "string"
+    },
+    "ExternalOperatorRef": {
+      "additionalProperties": false,
+      "properties": {
+        "code": {
+          "maxLength": 64,
+          "minLength": 1,
+          "title": "Code",
+          "type": "string"
+        },
+        "namespace": {
+          "const": "EXTERNAL",
+          "title": "Namespace",
+          "type": "string"
+        },
+        "registry_version": {
+          "title": "Registry Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "namespace",
+        "code",
+        "registry_version"
+      ],
+      "title": "ExternalOperatorRef",
+      "type": "object"
+    },
+    "FieldId": {
+      "enum": [
+        "F01",
+        "F02",
+        "F03",
+        "F04",
+        "F05",
+        "F06",
+        "F07"
+      ],
+      "title": "FieldId",
+      "type": "string"
+    },
+    "GapStatus": {
+      "enum": [
+        "OPEN",
+        "CLOSED_IN_RESULT"
+      ],
+      "title": "GapStatus",
+      "type": "string"
+    },
+    "IOperatorRef": {
+      "additionalProperties": false,
+      "properties": {
+        "code": {
+          "pattern": "^I(0[1-9]|1[0-9])$",
+          "title": "Code",
+          "type": "string"
+        },
+        "namespace": {
+          "const": "I",
+          "title": "Namespace",
+          "type": "string"
+        },
+        "registry_version": {
+          "title": "Registry Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "namespace",
+        "code",
+        "registry_version"
+      ],
+      "title": "IOperatorRef",
+      "type": "object"
+    },
+    "OpenRelation": {
+      "additionalProperties": false,
+      "properties": {
+        "reason": {
+          "title": "Reason",
+          "type": "string"
+        },
+        "reference_status": {
+          "$ref": "#/$defs/ReferenceStatus"
+        },
+        "relation_key": {
+          "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+          "title": "Relation Key",
+          "type": "string"
+        },
+        "subject_refs": {
+          "items": {
+            "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+            "type": "string"
+          },
+          "title": "Subject Refs",
+          "type": "array"
+        }
+      },
+      "required": [
+        "relation_key",
+        "subject_refs",
+        "reason",
+        "reference_status"
+      ],
+      "title": "OpenRelation",
+      "type": "object"
+    },
+    "ROperatorRef": {
+      "additionalProperties": false,
+      "properties": {
+        "code": {
+          "pattern": "^R(0[1-9]|1[0-8])$",
+          "title": "Code",
+          "type": "string"
+        },
+        "namespace": {
+          "const": "R",
+          "title": "Namespace",
+          "type": "string"
+        },
+        "registry_version": {
+          "title": "Registry Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "namespace",
+        "code",
+        "registry_version"
+      ],
+      "title": "ROperatorRef",
+      "type": "object"
+    },
+    "ReconstructedValue": {
+      "additionalProperties": false,
+      "properties": {
+        "attribute_ref": {
+          "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+          "title": "Attribute Ref",
+          "type": "string"
+        },
+        "derived_from": {
+          "default": [],
+          "items": {
+            "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+            "type": "string"
+          },
+          "title": "Derived From",
+          "type": "array"
+        },
+        "epistemic_class": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/EpistemicClass"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "reference_status": {
+          "$ref": "#/$defs/ReferenceStatus",
+          "default": "RESOLVED"
+        },
+        "status": {
+          "$ref": "#/$defs/ReconstructionStatus"
+        },
+        "value": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Z][A-Z0-9_]{0,63}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Value"
+        }
+      },
+      "required": [
+        "attribute_ref",
+        "status"
+      ],
+      "title": "ReconstructedValue",
+      "type": "object"
+    },
+    "ReconstructionStatus": {
+      "enum": [
+        "DETERMINED",
+        "UNDETERMINED",
+        "NOT_APPLICABLE"
+      ],
+      "title": "ReconstructionStatus",
+      "type": "string"
+    },
+    "RecoveryAction": {
+      "enum": [
+        "SUBMIT_VALID_DEFINITION",
+        "REVERT_TO_VERSION",
+        "REPLAY_FROM_INITIAL",
+        "RESERIALIZE",
+        "RESWEEP",
+        "IMPORT_RESULT",
+        "RECOMPUTE",
+        "REFETCH"
+      ],
+      "title": "RecoveryAction",
+      "type": "string"
+    },
+    "ReferenceStatus": {
+      "enum": [
+        "RESOLVED",
+        "UNRESOLVED",
+        "TRUNCATED",
+        "EXTERNAL"
+      ],
+      "title": "ReferenceStatus",
+      "type": "string"
+    },
+    "RelationAssertion": {
+      "additionalProperties": false,
+      "properties": {
+        "coupling_status": {
+          "$ref": "#/$defs/CouplingStatus"
+        },
+        "derived_from": {
+          "default": [],
+          "items": {
+            "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+            "type": "string"
+          },
+          "title": "Derived From",
+          "type": "array"
+        },
+        "epistemic_class": {
+          "$ref": "#/$defs/EpistemicClass"
+        },
+        "relation_key": {
+          "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+          "title": "Relation Key",
+          "type": "string"
+        },
+        "relation_type": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/RelationType"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "source": {
+          "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+          "title": "Source",
+          "type": "string"
+        },
+        "target": {
+          "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+          "title": "Target",
+          "type": "string"
+        }
+      },
+      "required": [
+        "relation_key",
+        "source",
+        "target",
+        "coupling_status",
+        "epistemic_class"
+      ],
+      "title": "RelationAssertion",
+      "type": "object"
+    },
+    "RelationType": {
+      "enum": [
+        "depends_on",
+        "reports_to",
+        "provides"
+      ],
+      "title": "RelationType",
+      "type": "string"
+    },
+    "SigmaRef": {
+      "additionalProperties": false,
+      "properties": {
+        "registry_version": {
+          "title": "Registry Version",
+          "type": "string"
+        },
+        "sigma_id": {
+          "maxLength": 64,
+          "minLength": 1,
+          "title": "Sigma Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "sigma_id",
+        "registry_version"
+      ],
+      "title": "SigmaRef",
+      "type": "object"
+    },
+    "StructuralGap": {
+      "additionalProperties": false,
+      "properties": {
+        "epistemic_class": {
+          "$ref": "#/$defs/EpistemicClass"
+        },
+        "gap_id": {
+          "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+          "title": "Gap Id",
+          "type": "string"
+        },
+        "kind": {
+          "title": "Kind",
+          "type": "string"
+        },
+        "source_refs": {
+          "items": {
+            "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Source Refs",
+          "type": "array"
+        },
+        "status": {
+          "$ref": "#/$defs/GapStatus"
+        },
+        "subject_refs": {
+          "items": {
+            "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+            "type": "string"
+          },
+          "title": "Subject Refs",
+          "type": "array"
+        }
+      },
+      "required": [
+        "gap_id",
+        "kind",
+        "subject_refs",
+        "source_refs",
+        "epistemic_class",
+        "status"
+      ],
+      "title": "StructuralGap",
+      "type": "object"
+    },
+    "SweepDirection": {
+      "enum": [
+        "FORWARD",
+        "INVERSE"
+      ],
+      "title": "SweepDirection",
+      "type": "string"
+    },
+    "SweepOutput": {
+      "additionalProperties": false,
+      "properties": {
+        "gaps": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/StructuralGap"
+          },
+          "title": "Gaps",
+          "type": "array"
+        },
+        "open_relations": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/OpenRelation"
+          },
+          "title": "Open Relations",
+          "type": "array"
+        },
+        "relations": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/RelationAssertion"
+          },
+          "title": "Relations",
+          "type": "array"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/$defs/ReconstructedValue"
+          },
+          "title": "Values",
+          "type": "array"
+        }
+      },
+      "required": [
+        "values"
+      ],
+      "title": "SweepOutput",
+      "type": "object"
+    },
+    "SweepRun": {
+      "additionalProperties": false,
+      "properties": {
+        "adapter": {
+          "$ref": "#/$defs/AdapterDescriptor"
+        },
+        "attempt": {
+          "title": "Attempt",
+          "type": "integer"
+        },
+        "context_version": {
+          "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+          "title": "Context Version",
+          "type": "string"
+        },
+        "direction": {
+          "$ref": "#/$defs/SweepDirection"
+        },
+        "error": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ErrorRecord"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "execution_status": {
+          "$ref": "#/$defs/ExecutionStatus"
+        },
+        "input_bundle_ref": {
+          "$ref": "#/$defs/ArtifactRef"
+        },
+        "sweep_id": {
+          "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+          "title": "Sweep Id",
+          "type": "string"
+        },
+        "target_ref": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ArtifactRef"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "termination": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/TerminationRecord"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "up_to_tick": {
+          "minimum": 0,
+          "title": "Up To Tick",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "sweep_id",
+        "direction",
+        "attempt",
+        "adapter",
+        "input_bundle_ref",
+        "up_to_tick",
+        "context_version",
+        "execution_status"
+      ],
+      "title": "SweepRun",
+      "type": "object"
+    },
+    "SweepTrace": {
+      "additionalProperties": false,
+      "properties": {
+        "reference_status": {
+          "$ref": "#/$defs/ReferenceStatus"
+        },
+        "steps": {
+          "items": {
+            "$ref": "#/$defs/TraceStep"
+          },
+          "title": "Steps",
+          "type": "array"
+        },
+        "sweep_id": {
+          "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+          "title": "Sweep Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "sweep_id",
+        "steps",
+        "reference_status"
+      ],
+      "title": "SweepTrace",
+      "type": "object"
+    },
+    "TerminationReason": {
+      "enum": [
+        "CONVERGED",
+        "ENGINE_REPORTED_STOP",
+        "BUDGET_EXHAUSTED",
+        "TRUNCATED",
+        "ERROR",
+        "CANCELLED"
+      ],
+      "title": "TerminationReason",
+      "type": "string"
+    },
+    "TerminationRecord": {
+      "additionalProperties": false,
+      "properties": {
+        "budget": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Budget"
+        },
+        "engine_message": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Engine Message"
+        },
+        "last_step_seq": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Last Step Seq"
+        },
+        "reason": {
+          "$ref": "#/$defs/TerminationReason"
+        },
+        "steps_executed": {
+          "title": "Steps Executed",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "reason",
+        "steps_executed"
+      ],
+      "title": "TerminationRecord",
+      "type": "object"
+    },
+    "TraceStep": {
+      "additionalProperties": false,
+      "properties": {
+        "engine_note": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Engine Note"
+        },
+        "epistemic_class": {
+          "$ref": "#/$defs/EpistemicClass"
+        },
+        "input_refs": {
+          "default": [],
+          "items": {
+            "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+            "type": "string"
+          },
+          "title": "Input Refs",
+          "type": "array"
+        },
+        "operator_ref": {
+          "anyOf": [
+            {
+              "discriminator": {
+                "mapping": {
+                  "CANONICAL_V181": "#/$defs/CanonicalOperatorRef",
+                  "EXTERNAL": "#/$defs/ExternalOperatorRef",
+                  "I": "#/$defs/IOperatorRef",
+                  "R": "#/$defs/ROperatorRef"
+                },
+                "propertyName": "namespace"
+              },
+              "oneOf": [
+                {
+                  "$ref": "#/$defs/CanonicalOperatorRef"
+                },
+                {
+                  "$ref": "#/$defs/ROperatorRef"
+                },
+                {
+                  "$ref": "#/$defs/IOperatorRef"
+                },
+                {
+                  "$ref": "#/$defs/ExternalOperatorRef"
+                }
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Operator Ref"
+        },
+        "output_refs": {
+          "default": [],
+          "items": {
+            "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+            "type": "string"
+          },
+          "title": "Output Refs",
+          "type": "array"
+        },
+        "sigma_ref": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/SigmaRef"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "step_id": {
+          "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+          "title": "Step Id",
+          "type": "string"
+        },
+        "step_seq": {
+          "title": "Step Seq",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "step_id",
+        "step_seq",
+        "epistemic_class"
+      ],
+      "title": "TraceStep",
+      "type": "object"
+    }
+  },
+  "$id": "cira.forward_result/1.0.2",
+  "additionalProperties": false,
+  "properties": {
+    "output": {
+      "$ref": "#/$defs/SweepOutput"
+    },
+    "sweep": {
+      "$ref": "#/$defs/SweepRun"
+    },
+    "trace": {
+      "$ref": "#/$defs/SweepTrace"
+    }
+  },
+  "required": [
+    "sweep",
+    "output",
+    "trace"
+  ],
+  "title": "ForwardResult",
+  "type": "object"
+}

@@ -1,0 +1,576 @@
+{
+  "$defs": {
+    "Aggregation": {
+      "enum": [
+        "PER_TICK",
+        "POOLED",
+        "TIME_MEAN_EXPLICIT"
+      ],
+      "title": "Aggregation",
+      "type": "string"
+    },
+    "CaseSubset": {
+      "enum": [
+        "ALL",
+        "OBSERVABLE_CASES"
+      ],
+      "title": "CaseSubset",
+      "type": "string"
+    },
+    "EvaluatedRelation": {
+      "enum": [
+        "A",
+        "O",
+        "R",
+        "A_O",
+        "A_R",
+        "ANNOTATION_R",
+        "R1_R2",
+        "BASELINE_RECOVERY"
+      ],
+      "title": "EvaluatedRelation",
+      "type": "string"
+    },
+    "MetricAux": {
+      "additionalProperties": false,
+      "properties": {
+        "fn": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Fn"
+        },
+        "fp": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Fp"
+        },
+        "function_ref": {
+          "anyOf": [
+            {
+              "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Function Ref"
+        },
+        "hypotheses_excluded": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Hypotheses Excluded"
+        },
+        "new_inconsistencies": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "New Inconsistencies"
+        },
+        "not_applicable_excluded": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Not Applicable Excluded"
+        },
+        "not_in_validity": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Not In Validity"
+        },
+        "observable_cases": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Observable Cases"
+        },
+        "persisting": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Persisting"
+        },
+        "shared_coverage": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Rational"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "shared_coverage_undefined": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Shared Coverage Undefined"
+        },
+        "stale_known": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Stale Known"
+        },
+        "ticks_excluded": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Ticks Excluded"
+        },
+        "ticks_included": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Ticks Included"
+        },
+        "tp": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Tp"
+        },
+        "undetermined_count": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Undetermined Count"
+        },
+        "unevaluable_count": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Unevaluable Count"
+        },
+        "unevaluable_in_recovery": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Unevaluable In Recovery"
+        }
+      },
+      "title": "MetricAux",
+      "type": "object"
+    },
+    "MetricId": {
+      "enum": [
+        "M01",
+        "M02",
+        "M03",
+        "M04",
+        "M05",
+        "M06",
+        "M07",
+        "M08",
+        "M09",
+        "M10",
+        "M11"
+      ],
+      "title": "MetricId",
+      "type": "string"
+    },
+    "MetricResult": {
+      "additionalProperties": false,
+      "properties": {
+        "aggregation": {
+          "$ref": "#/$defs/Aggregation"
+        },
+        "aux": {
+          "$ref": "#/$defs/MetricAux",
+          "default": {
+            "fn": null,
+            "fp": null,
+            "function_ref": null,
+            "hypotheses_excluded": null,
+            "new_inconsistencies": null,
+            "not_applicable_excluded": null,
+            "not_in_validity": null,
+            "observable_cases": null,
+            "persisting": null,
+            "shared_coverage": null,
+            "shared_coverage_undefined": null,
+            "stale_known": null,
+            "ticks_excluded": null,
+            "ticks_included": null,
+            "tp": null,
+            "undetermined_count": null,
+            "unevaluable_count": null,
+            "unevaluable_in_recovery": null
+          }
+        },
+        "case_subset": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/CaseSubset"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "denominator": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Rational"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "metric_id": {
+          "$ref": "#/$defs/MetricId"
+        },
+        "numerator": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Rational"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "reference_space": {
+          "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+          "title": "Reference Space",
+          "type": "string"
+        },
+        "relation": {
+          "$ref": "#/$defs/EvaluatedRelation"
+        },
+        "status": {
+          "$ref": "#/$defs/MetricStatus"
+        },
+        "tick": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Tick"
+        },
+        "undefined_reason": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/UndefinedReason"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "unit": {
+          "default": "ratio",
+          "title": "Unit",
+          "type": "string"
+        },
+        "value": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Value"
+        },
+        "version": {
+          "pattern": "^\\d+\\.\\d+\\.\\d+$",
+          "title": "Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "metric_id",
+        "value",
+        "status",
+        "version",
+        "reference_space",
+        "relation",
+        "aggregation"
+      ],
+      "title": "MetricResult",
+      "type": "object"
+    },
+    "MetricStatus": {
+      "enum": [
+        "EVALUATED",
+        "UNDEFINED"
+      ],
+      "title": "MetricStatus",
+      "type": "string"
+    },
+    "Rational": {
+      "additionalProperties": false,
+      "properties": {
+        "d": {
+          "minimum": 1,
+          "title": "D",
+          "type": "integer"
+        },
+        "n": {
+          "minimum": 0,
+          "title": "N",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "n",
+        "d"
+      ],
+      "title": "Rational",
+      "type": "object"
+    },
+    "StrategyRef": {
+      "additionalProperties": false,
+      "properties": {
+        "point": {
+          "pattern": "^[a-z_]+\\.[a-z_]+$",
+          "title": "Point",
+          "type": "string"
+        },
+        "variant": {
+          "pattern": "^[a-z0-9_]+$",
+          "title": "Variant",
+          "type": "string"
+        },
+        "version": {
+          "minimum": 1,
+          "title": "Version",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "point",
+        "variant",
+        "version"
+      ],
+      "title": "StrategyRef",
+      "type": "object"
+    },
+    "UndefinedReason": {
+      "enum": [
+        "ZERO_DENOMINATOR",
+        "INPUT_MISSING"
+      ],
+      "title": "UndefinedReason",
+      "type": "string"
+    }
+  },
+  "$id": "cira.comparison_report/1.0.2",
+  "additionalProperties": false,
+  "properties": {
+    "baseline_experiment_id": {
+      "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+      "title": "Baseline Experiment Id",
+      "type": "string"
+    },
+    "basis": {
+      "$ref": "#/$defs/StrategyRef"
+    },
+    "comparison_key": {
+      "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+      "title": "Comparison Key",
+      "type": "string"
+    },
+    "comparison_tick": {
+      "minimum": 0,
+      "title": "Comparison Tick",
+      "type": "integer"
+    },
+    "compatible": {
+      "title": "Compatible",
+      "type": "boolean"
+    },
+    "fixture_lineage_id": {
+      "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+      "title": "Fixture Lineage Id",
+      "type": "string"
+    },
+    "incompatibility": {
+      "default": [],
+      "items": {
+        "type": "string"
+      },
+      "title": "Incompatibility",
+      "type": "array"
+    },
+    "new": {
+      "default": [],
+      "items": {
+        "type": "string"
+      },
+      "title": "New",
+      "type": "array"
+    },
+    "original": {
+      "default": [],
+      "items": {
+        "type": "string"
+      },
+      "title": "Original",
+      "type": "array"
+    },
+    "persisting": {
+      "default": [],
+      "items": {
+        "type": "string"
+      },
+      "title": "Persisting",
+      "type": "array"
+    },
+    "recovery_experiment_id": {
+      "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+      "title": "Recovery Experiment Id",
+      "type": "string"
+    },
+    "resolved": {
+      "default": [],
+      "items": {
+        "type": "string"
+      },
+      "title": "Resolved",
+      "type": "array"
+    },
+    "results": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/MetricResult"
+      },
+      "title": "Results",
+      "type": "array"
+    },
+    "unevaluable_in_recovery": {
+      "default": [],
+      "items": {
+        "type": "string"
+      },
+      "title": "Unevaluable In Recovery",
+      "type": "array"
+    }
+  },
+  "required": [
+    "comparison_key",
+    "baseline_experiment_id",
+    "recovery_experiment_id",
+    "fixture_lineage_id",
+    "comparison_tick",
+    "compatible",
+    "basis"
+  ],
+  "title": "ComparisonReport",
+  "type": "object"
+}

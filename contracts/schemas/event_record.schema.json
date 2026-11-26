@@ -1,0 +1,208 @@
+{
+  "$defs": {
+    "AttributeChange": {
+      "additionalProperties": false,
+      "properties": {
+        "after": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Z][A-Z0-9_]{0,63}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "After"
+        },
+        "attribute_ref": {
+          "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+          "title": "Attribute Ref",
+          "type": "string"
+        },
+        "before": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Z][A-Z0-9_]{0,63}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Before"
+        }
+      },
+      "required": [
+        "attribute_ref"
+      ],
+      "title": "AttributeChange",
+      "type": "object"
+    },
+    "ErrorCodeC": {
+      "enum": [
+        "INVALID_TOPOLOGY",
+        "INVALID_RULE",
+        "INVALID_TRANSITION",
+        "CONTEXT_INCOMPLETE",
+        "ENGINE_UNAVAILABLE",
+        "METRIC_UNDEFINED",
+        "VIEW_DATA_UNAVAILABLE",
+        "SCHEMA_VIOLATION",
+        "NOT_FOUND",
+        "CONFLICT",
+        "ACCESS_VIOLATION",
+        "IMPORT_INVALID",
+        "COMPARISON_INCOMPATIBLE"
+      ],
+      "title": "ErrorCodeC",
+      "type": "string"
+    },
+    "ErrorRecord": {
+      "additionalProperties": false,
+      "properties": {
+        "code": {
+          "$ref": "#/$defs/ErrorCodeC"
+        },
+        "field": {
+          "$ref": "#/$defs/FieldId"
+        },
+        "message": {
+          "title": "Message",
+          "type": "string"
+        },
+        "recovery": {
+          "$ref": "#/$defs/RecoveryAction"
+        },
+        "subject_refs": {
+          "default": [],
+          "items": {
+            "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+            "type": "string"
+          },
+          "title": "Subject Refs",
+          "type": "array"
+        },
+        "tick": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Tick"
+        }
+      },
+      "required": [
+        "code",
+        "field",
+        "message",
+        "recovery"
+      ],
+      "title": "ErrorRecord",
+      "type": "object"
+    },
+    "EventStatus": {
+      "enum": [
+        "APPLIED",
+        "REJECTED"
+      ],
+      "title": "EventStatus",
+      "type": "string"
+    },
+    "FieldId": {
+      "enum": [
+        "F01",
+        "F02",
+        "F03",
+        "F04",
+        "F05",
+        "F06",
+        "F07"
+      ],
+      "title": "FieldId",
+      "type": "string"
+    },
+    "InputEventKind": {
+      "enum": [
+        "SET_ATTRIBUTE",
+        "APPLY_APPROVAL"
+      ],
+      "title": "InputEventKind",
+      "type": "string"
+    },
+    "RecoveryAction": {
+      "enum": [
+        "SUBMIT_VALID_DEFINITION",
+        "REVERT_TO_VERSION",
+        "REPLAY_FROM_INITIAL",
+        "RESERIALIZE",
+        "RESWEEP",
+        "IMPORT_RESULT",
+        "RECOMPUTE",
+        "REFETCH"
+      ],
+      "title": "RecoveryAction",
+      "type": "string"
+    }
+  },
+  "$id": "cira.event_record/1.0.2",
+  "additionalProperties": false,
+  "properties": {
+    "effects": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/AttributeChange"
+      },
+      "title": "Effects",
+      "type": "array"
+    },
+    "error": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/ErrorRecord"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "event_ref": {
+      "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+      "title": "Event Ref",
+      "type": "string"
+    },
+    "kind": {
+      "$ref": "#/$defs/InputEventKind"
+    },
+    "seq": {
+      "minimum": 0,
+      "title": "Seq",
+      "type": "integer"
+    },
+    "status": {
+      "$ref": "#/$defs/EventStatus"
+    },
+    "tick": {
+      "minimum": 0,
+      "title": "Tick",
+      "type": "integer"
+    }
+  },
+  "required": [
+    "seq",
+    "tick",
+    "event_ref",
+    "kind",
+    "status"
+  ],
+  "title": "EventRecord",
+  "type": "object"
+}

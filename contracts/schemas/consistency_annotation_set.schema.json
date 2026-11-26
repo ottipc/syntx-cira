@@ -1,0 +1,111 @@
+{
+  "$defs": {
+    "ArtifactRef": {
+      "additionalProperties": false,
+      "properties": {
+        "artifact_id": {
+          "pattern": "^art:[0-9a-f]{32}$",
+          "title": "Artifact Id",
+          "type": "string"
+        },
+        "artifact_type": {
+          "title": "Artifact Type",
+          "type": "string"
+        },
+        "content_hash": {
+          "pattern": "^sha256:[0-9a-f]{64}$",
+          "title": "Content Hash",
+          "type": "string"
+        }
+      },
+      "required": [
+        "artifact_id",
+        "artifact_type",
+        "content_hash"
+      ],
+      "title": "ArtifactRef",
+      "type": "object"
+    },
+    "ConsistencyCase": {
+      "additionalProperties": false,
+      "properties": {
+        "case_id": {
+          "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+          "title": "Case Id",
+          "type": "string"
+        },
+        "kind": {
+          "title": "Kind",
+          "type": "string"
+        },
+        "rule_ref": {
+          "anyOf": [
+            {
+              "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Rule Ref"
+        },
+        "subject_refs": {
+          "items": {
+            "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+            "type": "string"
+          },
+          "title": "Subject Refs",
+          "type": "array"
+        },
+        "tick_from": {
+          "minimum": 0,
+          "title": "Tick From",
+          "type": "integer"
+        },
+        "tick_to": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Tick To"
+        }
+      },
+      "required": [
+        "case_id",
+        "kind",
+        "subject_refs",
+        "tick_from"
+      ],
+      "title": "ConsistencyCase",
+      "type": "object"
+    }
+  },
+  "$id": "cira.consistency_annotation_set/1.0.2",
+  "additionalProperties": false,
+  "properties": {
+    "cases": {
+      "items": {
+        "$ref": "#/$defs/ConsistencyCase"
+      },
+      "title": "Cases",
+      "type": "array"
+    },
+    "scenario_ref": {
+      "$ref": "#/$defs/ArtifactRef"
+    }
+  },
+  "required": [
+    "scenario_ref",
+    "cases"
+  ],
+  "title": "ConsistencyAnnotationSet",
+  "type": "object"
+}

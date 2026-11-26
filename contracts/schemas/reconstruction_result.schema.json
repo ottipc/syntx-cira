@@ -1,0 +1,708 @@
+{
+  "$defs": {
+    "ArtifactRef": {
+      "additionalProperties": false,
+      "properties": {
+        "artifact_id": {
+          "pattern": "^art:[0-9a-f]{32}$",
+          "title": "Artifact Id",
+          "type": "string"
+        },
+        "artifact_type": {
+          "title": "Artifact Type",
+          "type": "string"
+        },
+        "content_hash": {
+          "pattern": "^sha256:[0-9a-f]{64}$",
+          "title": "Content Hash",
+          "type": "string"
+        }
+      },
+      "required": [
+        "artifact_id",
+        "artifact_type",
+        "content_hash"
+      ],
+      "title": "ArtifactRef",
+      "type": "object"
+    },
+    "ContentOpenness": {
+      "additionalProperties": false,
+      "properties": {
+        "open_references": {
+          "default": 0,
+          "title": "Open References",
+          "type": "integer"
+        },
+        "open_relations": {
+          "default": 0,
+          "title": "Open Relations",
+          "type": "integer"
+        },
+        "structural_gaps_open": {
+          "default": 0,
+          "title": "Structural Gaps Open",
+          "type": "integer"
+        },
+        "undetermined": {
+          "default": 0,
+          "title": "Undetermined",
+          "type": "integer"
+        },
+        "unevaluable_rules": {
+          "default": 0,
+          "title": "Unevaluable Rules",
+          "type": "integer"
+        },
+        "unknown_observations": {
+          "default": 0,
+          "title": "Unknown Observations",
+          "type": "integer"
+        }
+      },
+      "title": "ContentOpenness",
+      "type": "object"
+    },
+    "CouplingChange": {
+      "additionalProperties": false,
+      "properties": {
+        "after": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/CouplingStatus"
+            },
+            {
+              "const": "ABSENT",
+              "type": "string"
+            }
+          ],
+          "title": "After"
+        },
+        "before": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/CouplingStatus"
+            },
+            {
+              "const": "ABSENT",
+              "type": "string"
+            }
+          ],
+          "title": "Before"
+        },
+        "relation_key": {
+          "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+          "title": "Relation Key",
+          "type": "string"
+        }
+      },
+      "required": [
+        "relation_key",
+        "before",
+        "after"
+      ],
+      "title": "CouplingChange",
+      "type": "object"
+    },
+    "CouplingStatus": {
+      "enum": [
+        "EFFECTIVE",
+        "POSSIBLE",
+        "UNKNOWN_OPEN"
+      ],
+      "title": "CouplingStatus",
+      "type": "string"
+    },
+    "DeltaCoupling": {
+      "additionalProperties": false,
+      "properties": {
+        "changes": {
+          "items": {
+            "$ref": "#/$defs/CouplingChange"
+          },
+          "title": "Changes",
+          "type": "array"
+        },
+        "from_tick": {
+          "minimum": 0,
+          "title": "From Tick",
+          "type": "integer"
+        },
+        "to_tick": {
+          "minimum": 0,
+          "title": "To Tick",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "from_tick",
+        "to_tick",
+        "changes"
+      ],
+      "title": "DeltaCoupling",
+      "type": "object"
+    },
+    "DeltaStateR": {
+      "additionalProperties": false,
+      "properties": {
+        "changes": {
+          "items": {
+            "$ref": "#/$defs/RChange"
+          },
+          "title": "Changes",
+          "type": "array"
+        },
+        "from_tick": {
+          "minimum": 0,
+          "title": "From Tick",
+          "type": "integer"
+        },
+        "space": {
+          "const": "R",
+          "title": "Space",
+          "type": "string"
+        },
+        "to_tick": {
+          "minimum": 0,
+          "title": "To Tick",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "space",
+        "from_tick",
+        "to_tick",
+        "changes"
+      ],
+      "title": "DeltaStateR",
+      "type": "object"
+    },
+    "EpistemicClass": {
+      "enum": [
+        "SOURCE_OBSERVATION",
+        "SOURCE_STATEMENT",
+        "STRUCTURAL_DERIVATION",
+        "HYPOTHESIS",
+        "OPEN_REFERENCE"
+      ],
+      "title": "EpistemicClass",
+      "type": "string"
+    },
+    "GapStatus": {
+      "enum": [
+        "OPEN",
+        "CLOSED_IN_RESULT"
+      ],
+      "title": "GapStatus",
+      "type": "string"
+    },
+    "MergeConflict": {
+      "additionalProperties": false,
+      "properties": {
+        "attribute_ref": {
+          "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+          "title": "Attribute Ref",
+          "type": "string"
+        },
+        "forward": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Z][A-Z0-9_]{0,63}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Forward"
+        },
+        "inverse": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Z][A-Z0-9_]{0,63}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Inverse"
+        },
+        "resolution": {
+          "$ref": "#/$defs/MergeResolution"
+        }
+      },
+      "required": [
+        "attribute_ref",
+        "resolution"
+      ],
+      "title": "MergeConflict",
+      "type": "object"
+    },
+    "MergeRecord": {
+      "additionalProperties": false,
+      "properties": {
+        "conflicts": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/MergeConflict"
+          },
+          "title": "Conflicts",
+          "type": "array"
+        },
+        "engine_merged": {
+          "title": "Engine Merged",
+          "type": "boolean"
+        },
+        "forward_ref": {
+          "$ref": "#/$defs/ArtifactRef"
+        },
+        "inverse_ref": {
+          "$ref": "#/$defs/ArtifactRef"
+        },
+        "policy": {
+          "$ref": "#/$defs/StrategyRef"
+        }
+      },
+      "required": [
+        "policy",
+        "engine_merged",
+        "forward_ref",
+        "inverse_ref"
+      ],
+      "title": "MergeRecord",
+      "type": "object"
+    },
+    "MergeResolution": {
+      "enum": [
+        "UNDETERMINED",
+        "ENGINE_RESOLVED"
+      ],
+      "title": "MergeResolution",
+      "type": "string"
+    },
+    "OpenRelation": {
+      "additionalProperties": false,
+      "properties": {
+        "reason": {
+          "title": "Reason",
+          "type": "string"
+        },
+        "reference_status": {
+          "$ref": "#/$defs/ReferenceStatus"
+        },
+        "relation_key": {
+          "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+          "title": "Relation Key",
+          "type": "string"
+        },
+        "subject_refs": {
+          "items": {
+            "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+            "type": "string"
+          },
+          "title": "Subject Refs",
+          "type": "array"
+        }
+      },
+      "required": [
+        "relation_key",
+        "subject_refs",
+        "reason",
+        "reference_status"
+      ],
+      "title": "OpenRelation",
+      "type": "object"
+    },
+    "RChange": {
+      "additionalProperties": false,
+      "properties": {
+        "after": {
+          "$ref": "#/$defs/RValueState"
+        },
+        "attribute_ref": {
+          "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+          "title": "Attribute Ref",
+          "type": "string"
+        },
+        "before": {
+          "$ref": "#/$defs/RValueState"
+        }
+      },
+      "required": [
+        "attribute_ref",
+        "before",
+        "after"
+      ],
+      "title": "RChange",
+      "type": "object"
+    },
+    "RValueState": {
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ReconstructionStatus"
+            },
+            {
+              "const": "ABSENT",
+              "type": "string"
+            }
+          ],
+          "title": "Status"
+        },
+        "value": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Z][A-Z0-9_]{0,63}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Value"
+        }
+      },
+      "required": [
+        "status"
+      ],
+      "title": "RValueState",
+      "type": "object"
+    },
+    "ReconstructedValue": {
+      "additionalProperties": false,
+      "properties": {
+        "attribute_ref": {
+          "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+          "title": "Attribute Ref",
+          "type": "string"
+        },
+        "derived_from": {
+          "default": [],
+          "items": {
+            "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+            "type": "string"
+          },
+          "title": "Derived From",
+          "type": "array"
+        },
+        "epistemic_class": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/EpistemicClass"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "reference_status": {
+          "$ref": "#/$defs/ReferenceStatus",
+          "default": "RESOLVED"
+        },
+        "status": {
+          "$ref": "#/$defs/ReconstructionStatus"
+        },
+        "value": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Z][A-Z0-9_]{0,63}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Value"
+        }
+      },
+      "required": [
+        "attribute_ref",
+        "status"
+      ],
+      "title": "ReconstructedValue",
+      "type": "object"
+    },
+    "ReconstructionStatus": {
+      "enum": [
+        "DETERMINED",
+        "UNDETERMINED",
+        "NOT_APPLICABLE"
+      ],
+      "title": "ReconstructionStatus",
+      "type": "string"
+    },
+    "ReferenceStatus": {
+      "enum": [
+        "RESOLVED",
+        "UNRESOLVED",
+        "TRUNCATED",
+        "EXTERNAL"
+      ],
+      "title": "ReferenceStatus",
+      "type": "string"
+    },
+    "RelationAssertion": {
+      "additionalProperties": false,
+      "properties": {
+        "coupling_status": {
+          "$ref": "#/$defs/CouplingStatus"
+        },
+        "derived_from": {
+          "default": [],
+          "items": {
+            "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+            "type": "string"
+          },
+          "title": "Derived From",
+          "type": "array"
+        },
+        "epistemic_class": {
+          "$ref": "#/$defs/EpistemicClass"
+        },
+        "relation_key": {
+          "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+          "title": "Relation Key",
+          "type": "string"
+        },
+        "relation_type": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/RelationType"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "source": {
+          "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+          "title": "Source",
+          "type": "string"
+        },
+        "target": {
+          "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+          "title": "Target",
+          "type": "string"
+        }
+      },
+      "required": [
+        "relation_key",
+        "source",
+        "target",
+        "coupling_status",
+        "epistemic_class"
+      ],
+      "title": "RelationAssertion",
+      "type": "object"
+    },
+    "RelationType": {
+      "enum": [
+        "depends_on",
+        "reports_to",
+        "provides"
+      ],
+      "title": "RelationType",
+      "type": "string"
+    },
+    "StrategyRef": {
+      "additionalProperties": false,
+      "properties": {
+        "point": {
+          "pattern": "^[a-z_]+\\.[a-z_]+$",
+          "title": "Point",
+          "type": "string"
+        },
+        "variant": {
+          "pattern": "^[a-z0-9_]+$",
+          "title": "Variant",
+          "type": "string"
+        },
+        "version": {
+          "minimum": 1,
+          "title": "Version",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "point",
+        "variant",
+        "version"
+      ],
+      "title": "StrategyRef",
+      "type": "object"
+    },
+    "StructuralGap": {
+      "additionalProperties": false,
+      "properties": {
+        "epistemic_class": {
+          "$ref": "#/$defs/EpistemicClass"
+        },
+        "gap_id": {
+          "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+          "title": "Gap Id",
+          "type": "string"
+        },
+        "kind": {
+          "title": "Kind",
+          "type": "string"
+        },
+        "source_refs": {
+          "items": {
+            "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Source Refs",
+          "type": "array"
+        },
+        "status": {
+          "$ref": "#/$defs/GapStatus"
+        },
+        "subject_refs": {
+          "items": {
+            "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+            "type": "string"
+          },
+          "title": "Subject Refs",
+          "type": "array"
+        }
+      },
+      "required": [
+        "gap_id",
+        "kind",
+        "subject_refs",
+        "source_refs",
+        "epistemic_class",
+        "status"
+      ],
+      "title": "StructuralGap",
+      "type": "object"
+    },
+    "SweepOutput": {
+      "additionalProperties": false,
+      "properties": {
+        "gaps": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/StructuralGap"
+          },
+          "title": "Gaps",
+          "type": "array"
+        },
+        "open_relations": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/OpenRelation"
+          },
+          "title": "Open Relations",
+          "type": "array"
+        },
+        "relations": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/RelationAssertion"
+          },
+          "title": "Relations",
+          "type": "array"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/$defs/ReconstructedValue"
+          },
+          "title": "Values",
+          "type": "array"
+        }
+      },
+      "required": [
+        "values"
+      ],
+      "title": "SweepOutput",
+      "type": "object"
+    }
+  },
+  "$id": "cira.reconstruction_result/1.0.2",
+  "additionalProperties": false,
+  "properties": {
+    "attempt": {
+      "title": "Attempt",
+      "type": "integer"
+    },
+    "context_version": {
+      "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+      "title": "Context Version",
+      "type": "string"
+    },
+    "delta_coupling": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/DeltaCoupling"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "delta_state": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/DeltaStateR"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "merge": {
+      "$ref": "#/$defs/MergeRecord"
+    },
+    "openness": {
+      "$ref": "#/$defs/ContentOpenness"
+    },
+    "output": {
+      "$ref": "#/$defs/SweepOutput"
+    },
+    "previous_reconstruction_ref": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/ArtifactRef"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "reconstruction_id": {
+      "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+      "title": "Reconstruction Id",
+      "type": "string"
+    },
+    "up_to_tick": {
+      "minimum": 0,
+      "title": "Up To Tick",
+      "type": "integer"
+    }
+  },
+  "required": [
+    "reconstruction_id",
+    "attempt",
+    "up_to_tick",
+    "context_version",
+    "merge",
+    "output",
+    "openness"
+  ],
+  "title": "ReconstructionResult",
+  "type": "object"
+}

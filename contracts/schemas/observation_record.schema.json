@@ -1,0 +1,60 @@
+{
+  "$defs": {
+    "ArtifactRef": {
+      "additionalProperties": false,
+      "properties": {
+        "artifact_id": {
+          "pattern": "^art:[0-9a-f]{32}$",
+          "title": "Artifact Id",
+          "type": "string"
+        },
+        "artifact_type": {
+          "title": "Artifact Type",
+          "type": "string"
+        },
+        "content_hash": {
+          "pattern": "^sha256:[0-9a-f]{64}$",
+          "title": "Content Hash",
+          "type": "string"
+        }
+      },
+      "required": [
+        "artifact_id",
+        "artifact_type",
+        "content_hash"
+      ],
+      "title": "ArtifactRef",
+      "type": "object"
+    }
+  },
+  "$id": "cira.observation_record/1.0.2",
+  "additionalProperties": false,
+  "properties": {
+    "actual_state_refs": {
+      "items": {
+        "$ref": "#/$defs/ArtifactRef"
+      },
+      "title": "Actual State Refs",
+      "type": "array"
+    },
+    "bundle_ref": {
+      "$ref": "#/$defs/ArtifactRef"
+    },
+    "observation_config_ref": {
+      "$ref": "#/$defs/ArtifactRef"
+    },
+    "tick": {
+      "minimum": 0,
+      "title": "Tick",
+      "type": "integer"
+    }
+  },
+  "required": [
+    "bundle_ref",
+    "tick",
+    "actual_state_refs",
+    "observation_config_ref"
+  ],
+  "title": "ObservationRecord",
+  "type": "object"
+}

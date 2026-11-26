@@ -1,0 +1,313 @@
+{
+  "$defs": {
+    "CanonicalOperatorRef": {
+      "additionalProperties": false,
+      "properties": {
+        "namespace": {
+          "const": "CANONICAL_V181",
+          "title": "Namespace",
+          "type": "string"
+        },
+        "registry_version": {
+          "const": "v1.8.1",
+          "title": "Registry Version",
+          "type": "string"
+        },
+        "symbol": {
+          "title": "Symbol",
+          "type": "string"
+        }
+      },
+      "required": [
+        "namespace",
+        "symbol",
+        "registry_version"
+      ],
+      "title": "CanonicalOperatorRef",
+      "type": "object"
+    },
+    "ExternalOperatorRef": {
+      "additionalProperties": false,
+      "properties": {
+        "code": {
+          "maxLength": 64,
+          "minLength": 1,
+          "title": "Code",
+          "type": "string"
+        },
+        "namespace": {
+          "const": "EXTERNAL",
+          "title": "Namespace",
+          "type": "string"
+        },
+        "registry_version": {
+          "title": "Registry Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "namespace",
+        "code",
+        "registry_version"
+      ],
+      "title": "ExternalOperatorRef",
+      "type": "object"
+    },
+    "IOperatorRef": {
+      "additionalProperties": false,
+      "properties": {
+        "code": {
+          "pattern": "^I(0[1-9]|1[0-9])$",
+          "title": "Code",
+          "type": "string"
+        },
+        "namespace": {
+          "const": "I",
+          "title": "Namespace",
+          "type": "string"
+        },
+        "registry_version": {
+          "title": "Registry Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "namespace",
+        "code",
+        "registry_version"
+      ],
+      "title": "IOperatorRef",
+      "type": "object"
+    },
+    "ROperatorRef": {
+      "additionalProperties": false,
+      "properties": {
+        "code": {
+          "pattern": "^R(0[1-9]|1[0-8])$",
+          "title": "Code",
+          "type": "string"
+        },
+        "namespace": {
+          "const": "R",
+          "title": "Namespace",
+          "type": "string"
+        },
+        "registry_version": {
+          "title": "Registry Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "namespace",
+        "code",
+        "registry_version"
+      ],
+      "title": "ROperatorRef",
+      "type": "object"
+    },
+    "RegistryCoupling": {
+      "additionalProperties": false,
+      "properties": {
+        "operator": {
+          "anyOf": [
+            {
+              "discriminator": {
+                "mapping": {
+                  "CANONICAL_V181": "#/$defs/CanonicalOperatorRef",
+                  "EXTERNAL": "#/$defs/ExternalOperatorRef",
+                  "I": "#/$defs/IOperatorRef",
+                  "R": "#/$defs/ROperatorRef"
+                },
+                "propertyName": "namespace"
+              },
+              "oneOf": [
+                {
+                  "$ref": "#/$defs/CanonicalOperatorRef"
+                },
+                {
+                  "$ref": "#/$defs/ROperatorRef"
+                },
+                {
+                  "$ref": "#/$defs/IOperatorRef"
+                },
+                {
+                  "$ref": "#/$defs/ExternalOperatorRef"
+                }
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Operator"
+        },
+        "relation_label_from_source": {
+          "title": "Relation Label From Source",
+          "type": "string"
+        },
+        "source": {
+          "$ref": "#/$defs/SigmaRef"
+        },
+        "target": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/SigmaRef"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "source",
+        "relation_label_from_source"
+      ],
+      "title": "RegistryCoupling",
+      "type": "object"
+    },
+    "RegistryOperator": {
+      "additionalProperties": false,
+      "properties": {
+        "description_from_source": {
+          "default": "",
+          "title": "Description From Source",
+          "type": "string"
+        },
+        "label_from_source": {
+          "title": "Label From Source",
+          "type": "string"
+        },
+        "ref": {
+          "discriminator": {
+            "mapping": {
+              "CANONICAL_V181": "#/$defs/CanonicalOperatorRef",
+              "EXTERNAL": "#/$defs/ExternalOperatorRef",
+              "I": "#/$defs/IOperatorRef",
+              "R": "#/$defs/ROperatorRef"
+            },
+            "propertyName": "namespace"
+          },
+          "oneOf": [
+            {
+              "$ref": "#/$defs/CanonicalOperatorRef"
+            },
+            {
+              "$ref": "#/$defs/ROperatorRef"
+            },
+            {
+              "$ref": "#/$defs/IOperatorRef"
+            },
+            {
+              "$ref": "#/$defs/ExternalOperatorRef"
+            }
+          ],
+          "title": "Ref"
+        }
+      },
+      "required": [
+        "ref",
+        "label_from_source"
+      ],
+      "title": "RegistryOperator",
+      "type": "object"
+    },
+    "RegistrySigma": {
+      "additionalProperties": false,
+      "properties": {
+        "label_from_source": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Label From Source"
+        },
+        "ref": {
+          "$ref": "#/$defs/SigmaRef"
+        }
+      },
+      "required": [
+        "ref"
+      ],
+      "title": "RegistrySigma",
+      "type": "object"
+    },
+    "SigmaRef": {
+      "additionalProperties": false,
+      "properties": {
+        "registry_version": {
+          "title": "Registry Version",
+          "type": "string"
+        },
+        "sigma_id": {
+          "maxLength": 64,
+          "minLength": 1,
+          "title": "Sigma Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "sigma_id",
+        "registry_version"
+      ],
+      "title": "SigmaRef",
+      "type": "object"
+    }
+  },
+  "$id": "cira.operator_registry/1.0.2",
+  "additionalProperties": false,
+  "properties": {
+    "operators": {
+      "items": {
+        "$ref": "#/$defs/RegistryOperator"
+      },
+      "title": "Operators",
+      "type": "array"
+    },
+    "registry_id": {
+      "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+      "title": "Registry Id",
+      "type": "string"
+    },
+    "sigma_couplings": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/RegistryCoupling"
+      },
+      "title": "Sigma Couplings",
+      "type": "array"
+    },
+    "sigma_fields": {
+      "items": {
+        "$ref": "#/$defs/RegistrySigma"
+      },
+      "title": "Sigma Fields",
+      "type": "array"
+    },
+    "source": {
+      "title": "Source",
+      "type": "string"
+    },
+    "version": {
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "title": "Version",
+      "type": "string"
+    }
+  },
+  "required": [
+    "registry_id",
+    "version",
+    "source",
+    "operators",
+    "sigma_fields"
+  ],
+  "title": "OperatorRegistry",
+  "type": "object"
+}

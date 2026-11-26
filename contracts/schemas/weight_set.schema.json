@@ -1,0 +1,79 @@
+{
+  "$defs": {
+    "Rational": {
+      "additionalProperties": false,
+      "properties": {
+        "d": {
+          "minimum": 1,
+          "title": "D",
+          "type": "integer"
+        },
+        "n": {
+          "minimum": 0,
+          "title": "N",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "n",
+        "d"
+      ],
+      "title": "Rational",
+      "type": "object"
+    },
+    "WeightEntry": {
+      "additionalProperties": false,
+      "properties": {
+        "attribute_ref": {
+          "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+          "title": "Attribute Ref",
+          "type": "string"
+        },
+        "weight": {
+          "$ref": "#/$defs/Rational"
+        }
+      },
+      "required": [
+        "attribute_ref",
+        "weight"
+      ],
+      "title": "WeightEntry",
+      "type": "object"
+    }
+  },
+  "$id": "cira.weight_set/1.0.2",
+  "additionalProperties": false,
+  "properties": {
+    "default_weight": {
+      "$ref": "#/$defs/Rational",
+      "default": {
+        "d": 1,
+        "n": 1
+      }
+    },
+    "version": {
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "title": "Version",
+      "type": "string"
+    },
+    "weight_set_id": {
+      "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+      "title": "Weight Set Id",
+      "type": "string"
+    },
+    "weights": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/WeightEntry"
+      },
+      "title": "Weights",
+      "type": "array"
+    }
+  },
+  "required": [
+    "weight_set_id",
+    "version"
+  ],
+  "title": "WeightSet",
+  "type": "object"
+}

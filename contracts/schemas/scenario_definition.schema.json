@@ -1,0 +1,332 @@
+{
+  "$defs": {
+    "ActualValue": {
+      "additionalProperties": false,
+      "properties": {
+        "applicability": {
+          "$ref": "#/$defs/Applicability"
+        },
+        "attribute_ref": {
+          "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+          "title": "Attribute Ref",
+          "type": "string"
+        },
+        "value": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Z][A-Z0-9_]{0,63}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Value"
+        }
+      },
+      "required": [
+        "attribute_ref",
+        "applicability"
+      ],
+      "title": "ActualValue",
+      "type": "object"
+    },
+    "Applicability": {
+      "enum": [
+        "APPLICABLE",
+        "NOT_APPLICABLE"
+      ],
+      "title": "Applicability",
+      "type": "string"
+    },
+    "ApprovalRecord": {
+      "additionalProperties": false,
+      "properties": {
+        "approval_id": {
+          "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+          "title": "Approval Id",
+          "type": "string"
+        },
+        "decision": {
+          "$ref": "#/$defs/Decision3"
+        },
+        "rationale": {
+          "default": "",
+          "title": "Rationale",
+          "type": "string"
+        },
+        "role_ref": {
+          "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+          "title": "Role Ref",
+          "type": "string"
+        },
+        "rule_ref": {
+          "anyOf": [
+            {
+              "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Rule Ref"
+        },
+        "subject_refs": {
+          "default": [],
+          "items": {
+            "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+            "type": "string"
+          },
+          "title": "Subject Refs",
+          "type": "array"
+        },
+        "tick": {
+          "minimum": 0,
+          "title": "Tick",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "approval_id",
+        "role_ref",
+        "decision",
+        "tick"
+      ],
+      "title": "ApprovalRecord",
+      "type": "object"
+    },
+    "ArtifactRef": {
+      "additionalProperties": false,
+      "properties": {
+        "artifact_id": {
+          "pattern": "^art:[0-9a-f]{32}$",
+          "title": "Artifact Id",
+          "type": "string"
+        },
+        "artifact_type": {
+          "title": "Artifact Type",
+          "type": "string"
+        },
+        "content_hash": {
+          "pattern": "^sha256:[0-9a-f]{64}$",
+          "title": "Content Hash",
+          "type": "string"
+        }
+      },
+      "required": [
+        "artifact_id",
+        "artifact_type",
+        "content_hash"
+      ],
+      "title": "ArtifactRef",
+      "type": "object"
+    },
+    "Decision3": {
+      "enum": [
+        "APPROVED",
+        "REJECTED",
+        "PENDING"
+      ],
+      "title": "Decision3",
+      "type": "string"
+    },
+    "InputEvent": {
+      "additionalProperties": false,
+      "properties": {
+        "approval": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ApprovalRecord"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "attribute_ref": {
+          "anyOf": [
+            {
+              "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Attribute Ref"
+        },
+        "event_id": {
+          "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+          "title": "Event Id",
+          "type": "string"
+        },
+        "kind": {
+          "$ref": "#/$defs/InputEventKind"
+        },
+        "seq": {
+          "minimum": 0,
+          "title": "Seq",
+          "type": "integer"
+        },
+        "tick": {
+          "minimum": 0,
+          "title": "Tick",
+          "type": "integer"
+        },
+        "value": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Z][A-Z0-9_]{0,63}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Value"
+        }
+      },
+      "required": [
+        "event_id",
+        "tick",
+        "seq",
+        "kind"
+      ],
+      "title": "InputEvent",
+      "type": "object"
+    },
+    "InputEventKind": {
+      "enum": [
+        "SET_ATTRIBUTE",
+        "APPLY_APPROVAL"
+      ],
+      "title": "InputEventKind",
+      "type": "string"
+    },
+    "VariantKind": {
+      "enum": [
+        "BASELINE",
+        "RECOVERY"
+      ],
+      "title": "VariantKind",
+      "type": "string"
+    }
+  },
+  "$id": "cira.scenario_definition/1.0.2",
+  "additionalProperties": false,
+  "properties": {
+    "authority_ref": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/ArtifactRef"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "derived_from_proposal": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/ArtifactRef"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "fixture_lineage_id": {
+      "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+      "title": "Fixture Lineage Id",
+      "type": "string"
+    },
+    "governance_ref": {
+      "$ref": "#/$defs/ArtifactRef"
+    },
+    "initial_state": {
+      "items": {
+        "$ref": "#/$defs/ActualValue"
+      },
+      "title": "Initial State",
+      "type": "array"
+    },
+    "inputs": {
+      "items": {
+        "$ref": "#/$defs/InputEvent"
+      },
+      "title": "Inputs",
+      "type": "array"
+    },
+    "is_fixture": {
+      "title": "Is Fixture",
+      "type": "boolean"
+    },
+    "label": {
+      "default": "",
+      "title": "Label",
+      "type": "string"
+    },
+    "scenario_id": {
+      "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+      "title": "Scenario Id",
+      "type": "string"
+    },
+    "service_function_refs": {
+      "default": [],
+      "items": {
+        "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+        "type": "string"
+      },
+      "title": "Service Function Refs",
+      "type": "array"
+    },
+    "tick_count": {
+      "title": "Tick Count",
+      "type": "integer"
+    },
+    "topology_ref": {
+      "$ref": "#/$defs/ArtifactRef"
+    },
+    "variant_kind": {
+      "$ref": "#/$defs/VariantKind"
+    },
+    "variant_of": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/ArtifactRef"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "version": {
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "title": "Version",
+      "type": "string"
+    }
+  },
+  "required": [
+    "scenario_id",
+    "version",
+    "variant_kind",
+    "fixture_lineage_id",
+    "topology_ref",
+    "governance_ref",
+    "initial_state",
+    "inputs",
+    "tick_count",
+    "is_fixture"
+  ],
+  "title": "ScenarioDefinition",
+  "type": "object"
+}

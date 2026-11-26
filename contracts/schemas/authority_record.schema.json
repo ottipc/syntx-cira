@@ -1,0 +1,82 @@
+{
+  "$defs": {
+    "ArtifactRef": {
+      "additionalProperties": false,
+      "properties": {
+        "artifact_id": {
+          "pattern": "^art:[0-9a-f]{32}$",
+          "title": "Artifact Id",
+          "type": "string"
+        },
+        "artifact_type": {
+          "title": "Artifact Type",
+          "type": "string"
+        },
+        "content_hash": {
+          "pattern": "^sha256:[0-9a-f]{64}$",
+          "title": "Content Hash",
+          "type": "string"
+        }
+      },
+      "required": [
+        "artifact_id",
+        "artifact_type",
+        "content_hash"
+      ],
+      "title": "ArtifactRef",
+      "type": "object"
+    },
+    "Decision2": {
+      "enum": [
+        "APPROVED",
+        "REJECTED"
+      ],
+      "title": "Decision2",
+      "type": "string"
+    }
+  },
+  "$id": "cira.authority_record/1.0.2",
+  "additionalProperties": false,
+  "properties": {
+    "created_scenario_ref": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/ArtifactRef"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "decision": {
+      "$ref": "#/$defs/Decision2"
+    },
+    "decision_id": {
+      "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+      "title": "Decision Id",
+      "type": "string"
+    },
+    "proposal_ref": {
+      "$ref": "#/$defs/ArtifactRef"
+    },
+    "rationale": {
+      "title": "Rationale",
+      "type": "string"
+    },
+    "role_ref": {
+      "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+      "title": "Role Ref",
+      "type": "string"
+    }
+  },
+  "required": [
+    "decision_id",
+    "role_ref",
+    "proposal_ref",
+    "decision",
+    "rationale"
+  ],
+  "title": "AuthorityRecord",
+  "type": "object"
+}

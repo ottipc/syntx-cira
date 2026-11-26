@@ -1,0 +1,1030 @@
+{
+  "$defs": {
+    "And": {
+      "additionalProperties": false,
+      "properties": {
+        "args": {
+          "items": {
+            "discriminator": {
+              "mapping": {
+                "and": "#/$defs/And",
+                "eq": "#/$defs/Eq",
+                "implies": "#/$defs/Implies",
+                "in": "#/$defs/In",
+                "not": "#/$defs/Not",
+                "or": "#/$defs/Or",
+                "transition_in": "#/$defs/TransitionIn"
+              },
+              "propertyName": "op"
+            },
+            "oneOf": [
+              {
+                "$ref": "#/$defs/Eq"
+              },
+              {
+                "$ref": "#/$defs/In"
+              },
+              {
+                "$ref": "#/$defs/Not"
+              },
+              {
+                "$ref": "#/$defs/And"
+              },
+              {
+                "$ref": "#/$defs/Or"
+              },
+              {
+                "$ref": "#/$defs/Implies"
+              },
+              {
+                "$ref": "#/$defs/TransitionIn"
+              }
+            ]
+          },
+          "minItems": 2,
+          "title": "Args",
+          "type": "array"
+        },
+        "op": {
+          "const": "and",
+          "title": "Op",
+          "type": "string"
+        }
+      },
+      "required": [
+        "op",
+        "args"
+      ],
+      "title": "And",
+      "type": "object"
+    },
+    "Applicability": {
+      "enum": [
+        "APPLICABLE",
+        "NOT_APPLICABLE"
+      ],
+      "title": "Applicability",
+      "type": "string"
+    },
+    "AttributeDecl": {
+      "additionalProperties": false,
+      "properties": {
+        "applicability": {
+          "$ref": "#/$defs/Applicability"
+        },
+        "attribute_id": {
+          "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+          "title": "Attribute Id",
+          "type": "string"
+        },
+        "domain_ref": {
+          "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+          "title": "Domain Ref",
+          "type": "string"
+        },
+        "name": {
+          "pattern": "^[a-z0-9][a-z0-9_\\-]{0,62}$",
+          "title": "Name",
+          "type": "string"
+        }
+      },
+      "required": [
+        "attribute_id",
+        "name",
+        "domain_ref",
+        "applicability"
+      ],
+      "title": "AttributeDecl",
+      "type": "object"
+    },
+    "BudgetUsage": {
+      "additionalProperties": false,
+      "properties": {
+        "bytes": {
+          "title": "Bytes",
+          "type": "integer"
+        },
+        "observations": {
+          "title": "Observations",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "observations",
+        "bytes"
+      ],
+      "title": "BudgetUsage",
+      "type": "object"
+    },
+    "ContextBundle": {
+      "additionalProperties": false,
+      "properties": {
+        "context_version": {
+          "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+          "title": "Context Version",
+          "type": "string"
+        },
+        "observations": {
+          "items": {
+            "$ref": "#/$defs/Observation"
+          },
+          "title": "Observations",
+          "type": "array"
+        },
+        "previous_context_ref": {
+          "anyOf": [
+            {
+              "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Previous Context Ref"
+        },
+        "sequence": {
+          "title": "Sequence",
+          "type": "integer"
+        },
+        "tick": {
+          "minimum": 0,
+          "title": "Tick",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "context_version",
+        "sequence",
+        "tick",
+        "observations"
+      ],
+      "title": "ContextBundle",
+      "type": "object"
+    },
+    "Continuity": {
+      "enum": [
+        "CONTINUOUS",
+        "INTERRUPTED"
+      ],
+      "title": "Continuity",
+      "type": "string"
+    },
+    "Eq": {
+      "additionalProperties": false,
+      "properties": {
+        "at": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/TimeIndex"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "attr": {
+          "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+          "title": "Attr",
+          "type": "string"
+        },
+        "op": {
+          "const": "eq",
+          "title": "Op",
+          "type": "string"
+        },
+        "value": {
+          "pattern": "^[A-Z][A-Z0-9_]{0,63}$",
+          "title": "Value",
+          "type": "string"
+        }
+      },
+      "required": [
+        "op",
+        "attr",
+        "value"
+      ],
+      "title": "Eq",
+      "type": "object"
+    },
+    "Implies": {
+      "additionalProperties": false,
+      "properties": {
+        "if": {
+          "discriminator": {
+            "mapping": {
+              "and": "#/$defs/And",
+              "eq": "#/$defs/Eq",
+              "implies": "#/$defs/Implies",
+              "in": "#/$defs/In",
+              "not": "#/$defs/Not",
+              "or": "#/$defs/Or",
+              "transition_in": "#/$defs/TransitionIn"
+            },
+            "propertyName": "op"
+          },
+          "oneOf": [
+            {
+              "$ref": "#/$defs/Eq"
+            },
+            {
+              "$ref": "#/$defs/In"
+            },
+            {
+              "$ref": "#/$defs/Not"
+            },
+            {
+              "$ref": "#/$defs/And"
+            },
+            {
+              "$ref": "#/$defs/Or"
+            },
+            {
+              "$ref": "#/$defs/Implies"
+            },
+            {
+              "$ref": "#/$defs/TransitionIn"
+            }
+          ],
+          "title": "If"
+        },
+        "op": {
+          "const": "implies",
+          "title": "Op",
+          "type": "string"
+        },
+        "then": {
+          "discriminator": {
+            "mapping": {
+              "and": "#/$defs/And",
+              "eq": "#/$defs/Eq",
+              "implies": "#/$defs/Implies",
+              "in": "#/$defs/In",
+              "not": "#/$defs/Not",
+              "or": "#/$defs/Or",
+              "transition_in": "#/$defs/TransitionIn"
+            },
+            "propertyName": "op"
+          },
+          "oneOf": [
+            {
+              "$ref": "#/$defs/Eq"
+            },
+            {
+              "$ref": "#/$defs/In"
+            },
+            {
+              "$ref": "#/$defs/Not"
+            },
+            {
+              "$ref": "#/$defs/And"
+            },
+            {
+              "$ref": "#/$defs/Or"
+            },
+            {
+              "$ref": "#/$defs/Implies"
+            },
+            {
+              "$ref": "#/$defs/TransitionIn"
+            }
+          ],
+          "title": "Then"
+        }
+      },
+      "required": [
+        "op",
+        "if",
+        "then"
+      ],
+      "title": "Implies",
+      "type": "object"
+    },
+    "In": {
+      "additionalProperties": false,
+      "properties": {
+        "at": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/TimeIndex"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "attr": {
+          "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+          "title": "Attr",
+          "type": "string"
+        },
+        "op": {
+          "const": "in",
+          "title": "Op",
+          "type": "string"
+        },
+        "values": {
+          "items": {
+            "pattern": "^[A-Z][A-Z0-9_]{0,63}$",
+            "type": "string"
+          },
+          "title": "Values",
+          "type": "array"
+        }
+      },
+      "required": [
+        "op",
+        "attr",
+        "values"
+      ],
+      "title": "In",
+      "type": "object"
+    },
+    "Node": {
+      "additionalProperties": false,
+      "properties": {
+        "attributes": {
+          "items": {
+            "$ref": "#/$defs/AttributeDecl"
+          },
+          "title": "Attributes",
+          "type": "array"
+        },
+        "label": {
+          "title": "Label",
+          "type": "string"
+        },
+        "node_id": {
+          "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+          "title": "Node Id",
+          "type": "string"
+        },
+        "node_type": {
+          "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+          "title": "Node Type",
+          "type": "string"
+        },
+        "version": {
+          "pattern": "^\\d+\\.\\d+\\.\\d+$",
+          "title": "Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "node_id",
+        "node_type",
+        "version",
+        "label",
+        "attributes"
+      ],
+      "title": "Node",
+      "type": "object"
+    },
+    "Not": {
+      "additionalProperties": false,
+      "properties": {
+        "arg": {
+          "discriminator": {
+            "mapping": {
+              "and": "#/$defs/And",
+              "eq": "#/$defs/Eq",
+              "implies": "#/$defs/Implies",
+              "in": "#/$defs/In",
+              "not": "#/$defs/Not",
+              "or": "#/$defs/Or",
+              "transition_in": "#/$defs/TransitionIn"
+            },
+            "propertyName": "op"
+          },
+          "oneOf": [
+            {
+              "$ref": "#/$defs/Eq"
+            },
+            {
+              "$ref": "#/$defs/In"
+            },
+            {
+              "$ref": "#/$defs/Not"
+            },
+            {
+              "$ref": "#/$defs/And"
+            },
+            {
+              "$ref": "#/$defs/Or"
+            },
+            {
+              "$ref": "#/$defs/Implies"
+            },
+            {
+              "$ref": "#/$defs/TransitionIn"
+            }
+          ],
+          "title": "Arg"
+        },
+        "op": {
+          "const": "not",
+          "title": "Op",
+          "type": "string"
+        }
+      },
+      "required": [
+        "op",
+        "arg"
+      ],
+      "title": "Not",
+      "type": "object"
+    },
+    "ObservableRules": {
+      "additionalProperties": false,
+      "properties": {
+        "rules": {
+          "items": {
+            "$ref": "#/$defs/Rule"
+          },
+          "title": "Rules",
+          "type": "array"
+        }
+      },
+      "required": [
+        "rules"
+      ],
+      "title": "ObservableRules",
+      "type": "object"
+    },
+    "ObservableTopologyDefinition": {
+      "additionalProperties": false,
+      "properties": {
+        "nodes": {
+          "items": {
+            "$ref": "#/$defs/Node"
+          },
+          "title": "Nodes",
+          "type": "array"
+        },
+        "relations": {
+          "items": {
+            "$ref": "#/$defs/Relation"
+          },
+          "title": "Relations",
+          "type": "array"
+        },
+        "value_domains": {
+          "items": {
+            "$ref": "#/$defs/ValueDomain"
+          },
+          "title": "Value Domains",
+          "type": "array"
+        }
+      },
+      "required": [
+        "nodes",
+        "relations",
+        "value_domains"
+      ],
+      "title": "ObservableTopologyDefinition",
+      "type": "object"
+    },
+    "Observation": {
+      "additionalProperties": false,
+      "properties": {
+        "attribute_ref": {
+          "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+          "title": "Attribute Ref",
+          "type": "string"
+        },
+        "observation_id": {
+          "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+          "title": "Observation Id",
+          "type": "string"
+        },
+        "observed_at_tick": {
+          "minimum": 0,
+          "title": "Observed At Tick",
+          "type": "integer"
+        },
+        "references": {
+          "default": [],
+          "items": {
+            "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+            "type": "string"
+          },
+          "title": "References",
+          "type": "array"
+        },
+        "source_id": {
+          "anyOf": [
+            {
+              "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Source Id"
+        },
+        "status": {
+          "$ref": "#/$defs/ObservationStatus"
+        },
+        "tick": {
+          "minimum": 0,
+          "title": "Tick",
+          "type": "integer"
+        },
+        "value": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Z][A-Z0-9_]{0,63}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Value"
+        }
+      },
+      "required": [
+        "observation_id",
+        "tick",
+        "observed_at_tick",
+        "attribute_ref",
+        "status"
+      ],
+      "title": "Observation",
+      "type": "object"
+    },
+    "ObservationStatus": {
+      "enum": [
+        "KNOWN",
+        "UNKNOWN",
+        "NOT_APPLICABLE"
+      ],
+      "title": "ObservationStatus",
+      "type": "string"
+    },
+    "Or": {
+      "additionalProperties": false,
+      "properties": {
+        "args": {
+          "items": {
+            "discriminator": {
+              "mapping": {
+                "and": "#/$defs/And",
+                "eq": "#/$defs/Eq",
+                "implies": "#/$defs/Implies",
+                "in": "#/$defs/In",
+                "not": "#/$defs/Not",
+                "or": "#/$defs/Or",
+                "transition_in": "#/$defs/TransitionIn"
+              },
+              "propertyName": "op"
+            },
+            "oneOf": [
+              {
+                "$ref": "#/$defs/Eq"
+              },
+              {
+                "$ref": "#/$defs/In"
+              },
+              {
+                "$ref": "#/$defs/Not"
+              },
+              {
+                "$ref": "#/$defs/And"
+              },
+              {
+                "$ref": "#/$defs/Or"
+              },
+              {
+                "$ref": "#/$defs/Implies"
+              },
+              {
+                "$ref": "#/$defs/TransitionIn"
+              }
+            ]
+          },
+          "minItems": 2,
+          "title": "Args",
+          "type": "array"
+        },
+        "op": {
+          "const": "or",
+          "title": "Op",
+          "type": "string"
+        }
+      },
+      "required": [
+        "op",
+        "args"
+      ],
+      "title": "Or",
+      "type": "object"
+    },
+    "Relation": {
+      "additionalProperties": false,
+      "properties": {
+        "relation_id": {
+          "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+          "title": "Relation Id",
+          "type": "string"
+        },
+        "relation_type": {
+          "$ref": "#/$defs/RelationType"
+        },
+        "source": {
+          "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+          "title": "Source",
+          "type": "string"
+        },
+        "target": {
+          "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+          "title": "Target",
+          "type": "string"
+        },
+        "version": {
+          "pattern": "^\\d+\\.\\d+\\.\\d+$",
+          "title": "Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "relation_id",
+        "relation_type",
+        "source",
+        "target",
+        "version"
+      ],
+      "title": "Relation",
+      "type": "object"
+    },
+    "RelationType": {
+      "enum": [
+        "depends_on",
+        "reports_to",
+        "provides"
+      ],
+      "title": "RelationType",
+      "type": "string"
+    },
+    "Rule": {
+      "additionalProperties": false,
+      "properties": {
+        "applies_to": {
+          "default": [],
+          "items": {
+            "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+            "type": "string"
+          },
+          "title": "Applies To",
+          "type": "array"
+        },
+        "description": {
+          "default": "",
+          "title": "Description",
+          "type": "string"
+        },
+        "expression": {
+          "discriminator": {
+            "mapping": {
+              "and": "#/$defs/And",
+              "eq": "#/$defs/Eq",
+              "implies": "#/$defs/Implies",
+              "in": "#/$defs/In",
+              "not": "#/$defs/Not",
+              "or": "#/$defs/Or",
+              "transition_in": "#/$defs/TransitionIn"
+            },
+            "propertyName": "op"
+          },
+          "oneOf": [
+            {
+              "$ref": "#/$defs/Eq"
+            },
+            {
+              "$ref": "#/$defs/In"
+            },
+            {
+              "$ref": "#/$defs/Not"
+            },
+            {
+              "$ref": "#/$defs/And"
+            },
+            {
+              "$ref": "#/$defs/Or"
+            },
+            {
+              "$ref": "#/$defs/Implies"
+            },
+            {
+              "$ref": "#/$defs/TransitionIn"
+            }
+          ],
+          "title": "Expression"
+        },
+        "kind": {
+          "$ref": "#/$defs/RuleKind"
+        },
+        "permits": {
+          "default": [],
+          "items": {
+            "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+            "type": "string"
+          },
+          "title": "Permits",
+          "type": "array"
+        },
+        "requires": {
+          "default": [],
+          "items": {
+            "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+            "type": "string"
+          },
+          "title": "Requires",
+          "type": "array"
+        },
+        "rule_id": {
+          "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+          "title": "Rule Id",
+          "type": "string"
+        },
+        "scope": {
+          "default": [],
+          "items": {
+            "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+            "type": "string"
+          },
+          "title": "Scope",
+          "type": "array"
+        },
+        "valid_from_tick": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Valid From Tick",
+          "type": "integer"
+        },
+        "valid_until_tick": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Valid Until Tick"
+        },
+        "version": {
+          "pattern": "^\\d+\\.\\d+\\.\\d+$",
+          "title": "Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "rule_id",
+        "version",
+        "kind",
+        "expression"
+      ],
+      "title": "Rule",
+      "type": "object"
+    },
+    "RuleKind": {
+      "enum": [
+        "STATE",
+        "TRANSITION",
+        "FUNCTION"
+      ],
+      "title": "RuleKind",
+      "type": "string"
+    },
+    "SourceReferenceRegister": {
+      "additionalProperties": false,
+      "properties": {
+        "entries": {
+          "items": {
+            "$ref": "#/$defs/SourceRegisterEntry"
+          },
+          "title": "Entries",
+          "type": "array"
+        }
+      },
+      "required": [
+        "entries"
+      ],
+      "title": "SourceReferenceRegister",
+      "type": "object"
+    },
+    "SourceRegisterEntry": {
+      "additionalProperties": false,
+      "properties": {
+        "continuity": {
+          "$ref": "#/$defs/Continuity"
+        },
+        "first_tick": {
+          "minimum": 0,
+          "title": "First Tick",
+          "type": "integer"
+        },
+        "gaps": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/TickRange"
+          },
+          "title": "Gaps",
+          "type": "array"
+        },
+        "last_tick": {
+          "minimum": 0,
+          "title": "Last Tick",
+          "type": "integer"
+        },
+        "source_id": {
+          "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+          "title": "Source Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "source_id",
+        "first_tick",
+        "last_tick",
+        "continuity"
+      ],
+      "title": "SourceRegisterEntry",
+      "type": "object"
+    },
+    "SymbolPair": {
+      "additionalProperties": false,
+      "properties": {
+        "from": {
+          "pattern": "^[A-Z][A-Z0-9_]{0,63}$",
+          "title": "From",
+          "type": "string"
+        },
+        "to": {
+          "pattern": "^[A-Z][A-Z0-9_]{0,63}$",
+          "title": "To",
+          "type": "string"
+        }
+      },
+      "required": [
+        "from",
+        "to"
+      ],
+      "title": "SymbolPair",
+      "type": "object"
+    },
+    "TickRange": {
+      "additionalProperties": false,
+      "properties": {
+        "from_tick": {
+          "minimum": 0,
+          "title": "From Tick",
+          "type": "integer"
+        },
+        "to_tick": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "To Tick"
+        }
+      },
+      "required": [
+        "from_tick"
+      ],
+      "title": "TickRange",
+      "type": "object"
+    },
+    "TimeIndex": {
+      "enum": [
+        "CURRENT",
+        "NEXT"
+      ],
+      "title": "TimeIndex",
+      "type": "string"
+    },
+    "TransitionIn": {
+      "additionalProperties": false,
+      "properties": {
+        "allowed": {
+          "items": {
+            "$ref": "#/$defs/SymbolPair"
+          },
+          "title": "Allowed",
+          "type": "array"
+        },
+        "attr": {
+          "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+          "title": "Attr",
+          "type": "string"
+        },
+        "op": {
+          "const": "transition_in",
+          "title": "Op",
+          "type": "string"
+        }
+      },
+      "required": [
+        "op",
+        "attr",
+        "allowed"
+      ],
+      "title": "TransitionIn",
+      "type": "object"
+    },
+    "ValueDomain": {
+      "additionalProperties": false,
+      "properties": {
+        "domain_id": {
+          "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+          "title": "Domain Id",
+          "type": "string"
+        },
+        "symbols": {
+          "items": {
+            "pattern": "^[A-Z][A-Z0-9_]{0,63}$",
+            "type": "string"
+          },
+          "title": "Symbols",
+          "type": "array"
+        },
+        "version": {
+          "pattern": "^\\d+\\.\\d+\\.\\d+$",
+          "title": "Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "domain_id",
+        "version",
+        "symbols"
+      ],
+      "title": "ValueDomain",
+      "type": "object"
+    }
+  },
+  "$id": "cira.observation_bundle/1.0.2",
+  "additionalProperties": false,
+  "properties": {
+    "budget_usage": {
+      "$ref": "#/$defs/BudgetUsage"
+    },
+    "bundle_key": {
+      "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+      "title": "Bundle Key",
+      "type": "string"
+    },
+    "contexts": {
+      "items": {
+        "$ref": "#/$defs/ContextBundle"
+      },
+      "title": "Contexts",
+      "type": "array"
+    },
+    "observable_rules": {
+      "$ref": "#/$defs/ObservableRules"
+    },
+    "observable_topology": {
+      "$ref": "#/$defs/ObservableTopologyDefinition"
+    },
+    "serialization_profile": {
+      "title": "Serialization Profile",
+      "type": "string"
+    },
+    "source_register": {
+      "$ref": "#/$defs/SourceReferenceRegister"
+    },
+    "up_to_tick": {
+      "minimum": 0,
+      "title": "Up To Tick",
+      "type": "integer"
+    }
+  },
+  "required": [
+    "bundle_key",
+    "up_to_tick",
+    "contexts",
+    "observable_topology",
+    "observable_rules",
+    "source_register",
+    "serialization_profile",
+    "budget_usage"
+  ],
+  "title": "ObservationBundle",
+  "type": "object"
+}

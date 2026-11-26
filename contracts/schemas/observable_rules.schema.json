@@ -1,0 +1,553 @@
+{
+  "$defs": {
+    "And": {
+      "additionalProperties": false,
+      "properties": {
+        "args": {
+          "items": {
+            "discriminator": {
+              "mapping": {
+                "and": "#/$defs/And",
+                "eq": "#/$defs/Eq",
+                "implies": "#/$defs/Implies",
+                "in": "#/$defs/In",
+                "not": "#/$defs/Not",
+                "or": "#/$defs/Or",
+                "transition_in": "#/$defs/TransitionIn"
+              },
+              "propertyName": "op"
+            },
+            "oneOf": [
+              {
+                "$ref": "#/$defs/Eq"
+              },
+              {
+                "$ref": "#/$defs/In"
+              },
+              {
+                "$ref": "#/$defs/Not"
+              },
+              {
+                "$ref": "#/$defs/And"
+              },
+              {
+                "$ref": "#/$defs/Or"
+              },
+              {
+                "$ref": "#/$defs/Implies"
+              },
+              {
+                "$ref": "#/$defs/TransitionIn"
+              }
+            ]
+          },
+          "minItems": 2,
+          "title": "Args",
+          "type": "array"
+        },
+        "op": {
+          "const": "and",
+          "title": "Op",
+          "type": "string"
+        }
+      },
+      "required": [
+        "op",
+        "args"
+      ],
+      "title": "And",
+      "type": "object"
+    },
+    "Eq": {
+      "additionalProperties": false,
+      "properties": {
+        "at": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/TimeIndex"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "attr": {
+          "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+          "title": "Attr",
+          "type": "string"
+        },
+        "op": {
+          "const": "eq",
+          "title": "Op",
+          "type": "string"
+        },
+        "value": {
+          "pattern": "^[A-Z][A-Z0-9_]{0,63}$",
+          "title": "Value",
+          "type": "string"
+        }
+      },
+      "required": [
+        "op",
+        "attr",
+        "value"
+      ],
+      "title": "Eq",
+      "type": "object"
+    },
+    "Implies": {
+      "additionalProperties": false,
+      "properties": {
+        "if": {
+          "discriminator": {
+            "mapping": {
+              "and": "#/$defs/And",
+              "eq": "#/$defs/Eq",
+              "implies": "#/$defs/Implies",
+              "in": "#/$defs/In",
+              "not": "#/$defs/Not",
+              "or": "#/$defs/Or",
+              "transition_in": "#/$defs/TransitionIn"
+            },
+            "propertyName": "op"
+          },
+          "oneOf": [
+            {
+              "$ref": "#/$defs/Eq"
+            },
+            {
+              "$ref": "#/$defs/In"
+            },
+            {
+              "$ref": "#/$defs/Not"
+            },
+            {
+              "$ref": "#/$defs/And"
+            },
+            {
+              "$ref": "#/$defs/Or"
+            },
+            {
+              "$ref": "#/$defs/Implies"
+            },
+            {
+              "$ref": "#/$defs/TransitionIn"
+            }
+          ],
+          "title": "If"
+        },
+        "op": {
+          "const": "implies",
+          "title": "Op",
+          "type": "string"
+        },
+        "then": {
+          "discriminator": {
+            "mapping": {
+              "and": "#/$defs/And",
+              "eq": "#/$defs/Eq",
+              "implies": "#/$defs/Implies",
+              "in": "#/$defs/In",
+              "not": "#/$defs/Not",
+              "or": "#/$defs/Or",
+              "transition_in": "#/$defs/TransitionIn"
+            },
+            "propertyName": "op"
+          },
+          "oneOf": [
+            {
+              "$ref": "#/$defs/Eq"
+            },
+            {
+              "$ref": "#/$defs/In"
+            },
+            {
+              "$ref": "#/$defs/Not"
+            },
+            {
+              "$ref": "#/$defs/And"
+            },
+            {
+              "$ref": "#/$defs/Or"
+            },
+            {
+              "$ref": "#/$defs/Implies"
+            },
+            {
+              "$ref": "#/$defs/TransitionIn"
+            }
+          ],
+          "title": "Then"
+        }
+      },
+      "required": [
+        "op",
+        "if",
+        "then"
+      ],
+      "title": "Implies",
+      "type": "object"
+    },
+    "In": {
+      "additionalProperties": false,
+      "properties": {
+        "at": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/TimeIndex"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "attr": {
+          "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+          "title": "Attr",
+          "type": "string"
+        },
+        "op": {
+          "const": "in",
+          "title": "Op",
+          "type": "string"
+        },
+        "values": {
+          "items": {
+            "pattern": "^[A-Z][A-Z0-9_]{0,63}$",
+            "type": "string"
+          },
+          "title": "Values",
+          "type": "array"
+        }
+      },
+      "required": [
+        "op",
+        "attr",
+        "values"
+      ],
+      "title": "In",
+      "type": "object"
+    },
+    "Not": {
+      "additionalProperties": false,
+      "properties": {
+        "arg": {
+          "discriminator": {
+            "mapping": {
+              "and": "#/$defs/And",
+              "eq": "#/$defs/Eq",
+              "implies": "#/$defs/Implies",
+              "in": "#/$defs/In",
+              "not": "#/$defs/Not",
+              "or": "#/$defs/Or",
+              "transition_in": "#/$defs/TransitionIn"
+            },
+            "propertyName": "op"
+          },
+          "oneOf": [
+            {
+              "$ref": "#/$defs/Eq"
+            },
+            {
+              "$ref": "#/$defs/In"
+            },
+            {
+              "$ref": "#/$defs/Not"
+            },
+            {
+              "$ref": "#/$defs/And"
+            },
+            {
+              "$ref": "#/$defs/Or"
+            },
+            {
+              "$ref": "#/$defs/Implies"
+            },
+            {
+              "$ref": "#/$defs/TransitionIn"
+            }
+          ],
+          "title": "Arg"
+        },
+        "op": {
+          "const": "not",
+          "title": "Op",
+          "type": "string"
+        }
+      },
+      "required": [
+        "op",
+        "arg"
+      ],
+      "title": "Not",
+      "type": "object"
+    },
+    "Or": {
+      "additionalProperties": false,
+      "properties": {
+        "args": {
+          "items": {
+            "discriminator": {
+              "mapping": {
+                "and": "#/$defs/And",
+                "eq": "#/$defs/Eq",
+                "implies": "#/$defs/Implies",
+                "in": "#/$defs/In",
+                "not": "#/$defs/Not",
+                "or": "#/$defs/Or",
+                "transition_in": "#/$defs/TransitionIn"
+              },
+              "propertyName": "op"
+            },
+            "oneOf": [
+              {
+                "$ref": "#/$defs/Eq"
+              },
+              {
+                "$ref": "#/$defs/In"
+              },
+              {
+                "$ref": "#/$defs/Not"
+              },
+              {
+                "$ref": "#/$defs/And"
+              },
+              {
+                "$ref": "#/$defs/Or"
+              },
+              {
+                "$ref": "#/$defs/Implies"
+              },
+              {
+                "$ref": "#/$defs/TransitionIn"
+              }
+            ]
+          },
+          "minItems": 2,
+          "title": "Args",
+          "type": "array"
+        },
+        "op": {
+          "const": "or",
+          "title": "Op",
+          "type": "string"
+        }
+      },
+      "required": [
+        "op",
+        "args"
+      ],
+      "title": "Or",
+      "type": "object"
+    },
+    "Rule": {
+      "additionalProperties": false,
+      "properties": {
+        "applies_to": {
+          "default": [],
+          "items": {
+            "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+            "type": "string"
+          },
+          "title": "Applies To",
+          "type": "array"
+        },
+        "description": {
+          "default": "",
+          "title": "Description",
+          "type": "string"
+        },
+        "expression": {
+          "discriminator": {
+            "mapping": {
+              "and": "#/$defs/And",
+              "eq": "#/$defs/Eq",
+              "implies": "#/$defs/Implies",
+              "in": "#/$defs/In",
+              "not": "#/$defs/Not",
+              "or": "#/$defs/Or",
+              "transition_in": "#/$defs/TransitionIn"
+            },
+            "propertyName": "op"
+          },
+          "oneOf": [
+            {
+              "$ref": "#/$defs/Eq"
+            },
+            {
+              "$ref": "#/$defs/In"
+            },
+            {
+              "$ref": "#/$defs/Not"
+            },
+            {
+              "$ref": "#/$defs/And"
+            },
+            {
+              "$ref": "#/$defs/Or"
+            },
+            {
+              "$ref": "#/$defs/Implies"
+            },
+            {
+              "$ref": "#/$defs/TransitionIn"
+            }
+          ],
+          "title": "Expression"
+        },
+        "kind": {
+          "$ref": "#/$defs/RuleKind"
+        },
+        "permits": {
+          "default": [],
+          "items": {
+            "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+            "type": "string"
+          },
+          "title": "Permits",
+          "type": "array"
+        },
+        "requires": {
+          "default": [],
+          "items": {
+            "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+            "type": "string"
+          },
+          "title": "Requires",
+          "type": "array"
+        },
+        "rule_id": {
+          "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+          "title": "Rule Id",
+          "type": "string"
+        },
+        "scope": {
+          "default": [],
+          "items": {
+            "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+            "type": "string"
+          },
+          "title": "Scope",
+          "type": "array"
+        },
+        "valid_from_tick": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Valid From Tick",
+          "type": "integer"
+        },
+        "valid_until_tick": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Valid Until Tick"
+        },
+        "version": {
+          "pattern": "^\\d+\\.\\d+\\.\\d+$",
+          "title": "Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "rule_id",
+        "version",
+        "kind",
+        "expression"
+      ],
+      "title": "Rule",
+      "type": "object"
+    },
+    "RuleKind": {
+      "enum": [
+        "STATE",
+        "TRANSITION",
+        "FUNCTION"
+      ],
+      "title": "RuleKind",
+      "type": "string"
+    },
+    "SymbolPair": {
+      "additionalProperties": false,
+      "properties": {
+        "from": {
+          "pattern": "^[A-Z][A-Z0-9_]{0,63}$",
+          "title": "From",
+          "type": "string"
+        },
+        "to": {
+          "pattern": "^[A-Z][A-Z0-9_]{0,63}$",
+          "title": "To",
+          "type": "string"
+        }
+      },
+      "required": [
+        "from",
+        "to"
+      ],
+      "title": "SymbolPair",
+      "type": "object"
+    },
+    "TimeIndex": {
+      "enum": [
+        "CURRENT",
+        "NEXT"
+      ],
+      "title": "TimeIndex",
+      "type": "string"
+    },
+    "TransitionIn": {
+      "additionalProperties": false,
+      "properties": {
+        "allowed": {
+          "items": {
+            "$ref": "#/$defs/SymbolPair"
+          },
+          "title": "Allowed",
+          "type": "array"
+        },
+        "attr": {
+          "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+          "title": "Attr",
+          "type": "string"
+        },
+        "op": {
+          "const": "transition_in",
+          "title": "Op",
+          "type": "string"
+        }
+      },
+      "required": [
+        "op",
+        "attr",
+        "allowed"
+      ],
+      "title": "TransitionIn",
+      "type": "object"
+    }
+  },
+  "$id": "cira.observable_rules/1.0.2",
+  "additionalProperties": false,
+  "properties": {
+    "rules": {
+      "items": {
+        "$ref": "#/$defs/Rule"
+      },
+      "title": "Rules",
+      "type": "array"
+    }
+  },
+  "required": [
+    "rules"
+  ],
+  "title": "ObservableRules",
+  "type": "object"
+}

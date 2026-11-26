@@ -1,0 +1,191 @@
+{
+  "$defs": {
+    "Applicability": {
+      "enum": [
+        "APPLICABLE",
+        "NOT_APPLICABLE"
+      ],
+      "title": "Applicability",
+      "type": "string"
+    },
+    "AttributeDecl": {
+      "additionalProperties": false,
+      "properties": {
+        "applicability": {
+          "$ref": "#/$defs/Applicability"
+        },
+        "attribute_id": {
+          "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+          "title": "Attribute Id",
+          "type": "string"
+        },
+        "domain_ref": {
+          "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+          "title": "Domain Ref",
+          "type": "string"
+        },
+        "name": {
+          "pattern": "^[a-z0-9][a-z0-9_\\-]{0,62}$",
+          "title": "Name",
+          "type": "string"
+        }
+      },
+      "required": [
+        "attribute_id",
+        "name",
+        "domain_ref",
+        "applicability"
+      ],
+      "title": "AttributeDecl",
+      "type": "object"
+    },
+    "Node": {
+      "additionalProperties": false,
+      "properties": {
+        "attributes": {
+          "items": {
+            "$ref": "#/$defs/AttributeDecl"
+          },
+          "title": "Attributes",
+          "type": "array"
+        },
+        "label": {
+          "title": "Label",
+          "type": "string"
+        },
+        "node_id": {
+          "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+          "title": "Node Id",
+          "type": "string"
+        },
+        "node_type": {
+          "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+          "title": "Node Type",
+          "type": "string"
+        },
+        "version": {
+          "pattern": "^\\d+\\.\\d+\\.\\d+$",
+          "title": "Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "node_id",
+        "node_type",
+        "version",
+        "label",
+        "attributes"
+      ],
+      "title": "Node",
+      "type": "object"
+    },
+    "Relation": {
+      "additionalProperties": false,
+      "properties": {
+        "relation_id": {
+          "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+          "title": "Relation Id",
+          "type": "string"
+        },
+        "relation_type": {
+          "$ref": "#/$defs/RelationType"
+        },
+        "source": {
+          "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+          "title": "Source",
+          "type": "string"
+        },
+        "target": {
+          "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+          "title": "Target",
+          "type": "string"
+        },
+        "version": {
+          "pattern": "^\\d+\\.\\d+\\.\\d+$",
+          "title": "Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "relation_id",
+        "relation_type",
+        "source",
+        "target",
+        "version"
+      ],
+      "title": "Relation",
+      "type": "object"
+    },
+    "RelationType": {
+      "enum": [
+        "depends_on",
+        "reports_to",
+        "provides"
+      ],
+      "title": "RelationType",
+      "type": "string"
+    },
+    "ValueDomain": {
+      "additionalProperties": false,
+      "properties": {
+        "domain_id": {
+          "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+          "title": "Domain Id",
+          "type": "string"
+        },
+        "symbols": {
+          "items": {
+            "pattern": "^[A-Z][A-Z0-9_]{0,63}$",
+            "type": "string"
+          },
+          "title": "Symbols",
+          "type": "array"
+        },
+        "version": {
+          "pattern": "^\\d+\\.\\d+\\.\\d+$",
+          "title": "Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "domain_id",
+        "version",
+        "symbols"
+      ],
+      "title": "ValueDomain",
+      "type": "object"
+    }
+  },
+  "$id": "cira.observable_topology/1.0.2",
+  "additionalProperties": false,
+  "properties": {
+    "nodes": {
+      "items": {
+        "$ref": "#/$defs/Node"
+      },
+      "title": "Nodes",
+      "type": "array"
+    },
+    "relations": {
+      "items": {
+        "$ref": "#/$defs/Relation"
+      },
+      "title": "Relations",
+      "type": "array"
+    },
+    "value_domains": {
+      "items": {
+        "$ref": "#/$defs/ValueDomain"
+      },
+      "title": "Value Domains",
+      "type": "array"
+    }
+  },
+  "required": [
+    "nodes",
+    "relations",
+    "value_domains"
+  ],
+  "title": "ObservableTopologyDefinition",
+  "type": "object"
+}

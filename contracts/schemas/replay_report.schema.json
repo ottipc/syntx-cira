@@ -1,0 +1,114 @@
+{
+  "$defs": {
+    "ReplayMatch": {
+      "additionalProperties": false,
+      "properties": {
+        "artifact_type": {
+          "title": "Artifact Type",
+          "type": "string"
+        },
+        "equal": {
+          "title": "Equal",
+          "type": "boolean"
+        },
+        "logical_key": {
+          "title": "Logical Key",
+          "type": "string"
+        },
+        "original_id": {
+          "anyOf": [
+            {
+              "pattern": "^art:[0-9a-f]{32}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Original Id"
+        },
+        "replay_id": {
+          "anyOf": [
+            {
+              "pattern": "^art:[0-9a-f]{32}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Replay Id"
+        }
+      },
+      "required": [
+        "artifact_type",
+        "logical_key",
+        "original_id",
+        "replay_id",
+        "equal"
+      ],
+      "title": "ReplayMatch",
+      "type": "object"
+    },
+    "ReplayMode": {
+      "enum": [
+        "SYNTHETIC",
+        "PRESERVED_ENGINE"
+      ],
+      "title": "ReplayMode",
+      "type": "string"
+    },
+    "ReplayVerdict": {
+      "enum": [
+        "IDENTICAL",
+        "DIVERGENT"
+      ],
+      "title": "ReplayVerdict",
+      "type": "string"
+    }
+  },
+  "$id": "cira.replay_report/1.0.2",
+  "additionalProperties": false,
+  "properties": {
+    "compared_types": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Compared Types",
+      "type": "array"
+    },
+    "matches": {
+      "items": {
+        "$ref": "#/$defs/ReplayMatch"
+      },
+      "title": "Matches",
+      "type": "array"
+    },
+    "mode": {
+      "$ref": "#/$defs/ReplayMode"
+    },
+    "original_experiment_id": {
+      "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+      "title": "Original Experiment Id",
+      "type": "string"
+    },
+    "replay_experiment_id": {
+      "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+      "title": "Replay Experiment Id",
+      "type": "string"
+    },
+    "verdict": {
+      "$ref": "#/$defs/ReplayVerdict"
+    }
+  },
+  "required": [
+    "original_experiment_id",
+    "replay_experiment_id",
+    "mode",
+    "compared_types",
+    "matches",
+    "verdict"
+  ],
+  "title": "ReplayReport",
+  "type": "object"
+}

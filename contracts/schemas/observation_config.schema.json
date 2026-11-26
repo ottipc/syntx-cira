@@ -1,0 +1,160 @@
+{
+  "$defs": {
+    "BundleBudget": {
+      "additionalProperties": false,
+      "properties": {
+        "max_bytes": {
+          "title": "Max Bytes",
+          "type": "integer"
+        },
+        "max_observations": {
+          "title": "Max Observations",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "max_observations",
+        "max_bytes"
+      ],
+      "title": "BundleBudget",
+      "type": "object"
+    },
+    "ObservationSource": {
+      "additionalProperties": false,
+      "properties": {
+        "active": {
+          "items": {
+            "$ref": "#/$defs/TickRange"
+          },
+          "title": "Active",
+          "type": "array"
+        },
+        "label": {
+          "title": "Label",
+          "type": "string"
+        },
+        "lag_ticks": {
+          "default": 0,
+          "title": "Lag Ticks",
+          "type": "integer"
+        },
+        "observes": {
+          "items": {
+            "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+            "type": "string"
+          },
+          "title": "Observes",
+          "type": "array"
+        },
+        "source_id": {
+          "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+          "title": "Source Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "source_id",
+        "label",
+        "observes",
+        "active"
+      ],
+      "title": "ObservationSource",
+      "type": "object"
+    },
+    "TickRange": {
+      "additionalProperties": false,
+      "properties": {
+        "from_tick": {
+          "minimum": 0,
+          "title": "From Tick",
+          "type": "integer"
+        },
+        "to_tick": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "To Tick"
+        }
+      },
+      "required": [
+        "from_tick"
+      ],
+      "title": "TickRange",
+      "type": "object"
+    }
+  },
+  "$id": "cira.observation_config/1.0.2",
+  "additionalProperties": false,
+  "properties": {
+    "bundle_budget": {
+      "$ref": "#/$defs/BundleBudget"
+    },
+    "config_id": {
+      "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+      "title": "Config Id",
+      "type": "string"
+    },
+    "serialization_profiles": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Serialization Profiles",
+      "type": "array"
+    },
+    "sources": {
+      "items": {
+        "$ref": "#/$defs/ObservationSource"
+      },
+      "title": "Sources",
+      "type": "array"
+    },
+    "version": {
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "title": "Version",
+      "type": "string"
+    },
+    "visible_nodes": {
+      "items": {
+        "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+        "type": "string"
+      },
+      "title": "Visible Nodes",
+      "type": "array"
+    },
+    "visible_relations": {
+      "items": {
+        "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+        "type": "string"
+      },
+      "title": "Visible Relations",
+      "type": "array"
+    },
+    "visible_rules": {
+      "items": {
+        "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+        "type": "string"
+      },
+      "title": "Visible Rules",
+      "type": "array"
+    }
+  },
+  "required": [
+    "config_id",
+    "version",
+    "sources",
+    "visible_nodes",
+    "visible_relations",
+    "visible_rules",
+    "bundle_budget",
+    "serialization_profiles"
+  ],
+  "title": "ObservationConfig",
+  "type": "object"
+}

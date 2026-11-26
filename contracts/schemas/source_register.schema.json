@@ -1,0 +1,95 @@
+{
+  "$defs": {
+    "Continuity": {
+      "enum": [
+        "CONTINUOUS",
+        "INTERRUPTED"
+      ],
+      "title": "Continuity",
+      "type": "string"
+    },
+    "SourceRegisterEntry": {
+      "additionalProperties": false,
+      "properties": {
+        "continuity": {
+          "$ref": "#/$defs/Continuity"
+        },
+        "first_tick": {
+          "minimum": 0,
+          "title": "First Tick",
+          "type": "integer"
+        },
+        "gaps": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/TickRange"
+          },
+          "title": "Gaps",
+          "type": "array"
+        },
+        "last_tick": {
+          "minimum": 0,
+          "title": "Last Tick",
+          "type": "integer"
+        },
+        "source_id": {
+          "pattern": "^[a-z]+:[a-z0-9][a-z0-9_.:/\\-]{0,190}$",
+          "title": "Source Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "source_id",
+        "first_tick",
+        "last_tick",
+        "continuity"
+      ],
+      "title": "SourceRegisterEntry",
+      "type": "object"
+    },
+    "TickRange": {
+      "additionalProperties": false,
+      "properties": {
+        "from_tick": {
+          "minimum": 0,
+          "title": "From Tick",
+          "type": "integer"
+        },
+        "to_tick": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "To Tick"
+        }
+      },
+      "required": [
+        "from_tick"
+      ],
+      "title": "TickRange",
+      "type": "object"
+    }
+  },
+  "$id": "cira.source_register/1.0.2",
+  "additionalProperties": false,
+  "properties": {
+    "entries": {
+      "items": {
+        "$ref": "#/$defs/SourceRegisterEntry"
+      },
+      "title": "Entries",
+      "type": "array"
+    }
+  },
+  "required": [
+    "entries"
+  ],
+  "title": "SourceReferenceRegister",
+  "type": "object"
+}
