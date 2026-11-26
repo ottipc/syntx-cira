@@ -24,7 +24,7 @@ export function ExportAction() {
   return (
     <span className="row">
       <button type="button" className="btn" disabled={!session.experimentId || running} onClick={() => void doExport()}
-        data-term="action.export">⇩ {t("action.export")}</button>
+        data-term="action.export">▾ {t("action.export")}</button>
       {hash ? <span title={t("export.hash")} data-testid="bundle-hash"><IdText>{hash}</IdText></span> : null}
     </span>
   );

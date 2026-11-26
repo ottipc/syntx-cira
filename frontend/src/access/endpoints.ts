@@ -9,7 +9,6 @@ const exp = (s: SessionKey) => s.experimentId ?? "";
 const base = (s: SessionKey) => `/experiments/${exp(s)}`;
 
 export const ep = {
-  health: (): Spec => ({ key: "health", url: "/health", expect: { guard: "GLOBAL", experimentId: null, tick: null, echo: {} } }),
   scenarios: (): Spec => ({ key: "scenarios", url: "/scenarios", expect: { guard: "GLOBAL", experimentId: null, tick: null, echo: {} } }),
   experiments: (): Spec => ({ key: "experiments", url: "/experiments", expect: { guard: "GLOBAL", experimentId: null, tick: null, echo: {} } }),
   experiment: (s: SessionKey): Spec => ({ key: "experiment", url: base(s),

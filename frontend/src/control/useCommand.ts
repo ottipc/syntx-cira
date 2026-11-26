@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { ApiError, postJson } from "../access";
 
-export interface CommandState<T> { pending: boolean; result: T | null; error: string | null }
+/** A failed command: the contract error code (shown via its catalog term) and the HTTP status (shown as data). */
+export interface CommandError { code: string | null; status: number | null }
+export interface CommandState<T> { pending: boolean; result: T | null; error: CommandError | null }
 
 /** Explicit confirmation precedes every POST (P11); 202/201 results are shown, never applied automatically. */
 export function useCommand<T>() {
@@ -13,8 +15,8 @@ export function useCommand<T>() {
       set({ pending: false, result: r.body, error: null });
       return r.body;
     } catch (e) {
-      const code = e instanceof ApiError ? JSON.stringify((e.body as { error?: { code?: string } } | null)?.error?.code ?? e.status) : String(e);
-      set({ pending: false, result: null, error: code });
+      const code = e instanceof ApiError ? (e.body as { error?: { code?: string } } | null)?.error?.code ?? null : null;
+      set({ pending: false, result: null, error: { code, status: e instanceof ApiError ? e.status : null } });
       return null;
     }
   };

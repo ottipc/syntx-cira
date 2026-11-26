@@ -195,6 +195,7 @@ export type TermKey =
   | "action.next"
   | "action.previous"
   | "action.authorize.readonly"
+  | "action.failed"
   | "action.summary"
   | "action.accepted"
   | "export.hash"
@@ -658,6 +659,7 @@ export const TERMS: Readonly<Record<TermKey, TermEntry>> = {
   "action.next": { en: "Next", de: "Weiter", params: [] },
   "action.previous": { en: "Previous", de: "Zurück", params: [] },
   "action.authorize.readonly": { en: "Read-only in this version", de: "In dieser Version nur lesend", params: [] },
+  "action.failed": { en: "Command not accepted", de: "Befehl nicht angenommen", params: [] },
   "action.summary": { en: "Summary", de: "Zusammenfassung", params: [] },
   "action.accepted": { en: "Accepted — running", de: "Angenommen — läuft", params: [] },
   "export.hash": { en: "Bundle hash (from server)", de: "Paket-Hash (vom Server)", params: [] },

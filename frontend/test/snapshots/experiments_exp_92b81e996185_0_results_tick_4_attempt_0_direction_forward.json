@@ -1,0 +1,37 @@
+{
+ "authority_records": [],
+ "forward": {
+  "availability": "NOT_AVAILABLE_AT_TICK",
+  "content": null,
+  "origin": null
+ },
+ "header": {
+  "data_origin": "SYNTHETIC",
+  "experiment_id": "exp:92b81e996185-0",
+  "guard_class": "TIMED",
+  "query_echo": {
+   "aggregation": null,
+   "attempt": 0,
+   "comparison_id": null,
+   "direction": "forward",
+   "from": null,
+   "revision": null,
+   "to": null,
+   "to_tick": null
+  },
+  "schema_version": "cira.results_projection/1.0.2",
+  "source_refs": [],
+  "tick": 4
+ },
+ "inverse": {
+  "availability": "NOT_AVAILABLE_AT_TICK",
+  "content": null,
+  "origin": null
+ },
+ "proposals": [],
+ "reconstruction": {
+  "availability": "NOT_AVAILABLE_AT_TICK",
+  "content": null,
+  "origin": null
+ }
+}

@@ -7,13 +7,13 @@
  },
  "header": {
   "data_origin": "SYNTHETIC",
-  "experiment_id": "exp:a10ff3383bfc-0",
+  "experiment_id": "exp:92b81e996185-0",
   "guard_class": "TIMED",
   "query_echo": {
    "aggregation": null,
    "attempt": 0,
    "comparison_id": null,
-   "direction": null,
+   "direction": "merged",
    "from": null,
    "revision": null,
    "to": null,
@@ -21,7 +21,7 @@
   },
   "schema_version": "cira.results_projection/1.0.2",
   "source_refs": [],
-  "tick": 5
+  "tick": 4
  },
  "inverse": {
   "availability": "NOT_AVAILABLE_AT_TICK",

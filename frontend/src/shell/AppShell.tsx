@@ -1,8 +1,8 @@
 import type { ComponentType, ReactNode } from "react";
-import { ProvenanceDrawer } from "../provenance";
 import { useSession, type ViewKey } from "../session";
 import { TickScrubber } from "../time";
 import { ContextBar } from "./ContextBar";
+import { ProvenanceDrawer } from "./ProvenanceDrawer";
 import { ViewportGuard } from "./ViewportGuard";
 import { ViewRail } from "./ViewRail";
 import { Workspace } from "./Workspace";

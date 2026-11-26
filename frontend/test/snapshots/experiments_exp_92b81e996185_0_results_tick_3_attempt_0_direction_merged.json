@@ -7,7 +7,7 @@
     "gaps": [
      {
       "epistemic_class": "STRUCTURAL_DERIVATION",
-      "gap_id": "gap:t5:unobserved_n08",
+      "gap_id": "gap:t3:unobserved_n08",
       "kind": "fixture.unobserved_dependency",
       "source_refs": [
        "rel:depends_on:n08:n06"
@@ -15,6 +15,19 @@
       "status": "OPEN",
       "subject_refs": [
        "node:n08"
+      ]
+     },
+     {
+      "epistemic_class": "STRUCTURAL_DERIVATION",
+      "gap_id": "gap:t3:gate_evidence",
+      "kind": "fixture.missing_authorization_evidence",
+      "source_refs": [
+       "obs:s01:n05/state:t3"
+      ],
+      "status": "OPEN",
+      "subject_refs": [
+       "node:n05",
+       "node:n09"
       ]
      }
     ],
@@ -33,7 +46,7 @@
      {
       "coupling_status": "POSSIBLE",
       "derived_from": [
-       "obs:s01:n06/state:t5"
+       "obs:s01:n06/state:t3"
       ],
       "epistemic_class": "STRUCTURAL_DERIVATION",
       "relation_key": "rel:depends_on:n08:n06",
@@ -44,7 +57,7 @@
      {
       "coupling_status": "EFFECTIVE",
       "derived_from": [
-       "obs:s01:n05/state:t5"
+       "obs:s01:n05/state:t3"
       ],
       "epistemic_class": "STRUCTURAL_DERIVATION",
       "relation_key": "rel:provides:n09:n05",
@@ -57,7 +70,7 @@
      {
       "attribute_ref": "attr:n01/state",
       "derived_from": [
-       "obs:s01:n01/state:t5"
+       "obs:s01:n01/state:t3"
       ],
       "epistemic_class": "SOURCE_OBSERVATION",
       "reference_status": "RESOLVED",
@@ -67,7 +80,7 @@
      {
       "attribute_ref": "attr:n02/state",
       "derived_from": [
-       "obs:s01:n02/state:t5"
+       "obs:s01:n02/state:t3"
       ],
       "epistemic_class": "SOURCE_OBSERVATION",
       "reference_status": "RESOLVED",
@@ -77,7 +90,7 @@
      {
       "attribute_ref": "attr:n03/state",
       "derived_from": [
-       "obs:s01:n03/state:t5"
+       "obs:s01:n03/state:t3"
       ],
       "epistemic_class": "SOURCE_OBSERVATION",
       "reference_status": "RESOLVED",
@@ -87,17 +100,17 @@
      {
       "attribute_ref": "attr:n04/state",
       "derived_from": [
-       "obs:s01:n04/state:t5"
+       "obs:s01:n04/state:t3"
       ],
       "epistemic_class": "SOURCE_OBSERVATION",
       "reference_status": "RESOLVED",
       "status": "DETERMINED",
-      "value": "STANDBY"
+      "value": "ACTIVE"
      },
      {
       "attribute_ref": "attr:n05/state",
       "derived_from": [
-       "obs:s01:n05/state:t5"
+       "obs:s01:n05/state:t3"
       ],
       "epistemic_class": "SOURCE_OBSERVATION",
       "reference_status": "RESOLVED",
@@ -107,7 +120,7 @@
      {
       "attribute_ref": "attr:n06/state",
       "derived_from": [
-       "obs:s01:n06/state:t5"
+       "obs:s01:n06/state:t3"
       ],
       "epistemic_class": "SOURCE_OBSERVATION",
       "reference_status": "RESOLVED",
@@ -117,9 +130,9 @@
      {
       "attribute_ref": "attr:n07/state",
       "derived_from": [
-       "obs:s02:n07/state:t5"
+       "rel:depends_on:n07:n04"
       ],
-      "epistemic_class": "SOURCE_OBSERVATION",
+      "epistemic_class": "HYPOTHESIS",
       "reference_status": "RESOLVED",
       "status": "DETERMINED",
       "value": "STANDBY"
@@ -127,7 +140,7 @@
      {
       "attribute_ref": "attr:n08/state",
       "derived_from": [
-       "obs:s01:n06/state:t5",
+       "obs:s01:n06/state:t3",
        "rel:depends_on:n08:n06"
       ],
       "epistemic_class": "STRUCTURAL_DERIVATION",
@@ -161,16 +174,16 @@
      "operator_registry_ref": null
     },
     "attempt": 0,
-    "context_version": "ctx:5",
+    "context_version": "ctx:3",
     "direction": "FORWARD",
     "error": null,
     "execution_status": "COMPLETED",
     "input_bundle_ref": {
-     "artifact_id": "art:96dc134390bf84da48da4fca6bcaaaf8",
+     "artifact_id": "art:a3677524e6537ab1fca93702a4d52f8b",
      "artifact_type": "observation_bundle",
-     "content_hash": "sha256:f78a4334038abd4697e293aea2943b0ea5f4b1af942ebdb7f30a0af0e4e47f59"
+     "content_hash": "sha256:ba0b202d6b39e939c4d12213ae74d8d910100ef574b0523f4037a2190280a8b5"
     },
-    "sweep_id": "sweep:fwd:t5:a0",
+    "sweep_id": "sweep:fwd:t3:a0",
     "target_ref": null,
     "termination": {
      "budget": 64,
@@ -179,7 +192,7 @@
      "reason": "CONVERGED",
      "steps_executed": 4
     },
-    "up_to_tick": 5
+    "up_to_tick": 3
    },
    "trace": {
     "reference_status": "RESOLVED",
@@ -188,12 +201,12 @@
       "engine_note": "fixture trace step — no engine executed; operator semantics not asserted (DEP-01, DEP-08)",
       "epistemic_class": "SOURCE_OBSERVATION",
       "input_refs": [
-       "ctx:5"
+       "ctx:3"
       ],
       "operator_ref": {
        "namespace": "CANONICAL_V181",
        "registry_version": "v1.8.1",
-       "symbol": "⊕"
+       "symbol": "→"
       },
       "output_refs": [
        "attr:n01/state"
@@ -202,14 +215,14 @@
        "registry_version": "v1.8.1",
        "sigma_id": "Σ01"
       },
-      "step_id": "step:fwd:t5:a0:0",
+      "step_id": "step:fwd:t3:a0:0",
       "step_seq": 0
      },
      {
       "engine_note": "fixture trace step — no engine executed; operator semantics not asserted (DEP-01, DEP-08)",
       "epistemic_class": "STRUCTURAL_DERIVATION",
       "input_refs": [
-       "ctx:5"
+       "ctx:3"
       ],
       "operator_ref": null,
       "output_refs": [
@@ -219,19 +232,19 @@
        "registry_version": "v1.8.1",
        "sigma_id": "Σ02"
       },
-      "step_id": "step:fwd:t5:a0:1",
+      "step_id": "step:fwd:t3:a0:1",
       "step_seq": 1
      },
      {
       "engine_note": "fixture trace step — no engine executed; operator semantics not asserted (DEP-01, DEP-08)",
       "epistemic_class": "STRUCTURAL_DERIVATION",
       "input_refs": [
-       "ctx:5"
+       "ctx:3"
       ],
       "operator_ref": {
        "namespace": "CANONICAL_V181",
        "registry_version": "v1.8.1",
-       "symbol": "⊗"
+       "symbol": "⊕"
       },
       "output_refs": [
        "attr:n03/state"
@@ -240,14 +253,14 @@
        "registry_version": "v1.8.1",
        "sigma_id": "Σ03"
       },
-      "step_id": "step:fwd:t5:a0:2",
+      "step_id": "step:fwd:t3:a0:2",
       "step_seq": 2
      },
      {
       "engine_note": "fixture trace step — no engine executed; operator semantics not asserted (DEP-01, DEP-08)",
       "epistemic_class": "SOURCE_OBSERVATION",
       "input_refs": [
-       "ctx:5"
+       "ctx:3"
       ],
       "operator_ref": null,
       "output_refs": [
@@ -257,24 +270,24 @@
        "registry_version": "v1.8.1",
        "sigma_id": "Σ04"
       },
-      "step_id": "step:fwd:t5:a0:3",
+      "step_id": "step:fwd:t3:a0:3",
       "step_seq": 3
      }
     ],
-    "sweep_id": "sweep:fwd:t5:a0"
+    "sweep_id": "sweep:fwd:t3:a0"
    }
   },
   "origin": "FIXTURE"
  },
  "header": {
   "data_origin": "FIXTURE",
-  "experiment_id": "exp:1ad306a9d017-0",
+  "experiment_id": "exp:92b81e996185-0",
   "guard_class": "TIMED",
   "query_echo": {
    "aggregation": null,
    "attempt": 0,
    "comparison_id": null,
-   "direction": null,
+   "direction": "merged",
    "from": null,
    "revision": null,
    "to": null,
@@ -283,22 +296,22 @@
   "schema_version": "cira.results_projection/1.0.2",
   "source_refs": [
    {
-    "artifact_id": "art:121c1caa35f7a0918b59aba926579fd3",
+    "artifact_id": "art:8497ed474ed679b6b6b3eb89d979bc19",
     "artifact_type": "forward_result",
-    "content_hash": "sha256:772005a7d03ed6329dd7d08fd84d010f3f1d68ae2de74135a06fd7fe9edb3a80"
+    "content_hash": "sha256:6f278507b5414d14f16b55e2f4f5a4c0ee933d74ff5a7a2fced435efebcc4720"
    },
    {
-    "artifact_id": "art:0cf27beac22eb2ab690bdb5d4d0fb797",
+    "artifact_id": "art:5d93b2ede7fcafc4bf33b8f8a026046e",
     "artifact_type": "inverse_result",
-    "content_hash": "sha256:888f8637f422e4a25d90baa14e09c8d96dcf527e4203693f28a675b16206d0fe"
+    "content_hash": "sha256:760056604ede7f1a15adf2beb6e885a15b2cb32ff111a2c1571cf32ebc62e360"
    },
    {
-    "artifact_id": "art:ab5d47be09b3cd71c156ae699b486d58",
+    "artifact_id": "art:3e231e786e35f307163e15456247ee41",
     "artifact_type": "reconstruction_result",
-    "content_hash": "sha256:ed5d59aafbe64a0e5087c29ad2f2739cf32983ddab91b9dd7f771381871be81f"
+    "content_hash": "sha256:23b35b59fc469f339565e8c17137a366e4af85c9cd3ba96feb024e67d1167036"
    }
   ],
-  "tick": 5
+  "tick": 3
  },
  "inverse": {
   "availability": "AVAILABLE",
@@ -307,7 +320,7 @@
     "gaps": [
      {
       "epistemic_class": "STRUCTURAL_DERIVATION",
-      "gap_id": "gap:t5:unobserved_n08",
+      "gap_id": "gap:t3:unobserved_n08",
       "kind": "fixture.unobserved_dependency",
       "source_refs": [
        "rel:depends_on:n08:n06"
@@ -315,6 +328,19 @@
       "status": "OPEN",
       "subject_refs": [
        "node:n08"
+      ]
+     },
+     {
+      "epistemic_class": "STRUCTURAL_DERIVATION",
+      "gap_id": "gap:t3:gate_evidence",
+      "kind": "fixture.missing_authorization_evidence",
+      "source_refs": [
+       "obs:s01:n05/state:t3"
+      ],
+      "status": "OPEN",
+      "subject_refs": [
+       "node:n05",
+       "node:n09"
       ]
      }
     ],
@@ -333,7 +359,7 @@
      {
       "coupling_status": "POSSIBLE",
       "derived_from": [
-       "obs:s01:n06/state:t5"
+       "obs:s01:n06/state:t3"
       ],
       "epistemic_class": "STRUCTURAL_DERIVATION",
       "relation_key": "rel:depends_on:n08:n06",
@@ -344,7 +370,7 @@
      {
       "coupling_status": "EFFECTIVE",
       "derived_from": [
-       "obs:s01:n05/state:t5"
+       "obs:s01:n05/state:t3"
       ],
       "epistemic_class": "STRUCTURAL_DERIVATION",
       "relation_key": "rel:provides:n09:n05",
@@ -357,7 +383,7 @@
      {
       "attribute_ref": "attr:n01/state",
       "derived_from": [
-       "obs:s01:n01/state:t5"
+       "obs:s01:n01/state:t3"
       ],
       "epistemic_class": "SOURCE_OBSERVATION",
       "reference_status": "RESOLVED",
@@ -367,7 +393,7 @@
      {
       "attribute_ref": "attr:n02/state",
       "derived_from": [
-       "obs:s01:n02/state:t5"
+       "obs:s01:n02/state:t3"
       ],
       "epistemic_class": "SOURCE_OBSERVATION",
       "reference_status": "RESOLVED",
@@ -377,7 +403,7 @@
      {
       "attribute_ref": "attr:n03/state",
       "derived_from": [
-       "obs:s01:n03/state:t5"
+       "obs:s01:n03/state:t3"
       ],
       "epistemic_class": "SOURCE_OBSERVATION",
       "reference_status": "RESOLVED",
@@ -387,17 +413,17 @@
      {
       "attribute_ref": "attr:n04/state",
       "derived_from": [
-       "obs:s01:n04/state:t5"
+       "obs:s01:n04/state:t3"
       ],
       "epistemic_class": "SOURCE_OBSERVATION",
       "reference_status": "RESOLVED",
       "status": "DETERMINED",
-      "value": "STANDBY"
+      "value": "ACTIVE"
      },
      {
       "attribute_ref": "attr:n05/state",
       "derived_from": [
-       "obs:s01:n05/state:t5"
+       "obs:s01:n05/state:t3"
       ],
       "epistemic_class": "SOURCE_OBSERVATION",
       "reference_status": "RESOLVED",
@@ -407,7 +433,7 @@
      {
       "attribute_ref": "attr:n06/state",
       "derived_from": [
-       "obs:s01:n06/state:t5"
+       "obs:s01:n06/state:t3"
       ],
       "epistemic_class": "SOURCE_OBSERVATION",
       "reference_status": "RESOLVED",
@@ -417,17 +443,17 @@
      {
       "attribute_ref": "attr:n07/state",
       "derived_from": [
-       "obs:s02:n07/state:t5"
+       "rel:depends_on:n07:n04"
       ],
-      "epistemic_class": "SOURCE_OBSERVATION",
+      "epistemic_class": "HYPOTHESIS",
       "reference_status": "RESOLVED",
       "status": "DETERMINED",
-      "value": "STANDBY"
+      "value": "ACTIVE"
      },
      {
       "attribute_ref": "attr:n08/state",
       "derived_from": [
-       "obs:s01:n06/state:t5",
+       "obs:s01:n06/state:t3",
        "rel:depends_on:n08:n06"
       ],
       "epistemic_class": "STRUCTURAL_DERIVATION",
@@ -464,16 +490,16 @@
      "operator_registry_ref": null
     },
     "attempt": 0,
-    "context_version": "ctx:5",
+    "context_version": "ctx:3",
     "direction": "INVERSE",
     "error": null,
     "execution_status": "COMPLETED",
     "input_bundle_ref": {
-     "artifact_id": "art:96dc134390bf84da48da4fca6bcaaaf8",
+     "artifact_id": "art:a3677524e6537ab1fca93702a4d52f8b",
      "artifact_type": "observation_bundle",
-     "content_hash": "sha256:f78a4334038abd4697e293aea2943b0ea5f4b1af942ebdb7f30a0af0e4e47f59"
+     "content_hash": "sha256:ba0b202d6b39e939c4d12213ae74d8d910100ef574b0523f4037a2190280a8b5"
     },
-    "sweep_id": "sweep:inv:t5:a0",
+    "sweep_id": "sweep:inv:t3:a0",
     "target_ref": {
      "artifact_id": "art:4ffdc059bcd601ca01acf3e9f97076f3",
      "artifact_type": "target_definition",
@@ -486,22 +512,22 @@
      "reason": "ENGINE_REPORTED_STOP",
      "steps_executed": 5
     },
-    "up_to_tick": 5
+    "up_to_tick": 3
    },
    "target_assessment": [
     {
      "derived_from": [
-      "obs:s01:n03/state:t5"
+      "obs:s01:n03/state:t3"
      ],
      "goal_id": "goal:n03_healthy",
      "status": "MET"
     },
     {
      "derived_from": [
-      "obs:s01:n04/state:t5"
+      "obs:s01:n04/state:t3"
      ],
      "goal_id": "goal:n04_active",
-     "status": "NOT_MET"
+     "status": "MET"
     },
     {
      "derived_from": [],
@@ -516,12 +542,12 @@
       "engine_note": "fixture trace step — no engine executed; operator semantics not asserted (DEP-01, DEP-08)",
       "epistemic_class": "SOURCE_OBSERVATION",
       "input_refs": [
-       "ctx:5"
+       "ctx:3"
       ],
       "operator_ref": {
        "namespace": "CANONICAL_V181",
        "registry_version": "v1.8.1",
-       "symbol": "⊕"
+       "symbol": "→"
       },
       "output_refs": [
        "attr:n01/state"
@@ -530,14 +556,14 @@
        "registry_version": "v1.8.1",
        "sigma_id": "Σ01"
       },
-      "step_id": "step:inv:t5:a0:0",
+      "step_id": "step:inv:t3:a0:0",
       "step_seq": 0
      },
      {
       "engine_note": "fixture trace step — no engine executed; operator semantics not asserted (DEP-01, DEP-08)",
       "epistemic_class": "STRUCTURAL_DERIVATION",
       "input_refs": [
-       "ctx:5"
+       "ctx:3"
       ],
       "operator_ref": null,
       "output_refs": [
@@ -547,19 +573,19 @@
        "registry_version": "v1.8.1",
        "sigma_id": "Σ02"
       },
-      "step_id": "step:inv:t5:a0:1",
+      "step_id": "step:inv:t3:a0:1",
       "step_seq": 1
      },
      {
       "engine_note": "fixture trace step — no engine executed; operator semantics not asserted (DEP-01, DEP-08)",
       "epistemic_class": "STRUCTURAL_DERIVATION",
       "input_refs": [
-       "ctx:5"
+       "ctx:3"
       ],
       "operator_ref": {
        "namespace": "CANONICAL_V181",
        "registry_version": "v1.8.1",
-       "symbol": "⊗"
+       "symbol": "⊕"
       },
       "output_refs": [
        "attr:n03/state"
@@ -568,14 +594,14 @@
        "registry_version": "v1.8.1",
        "sigma_id": "Σ03"
       },
-      "step_id": "step:inv:t5:a0:2",
+      "step_id": "step:inv:t3:a0:2",
       "step_seq": 2
      },
      {
       "engine_note": "fixture trace step — no engine executed; operator semantics not asserted (DEP-01, DEP-08)",
       "epistemic_class": "SOURCE_OBSERVATION",
       "input_refs": [
-       "ctx:5"
+       "ctx:3"
       ],
       "operator_ref": null,
       "output_refs": [
@@ -585,19 +611,19 @@
        "registry_version": "v1.8.1",
        "sigma_id": "Σ04"
       },
-      "step_id": "step:inv:t5:a0:3",
+      "step_id": "step:inv:t3:a0:3",
       "step_seq": 3
      },
      {
       "engine_note": "fixture trace step — no engine executed; operator semantics not asserted (DEP-01, DEP-08)",
       "epistemic_class": "STRUCTURAL_DERIVATION",
       "input_refs": [
-       "ctx:5"
+       "ctx:3"
       ],
       "operator_ref": {
        "namespace": "CANONICAL_V181",
        "registry_version": "v1.8.1",
-       "symbol": "∆"
+       "symbol": "⊗"
       },
       "output_refs": [
        "attr:n05/state"
@@ -606,11 +632,11 @@
        "registry_version": "v1.8.1",
        "sigma_id": "Σ05"
       },
-      "step_id": "step:inv:t5:a0:4",
+      "step_id": "step:inv:t3:a0:4",
       "step_seq": 4
      }
     ],
-    "sweep_id": "sweep:inv:t5:a0"
+    "sweep_id": "sweep:inv:t3:a0"
    }
   },
   "origin": "FIXTURE"
@@ -620,42 +646,66 @@
   "availability": "AVAILABLE",
   "content": {
    "attempt": 0,
-   "context_version": "ctx:5",
+   "context_version": "ctx:3",
    "delta_coupling": {
-    "changes": [],
-    "from_tick": 4,
-    "to_tick": 5
+    "changes": [
+     {
+      "after": "EFFECTIVE",
+      "before": "POSSIBLE",
+      "relation_key": "rel:provides:n09:n05"
+     }
+    ],
+    "from_tick": 1,
+    "to_tick": 3
    },
    "delta_state": {
     "changes": [
      {
       "after": {
        "status": "DETERMINED",
-       "value": "DEGRADED"
+       "value": "OPEN"
       },
-      "attribute_ref": "attr:n03/state",
+      "attribute_ref": "attr:n05/state",
       "before": {
        "status": "DETERMINED",
-       "value": "FAULTY"
+       "value": "CLOSED"
+      }
+     },
+     {
+      "after": {
+       "status": "UNDETERMINED",
+       "value": null
+      },
+      "attribute_ref": "attr:n07/state",
+      "before": {
+       "status": "DETERMINED",
+       "value": "STANDBY"
       }
      }
     ],
-    "from_tick": 4,
+    "from_tick": 1,
     "space": "R",
-    "to_tick": 5
+    "to_tick": 3
    },
    "merge": {
-    "conflicts": [],
+    "conflicts": [
+     {
+      "attribute_ref": "attr:n07/state",
+      "forward": "STANDBY",
+      "inverse": "ACTIVE",
+      "resolution": "UNDETERMINED"
+     }
+    ],
     "engine_merged": false,
     "forward_ref": {
-     "artifact_id": "art:121c1caa35f7a0918b59aba926579fd3",
+     "artifact_id": "art:8497ed474ed679b6b6b3eb89d979bc19",
      "artifact_type": "forward_result",
-     "content_hash": "sha256:772005a7d03ed6329dd7d08fd84d010f3f1d68ae2de74135a06fd7fe9edb3a80"
+     "content_hash": "sha256:6f278507b5414d14f16b55e2f4f5a4c0ee933d74ff5a7a2fced435efebcc4720"
     },
     "inverse_ref": {
-     "artifact_id": "art:0cf27beac22eb2ab690bdb5d4d0fb797",
+     "artifact_id": "art:5d93b2ede7fcafc4bf33b8f8a026046e",
      "artifact_type": "inverse_result",
-     "content_hash": "sha256:888f8637f422e4a25d90baa14e09c8d96dcf527e4203693f28a675b16206d0fe"
+     "content_hash": "sha256:760056604ede7f1a15adf2beb6e885a15b2cb32ff111a2c1571cf32ebc62e360"
     },
     "policy": {
      "point": "merge.policy",
@@ -664,18 +714,31 @@
     }
    },
    "openness": {
-    "open_references": 0,
+    "open_references": 1,
     "open_relations": 1,
-    "structural_gaps_open": 1,
-    "undetermined": 0,
+    "structural_gaps_open": 2,
+    "undetermined": 1,
     "unevaluable_rules": 0,
-    "unknown_observations": 2
+    "unknown_observations": 3
    },
    "output": {
     "gaps": [
      {
       "epistemic_class": "STRUCTURAL_DERIVATION",
-      "gap_id": "gap:t5:unobserved_n08",
+      "gap_id": "gap:t3:gate_evidence",
+      "kind": "fixture.missing_authorization_evidence",
+      "source_refs": [
+       "obs:s01:n05/state:t3"
+      ],
+      "status": "OPEN",
+      "subject_refs": [
+       "node:n05",
+       "node:n09"
+      ]
+     },
+     {
+      "epistemic_class": "STRUCTURAL_DERIVATION",
+      "gap_id": "gap:t3:unobserved_n08",
       "kind": "fixture.unobserved_dependency",
       "source_refs": [
        "rel:depends_on:n08:n06"
@@ -701,7 +764,7 @@
      {
       "coupling_status": "POSSIBLE",
       "derived_from": [
-       "obs:s01:n06/state:t5"
+       "obs:s01:n06/state:t3"
       ],
       "epistemic_class": "STRUCTURAL_DERIVATION",
       "relation_key": "rel:depends_on:n08:n06",
@@ -712,7 +775,7 @@
      {
       "coupling_status": "EFFECTIVE",
       "derived_from": [
-       "obs:s01:n05/state:t5"
+       "obs:s01:n05/state:t3"
       ],
       "epistemic_class": "STRUCTURAL_DERIVATION",
       "relation_key": "rel:provides:n09:n05",
@@ -725,7 +788,7 @@
      {
       "attribute_ref": "attr:n01/state",
       "derived_from": [
-       "obs:s01:n01/state:t5"
+       "obs:s01:n01/state:t3"
       ],
       "epistemic_class": "SOURCE_OBSERVATION",
       "reference_status": "RESOLVED",
@@ -735,7 +798,7 @@
      {
       "attribute_ref": "attr:n02/state",
       "derived_from": [
-       "obs:s01:n02/state:t5"
+       "obs:s01:n02/state:t3"
       ],
       "epistemic_class": "SOURCE_OBSERVATION",
       "reference_status": "RESOLVED",
@@ -745,7 +808,7 @@
      {
       "attribute_ref": "attr:n03/state",
       "derived_from": [
-       "obs:s01:n03/state:t5"
+       "obs:s01:n03/state:t3"
       ],
       "epistemic_class": "SOURCE_OBSERVATION",
       "reference_status": "RESOLVED",
@@ -755,17 +818,17 @@
      {
       "attribute_ref": "attr:n04/state",
       "derived_from": [
-       "obs:s01:n04/state:t5"
+       "obs:s01:n04/state:t3"
       ],
       "epistemic_class": "SOURCE_OBSERVATION",
       "reference_status": "RESOLVED",
       "status": "DETERMINED",
-      "value": "STANDBY"
+      "value": "ACTIVE"
      },
      {
       "attribute_ref": "attr:n05/state",
       "derived_from": [
-       "obs:s01:n05/state:t5"
+       "obs:s01:n05/state:t3"
       ],
       "epistemic_class": "SOURCE_OBSERVATION",
       "reference_status": "RESOLVED",
@@ -775,7 +838,7 @@
      {
       "attribute_ref": "attr:n06/state",
       "derived_from": [
-       "obs:s01:n06/state:t5"
+       "obs:s01:n06/state:t3"
       ],
       "epistemic_class": "SOURCE_OBSERVATION",
       "reference_status": "RESOLVED",
@@ -785,17 +848,17 @@
      {
       "attribute_ref": "attr:n07/state",
       "derived_from": [
-       "obs:s02:n07/state:t5"
+       "rel:depends_on:n07:n04"
       ],
-      "epistemic_class": "SOURCE_OBSERVATION",
-      "reference_status": "RESOLVED",
-      "status": "DETERMINED",
-      "value": "STANDBY"
+      "epistemic_class": "OPEN_REFERENCE",
+      "reference_status": "UNRESOLVED",
+      "status": "UNDETERMINED",
+      "value": null
      },
      {
       "attribute_ref": "attr:n08/state",
       "derived_from": [
-       "obs:s01:n06/state:t5",
+       "obs:s01:n06/state:t3",
        "rel:depends_on:n08:n06"
       ],
       "epistemic_class": "STRUCTURAL_DERIVATION",
@@ -817,12 +880,12 @@
     ]
    },
    "previous_reconstruction_ref": {
-    "artifact_id": "art:53c8245756f8959da1c210364e17c481",
+    "artifact_id": "art:5ae072fc48d1b7b130d1b8a3ad19e22d",
     "artifact_type": "reconstruction_result",
-    "content_hash": "sha256:e446de2493400027549b51be8cfea113881e858023e0bf83eed1ac559f915339"
+    "content_hash": "sha256:6bf68c692aa8c39f27450c3a6cf36910fa9c8ac9abb361e2659af38e93c2fd14"
    },
-   "reconstruction_id": "recon:t5:a0",
-   "up_to_tick": 5
+   "reconstruction_id": "recon:t3:a0",
+   "up_to_tick": 3
   },
   "origin": "FIXTURE"
  }

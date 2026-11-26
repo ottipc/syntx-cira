@@ -2,7 +2,7 @@
 import { ep, useProjection } from "../../access";
 import type { ExperimentViewResponse, ObservationProjection } from "../../access";
 import { useT } from "../../language";
-import { OriginBadge, SpaceCell } from "../../semiontics";
+import { OriginBadge } from "../../semiontics";
 import { useSession } from "../../session";
 import { Guarded, ProvButton } from "../_common";
 import { BudgetGauge } from "./BudgetGauge";
@@ -33,7 +33,7 @@ export function ObservationView() {
                 <ObservationTable rows={rows(o.observation.content)} tick={session.tick} />
               </div>
             </div>
-          ) : <SpaceCell sem="SEM-009" space="O" term="avail.none" termParams={{ t: session.tick }} />}
+          ) : <p className="secondary">{t("msg.no_data")}</p>}
         </>
       )}</Guarded>
     </section>

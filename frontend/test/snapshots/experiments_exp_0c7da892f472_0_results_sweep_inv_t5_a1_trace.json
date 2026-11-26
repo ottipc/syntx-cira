@@ -1,0 +1,207 @@
+{
+ "header": {
+  "data_origin": "FIXTURE",
+  "experiment_id": "exp:0c7da892f472-0",
+  "guard_class": "TIMED",
+  "query_echo": {
+   "aggregation": null,
+   "attempt": 1,
+   "comparison_id": null,
+   "direction": "inverse",
+   "from": null,
+   "revision": null,
+   "to": null,
+   "to_tick": null
+  },
+  "schema_version": "cira.trace_projection/1.0.2",
+  "source_refs": [
+   {
+    "artifact_id": "art:7027a92e69ee246db05c691a45bf044c",
+    "artifact_type": "sweep_run",
+    "content_hash": "sha256:418339e99e6d8b03c6def01f7d3af3022e7dc56690947a2cd4d94d5417b46b81"
+   }
+  ],
+  "tick": 5
+ },
+ "registry_labels": [
+  [
+   "CANONICAL_V181:∆:v1.8.1",
+   "LABEL_UNAVAILABLE"
+  ],
+  [
+   "CANONICAL_V181:⊕:v1.8.1",
+   "LABEL_UNAVAILABLE"
+  ],
+  [
+   "CANONICAL_V181:⊗:v1.8.1",
+   "LABEL_UNAVAILABLE"
+  ],
+  [
+   "SIGMA:Σ01:v1.8.1",
+   "LABEL_UNAVAILABLE"
+  ],
+  [
+   "SIGMA:Σ02:v1.8.1",
+   "LABEL_UNAVAILABLE"
+  ],
+  [
+   "SIGMA:Σ03:v1.8.1",
+   "LABEL_UNAVAILABLE"
+  ],
+  [
+   "SIGMA:Σ04:v1.8.1",
+   "LABEL_UNAVAILABLE"
+  ],
+  [
+   "SIGMA:Σ05:v1.8.1",
+   "LABEL_UNAVAILABLE"
+  ]
+ ],
+ "sweep": {
+  "adapter": {
+   "adapter_id": "adapter.fixture",
+   "adapter_version": "1.0.2",
+   "capabilities": {
+    "forward": true,
+    "inverse": true,
+    "merge": false,
+    "trace": true
+   },
+   "engine_version": null,
+   "is_fixture": true,
+   "kind": "FIXTURE",
+   "operator_registry_ref": null
+  },
+  "attempt": 1,
+  "context_version": "ctx:5",
+  "direction": "INVERSE",
+  "error": null,
+  "execution_status": "COMPLETED",
+  "input_bundle_ref": {
+   "artifact_id": "art:983d527bc3bd8d368a82f4d37ddf8406",
+   "artifact_type": "observation_bundle",
+   "content_hash": "sha256:1141d7ec5f670bd18ac61e4c34a0c5c9ee435a54075130bfe704eb047f62c633"
+  },
+  "sweep_id": "sweep:inv:t5:a1",
+  "target_ref": {
+   "artifact_id": "art:4ffdc059bcd601ca01acf3e9f97076f3",
+   "artifact_type": "target_definition",
+   "content_hash": "sha256:104f7c70edf666287a4dc8071739cf778253018e67b19db8c881b0f9d927048b"
+  },
+  "termination": {
+   "budget": 64,
+   "engine_message": "fixture: target-guided stop",
+   "last_step_seq": 4,
+   "reason": "ENGINE_REPORTED_STOP",
+   "steps_executed": 5
+  },
+  "up_to_tick": 5
+ },
+ "trace": {
+  "availability": "AVAILABLE",
+  "content": {
+   "reference_status": "RESOLVED",
+   "steps": [
+    {
+     "engine_note": "fixture trace step — no engine executed; operator semantics not asserted (DEP-01, DEP-08)",
+     "epistemic_class": "SOURCE_OBSERVATION",
+     "input_refs": [
+      "ctx:5"
+     ],
+     "operator_ref": {
+      "namespace": "CANONICAL_V181",
+      "registry_version": "v1.8.1",
+      "symbol": "⊕"
+     },
+     "output_refs": [
+      "attr:n01/state"
+     ],
+     "sigma_ref": {
+      "registry_version": "v1.8.1",
+      "sigma_id": "Σ01"
+     },
+     "step_id": "step:inv:t5:a1:0",
+     "step_seq": 0
+    },
+    {
+     "engine_note": "fixture trace step — no engine executed; operator semantics not asserted (DEP-01, DEP-08)",
+     "epistemic_class": "STRUCTURAL_DERIVATION",
+     "input_refs": [
+      "ctx:5"
+     ],
+     "operator_ref": null,
+     "output_refs": [
+      "attr:n02/state"
+     ],
+     "sigma_ref": {
+      "registry_version": "v1.8.1",
+      "sigma_id": "Σ02"
+     },
+     "step_id": "step:inv:t5:a1:1",
+     "step_seq": 1
+    },
+    {
+     "engine_note": "fixture trace step — no engine executed; operator semantics not asserted (DEP-01, DEP-08)",
+     "epistemic_class": "STRUCTURAL_DERIVATION",
+     "input_refs": [
+      "ctx:5"
+     ],
+     "operator_ref": {
+      "namespace": "CANONICAL_V181",
+      "registry_version": "v1.8.1",
+      "symbol": "⊗"
+     },
+     "output_refs": [
+      "attr:n03/state"
+     ],
+     "sigma_ref": {
+      "registry_version": "v1.8.1",
+      "sigma_id": "Σ03"
+     },
+     "step_id": "step:inv:t5:a1:2",
+     "step_seq": 2
+    },
+    {
+     "engine_note": "fixture trace step — no engine executed; operator semantics not asserted (DEP-01, DEP-08)",
+     "epistemic_class": "SOURCE_OBSERVATION",
+     "input_refs": [
+      "ctx:5"
+     ],
+     "operator_ref": null,
+     "output_refs": [
+      "attr:n04/state"
+     ],
+     "sigma_ref": {
+      "registry_version": "v1.8.1",
+      "sigma_id": "Σ04"
+     },
+     "step_id": "step:inv:t5:a1:3",
+     "step_seq": 3
+    },
+    {
+     "engine_note": "fixture trace step — no engine executed; operator semantics not asserted (DEP-01, DEP-08)",
+     "epistemic_class": "STRUCTURAL_DERIVATION",
+     "input_refs": [
+      "ctx:5"
+     ],
+     "operator_ref": {
+      "namespace": "CANONICAL_V181",
+      "registry_version": "v1.8.1",
+      "symbol": "∆"
+     },
+     "output_refs": [
+      "attr:n05/state"
+     ],
+     "sigma_ref": {
+      "registry_version": "v1.8.1",
+      "sigma_id": "Σ05"
+     },
+     "step_id": "step:inv:t5:a1:4",
+     "step_seq": 4
+    }
+   ],
+   "sweep_id": "sweep:inv:t5:a1"
+  },
+  "origin": "FIXTURE"
+ }
+}

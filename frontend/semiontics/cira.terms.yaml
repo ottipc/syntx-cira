@@ -1009,6 +1009,11 @@ terms:
   en: Read-only in this version
   de: In dieser Version nur lesend
   meaning: D-49
+- key: action.failed
+  internal: ui
+  en: Command not accepted
+  de: Befehl nicht angenommen
+  meaning: command rejected without a catalogued error code
 - key: action.summary
   internal: —
   en: Summary

@@ -198,6 +198,7 @@
 | `action.next` | action | Next | Weiter | control |
 | `action.previous` | action | Previous | Zurück | control |
 | `action.authorize.readonly` | D-49 | Read-only in this version | In dieser Version nur lesend | D-49 |
+| `action.failed` | ui | Command not accepted | Befehl nicht angenommen | command rejected without a catalogued error code |
 | `action.summary` | — | Summary | Zusammenfassung |  |
 | `action.accepted` | 202 | Accepted — running | Angenommen — läuft |  |
 | `export.hash` | bundle_hash | Bundle hash (from server) | Paket-Hash (vom Server) |  |

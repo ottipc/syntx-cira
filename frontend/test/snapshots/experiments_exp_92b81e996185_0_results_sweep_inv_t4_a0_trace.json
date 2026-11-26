@@ -1,0 +1,9 @@
+{
+ "error": {
+  "code": "NOT_FOUND",
+  "details": [],
+  "experiment_id": null,
+  "field": null,
+  "message": "sweep sweep:inv:t4:a0 not found"
+ }
+}

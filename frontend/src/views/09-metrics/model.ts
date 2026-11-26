@@ -10,7 +10,7 @@ export const BANDS: readonly { term: TermKey; relations: readonly EvaluatedRelat
   { term: "metric.band.reconstruction", relations: ["R", "A_R", "R1_R2"] },
   { term: "metric.band.gaps", relations: ["ANNOTATION_R"] },
 ];
-/** Evaluated relation as a pair of term keys (left ↔ right); single-space relations have no right side. */
+/** Evaluated relation as a pair of term keys (left vs right); single-space relations have no right side. */
 export const REL_TERMS: Record<EvaluatedRelation, readonly TermKey[]> = {
   A: ["space.a.short"], O: ["space.o.short"], R: ["space.r.short"], A_O: ["space.a.short", "space.o.short"],
   A_R: ["space.a.short", "space.r.short"], ANNOTATION_R: ["ui.case", "space.r.short"], R1_R2: ["space.r.short", "space.r.short"],

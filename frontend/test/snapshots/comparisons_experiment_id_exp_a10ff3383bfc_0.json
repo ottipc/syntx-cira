@@ -1,0 +1,21 @@
+{
+ "comparisons": [],
+ "header": {
+  "data_origin": "SYNTHETIC",
+  "experiment_id": "exp:a10ff3383bfc-0",
+  "guard_class": "GLOBAL",
+  "query_echo": {
+   "aggregation": null,
+   "attempt": null,
+   "comparison_id": null,
+   "direction": null,
+   "from": null,
+   "revision": null,
+   "to": null,
+   "to_tick": null
+  },
+  "schema_version": "cira.comparisons/1.0.2",
+  "source_refs": [],
+  "tick": null
+ }
+}

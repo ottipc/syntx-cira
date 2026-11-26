@@ -10,7 +10,9 @@ export interface NodeBox { id: string; label: string; layer: number; x: number; 
 export interface EdgePath { id: string; type: string; source: string; target: string; d: string }
 export interface Layout { nodes: NodeBox[]; edges: EdgePath[]; width: number; height: number }
 
-export function layout(t: TopologyProjectionBody, g: typeof GRAPH = GRAPH): Layout {
+export type GraphTokens = { readonly [K in keyof typeof GRAPH]: number };
+
+export function layout(t: TopologyProjectionBody, g: GraphTokens = GRAPH): Layout {
   const nodes = [...t.nodes].sort((a, b) => (a.node_id < b.node_id ? -1 : a.node_id > b.node_id ? 1 : 0));
   const rels = [...t.relations].sort((a, b) => (a.relation_id < b.relation_id ? -1 : a.relation_id > b.relation_id ? 1 : 0));
   const out = new Map<string, string[]>();

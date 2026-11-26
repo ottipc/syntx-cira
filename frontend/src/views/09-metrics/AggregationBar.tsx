@@ -13,8 +13,7 @@ export function AggregationBar({ lastTick }: { lastTick: number }) {
       {AGG.map(([k, term]) => (
         <button key={k} type="button" className="chip" aria-pressed={cur === k} data-term={term}
           onClick={() => go({ aggregation: k, toTick: k === "PER_TICK" ? null : session.toTick })}>{t(term)}</button>))}
-      {cur !== "PER_TICK" ? <span className="row"><span className="secondary">{t("agg.up_to")}</span>
-        <span className="mono-value">{t("ui.tick", { t: session.toTick ?? lastTick })}</span></span> : null}
+      {cur !== "PER_TICK" ? <span className="mono-value" data-term="agg.up_to">{t("agg.up_to", { t: session.toTick ?? lastTick })}</span> : null}
     </div>
   );
 }

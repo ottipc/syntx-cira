@@ -1,10 +1,10 @@
-// F07.3 Provenance — every block carries the header of its source; the drawer shows it (G03.1 P).
+// F07.3 Provenance — selection state and header model (G03.1 P). Rendering in Zone E belongs to Shell, because
+// G03.3 lets Provenance import only Session and Access (IC-10). `title` is a term key chosen by the caller.
 import { createContext, useContext, useState, type ReactNode } from "react";
 import type { ArtifactRef, ProjectionHeader, StrategyRef } from "../contracts/generated/cira";
-import type { TermKey } from "../language";
 
 export interface Selection {
-  title: TermKey;
+  title: string;
   header: ProjectionHeader;
   refs?: readonly ArtifactRef[];
   strategies?: readonly StrategyRef[];

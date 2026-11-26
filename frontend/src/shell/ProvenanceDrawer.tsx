@@ -1,7 +1,9 @@
-import { useT } from "../language";
+import { isTermKey, useT } from "../language";
+import { useProvenance } from "../provenance";
 import { IdText, OriginBadge } from "../semiontics";
-import { useProvenance } from "./selection";
 import { TechnicalRecord } from "./TechnicalRecord";
+
+/** Zone E (G03.10): renders the Provenance selection (IC-10: rendering lives in Shell per G03.3). */
 
 export function ProvenanceDrawer() {
   const t = useT();
@@ -12,7 +14,7 @@ export function ProvenanceDrawer() {
         <div className="stack">
           <div className="row"><h2 className="section-title">{t("prov.drawer")}</h2><span className="spacer" />
             <button type="button" className="btn" onClick={close} data-term="action.close">{t("action.close")}</button></div>
-          <div className="section-title">{t(selection.title)}</div>
+          <div className="section-title">{isTermKey(selection.title) ? t(selection.title) : <IdText>{selection.title}</IdText>}</div>
           <OriginBadge origin={selection.header.data_origin} />
           <dl className="stack">
             <div className="row"><dt className="secondary">{t("prov.experiment")}</dt><dd><IdText>{selection.header.experiment_id ?? "—"}</IdText></dd></div>

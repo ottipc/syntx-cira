@@ -1,0 +1,174 @@
+{
+ "header": {
+  "data_origin": "FIXTURE",
+  "experiment_id": "exp:92b81e996185-0",
+  "guard_class": "TIMED",
+  "query_echo": {
+   "aggregation": null,
+   "attempt": 0,
+   "comparison_id": null,
+   "direction": "forward",
+   "from": null,
+   "revision": null,
+   "to": null,
+   "to_tick": null
+  },
+  "schema_version": "cira.trace_projection/1.0.2",
+  "source_refs": [
+   {
+    "artifact_id": "art:76c25da2e312b68ef03e01b10e18cde8",
+    "artifact_type": "sweep_run",
+    "content_hash": "sha256:16a13706ca83f360f239f3769c60bb346586e01674dbac24980204fe876f9941"
+   }
+  ],
+  "tick": 3
+ },
+ "registry_labels": [
+  [
+   "CANONICAL_V181:→:v1.8.1",
+   "LABEL_UNAVAILABLE"
+  ],
+  [
+   "CANONICAL_V181:⊕:v1.8.1",
+   "LABEL_UNAVAILABLE"
+  ],
+  [
+   "SIGMA:Σ01:v1.8.1",
+   "LABEL_UNAVAILABLE"
+  ],
+  [
+   "SIGMA:Σ02:v1.8.1",
+   "LABEL_UNAVAILABLE"
+  ],
+  [
+   "SIGMA:Σ03:v1.8.1",
+   "LABEL_UNAVAILABLE"
+  ],
+  [
+   "SIGMA:Σ04:v1.8.1",
+   "LABEL_UNAVAILABLE"
+  ]
+ ],
+ "sweep": {
+  "adapter": {
+   "adapter_id": "adapter.fixture",
+   "adapter_version": "1.0.2",
+   "capabilities": {
+    "forward": true,
+    "inverse": true,
+    "merge": false,
+    "trace": true
+   },
+   "engine_version": null,
+   "is_fixture": true,
+   "kind": "FIXTURE",
+   "operator_registry_ref": null
+  },
+  "attempt": 0,
+  "context_version": "ctx:3",
+  "direction": "FORWARD",
+  "error": null,
+  "execution_status": "COMPLETED",
+  "input_bundle_ref": {
+   "artifact_id": "art:a3677524e6537ab1fca93702a4d52f8b",
+   "artifact_type": "observation_bundle",
+   "content_hash": "sha256:ba0b202d6b39e939c4d12213ae74d8d910100ef574b0523f4037a2190280a8b5"
+  },
+  "sweep_id": "sweep:fwd:t3:a0",
+  "target_ref": null,
+  "termination": {
+   "budget": 64,
+   "engine_message": "fixture: converged",
+   "last_step_seq": 3,
+   "reason": "CONVERGED",
+   "steps_executed": 4
+  },
+  "up_to_tick": 3
+ },
+ "trace": {
+  "availability": "AVAILABLE",
+  "content": {
+   "reference_status": "RESOLVED",
+   "steps": [
+    {
+     "engine_note": "fixture trace step — no engine executed; operator semantics not asserted (DEP-01, DEP-08)",
+     "epistemic_class": "SOURCE_OBSERVATION",
+     "input_refs": [
+      "ctx:3"
+     ],
+     "operator_ref": {
+      "namespace": "CANONICAL_V181",
+      "registry_version": "v1.8.1",
+      "symbol": "→"
+     },
+     "output_refs": [
+      "attr:n01/state"
+     ],
+     "sigma_ref": {
+      "registry_version": "v1.8.1",
+      "sigma_id": "Σ01"
+     },
+     "step_id": "step:fwd:t3:a0:0",
+     "step_seq": 0
+    },
+    {
+     "engine_note": "fixture trace step — no engine executed; operator semantics not asserted (DEP-01, DEP-08)",
+     "epistemic_class": "STRUCTURAL_DERIVATION",
+     "input_refs": [
+      "ctx:3"
+     ],
+     "operator_ref": null,
+     "output_refs": [
+      "attr:n02/state"
+     ],
+     "sigma_ref": {
+      "registry_version": "v1.8.1",
+      "sigma_id": "Σ02"
+     },
+     "step_id": "step:fwd:t3:a0:1",
+     "step_seq": 1
+    },
+    {
+     "engine_note": "fixture trace step — no engine executed; operator semantics not asserted (DEP-01, DEP-08)",
+     "epistemic_class": "STRUCTURAL_DERIVATION",
+     "input_refs": [
+      "ctx:3"
+     ],
+     "operator_ref": {
+      "namespace": "CANONICAL_V181",
+      "registry_version": "v1.8.1",
+      "symbol": "⊕"
+     },
+     "output_refs": [
+      "attr:n03/state"
+     ],
+     "sigma_ref": {
+      "registry_version": "v1.8.1",
+      "sigma_id": "Σ03"
+     },
+     "step_id": "step:fwd:t3:a0:2",
+     "step_seq": 2
+    },
+    {
+     "engine_note": "fixture trace step — no engine executed; operator semantics not asserted (DEP-01, DEP-08)",
+     "epistemic_class": "SOURCE_OBSERVATION",
+     "input_refs": [
+      "ctx:3"
+     ],
+     "operator_ref": null,
+     "output_refs": [
+      "attr:n04/state"
+     ],
+     "sigma_ref": {
+      "registry_version": "v1.8.1",
+      "sigma_id": "Σ04"
+     },
+     "step_id": "step:fwd:t3:a0:3",
+     "step_seq": 3
+    }
+   ],
+   "sweep_id": "sweep:fwd:t3:a0"
+  },
+  "origin": "FIXTURE"
+ }
+}

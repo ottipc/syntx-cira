@@ -1,4 +1,5 @@
 // View 02 ViewModel: per-node triplet (Ω_A, Ω_O, Ω_R) without mixing; δ and gaps from the server.
+// Staleness is shown in views 03/04 (SEM-005 is registered there, not here); a stale value is KNOWN (SEM-004).
 import type { BlockReconstructionResult, MetricsProjection, ObservationProjection, StateProjection } from "../../contracts/generated/cira";
 import type { SemId } from "../../semiontics";
 
@@ -19,7 +20,7 @@ export function nodeStates(st: StateProjection | null, ob: ObservationProjection
   for (const p of ob?.observation.content?.projected ?? []) {
     const n = nodeOfAttr(p.attribute_ref);
     const outside = ob !== null && !vis.has(n);
-    const slot: Slot = outside ? { sem: "SEM-031", value: null } : p.status === "KNOWN" ? { sem: p.stale ? "SEM-005" : "SEM-004", value: p.value ?? null }
+    const slot: Slot = outside ? { sem: "SEM-031", value: null } : p.status === "KNOWN" ? { sem: "SEM-004", value: p.value ?? null }
       : p.status === "NOT_APPLICABLE" ? { sem: "SEM-008", value: null } : { sem: "SEM-006", value: null };
     m.set(n, { ...get(n), o: slot, outside });
   }
@@ -35,9 +36,8 @@ export function nodeStates(st: StateProjection | null, ob: ObservationProjection
         if (m.has(n)) m.set(n, { ...get(n), gaps: get(n).gaps === 0 ? g.source_refs.length : get(n).gaps });
       }
     }
-  } else {
-    for (const [n] of m) m.set(n, { ...get(n), r: { sem: "SEM-009", value: null } });
   }
+  // No Ω_R slot when no reconstruction exists at this tick: SEM-009 is not registered for view 02 (register views).
   for (const a of mt?.report.attribute_membership ?? []) {
     if (a.delta === 1) m.set(nodeOfAttr(a.attribute_ref), { ...get(nodeOfAttr(a.attribute_ref)), differs: true });
   }

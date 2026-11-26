@@ -11,9 +11,9 @@
     "gen:contracts": "node scripts/gen-contracts.mjs",
     "gen:contracts:check": "node scripts/gen-contracts.mjs --check",
     "typecheck": "tsc -p tsconfig.json --noEmit",
-    "lint:arch": "node scripts/lint-arch.mjs && depcruise src --config .dependency-cruiser.cjs",
+    "lint:arch": "node scripts/gen-depcruise.mjs --check && node scripts/lint-arch.mjs && depcruise src --config .dependency-cruiser.cjs",
     "test": "vitest run",
-    "test:report": "vitest run --reporter=default --reporter=json --outputFile=test-results/vitest-raw.json && node scripts/vitest-report.mjs",
+    "test:report": "vitest run --reporter=dot --reporter=json --outputFile.json=test-results/vitest-raw.json; node scripts/vitest-report.mjs",
     "browser": "node test/browser/run.mjs",
     "verify": "npm run -s gen:contracts:check && npm run -s typecheck && npm run -s lint:arch && npm run -s test"
   },

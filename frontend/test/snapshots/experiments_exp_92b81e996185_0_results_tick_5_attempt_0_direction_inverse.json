@@ -307,13 +307,13 @@
  },
  "header": {
   "data_origin": "FIXTURE",
-  "experiment_id": "exp:0c7da892f472-0",
+  "experiment_id": "exp:92b81e996185-0",
   "guard_class": "TIMED",
   "query_echo": {
    "aggregation": null,
    "attempt": 0,
    "comparison_id": null,
-   "direction": null,
+   "direction": "inverse",
    "from": null,
    "revision": null,
    "to": null,
@@ -332,9 +332,9 @@
     "content_hash": "sha256:a8d6cc536e092d6afee1a46d8d95c3fe8a409acbc3513a4a6e4c3234c0ef4498"
    },
    {
-    "artifact_id": "art:d20c03a54e6a319508d72e59762dbfab",
+    "artifact_id": "art:3fb935b821211034746221bdbd615f65",
     "artifact_type": "reconstruction_result",
-    "content_hash": "sha256:3dfdbfa2d2c542b8adf2c73807f62ebc1f06444835dae3347cad66e5a98490aa"
+    "content_hash": "sha256:afd56b58b3f71222fbc9831d965e360d23f73d3bb48bb2b1896a817d4221e049"
    }
   ],
   "tick": 5
@@ -701,12 +701,35 @@
    "context_version": "ctx:5",
    "delta_coupling": {
     "changes": [],
-    "from_tick": 4,
+    "from_tick": 3,
     "to_tick": 5
    },
    "delta_state": {
-    "changes": [],
-    "from_tick": 4,
+    "changes": [
+     {
+      "after": {
+       "status": "DETERMINED",
+       "value": "FAULTY"
+      },
+      "attribute_ref": "attr:n03/state",
+      "before": {
+       "status": "DETERMINED",
+       "value": "DEGRADED"
+      }
+     },
+     {
+      "after": {
+       "status": "DETERMINED",
+       "value": "STANDBY"
+      },
+      "attribute_ref": "attr:n07/state",
+      "before": {
+       "status": "UNDETERMINED",
+       "value": null
+      }
+     }
+    ],
+    "from_tick": 3,
     "space": "R",
     "to_tick": 5
    },
@@ -922,9 +945,9 @@
     ]
    },
    "previous_reconstruction_ref": {
-    "artifact_id": "art:1605a88c2fcdd6aea9d6c3bbb53c1357",
+    "artifact_id": "art:3e231e786e35f307163e15456247ee41",
     "artifact_type": "reconstruction_result",
-    "content_hash": "sha256:0291aa73a4ef6fb9107e9b6985db12a6f84d994345fb85a2cca3c8f3cad9a995"
+    "content_hash": "sha256:23b35b59fc469f339565e8c17137a366e4af85c9cd3ba96feb024e67d1167036"
    },
    "reconstruction_id": "recon:t5:a0",
    "up_to_tick": 5

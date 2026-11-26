@@ -132,6 +132,7 @@
   --zone-c-min_width: 760px;
   --zone-d-height: 52px;
   --zone-e-width: 360px;
+  --zone-e-dock_from: 1600px;
   --zone-min_viewport_w: 1280px;
   --zone-min_viewport_h: 720px;
 }

@@ -15,6 +15,13 @@
    "status": "COMPLETED"
   },
   {
+   "data_origin": "FIXTURE",
+   "experiment_id": "exp:92b81e996185-0",
+   "label": "Baseline (sparse schedule)",
+   "scenario_id": "scn:fx_base",
+   "status": "PARTIAL"
+  },
+  {
    "data_origin": "SYNTHETIC",
    "experiment_id": "exp:a10ff3383bfc-0",
    "label": "Baseline (no engine)",

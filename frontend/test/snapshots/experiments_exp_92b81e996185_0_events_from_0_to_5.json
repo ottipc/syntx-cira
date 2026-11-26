@@ -1,0 +1,208 @@
+{
+ "events": [
+  {
+   "effects": [
+    {
+     "after": "PENDING",
+     "attribute_ref": "attr:n09/state",
+     "before": "AUTHORIZED"
+    }
+   ],
+   "error": null,
+   "event_ref": "evt:b1",
+   "kind": "SET_ATTRIBUTE",
+   "seq": 0,
+   "status": "APPLIED",
+   "tick": 1
+  },
+  {
+   "effects": [
+    {
+     "after": "OPEN",
+     "attribute_ref": "attr:n05/state",
+     "before": "CLOSED"
+    }
+   ],
+   "error": null,
+   "event_ref": "evt:b2",
+   "kind": "SET_ATTRIBUTE",
+   "seq": 1,
+   "status": "APPLIED",
+   "tick": 1
+  },
+  {
+   "effects": [],
+   "error": {
+    "code": "INVALID_TRANSITION",
+    "field": "F03",
+    "message": "role role:operator has no permit for rule:gate_auth (K-66)",
+    "recovery": "SUBMIT_VALID_DEFINITION",
+    "subject_refs": [
+     "attr:n09/state",
+     "role:operator"
+    ],
+    "tick": 2
+   },
+   "event_ref": "evt:b3",
+   "kind": "APPLY_APPROVAL",
+   "seq": 2,
+   "status": "REJECTED",
+   "tick": 2
+  },
+  {
+   "effects": [
+    {
+     "after": "FAULTY",
+     "attribute_ref": "attr:n03/state",
+     "before": "DEGRADED"
+    }
+   ],
+   "error": null,
+   "event_ref": "evt:b4",
+   "kind": "SET_ATTRIBUTE",
+   "seq": 3,
+   "status": "APPLIED",
+   "tick": 3
+  },
+  {
+   "effects": [
+    {
+     "after": "DEGRADED",
+     "attribute_ref": "attr:n08/state",
+     "before": "NOMINAL"
+    }
+   ],
+   "error": null,
+   "event_ref": "evt:b5",
+   "kind": "SET_ATTRIBUTE",
+   "seq": 4,
+   "status": "APPLIED",
+   "tick": 4
+  }
+ ],
+ "header": {
+  "data_origin": "SYNTHETIC",
+  "experiment_id": "exp:92b81e996185-0",
+  "guard_class": "RANGE",
+  "query_echo": {
+   "aggregation": null,
+   "attempt": null,
+   "comparison_id": null,
+   "direction": null,
+   "from": 0,
+   "revision": null,
+   "to": 5,
+   "to_tick": null
+  },
+  "schema_version": "cira.events_projection/1.0.2",
+  "source_refs": [],
+  "tick": null
+ },
+ "stage_events": [
+  {
+   "error": null,
+   "seq": 0,
+   "stage": "DEFINITIONS",
+   "status": "RUNNING",
+   "tick": null
+  },
+  {
+   "error": null,
+   "seq": 1,
+   "stage": "DEFINITIONS",
+   "status": "COMPLETED",
+   "tick": null
+  },
+  {
+   "error": null,
+   "seq": 2,
+   "stage": "EMULATION",
+   "status": "RUNNING",
+   "tick": null
+  },
+  {
+   "error": null,
+   "seq": 3,
+   "stage": "EMULATION",
+   "status": "COMPLETED",
+   "tick": null
+  },
+  {
+   "error": null,
+   "seq": 4,
+   "stage": "OBSERVATION",
+   "status": "RUNNING",
+   "tick": null
+  },
+  {
+   "error": null,
+   "seq": 5,
+   "stage": "OBSERVATION",
+   "status": "COMPLETED",
+   "tick": null
+  },
+  {
+   "error": null,
+   "seq": 6,
+   "stage": "FORWARD",
+   "status": "RUNNING",
+   "tick": null
+  },
+  {
+   "error": null,
+   "seq": 7,
+   "stage": "INVERSE",
+   "status": "RUNNING",
+   "tick": null
+  },
+  {
+   "error": null,
+   "seq": 8,
+   "stage": "FORWARD",
+   "status": "COMPLETED",
+   "tick": null
+  },
+  {
+   "error": null,
+   "seq": 9,
+   "stage": "INVERSE",
+   "status": "COMPLETED",
+   "tick": null
+  },
+  {
+   "error": null,
+   "seq": 10,
+   "stage": "MERGE",
+   "status": "COMPLETED",
+   "tick": null
+  },
+  {
+   "error": null,
+   "seq": 11,
+   "stage": "STABILITY",
+   "status": "RUNNING",
+   "tick": 5
+  },
+  {
+   "error": null,
+   "seq": 12,
+   "stage": "STABILITY",
+   "status": "COMPLETED",
+   "tick": 5
+  },
+  {
+   "error": null,
+   "seq": 13,
+   "stage": "EVALUATION",
+   "status": "RUNNING",
+   "tick": null
+  },
+  {
+   "error": null,
+   "seq": 14,
+   "stage": "EVALUATION",
+   "status": "PARTIAL",
+   "tick": null
+  }
+ ]
+}

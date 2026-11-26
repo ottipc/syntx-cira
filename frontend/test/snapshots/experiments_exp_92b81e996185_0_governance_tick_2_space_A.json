@@ -1,0 +1,251 @@
+{
+ "evaluations": {
+  "availability": "AVAILABLE",
+  "content": {
+   "evaluations": [
+    {
+     "input_attribute_refs": [
+      "attr:n03/state",
+      "attr:n04/state"
+     ],
+     "reason": "OK",
+     "result": "TRUE",
+     "rule_ref": "rule:dependency",
+     "rule_version": "1.0.0",
+     "space": "A",
+     "tick": 2,
+     "tick_to": null
+    },
+    {
+     "input_attribute_refs": [
+      "attr:n06/state",
+      "attr:n08/state"
+     ],
+     "reason": "OK",
+     "result": "TRUE",
+     "rule_ref": "rule:follow_n08",
+     "rule_version": "1.0.0",
+     "space": "A",
+     "tick": 2,
+     "tick_to": null
+    },
+    {
+     "input_attribute_refs": [
+      "attr:n05/state",
+      "attr:n09/state"
+     ],
+     "reason": "OK",
+     "result": "FALSE",
+     "rule_ref": "rule:gate_auth",
+     "rule_version": "1.0.0",
+     "space": "A",
+     "tick": 2,
+     "tick_to": null
+    },
+    {
+     "input_attribute_refs": [
+      "attr:n05/state"
+     ],
+     "reason": "OK",
+     "result": "TRUE",
+     "rule_ref": "rule:gate_steps",
+     "rule_version": "1.0.0",
+     "space": "A",
+     "tick": 2,
+     "tick_to": 3
+    },
+    {
+     "input_attribute_refs": [
+      "attr:n03/state"
+     ],
+     "reason": "OK",
+     "result": "TRUE",
+     "rule_ref": "rule:health_n03",
+     "rule_version": "1.0.0",
+     "space": "A",
+     "tick": 2,
+     "tick_to": null
+    },
+    {
+     "input_attribute_refs": [
+      "attr:n10/state"
+     ],
+     "reason": "OK",
+     "result": "FALSE",
+     "rule_ref": "rule:hidden_ok",
+     "rule_version": "1.0.0",
+     "space": "A",
+     "tick": 2,
+     "tick_to": null
+    },
+    {
+     "input_attribute_refs": [
+      "attr:n03/state",
+      "attr:n04/state"
+     ],
+     "reason": "OK",
+     "result": "TRUE",
+     "rule_ref": "rule:mode_steps",
+     "rule_version": "1.0.0",
+     "space": "A",
+     "tick": 2,
+     "tick_to": 3
+    },
+    {
+     "input_attribute_refs": [
+      "attr:n05/state",
+      "attr:n09/state"
+     ],
+     "reason": "OK",
+     "result": "FALSE",
+     "rule_ref": "rule:svc_gate",
+     "rule_version": "1.0.0",
+     "space": "A",
+     "tick": 2,
+     "tick_to": null
+    },
+    {
+     "input_attribute_refs": [
+      "attr:n02/state",
+      "attr:n04/state"
+     ],
+     "reason": "OK",
+     "result": "TRUE",
+     "rule_ref": "rule:svc_supply",
+     "rule_version": "1.0.0",
+     "space": "A",
+     "tick": 2,
+     "tick_to": null
+    }
+   ],
+   "governance_ref": {
+    "artifact_id": "art:9922ae9df46069575946da9570eef6b2",
+    "artifact_type": "governance_definition",
+    "content_hash": "sha256:5cc49a4d92b7cdb3cfa88326ae78581b85a2bfcc4606f5d30e703bf7ecca2eff"
+   },
+   "not_in_validity": 0,
+   "space": "A",
+   "summary": {
+    "false": 3,
+    "not_in_validity": 0,
+    "true": 6,
+    "unevaluable": 0
+   },
+   "tick": 2
+  },
+  "origin": "SYNTHETIC"
+ },
+ "header": {
+  "data_origin": "SYNTHETIC",
+  "experiment_id": "exp:92b81e996185-0",
+  "guard_class": "TIMED",
+  "query_echo": {
+   "aggregation": null,
+   "attempt": null,
+   "comparison_id": null,
+   "direction": "A",
+   "from": null,
+   "revision": null,
+   "to": null,
+   "to_tick": null
+  },
+  "schema_version": "cira.governance_projection/1.0.2",
+  "source_refs": [
+   {
+    "artifact_id": "art:0d6f9ec2f5b3623e1fbca90466f8d92b",
+    "artifact_type": "rule_evaluation_set",
+    "content_hash": "sha256:73abcbd666dcdad2b0902ac2ac2a09de8d1b335448c99c2a4b950d66c2f2ea80"
+   }
+  ],
+  "tick": 2
+ },
+ "rules": [
+  {
+   "applies_to": [
+    "node:n05",
+    "node:n09"
+   ],
+   "description": "An open gate requires authorization.",
+   "kind": "STATE",
+   "rule_id": "rule:gate_auth",
+   "version": "1.0.0"
+  },
+  {
+   "applies_to": [
+    "node:n03"
+   ],
+   "description": "Component 03 is neither faulty nor critical.",
+   "kind": "STATE",
+   "rule_id": "rule:health_n03",
+   "version": "1.0.0"
+  },
+  {
+   "applies_to": [
+    "node:n10"
+   ],
+   "description": "Component 10 is not critical.",
+   "kind": "STATE",
+   "rule_id": "rule:hidden_ok",
+   "version": "1.0.0"
+  },
+  {
+   "applies_to": [
+    "node:n03",
+    "node:n04"
+   ],
+   "description": "If component 03 fails, component 04 is on standby.",
+   "kind": "STATE",
+   "rule_id": "rule:dependency",
+   "version": "1.0.0"
+  },
+  {
+   "applies_to": [
+    "node:n06",
+    "node:n08"
+   ],
+   "description": "With healthy 03 and nominal 06, component 08 is not faulty.",
+   "kind": "STATE",
+   "rule_id": "rule:follow_n08",
+   "version": "1.0.0"
+  },
+  {
+   "applies_to": [
+    "node:n03",
+    "node:n04"
+   ],
+   "description": "After a failure of 03, component 04 does not stay active.",
+   "kind": "TRANSITION",
+   "rule_id": "rule:mode_steps",
+   "version": "1.0.0"
+  },
+  {
+   "applies_to": [
+    "node:n05"
+   ],
+   "description": "Gate transitions stay within the gate domain.",
+   "kind": "TRANSITION",
+   "rule_id": "rule:gate_steps",
+   "version": "1.0.0"
+  },
+  {
+   "applies_to": [
+    "node:n02",
+    "node:n04"
+   ],
+   "description": "Service function supply.",
+   "kind": "FUNCTION",
+   "rule_id": "rule:svc_supply",
+   "version": "1.0.0"
+  },
+  {
+   "applies_to": [
+    "node:n05",
+    "node:n09"
+   ],
+   "description": "Service function controlled passage.",
+   "kind": "FUNCTION",
+   "rule_id": "rule:svc_gate",
+   "version": "1.0.0"
+  }
+ ]
+}

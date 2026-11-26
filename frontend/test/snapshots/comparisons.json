@@ -1,0 +1,29 @@
+{
+ "comparisons": [
+  {
+   "baseline": "exp:0c7da892f472-0",
+   "comparison_id": "cmp:0c7da892f472-0:1ad306a9d017-0:t5",
+   "comparison_tick": 5,
+   "compatible": true,
+   "recovery": "exp:1ad306a9d017-0"
+  }
+ ],
+ "header": {
+  "data_origin": "SYNTHETIC",
+  "experiment_id": null,
+  "guard_class": "GLOBAL",
+  "query_echo": {
+   "aggregation": null,
+   "attempt": null,
+   "comparison_id": null,
+   "direction": null,
+   "from": null,
+   "revision": null,
+   "to": null,
+   "to_tick": null
+  },
+  "schema_version": "cira.comparisons/1.0.2",
+  "source_refs": [],
+  "tick": null
+ }
+}

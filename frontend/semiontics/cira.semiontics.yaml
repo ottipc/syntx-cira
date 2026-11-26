@@ -167,6 +167,7 @@ tokens:
     c.min_width: 760
     d.height: 52
     e.width: 360
+    e.dock_from: 1600
     min_viewport_w: 1280
     min_viewport_h: 720
   opacity:

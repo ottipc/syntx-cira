@@ -1,0 +1,2 @@
+.a { color: #ff0000; margin: 3px; }
+@media (max-width: 1599px) { .b { display: none; } }

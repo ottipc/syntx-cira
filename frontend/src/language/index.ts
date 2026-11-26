@@ -3,3 +3,4 @@ export { LanguageProvider, useT, useLang } from "./context";
 export { LanguageSwitch } from "./LanguageSwitch";
 export { TERMS, FORBIDDEN_VISIBLE } from "./generated/terms";
 export * as TermMaps from "./generated/terms";
+export { isTermKey } from "./t";

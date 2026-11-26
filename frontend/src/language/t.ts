@@ -18,3 +18,8 @@ export function makeT(lang: Lang): TFn {
     return s;
   };
 }
+
+/** Narrowing guard for keys carried through sub-fields that may not import Language (e.g. Provenance titles). */
+export function isTermKey(k: string): k is TermKey {
+  return Object.prototype.hasOwnProperty.call(TERMS, k);
+}

@@ -1,0 +1,548 @@
+{
+ "configuration_snapshot": {
+  "adapter_kind": "FIXTURE",
+  "experiment_id": "exp:92b81e996185-0",
+  "observation_config_id": "ocfg:fx_partial",
+  "scenario_id": "scn:fx_base",
+  "strategies": [
+   {
+    "point": "merge.policy",
+    "variant": "engine_first",
+    "version": 1
+   },
+   {
+    "point": "metrics.hypothesis_policy",
+    "variant": "include",
+    "version": 1
+   },
+   {
+    "point": "metrics.coverage_weighting",
+    "variant": "weighted",
+    "version": 1
+   },
+   {
+    "point": "metrics.service_function_spaces",
+    "variant": "a_only",
+    "version": 1
+   },
+   {
+    "point": "metrics.closure_basis",
+    "variant": "state_rules_a_final_tick",
+    "version": 1
+   },
+   {
+    "point": "metrics.stability_source",
+    "variant": "resweep_same_bundle",
+    "version": 1
+   },
+   {
+    "point": "metrics.gap_matcher",
+    "variant": "subjects_tickwindow_1to1",
+    "version": 1
+   },
+   {
+    "point": "observation.budget_unit",
+    "variant": "items_bytes",
+    "version": 1
+   }
+  ],
+  "sweep_schedule": "EXPLICIT",
+  "target_id": "tgt:fx",
+  "tick": null
+ },
+ "coupling_matrix": [
+  {
+   "carrier": "TopologyRefs",
+   "source": "F01",
+   "target": "F02"
+  },
+  {
+   "carrier": "TopologyDefinition",
+   "source": "F01",
+   "target": "F03"
+  },
+  {
+   "carrier": "TopologyDefinition",
+   "source": "F01",
+   "target": "F04"
+  },
+  {
+   "carrier": "ReferenceState (topology, A-02)",
+   "source": "F01",
+   "target": "F06"
+  },
+  {
+   "carrier": "TopologyProjection",
+   "source": "F01",
+   "target": "F07"
+  },
+  {
+   "carrier": "GovernanceDefinition",
+   "source": "F02",
+   "target": "F03"
+  },
+  {
+   "carrier": "GovernanceDefinition",
+   "source": "F02",
+   "target": "F04"
+  },
+  {
+   "carrier": "GovernanceDefinition",
+   "source": "F02",
+   "target": "F06"
+  },
+  {
+   "carrier": "GovernanceProjection",
+   "source": "F02",
+   "target": "F07"
+  },
+  {
+   "carrier": "ActualState",
+   "source": "F03",
+   "target": "F04"
+  },
+  {
+   "carrier": "ReferenceState",
+   "source": "F03",
+   "target": "F06"
+  },
+  {
+   "carrier": "StateProjection",
+   "source": "F03",
+   "target": "F07"
+  },
+  {
+   "carrier": "ObservationBundle",
+   "source": "F04",
+   "target": "F05"
+  },
+  {
+   "carrier": "ObservationRecord",
+   "source": "F04",
+   "target": "F06"
+  },
+  {
+   "carrier": "ObservationProjection",
+   "source": "F04",
+   "target": "F07"
+  },
+  {
+   "carrier": "ReconstructionResult",
+   "source": "F05",
+   "target": "F06"
+  },
+  {
+   "carrier": "SweepTrace",
+   "source": "F05",
+   "target": "F07"
+  },
+  {
+   "carrier": "EvaluationReport",
+   "source": "F06",
+   "target": "F07"
+  }
+ ],
+ "header": {
+  "data_origin": "SYNTHETIC",
+  "experiment_id": "exp:92b81e996185-0",
+  "guard_class": "TIMELESS",
+  "query_echo": {
+   "aggregation": null,
+   "attempt": null,
+   "comparison_id": null,
+   "direction": null,
+   "from": null,
+   "revision": null,
+   "to": null,
+   "to_tick": null
+  },
+  "schema_version": "cira.fields/1.0.2",
+  "source_refs": [],
+  "tick": null
+ },
+ "manifests": [
+  {
+   "couplings_in": [],
+   "couplings_out": [
+    "F02",
+    "F03",
+    "F04",
+    "F06",
+    "F07"
+   ],
+   "field_id": "F01",
+   "name": "F01_DOMAIN_TOPOLOGY",
+   "package": "app.topology",
+   "ports": [
+    "validate_topology",
+    "seal"
+   ],
+   "purpose": "typed directed graph G = (V, E, τV, τE) of abstract service components",
+   "reads": [],
+   "requirements": [
+    "REQ-010",
+    "REQ-011",
+    "REQ-012",
+    "REQ-013"
+   ],
+   "stage_status": [
+    [
+     "DEFINITIONS",
+     "COMPLETED"
+    ]
+   ],
+   "stages": [
+    "DEFINITIONS"
+   ],
+   "state_space": null,
+   "writes": [
+    "immutable_topology",
+    "topology_definition"
+   ]
+  },
+  {
+   "couplings_in": [
+    "F01"
+   ],
+   "couplings_out": [
+    "F03",
+    "F04",
+    "F06",
+    "F07"
+   ],
+   "field_id": "F02",
+   "name": "F02_GOVERNANCE",
+   "package": "app.governance",
+   "ports": [
+    "validate_governance",
+    "evaluate_set",
+    "evaluate_rules"
+   ],
+   "purpose": "documented rules, roles, target conditions, approvals",
+   "reads": [
+    "immutable_topology",
+    "topology_definition"
+   ],
+   "requirements": [
+    "REQ-014",
+    "REQ-015",
+    "REQ-016",
+    "REQ-017"
+   ],
+   "stage_status": [
+    [
+     "DEFINITIONS",
+     "COMPLETED"
+    ]
+   ],
+   "stages": [
+    "DEFINITIONS"
+   ],
+   "state_space": null,
+   "writes": [
+    "authority_record",
+    "governance_definition"
+   ]
+  },
+  {
+   "couplings_in": [
+    "F01",
+    "F02"
+   ],
+   "couplings_out": [
+    "F04",
+    "F06",
+    "F07"
+   ],
+   "field_id": "F03",
+   "name": "F03_EMULATOR",
+   "package": "app.emulator",
+   "ports": [
+    "run_scenario",
+    "validate_scenario"
+   ],
+   "purpose": "deterministic progression of predefined abstract test states",
+   "reads": [
+    "authority_record",
+    "governance_definition",
+    "immutable_topology",
+    "topology_definition"
+   ],
+   "requirements": [
+    "REQ-018",
+    "REQ-019",
+    "REQ-020",
+    "REQ-021",
+    "REQ-022",
+    "REQ-023"
+   ],
+   "stage_status": [
+    [
+     "EMULATION",
+     "COMPLETED"
+    ]
+   ],
+   "stages": [
+    "EMULATION"
+   ],
+   "state_space": "A",
+   "writes": [
+    "actual_state",
+    "consistency_annotation_set",
+    "event_record",
+    "experiment_definition",
+    "replay_report",
+    "scenario_definition"
+   ]
+  },
+  {
+   "couplings_in": [
+    "F01",
+    "F02",
+    "F03"
+   ],
+   "couplings_out": [
+    "F05",
+    "F06",
+    "F07"
+   ],
+   "field_id": "F04",
+   "name": "F04_OBSERVATION",
+   "package": "app.observation",
+   "ports": [
+    "observe",
+    "validate_config",
+    "validate_target",
+    "omega"
+   ],
+   "purpose": "Ω_O(t) = O_θ(Ω_A(t)), θ versioned",
+   "reads": [
+    "actual_state",
+    "experiment_definition",
+    "governance_definition",
+    "immutable_topology",
+    "topology_definition"
+   ],
+   "requirements": [
+    "REQ-024",
+    "REQ-025",
+    "REQ-026",
+    "REQ-027"
+   ],
+   "stage_status": [
+    [
+     "OBSERVATION",
+     "COMPLETED"
+    ]
+   ],
+   "stages": [
+    "OBSERVATION"
+   ],
+   "state_space": "O",
+   "writes": [
+    "observable_rules",
+    "observable_topology",
+    "observation_bundle",
+    "observation_config",
+    "observation_record",
+    "source_register",
+    "target_definition"
+   ]
+  },
+  {
+   "couplings_in": [
+    "F04"
+   ],
+   "couplings_out": [
+    "F06",
+    "F07"
+   ],
+   "field_id": "F05",
+   "name": "F05_SYNTX_ENGINE",
+   "package": "app.syntx_adapter",
+   "ports": [
+    "run_sweeps"
+   ],
+   "purpose": "Ω_R(t) = R(Ω_O(0:t)) via independent forward and inverse reconstruction",
+   "reads": [
+    "observable_rules",
+    "observable_topology",
+    "observation_bundle",
+    "source_register",
+    "target_definition"
+   ],
+   "requirements": [
+    "REQ-028",
+    "REQ-029",
+    "REQ-030",
+    "REQ-032",
+    "REQ-033",
+    "REQ-034",
+    "REQ-035",
+    "REQ-036",
+    "REQ-037"
+   ],
+   "stage_status": [
+    [
+     "FORWARD",
+     "COMPLETED"
+    ],
+    [
+     "INVERSE",
+     "COMPLETED"
+    ],
+    [
+     "MERGE",
+     "COMPLETED"
+    ],
+    [
+     "STABILITY",
+     "COMPLETED"
+    ]
+   ],
+   "stages": [
+    "FORWARD",
+    "INVERSE",
+    "MERGE",
+    "STABILITY"
+   ],
+   "state_space": "R",
+   "writes": [
+    "forward_result",
+    "inverse_result",
+    "operator_registry",
+    "reconstruction_result",
+    "recovery_proposal",
+    "sweep_run"
+   ]
+  },
+  {
+   "couplings_in": [
+    "F01",
+    "F02",
+    "F03",
+    "F04",
+    "F05"
+   ],
+   "couplings_out": [
+    "F07"
+   ],
+   "field_id": "F06",
+   "name": "F06_METRICS",
+   "package": "app.metrics",
+   "ports": [
+    "evaluate_experiment",
+    "compare_experiments"
+   ],
+   "purpose": "M_t = M(Ω_A(t), Ω_O(t), Ω_R(t))",
+   "reads": [
+    "actual_state",
+    "consistency_annotation_set",
+    "event_record",
+    "experiment_definition",
+    "forward_result",
+    "governance_definition",
+    "immutable_topology",
+    "inverse_result",
+    "observable_rules",
+    "observable_topology",
+    "observation_bundle",
+    "observation_config",
+    "observation_record",
+    "reconstruction_result",
+    "recovery_proposal",
+    "scenario_definition",
+    "source_register",
+    "sweep_run",
+    "target_definition",
+    "topology_definition"
+   ],
+   "requirements": [
+    "REQ-039",
+    "REQ-040",
+    "REQ-041",
+    "REQ-042",
+    "REQ-043",
+    "REQ-044",
+    "REQ-045",
+    "REQ-046",
+    "REQ-047",
+    "REQ-048",
+    "REQ-050"
+   ],
+   "stage_status": [
+    [
+     "EVALUATION",
+     "PARTIAL"
+    ]
+   ],
+   "stages": [
+    "EVALUATION"
+   ],
+   "state_space": null,
+   "writes": [
+    "comparison_report",
+    "evaluation_report",
+    "rule_evaluation_set",
+    "weight_set"
+   ]
+  },
+  {
+   "couplings_in": [
+    "F01",
+    "F02",
+    "F03",
+    "F04",
+    "F05",
+    "F06"
+   ],
+   "couplings_out": [],
+   "field_id": "F07",
+   "name": "F07_INTERFACE",
+   "package": "app.api",
+   "ports": [
+    "create_app"
+   ],
+   "purpose": "presentation and experiment control; computation-free projection field",
+   "reads": [
+    "actual_state",
+    "authority_record",
+    "comparison_report",
+    "consistency_annotation_set",
+    "evaluation_report",
+    "event_record",
+    "experiment_definition",
+    "forward_result",
+    "governance_definition",
+    "immutable_topology",
+    "inverse_result",
+    "observable_rules",
+    "observable_topology",
+    "observation_bundle",
+    "observation_config",
+    "observation_record",
+    "operator_registry",
+    "reconstruction_result",
+    "recovery_proposal",
+    "replay_report",
+    "rule_evaluation_set",
+    "scenario_definition",
+    "source_register",
+    "sweep_run",
+    "target_definition",
+    "topology_definition",
+    "weight_set"
+   ],
+   "requirements": [
+    "REQ-054",
+    "REQ-055",
+    "REQ-056",
+    "REQ-057"
+   ],
+   "stage_status": [],
+   "stages": [],
+   "state_space": null,
+   "writes": []
+  }
+ ]
+}

@@ -44,36 +44,43 @@ def generate() -> dict[str, str]:
         b = c.post("/experiments", json=BASE).json()["experiment_id"]
         r = c.post("/experiments", json={**BASE, "scenario_id": "scn:fx_rec", "label": "Recovery"}).json()["experiment_id"]
         k = c.post("/experiments", json={**BASE, "adapter": "LOCAL", "label": "Baseline (no engine)"}).json()["experiment_id"]
+        sp_ = c.post("/experiments", json={**BASE, "label": "Baseline (sparse schedule)",
+                                           "sweep_schedule": {"mode": "EXPLICIT", "ticks": [1, 3, 5]}}).json()["experiment_id"]
         cmp_ = c.post("/comparisons", json={"baseline_experiment_id": b, "recovery_experiment_id": r}).json()
         cid = cmp_["comparison"]["comparison_key"]
-        index["experiments"] = {"baseline": b, "recovery": r, "blocked": k}
+        index["experiments"] = {"baseline": b, "recovery": r, "blocked": k, "sparse": sp_}
         index["comparison"] = cid
-        for url in ("/health", "/scenarios", "/experiments", f"/comparisons?experiment_id={b}", f"/comparisons/{cid}",
-                    "/fields"):
+        # URLs exactly as frontend/src/access/endpoints.ts builds them (parameter set and spelling; the test
+        # fetch mock compares order-insensitively). Keep in step with ep.* (TX15).
+        for url in ("/health", "/scenarios", "/experiments", "/comparisons", f"/comparisons/{cid}", "/fields"):
             get(url)
-        for e in (b, r, k):
+        for e in (b, r, k, sp_):
             get(f"/experiments/{e}")
             get(f"/experiments/{e}/topology")
             get(f"/fields?experiment_id={e}")
+            get(f"/comparisons?experiment_id={e}")
             get(f"/experiments/{e}/events")
-            get(f"/experiments/{e}/metrics")
+            get(f"/experiments/{e}/metrics?aggregation=POOLED")
             get(f"/experiments/{e}/metrics?aggregation=TIME_MEAN_EXPLICIT")
-            get(f"/experiments/{e}/results")
+            attempts = {t: [0] for t in range(6)}
+            if e == b:
+                attempts[5] = [0, 1]
             for t in range(6):
                 get(f"/experiments/{e}/states?tick={t}")
                 get(f"/experiments/{e}/observations?tick={t}")
-                get(f"/experiments/{e}/results?tick={t}")
                 get(f"/experiments/{e}/metrics?aggregation=PER_TICK&tick={t}")
-                get(f"/experiments/{e}/metrics?to_tick={t}")
+                for agg in ("POOLED", "TIME_MEAN_EXPLICIT"):
+                    get(f"/experiments/{e}/metrics?aggregation={agg}&to_tick={t}")
                 get(f"/fields?experiment_id={e}&tick={t}")
                 get(f"/experiments/{e}/events?from=0&to={t}")
                 for sp in ("A", "O", "R"):
                     get(f"/experiments/{e}/governance?tick={t}&space={sp}")
-                for d in ("forward", "inverse", "merged"):
-                    get(f"/experiments/{e}/results?tick={t}&direction={d}")
-                for d in ("fwd", "inv"):
-                    get(f"/experiments/{e}/results/sweep:{d}:t{t}:a0/trace")
-        get(f"/experiments/{b}/results?tick=5&attempt=1")
+                for a in attempts[t]:
+                    get(f"/experiments/{e}/results?tick={t}&attempt={a}")
+                    for d in ("forward", "inverse", "merged"):
+                        get(f"/experiments/{e}/results?tick={t}&attempt={a}&direction={d}")
+                    for d in ("fwd", "inv"):
+                        get(f"/experiments/{e}/results/sweep:{d}:t{t}:a{a}/trace")
         get(f"/experiments/{b}/export")
     files["index.json"] = json.dumps(index, ensure_ascii=False, indent=1, sort_keys=True) + "\n"
     return files
