@@ -46,7 +46,9 @@
     "node:n04",
     "node:n05",
     "node:n06",
-    "node:n07"
+    "node:n07",
+    "node:n08",
+    "node:n09"
   ],
   "visible_relations": [
     "rel:depends_on:n02:n01",
@@ -54,16 +56,22 @@
     "rel:depends_on:n04:n03",
     "rel:depends_on:n05:n04",
     "rel:reports_to:n06:n05",
-    "rel:depends_on:n07:n04"
+    "rel:depends_on:n07:n04",
+    "rel:depends_on:n08:n06",
+    "rel:provides:n09:n05"
   ],
   "visible_rules": [
-    "rule:health_n03",
     "rule:dependency",
+    "rule:follow_n08",
+    "rule:gate_auth",
+    "rule:gate_steps",
+    "rule:health_n03",
     "rule:mode_steps",
+    "rule:svc_gate",
     "rule:svc_supply"
   ],
   "bundle_budget": {
-    "max_observations": 41,
+    "max_observations": 40,
     "max_bytes": 10000000
   },
   "serialization_profiles": [

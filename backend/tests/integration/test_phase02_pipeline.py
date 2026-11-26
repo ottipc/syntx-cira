@@ -107,7 +107,7 @@ def test_target_is_observation_based(orch: Orchestrator) -> None:
     ot, orl = observable_topology(cfg, topo), observable_rules(cfg, gov)  # type: ignore[arg-type]
     validate_target(load(TargetDefinition, base), ot, orl)
     for goal in ({"goal_id": "goal:x", "subject_ref": "node:n10", "property": "GAP_CLOSED"},
-                 {"goal_id": "goal:x", "subject_ref": "node:n05", "property": "RULE_SATISFIED", "rule_ref": "rule:gate_auth"},
+                 {"goal_id": "goal:x", "subject_ref": "node:n05", "property": "RULE_SATISFIED", "rule_ref": "rule:hidden_ok"},
                  {"goal_id": "goal:x", "subject_ref": "attr:n05/state", "property": "ATTRIBUTE_EQUALS", "value": "ACTIVE"}):
         bad = dict(base, goals=base["goals"] + [goal])
         with pytest.raises(CiraError):

@@ -37,7 +37,8 @@ def test_generation_rules_and_omega() -> None:
     by = {o.observation_id: o for o in ctx0.observations}
     assert by["obs:s01:n01/state:t0"].status is ObservationStatus.KNOWN and by["obs:s01:n01/state:t0"].value == "NOMINAL"
     assert by["obs:none:n07/state:t0"].status is ObservationStatus.UNKNOWN  # s02 lag 1: nothing at t0
-    assert not any("n08" in k or "n10" in k for k in by)  # invisible nodes produce no observations
+    assert not any("n10" in k for k in by)  # invisible nodes produce no observations
+    assert by["obs:none:n08/state:t0"].status is ObservationStatus.UNKNOWN  # visible, no source
     w = omega(ctx0, TOPO.attribute_universe, DECL)
     assert [w[a].status.value for a in TOPO.attribute_universe] == ["KNOWN"] * 6 + ["UNKNOWN"] * 4
     ctx1 = run.ticks[1].context
@@ -74,11 +75,12 @@ def test_compact_profile_is_lossless_under_omega() -> None:
 def test_budget_switches_profile_then_exhausts() -> None:
     tight = observe(cfg("ocfg:fx_tight"), TOPO, GOV, STATES)  # type: ignore[arg-type]
     profs = [t.bundle.serialization_profile if t.bundle else None for t in tight.ticks]
-    assert profs == ["full"] * 5 + ["compact"]
-    assert tight.ticks[5].errors and tight.ticks[5].errors[0].code.value == "CONTEXT_INCOMPLETE"
+    assert profs == ["full"] * 4 + ["compact"] * 2
+    assert tight.ticks[4].errors and tight.ticks[4].errors[0].code.value == "CONTEXT_INCOMPLETE"
+    assert not tight.ticks[5].errors
     for t in tight.ticks:
         if t.bundle:
-            assert t.bundle.budget_usage.observations <= 41
+            assert t.bundle.budget_usage.observations <= 40
             assert [c.sequence for c in t.bundle.contexts] == list(range(t.tick + 1))
     ex = observe(cfg(bundle_budget={"max_observations": 20, "max_bytes": 10**7}), TOPO, GOV, STATES)  # type: ignore[arg-type]
     assert [t.bundle is None for t in ex.ticks] == [False, False, False, True, True, True]
@@ -100,13 +102,13 @@ def test_source_register_continuity() -> None:
 
 @pytest.mark.req("REQ-024")
 @pytest.mark.parametrize("upd,code", [
-    ({"visible_nodes": [f"node:n{i:02d}" for i in range(1, 8)] + ["node:n99"]}, ErrorCode.SCHEMA_VIOLATION),
+    ({"visible_nodes": [f"node:n{i:02d}" for i in range(1, 10)] + ["node:n99"]}, ErrorCode.SCHEMA_VIOLATION),
     ({"sources": [{"source_id": "src:s09", "label": "S", "observes": ["attr:n10/state"], "active": [{"from_tick": 0}]}]},
      ErrorCode.SCHEMA_VIOLATION),
-    ({"visible_rules": ["rule:gate_auth"]}, ErrorCode.INVALID_RULE),
+    ({"visible_rules": ["rule:hidden_ok"]}, ErrorCode.INVALID_RULE),
     ({"visible_rules": ["rule:follow_n08"]}, ErrorCode.INVALID_RULE),
     ({"serialization_profiles": ["zip"]}, ErrorCode.SCHEMA_VIOLATION),
-    ({"visible_relations": ["rel:depends_on:n08:n06"]}, ErrorCode.SCHEMA_VIOLATION),
+    ({"visible_relations": ["rel:depends_on:n10:n08"]}, ErrorCode.SCHEMA_VIOLATION),
 ])
 def test_theta_validation(upd: dict[str, Any], code: ErrorCode) -> None:
     with pytest.raises(CiraError) as e:
