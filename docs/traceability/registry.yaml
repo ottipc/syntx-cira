@@ -2,7 +2,7 @@
 version: 1.0.2
 package: docs/architecture/SYNTX_CIRA_Consolidated_Architecture_Package_v1.0.2.md
 gate_mode: AUTO_INTERNAL
-current_phase: '01'
+current_phase: '02'
 phase_tests:
   '01':
   - T01
@@ -1314,5 +1314,9 @@ adr:
   state: ACCEPTED
 - id: ADR-0002
   title: Reine Feldmodule, Persistenz im Auftrag
+  class: F2
+  state: ACCEPTED
+- id: ADR-0003
+  title: Präzisierungen Emulation und Beobachtung
   class: F2
   state: ACCEPTED

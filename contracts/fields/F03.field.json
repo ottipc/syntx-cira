@@ -27,7 +27,7 @@
   ],
   "ports": [
     "run_scenario",
-    "replay_report"
+    "validate_scenario"
   ],
   "stages": [
     "EMULATION"

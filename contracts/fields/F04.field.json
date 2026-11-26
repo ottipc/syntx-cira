@@ -32,7 +32,10 @@
     "topology_definition"
   ],
   "ports": [
-    "observe"
+    "observe",
+    "validate_config",
+    "validate_target",
+    "omega"
   ],
   "stages": [
     "OBSERVATION"
