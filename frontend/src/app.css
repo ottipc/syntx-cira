@@ -199,3 +199,8 @@ button.link { background: none; border: 0; padding: 0; color: inherit; cursor: p
 /* server data is shown as delivered: no case transform on formulas (AK-GUI-07) */
 [data-datum] { text-transform: none; letter-spacing: normal; }
 .metric-card .explain { font-size: var(--type-mono-id-size); line-height: var(--type-mono-id-line); }
+/* control panel: drops below the button inside the viewport, scrolls if needed, above the workspace (F07.9) */
+.control { position: relative; }
+.control-panel { position: absolute; top: calc(100% + var(--space-4)); right: 0; width: var(--zone-e-width); z-index: var(--z-drawer);
+  max-height: calc(100vh - var(--zone-a-height) - var(--zone-d-height)); overflow-y: auto; }
+ul.plain { list-style: none; margin: 0; padding: 0; }

@@ -70,6 +70,31 @@ describe("[TX20][AK-GUI-10][REQ-028] export in the browser", () => {
   }, 90000);
 });
 
+describe("[TX20] control path against the running backend", () => {
+  it("[TX20] a new experiment created in the workspace is one confirmed POST and completes on the server", async () => {
+    const { p, traffic } = await page(live, "/");
+    await p.click('[data-term="action.control"]');
+    await p.click('[data-term="action.new"]');
+    await p.waitForSelector('.dialog select option', { state: "attached" });
+    await p.click('.dialog [data-term="action.confirm"]');
+    await p.waitForURL(/\/exp\/exp:[0-9a-f]+-\d+\/SYSTEM_FIELD_OVERVIEW/);
+    const posts = traffic.requests.filter((r) => r.method === "POST");
+    expect(posts).toEqual([{ method: "POST", url: "/experiments" }]);
+    const id = decodeURIComponent(new URL(p.url()).pathname.split("/")[2]!);
+    const until = Date.now() + 60000;
+    let st = "";
+    while (Date.now() < until && !["COMPLETED", "PARTIAL", "FAILED", "BLOCKED"].includes(st)) {
+      st = (await get(live, `/experiments/${id}`)).experiment.status;
+      await new Promise((r) => setTimeout(r, 250));
+    }
+    expect(st).toBe("COMPLETED");
+    await p.waitForFunction(() => document.querySelector('[data-zone="A"]')?.textContent?.includes("Completed"));
+    expect(await p.locator('[data-zone="C"] [data-sem="SEM-028"]').count()).toBe(0);
+    expect(traffic.errors).toEqual([]);
+    await p.context().close();
+  }, 120000);
+});
+
 describe("[TX31][AK-GUI-18][REQ-076] demo script against the running backend", () => {
   it("[TX31] eight steps by PageDown: each URL as scripted, expected signs present, narration shown, no POST", async () => {
     const steps = demoScript({ baseline: ids.baseline, recovery: ids.recovery, comparisonId: ids.comparison });

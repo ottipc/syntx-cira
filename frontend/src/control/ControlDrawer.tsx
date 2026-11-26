@@ -22,9 +22,9 @@ export function ControlDrawer() {
     <div className="control">
       <button type="button" className="btn" aria-expanded={open} onClick={() => setOpen(!open)} data-term="action.control">⋯ {t("action.control")}</button>
       {open ? (
-        <div className="dialog control-panel" role="menu">
-          <ul className="stack">{ITEMS.map(([k, term]) => (
-            <li key={k}><button type="button" className="btn" role="menuitem" onClick={() => setDlg(k)} data-term={term}>{t(term)}</button></li>
+        <div className="dialog control-panel" data-panel="control">
+          <ul className="stack plain" role="menu" aria-label={t("action.control")}>{ITEMS.map(([k, term]) => (
+            <li key={k} role="none"><button type="button" className="btn" role="menuitem" onClick={() => setDlg(k)} data-term={term}>{t(term)}</button></li>
           ))}</ul>
           {dlg === "new" ? <NewExperimentDialog onClose={close} /> : null}
           {dlg === "resweep" ? <ResweepDialog onClose={close} /> : null}

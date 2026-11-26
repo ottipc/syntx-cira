@@ -24,6 +24,8 @@ Freigabe: `docs/architecture/ARCHITECTURE_FREEZE_v1.0.2.md` · gate_mode **AUTO_
   `synthetic_fixtures/bundles/fx_bundle_tx14.json`, `docs/STATUS.md`, `frontend/src/contracts/generated/*`, `docs/gui/*`,
   `frontend/src/semiontics/generated/*`, `frontend/src/language/generated/*`, `frontend/test/generated/*`,
   `frontend/test/snapshots/*`, `frontend/.dependency-cruiser.cjs`. Quellen: `frontend/semiontics/*.yaml`, G03.3, Backend.
+- Regressionsbündel (`synthetic_fixtures/bundles/regression/*.bundle.json`) sind eingefroren: nie neu erzeugen;
+  gewollte Änderung = neue Fallversion + ADR (ADR-0006 Nr. 3).
 - Visuelle Baselines (`frontend/test/visual/baseline/`) nur nach Sichtprüfung ersetzen; ein Lauf mit
   `CIRA_UPDATE_BASELINES=1` ist absichtlich rot (ADR-0005 Nr. 10).
 - Sichtbarer Text nur aus `frontend/semiontics/cira.terms.yaml` (EN + DE); Rohwerte nur im technischen Datensatz.
@@ -39,6 +41,9 @@ Freigabe: `docs/architecture/ARCHITECTURE_FREEZE_v1.0.2.md` · gate_mode **AUTO_
 | `make gate PHASE=0N` | Report `docs/test-reports/phase-0N.json` mit Hash, STATUS neu berechnet |
 | `make status` · `make resume` · `make impact` | Status · Wiedereinstieg · Wirkungsmenge |
 | `make run` | Backend auf 127.0.0.1:8000 |
+| `make run-frontend` | Produktions-Build + Preview auf 127.0.0.1:4173 |
+| `make compose` | `docker compose up --build --wait` + `tools/smoke.sh` (AK-10; ohne Daemon DEP-07a) |
+| `make smoke-selftest` | Smoke-Prüfungen gegen lokale Prozesse (kein AK-10-Nachweis) |
 | `cd frontend && npm run verify` | TS-Drift, tsc, lint-arch + depcruise, alle vitest-Suiten inkl. Chrome (`CIRA_CHROME`, Standard `/usr/bin/google-chrome`) |
 
 ## Externe Abhängigkeiten (vertragstreu gekapselt)

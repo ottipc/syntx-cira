@@ -89,7 +89,18 @@ def suites_for(phase: int) -> list[tuple[str, list[str] | str, Path, dict[str, s
               ("tsc", ["npm", "run", "-s", "typecheck"], FRONT, {}),
               ("frontend-lint", ["npm", "run", "-s", "lint:arch"], FRONT, {}),
               ("vitest", ["npm", "run", "-s", "test:report"], FRONT, {})]
+    if phase >= 5:
+        s.append(("smoke-script-selftest", [PY, "tools/smoke_selftest.py"], ROOT, {}))
+        if _docker_daemon():
+            # AK-10: the compose chain itself (only with a reachable daemon; otherwise DEP-07a, never simulated)
+            s.append(("smoke", ["bash", "-c", "docker compose up -d --build --wait && "
+                                "FRONTEND_URL=http://127.0.0.1:4173 bash tools/smoke.sh; rc=$?; docker compose down -v; exit $rc"],
+                      ROOT, {}))
     return s
+
+
+def _docker_daemon() -> bool:
+    return shutil.which("docker") is not None and sh(["docker", "info", "--format", "{{.ServerVersion}}"])[0] == 0
 
 
 def run(phase: int, out: Path | None) -> dict[str, Any]:

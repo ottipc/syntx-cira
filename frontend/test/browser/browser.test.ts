@@ -133,6 +133,26 @@ describe("[TX28][AK-GUI-15] geometry in the browser", () => {
     }
   }, 60000);
 
+  it.each(VIEWPORTS.map((v) => [v.width, v.height]))("[TX28] %ix%i control panel and dialog open fully inside the viewport, above the workspace", async (width, height) => {
+    const p = await open(env, path("TEMPORAL_STATE_EXPLORER"), { width, height });
+    await p.click('[data-term="action.control"]');
+    await p.click('[data-term="action.new"]');
+    await p.waitForSelector(".dialog select option", { state: "attached" });
+    const r = await p.evaluate(() => {
+      const panel = document.querySelector<HTMLElement>('[data-panel="control"]')!.getBoundingClientRect();
+      const out: string[] = [];
+      if (panel.top < 0 || panel.left < 0 || panel.right > innerWidth + 0.5 || panel.bottom > innerHeight + 0.5) out.push(`panel outside viewport ${JSON.stringify(panel)}`);
+      for (const b of document.querySelectorAll<HTMLElement>('[data-panel="control"] button')) {
+        const x = b.getBoundingClientRect();
+        const top = document.elementFromPoint(x.left + x.width / 2, Math.min(x.top + x.height / 2, innerHeight - 1));
+        if (x.bottom > panel.top && x.top < panel.bottom && top && !b.contains(top) && !top.closest('[data-panel="control"]')) out.push(`covered: ${b.dataset.term}`);
+      }
+      return out;
+    });
+    expect(r).toEqual([]);
+    await p.context().close();
+  }, 60000);
+
   it("[TX28] reduced motion: no element keeps a transition or animation", async () => {
     const p = await open(env, path("TEMPORAL_STATE_EXPLORER"), { width: 1440, height: 900 }, "reduce");
     await p.keyboard.press("ArrowRight");
@@ -176,6 +196,21 @@ describe("[TX32][AK-GUI-19] accessibility", () => {
       const r = await (window as unknown as { axe: { run: (c: Document, o: unknown) => Promise<{ violations: { id: string; impact: string; nodes: { target: string[] }[] }[] }> } })
         .axe.run(document, { resultTypes: ["violations"] });
       return r.violations.map((v) => ({ id: v.id, impact: v.impact, n: v.nodes.length, at: v.nodes.slice(0, 2).map((x) => x.target.join(" ")) }));
+    });
+    expect(res.filter((v) => v.impact === "serious" || v.impact === "critical")).toEqual([]);
+    await p.context().close();
+  }, 60000);
+
+  it("[TX32] control panel and new-experiment dialog: axe-core without serious or critical findings", async () => {
+    const p = await open(env, path("TEMPORAL_STATE_EXPLORER"), { width: 1440, height: 900 });
+    await p.click('[data-term="action.control"]');
+    await p.click('[data-term="action.new"]');
+    await p.waitForSelector(".dialog select option", { state: "attached" });
+    await p.addScriptTag({ content: axe });
+    const res = await p.evaluate(async () => {
+      const r = await (window as unknown as { axe: { run: (c: Element, o: unknown) => Promise<{ violations: { id: string; impact: string }[] }> } })
+        .axe.run(document.querySelector('[data-panel="control"]')!, { resultTypes: ["violations"] });
+      return r.violations.map((v) => ({ id: v.id, impact: v.impact }));
     });
     expect(res.filter((v) => v.impact === "serious" || v.impact === "critical")).toEqual([]);
     await p.context().close();

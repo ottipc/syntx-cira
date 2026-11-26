@@ -4,14 +4,16 @@ PHASE   ?= $(shell $(PY) -c "import yaml;print(yaml.safe_load(open('docs/traceab
 BACKEND := backend
 FRONTEND:= frontend
 
-.PHONY: help sync verify verify-backend verify-frontend status resume docs gate impact smoke run clean
+.PHONY: help sync verify verify-backend verify-frontend status resume docs gate impact smoke smoke-selftest run run-frontend compose clean
 
 help:
 	@echo "sync    regenerate every derived artifact (schemas, .importlinter, TX14 bundle, snapshots, semiontics, TS types, depcruise rules)"
 	@echo "verify  all tests + mypy strict + import-linter + drift checks + trace_check + lints (0 errors, 0 skips)"
 	@echo "gate    PHASE=0N: machine report docs/test-reports/phase-0N.json + recomputed STATUS.md"
 	@echo "status  recompute docs/STATUS.md;  resume  re-entry per 15.8;  impact  impact set of changed files"
-	@echo "run     start backend (uvicorn) and frontend preview;  smoke  tools/smoke.sh against a running backend"
+	@echo "run     backend on 127.0.0.1:8000;  run-frontend  production build + preview on 127.0.0.1:4173"
+	@echo "compose docker compose up --build --wait + smoke (needs a Docker daemon, AK-10)"
+	@echo "smoke   tools/smoke.sh against a running instance;  smoke-selftest  smoke against local processes"
 
 sync:
 	cd $(BACKEND) && $(PY) scripts/export_schemas.py
@@ -59,8 +61,18 @@ docs: status
 smoke:
 	bash tools/smoke.sh
 
+smoke-selftest:
+	$(PY) tools/smoke_selftest.py
+
+compose:
+	docker compose up -d --build --wait
+	FRONTEND_URL=http://127.0.0.1:4173 bash tools/smoke.sh
+
 run:
 	cd $(BACKEND) && CIRA_DATA=../experiments $(PY) -m uvicorn --factory app.api.main:create_app --host 127.0.0.1 --port 8000
+
+run-frontend:
+	cd $(FRONTEND) && npx vite build && npx vite preview --host 127.0.0.1 --port 4173 --strictPort
 
 clean:
 	rm -rf experiments $(FRONTEND)/dist
