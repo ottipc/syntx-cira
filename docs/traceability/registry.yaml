@@ -671,6 +671,8 @@ requirements:
   arch_state: ACCEPTED
   kind: product
   deps: []
+  integration: not_applicable
+  integration_note: golden fixture (test asset, used by T07)
 - id: REQ-052
   title: Fixtures übrige Metriken + Nullnenner
   realization: '12.2'
@@ -682,6 +684,8 @@ requirements:
   arch_state: ACCEPTED
   kind: product
   deps: []
+  integration: not_applicable
+  integration_note: golden fixtures (test assets, used by T07)
 - id: REQ-053
   title: METRIC_UNDEFINED + Neuberechnung
   realization: undefined_reason, Revision
@@ -801,6 +805,8 @@ requirements:
   arch_state: ACCEPTED
   kind: product
   deps: []
+  integration: not_applicable
+  integration_note: generator script (build-time)
 - id: REQ-063
   title: forbid/strict/frozen, tief unveränderlich
   realization: ConfigDict, Tupel
@@ -834,6 +840,8 @@ requirements:
   arch_state: ACCEPTED
   kind: product
   deps: []
+  integration: not_applicable
+  integration_note: generated schema (build-time, consumed by the TS generator)
 - id: REQ-066
   title: ArtifactEnvelope-Felder
   realization: '08.1'
@@ -1000,6 +1008,8 @@ requirements:
   arch_state: ACCEPTED
   kind: product
   deps: []
+  integration: not_applicable
+  integration_note: fixture lint tool (build-time)
 - id: REQ-081
   title: GAP-Register erhalten
   realization: '18'

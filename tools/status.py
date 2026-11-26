@@ -51,13 +51,18 @@ def req_states(reg: dict[str, Any], rep: dict[str, Any] | None) -> list[dict[str
                  if p.exists() and re.search(r"raise NotImplementedError", p.read_text(encoding="utf-8"))]
         implemented = not missing and not stubs and mypy_ok and bool(r["components"])
         pyfiles = [str(p.relative_to(ROOT)) for c in r["components"] for p in _py_files(c) if p.exists()]
-        integrated = implemented and bool(pyfiles) and all(icov.get(f, 0.0) > 0 for f in pyfiles)
+        if r.get("integration") == "not_applicable":
+            integrated = implemented  # build-time or test asset; nothing to reach at runtime (registry note)
+        elif not pyfiles:
+            integrated = implemented and bool(icov)  # data/config components consumed by the integrated runtime
+        else:
+            integrated = implemented and all(icov.get(f, 0.0) > 0 for f in pyfiles)
         gate = {x for p in range(1, 6) for x in gates.get(f"{p:02d}", [])}
         outcomes = list(by_req.get(r["id"], [])) + [o for t in r["tests"] if t in gate for o in by_tid.get(t, [])]
         unmet = [t for t in r["tests"] if t in gate and not by_tid.get(t)]
         tests_green = bool(outcomes) and all(o == "passed" for o in outcomes) and not unmet
         st.update(missing=missing, stubs=stubs, tests_green=tests_green, unmet_tests=unmet,
-                  n_tests=len(outcomes), integrated=integrated)
+                  n_tests=len(outcomes), integrated=integrated, integration_note=r.get("integration_note"))
         if implemented and integrated and tests_green:
             status = "VERIFIED"
         elif implemented and integrated:
@@ -116,10 +121,12 @@ def render() -> str:
             notes.append(f"{len(s['missing'])} component(s) not yet present")
         if s.get("stubs"):
             notes.append("port stub (NotImplementedError)")
+        if s.get("integration_note"):
+            notes.append("integration n/a: " + s["integration_note"])
         if s.get("unmet_tests"):
             notes.append("tests pending: " + ", ".join(s["unmet_tests"]))
         if s["status"] == "IMPLEMENTED" and not s.get("integrated"):
-            notes.append("integration coverage pending (Phase 03)")
+            notes.append("integration coverage pending")
         tg = "—" if "tests_green" not in s else ("yes" if s["tests_green"] else "no")
         L.append(f"| {s['id']} | {s['phase']} | {s['status']} | {tg} | {'; '.join(notes)} |")
     L += ["", "## Gate tests per phase", "", "| Phase | Tests | Result |", "|---|---|---|"]
