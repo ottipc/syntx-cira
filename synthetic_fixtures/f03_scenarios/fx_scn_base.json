@@ -1,0 +1,126 @@
+{
+  "scenario_id": "scn:fx_base",
+  "version": "1.0.0",
+  "variant_kind": "BASELINE",
+  "fixture_lineage_id": "lin:fx_04_11",
+  "topology_ref": {
+    "$fixture": "f01_topology/fx_04_11.json",
+    "type": "topology_definition"
+  },
+  "governance_ref": {
+    "$fixture": "f02_governance/fx_gov.json",
+    "type": "governance_definition"
+  },
+  "initial_state": [
+    {
+      "attribute_ref": "attr:n01/state",
+      "applicability": "APPLICABLE",
+      "value": "NOMINAL"
+    },
+    {
+      "attribute_ref": "attr:n02/state",
+      "applicability": "APPLICABLE",
+      "value": "NOMINAL"
+    },
+    {
+      "attribute_ref": "attr:n03/state",
+      "applicability": "APPLICABLE",
+      "value": "DEGRADED"
+    },
+    {
+      "attribute_ref": "attr:n04/state",
+      "applicability": "APPLICABLE",
+      "value": "ACTIVE"
+    },
+    {
+      "attribute_ref": "attr:n05/state",
+      "applicability": "APPLICABLE",
+      "value": "CLOSED"
+    },
+    {
+      "attribute_ref": "attr:n06/state",
+      "applicability": "APPLICABLE",
+      "value": "NOMINAL"
+    },
+    {
+      "attribute_ref": "attr:n07/state",
+      "applicability": "APPLICABLE",
+      "value": "STANDBY"
+    },
+    {
+      "attribute_ref": "attr:n08/state",
+      "applicability": "APPLICABLE",
+      "value": "NOMINAL"
+    },
+    {
+      "attribute_ref": "attr:n09/state",
+      "applicability": "APPLICABLE",
+      "value": "AUTHORIZED"
+    },
+    {
+      "attribute_ref": "attr:n10/state",
+      "applicability": "APPLICABLE",
+      "value": "CRITICAL"
+    }
+  ],
+  "inputs": [
+    {
+      "event_id": "evt:b1",
+      "tick": 1,
+      "seq": 0,
+      "kind": "SET_ATTRIBUTE",
+      "attribute_ref": "attr:n09/state",
+      "value": "PENDING"
+    },
+    {
+      "event_id": "evt:b2",
+      "tick": 1,
+      "seq": 1,
+      "kind": "SET_ATTRIBUTE",
+      "attribute_ref": "attr:n05/state",
+      "value": "OPEN"
+    },
+    {
+      "event_id": "evt:b3",
+      "tick": 2,
+      "seq": 2,
+      "kind": "APPLY_APPROVAL",
+      "attribute_ref": "attr:n09/state",
+      "approval": {
+        "approval_id": "appr:b3",
+        "role_ref": "role:operator",
+        "rule_ref": "rule:gate_auth",
+        "subject_refs": [
+          "node:n05",
+          "node:n09"
+        ],
+        "decision": "APPROVED",
+        "tick": 2,
+        "rationale": "fixture"
+      }
+    },
+    {
+      "event_id": "evt:b4",
+      "tick": 3,
+      "seq": 3,
+      "kind": "SET_ATTRIBUTE",
+      "attribute_ref": "attr:n03/state",
+      "value": "FAULTY"
+    },
+    {
+      "event_id": "evt:b5",
+      "tick": 4,
+      "seq": 4,
+      "kind": "SET_ATTRIBUTE",
+      "attribute_ref": "attr:n08/state",
+      "value": "DEGRADED"
+    }
+  ],
+  "tick_count": 6,
+  "service_function_refs": [
+    "rule:svc_gate",
+    "rule:svc_supply"
+  ],
+  "is_fixture": true,
+  "label": "Baseline (fixture)"
+}

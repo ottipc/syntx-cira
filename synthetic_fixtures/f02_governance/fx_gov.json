@@ -1,0 +1,255 @@
+{
+  "governance_id": "gov:fx",
+  "version": "1.0.0",
+  "topology_ref": {
+    "$fixture": "f01_topology/fx_04_11.json",
+    "type": "topology_definition"
+  },
+  "is_fixture": true,
+  "roles": [
+    {
+      "role_id": "role:operator",
+      "label": "Operator"
+    },
+    {
+      "role_id": "role:supervisor",
+      "label": "Supervisor"
+    }
+  ],
+  "rules": [
+    {
+      "rule_id": "rule:gate_auth",
+      "version": "1.0.0",
+      "kind": "STATE",
+      "applies_to": [
+        "node:n05",
+        "node:n09"
+      ],
+      "permits": [
+        "role:supervisor"
+      ],
+      "expression": {
+        "op": "implies",
+        "if": {
+          "op": "eq",
+          "attr": "attr:n05/state",
+          "value": "OPEN"
+        },
+        "then": {
+          "op": "eq",
+          "attr": "attr:n09/state",
+          "value": "AUTHORIZED"
+        }
+      },
+      "description": "An open gate requires authorization."
+    },
+    {
+      "rule_id": "rule:health_n03",
+      "version": "1.0.0",
+      "kind": "STATE",
+      "applies_to": [
+        "node:n03"
+      ],
+      "expression": {
+        "op": "not",
+        "arg": {
+          "op": "in",
+          "attr": "attr:n03/state",
+          "values": [
+            "FAULTY",
+            "CRITICAL"
+          ]
+        }
+      },
+      "description": "Component 03 is neither faulty nor critical."
+    },
+    {
+      "rule_id": "rule:hidden_ok",
+      "version": "1.0.0",
+      "kind": "STATE",
+      "applies_to": [
+        "node:n10"
+      ],
+      "expression": {
+        "op": "not",
+        "arg": {
+          "op": "eq",
+          "attr": "attr:n10/state",
+          "value": "CRITICAL"
+        }
+      },
+      "description": "Component 10 is not critical."
+    },
+    {
+      "rule_id": "rule:dependency",
+      "version": "1.0.0",
+      "kind": "STATE",
+      "applies_to": [
+        "node:n03",
+        "node:n04"
+      ],
+      "expression": {
+        "op": "implies",
+        "if": {
+          "op": "in",
+          "attr": "attr:n03/state",
+          "values": [
+            "FAULTY",
+            "CRITICAL"
+          ]
+        },
+        "then": {
+          "op": "eq",
+          "attr": "attr:n04/state",
+          "value": "STANDBY"
+        }
+      },
+      "description": "If component 03 fails, component 04 is on standby."
+    },
+    {
+      "rule_id": "rule:follow_n08",
+      "version": "1.0.0",
+      "kind": "STATE",
+      "applies_to": [
+        "node:n06",
+        "node:n08"
+      ],
+      "requires": [
+        "rule:health_n03"
+      ],
+      "expression": {
+        "op": "implies",
+        "if": {
+          "op": "eq",
+          "attr": "attr:n06/state",
+          "value": "NOMINAL"
+        },
+        "then": {
+          "op": "in",
+          "attr": "attr:n08/state",
+          "values": [
+            "NOMINAL",
+            "DEGRADED"
+          ]
+        }
+      },
+      "description": "With healthy 03 and nominal 06, component 08 is not faulty."
+    },
+    {
+      "rule_id": "rule:mode_steps",
+      "version": "1.0.0",
+      "kind": "TRANSITION",
+      "applies_to": [
+        "node:n03",
+        "node:n04"
+      ],
+      "expression": {
+        "op": "implies",
+        "if": {
+          "op": "in",
+          "attr": "attr:n03/state",
+          "values": [
+            "FAULTY",
+            "CRITICAL"
+          ],
+          "at": "CURRENT"
+        },
+        "then": {
+          "op": "not",
+          "arg": {
+            "op": "eq",
+            "attr": "attr:n04/state",
+            "value": "ACTIVE",
+            "at": "NEXT"
+          }
+        }
+      },
+      "description": "After a failure of 03, component 04 does not stay active."
+    },
+    {
+      "rule_id": "rule:gate_steps",
+      "version": "1.0.0",
+      "kind": "TRANSITION",
+      "applies_to": [
+        "node:n05"
+      ],
+      "valid_from_tick": 1,
+      "expression": {
+        "op": "transition_in",
+        "attr": "attr:n05/state",
+        "allowed": [
+          {
+            "from": "CLOSED",
+            "to": "CLOSED"
+          },
+          {
+            "from": "CLOSED",
+            "to": "OPEN"
+          },
+          {
+            "from": "OPEN",
+            "to": "OPEN"
+          },
+          {
+            "from": "OPEN",
+            "to": "CLOSED"
+          }
+        ]
+      },
+      "description": "Gate transitions stay within the gate domain."
+    },
+    {
+      "rule_id": "rule:svc_supply",
+      "version": "1.0.0",
+      "kind": "FUNCTION",
+      "applies_to": [
+        "node:n02",
+        "node:n04"
+      ],
+      "expression": {
+        "op": "and",
+        "args": [
+          {
+            "op": "in",
+            "attr": "attr:n02/state",
+            "values": [
+              "NOMINAL",
+              "DEGRADED"
+            ]
+          },
+          {
+            "op": "eq",
+            "attr": "attr:n04/state",
+            "value": "ACTIVE"
+          }
+        ]
+      },
+      "description": "Service function supply."
+    },
+    {
+      "rule_id": "rule:svc_gate",
+      "version": "1.0.0",
+      "kind": "FUNCTION",
+      "applies_to": [
+        "node:n05",
+        "node:n09"
+      ],
+      "expression": {
+        "op": "or",
+        "args": [
+          {
+            "op": "eq",
+            "attr": "attr:n05/state",
+            "value": "CLOSED"
+          },
+          {
+            "op": "eq",
+            "attr": "attr:n09/state",
+            "value": "AUTHORIZED"
+          }
+        ]
+      },
+      "description": "Service function controlled passage."
+    }
+  ]
+}

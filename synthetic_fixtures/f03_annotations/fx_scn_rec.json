@@ -1,0 +1,37 @@
+{
+  "scenario_ref": {
+    "$fixture": "f03_scenarios/fx_scn_rec.json",
+    "type": "scenario_definition"
+  },
+  "is_fixture": true,
+  "cases": [
+    {
+      "case_id": "case:gate_unauthorized",
+      "kind": "rule_violation",
+      "subject_refs": [
+        "attr:n05/state",
+        "attr:n09/state"
+      ],
+      "rule_ref": "rule:gate_auth",
+      "tick_from": 2,
+      "tick_to": 2
+    },
+    {
+      "case_id": "case:n03_fault",
+      "kind": "component_fault",
+      "subject_refs": [
+        "node:n03"
+      ],
+      "tick_from": 4,
+      "tick_to": 4
+    },
+    {
+      "case_id": "case:hidden_critical",
+      "kind": "hidden_state",
+      "subject_refs": [
+        "node:n10"
+      ],
+      "tick_from": 0
+    }
+  ]
+}

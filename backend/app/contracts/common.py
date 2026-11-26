@@ -2,11 +2,14 @@
 
 from __future__ import annotations
 
+import json
 from enum import Enum
-from typing import Annotated
+from typing import Annotated, Any, TypeVar
 
 from pydantic import AfterValidator, BaseModel, ConfigDict, Field, StringConstraints, model_validator
 
+from ..core.hashing import artifact_id as _artifact_id
+from ..core.hashing import content_hash as _content_hash
 from ..core.unicode import nfc
 
 
@@ -176,6 +179,25 @@ class ArtifactRef(Frozen):
     artifact_id: ArtifactId
     artifact_type: str
     content_hash: ContentHash
+
+
+M = TypeVar("M", bound=BaseModel)
+
+
+def payload_json(model: BaseModel) -> Any:
+    """JSON form of a contract payload (by alias) — the basis of content addressing."""
+    return model.model_dump(mode="json", by_alias=True)
+
+
+def make_ref(artifact_type: str, model: BaseModel) -> ArtifactRef:
+    pj = payload_json(model)
+    return ArtifactRef(artifact_id=_artifact_id(artifact_type, pj), artifact_type=artifact_type,
+                       content_hash=_content_hash(pj))
+
+
+def load(cls: type[M], data: Any) -> M:
+    """Strict validation of JSON-shaped data (enums as strings) through the JSON path."""
+    return cls.model_validate_json(json.dumps(data, ensure_ascii=False))
 
 
 class Provenance(Frozen):
