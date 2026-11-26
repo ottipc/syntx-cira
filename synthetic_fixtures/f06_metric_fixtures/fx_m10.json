@@ -1,0 +1,95 @@
+{
+  "fixture_id": "FX-M10",
+  "purpose": "stability resweep_same_bundle/v1",
+  "is_fixture": true,
+  "data_origin": "FIXTURE",
+  "kind": "stability",
+  "weights": {
+    "default": "1",
+    "explicit": {}
+  },
+  "reference": [
+    "attr:n01/state",
+    "attr:n02/state",
+    "attr:n03/state",
+    "attr:n04/state",
+    "attr:n05/state",
+    "attr:n06/state",
+    "attr:n07/state",
+    "attr:n08/state",
+    "attr:n09/state",
+    "attr:n10/state"
+  ],
+  "r1": [
+    [
+      "attr:n01/state",
+      "V"
+    ],
+    [
+      "attr:n02/state",
+      "V"
+    ],
+    [
+      "attr:n03/state",
+      "V"
+    ],
+    [
+      "attr:n04/state",
+      "V"
+    ],
+    [
+      "attr:n05/state",
+      "V"
+    ],
+    [
+      "attr:n06/state",
+      "V"
+    ],
+    [
+      "attr:n07/state",
+      "V"
+    ],
+    [
+      "attr:n08/state",
+      "V"
+    ]
+  ],
+  "r2": [
+    [
+      "attr:n01/state",
+      "V"
+    ],
+    [
+      "attr:n02/state",
+      "V"
+    ],
+    [
+      "attr:n03/state",
+      "W"
+    ],
+    [
+      "attr:n04/state",
+      "V"
+    ],
+    [
+      "attr:n05/state",
+      "V"
+    ],
+    [
+      "attr:n06/state",
+      "V"
+    ],
+    [
+      "attr:n09/state",
+      "V"
+    ]
+  ],
+  "expected": {
+    "M10": "5/6"
+  },
+  "expected_aux": {
+    "M10": {
+      "shared_coverage": "3/5"
+    }
+  }
+}

@@ -1,0 +1,6040 @@
+{
+ "artifacts": [
+  {
+   "artifact_id": "art:b21a82236683e67e1449eeb4b88e1baa",
+   "artifact_type": "authority_record",
+   "content_hash": "sha256:1fde844d927ab009d6c8b5a57ba70cd1629c6e29f2197ce88f6fc04551ea7e45",
+   "experiment_id": "exp:fx_tx14_replay",
+   "logical_key": "auth:d1",
+   "payload": {
+    "created_scenario_ref": null,
+    "decision": "APPROVED",
+    "decision_id": "auth:d1",
+    "proposal_ref": {
+     "artifact_id": "art:f5ebbc250ed3b69d8cdbd2b2e4bf2567",
+     "artifact_type": "recovery_proposal",
+     "content_hash": "sha256:a6b95a6e18102f9ac3d1382794538516cb04c96ae4f953e2dacc38e8022958e4"
+    },
+    "rationale": "fixture decision",
+    "role_ref": "role:operator"
+   },
+   "provenance": {
+    "data_origin": "SYNTHETIC",
+    "producer_id": "fx.tx14.f02",
+    "producer_version": "1.0.2",
+    "source_field": "F02",
+    "source_refs": [
+     {
+      "artifact_id": "art:f5ebbc250ed3b69d8cdbd2b2e4bf2567",
+      "artifact_type": "recovery_proposal",
+      "content_hash": "sha256:a6b95a6e18102f9ac3d1382794538516cb04c96ae4f953e2dacc38e8022958e4"
+     }
+    ]
+   },
+   "revision": 0,
+   "schema_version": "cira.authority_record/1.0.2",
+   "tick": null
+  },
+  {
+   "artifact_id": "art:a7451e9d5d24ee06bf27c7efff906fd2",
+   "artifact_type": "authority_record",
+   "content_hash": "sha256:2d3daaf5490f12835346cd87f4cb09b11437e8d6a431c8beb88f1b12724c090b",
+   "experiment_id": "exp:fx_tx14_replay",
+   "logical_key": "auth:d1",
+   "payload": {
+    "created_scenario_ref": {
+     "artifact_id": "art:b67c200288bd6f9b3d9bc7fd3c4f201a",
+     "artifact_type": "scenario_definition",
+     "content_hash": "sha256:478e87b93100905e31170f8e5a49c5f645d19456db71e053334e375f5dd94648"
+    },
+    "decision": "APPROVED",
+    "decision_id": "auth:d1",
+    "proposal_ref": {
+     "artifact_id": "art:f5ebbc250ed3b69d8cdbd2b2e4bf2567",
+     "artifact_type": "recovery_proposal",
+     "content_hash": "sha256:a6b95a6e18102f9ac3d1382794538516cb04c96ae4f953e2dacc38e8022958e4"
+    },
+    "rationale": "fixture decision",
+    "role_ref": "role:operator"
+   },
+   "provenance": {
+    "data_origin": "SYNTHETIC",
+    "producer_id": "fx.tx14.f02",
+    "producer_version": "1.0.2",
+    "source_field": "F02",
+    "source_refs": [
+     {
+      "artifact_id": "art:f5ebbc250ed3b69d8cdbd2b2e4bf2567",
+      "artifact_type": "recovery_proposal",
+      "content_hash": "sha256:a6b95a6e18102f9ac3d1382794538516cb04c96ae4f953e2dacc38e8022958e4"
+     },
+     {
+      "artifact_id": "art:b67c200288bd6f9b3d9bc7fd3c4f201a",
+      "artifact_type": "scenario_definition",
+      "content_hash": "sha256:478e87b93100905e31170f8e5a49c5f645d19456db71e053334e375f5dd94648"
+     }
+    ]
+   },
+   "revision": 1,
+   "schema_version": "cira.authority_record/1.0.2",
+   "tick": null
+  },
+  {
+   "artifact_id": "art:913af010f72abc06c2513459ab1c325e",
+   "artifact_type": "consistency_annotation_set",
+   "content_hash": "sha256:19063ecaf3b86190e7b1fbc744e49e5248929c0d2778921a7d3a49455664cb21",
+   "experiment_id": "exp:fx_tx14_replay",
+   "logical_key": "scn:fx_base@1.0.0",
+   "payload": {
+    "cases": [
+     {
+      "case_id": "case:c1",
+      "kind": "gate_without_authorization",
+      "rule_ref": "rule:gate_needs_auth",
+      "subject_refs": [
+       "attr:n05/state",
+       "rule:gate_needs_auth"
+      ],
+      "tick_from": 1,
+      "tick_to": 2
+     },
+     {
+      "case_id": "case:c2",
+      "kind": "hidden_critical",
+      "rule_ref": null,
+      "subject_refs": [
+       "node:n10"
+      ],
+      "tick_from": 0,
+      "tick_to": null
+     }
+    ],
+    "scenario_ref": {
+     "artifact_id": "art:d101553030de33caf52ae96eaaa99d89",
+     "artifact_type": "scenario_definition",
+     "content_hash": "sha256:c37b774fda6203b1b3b098b855c7a0cf58e44a639e8e1fcaf3aeb6b5ad110367"
+    }
+   },
+   "provenance": {
+    "data_origin": "SYNTHETIC",
+    "producer_id": "fx.tx14.f03",
+    "producer_version": "1.0.2",
+    "source_field": "F03",
+    "source_refs": [
+     {
+      "artifact_id": "art:d101553030de33caf52ae96eaaa99d89",
+      "artifact_type": "scenario_definition",
+      "content_hash": "sha256:c37b774fda6203b1b3b098b855c7a0cf58e44a639e8e1fcaf3aeb6b5ad110367"
+     }
+    ]
+   },
+   "revision": 0,
+   "schema_version": "cira.consistency_annotation_set/1.0.2",
+   "tick": null
+  },
+  {
+   "artifact_id": "art:db81d3a94fec30a37c43e3460dbb94d6",
+   "artifact_type": "evaluation_report",
+   "content_hash": "sha256:f73ae8d07ed755eca5d2d668e22cacb5d031018f1878f333713ae6b0faf9d7d4",
+   "experiment_id": "exp:fx_tx14_replay",
+   "logical_key": "report",
+   "payload": {
+    "attribute_membership": [
+     {
+      "attribute_ref": "attr:n08/state",
+      "delta": 1,
+      "in_d_det": true,
+      "in_d_obs": false,
+      "in_d_ref": true,
+      "tick": 2,
+      "weight": {
+       "d": 1,
+       "n": 2
+      }
+     }
+    ],
+    "data_origin": "FIXTURE",
+    "errors": [
+     {
+      "code": "ENGINE_UNAVAILABLE",
+      "field": "F05",
+      "message": "no local engine (DEP-02)",
+      "recovery": "RESWEEP",
+      "subject_refs": [],
+      "tick": 2
+     }
+    ],
+    "execution_status": "PARTIAL",
+    "gap_matches": [
+     {
+      "case_id": "case:c2",
+      "class_key": [
+       "node:n10"
+      ],
+      "gap_id": "gap:t2:1",
+      "matcher": {
+       "point": "metrics.gap_matcher",
+       "variant": "subjects_tickwindow_1to1",
+       "version": 1
+      },
+      "observable": false,
+      "tick": 2,
+      "verdict": "TP"
+     }
+    ],
+    "inputs": [
+     {
+      "artifact_id": "art:7e5cc87b8dc539d9b910d49ba0de7961",
+      "artifact_type": "reconstruction_result",
+      "content_hash": "sha256:4e95740a12520c0a61aca53214ef5e19b28baa0a32995a6cabf0be59aecdfa0c"
+     },
+     {
+      "artifact_id": "art:b226ef7cdcf3a5b06c61e6d0ef1e3723",
+      "artifact_type": "actual_state",
+      "content_hash": "sha256:6b5794299ebdd07c203a3bfb8378ab798f373fdde6183ab7d4372881f8c0ef64"
+     }
+    ],
+    "reference_spaces": [
+     {
+      "kind": "ATTRIBUTE",
+      "members": [
+       "attr:n01/state",
+       "attr:n02/state",
+       "attr:n03/state",
+       "attr:n04/state",
+       "attr:n05/state",
+       "attr:n06/state",
+       "attr:n07/state",
+       "attr:n08/state",
+       "attr:n09/state",
+       "attr:n10/state"
+      ],
+      "reference_space_id": "space:attr:t2",
+      "space_hash": "sha256:4e95740a12520c0a61aca53214ef5e19b28baa0a32995a6cabf0be59aecdfa0c",
+      "tick": 2,
+      "weight_set_ref": "ws:fx_default"
+     }
+    ],
+    "report_key": "report:fx",
+    "results": [
+     {
+      "aggregation": "PER_TICK",
+      "aux": {
+       "fn": 1,
+       "fp": 0,
+       "function_ref": "rule:svc_supply",
+       "hypotheses_excluded": 0,
+       "new_inconsistencies": 0,
+       "not_applicable_excluded": 0,
+       "not_in_validity": 0,
+       "observable_cases": 1,
+       "persisting": 0,
+       "shared_coverage": {
+        "d": 5,
+        "n": 3
+       },
+       "shared_coverage_undefined": false,
+       "stale_known": 0,
+       "ticks_excluded": 0,
+       "ticks_included": 1,
+       "tp": 1,
+       "undetermined_count": 2,
+       "unevaluable_count": 0,
+       "unevaluable_in_recovery": 0
+      },
+      "case_subset": "ALL",
+      "denominator": {
+       "d": 1,
+       "n": 8
+      },
+      "metric_id": "M01",
+      "numerator": {
+       "d": 1,
+       "n": 1
+      },
+      "reference_space": "space:attr:t2",
+      "relation": "A_R",
+      "status": "EVALUATED",
+      "tick": 2,
+      "undefined_reason": null,
+      "unit": "ratio",
+      "value": 0.125,
+      "version": "1.0.0"
+     },
+     {
+      "aggregation": "PER_TICK",
+      "aux": {
+       "fn": null,
+       "fp": null,
+       "function_ref": null,
+       "hypotheses_excluded": null,
+       "new_inconsistencies": null,
+       "not_applicable_excluded": null,
+       "not_in_validity": null,
+       "observable_cases": null,
+       "persisting": null,
+       "shared_coverage": null,
+       "shared_coverage_undefined": null,
+       "stale_known": null,
+       "ticks_excluded": null,
+       "ticks_included": null,
+       "tp": null,
+       "undetermined_count": null,
+       "unevaluable_count": null,
+       "unevaluable_in_recovery": null
+      },
+      "case_subset": null,
+      "denominator": null,
+      "metric_id": "M10",
+      "numerator": null,
+      "reference_space": "space:attr:t2",
+      "relation": "R1_R2",
+      "status": "UNDEFINED",
+      "tick": null,
+      "undefined_reason": "INPUT_MISSING",
+      "unit": "ratio",
+      "value": null,
+      "version": "1.0.0"
+     }
+    ],
+    "rule_evaluations": [
+     {
+      "artifact_id": "art:b42795b117801d59281f88a81561a182",
+      "artifact_type": "rule_evaluation_set",
+      "content_hash": "sha256:c430d5e798dd81e0e0d7f1cc0f6eefa063d86ada98513e9a8c4116f6a1743e8c"
+     }
+    ],
+    "strategies": [
+     {
+      "point": "metrics.hypothesis_policy",
+      "variant": "include",
+      "version": 1
+     }
+    ],
+    "version": "1.0.2"
+   },
+   "provenance": {
+    "data_origin": "FIXTURE",
+    "producer_id": "fx.tx14.f06",
+    "producer_version": "1.0.2",
+    "source_field": "F06",
+    "source_refs": [
+     {
+      "artifact_id": "art:7e5cc87b8dc539d9b910d49ba0de7961",
+      "artifact_type": "reconstruction_result",
+      "content_hash": "sha256:4e95740a12520c0a61aca53214ef5e19b28baa0a32995a6cabf0be59aecdfa0c"
+     },
+     {
+      "artifact_id": "art:b226ef7cdcf3a5b06c61e6d0ef1e3723",
+      "artifact_type": "actual_state",
+      "content_hash": "sha256:6b5794299ebdd07c203a3bfb8378ab798f373fdde6183ab7d4372881f8c0ef64"
+     },
+     {
+      "artifact_id": "art:b42795b117801d59281f88a81561a182",
+      "artifact_type": "rule_evaluation_set",
+      "content_hash": "sha256:c430d5e798dd81e0e0d7f1cc0f6eefa063d86ada98513e9a8c4116f6a1743e8c"
+     },
+     {
+      "artifact_id": "art:913af010f72abc06c2513459ab1c325e",
+      "artifact_type": "consistency_annotation_set",
+      "content_hash": "sha256:19063ecaf3b86190e7b1fbc744e49e5248929c0d2778921a7d3a49455664cb21"
+     },
+     {
+      "artifact_id": "art:bb08cb696e1f3543169f0d91a533a157",
+      "artifact_type": "weight_set",
+      "content_hash": "sha256:37d2da7d0c6865fec90bf393147bd7cf8838a46945910e6f37adac019651fb3f"
+     }
+    ]
+   },
+   "revision": 0,
+   "schema_version": "cira.evaluation_report/1.0.2",
+   "tick": null
+  },
+  {
+   "artifact_id": "art:10dcd007597e95e8c756ae045a2d50f0",
+   "artifact_type": "experiment_definition",
+   "content_hash": "sha256:d0f0036159d089c18d7ae8181e0b931c19c521b198f79dd0a84301835bd86ec0",
+   "experiment_id": "exp:fx_tx14_replay",
+   "logical_key": "definition",
+   "payload": {
+    "adapter": {
+     "config_ref": "adcfg:fx_04_11",
+     "kind": "FIXTURE",
+     "merge_policy": {
+      "point": "merge.policy",
+      "variant": "engine_first",
+      "version": 1
+     }
+    },
+    "definition_version": "1.0.2",
+    "label": "TX14 walkthrough (replay)",
+    "metric_config": {
+     "closure_basis": {
+      "point": "metrics.closure_basis",
+      "variant": "state_rules_a_final_tick",
+      "version": 1
+     },
+     "comparison_tick": 2,
+     "coverage_weighting": {
+      "point": "metrics.coverage_weighting",
+      "variant": "weighted",
+      "version": 1
+     },
+     "gap_matcher": {
+      "point": "metrics.gap_matcher",
+      "variant": "subjects_tickwindow_1to1",
+      "version": 1
+     },
+     "hypothesis_policy": {
+      "point": "metrics.hypothesis_policy",
+      "variant": "include",
+      "version": 1
+     },
+     "service_function_spaces": {
+      "point": "metrics.service_function_spaces",
+      "variant": "a_only",
+      "version": 1
+     },
+     "stability_source": {
+      "point": "metrics.stability_source",
+      "variant": "resweep_same_bundle",
+      "version": 1
+     },
+     "weight_set_ref": "ws:fx_default"
+    },
+    "observation_config_ref": {
+     "artifact_id": "art:3cf690ef86346b416d13064c69610b84",
+     "artifact_type": "observation_config",
+     "content_hash": "sha256:5a50b767b618a803fbcf52bfcb88457b57a9a9ed0ce9baec69cc7ef9e401b64d"
+    },
+    "observation_strategy": {
+     "budget_unit": {
+      "point": "observation.budget_unit",
+      "variant": "items_bytes",
+      "version": 1
+     }
+    },
+    "replay_mode": "SYNTHETIC",
+    "replay_of": "exp:fx_tx14_origin",
+    "scenario_ref": {
+     "artifact_id": "art:d101553030de33caf52ae96eaaa99d89",
+     "artifact_type": "scenario_definition",
+     "content_hash": "sha256:c37b774fda6203b1b3b098b855c7a0cf58e44a639e8e1fcaf3aeb6b5ad110367"
+    },
+    "stability": {
+     "enabled": true,
+     "tick": 2
+    },
+    "sweep_schedule": {
+     "mode": "EXPLICIT",
+     "ticks": [
+      1,
+      2
+     ]
+    },
+    "target_definition_ref": {
+     "artifact_id": "art:7c38f81a37f42ff449f195417b0bff91",
+     "artifact_type": "target_definition",
+     "content_hash": "sha256:e1fd4f06448fff84a526afd3406bb22549ce2f3dbba96007ad3baf51c7d35501"
+    }
+   },
+   "provenance": {
+    "data_origin": "SYNTHETIC",
+    "producer_id": "fx.tx14.f03",
+    "producer_version": "1.0.2",
+    "source_field": "F03",
+    "source_refs": [
+     {
+      "artifact_id": "art:d101553030de33caf52ae96eaaa99d89",
+      "artifact_type": "scenario_definition",
+      "content_hash": "sha256:c37b774fda6203b1b3b098b855c7a0cf58e44a639e8e1fcaf3aeb6b5ad110367"
+     },
+     {
+      "artifact_id": "art:3cf690ef86346b416d13064c69610b84",
+      "artifact_type": "observation_config",
+      "content_hash": "sha256:5a50b767b618a803fbcf52bfcb88457b57a9a9ed0ce9baec69cc7ef9e401b64d"
+     },
+     {
+      "artifact_id": "art:7c38f81a37f42ff449f195417b0bff91",
+      "artifact_type": "target_definition",
+      "content_hash": "sha256:e1fd4f06448fff84a526afd3406bb22549ce2f3dbba96007ad3baf51c7d35501"
+     }
+    ]
+   },
+   "revision": 0,
+   "schema_version": "cira.experiment_definition/1.0.2",
+   "tick": null
+  },
+  {
+   "artifact_id": "art:f674f652ba9286aa8f4bf2c3e6bc539d",
+   "artifact_type": "governance_definition",
+   "content_hash": "sha256:58e720721313b95b0959325ca516dac17de95c28cf4cd858ac81f60fe3f249db",
+   "experiment_id": "exp:fx_tx14_replay",
+   "logical_key": "gov:fx_tx14@1.0.0",
+   "payload": {
+    "governance_id": "gov:fx_tx14",
+    "roles": [
+     {
+      "label": "Operator",
+      "role_id": "role:operator"
+     }
+    ],
+    "rules": [
+     {
+      "applies_to": [
+       "node:n01"
+      ],
+      "description": "n01 is not faulty",
+      "expression": {
+       "at": null,
+       "attr": "attr:n01/state",
+       "op": "in",
+       "values": [
+        "NOMINAL",
+        "DEGRADED"
+       ]
+      },
+      "kind": "STATE",
+      "permits": [],
+      "requires": [],
+      "rule_id": "rule:health_ok",
+      "scope": [
+       "node:n01"
+      ],
+      "valid_from_tick": 0,
+      "valid_until_tick": null,
+      "version": "1.0.0"
+     },
+     {
+      "applies_to": [
+       "node:n05",
+       "node:n09"
+      ],
+      "description": "",
+      "expression": {
+       "if": {
+        "at": null,
+        "attr": "attr:n05/state",
+        "op": "eq",
+        "value": "OPEN"
+       },
+       "op": "implies",
+       "then": {
+        "at": null,
+        "attr": "attr:n09/state",
+        "op": "eq",
+        "value": "AUTHORIZED"
+       }
+      },
+      "kind": "STATE",
+      "permits": [
+       "role:operator"
+      ],
+      "requires": [
+       "rule:health_ok"
+      ],
+      "rule_id": "rule:gate_needs_auth",
+      "scope": [],
+      "valid_from_tick": 0,
+      "valid_until_tick": 2,
+      "version": "1.0.0"
+     },
+     {
+      "applies_to": [
+       "node:n04"
+      ],
+      "description": "",
+      "expression": {
+       "args": [
+        {
+         "allowed": [
+          {
+           "from": "ACTIVE",
+           "to": "ACTIVE"
+          },
+          {
+           "from": "ACTIVE",
+           "to": "STANDBY"
+          },
+          {
+           "from": "STANDBY",
+           "to": "ACTIVE"
+          }
+         ],
+         "attr": "attr:n04/state",
+         "op": "transition_in"
+        },
+        {
+         "arg": {
+          "at": "NEXT",
+          "attr": "attr:n03/state",
+          "op": "eq",
+          "value": "CRITICAL"
+         },
+         "op": "not"
+        },
+        {
+         "at": "CURRENT",
+         "attr": "attr:n04/state",
+         "op": "in",
+         "values": [
+          "ACTIVE",
+          "STANDBY"
+         ]
+        }
+       ],
+       "op": "and"
+      },
+      "kind": "TRANSITION",
+      "permits": [],
+      "requires": [],
+      "rule_id": "rule:mode_steps",
+      "scope": [],
+      "valid_from_tick": 0,
+      "valid_until_tick": null,
+      "version": "1.0.0"
+     },
+     {
+      "applies_to": [
+       "node:n02"
+      ],
+      "description": "",
+      "expression": {
+       "args": [
+        {
+         "at": null,
+         "attr": "attr:n02/state",
+         "op": "eq",
+         "value": "NOMINAL"
+        },
+        {
+         "at": null,
+         "attr": "attr:n02/state",
+         "op": "eq",
+         "value": "DEGRADED"
+        }
+       ],
+       "op": "or"
+      },
+      "kind": "FUNCTION",
+      "permits": [],
+      "requires": [],
+      "rule_id": "rule:svc_supply",
+      "scope": [],
+      "valid_from_tick": 0,
+      "valid_until_tick": null,
+      "version": "1.0.0"
+     }
+    ],
+    "topology_ref": {
+     "artifact_id": "art:6f68dd924cce56c149250876024a183c",
+     "artifact_type": "topology_definition",
+     "content_hash": "sha256:ed7575653013d98284d479f3bdcf48460ce2f5539d3aae0ca22adddfd9bff0a5"
+    },
+    "version": "1.0.0"
+   },
+   "provenance": {
+    "data_origin": "SYNTHETIC",
+    "producer_id": "fx.tx14.f02",
+    "producer_version": "1.0.2",
+    "source_field": "F02",
+    "source_refs": [
+     {
+      "artifact_id": "art:6f68dd924cce56c149250876024a183c",
+      "artifact_type": "topology_definition",
+      "content_hash": "sha256:ed7575653013d98284d479f3bdcf48460ce2f5539d3aae0ca22adddfd9bff0a5"
+     }
+    ]
+   },
+   "revision": 0,
+   "schema_version": "cira.governance_definition/1.0.2",
+   "tick": null
+  },
+  {
+   "artifact_id": "art:77270fda2722529fc512330fe393f481",
+   "artifact_type": "immutable_topology",
+   "content_hash": "sha256:0578baed8aef5b407bdbed5e8aa256b875d343f6bc1fdb1aed56ff929eab51c4",
+   "experiment_id": "exp:fx_tx14_replay",
+   "logical_key": "topo:fx_04_11@1.0.0",
+   "payload": {
+    "attribute_universe": [
+     "attr:n01/state",
+     "attr:n02/state",
+     "attr:n03/state",
+     "attr:n04/state",
+     "attr:n05/state",
+     "attr:n06/state",
+     "attr:n07/state",
+     "attr:n08/state",
+     "attr:n09/state",
+     "attr:n10/state"
+    ],
+    "definition": {
+     "node_types": [
+      {
+       "label": "Komponente",
+       "type_id": "type:component"
+      }
+     ],
+     "nodes": [
+      {
+       "attributes": [
+        {
+         "applicability": "APPLICABLE",
+         "attribute_id": "attr:n01/state",
+         "domain_ref": "dom:health",
+         "name": "state"
+        }
+       ],
+       "label": "Komponente 01",
+       "node_id": "node:n01",
+       "node_type": "type:component",
+       "version": "1.0.0"
+      },
+      {
+       "attributes": [
+        {
+         "applicability": "APPLICABLE",
+         "attribute_id": "attr:n02/state",
+         "domain_ref": "dom:health",
+         "name": "state"
+        }
+       ],
+       "label": "Komponente 02",
+       "node_id": "node:n02",
+       "node_type": "type:component",
+       "version": "1.0.0"
+      },
+      {
+       "attributes": [
+        {
+         "applicability": "APPLICABLE",
+         "attribute_id": "attr:n03/state",
+         "domain_ref": "dom:health",
+         "name": "state"
+        }
+       ],
+       "label": "Komponente 03",
+       "node_id": "node:n03",
+       "node_type": "type:component",
+       "version": "1.0.0"
+      },
+      {
+       "attributes": [
+        {
+         "applicability": "APPLICABLE",
+         "attribute_id": "attr:n04/state",
+         "domain_ref": "dom:mode",
+         "name": "state"
+        }
+       ],
+       "label": "Komponente 04",
+       "node_id": "node:n04",
+       "node_type": "type:component",
+       "version": "1.0.0"
+      },
+      {
+       "attributes": [
+        {
+         "applicability": "APPLICABLE",
+         "attribute_id": "attr:n05/state",
+         "domain_ref": "dom:gate",
+         "name": "state"
+        }
+       ],
+       "label": "Komponente 05",
+       "node_id": "node:n05",
+       "node_type": "type:component",
+       "version": "1.0.0"
+      },
+      {
+       "attributes": [
+        {
+         "applicability": "APPLICABLE",
+         "attribute_id": "attr:n06/state",
+         "domain_ref": "dom:health",
+         "name": "state"
+        }
+       ],
+       "label": "Komponente 06",
+       "node_id": "node:n06",
+       "node_type": "type:component",
+       "version": "1.0.0"
+      },
+      {
+       "attributes": [
+        {
+         "applicability": "APPLICABLE",
+         "attribute_id": "attr:n07/state",
+         "domain_ref": "dom:mode",
+         "name": "state"
+        }
+       ],
+       "label": "Komponente 07",
+       "node_id": "node:n07",
+       "node_type": "type:component",
+       "version": "1.0.0"
+      },
+      {
+       "attributes": [
+        {
+         "applicability": "APPLICABLE",
+         "attribute_id": "attr:n08/state",
+         "domain_ref": "dom:health",
+         "name": "state"
+        }
+       ],
+       "label": "Komponente 08",
+       "node_id": "node:n08",
+       "node_type": "type:component",
+       "version": "1.0.0"
+      },
+      {
+       "attributes": [
+        {
+         "applicability": "APPLICABLE",
+         "attribute_id": "attr:n09/state",
+         "domain_ref": "dom:authorization",
+         "name": "state"
+        }
+       ],
+       "label": "Komponente 09",
+       "node_id": "node:n09",
+       "node_type": "type:component",
+       "version": "1.0.0"
+      },
+      {
+       "attributes": [
+        {
+         "applicability": "APPLICABLE",
+         "attribute_id": "attr:n10/state",
+         "domain_ref": "dom:health",
+         "name": "state"
+        }
+       ],
+       "label": "Komponente 10",
+       "node_id": "node:n10",
+       "node_type": "type:component",
+       "version": "1.0.0"
+      }
+     ],
+     "relations": [
+      {
+       "relation_id": "rel:depends_on:n02:n01",
+       "relation_type": "depends_on",
+       "source": "node:n02",
+       "target": "node:n01",
+       "version": "1.0.0"
+      },
+      {
+       "relation_id": "rel:depends_on:n03:n02",
+       "relation_type": "depends_on",
+       "source": "node:n03",
+       "target": "node:n02",
+       "version": "1.0.0"
+      },
+      {
+       "relation_id": "rel:depends_on:n04:n03",
+       "relation_type": "depends_on",
+       "source": "node:n04",
+       "target": "node:n03",
+       "version": "1.0.0"
+      },
+      {
+       "relation_id": "rel:depends_on:n05:n04",
+       "relation_type": "depends_on",
+       "source": "node:n05",
+       "target": "node:n04",
+       "version": "1.0.0"
+      },
+      {
+       "relation_id": "rel:reports_to:n06:n05",
+       "relation_type": "reports_to",
+       "source": "node:n06",
+       "target": "node:n05",
+       "version": "1.0.0"
+      },
+      {
+       "relation_id": "rel:depends_on:n07:n04",
+       "relation_type": "depends_on",
+       "source": "node:n07",
+       "target": "node:n04",
+       "version": "1.0.0"
+      },
+      {
+       "relation_id": "rel:depends_on:n08:n06",
+       "relation_type": "depends_on",
+       "source": "node:n08",
+       "target": "node:n06",
+       "version": "1.0.0"
+      },
+      {
+       "relation_id": "rel:provides:n09:n05",
+       "relation_type": "provides",
+       "source": "node:n09",
+       "target": "node:n05",
+       "version": "1.0.0"
+      },
+      {
+       "relation_id": "rel:depends_on:n10:n08",
+       "relation_type": "depends_on",
+       "source": "node:n10",
+       "target": "node:n08",
+       "version": "1.0.0"
+      }
+     ],
+     "topology_id": "topo:fx_04_11",
+     "value_domains": [
+      {
+       "domain_id": "dom:health",
+       "symbols": [
+        "NOMINAL",
+        "DEGRADED",
+        "FAULTY",
+        "CRITICAL"
+       ],
+       "version": "1.0.0"
+      },
+      {
+       "domain_id": "dom:mode",
+       "symbols": [
+        "ACTIVE",
+        "STANDBY"
+       ],
+       "version": "1.0.0"
+      },
+      {
+       "domain_id": "dom:gate",
+       "symbols": [
+        "OPEN",
+        "CLOSED"
+       ],
+       "version": "1.0.0"
+      },
+      {
+       "domain_id": "dom:authorization",
+       "symbols": [
+        "AUTHORIZED",
+        "PENDING",
+        "DENIED"
+       ],
+       "version": "1.0.0"
+      }
+     ],
+     "version": "1.0.0"
+    }
+   },
+   "provenance": {
+    "data_origin": "SYNTHETIC",
+    "producer_id": "fx.tx14.f01",
+    "producer_version": "1.0.2",
+    "source_field": "F01",
+    "source_refs": [
+     {
+      "artifact_id": "art:6f68dd924cce56c149250876024a183c",
+      "artifact_type": "topology_definition",
+      "content_hash": "sha256:ed7575653013d98284d479f3bdcf48460ce2f5539d3aae0ca22adddfd9bff0a5"
+     }
+    ]
+   },
+   "revision": 0,
+   "schema_version": "cira.immutable_topology/1.0.2",
+   "tick": null
+  },
+  {
+   "artifact_id": "art:59baf764530846f2beb13906b1591577",
+   "artifact_type": "observable_rules",
+   "content_hash": "sha256:575a71d7b60d9e610522acccc3c5aad654639f89e4529bbc66117d533abc549b",
+   "experiment_id": "exp:fx_tx14_replay",
+   "logical_key": "ocfg:fx_partial@1.0.0",
+   "payload": {
+    "rules": [
+     {
+      "applies_to": [
+       "node:n01"
+      ],
+      "description": "n01 is not faulty",
+      "expression": {
+       "at": null,
+       "attr": "attr:n01/state",
+       "op": "in",
+       "values": [
+        "NOMINAL",
+        "DEGRADED"
+       ]
+      },
+      "kind": "STATE",
+      "permits": [],
+      "requires": [],
+      "rule_id": "rule:health_ok",
+      "scope": [
+       "node:n01"
+      ],
+      "valid_from_tick": 0,
+      "valid_until_tick": null,
+      "version": "1.0.0"
+     },
+     {
+      "applies_to": [
+       "node:n04"
+      ],
+      "description": "",
+      "expression": {
+       "args": [
+        {
+         "allowed": [
+          {
+           "from": "ACTIVE",
+           "to": "ACTIVE"
+          },
+          {
+           "from": "ACTIVE",
+           "to": "STANDBY"
+          },
+          {
+           "from": "STANDBY",
+           "to": "ACTIVE"
+          }
+         ],
+         "attr": "attr:n04/state",
+         "op": "transition_in"
+        },
+        {
+         "arg": {
+          "at": "NEXT",
+          "attr": "attr:n03/state",
+          "op": "eq",
+          "value": "CRITICAL"
+         },
+         "op": "not"
+        },
+        {
+         "at": "CURRENT",
+         "attr": "attr:n04/state",
+         "op": "in",
+         "values": [
+          "ACTIVE",
+          "STANDBY"
+         ]
+        }
+       ],
+       "op": "and"
+      },
+      "kind": "TRANSITION",
+      "permits": [],
+      "requires": [],
+      "rule_id": "rule:mode_steps",
+      "scope": [],
+      "valid_from_tick": 0,
+      "valid_until_tick": null,
+      "version": "1.0.0"
+     }
+    ]
+   },
+   "provenance": {
+    "data_origin": "SYNTHETIC",
+    "producer_id": "fx.tx14.f04",
+    "producer_version": "1.0.2",
+    "source_field": "F04",
+    "source_refs": [
+     {
+      "artifact_id": "art:3cf690ef86346b416d13064c69610b84",
+      "artifact_type": "observation_config",
+      "content_hash": "sha256:5a50b767b618a803fbcf52bfcb88457b57a9a9ed0ce9baec69cc7ef9e401b64d"
+     }
+    ]
+   },
+   "revision": 0,
+   "schema_version": "cira.observable_rules/1.0.2",
+   "tick": null
+  },
+  {
+   "artifact_id": "art:cd8526c944705684379cdae7e32d7765",
+   "artifact_type": "observable_topology",
+   "content_hash": "sha256:20f563434c76fd5eefda57a733c0e430cdedf9a363e04ff28d311b4de0ca25da",
+   "experiment_id": "exp:fx_tx14_replay",
+   "logical_key": "ocfg:fx_partial@1.0.0",
+   "payload": {
+    "nodes": [
+     {
+      "attributes": [
+       {
+        "applicability": "APPLICABLE",
+        "attribute_id": "attr:n01/state",
+        "domain_ref": "dom:health",
+        "name": "state"
+       }
+      ],
+      "label": "Komponente 01",
+      "node_id": "node:n01",
+      "node_type": "type:component",
+      "version": "1.0.0"
+     },
+     {
+      "attributes": [
+       {
+        "applicability": "APPLICABLE",
+        "attribute_id": "attr:n02/state",
+        "domain_ref": "dom:health",
+        "name": "state"
+       }
+      ],
+      "label": "Komponente 02",
+      "node_id": "node:n02",
+      "node_type": "type:component",
+      "version": "1.0.0"
+     },
+     {
+      "attributes": [
+       {
+        "applicability": "APPLICABLE",
+        "attribute_id": "attr:n03/state",
+        "domain_ref": "dom:health",
+        "name": "state"
+       }
+      ],
+      "label": "Komponente 03",
+      "node_id": "node:n03",
+      "node_type": "type:component",
+      "version": "1.0.0"
+     },
+     {
+      "attributes": [
+       {
+        "applicability": "APPLICABLE",
+        "attribute_id": "attr:n04/state",
+        "domain_ref": "dom:mode",
+        "name": "state"
+       }
+      ],
+      "label": "Komponente 04",
+      "node_id": "node:n04",
+      "node_type": "type:component",
+      "version": "1.0.0"
+     },
+     {
+      "attributes": [
+       {
+        "applicability": "APPLICABLE",
+        "attribute_id": "attr:n05/state",
+        "domain_ref": "dom:gate",
+        "name": "state"
+       }
+      ],
+      "label": "Komponente 05",
+      "node_id": "node:n05",
+      "node_type": "type:component",
+      "version": "1.0.0"
+     },
+     {
+      "attributes": [
+       {
+        "applicability": "APPLICABLE",
+        "attribute_id": "attr:n06/state",
+        "domain_ref": "dom:health",
+        "name": "state"
+       }
+      ],
+      "label": "Komponente 06",
+      "node_id": "node:n06",
+      "node_type": "type:component",
+      "version": "1.0.0"
+     },
+     {
+      "attributes": [
+       {
+        "applicability": "APPLICABLE",
+        "attribute_id": "attr:n07/state",
+        "domain_ref": "dom:mode",
+        "name": "state"
+       }
+      ],
+      "label": "Komponente 07",
+      "node_id": "node:n07",
+      "node_type": "type:component",
+      "version": "1.0.0"
+     }
+    ],
+    "relations": [
+     {
+      "relation_id": "rel:depends_on:n02:n01",
+      "relation_type": "depends_on",
+      "source": "node:n02",
+      "target": "node:n01",
+      "version": "1.0.0"
+     },
+     {
+      "relation_id": "rel:depends_on:n03:n02",
+      "relation_type": "depends_on",
+      "source": "node:n03",
+      "target": "node:n02",
+      "version": "1.0.0"
+     }
+    ],
+    "value_domains": [
+     {
+      "domain_id": "dom:gate",
+      "symbols": [
+       "OPEN",
+       "CLOSED"
+      ],
+      "version": "1.0.0"
+     },
+     {
+      "domain_id": "dom:health",
+      "symbols": [
+       "NOMINAL",
+       "DEGRADED",
+       "FAULTY",
+       "CRITICAL"
+      ],
+      "version": "1.0.0"
+     },
+     {
+      "domain_id": "dom:mode",
+      "symbols": [
+       "ACTIVE",
+       "STANDBY"
+      ],
+      "version": "1.0.0"
+     }
+    ]
+   },
+   "provenance": {
+    "data_origin": "SYNTHETIC",
+    "producer_id": "fx.tx14.f04",
+    "producer_version": "1.0.2",
+    "source_field": "F04",
+    "source_refs": [
+     {
+      "artifact_id": "art:3cf690ef86346b416d13064c69610b84",
+      "artifact_type": "observation_config",
+      "content_hash": "sha256:5a50b767b618a803fbcf52bfcb88457b57a9a9ed0ce9baec69cc7ef9e401b64d"
+     }
+    ]
+   },
+   "revision": 0,
+   "schema_version": "cira.observable_topology/1.0.2",
+   "tick": null
+  },
+  {
+   "artifact_id": "art:3cf690ef86346b416d13064c69610b84",
+   "artifact_type": "observation_config",
+   "content_hash": "sha256:5a50b767b618a803fbcf52bfcb88457b57a9a9ed0ce9baec69cc7ef9e401b64d",
+   "experiment_id": "exp:fx_tx14_replay",
+   "logical_key": "ocfg:fx_partial@1.0.0",
+   "payload": {
+    "bundle_budget": {
+     "max_bytes": 200000,
+     "max_observations": 200
+    },
+    "config_id": "ocfg:fx_partial",
+    "serialization_profiles": [
+     "full",
+     "compact"
+    ],
+    "sources": [
+     {
+      "active": [
+       {
+        "from_tick": 0,
+        "to_tick": null
+       }
+      ],
+      "label": "Quelle 01",
+      "lag_ticks": 0,
+      "observes": [
+       "attr:n01/state",
+       "attr:n02/state",
+       "attr:n03/state",
+       "attr:n04/state",
+       "attr:n05/state",
+       "attr:n06/state"
+      ],
+      "source_id": "src:s01"
+     },
+     {
+      "active": [
+       {
+        "from_tick": 0,
+        "to_tick": 0
+       },
+       {
+        "from_tick": 2,
+        "to_tick": null
+       }
+      ],
+      "label": "Quelle 02",
+      "lag_ticks": 1,
+      "observes": [
+       "attr:n07/state"
+      ],
+      "source_id": "src:s02"
+     }
+    ],
+    "version": "1.0.0",
+    "visible_nodes": [
+     "node:n01",
+     "node:n02",
+     "node:n03",
+     "node:n04",
+     "node:n05",
+     "node:n06",
+     "node:n07"
+    ],
+    "visible_relations": [
+     "rel:depends_on:n02:n01",
+     "rel:depends_on:n03:n02"
+    ],
+    "visible_rules": [
+     "rule:health_ok",
+     "rule:mode_steps"
+    ]
+   },
+   "provenance": {
+    "data_origin": "SYNTHETIC",
+    "producer_id": "fx.tx14.f04",
+    "producer_version": "1.0.2",
+    "source_field": "F04",
+    "source_refs": [
+     {
+      "artifact_id": "art:6f68dd924cce56c149250876024a183c",
+      "artifact_type": "topology_definition",
+      "content_hash": "sha256:ed7575653013d98284d479f3bdcf48460ce2f5539d3aae0ca22adddfd9bff0a5"
+     },
+     {
+      "artifact_id": "art:f674f652ba9286aa8f4bf2c3e6bc539d",
+      "artifact_type": "governance_definition",
+      "content_hash": "sha256:58e720721313b95b0959325ca516dac17de95c28cf4cd858ac81f60fe3f249db"
+     }
+    ]
+   },
+   "revision": 0,
+   "schema_version": "cira.observation_config/1.0.2",
+   "tick": null
+  },
+  {
+   "artifact_id": "art:75f0e2bea81ccbe765f47b1ddecf7035",
+   "artifact_type": "operator_registry",
+   "content_hash": "sha256:f1c8d5daba08b465c1d576638f842db8f5896bcef4223022e42de46e5ddc247c",
+   "experiment_id": "exp:fx_tx14_replay",
+   "logical_key": "oreg:fx_placeholder@0.0.1",
+   "payload": {
+    "operators": [
+     {
+      "description_from_source": "fixture",
+      "label_from_source": "LABEL_UNAVAILABLE",
+      "ref": {
+       "namespace": "CANONICAL_V181",
+       "registry_version": "v1.8.1",
+       "symbol": "∆"
+      }
+     },
+     {
+      "description_from_source": "",
+      "label_from_source": "LABEL_UNAVAILABLE",
+      "ref": {
+       "code": "R01",
+       "namespace": "R",
+       "registry_version": "fx"
+      }
+     },
+     {
+      "description_from_source": "",
+      "label_from_source": "LABEL_UNAVAILABLE",
+      "ref": {
+       "code": "I01",
+       "namespace": "I",
+       "registry_version": "fx"
+      }
+     },
+     {
+      "description_from_source": "",
+      "label_from_source": "LABEL_UNAVAILABLE",
+      "ref": {
+       "code": "ext.op",
+       "namespace": "EXTERNAL",
+       "registry_version": "fx"
+      }
+     }
+    ],
+    "registry_id": "oreg:fx_placeholder",
+    "sigma_couplings": [
+     {
+      "operator": {
+       "namespace": "CANONICAL_V181",
+       "registry_version": "v1.8.1",
+       "symbol": "∆"
+      },
+      "relation_label_from_source": "LABEL_UNAVAILABLE",
+      "source": {
+       "registry_version": "v1.8.1",
+       "sigma_id": "Σ01"
+      },
+      "target": {
+       "registry_version": "v1.8.1",
+       "sigma_id": "Σ02"
+      }
+     }
+    ],
+    "sigma_fields": [
+     {
+      "label_from_source": null,
+      "ref": {
+       "registry_version": "v1.8.1",
+       "sigma_id": "Σ01"
+      }
+     },
+     {
+      "label_from_source": "LABEL_UNAVAILABLE",
+      "ref": {
+       "registry_version": "v1.8.1",
+       "sigma_id": "Σ02"
+      }
+     }
+    ],
+    "source": "fixture placeholder — not the SYNTX registry (DEP-08)",
+    "version": "0.0.1"
+   },
+   "provenance": {
+    "data_origin": "FIXTURE",
+    "producer_id": "fx.tx14.f05",
+    "producer_version": "1.0.2",
+    "source_field": "F05",
+    "source_refs": []
+   },
+   "revision": 0,
+   "schema_version": "cira.operator_registry/1.0.2",
+   "tick": null
+  },
+  {
+   "artifact_id": "art:c62b034c3feec9398165640982f0c9db",
+   "artifact_type": "replay_report",
+   "content_hash": "sha256:66f3891996aff8d769eac91f849140da3d9106cb2b0b7121521c92d7b9ef6569",
+   "experiment_id": "exp:fx_tx14_replay",
+   "logical_key": "exp:fx_tx14_origin:exp:fx_tx14_replay",
+   "payload": {
+    "compared_types": [
+     "actual_state",
+     "observation_bundle"
+    ],
+    "matches": [
+     {
+      "artifact_type": "actual_state",
+      "equal": true,
+      "logical_key": "t0",
+      "original_id": "art:8f773580e7da7e3a42414d4d7285b81c",
+      "replay_id": "art:8f773580e7da7e3a42414d4d7285b81c"
+     },
+     {
+      "artifact_type": "observation_bundle",
+      "equal": true,
+      "logical_key": "t9",
+      "original_id": null,
+      "replay_id": null
+     }
+    ],
+    "mode": "SYNTHETIC",
+    "original_experiment_id": "exp:fx_tx14_origin",
+    "replay_experiment_id": "exp:fx_tx14_replay",
+    "verdict": "IDENTICAL"
+   },
+   "provenance": {
+    "data_origin": "SYNTHETIC",
+    "producer_id": "fx.tx14.f03",
+    "producer_version": "1.0.2",
+    "source_field": "F03",
+    "source_refs": [
+     {
+      "artifact_id": "art:8f773580e7da7e3a42414d4d7285b81c",
+      "artifact_type": "actual_state",
+      "content_hash": "sha256:edbd21813f8c941cfcf790039c001d3284e6c9da08ede886aac9d60b32173d4b"
+     }
+    ]
+   },
+   "revision": 0,
+   "schema_version": "cira.replay_report/1.0.2",
+   "tick": null
+  },
+  {
+   "artifact_id": "art:d101553030de33caf52ae96eaaa99d89",
+   "artifact_type": "scenario_definition",
+   "content_hash": "sha256:c37b774fda6203b1b3b098b855c7a0cf58e44a639e8e1fcaf3aeb6b5ad110367",
+   "experiment_id": "exp:fx_tx14_replay",
+   "logical_key": "scn:fx_base@1.0.0",
+   "payload": {
+    "authority_ref": null,
+    "derived_from_proposal": null,
+    "fixture_lineage_id": "lin:fx_04_11",
+    "governance_ref": {
+     "artifact_id": "art:f674f652ba9286aa8f4bf2c3e6bc539d",
+     "artifact_type": "governance_definition",
+     "content_hash": "sha256:58e720721313b95b0959325ca516dac17de95c28cf4cd858ac81f60fe3f249db"
+    },
+    "initial_state": [
+     {
+      "applicability": "APPLICABLE",
+      "attribute_ref": "attr:n01/state",
+      "value": "NOMINAL"
+     },
+     {
+      "applicability": "APPLICABLE",
+      "attribute_ref": "attr:n02/state",
+      "value": "NOMINAL"
+     },
+     {
+      "applicability": "APPLICABLE",
+      "attribute_ref": "attr:n03/state",
+      "value": "DEGRADED"
+     },
+     {
+      "applicability": "APPLICABLE",
+      "attribute_ref": "attr:n04/state",
+      "value": "ACTIVE"
+     },
+     {
+      "applicability": "APPLICABLE",
+      "attribute_ref": "attr:n05/state",
+      "value": "CLOSED"
+     },
+     {
+      "applicability": "APPLICABLE",
+      "attribute_ref": "attr:n06/state",
+      "value": "NOMINAL"
+     },
+     {
+      "applicability": "APPLICABLE",
+      "attribute_ref": "attr:n07/state",
+      "value": "STANDBY"
+     },
+     {
+      "applicability": "APPLICABLE",
+      "attribute_ref": "attr:n08/state",
+      "value": "NOMINAL"
+     },
+     {
+      "applicability": "APPLICABLE",
+      "attribute_ref": "attr:n09/state",
+      "value": "AUTHORIZED"
+     },
+     {
+      "applicability": "APPLICABLE",
+      "attribute_ref": "attr:n10/state",
+      "value": "CRITICAL"
+     }
+    ],
+    "inputs": [
+     {
+      "approval": null,
+      "attribute_ref": "attr:n05/state",
+      "event_id": "evt:e1",
+      "kind": "SET_ATTRIBUTE",
+      "seq": 0,
+      "tick": 1,
+      "value": "OPEN"
+     },
+     {
+      "approval": {
+       "approval_id": "appr:a1",
+       "decision": "APPROVED",
+       "rationale": "fixture",
+       "role_ref": "role:operator",
+       "rule_ref": "rule:gate_needs_auth",
+       "subject_refs": [
+        "node:n05"
+       ],
+       "tick": 1
+      },
+      "attribute_ref": "attr:n09/state",
+      "event_id": "evt:e2",
+      "kind": "APPLY_APPROVAL",
+      "seq": 1,
+      "tick": 1,
+      "value": null
+     }
+    ],
+    "is_fixture": true,
+    "label": "Baseline (fixture)",
+    "scenario_id": "scn:fx_base",
+    "service_function_refs": [
+     "rule:svc_supply"
+    ],
+    "tick_count": 3,
+    "topology_ref": {
+     "artifact_id": "art:6f68dd924cce56c149250876024a183c",
+     "artifact_type": "topology_definition",
+     "content_hash": "sha256:ed7575653013d98284d479f3bdcf48460ce2f5539d3aae0ca22adddfd9bff0a5"
+    },
+    "variant_kind": "BASELINE",
+    "variant_of": null,
+    "version": "1.0.0"
+   },
+   "provenance": {
+    "data_origin": "SYNTHETIC",
+    "producer_id": "fx.tx14.f03",
+    "producer_version": "1.0.2",
+    "source_field": "F03",
+    "source_refs": [
+     {
+      "artifact_id": "art:6f68dd924cce56c149250876024a183c",
+      "artifact_type": "topology_definition",
+      "content_hash": "sha256:ed7575653013d98284d479f3bdcf48460ce2f5539d3aae0ca22adddfd9bff0a5"
+     },
+     {
+      "artifact_id": "art:f674f652ba9286aa8f4bf2c3e6bc539d",
+      "artifact_type": "governance_definition",
+      "content_hash": "sha256:58e720721313b95b0959325ca516dac17de95c28cf4cd858ac81f60fe3f249db"
+     }
+    ]
+   },
+   "revision": 0,
+   "schema_version": "cira.scenario_definition/1.0.2",
+   "tick": null
+  },
+  {
+   "artifact_id": "art:b67c200288bd6f9b3d9bc7fd3c4f201a",
+   "artifact_type": "scenario_definition",
+   "content_hash": "sha256:478e87b93100905e31170f8e5a49c5f645d19456db71e053334e375f5dd94648",
+   "experiment_id": "exp:fx_tx14_replay",
+   "logical_key": "scn:fx_rec@1.0.0",
+   "payload": {
+    "authority_ref": {
+     "artifact_id": "art:b21a82236683e67e1449eeb4b88e1baa",
+     "artifact_type": "authority_record",
+     "content_hash": "sha256:1fde844d927ab009d6c8b5a57ba70cd1629c6e29f2197ce88f6fc04551ea7e45"
+    },
+    "derived_from_proposal": {
+     "artifact_id": "art:f5ebbc250ed3b69d8cdbd2b2e4bf2567",
+     "artifact_type": "recovery_proposal",
+     "content_hash": "sha256:a6b95a6e18102f9ac3d1382794538516cb04c96ae4f953e2dacc38e8022958e4"
+    },
+    "fixture_lineage_id": "lin:fx_04_11",
+    "governance_ref": {
+     "artifact_id": "art:f674f652ba9286aa8f4bf2c3e6bc539d",
+     "artifact_type": "governance_definition",
+     "content_hash": "sha256:58e720721313b95b0959325ca516dac17de95c28cf4cd858ac81f60fe3f249db"
+    },
+    "initial_state": [
+     {
+      "applicability": "APPLICABLE",
+      "attribute_ref": "attr:n01/state",
+      "value": "NOMINAL"
+     },
+     {
+      "applicability": "APPLICABLE",
+      "attribute_ref": "attr:n02/state",
+      "value": "NOMINAL"
+     },
+     {
+      "applicability": "APPLICABLE",
+      "attribute_ref": "attr:n03/state",
+      "value": "DEGRADED"
+     },
+     {
+      "applicability": "APPLICABLE",
+      "attribute_ref": "attr:n04/state",
+      "value": "ACTIVE"
+     },
+     {
+      "applicability": "APPLICABLE",
+      "attribute_ref": "attr:n05/state",
+      "value": "CLOSED"
+     },
+     {
+      "applicability": "APPLICABLE",
+      "attribute_ref": "attr:n06/state",
+      "value": "NOMINAL"
+     },
+     {
+      "applicability": "APPLICABLE",
+      "attribute_ref": "attr:n07/state",
+      "value": "STANDBY"
+     },
+     {
+      "applicability": "APPLICABLE",
+      "attribute_ref": "attr:n08/state",
+      "value": "NOMINAL"
+     },
+     {
+      "applicability": "APPLICABLE",
+      "attribute_ref": "attr:n09/state",
+      "value": "AUTHORIZED"
+     },
+     {
+      "applicability": "APPLICABLE",
+      "attribute_ref": "attr:n10/state",
+      "value": "CRITICAL"
+     }
+    ],
+    "inputs": [
+     {
+      "approval": null,
+      "attribute_ref": "attr:n05/state",
+      "event_id": "evt:e1",
+      "kind": "SET_ATTRIBUTE",
+      "seq": 0,
+      "tick": 1,
+      "value": "OPEN"
+     },
+     {
+      "approval": null,
+      "attribute_ref": "attr:n05/state",
+      "event_id": "evt:e3",
+      "kind": "SET_ATTRIBUTE",
+      "seq": 1,
+      "tick": 2,
+      "value": "CLOSED"
+     }
+    ],
+    "is_fixture": true,
+    "label": "Recovery (fixture)",
+    "scenario_id": "scn:fx_rec",
+    "service_function_refs": [
+     "rule:svc_supply"
+    ],
+    "tick_count": 3,
+    "topology_ref": {
+     "artifact_id": "art:6f68dd924cce56c149250876024a183c",
+     "artifact_type": "topology_definition",
+     "content_hash": "sha256:ed7575653013d98284d479f3bdcf48460ce2f5539d3aae0ca22adddfd9bff0a5"
+    },
+    "variant_kind": "RECOVERY",
+    "variant_of": {
+     "artifact_id": "art:d101553030de33caf52ae96eaaa99d89",
+     "artifact_type": "scenario_definition",
+     "content_hash": "sha256:c37b774fda6203b1b3b098b855c7a0cf58e44a639e8e1fcaf3aeb6b5ad110367"
+    },
+    "version": "1.0.0"
+   },
+   "provenance": {
+    "data_origin": "SYNTHETIC",
+    "producer_id": "fx.tx14.f03",
+    "producer_version": "1.0.2",
+    "source_field": "F03",
+    "source_refs": [
+     {
+      "artifact_id": "art:d101553030de33caf52ae96eaaa99d89",
+      "artifact_type": "scenario_definition",
+      "content_hash": "sha256:c37b774fda6203b1b3b098b855c7a0cf58e44a639e8e1fcaf3aeb6b5ad110367"
+     },
+     {
+      "artifact_id": "art:b21a82236683e67e1449eeb4b88e1baa",
+      "artifact_type": "authority_record",
+      "content_hash": "sha256:1fde844d927ab009d6c8b5a57ba70cd1629c6e29f2197ce88f6fc04551ea7e45"
+     },
+     {
+      "artifact_id": "art:f5ebbc250ed3b69d8cdbd2b2e4bf2567",
+      "artifact_type": "recovery_proposal",
+      "content_hash": "sha256:a6b95a6e18102f9ac3d1382794538516cb04c96ae4f953e2dacc38e8022958e4"
+     }
+    ]
+   },
+   "revision": 0,
+   "schema_version": "cira.scenario_definition/1.0.2",
+   "tick": null
+  },
+  {
+   "artifact_id": "art:7c38f81a37f42ff449f195417b0bff91",
+   "artifact_type": "target_definition",
+   "content_hash": "sha256:e1fd4f06448fff84a526afd3406bb22549ce2f3dbba96007ad3baf51c7d35501",
+   "experiment_id": "exp:fx_tx14_replay",
+   "logical_key": "tgt:fx_target@1.0.0",
+   "payload": {
+    "authored_by": "fixture author",
+    "goals": [
+     {
+      "goal_id": "goal:g1",
+      "property": "RULE_SATISFIED",
+      "rule_ref": "rule:health_ok",
+      "subject_ref": "node:n01",
+      "value": null
+     },
+     {
+      "goal_id": "goal:g2",
+      "property": "ATTRIBUTE_EQUALS",
+      "rule_ref": null,
+      "subject_ref": "attr:n04/state",
+      "value": "ACTIVE"
+     }
+    ],
+    "target_id": "tgt:fx_target",
+    "version": "1.0.0"
+   },
+   "provenance": {
+    "data_origin": "SYNTHETIC",
+    "producer_id": "fx.tx14.f04",
+    "producer_version": "1.0.2",
+    "source_field": "F04",
+    "source_refs": [
+     {
+      "artifact_id": "art:3cf690ef86346b416d13064c69610b84",
+      "artifact_type": "observation_config",
+      "content_hash": "sha256:5a50b767b618a803fbcf52bfcb88457b57a9a9ed0ce9baec69cc7ef9e401b64d"
+     }
+    ]
+   },
+   "revision": 0,
+   "schema_version": "cira.target_definition/1.0.2",
+   "tick": null
+  },
+  {
+   "artifact_id": "art:6f68dd924cce56c149250876024a183c",
+   "artifact_type": "topology_definition",
+   "content_hash": "sha256:ed7575653013d98284d479f3bdcf48460ce2f5539d3aae0ca22adddfd9bff0a5",
+   "experiment_id": "exp:fx_tx14_replay",
+   "logical_key": "topo:fx_04_11@1.0.0",
+   "payload": {
+    "node_types": [
+     {
+      "label": "Komponente",
+      "type_id": "type:component"
+     }
+    ],
+    "nodes": [
+     {
+      "attributes": [
+       {
+        "applicability": "APPLICABLE",
+        "attribute_id": "attr:n01/state",
+        "domain_ref": "dom:health",
+        "name": "state"
+       }
+      ],
+      "label": "Komponente 01",
+      "node_id": "node:n01",
+      "node_type": "type:component",
+      "version": "1.0.0"
+     },
+     {
+      "attributes": [
+       {
+        "applicability": "APPLICABLE",
+        "attribute_id": "attr:n02/state",
+        "domain_ref": "dom:health",
+        "name": "state"
+       }
+      ],
+      "label": "Komponente 02",
+      "node_id": "node:n02",
+      "node_type": "type:component",
+      "version": "1.0.0"
+     },
+     {
+      "attributes": [
+       {
+        "applicability": "APPLICABLE",
+        "attribute_id": "attr:n03/state",
+        "domain_ref": "dom:health",
+        "name": "state"
+       }
+      ],
+      "label": "Komponente 03",
+      "node_id": "node:n03",
+      "node_type": "type:component",
+      "version": "1.0.0"
+     },
+     {
+      "attributes": [
+       {
+        "applicability": "APPLICABLE",
+        "attribute_id": "attr:n04/state",
+        "domain_ref": "dom:mode",
+        "name": "state"
+       }
+      ],
+      "label": "Komponente 04",
+      "node_id": "node:n04",
+      "node_type": "type:component",
+      "version": "1.0.0"
+     },
+     {
+      "attributes": [
+       {
+        "applicability": "APPLICABLE",
+        "attribute_id": "attr:n05/state",
+        "domain_ref": "dom:gate",
+        "name": "state"
+       }
+      ],
+      "label": "Komponente 05",
+      "node_id": "node:n05",
+      "node_type": "type:component",
+      "version": "1.0.0"
+     },
+     {
+      "attributes": [
+       {
+        "applicability": "APPLICABLE",
+        "attribute_id": "attr:n06/state",
+        "domain_ref": "dom:health",
+        "name": "state"
+       }
+      ],
+      "label": "Komponente 06",
+      "node_id": "node:n06",
+      "node_type": "type:component",
+      "version": "1.0.0"
+     },
+     {
+      "attributes": [
+       {
+        "applicability": "APPLICABLE",
+        "attribute_id": "attr:n07/state",
+        "domain_ref": "dom:mode",
+        "name": "state"
+       }
+      ],
+      "label": "Komponente 07",
+      "node_id": "node:n07",
+      "node_type": "type:component",
+      "version": "1.0.0"
+     },
+     {
+      "attributes": [
+       {
+        "applicability": "APPLICABLE",
+        "attribute_id": "attr:n08/state",
+        "domain_ref": "dom:health",
+        "name": "state"
+       }
+      ],
+      "label": "Komponente 08",
+      "node_id": "node:n08",
+      "node_type": "type:component",
+      "version": "1.0.0"
+     },
+     {
+      "attributes": [
+       {
+        "applicability": "APPLICABLE",
+        "attribute_id": "attr:n09/state",
+        "domain_ref": "dom:authorization",
+        "name": "state"
+       }
+      ],
+      "label": "Komponente 09",
+      "node_id": "node:n09",
+      "node_type": "type:component",
+      "version": "1.0.0"
+     },
+     {
+      "attributes": [
+       {
+        "applicability": "APPLICABLE",
+        "attribute_id": "attr:n10/state",
+        "domain_ref": "dom:health",
+        "name": "state"
+       }
+      ],
+      "label": "Komponente 10",
+      "node_id": "node:n10",
+      "node_type": "type:component",
+      "version": "1.0.0"
+     }
+    ],
+    "relations": [
+     {
+      "relation_id": "rel:depends_on:n02:n01",
+      "relation_type": "depends_on",
+      "source": "node:n02",
+      "target": "node:n01",
+      "version": "1.0.0"
+     },
+     {
+      "relation_id": "rel:depends_on:n03:n02",
+      "relation_type": "depends_on",
+      "source": "node:n03",
+      "target": "node:n02",
+      "version": "1.0.0"
+     },
+     {
+      "relation_id": "rel:depends_on:n04:n03",
+      "relation_type": "depends_on",
+      "source": "node:n04",
+      "target": "node:n03",
+      "version": "1.0.0"
+     },
+     {
+      "relation_id": "rel:depends_on:n05:n04",
+      "relation_type": "depends_on",
+      "source": "node:n05",
+      "target": "node:n04",
+      "version": "1.0.0"
+     },
+     {
+      "relation_id": "rel:reports_to:n06:n05",
+      "relation_type": "reports_to",
+      "source": "node:n06",
+      "target": "node:n05",
+      "version": "1.0.0"
+     },
+     {
+      "relation_id": "rel:depends_on:n07:n04",
+      "relation_type": "depends_on",
+      "source": "node:n07",
+      "target": "node:n04",
+      "version": "1.0.0"
+     },
+     {
+      "relation_id": "rel:depends_on:n08:n06",
+      "relation_type": "depends_on",
+      "source": "node:n08",
+      "target": "node:n06",
+      "version": "1.0.0"
+     },
+     {
+      "relation_id": "rel:provides:n09:n05",
+      "relation_type": "provides",
+      "source": "node:n09",
+      "target": "node:n05",
+      "version": "1.0.0"
+     },
+     {
+      "relation_id": "rel:depends_on:n10:n08",
+      "relation_type": "depends_on",
+      "source": "node:n10",
+      "target": "node:n08",
+      "version": "1.0.0"
+     }
+    ],
+    "topology_id": "topo:fx_04_11",
+    "value_domains": [
+     {
+      "domain_id": "dom:health",
+      "symbols": [
+       "NOMINAL",
+       "DEGRADED",
+       "FAULTY",
+       "CRITICAL"
+      ],
+      "version": "1.0.0"
+     },
+     {
+      "domain_id": "dom:mode",
+      "symbols": [
+       "ACTIVE",
+       "STANDBY"
+      ],
+      "version": "1.0.0"
+     },
+     {
+      "domain_id": "dom:gate",
+      "symbols": [
+       "OPEN",
+       "CLOSED"
+      ],
+      "version": "1.0.0"
+     },
+     {
+      "domain_id": "dom:authorization",
+      "symbols": [
+       "AUTHORIZED",
+       "PENDING",
+       "DENIED"
+      ],
+      "version": "1.0.0"
+     }
+    ],
+    "version": "1.0.0"
+   },
+   "provenance": {
+    "data_origin": "SYNTHETIC",
+    "producer_id": "fx.tx14.f01",
+    "producer_version": "1.0.2",
+    "source_field": "F01",
+    "source_refs": []
+   },
+   "revision": 0,
+   "schema_version": "cira.topology_definition/1.0.2",
+   "tick": null
+  },
+  {
+   "artifact_id": "art:bb08cb696e1f3543169f0d91a533a157",
+   "artifact_type": "weight_set",
+   "content_hash": "sha256:37d2da7d0c6865fec90bf393147bd7cf8838a46945910e6f37adac019651fb3f",
+   "experiment_id": "exp:fx_tx14_replay",
+   "logical_key": "ws:fx_default@1.0.0",
+   "payload": {
+    "default_weight": {
+     "d": 1,
+     "n": 1
+    },
+    "version": "1.0.0",
+    "weight_set_id": "ws:fx_default",
+    "weights": [
+     {
+      "attribute_ref": "attr:n08/state",
+      "weight": {
+       "d": 1,
+       "n": 2
+      }
+     }
+    ]
+   },
+   "provenance": {
+    "data_origin": "SYNTHETIC",
+    "producer_id": "fx.tx14.f06",
+    "producer_version": "1.0.2",
+    "source_field": "F06",
+    "source_refs": []
+   },
+   "revision": 0,
+   "schema_version": "cira.weight_set/1.0.2",
+   "tick": null
+  },
+  {
+   "artifact_id": "art:8f773580e7da7e3a42414d4d7285b81c",
+   "artifact_type": "actual_state",
+   "content_hash": "sha256:edbd21813f8c941cfcf790039c001d3284e6c9da08ede886aac9d60b32173d4b",
+   "experiment_id": "exp:fx_tx14_replay",
+   "logical_key": "t0",
+   "payload": {
+    "last_seq": null,
+    "scenario_ref": {
+     "artifact_id": "art:d101553030de33caf52ae96eaaa99d89",
+     "artifact_type": "scenario_definition",
+     "content_hash": "sha256:c37b774fda6203b1b3b098b855c7a0cf58e44a639e8e1fcaf3aeb6b5ad110367"
+    },
+    "tick": 0,
+    "values": [
+     {
+      "applicability": "APPLICABLE",
+      "attribute_ref": "attr:n01/state",
+      "value": "NOMINAL"
+     },
+     {
+      "applicability": "APPLICABLE",
+      "attribute_ref": "attr:n02/state",
+      "value": "NOMINAL"
+     },
+     {
+      "applicability": "APPLICABLE",
+      "attribute_ref": "attr:n03/state",
+      "value": "DEGRADED"
+     },
+     {
+      "applicability": "APPLICABLE",
+      "attribute_ref": "attr:n04/state",
+      "value": "ACTIVE"
+     },
+     {
+      "applicability": "APPLICABLE",
+      "attribute_ref": "attr:n05/state",
+      "value": "CLOSED"
+     },
+     {
+      "applicability": "APPLICABLE",
+      "attribute_ref": "attr:n06/state",
+      "value": "NOMINAL"
+     },
+     {
+      "applicability": "APPLICABLE",
+      "attribute_ref": "attr:n07/state",
+      "value": "STANDBY"
+     },
+     {
+      "applicability": "APPLICABLE",
+      "attribute_ref": "attr:n08/state",
+      "value": "NOMINAL"
+     },
+     {
+      "applicability": "APPLICABLE",
+      "attribute_ref": "attr:n09/state",
+      "value": "AUTHORIZED"
+     },
+     {
+      "applicability": "APPLICABLE",
+      "attribute_ref": "attr:n10/state",
+      "value": "CRITICAL"
+     }
+    ]
+   },
+   "provenance": {
+    "data_origin": "SYNTHETIC",
+    "producer_id": "fx.tx14.f03",
+    "producer_version": "1.0.2",
+    "source_field": "F03",
+    "source_refs": [
+     {
+      "artifact_id": "art:d101553030de33caf52ae96eaaa99d89",
+      "artifact_type": "scenario_definition",
+      "content_hash": "sha256:c37b774fda6203b1b3b098b855c7a0cf58e44a639e8e1fcaf3aeb6b5ad110367"
+     }
+    ]
+   },
+   "revision": 0,
+   "schema_version": "cira.actual_state/1.0.2",
+   "tick": 0
+  },
+  {
+   "artifact_id": "art:5917148ef702ffc2285e8d94b1ef03e4",
+   "artifact_type": "actual_state",
+   "content_hash": "sha256:16d61d203741f9798420052140a7b10e68caa42214b9d029ea073e5eb98eae8e",
+   "experiment_id": "exp:fx_tx14_replay",
+   "logical_key": "t1",
+   "payload": {
+    "last_seq": 1,
+    "scenario_ref": {
+     "artifact_id": "art:d101553030de33caf52ae96eaaa99d89",
+     "artifact_type": "scenario_definition",
+     "content_hash": "sha256:c37b774fda6203b1b3b098b855c7a0cf58e44a639e8e1fcaf3aeb6b5ad110367"
+    },
+    "tick": 1,
+    "values": [
+     {
+      "applicability": "APPLICABLE",
+      "attribute_ref": "attr:n01/state",
+      "value": "NOMINAL"
+     },
+     {
+      "applicability": "APPLICABLE",
+      "attribute_ref": "attr:n02/state",
+      "value": "NOMINAL"
+     },
+     {
+      "applicability": "APPLICABLE",
+      "attribute_ref": "attr:n03/state",
+      "value": "DEGRADED"
+     },
+     {
+      "applicability": "APPLICABLE",
+      "attribute_ref": "attr:n04/state",
+      "value": "ACTIVE"
+     },
+     {
+      "applicability": "APPLICABLE",
+      "attribute_ref": "attr:n05/state",
+      "value": "OPEN"
+     },
+     {
+      "applicability": "APPLICABLE",
+      "attribute_ref": "attr:n06/state",
+      "value": "NOMINAL"
+     },
+     {
+      "applicability": "APPLICABLE",
+      "attribute_ref": "attr:n07/state",
+      "value": "STANDBY"
+     },
+     {
+      "applicability": "APPLICABLE",
+      "attribute_ref": "attr:n08/state",
+      "value": "NOMINAL"
+     },
+     {
+      "applicability": "APPLICABLE",
+      "attribute_ref": "attr:n09/state",
+      "value": "AUTHORIZED"
+     },
+     {
+      "applicability": "APPLICABLE",
+      "attribute_ref": "attr:n10/state",
+      "value": "CRITICAL"
+     }
+    ]
+   },
+   "provenance": {
+    "data_origin": "SYNTHETIC",
+    "producer_id": "fx.tx14.f03",
+    "producer_version": "1.0.2",
+    "source_field": "F03",
+    "source_refs": [
+     {
+      "artifact_id": "art:d101553030de33caf52ae96eaaa99d89",
+      "artifact_type": "scenario_definition",
+      "content_hash": "sha256:c37b774fda6203b1b3b098b855c7a0cf58e44a639e8e1fcaf3aeb6b5ad110367"
+     }
+    ]
+   },
+   "revision": 0,
+   "schema_version": "cira.actual_state/1.0.2",
+   "tick": 1
+  },
+  {
+   "artifact_id": "art:0fa04ac36a8d0e94e91d9c302c8b8f11",
+   "artifact_type": "event_record",
+   "content_hash": "sha256:a2df5c54af9da3992a63dd5e9b340c17b6de632dad9395a1164c57e907422487",
+   "experiment_id": "exp:fx_tx14_replay",
+   "logical_key": "s0",
+   "payload": {
+    "effects": [
+     {
+      "after": "OPEN",
+      "attribute_ref": "attr:n05/state",
+      "before": "CLOSED"
+     }
+    ],
+    "error": null,
+    "event_ref": "evt:e1",
+    "kind": "SET_ATTRIBUTE",
+    "seq": 0,
+    "status": "APPLIED",
+    "tick": 1
+   },
+   "provenance": {
+    "data_origin": "SYNTHETIC",
+    "producer_id": "fx.tx14.f03",
+    "producer_version": "1.0.2",
+    "source_field": "F03",
+    "source_refs": [
+     {
+      "artifact_id": "art:d101553030de33caf52ae96eaaa99d89",
+      "artifact_type": "scenario_definition",
+      "content_hash": "sha256:c37b774fda6203b1b3b098b855c7a0cf58e44a639e8e1fcaf3aeb6b5ad110367"
+     }
+    ]
+   },
+   "revision": 0,
+   "schema_version": "cira.event_record/1.0.2",
+   "tick": 1
+  },
+  {
+   "artifact_id": "art:9b965d44debe305b44d45f2ff661a2a6",
+   "artifact_type": "event_record",
+   "content_hash": "sha256:105fe435ade3e207321bc36b098fdfd33ab3579f09f97c97584bee9353886020",
+   "experiment_id": "exp:fx_tx14_replay",
+   "logical_key": "s1",
+   "payload": {
+    "effects": [],
+    "error": {
+     "code": "INVALID_TRANSITION",
+     "field": "F03",
+     "message": "role lacks permit (K-66)",
+     "recovery": "REPLAY_FROM_INITIAL",
+     "subject_refs": [
+      "attr:n09/state"
+     ],
+     "tick": 1
+    },
+    "event_ref": "evt:e2",
+    "kind": "APPLY_APPROVAL",
+    "seq": 1,
+    "status": "REJECTED",
+    "tick": 1
+   },
+   "provenance": {
+    "data_origin": "SYNTHETIC",
+    "producer_id": "fx.tx14.f03",
+    "producer_version": "1.0.2",
+    "source_field": "F03",
+    "source_refs": [
+     {
+      "artifact_id": "art:d101553030de33caf52ae96eaaa99d89",
+      "artifact_type": "scenario_definition",
+      "content_hash": "sha256:c37b774fda6203b1b3b098b855c7a0cf58e44a639e8e1fcaf3aeb6b5ad110367"
+     }
+    ]
+   },
+   "revision": 0,
+   "schema_version": "cira.event_record/1.0.2",
+   "tick": 1
+  },
+  {
+   "artifact_id": "art:b15d88c352023b66bcc90770a8a86227",
+   "artifact_type": "forward_result",
+   "content_hash": "sha256:cc41b2b2c0ebc9f0f40b5719e8a741fc03fa80b42b99655b0e19a1fedd4aef86",
+   "experiment_id": "exp:fx_tx14_replay",
+   "logical_key": "fwd:t1:a0",
+   "payload": {
+    "output": {
+     "gaps": [
+      {
+       "epistemic_class": "OPEN_REFERENCE",
+       "gap_id": "gap:t1:1",
+       "kind": "unobserved_dependency",
+       "source_refs": [
+        "rel:depends_on:n10:n08"
+       ],
+       "status": "OPEN",
+       "subject_refs": [
+        "node:n10"
+       ]
+      }
+     ],
+     "open_relations": [
+      {
+       "reason": "no observation reaches n10",
+       "reference_status": "UNRESOLVED",
+       "relation_key": "rel:unknown:n10:n08",
+       "subject_refs": [
+        "node:n10",
+        "node:n08"
+       ]
+      }
+     ],
+     "relations": [
+      {
+       "coupling_status": "POSSIBLE",
+       "derived_from": [
+        "obs:s01:n06/state:t0"
+       ],
+       "epistemic_class": "STRUCTURAL_DERIVATION",
+       "relation_key": "rel:depends_on:n08:n06",
+       "relation_type": "depends_on",
+       "source": "node:n08",
+       "target": "node:n06"
+      },
+      {
+       "coupling_status": "UNKNOWN_OPEN",
+       "derived_from": [],
+       "epistemic_class": "OPEN_REFERENCE",
+       "relation_key": "rel:unknown:n10:n08",
+       "relation_type": null,
+       "source": "node:n10",
+       "target": "node:n08"
+      }
+     ],
+     "values": [
+      {
+       "attribute_ref": "attr:n01/state",
+       "derived_from": [
+        "obs:s01:n01/state:t1"
+       ],
+       "epistemic_class": "SOURCE_OBSERVATION",
+       "reference_status": "RESOLVED",
+       "status": "DETERMINED",
+       "value": "NOMINAL"
+      },
+      {
+       "attribute_ref": "attr:n02/state",
+       "derived_from": [
+        "obs:s01:n02/state:t1"
+       ],
+       "epistemic_class": "SOURCE_OBSERVATION",
+       "reference_status": "RESOLVED",
+       "status": "DETERMINED",
+       "value": "NOMINAL"
+      },
+      {
+       "attribute_ref": "attr:n03/state",
+       "derived_from": [
+        "obs:s01:n03/state:t1"
+       ],
+       "epistemic_class": "SOURCE_OBSERVATION",
+       "reference_status": "RESOLVED",
+       "status": "DETERMINED",
+       "value": "DEGRADED"
+      },
+      {
+       "attribute_ref": "attr:n04/state",
+       "derived_from": [
+        "obs:s01:n04/state:t1"
+       ],
+       "epistemic_class": "SOURCE_OBSERVATION",
+       "reference_status": "RESOLVED",
+       "status": "DETERMINED",
+       "value": "ACTIVE"
+      },
+      {
+       "attribute_ref": "attr:n05/state",
+       "derived_from": [
+        "obs:s01:n05/state:t1"
+       ],
+       "epistemic_class": "SOURCE_OBSERVATION",
+       "reference_status": "RESOLVED",
+       "status": "DETERMINED",
+       "value": "OPEN"
+      },
+      {
+       "attribute_ref": "attr:n06/state",
+       "derived_from": [
+        "obs:s01:n06/state:t1"
+       ],
+       "epistemic_class": "SOURCE_OBSERVATION",
+       "reference_status": "RESOLVED",
+       "status": "DETERMINED",
+       "value": "NOMINAL"
+      },
+      {
+       "attribute_ref": "attr:n07/state",
+       "derived_from": [
+        "obs:s02:n07/state:t0"
+       ],
+       "epistemic_class": "HYPOTHESIS",
+       "reference_status": "RESOLVED",
+       "status": "DETERMINED",
+       "value": "STANDBY"
+      },
+      {
+       "attribute_ref": "attr:n08/state",
+       "derived_from": [
+        "rel:depends_on:n08:n06"
+       ],
+       "epistemic_class": "STRUCTURAL_DERIVATION",
+       "reference_status": "RESOLVED",
+       "status": "DETERMINED",
+       "value": "DEGRADED"
+      },
+      {
+       "attribute_ref": "attr:n09/state",
+       "derived_from": [],
+       "epistemic_class": "OPEN_REFERENCE",
+       "reference_status": "UNRESOLVED",
+       "status": "UNDETERMINED",
+       "value": null
+      },
+      {
+       "attribute_ref": "attr:n10/state",
+       "derived_from": [],
+       "epistemic_class": "OPEN_REFERENCE",
+       "reference_status": "TRUNCATED",
+       "status": "UNDETERMINED",
+       "value": null
+      }
+     ]
+    },
+    "sweep": {
+     "adapter": {
+      "adapter_id": "adapter.fixture",
+      "adapter_version": "1.0.2",
+      "capabilities": {
+       "forward": true,
+       "inverse": true,
+       "merge": false,
+       "trace": true
+      },
+      "engine_version": "none (fixture)",
+      "is_fixture": true,
+      "kind": "FIXTURE",
+      "operator_registry_ref": {
+       "artifact_id": "art:75f0e2bea81ccbe765f47b1ddecf7035",
+       "artifact_type": "operator_registry",
+       "content_hash": "sha256:f1c8d5daba08b465c1d576638f842db8f5896bcef4223022e42de46e5ddc247c"
+      }
+     },
+     "attempt": 0,
+     "context_version": "ctx:1",
+     "direction": "FORWARD",
+     "error": null,
+     "execution_status": "COMPLETED",
+     "input_bundle_ref": {
+      "artifact_id": "art:22f88abc7d1e4fd4364d5e3031366c8b",
+      "artifact_type": "observation_bundle",
+      "content_hash": "sha256:141c9358159900e5c63158c00a7a230ff77d7ec5ccaaaf622f99d2bbbd6f175d"
+     },
+     "sweep_id": "sweep:fwd:t1:a0",
+     "target_ref": null,
+     "termination": {
+      "budget": 10,
+      "engine_message": "fixture adapter: no engine executed",
+      "last_step_seq": 1,
+      "reason": "CONVERGED",
+      "steps_executed": 2
+     },
+     "up_to_tick": 1
+    },
+    "trace": {
+     "reference_status": "RESOLVED",
+     "steps": [
+      {
+       "engine_note": "fixture step",
+       "epistemic_class": "STRUCTURAL_DERIVATION",
+       "input_refs": [
+        "ctx:0"
+       ],
+       "operator_ref": {
+        "namespace": "CANONICAL_V181",
+        "registry_version": "v1.8.1",
+        "symbol": "∆"
+       },
+       "output_refs": [
+        "attr:n08/state"
+       ],
+       "sigma_ref": {
+        "registry_version": "v1.8.1",
+        "sigma_id": "Σ01"
+       },
+       "step_id": "step:fwd:t1:a0:0",
+       "step_seq": 0
+      },
+      {
+       "engine_note": null,
+       "epistemic_class": "SOURCE_OBSERVATION",
+       "input_refs": [],
+       "operator_ref": null,
+       "output_refs": [],
+       "sigma_ref": null,
+       "step_id": "step:fwd:t1:a0:1",
+       "step_seq": 1
+      }
+     ],
+     "sweep_id": "sweep:fwd:t1:a0"
+    }
+   },
+   "provenance": {
+    "data_origin": "FIXTURE",
+    "producer_id": "fx.tx14.f05",
+    "producer_version": "1.0.2",
+    "source_field": "F05",
+    "source_refs": [
+     {
+      "artifact_id": "art:afb5e4151d6e11e858456ccca59b7518",
+      "artifact_type": "sweep_run",
+      "content_hash": "sha256:5ec78a93d6a34087d5eb36dbbd7b03e35aca9928c7c1ec337b852edf1e7a8e8e"
+     }
+    ]
+   },
+   "revision": 0,
+   "schema_version": "cira.forward_result/1.0.2",
+   "tick": 1
+  },
+  {
+   "artifact_id": "art:f9d35115753536185704108d50aea428",
+   "artifact_type": "inverse_result",
+   "content_hash": "sha256:830e95cf28ee292daa67b7d866b31b6c8ad0b7ae60f043813a2d266315cd80b8",
+   "experiment_id": "exp:fx_tx14_replay",
+   "logical_key": "inv:t1:a0",
+   "payload": {
+    "output": {
+     "gaps": [
+      {
+       "epistemic_class": "OPEN_REFERENCE",
+       "gap_id": "gap:t1:1",
+       "kind": "unobserved_dependency",
+       "source_refs": [
+        "rel:depends_on:n10:n08"
+       ],
+       "status": "OPEN",
+       "subject_refs": [
+        "node:n10"
+       ]
+      }
+     ],
+     "open_relations": [
+      {
+       "reason": "no observation reaches n10",
+       "reference_status": "UNRESOLVED",
+       "relation_key": "rel:unknown:n10:n08",
+       "subject_refs": [
+        "node:n10",
+        "node:n08"
+       ]
+      }
+     ],
+     "relations": [
+      {
+       "coupling_status": "POSSIBLE",
+       "derived_from": [
+        "obs:s01:n06/state:t0"
+       ],
+       "epistemic_class": "STRUCTURAL_DERIVATION",
+       "relation_key": "rel:depends_on:n08:n06",
+       "relation_type": "depends_on",
+       "source": "node:n08",
+       "target": "node:n06"
+      },
+      {
+       "coupling_status": "UNKNOWN_OPEN",
+       "derived_from": [],
+       "epistemic_class": "OPEN_REFERENCE",
+       "relation_key": "rel:unknown:n10:n08",
+       "relation_type": null,
+       "source": "node:n10",
+       "target": "node:n08"
+      }
+     ],
+     "values": [
+      {
+       "attribute_ref": "attr:n01/state",
+       "derived_from": [
+        "obs:s01:n01/state:t1"
+       ],
+       "epistemic_class": "SOURCE_OBSERVATION",
+       "reference_status": "RESOLVED",
+       "status": "DETERMINED",
+       "value": "NOMINAL"
+      },
+      {
+       "attribute_ref": "attr:n02/state",
+       "derived_from": [
+        "obs:s01:n02/state:t1"
+       ],
+       "epistemic_class": "SOURCE_OBSERVATION",
+       "reference_status": "RESOLVED",
+       "status": "DETERMINED",
+       "value": "NOMINAL"
+      },
+      {
+       "attribute_ref": "attr:n03/state",
+       "derived_from": [
+        "obs:s01:n03/state:t1"
+       ],
+       "epistemic_class": "SOURCE_OBSERVATION",
+       "reference_status": "RESOLVED",
+       "status": "DETERMINED",
+       "value": "DEGRADED"
+      },
+      {
+       "attribute_ref": "attr:n04/state",
+       "derived_from": [
+        "obs:s01:n04/state:t1"
+       ],
+       "epistemic_class": "SOURCE_OBSERVATION",
+       "reference_status": "RESOLVED",
+       "status": "DETERMINED",
+       "value": "ACTIVE"
+      },
+      {
+       "attribute_ref": "attr:n05/state",
+       "derived_from": [
+        "obs:s01:n05/state:t1"
+       ],
+       "epistemic_class": "SOURCE_OBSERVATION",
+       "reference_status": "RESOLVED",
+       "status": "DETERMINED",
+       "value": "OPEN"
+      },
+      {
+       "attribute_ref": "attr:n06/state",
+       "derived_from": [
+        "obs:s01:n06/state:t1"
+       ],
+       "epistemic_class": "SOURCE_OBSERVATION",
+       "reference_status": "RESOLVED",
+       "status": "DETERMINED",
+       "value": "NOMINAL"
+      },
+      {
+       "attribute_ref": "attr:n07/state",
+       "derived_from": [
+        "obs:s02:n07/state:t0"
+       ],
+       "epistemic_class": "HYPOTHESIS",
+       "reference_status": "RESOLVED",
+       "status": "DETERMINED",
+       "value": "STANDBY"
+      },
+      {
+       "attribute_ref": "attr:n08/state",
+       "derived_from": [
+        "rel:depends_on:n08:n06"
+       ],
+       "epistemic_class": "STRUCTURAL_DERIVATION",
+       "reference_status": "RESOLVED",
+       "status": "DETERMINED",
+       "value": "DEGRADED"
+      },
+      {
+       "attribute_ref": "attr:n09/state",
+       "derived_from": [],
+       "epistemic_class": "OPEN_REFERENCE",
+       "reference_status": "UNRESOLVED",
+       "status": "UNDETERMINED",
+       "value": null
+      },
+      {
+       "attribute_ref": "attr:n10/state",
+       "derived_from": [],
+       "epistemic_class": "OPEN_REFERENCE",
+       "reference_status": "TRUNCATED",
+       "status": "UNDETERMINED",
+       "value": null
+      }
+     ]
+    },
+    "sweep": {
+     "adapter": {
+      "adapter_id": "adapter.fixture",
+      "adapter_version": "1.0.2",
+      "capabilities": {
+       "forward": true,
+       "inverse": true,
+       "merge": false,
+       "trace": true
+      },
+      "engine_version": "none (fixture)",
+      "is_fixture": true,
+      "kind": "FIXTURE",
+      "operator_registry_ref": {
+       "artifact_id": "art:75f0e2bea81ccbe765f47b1ddecf7035",
+       "artifact_type": "operator_registry",
+       "content_hash": "sha256:f1c8d5daba08b465c1d576638f842db8f5896bcef4223022e42de46e5ddc247c"
+      }
+     },
+     "attempt": 0,
+     "context_version": "ctx:1",
+     "direction": "INVERSE",
+     "error": null,
+     "execution_status": "COMPLETED",
+     "input_bundle_ref": {
+      "artifact_id": "art:22f88abc7d1e4fd4364d5e3031366c8b",
+      "artifact_type": "observation_bundle",
+      "content_hash": "sha256:141c9358159900e5c63158c00a7a230ff77d7ec5ccaaaf622f99d2bbbd6f175d"
+     },
+     "sweep_id": "sweep:inv:t1:a0",
+     "target_ref": {
+      "artifact_id": "art:7c38f81a37f42ff449f195417b0bff91",
+      "artifact_type": "target_definition",
+      "content_hash": "sha256:e1fd4f06448fff84a526afd3406bb22549ce2f3dbba96007ad3baf51c7d35501"
+     },
+     "termination": {
+      "budget": 10,
+      "engine_message": "fixture adapter: no engine executed",
+      "last_step_seq": 1,
+      "reason": "ENGINE_REPORTED_STOP",
+      "steps_executed": 2
+     },
+     "up_to_tick": 1
+    },
+    "target_assessment": [
+     {
+      "derived_from": [
+       "attr:n01/state"
+      ],
+      "goal_id": "goal:g1",
+      "status": "MET"
+     },
+     {
+      "derived_from": [],
+      "goal_id": "goal:g2",
+      "status": "UNDETERMINED"
+     }
+    ],
+    "trace": {
+     "reference_status": "RESOLVED",
+     "steps": [
+      {
+       "engine_note": "fixture step",
+       "epistemic_class": "STRUCTURAL_DERIVATION",
+       "input_refs": [
+        "ctx:0"
+       ],
+       "operator_ref": {
+        "namespace": "CANONICAL_V181",
+        "registry_version": "v1.8.1",
+        "symbol": "∆"
+       },
+       "output_refs": [
+        "attr:n08/state"
+       ],
+       "sigma_ref": {
+        "registry_version": "v1.8.1",
+        "sigma_id": "Σ01"
+       },
+       "step_id": "step:inv:t1:a0:0",
+       "step_seq": 0
+      },
+      {
+       "engine_note": null,
+       "epistemic_class": "SOURCE_OBSERVATION",
+       "input_refs": [],
+       "operator_ref": null,
+       "output_refs": [],
+       "sigma_ref": null,
+       "step_id": "step:inv:t1:a0:1",
+       "step_seq": 1
+      }
+     ],
+     "sweep_id": "sweep:inv:t1:a0"
+    }
+   },
+   "provenance": {
+    "data_origin": "FIXTURE",
+    "producer_id": "fx.tx14.f05",
+    "producer_version": "1.0.2",
+    "source_field": "F05",
+    "source_refs": [
+     {
+      "artifact_id": "art:6ffb49e216260c110c70b701a2d46270",
+      "artifact_type": "sweep_run",
+      "content_hash": "sha256:b489c5918ec7767d783120aaae1ce2a0a94f3a29e68a86828088d48709c00a55"
+     }
+    ]
+   },
+   "revision": 0,
+   "schema_version": "cira.inverse_result/1.0.2",
+   "tick": 1
+  },
+  {
+   "artifact_id": "art:22f88abc7d1e4fd4364d5e3031366c8b",
+   "artifact_type": "observation_bundle",
+   "content_hash": "sha256:141c9358159900e5c63158c00a7a230ff77d7ec5ccaaaf622f99d2bbbd6f175d",
+   "experiment_id": "exp:fx_tx14_replay",
+   "logical_key": "t1",
+   "payload": {
+    "budget_usage": {
+     "bytes": 3600,
+     "observations": 14
+    },
+    "bundle_key": "bundle:t1",
+    "contexts": [
+     {
+      "context_version": "ctx:0",
+      "observations": [
+       {
+        "attribute_ref": "attr:n01/state",
+        "observation_id": "obs:s01:n01/state:t0",
+        "observed_at_tick": 0,
+        "references": [],
+        "source_id": "src:s01",
+        "status": "KNOWN",
+        "tick": 0,
+        "value": "NOMINAL"
+       },
+       {
+        "attribute_ref": "attr:n02/state",
+        "observation_id": "obs:s01:n02/state:t0",
+        "observed_at_tick": 0,
+        "references": [
+         "rel:depends_on:n02:n01"
+        ],
+        "source_id": "src:s01",
+        "status": "KNOWN",
+        "tick": 0,
+        "value": "NOMINAL"
+       },
+       {
+        "attribute_ref": "attr:n03/state",
+        "observation_id": "obs:s01:n03/state:t0",
+        "observed_at_tick": 0,
+        "references": [],
+        "source_id": "src:s01",
+        "status": "KNOWN",
+        "tick": 0,
+        "value": "DEGRADED"
+       },
+       {
+        "attribute_ref": "attr:n04/state",
+        "observation_id": "obs:s01:n04/state:t0",
+        "observed_at_tick": 0,
+        "references": [],
+        "source_id": "src:s01",
+        "status": "KNOWN",
+        "tick": 0,
+        "value": "ACTIVE"
+       },
+       {
+        "attribute_ref": "attr:n05/state",
+        "observation_id": "obs:s01:n05/state:t0",
+        "observed_at_tick": 0,
+        "references": [],
+        "source_id": "src:s01",
+        "status": "KNOWN",
+        "tick": 0,
+        "value": "CLOSED"
+       },
+       {
+        "attribute_ref": "attr:n06/state",
+        "observation_id": "obs:s01:n06/state:t0",
+        "observed_at_tick": 0,
+        "references": [],
+        "source_id": "src:s01",
+        "status": "KNOWN",
+        "tick": 0,
+        "value": "NOMINAL"
+       },
+       {
+        "attribute_ref": "attr:n07/state",
+        "observation_id": "obs:s02:n07/state:t0",
+        "observed_at_tick": 0,
+        "references": [],
+        "source_id": "src:s02",
+        "status": "KNOWN",
+        "tick": 0,
+        "value": "STANDBY"
+       }
+      ],
+      "previous_context_ref": null,
+      "sequence": 0,
+      "tick": 0
+     },
+     {
+      "context_version": "ctx:1",
+      "observations": [
+       {
+        "attribute_ref": "attr:n01/state",
+        "observation_id": "obs:s01:n01/state:t1",
+        "observed_at_tick": 1,
+        "references": [],
+        "source_id": "src:s01",
+        "status": "KNOWN",
+        "tick": 1,
+        "value": "NOMINAL"
+       },
+       {
+        "attribute_ref": "attr:n02/state",
+        "observation_id": "obs:s01:n02/state:t1",
+        "observed_at_tick": 1,
+        "references": [
+         "rel:depends_on:n02:n01"
+        ],
+        "source_id": "src:s01",
+        "status": "KNOWN",
+        "tick": 1,
+        "value": "NOMINAL"
+       },
+       {
+        "attribute_ref": "attr:n03/state",
+        "observation_id": "obs:s01:n03/state:t1",
+        "observed_at_tick": 1,
+        "references": [],
+        "source_id": "src:s01",
+        "status": "KNOWN",
+        "tick": 1,
+        "value": "DEGRADED"
+       },
+       {
+        "attribute_ref": "attr:n04/state",
+        "observation_id": "obs:s01:n04/state:t1",
+        "observed_at_tick": 1,
+        "references": [],
+        "source_id": "src:s01",
+        "status": "KNOWN",
+        "tick": 1,
+        "value": "ACTIVE"
+       },
+       {
+        "attribute_ref": "attr:n05/state",
+        "observation_id": "obs:s01:n05/state:t1",
+        "observed_at_tick": 1,
+        "references": [],
+        "source_id": "src:s01",
+        "status": "KNOWN",
+        "tick": 1,
+        "value": "OPEN"
+       },
+       {
+        "attribute_ref": "attr:n06/state",
+        "observation_id": "obs:s01:n06/state:t1",
+        "observed_at_tick": 1,
+        "references": [],
+        "source_id": "src:s01",
+        "status": "KNOWN",
+        "tick": 1,
+        "value": "NOMINAL"
+       },
+       {
+        "attribute_ref": "attr:n07/state",
+        "observation_id": "obs:none:n07/state:t1",
+        "observed_at_tick": 1,
+        "references": [],
+        "source_id": null,
+        "status": "UNKNOWN",
+        "tick": 1,
+        "value": null
+       }
+      ],
+      "previous_context_ref": "ctx:0",
+      "sequence": 1,
+      "tick": 1
+     }
+    ],
+    "observable_rules": {
+     "rules": [
+      {
+       "applies_to": [
+        "node:n01"
+       ],
+       "description": "n01 is not faulty",
+       "expression": {
+        "at": null,
+        "attr": "attr:n01/state",
+        "op": "in",
+        "values": [
+         "NOMINAL",
+         "DEGRADED"
+        ]
+       },
+       "kind": "STATE",
+       "permits": [],
+       "requires": [],
+       "rule_id": "rule:health_ok",
+       "scope": [
+        "node:n01"
+       ],
+       "valid_from_tick": 0,
+       "valid_until_tick": null,
+       "version": "1.0.0"
+      },
+      {
+       "applies_to": [
+        "node:n04"
+       ],
+       "description": "",
+       "expression": {
+        "args": [
+         {
+          "allowed": [
+           {
+            "from": "ACTIVE",
+            "to": "ACTIVE"
+           },
+           {
+            "from": "ACTIVE",
+            "to": "STANDBY"
+           },
+           {
+            "from": "STANDBY",
+            "to": "ACTIVE"
+           }
+          ],
+          "attr": "attr:n04/state",
+          "op": "transition_in"
+         },
+         {
+          "arg": {
+           "at": "NEXT",
+           "attr": "attr:n03/state",
+           "op": "eq",
+           "value": "CRITICAL"
+          },
+          "op": "not"
+         },
+         {
+          "at": "CURRENT",
+          "attr": "attr:n04/state",
+          "op": "in",
+          "values": [
+           "ACTIVE",
+           "STANDBY"
+          ]
+         }
+        ],
+        "op": "and"
+       },
+       "kind": "TRANSITION",
+       "permits": [],
+       "requires": [],
+       "rule_id": "rule:mode_steps",
+       "scope": [],
+       "valid_from_tick": 0,
+       "valid_until_tick": null,
+       "version": "1.0.0"
+      }
+     ]
+    },
+    "observable_topology": {
+     "nodes": [
+      {
+       "attributes": [
+        {
+         "applicability": "APPLICABLE",
+         "attribute_id": "attr:n01/state",
+         "domain_ref": "dom:health",
+         "name": "state"
+        }
+       ],
+       "label": "Komponente 01",
+       "node_id": "node:n01",
+       "node_type": "type:component",
+       "version": "1.0.0"
+      },
+      {
+       "attributes": [
+        {
+         "applicability": "APPLICABLE",
+         "attribute_id": "attr:n02/state",
+         "domain_ref": "dom:health",
+         "name": "state"
+        }
+       ],
+       "label": "Komponente 02",
+       "node_id": "node:n02",
+       "node_type": "type:component",
+       "version": "1.0.0"
+      },
+      {
+       "attributes": [
+        {
+         "applicability": "APPLICABLE",
+         "attribute_id": "attr:n03/state",
+         "domain_ref": "dom:health",
+         "name": "state"
+        }
+       ],
+       "label": "Komponente 03",
+       "node_id": "node:n03",
+       "node_type": "type:component",
+       "version": "1.0.0"
+      },
+      {
+       "attributes": [
+        {
+         "applicability": "APPLICABLE",
+         "attribute_id": "attr:n04/state",
+         "domain_ref": "dom:mode",
+         "name": "state"
+        }
+       ],
+       "label": "Komponente 04",
+       "node_id": "node:n04",
+       "node_type": "type:component",
+       "version": "1.0.0"
+      },
+      {
+       "attributes": [
+        {
+         "applicability": "APPLICABLE",
+         "attribute_id": "attr:n05/state",
+         "domain_ref": "dom:gate",
+         "name": "state"
+        }
+       ],
+       "label": "Komponente 05",
+       "node_id": "node:n05",
+       "node_type": "type:component",
+       "version": "1.0.0"
+      },
+      {
+       "attributes": [
+        {
+         "applicability": "APPLICABLE",
+         "attribute_id": "attr:n06/state",
+         "domain_ref": "dom:health",
+         "name": "state"
+        }
+       ],
+       "label": "Komponente 06",
+       "node_id": "node:n06",
+       "node_type": "type:component",
+       "version": "1.0.0"
+      },
+      {
+       "attributes": [
+        {
+         "applicability": "APPLICABLE",
+         "attribute_id": "attr:n07/state",
+         "domain_ref": "dom:mode",
+         "name": "state"
+        }
+       ],
+       "label": "Komponente 07",
+       "node_id": "node:n07",
+       "node_type": "type:component",
+       "version": "1.0.0"
+      }
+     ],
+     "relations": [
+      {
+       "relation_id": "rel:depends_on:n02:n01",
+       "relation_type": "depends_on",
+       "source": "node:n02",
+       "target": "node:n01",
+       "version": "1.0.0"
+      },
+      {
+       "relation_id": "rel:depends_on:n03:n02",
+       "relation_type": "depends_on",
+       "source": "node:n03",
+       "target": "node:n02",
+       "version": "1.0.0"
+      }
+     ],
+     "value_domains": [
+      {
+       "domain_id": "dom:gate",
+       "symbols": [
+        "OPEN",
+        "CLOSED"
+       ],
+       "version": "1.0.0"
+      },
+      {
+       "domain_id": "dom:health",
+       "symbols": [
+        "NOMINAL",
+        "DEGRADED",
+        "FAULTY",
+        "CRITICAL"
+       ],
+       "version": "1.0.0"
+      },
+      {
+       "domain_id": "dom:mode",
+       "symbols": [
+        "ACTIVE",
+        "STANDBY"
+       ],
+       "version": "1.0.0"
+      }
+     ]
+    },
+    "serialization_profile": "full",
+    "source_register": {
+     "entries": [
+      {
+       "continuity": "CONTINUOUS",
+       "first_tick": 0,
+       "gaps": [],
+       "last_tick": 2,
+       "source_id": "src:s01"
+      },
+      {
+       "continuity": "INTERRUPTED",
+       "first_tick": 0,
+       "gaps": [
+        {
+         "from_tick": 1,
+         "to_tick": 2
+        }
+       ],
+       "last_tick": 0,
+       "source_id": "src:s02"
+      }
+     ]
+    },
+    "up_to_tick": 1
+   },
+   "provenance": {
+    "data_origin": "SYNTHETIC",
+    "producer_id": "fx.tx14.f04",
+    "producer_version": "1.0.2",
+    "source_field": "F04",
+    "source_refs": [
+     {
+      "artifact_id": "art:3cf690ef86346b416d13064c69610b84",
+      "artifact_type": "observation_config",
+      "content_hash": "sha256:5a50b767b618a803fbcf52bfcb88457b57a9a9ed0ce9baec69cc7ef9e401b64d"
+     }
+    ]
+   },
+   "revision": 0,
+   "schema_version": "cira.observation_bundle/1.0.2",
+   "tick": 1
+  },
+  {
+   "artifact_id": "art:063f08e246123fa3565d370dad9ccc5a",
+   "artifact_type": "observation_record",
+   "content_hash": "sha256:a365d6873243e497c73cb953820923ffa8bf9b198b00281c32e582e3708c99c1",
+   "experiment_id": "exp:fx_tx14_replay",
+   "logical_key": "t1",
+   "payload": {
+    "actual_state_refs": [
+     {
+      "artifact_id": "art:8f773580e7da7e3a42414d4d7285b81c",
+      "artifact_type": "actual_state",
+      "content_hash": "sha256:edbd21813f8c941cfcf790039c001d3284e6c9da08ede886aac9d60b32173d4b"
+     },
+     {
+      "artifact_id": "art:5917148ef702ffc2285e8d94b1ef03e4",
+      "artifact_type": "actual_state",
+      "content_hash": "sha256:16d61d203741f9798420052140a7b10e68caa42214b9d029ea073e5eb98eae8e"
+     }
+    ],
+    "bundle_ref": {
+     "artifact_id": "art:22f88abc7d1e4fd4364d5e3031366c8b",
+     "artifact_type": "observation_bundle",
+     "content_hash": "sha256:141c9358159900e5c63158c00a7a230ff77d7ec5ccaaaf622f99d2bbbd6f175d"
+    },
+    "observation_config_ref": {
+     "artifact_id": "art:3cf690ef86346b416d13064c69610b84",
+     "artifact_type": "observation_config",
+     "content_hash": "sha256:5a50b767b618a803fbcf52bfcb88457b57a9a9ed0ce9baec69cc7ef9e401b64d"
+    },
+    "tick": 1
+   },
+   "provenance": {
+    "data_origin": "SYNTHETIC",
+    "producer_id": "fx.tx14.f04",
+    "producer_version": "1.0.2",
+    "source_field": "F04",
+    "source_refs": [
+     {
+      "artifact_id": "art:22f88abc7d1e4fd4364d5e3031366c8b",
+      "artifact_type": "observation_bundle",
+      "content_hash": "sha256:141c9358159900e5c63158c00a7a230ff77d7ec5ccaaaf622f99d2bbbd6f175d"
+     },
+     {
+      "artifact_id": "art:3cf690ef86346b416d13064c69610b84",
+      "artifact_type": "observation_config",
+      "content_hash": "sha256:5a50b767b618a803fbcf52bfcb88457b57a9a9ed0ce9baec69cc7ef9e401b64d"
+     },
+     {
+      "artifact_id": "art:8f773580e7da7e3a42414d4d7285b81c",
+      "artifact_type": "actual_state",
+      "content_hash": "sha256:edbd21813f8c941cfcf790039c001d3284e6c9da08ede886aac9d60b32173d4b"
+     },
+     {
+      "artifact_id": "art:5917148ef702ffc2285e8d94b1ef03e4",
+      "artifact_type": "actual_state",
+      "content_hash": "sha256:16d61d203741f9798420052140a7b10e68caa42214b9d029ea073e5eb98eae8e"
+     }
+    ]
+   },
+   "revision": 0,
+   "schema_version": "cira.observation_record/1.0.2",
+   "tick": 1
+  },
+  {
+   "artifact_id": "art:7f1b80842c094c498ef2a94c1e5d011c",
+   "artifact_type": "reconstruction_result",
+   "content_hash": "sha256:4b0819898b08e2a94a6d020c697d40f69ba4f947a7e1137bdb0cff6d10f732e1",
+   "experiment_id": "exp:fx_tx14_replay",
+   "logical_key": "t1:a0",
+   "payload": {
+    "attempt": 0,
+    "context_version": "ctx:1",
+    "delta_coupling": null,
+    "delta_state": null,
+    "merge": {
+     "conflicts": [
+      {
+       "attribute_ref": "attr:n07/state",
+       "forward": "STANDBY",
+       "inverse": "ACTIVE",
+       "resolution": "UNDETERMINED"
+      }
+     ],
+     "engine_merged": false,
+     "forward_ref": {
+      "artifact_id": "art:b15d88c352023b66bcc90770a8a86227",
+      "artifact_type": "forward_result",
+      "content_hash": "sha256:cc41b2b2c0ebc9f0f40b5719e8a741fc03fa80b42b99655b0e19a1fedd4aef86"
+     },
+     "inverse_ref": {
+      "artifact_id": "art:f9d35115753536185704108d50aea428",
+      "artifact_type": "inverse_result",
+      "content_hash": "sha256:830e95cf28ee292daa67b7d866b31b6c8ad0b7ae60f043813a2d266315cd80b8"
+     },
+     "policy": {
+      "point": "merge.policy",
+      "variant": "engine_first",
+      "version": 1
+     }
+    },
+    "openness": {
+     "open_references": 2,
+     "open_relations": 1,
+     "structural_gaps_open": 1,
+     "undetermined": 2,
+     "unevaluable_rules": 1,
+     "unknown_observations": 3
+    },
+    "output": {
+     "gaps": [
+      {
+       "epistemic_class": "OPEN_REFERENCE",
+       "gap_id": "gap:t1:1",
+       "kind": "unobserved_dependency",
+       "source_refs": [
+        "rel:depends_on:n10:n08"
+       ],
+       "status": "OPEN",
+       "subject_refs": [
+        "node:n10"
+       ]
+      }
+     ],
+     "open_relations": [
+      {
+       "reason": "no observation reaches n10",
+       "reference_status": "UNRESOLVED",
+       "relation_key": "rel:unknown:n10:n08",
+       "subject_refs": [
+        "node:n10",
+        "node:n08"
+       ]
+      }
+     ],
+     "relations": [
+      {
+       "coupling_status": "POSSIBLE",
+       "derived_from": [
+        "obs:s01:n06/state:t0"
+       ],
+       "epistemic_class": "STRUCTURAL_DERIVATION",
+       "relation_key": "rel:depends_on:n08:n06",
+       "relation_type": "depends_on",
+       "source": "node:n08",
+       "target": "node:n06"
+      },
+      {
+       "coupling_status": "UNKNOWN_OPEN",
+       "derived_from": [],
+       "epistemic_class": "OPEN_REFERENCE",
+       "relation_key": "rel:unknown:n10:n08",
+       "relation_type": null,
+       "source": "node:n10",
+       "target": "node:n08"
+      }
+     ],
+     "values": [
+      {
+       "attribute_ref": "attr:n01/state",
+       "derived_from": [
+        "obs:s01:n01/state:t1"
+       ],
+       "epistemic_class": "SOURCE_OBSERVATION",
+       "reference_status": "RESOLVED",
+       "status": "DETERMINED",
+       "value": "NOMINAL"
+      },
+      {
+       "attribute_ref": "attr:n02/state",
+       "derived_from": [
+        "obs:s01:n02/state:t1"
+       ],
+       "epistemic_class": "SOURCE_OBSERVATION",
+       "reference_status": "RESOLVED",
+       "status": "DETERMINED",
+       "value": "NOMINAL"
+      },
+      {
+       "attribute_ref": "attr:n03/state",
+       "derived_from": [
+        "obs:s01:n03/state:t1"
+       ],
+       "epistemic_class": "SOURCE_OBSERVATION",
+       "reference_status": "RESOLVED",
+       "status": "DETERMINED",
+       "value": "DEGRADED"
+      },
+      {
+       "attribute_ref": "attr:n04/state",
+       "derived_from": [
+        "obs:s01:n04/state:t1"
+       ],
+       "epistemic_class": "SOURCE_OBSERVATION",
+       "reference_status": "RESOLVED",
+       "status": "DETERMINED",
+       "value": "ACTIVE"
+      },
+      {
+       "attribute_ref": "attr:n05/state",
+       "derived_from": [
+        "obs:s01:n05/state:t1"
+       ],
+       "epistemic_class": "SOURCE_OBSERVATION",
+       "reference_status": "RESOLVED",
+       "status": "DETERMINED",
+       "value": "OPEN"
+      },
+      {
+       "attribute_ref": "attr:n06/state",
+       "derived_from": [
+        "obs:s01:n06/state:t1"
+       ],
+       "epistemic_class": "SOURCE_OBSERVATION",
+       "reference_status": "RESOLVED",
+       "status": "DETERMINED",
+       "value": "NOMINAL"
+      },
+      {
+       "attribute_ref": "attr:n07/state",
+       "derived_from": [
+        "obs:s02:n07/state:t0"
+       ],
+       "epistemic_class": "HYPOTHESIS",
+       "reference_status": "RESOLVED",
+       "status": "DETERMINED",
+       "value": "STANDBY"
+      },
+      {
+       "attribute_ref": "attr:n08/state",
+       "derived_from": [
+        "rel:depends_on:n08:n06"
+       ],
+       "epistemic_class": "STRUCTURAL_DERIVATION",
+       "reference_status": "RESOLVED",
+       "status": "DETERMINED",
+       "value": "DEGRADED"
+      },
+      {
+       "attribute_ref": "attr:n09/state",
+       "derived_from": [],
+       "epistemic_class": "OPEN_REFERENCE",
+       "reference_status": "UNRESOLVED",
+       "status": "UNDETERMINED",
+       "value": null
+      },
+      {
+       "attribute_ref": "attr:n10/state",
+       "derived_from": [],
+       "epistemic_class": "OPEN_REFERENCE",
+       "reference_status": "TRUNCATED",
+       "status": "UNDETERMINED",
+       "value": null
+      }
+     ]
+    },
+    "previous_reconstruction_ref": null,
+    "reconstruction_id": "recon:t1:a0",
+    "up_to_tick": 1
+   },
+   "provenance": {
+    "data_origin": "FIXTURE",
+    "producer_id": "fx.tx14.f05",
+    "producer_version": "1.0.2",
+    "source_field": "F05",
+    "source_refs": [
+     {
+      "artifact_id": "art:b15d88c352023b66bcc90770a8a86227",
+      "artifact_type": "forward_result",
+      "content_hash": "sha256:cc41b2b2c0ebc9f0f40b5719e8a741fc03fa80b42b99655b0e19a1fedd4aef86"
+     },
+     {
+      "artifact_id": "art:f9d35115753536185704108d50aea428",
+      "artifact_type": "inverse_result",
+      "content_hash": "sha256:830e95cf28ee292daa67b7d866b31b6c8ad0b7ae60f043813a2d266315cd80b8"
+     }
+    ]
+   },
+   "revision": 0,
+   "schema_version": "cira.reconstruction_result/1.0.2",
+   "tick": 1
+  },
+  {
+   "artifact_id": "art:b42795b117801d59281f88a81561a182",
+   "artifact_type": "rule_evaluation_set",
+   "content_hash": "sha256:c430d5e798dd81e0e0d7f1cc0f6eefa063d86ada98513e9a8c4116f6a1743e8c",
+   "experiment_id": "exp:fx_tx14_replay",
+   "logical_key": "A:t1",
+   "payload": {
+    "evaluations": [
+     {
+      "input_attribute_refs": [
+       "attr:n05/state",
+       "attr:n09/state"
+      ],
+      "reason": "OK",
+      "result": "TRUE",
+      "rule_ref": "rule:gate_needs_auth",
+      "rule_version": "1.0.0",
+      "space": "A",
+      "tick": 1,
+      "tick_to": null
+     },
+     {
+      "input_attribute_refs": [
+       "attr:n01/state"
+      ],
+      "reason": "OK",
+      "result": "TRUE",
+      "rule_ref": "rule:health_ok",
+      "rule_version": "1.0.0",
+      "space": "A",
+      "tick": 1,
+      "tick_to": null
+     },
+     {
+      "input_attribute_refs": [
+       "attr:n03/state",
+       "attr:n04/state"
+      ],
+      "reason": "OK",
+      "result": "TRUE",
+      "rule_ref": "rule:mode_steps",
+      "rule_version": "1.0.0",
+      "space": "A",
+      "tick": 1,
+      "tick_to": 2
+     },
+     {
+      "input_attribute_refs": [
+       "attr:n02/state"
+      ],
+      "reason": "OK",
+      "result": "TRUE",
+      "rule_ref": "rule:svc_supply",
+      "rule_version": "1.0.0",
+      "space": "A",
+      "tick": 1,
+      "tick_to": null
+     }
+    ],
+    "governance_ref": {
+     "artifact_id": "art:f674f652ba9286aa8f4bf2c3e6bc539d",
+     "artifact_type": "governance_definition",
+     "content_hash": "sha256:58e720721313b95b0959325ca516dac17de95c28cf4cd858ac81f60fe3f249db"
+    },
+    "not_in_validity": 0,
+    "space": "A",
+    "summary": {
+     "false": 0,
+     "not_in_validity": 0,
+     "true": 4,
+     "unevaluable": 0
+    },
+    "tick": 1
+   },
+   "provenance": {
+    "data_origin": "SYNTHETIC",
+    "producer_id": "fx.tx14.f06",
+    "producer_version": "1.0.2",
+    "source_field": "F06",
+    "source_refs": [
+     {
+      "artifact_id": "art:f674f652ba9286aa8f4bf2c3e6bc539d",
+      "artifact_type": "governance_definition",
+      "content_hash": "sha256:58e720721313b95b0959325ca516dac17de95c28cf4cd858ac81f60fe3f249db"
+     },
+     {
+      "artifact_id": "art:5917148ef702ffc2285e8d94b1ef03e4",
+      "artifact_type": "actual_state",
+      "content_hash": "sha256:16d61d203741f9798420052140a7b10e68caa42214b9d029ea073e5eb98eae8e"
+     }
+    ]
+   },
+   "revision": 0,
+   "schema_version": "cira.rule_evaluation_set/1.0.2",
+   "tick": 1
+  },
+  {
+   "artifact_id": "art:afb5e4151d6e11e858456ccca59b7518",
+   "artifact_type": "sweep_run",
+   "content_hash": "sha256:5ec78a93d6a34087d5eb36dbbd7b03e35aca9928c7c1ec337b852edf1e7a8e8e",
+   "experiment_id": "exp:fx_tx14_replay",
+   "logical_key": "fwd:t1:a0",
+   "payload": {
+    "adapter": {
+     "adapter_id": "adapter.fixture",
+     "adapter_version": "1.0.2",
+     "capabilities": {
+      "forward": true,
+      "inverse": true,
+      "merge": false,
+      "trace": true
+     },
+     "engine_version": "none (fixture)",
+     "is_fixture": true,
+     "kind": "FIXTURE",
+     "operator_registry_ref": {
+      "artifact_id": "art:75f0e2bea81ccbe765f47b1ddecf7035",
+      "artifact_type": "operator_registry",
+      "content_hash": "sha256:f1c8d5daba08b465c1d576638f842db8f5896bcef4223022e42de46e5ddc247c"
+     }
+    },
+    "attempt": 0,
+    "context_version": "ctx:1",
+    "direction": "FORWARD",
+    "error": null,
+    "execution_status": "COMPLETED",
+    "input_bundle_ref": {
+     "artifact_id": "art:22f88abc7d1e4fd4364d5e3031366c8b",
+     "artifact_type": "observation_bundle",
+     "content_hash": "sha256:141c9358159900e5c63158c00a7a230ff77d7ec5ccaaaf622f99d2bbbd6f175d"
+    },
+    "sweep_id": "sweep:fwd:t1:a0",
+    "target_ref": null,
+    "termination": {
+     "budget": 10,
+     "engine_message": "fixture adapter: no engine executed",
+     "last_step_seq": 1,
+     "reason": "CONVERGED",
+     "steps_executed": 2
+    },
+    "up_to_tick": 1
+   },
+   "provenance": {
+    "data_origin": "FIXTURE",
+    "producer_id": "fx.tx14.f05",
+    "producer_version": "1.0.2",
+    "source_field": "F05",
+    "source_refs": [
+     {
+      "artifact_id": "art:22f88abc7d1e4fd4364d5e3031366c8b",
+      "artifact_type": "observation_bundle",
+      "content_hash": "sha256:141c9358159900e5c63158c00a7a230ff77d7ec5ccaaaf622f99d2bbbd6f175d"
+     }
+    ]
+   },
+   "revision": 0,
+   "schema_version": "cira.sweep_run/1.0.2",
+   "tick": 1
+  },
+  {
+   "artifact_id": "art:6ffb49e216260c110c70b701a2d46270",
+   "artifact_type": "sweep_run",
+   "content_hash": "sha256:b489c5918ec7767d783120aaae1ce2a0a94f3a29e68a86828088d48709c00a55",
+   "experiment_id": "exp:fx_tx14_replay",
+   "logical_key": "inv:t1:a0",
+   "payload": {
+    "adapter": {
+     "adapter_id": "adapter.fixture",
+     "adapter_version": "1.0.2",
+     "capabilities": {
+      "forward": true,
+      "inverse": true,
+      "merge": false,
+      "trace": true
+     },
+     "engine_version": "none (fixture)",
+     "is_fixture": true,
+     "kind": "FIXTURE",
+     "operator_registry_ref": {
+      "artifact_id": "art:75f0e2bea81ccbe765f47b1ddecf7035",
+      "artifact_type": "operator_registry",
+      "content_hash": "sha256:f1c8d5daba08b465c1d576638f842db8f5896bcef4223022e42de46e5ddc247c"
+     }
+    },
+    "attempt": 0,
+    "context_version": "ctx:1",
+    "direction": "INVERSE",
+    "error": null,
+    "execution_status": "COMPLETED",
+    "input_bundle_ref": {
+     "artifact_id": "art:22f88abc7d1e4fd4364d5e3031366c8b",
+     "artifact_type": "observation_bundle",
+     "content_hash": "sha256:141c9358159900e5c63158c00a7a230ff77d7ec5ccaaaf622f99d2bbbd6f175d"
+    },
+    "sweep_id": "sweep:inv:t1:a0",
+    "target_ref": {
+     "artifact_id": "art:7c38f81a37f42ff449f195417b0bff91",
+     "artifact_type": "target_definition",
+     "content_hash": "sha256:e1fd4f06448fff84a526afd3406bb22549ce2f3dbba96007ad3baf51c7d35501"
+    },
+    "termination": {
+     "budget": 10,
+     "engine_message": "fixture adapter: no engine executed",
+     "last_step_seq": 1,
+     "reason": "ENGINE_REPORTED_STOP",
+     "steps_executed": 2
+    },
+    "up_to_tick": 1
+   },
+   "provenance": {
+    "data_origin": "FIXTURE",
+    "producer_id": "fx.tx14.f05",
+    "producer_version": "1.0.2",
+    "source_field": "F05",
+    "source_refs": [
+     {
+      "artifact_id": "art:22f88abc7d1e4fd4364d5e3031366c8b",
+      "artifact_type": "observation_bundle",
+      "content_hash": "sha256:141c9358159900e5c63158c00a7a230ff77d7ec5ccaaaf622f99d2bbbd6f175d"
+     },
+     {
+      "artifact_id": "art:7c38f81a37f42ff449f195417b0bff91",
+      "artifact_type": "target_definition",
+      "content_hash": "sha256:e1fd4f06448fff84a526afd3406bb22549ce2f3dbba96007ad3baf51c7d35501"
+     }
+    ]
+   },
+   "revision": 0,
+   "schema_version": "cira.sweep_run/1.0.2",
+   "tick": 1
+  },
+  {
+   "artifact_id": "art:b226ef7cdcf3a5b06c61e6d0ef1e3723",
+   "artifact_type": "actual_state",
+   "content_hash": "sha256:6b5794299ebdd07c203a3bfb8378ab798f373fdde6183ab7d4372881f8c0ef64",
+   "experiment_id": "exp:fx_tx14_replay",
+   "logical_key": "t2",
+   "payload": {
+    "last_seq": 1,
+    "scenario_ref": {
+     "artifact_id": "art:d101553030de33caf52ae96eaaa99d89",
+     "artifact_type": "scenario_definition",
+     "content_hash": "sha256:c37b774fda6203b1b3b098b855c7a0cf58e44a639e8e1fcaf3aeb6b5ad110367"
+    },
+    "tick": 2,
+    "values": [
+     {
+      "applicability": "APPLICABLE",
+      "attribute_ref": "attr:n01/state",
+      "value": "NOMINAL"
+     },
+     {
+      "applicability": "APPLICABLE",
+      "attribute_ref": "attr:n02/state",
+      "value": "NOMINAL"
+     },
+     {
+      "applicability": "APPLICABLE",
+      "attribute_ref": "attr:n03/state",
+      "value": "DEGRADED"
+     },
+     {
+      "applicability": "APPLICABLE",
+      "attribute_ref": "attr:n04/state",
+      "value": "STANDBY"
+     },
+     {
+      "applicability": "APPLICABLE",
+      "attribute_ref": "attr:n05/state",
+      "value": "OPEN"
+     },
+     {
+      "applicability": "APPLICABLE",
+      "attribute_ref": "attr:n06/state",
+      "value": "NOMINAL"
+     },
+     {
+      "applicability": "APPLICABLE",
+      "attribute_ref": "attr:n07/state",
+      "value": "STANDBY"
+     },
+     {
+      "applicability": "APPLICABLE",
+      "attribute_ref": "attr:n08/state",
+      "value": "NOMINAL"
+     },
+     {
+      "applicability": "APPLICABLE",
+      "attribute_ref": "attr:n09/state",
+      "value": "AUTHORIZED"
+     },
+     {
+      "applicability": "APPLICABLE",
+      "attribute_ref": "attr:n10/state",
+      "value": "CRITICAL"
+     }
+    ]
+   },
+   "provenance": {
+    "data_origin": "SYNTHETIC",
+    "producer_id": "fx.tx14.f03",
+    "producer_version": "1.0.2",
+    "source_field": "F03",
+    "source_refs": [
+     {
+      "artifact_id": "art:d101553030de33caf52ae96eaaa99d89",
+      "artifact_type": "scenario_definition",
+      "content_hash": "sha256:c37b774fda6203b1b3b098b855c7a0cf58e44a639e8e1fcaf3aeb6b5ad110367"
+     }
+    ]
+   },
+   "revision": 0,
+   "schema_version": "cira.actual_state/1.0.2",
+   "tick": 2
+  },
+  {
+   "artifact_id": "art:9cd37b9774c509ea486fbfbd6198663b",
+   "artifact_type": "comparison_report",
+   "content_hash": "sha256:68975fe2598eddf2d09426bebc65bf09623100ec8cb4412209df72c1de1159be",
+   "experiment_id": "exp:fx_tx14_replay",
+   "logical_key": "exp:fx_tx14_origin:exp:fx_tx14_recovery:2",
+   "payload": {
+    "baseline_experiment_id": "exp:fx_tx14_origin",
+    "basis": {
+     "point": "metrics.closure_basis",
+     "variant": "state_rules_a_final_tick",
+     "version": 1
+    },
+    "comparison_key": "cmp:fx_base:fx_rec:2",
+    "comparison_tick": 2,
+    "compatible": true,
+    "fixture_lineage_id": "lin:fx_04_11",
+    "incompatibility": [
+     "none"
+    ],
+    "new": [],
+    "original": [
+     "rule:gate_needs_auth|node:n05"
+    ],
+    "persisting": [],
+    "recovery_experiment_id": "exp:fx_tx14_recovery",
+    "resolved": [
+     "rule:gate_needs_auth|node:n05"
+    ],
+    "results": [
+     {
+      "aggregation": "PER_TICK",
+      "aux": {
+       "fn": 1,
+       "fp": 0,
+       "function_ref": "rule:svc_supply",
+       "hypotheses_excluded": 0,
+       "new_inconsistencies": 0,
+       "not_applicable_excluded": 0,
+       "not_in_validity": 0,
+       "observable_cases": 1,
+       "persisting": 0,
+       "shared_coverage": {
+        "d": 5,
+        "n": 3
+       },
+       "shared_coverage_undefined": false,
+       "stale_known": 0,
+       "ticks_excluded": 0,
+       "ticks_included": 1,
+       "tp": 1,
+       "undetermined_count": 2,
+       "unevaluable_count": 0,
+       "unevaluable_in_recovery": 0
+      },
+      "case_subset": "ALL",
+      "denominator": {
+       "d": 1,
+       "n": 1
+      },
+      "metric_id": "M09",
+      "numerator": {
+       "d": 1,
+       "n": 1
+      },
+      "reference_space": "space:attr:t2",
+      "relation": "BASELINE_RECOVERY",
+      "status": "EVALUATED",
+      "tick": 2,
+      "undefined_reason": null,
+      "unit": "ratio",
+      "value": 1.0,
+      "version": "1.0.0"
+     }
+    ],
+    "unevaluable_in_recovery": []
+   },
+   "provenance": {
+    "data_origin": "SYNTHETIC",
+    "producer_id": "fx.tx14.f06",
+    "producer_version": "1.0.2",
+    "source_field": "F06",
+    "source_refs": [
+     {
+      "artifact_id": "art:d101553030de33caf52ae96eaaa99d89",
+      "artifact_type": "scenario_definition",
+      "content_hash": "sha256:c37b774fda6203b1b3b098b855c7a0cf58e44a639e8e1fcaf3aeb6b5ad110367"
+     },
+     {
+      "artifact_id": "art:b67c200288bd6f9b3d9bc7fd3c4f201a",
+      "artifact_type": "scenario_definition",
+      "content_hash": "sha256:478e87b93100905e31170f8e5a49c5f645d19456db71e053334e375f5dd94648"
+     }
+    ]
+   },
+   "revision": 0,
+   "schema_version": "cira.comparison_report/1.0.2",
+   "tick": 2
+  },
+  {
+   "artifact_id": "art:1e12a161084b2cfc0083c53726981898",
+   "artifact_type": "forward_result",
+   "content_hash": "sha256:8970fa2e7372fd5bd20e9676dcbbae6ceb498290794dc96567e79b685b8b427d",
+   "experiment_id": "exp:fx_tx14_replay",
+   "logical_key": "fwd:t2:a0",
+   "payload": {
+    "output": {
+     "gaps": [
+      {
+       "epistemic_class": "OPEN_REFERENCE",
+       "gap_id": "gap:t2:1",
+       "kind": "unobserved_dependency",
+       "source_refs": [
+        "rel:depends_on:n10:n08"
+       ],
+       "status": "OPEN",
+       "subject_refs": [
+        "node:n10"
+       ]
+      }
+     ],
+     "open_relations": [
+      {
+       "reason": "no observation reaches n10",
+       "reference_status": "UNRESOLVED",
+       "relation_key": "rel:unknown:n10:n08",
+       "subject_refs": [
+        "node:n10",
+        "node:n08"
+       ]
+      }
+     ],
+     "relations": [
+      {
+       "coupling_status": "POSSIBLE",
+       "derived_from": [
+        "obs:s01:n06/state:t0"
+       ],
+       "epistemic_class": "STRUCTURAL_DERIVATION",
+       "relation_key": "rel:depends_on:n08:n06",
+       "relation_type": "depends_on",
+       "source": "node:n08",
+       "target": "node:n06"
+      },
+      {
+       "coupling_status": "UNKNOWN_OPEN",
+       "derived_from": [],
+       "epistemic_class": "OPEN_REFERENCE",
+       "relation_key": "rel:unknown:n10:n08",
+       "relation_type": null,
+       "source": "node:n10",
+       "target": "node:n08"
+      }
+     ],
+     "values": [
+      {
+       "attribute_ref": "attr:n01/state",
+       "derived_from": [
+        "obs:s01:n01/state:t2"
+       ],
+       "epistemic_class": "SOURCE_OBSERVATION",
+       "reference_status": "RESOLVED",
+       "status": "DETERMINED",
+       "value": "NOMINAL"
+      },
+      {
+       "attribute_ref": "attr:n02/state",
+       "derived_from": [
+        "obs:s01:n02/state:t2"
+       ],
+       "epistemic_class": "SOURCE_OBSERVATION",
+       "reference_status": "RESOLVED",
+       "status": "DETERMINED",
+       "value": "NOMINAL"
+      },
+      {
+       "attribute_ref": "attr:n03/state",
+       "derived_from": [
+        "obs:s01:n03/state:t2"
+       ],
+       "epistemic_class": "SOURCE_OBSERVATION",
+       "reference_status": "RESOLVED",
+       "status": "DETERMINED",
+       "value": "DEGRADED"
+      },
+      {
+       "attribute_ref": "attr:n04/state",
+       "derived_from": [
+        "obs:s01:n04/state:t2"
+       ],
+       "epistemic_class": "SOURCE_OBSERVATION",
+       "reference_status": "RESOLVED",
+       "status": "DETERMINED",
+       "value": "STANDBY"
+      },
+      {
+       "attribute_ref": "attr:n05/state",
+       "derived_from": [
+        "obs:s01:n05/state:t2"
+       ],
+       "epistemic_class": "SOURCE_OBSERVATION",
+       "reference_status": "RESOLVED",
+       "status": "DETERMINED",
+       "value": "OPEN"
+      },
+      {
+       "attribute_ref": "attr:n06/state",
+       "derived_from": [
+        "obs:s01:n06/state:t2"
+       ],
+       "epistemic_class": "SOURCE_OBSERVATION",
+       "reference_status": "RESOLVED",
+       "status": "DETERMINED",
+       "value": "NOMINAL"
+      },
+      {
+       "attribute_ref": "attr:n07/state",
+       "derived_from": [
+        "obs:s02:n07/state:t0"
+       ],
+       "epistemic_class": "HYPOTHESIS",
+       "reference_status": "RESOLVED",
+       "status": "DETERMINED",
+       "value": "STANDBY"
+      },
+      {
+       "attribute_ref": "attr:n08/state",
+       "derived_from": [
+        "rel:depends_on:n08:n06"
+       ],
+       "epistemic_class": "STRUCTURAL_DERIVATION",
+       "reference_status": "RESOLVED",
+       "status": "DETERMINED",
+       "value": "DEGRADED"
+      },
+      {
+       "attribute_ref": "attr:n09/state",
+       "derived_from": [],
+       "epistemic_class": "OPEN_REFERENCE",
+       "reference_status": "UNRESOLVED",
+       "status": "UNDETERMINED",
+       "value": null
+      },
+      {
+       "attribute_ref": "attr:n10/state",
+       "derived_from": [],
+       "epistemic_class": "OPEN_REFERENCE",
+       "reference_status": "TRUNCATED",
+       "status": "UNDETERMINED",
+       "value": null
+      }
+     ]
+    },
+    "sweep": {
+     "adapter": {
+      "adapter_id": "adapter.fixture",
+      "adapter_version": "1.0.2",
+      "capabilities": {
+       "forward": true,
+       "inverse": true,
+       "merge": false,
+       "trace": true
+      },
+      "engine_version": "none (fixture)",
+      "is_fixture": true,
+      "kind": "FIXTURE",
+      "operator_registry_ref": {
+       "artifact_id": "art:75f0e2bea81ccbe765f47b1ddecf7035",
+       "artifact_type": "operator_registry",
+       "content_hash": "sha256:f1c8d5daba08b465c1d576638f842db8f5896bcef4223022e42de46e5ddc247c"
+      }
+     },
+     "attempt": 0,
+     "context_version": "ctx:2",
+     "direction": "FORWARD",
+     "error": null,
+     "execution_status": "COMPLETED",
+     "input_bundle_ref": {
+      "artifact_id": "art:4ef9f5f83600988a6c63d910f6aa25ab",
+      "artifact_type": "observation_bundle",
+      "content_hash": "sha256:af84494e811af6c4ce87737ff098c990ae18e7226184e28f75365cd7061da1e9"
+     },
+     "sweep_id": "sweep:fwd:t2:a0",
+     "target_ref": null,
+     "termination": {
+      "budget": 10,
+      "engine_message": "fixture adapter: no engine executed",
+      "last_step_seq": 1,
+      "reason": "CONVERGED",
+      "steps_executed": 2
+     },
+     "up_to_tick": 2
+    },
+    "trace": {
+     "reference_status": "RESOLVED",
+     "steps": [
+      {
+       "engine_note": "fixture step",
+       "epistemic_class": "STRUCTURAL_DERIVATION",
+       "input_refs": [
+        "ctx:0"
+       ],
+       "operator_ref": {
+        "namespace": "CANONICAL_V181",
+        "registry_version": "v1.8.1",
+        "symbol": "∆"
+       },
+       "output_refs": [
+        "attr:n08/state"
+       ],
+       "sigma_ref": {
+        "registry_version": "v1.8.1",
+        "sigma_id": "Σ01"
+       },
+       "step_id": "step:fwd:t2:a0:0",
+       "step_seq": 0
+      },
+      {
+       "engine_note": null,
+       "epistemic_class": "SOURCE_OBSERVATION",
+       "input_refs": [],
+       "operator_ref": null,
+       "output_refs": [],
+       "sigma_ref": null,
+       "step_id": "step:fwd:t2:a0:1",
+       "step_seq": 1
+      }
+     ],
+     "sweep_id": "sweep:fwd:t2:a0"
+    }
+   },
+   "provenance": {
+    "data_origin": "FIXTURE",
+    "producer_id": "fx.tx14.f05",
+    "producer_version": "1.0.2",
+    "source_field": "F05",
+    "source_refs": [
+     {
+      "artifact_id": "art:023e10284a7e5ed22139843614d419a3",
+      "artifact_type": "sweep_run",
+      "content_hash": "sha256:cab268e7216ad129c37247682f2dca8498dd6f694cd3f60fc86e8ee2ff17613d"
+     }
+    ]
+   },
+   "revision": 0,
+   "schema_version": "cira.forward_result/1.0.2",
+   "tick": 2
+  },
+  {
+   "artifact_id": "art:422eb8e8dedaa4b27cda99ed4e6c286c",
+   "artifact_type": "inverse_result",
+   "content_hash": "sha256:3db06735ee9d65e931c64943a21cc127849ef9b495ea0cfc90e212d87fe9f3dd",
+   "experiment_id": "exp:fx_tx14_replay",
+   "logical_key": "inv:t2:a0",
+   "payload": {
+    "output": {
+     "gaps": [
+      {
+       "epistemic_class": "OPEN_REFERENCE",
+       "gap_id": "gap:t2:1",
+       "kind": "unobserved_dependency",
+       "source_refs": [
+        "rel:depends_on:n10:n08"
+       ],
+       "status": "OPEN",
+       "subject_refs": [
+        "node:n10"
+       ]
+      }
+     ],
+     "open_relations": [
+      {
+       "reason": "no observation reaches n10",
+       "reference_status": "UNRESOLVED",
+       "relation_key": "rel:unknown:n10:n08",
+       "subject_refs": [
+        "node:n10",
+        "node:n08"
+       ]
+      }
+     ],
+     "relations": [
+      {
+       "coupling_status": "POSSIBLE",
+       "derived_from": [
+        "obs:s01:n06/state:t0"
+       ],
+       "epistemic_class": "STRUCTURAL_DERIVATION",
+       "relation_key": "rel:depends_on:n08:n06",
+       "relation_type": "depends_on",
+       "source": "node:n08",
+       "target": "node:n06"
+      },
+      {
+       "coupling_status": "UNKNOWN_OPEN",
+       "derived_from": [],
+       "epistemic_class": "OPEN_REFERENCE",
+       "relation_key": "rel:unknown:n10:n08",
+       "relation_type": null,
+       "source": "node:n10",
+       "target": "node:n08"
+      }
+     ],
+     "values": [
+      {
+       "attribute_ref": "attr:n01/state",
+       "derived_from": [
+        "obs:s01:n01/state:t2"
+       ],
+       "epistemic_class": "SOURCE_OBSERVATION",
+       "reference_status": "RESOLVED",
+       "status": "DETERMINED",
+       "value": "NOMINAL"
+      },
+      {
+       "attribute_ref": "attr:n02/state",
+       "derived_from": [
+        "obs:s01:n02/state:t2"
+       ],
+       "epistemic_class": "SOURCE_OBSERVATION",
+       "reference_status": "RESOLVED",
+       "status": "DETERMINED",
+       "value": "NOMINAL"
+      },
+      {
+       "attribute_ref": "attr:n03/state",
+       "derived_from": [
+        "obs:s01:n03/state:t2"
+       ],
+       "epistemic_class": "SOURCE_OBSERVATION",
+       "reference_status": "RESOLVED",
+       "status": "DETERMINED",
+       "value": "DEGRADED"
+      },
+      {
+       "attribute_ref": "attr:n04/state",
+       "derived_from": [
+        "obs:s01:n04/state:t2"
+       ],
+       "epistemic_class": "SOURCE_OBSERVATION",
+       "reference_status": "RESOLVED",
+       "status": "DETERMINED",
+       "value": "STANDBY"
+      },
+      {
+       "attribute_ref": "attr:n05/state",
+       "derived_from": [
+        "obs:s01:n05/state:t2"
+       ],
+       "epistemic_class": "SOURCE_OBSERVATION",
+       "reference_status": "RESOLVED",
+       "status": "DETERMINED",
+       "value": "OPEN"
+      },
+      {
+       "attribute_ref": "attr:n06/state",
+       "derived_from": [
+        "obs:s01:n06/state:t2"
+       ],
+       "epistemic_class": "SOURCE_OBSERVATION",
+       "reference_status": "RESOLVED",
+       "status": "DETERMINED",
+       "value": "NOMINAL"
+      },
+      {
+       "attribute_ref": "attr:n07/state",
+       "derived_from": [
+        "obs:s02:n07/state:t0"
+       ],
+       "epistemic_class": "HYPOTHESIS",
+       "reference_status": "RESOLVED",
+       "status": "DETERMINED",
+       "value": "STANDBY"
+      },
+      {
+       "attribute_ref": "attr:n08/state",
+       "derived_from": [
+        "rel:depends_on:n08:n06"
+       ],
+       "epistemic_class": "STRUCTURAL_DERIVATION",
+       "reference_status": "RESOLVED",
+       "status": "DETERMINED",
+       "value": "DEGRADED"
+      },
+      {
+       "attribute_ref": "attr:n09/state",
+       "derived_from": [],
+       "epistemic_class": "OPEN_REFERENCE",
+       "reference_status": "UNRESOLVED",
+       "status": "UNDETERMINED",
+       "value": null
+      },
+      {
+       "attribute_ref": "attr:n10/state",
+       "derived_from": [],
+       "epistemic_class": "OPEN_REFERENCE",
+       "reference_status": "TRUNCATED",
+       "status": "UNDETERMINED",
+       "value": null
+      }
+     ]
+    },
+    "sweep": {
+     "adapter": {
+      "adapter_id": "adapter.fixture",
+      "adapter_version": "1.0.2",
+      "capabilities": {
+       "forward": true,
+       "inverse": true,
+       "merge": false,
+       "trace": true
+      },
+      "engine_version": "none (fixture)",
+      "is_fixture": true,
+      "kind": "FIXTURE",
+      "operator_registry_ref": {
+       "artifact_id": "art:75f0e2bea81ccbe765f47b1ddecf7035",
+       "artifact_type": "operator_registry",
+       "content_hash": "sha256:f1c8d5daba08b465c1d576638f842db8f5896bcef4223022e42de46e5ddc247c"
+      }
+     },
+     "attempt": 0,
+     "context_version": "ctx:2",
+     "direction": "INVERSE",
+     "error": null,
+     "execution_status": "COMPLETED",
+     "input_bundle_ref": {
+      "artifact_id": "art:4ef9f5f83600988a6c63d910f6aa25ab",
+      "artifact_type": "observation_bundle",
+      "content_hash": "sha256:af84494e811af6c4ce87737ff098c990ae18e7226184e28f75365cd7061da1e9"
+     },
+     "sweep_id": "sweep:inv:t2:a0",
+     "target_ref": {
+      "artifact_id": "art:7c38f81a37f42ff449f195417b0bff91",
+      "artifact_type": "target_definition",
+      "content_hash": "sha256:e1fd4f06448fff84a526afd3406bb22549ce2f3dbba96007ad3baf51c7d35501"
+     },
+     "termination": {
+      "budget": 10,
+      "engine_message": "fixture adapter: no engine executed",
+      "last_step_seq": 1,
+      "reason": "ENGINE_REPORTED_STOP",
+      "steps_executed": 2
+     },
+     "up_to_tick": 2
+    },
+    "target_assessment": [
+     {
+      "derived_from": [
+       "attr:n01/state"
+      ],
+      "goal_id": "goal:g1",
+      "status": "MET"
+     },
+     {
+      "derived_from": [],
+      "goal_id": "goal:g2",
+      "status": "UNDETERMINED"
+     }
+    ],
+    "trace": {
+     "reference_status": "RESOLVED",
+     "steps": [
+      {
+       "engine_note": "fixture step",
+       "epistemic_class": "STRUCTURAL_DERIVATION",
+       "input_refs": [
+        "ctx:0"
+       ],
+       "operator_ref": {
+        "namespace": "CANONICAL_V181",
+        "registry_version": "v1.8.1",
+        "symbol": "∆"
+       },
+       "output_refs": [
+        "attr:n08/state"
+       ],
+       "sigma_ref": {
+        "registry_version": "v1.8.1",
+        "sigma_id": "Σ01"
+       },
+       "step_id": "step:inv:t2:a0:0",
+       "step_seq": 0
+      },
+      {
+       "engine_note": null,
+       "epistemic_class": "SOURCE_OBSERVATION",
+       "input_refs": [],
+       "operator_ref": null,
+       "output_refs": [],
+       "sigma_ref": null,
+       "step_id": "step:inv:t2:a0:1",
+       "step_seq": 1
+      }
+     ],
+     "sweep_id": "sweep:inv:t2:a0"
+    }
+   },
+   "provenance": {
+    "data_origin": "FIXTURE",
+    "producer_id": "fx.tx14.f05",
+    "producer_version": "1.0.2",
+    "source_field": "F05",
+    "source_refs": [
+     {
+      "artifact_id": "art:7547beb30b9e1a4c65c33b900be0d017",
+      "artifact_type": "sweep_run",
+      "content_hash": "sha256:bde5fccfcdbdbe507c6bf9b594aba070ce1eae647babb6f62722da7402f8a702"
+     }
+    ]
+   },
+   "revision": 0,
+   "schema_version": "cira.inverse_result/1.0.2",
+   "tick": 2
+  },
+  {
+   "artifact_id": "art:4ef9f5f83600988a6c63d910f6aa25ab",
+   "artifact_type": "observation_bundle",
+   "content_hash": "sha256:af84494e811af6c4ce87737ff098c990ae18e7226184e28f75365cd7061da1e9",
+   "experiment_id": "exp:fx_tx14_replay",
+   "logical_key": "t2",
+   "payload": {
+    "budget_usage": {
+     "bytes": 5400,
+     "observations": 21
+    },
+    "bundle_key": "bundle:t2",
+    "contexts": [
+     {
+      "context_version": "ctx:0",
+      "observations": [
+       {
+        "attribute_ref": "attr:n01/state",
+        "observation_id": "obs:s01:n01/state:t0",
+        "observed_at_tick": 0,
+        "references": [],
+        "source_id": "src:s01",
+        "status": "KNOWN",
+        "tick": 0,
+        "value": "NOMINAL"
+       },
+       {
+        "attribute_ref": "attr:n02/state",
+        "observation_id": "obs:s01:n02/state:t0",
+        "observed_at_tick": 0,
+        "references": [
+         "rel:depends_on:n02:n01"
+        ],
+        "source_id": "src:s01",
+        "status": "KNOWN",
+        "tick": 0,
+        "value": "NOMINAL"
+       },
+       {
+        "attribute_ref": "attr:n03/state",
+        "observation_id": "obs:s01:n03/state:t0",
+        "observed_at_tick": 0,
+        "references": [],
+        "source_id": "src:s01",
+        "status": "KNOWN",
+        "tick": 0,
+        "value": "DEGRADED"
+       },
+       {
+        "attribute_ref": "attr:n04/state",
+        "observation_id": "obs:s01:n04/state:t0",
+        "observed_at_tick": 0,
+        "references": [],
+        "source_id": "src:s01",
+        "status": "KNOWN",
+        "tick": 0,
+        "value": "ACTIVE"
+       },
+       {
+        "attribute_ref": "attr:n05/state",
+        "observation_id": "obs:s01:n05/state:t0",
+        "observed_at_tick": 0,
+        "references": [],
+        "source_id": "src:s01",
+        "status": "KNOWN",
+        "tick": 0,
+        "value": "CLOSED"
+       },
+       {
+        "attribute_ref": "attr:n06/state",
+        "observation_id": "obs:s01:n06/state:t0",
+        "observed_at_tick": 0,
+        "references": [],
+        "source_id": "src:s01",
+        "status": "KNOWN",
+        "tick": 0,
+        "value": "NOMINAL"
+       },
+       {
+        "attribute_ref": "attr:n07/state",
+        "observation_id": "obs:s02:n07/state:t0",
+        "observed_at_tick": 0,
+        "references": [],
+        "source_id": "src:s02",
+        "status": "KNOWN",
+        "tick": 0,
+        "value": "STANDBY"
+       }
+      ],
+      "previous_context_ref": null,
+      "sequence": 0,
+      "tick": 0
+     },
+     {
+      "context_version": "ctx:1",
+      "observations": [
+       {
+        "attribute_ref": "attr:n01/state",
+        "observation_id": "obs:s01:n01/state:t1",
+        "observed_at_tick": 1,
+        "references": [],
+        "source_id": "src:s01",
+        "status": "KNOWN",
+        "tick": 1,
+        "value": "NOMINAL"
+       },
+       {
+        "attribute_ref": "attr:n02/state",
+        "observation_id": "obs:s01:n02/state:t1",
+        "observed_at_tick": 1,
+        "references": [
+         "rel:depends_on:n02:n01"
+        ],
+        "source_id": "src:s01",
+        "status": "KNOWN",
+        "tick": 1,
+        "value": "NOMINAL"
+       },
+       {
+        "attribute_ref": "attr:n03/state",
+        "observation_id": "obs:s01:n03/state:t1",
+        "observed_at_tick": 1,
+        "references": [],
+        "source_id": "src:s01",
+        "status": "KNOWN",
+        "tick": 1,
+        "value": "DEGRADED"
+       },
+       {
+        "attribute_ref": "attr:n04/state",
+        "observation_id": "obs:s01:n04/state:t1",
+        "observed_at_tick": 1,
+        "references": [],
+        "source_id": "src:s01",
+        "status": "KNOWN",
+        "tick": 1,
+        "value": "ACTIVE"
+       },
+       {
+        "attribute_ref": "attr:n05/state",
+        "observation_id": "obs:s01:n05/state:t1",
+        "observed_at_tick": 1,
+        "references": [],
+        "source_id": "src:s01",
+        "status": "KNOWN",
+        "tick": 1,
+        "value": "OPEN"
+       },
+       {
+        "attribute_ref": "attr:n06/state",
+        "observation_id": "obs:s01:n06/state:t1",
+        "observed_at_tick": 1,
+        "references": [],
+        "source_id": "src:s01",
+        "status": "KNOWN",
+        "tick": 1,
+        "value": "NOMINAL"
+       },
+       {
+        "attribute_ref": "attr:n07/state",
+        "observation_id": "obs:none:n07/state:t1",
+        "observed_at_tick": 1,
+        "references": [],
+        "source_id": null,
+        "status": "UNKNOWN",
+        "tick": 1,
+        "value": null
+       }
+      ],
+      "previous_context_ref": "ctx:0",
+      "sequence": 1,
+      "tick": 1
+     },
+     {
+      "context_version": "ctx:2",
+      "observations": [
+       {
+        "attribute_ref": "attr:n01/state",
+        "observation_id": "obs:s01:n01/state:t2",
+        "observed_at_tick": 2,
+        "references": [],
+        "source_id": "src:s01",
+        "status": "KNOWN",
+        "tick": 2,
+        "value": "NOMINAL"
+       },
+       {
+        "attribute_ref": "attr:n02/state",
+        "observation_id": "obs:s01:n02/state:t2",
+        "observed_at_tick": 2,
+        "references": [
+         "rel:depends_on:n02:n01"
+        ],
+        "source_id": "src:s01",
+        "status": "KNOWN",
+        "tick": 2,
+        "value": "NOMINAL"
+       },
+       {
+        "attribute_ref": "attr:n03/state",
+        "observation_id": "obs:s01:n03/state:t2",
+        "observed_at_tick": 2,
+        "references": [],
+        "source_id": "src:s01",
+        "status": "KNOWN",
+        "tick": 2,
+        "value": "DEGRADED"
+       },
+       {
+        "attribute_ref": "attr:n04/state",
+        "observation_id": "obs:s01:n04/state:t2",
+        "observed_at_tick": 2,
+        "references": [],
+        "source_id": "src:s01",
+        "status": "KNOWN",
+        "tick": 2,
+        "value": "STANDBY"
+       },
+       {
+        "attribute_ref": "attr:n05/state",
+        "observation_id": "obs:s01:n05/state:t2",
+        "observed_at_tick": 2,
+        "references": [],
+        "source_id": "src:s01",
+        "status": "KNOWN",
+        "tick": 2,
+        "value": "OPEN"
+       },
+       {
+        "attribute_ref": "attr:n06/state",
+        "observation_id": "obs:s01:n06/state:t2",
+        "observed_at_tick": 2,
+        "references": [],
+        "source_id": "src:s01",
+        "status": "KNOWN",
+        "tick": 2,
+        "value": "NOMINAL"
+       },
+       {
+        "attribute_ref": "attr:n07/state",
+        "observation_id": "obs:none:n07/state:t2",
+        "observed_at_tick": 2,
+        "references": [],
+        "source_id": null,
+        "status": "UNKNOWN",
+        "tick": 2,
+        "value": null
+       }
+      ],
+      "previous_context_ref": "ctx:1",
+      "sequence": 2,
+      "tick": 2
+     }
+    ],
+    "observable_rules": {
+     "rules": [
+      {
+       "applies_to": [
+        "node:n01"
+       ],
+       "description": "n01 is not faulty",
+       "expression": {
+        "at": null,
+        "attr": "attr:n01/state",
+        "op": "in",
+        "values": [
+         "NOMINAL",
+         "DEGRADED"
+        ]
+       },
+       "kind": "STATE",
+       "permits": [],
+       "requires": [],
+       "rule_id": "rule:health_ok",
+       "scope": [
+        "node:n01"
+       ],
+       "valid_from_tick": 0,
+       "valid_until_tick": null,
+       "version": "1.0.0"
+      },
+      {
+       "applies_to": [
+        "node:n04"
+       ],
+       "description": "",
+       "expression": {
+        "args": [
+         {
+          "allowed": [
+           {
+            "from": "ACTIVE",
+            "to": "ACTIVE"
+           },
+           {
+            "from": "ACTIVE",
+            "to": "STANDBY"
+           },
+           {
+            "from": "STANDBY",
+            "to": "ACTIVE"
+           }
+          ],
+          "attr": "attr:n04/state",
+          "op": "transition_in"
+         },
+         {
+          "arg": {
+           "at": "NEXT",
+           "attr": "attr:n03/state",
+           "op": "eq",
+           "value": "CRITICAL"
+          },
+          "op": "not"
+         },
+         {
+          "at": "CURRENT",
+          "attr": "attr:n04/state",
+          "op": "in",
+          "values": [
+           "ACTIVE",
+           "STANDBY"
+          ]
+         }
+        ],
+        "op": "and"
+       },
+       "kind": "TRANSITION",
+       "permits": [],
+       "requires": [],
+       "rule_id": "rule:mode_steps",
+       "scope": [],
+       "valid_from_tick": 0,
+       "valid_until_tick": null,
+       "version": "1.0.0"
+      }
+     ]
+    },
+    "observable_topology": {
+     "nodes": [
+      {
+       "attributes": [
+        {
+         "applicability": "APPLICABLE",
+         "attribute_id": "attr:n01/state",
+         "domain_ref": "dom:health",
+         "name": "state"
+        }
+       ],
+       "label": "Komponente 01",
+       "node_id": "node:n01",
+       "node_type": "type:component",
+       "version": "1.0.0"
+      },
+      {
+       "attributes": [
+        {
+         "applicability": "APPLICABLE",
+         "attribute_id": "attr:n02/state",
+         "domain_ref": "dom:health",
+         "name": "state"
+        }
+       ],
+       "label": "Komponente 02",
+       "node_id": "node:n02",
+       "node_type": "type:component",
+       "version": "1.0.0"
+      },
+      {
+       "attributes": [
+        {
+         "applicability": "APPLICABLE",
+         "attribute_id": "attr:n03/state",
+         "domain_ref": "dom:health",
+         "name": "state"
+        }
+       ],
+       "label": "Komponente 03",
+       "node_id": "node:n03",
+       "node_type": "type:component",
+       "version": "1.0.0"
+      },
+      {
+       "attributes": [
+        {
+         "applicability": "APPLICABLE",
+         "attribute_id": "attr:n04/state",
+         "domain_ref": "dom:mode",
+         "name": "state"
+        }
+       ],
+       "label": "Komponente 04",
+       "node_id": "node:n04",
+       "node_type": "type:component",
+       "version": "1.0.0"
+      },
+      {
+       "attributes": [
+        {
+         "applicability": "APPLICABLE",
+         "attribute_id": "attr:n05/state",
+         "domain_ref": "dom:gate",
+         "name": "state"
+        }
+       ],
+       "label": "Komponente 05",
+       "node_id": "node:n05",
+       "node_type": "type:component",
+       "version": "1.0.0"
+      },
+      {
+       "attributes": [
+        {
+         "applicability": "APPLICABLE",
+         "attribute_id": "attr:n06/state",
+         "domain_ref": "dom:health",
+         "name": "state"
+        }
+       ],
+       "label": "Komponente 06",
+       "node_id": "node:n06",
+       "node_type": "type:component",
+       "version": "1.0.0"
+      },
+      {
+       "attributes": [
+        {
+         "applicability": "APPLICABLE",
+         "attribute_id": "attr:n07/state",
+         "domain_ref": "dom:mode",
+         "name": "state"
+        }
+       ],
+       "label": "Komponente 07",
+       "node_id": "node:n07",
+       "node_type": "type:component",
+       "version": "1.0.0"
+      }
+     ],
+     "relations": [
+      {
+       "relation_id": "rel:depends_on:n02:n01",
+       "relation_type": "depends_on",
+       "source": "node:n02",
+       "target": "node:n01",
+       "version": "1.0.0"
+      },
+      {
+       "relation_id": "rel:depends_on:n03:n02",
+       "relation_type": "depends_on",
+       "source": "node:n03",
+       "target": "node:n02",
+       "version": "1.0.0"
+      }
+     ],
+     "value_domains": [
+      {
+       "domain_id": "dom:gate",
+       "symbols": [
+        "OPEN",
+        "CLOSED"
+       ],
+       "version": "1.0.0"
+      },
+      {
+       "domain_id": "dom:health",
+       "symbols": [
+        "NOMINAL",
+        "DEGRADED",
+        "FAULTY",
+        "CRITICAL"
+       ],
+       "version": "1.0.0"
+      },
+      {
+       "domain_id": "dom:mode",
+       "symbols": [
+        "ACTIVE",
+        "STANDBY"
+       ],
+       "version": "1.0.0"
+      }
+     ]
+    },
+    "serialization_profile": "full",
+    "source_register": {
+     "entries": [
+      {
+       "continuity": "CONTINUOUS",
+       "first_tick": 0,
+       "gaps": [],
+       "last_tick": 2,
+       "source_id": "src:s01"
+      },
+      {
+       "continuity": "INTERRUPTED",
+       "first_tick": 0,
+       "gaps": [
+        {
+         "from_tick": 1,
+         "to_tick": 2
+        }
+       ],
+       "last_tick": 0,
+       "source_id": "src:s02"
+      }
+     ]
+    },
+    "up_to_tick": 2
+   },
+   "provenance": {
+    "data_origin": "SYNTHETIC",
+    "producer_id": "fx.tx14.f04",
+    "producer_version": "1.0.2",
+    "source_field": "F04",
+    "source_refs": [
+     {
+      "artifact_id": "art:3cf690ef86346b416d13064c69610b84",
+      "artifact_type": "observation_config",
+      "content_hash": "sha256:5a50b767b618a803fbcf52bfcb88457b57a9a9ed0ce9baec69cc7ef9e401b64d"
+     }
+    ]
+   },
+   "revision": 0,
+   "schema_version": "cira.observation_bundle/1.0.2",
+   "tick": 2
+  },
+  {
+   "artifact_id": "art:e4921808270a49b6f59b62129c2a590e",
+   "artifact_type": "observation_record",
+   "content_hash": "sha256:7606e14511c4d679b5399cdf472c47922acc919091bfa85c17c368a483c2232d",
+   "experiment_id": "exp:fx_tx14_replay",
+   "logical_key": "t2",
+   "payload": {
+    "actual_state_refs": [
+     {
+      "artifact_id": "art:8f773580e7da7e3a42414d4d7285b81c",
+      "artifact_type": "actual_state",
+      "content_hash": "sha256:edbd21813f8c941cfcf790039c001d3284e6c9da08ede886aac9d60b32173d4b"
+     },
+     {
+      "artifact_id": "art:5917148ef702ffc2285e8d94b1ef03e4",
+      "artifact_type": "actual_state",
+      "content_hash": "sha256:16d61d203741f9798420052140a7b10e68caa42214b9d029ea073e5eb98eae8e"
+     },
+     {
+      "artifact_id": "art:b226ef7cdcf3a5b06c61e6d0ef1e3723",
+      "artifact_type": "actual_state",
+      "content_hash": "sha256:6b5794299ebdd07c203a3bfb8378ab798f373fdde6183ab7d4372881f8c0ef64"
+     }
+    ],
+    "bundle_ref": {
+     "artifact_id": "art:4ef9f5f83600988a6c63d910f6aa25ab",
+     "artifact_type": "observation_bundle",
+     "content_hash": "sha256:af84494e811af6c4ce87737ff098c990ae18e7226184e28f75365cd7061da1e9"
+    },
+    "observation_config_ref": {
+     "artifact_id": "art:3cf690ef86346b416d13064c69610b84",
+     "artifact_type": "observation_config",
+     "content_hash": "sha256:5a50b767b618a803fbcf52bfcb88457b57a9a9ed0ce9baec69cc7ef9e401b64d"
+    },
+    "tick": 2
+   },
+   "provenance": {
+    "data_origin": "SYNTHETIC",
+    "producer_id": "fx.tx14.f04",
+    "producer_version": "1.0.2",
+    "source_field": "F04",
+    "source_refs": [
+     {
+      "artifact_id": "art:4ef9f5f83600988a6c63d910f6aa25ab",
+      "artifact_type": "observation_bundle",
+      "content_hash": "sha256:af84494e811af6c4ce87737ff098c990ae18e7226184e28f75365cd7061da1e9"
+     },
+     {
+      "artifact_id": "art:3cf690ef86346b416d13064c69610b84",
+      "artifact_type": "observation_config",
+      "content_hash": "sha256:5a50b767b618a803fbcf52bfcb88457b57a9a9ed0ce9baec69cc7ef9e401b64d"
+     },
+     {
+      "artifact_id": "art:8f773580e7da7e3a42414d4d7285b81c",
+      "artifact_type": "actual_state",
+      "content_hash": "sha256:edbd21813f8c941cfcf790039c001d3284e6c9da08ede886aac9d60b32173d4b"
+     },
+     {
+      "artifact_id": "art:5917148ef702ffc2285e8d94b1ef03e4",
+      "artifact_type": "actual_state",
+      "content_hash": "sha256:16d61d203741f9798420052140a7b10e68caa42214b9d029ea073e5eb98eae8e"
+     },
+     {
+      "artifact_id": "art:b226ef7cdcf3a5b06c61e6d0ef1e3723",
+      "artifact_type": "actual_state",
+      "content_hash": "sha256:6b5794299ebdd07c203a3bfb8378ab798f373fdde6183ab7d4372881f8c0ef64"
+     }
+    ]
+   },
+   "revision": 0,
+   "schema_version": "cira.observation_record/1.0.2",
+   "tick": 2
+  },
+  {
+   "artifact_id": "art:7e5cc87b8dc539d9b910d49ba0de7961",
+   "artifact_type": "reconstruction_result",
+   "content_hash": "sha256:4e95740a12520c0a61aca53214ef5e19b28baa0a32995a6cabf0be59aecdfa0c",
+   "experiment_id": "exp:fx_tx14_replay",
+   "logical_key": "t2:a0",
+   "payload": {
+    "attempt": 0,
+    "context_version": "ctx:2",
+    "delta_coupling": {
+     "changes": [
+      {
+       "after": "POSSIBLE",
+       "before": "ABSENT",
+       "relation_key": "rel:depends_on:n08:n06"
+      }
+     ],
+     "from_tick": 1,
+     "to_tick": 2
+    },
+    "delta_state": {
+     "changes": [
+      {
+       "after": {
+        "status": "DETERMINED",
+        "value": "STANDBY"
+       },
+       "attribute_ref": "attr:n04/state",
+       "before": {
+        "status": "DETERMINED",
+        "value": "ACTIVE"
+       }
+      }
+     ],
+     "from_tick": 1,
+     "space": "R",
+     "to_tick": 2
+    },
+    "merge": {
+     "conflicts": [
+      {
+       "attribute_ref": "attr:n07/state",
+       "forward": "STANDBY",
+       "inverse": "ACTIVE",
+       "resolution": "UNDETERMINED"
+      }
+     ],
+     "engine_merged": false,
+     "forward_ref": {
+      "artifact_id": "art:1e12a161084b2cfc0083c53726981898",
+      "artifact_type": "forward_result",
+      "content_hash": "sha256:8970fa2e7372fd5bd20e9676dcbbae6ceb498290794dc96567e79b685b8b427d"
+     },
+     "inverse_ref": {
+      "artifact_id": "art:422eb8e8dedaa4b27cda99ed4e6c286c",
+      "artifact_type": "inverse_result",
+      "content_hash": "sha256:3db06735ee9d65e931c64943a21cc127849ef9b495ea0cfc90e212d87fe9f3dd"
+     },
+     "policy": {
+      "point": "merge.policy",
+      "variant": "engine_first",
+      "version": 1
+     }
+    },
+    "openness": {
+     "open_references": 2,
+     "open_relations": 1,
+     "structural_gaps_open": 1,
+     "undetermined": 2,
+     "unevaluable_rules": 1,
+     "unknown_observations": 3
+    },
+    "output": {
+     "gaps": [
+      {
+       "epistemic_class": "OPEN_REFERENCE",
+       "gap_id": "gap:t2:1",
+       "kind": "unobserved_dependency",
+       "source_refs": [
+        "rel:depends_on:n10:n08"
+       ],
+       "status": "OPEN",
+       "subject_refs": [
+        "node:n10"
+       ]
+      }
+     ],
+     "open_relations": [
+      {
+       "reason": "no observation reaches n10",
+       "reference_status": "UNRESOLVED",
+       "relation_key": "rel:unknown:n10:n08",
+       "subject_refs": [
+        "node:n10",
+        "node:n08"
+       ]
+      }
+     ],
+     "relations": [
+      {
+       "coupling_status": "POSSIBLE",
+       "derived_from": [
+        "obs:s01:n06/state:t0"
+       ],
+       "epistemic_class": "STRUCTURAL_DERIVATION",
+       "relation_key": "rel:depends_on:n08:n06",
+       "relation_type": "depends_on",
+       "source": "node:n08",
+       "target": "node:n06"
+      },
+      {
+       "coupling_status": "UNKNOWN_OPEN",
+       "derived_from": [],
+       "epistemic_class": "OPEN_REFERENCE",
+       "relation_key": "rel:unknown:n10:n08",
+       "relation_type": null,
+       "source": "node:n10",
+       "target": "node:n08"
+      }
+     ],
+     "values": [
+      {
+       "attribute_ref": "attr:n01/state",
+       "derived_from": [
+        "obs:s01:n01/state:t2"
+       ],
+       "epistemic_class": "SOURCE_OBSERVATION",
+       "reference_status": "RESOLVED",
+       "status": "DETERMINED",
+       "value": "NOMINAL"
+      },
+      {
+       "attribute_ref": "attr:n02/state",
+       "derived_from": [
+        "obs:s01:n02/state:t2"
+       ],
+       "epistemic_class": "SOURCE_OBSERVATION",
+       "reference_status": "RESOLVED",
+       "status": "DETERMINED",
+       "value": "NOMINAL"
+      },
+      {
+       "attribute_ref": "attr:n03/state",
+       "derived_from": [
+        "obs:s01:n03/state:t2"
+       ],
+       "epistemic_class": "SOURCE_OBSERVATION",
+       "reference_status": "RESOLVED",
+       "status": "DETERMINED",
+       "value": "DEGRADED"
+      },
+      {
+       "attribute_ref": "attr:n04/state",
+       "derived_from": [
+        "obs:s01:n04/state:t2"
+       ],
+       "epistemic_class": "SOURCE_OBSERVATION",
+       "reference_status": "RESOLVED",
+       "status": "DETERMINED",
+       "value": "STANDBY"
+      },
+      {
+       "attribute_ref": "attr:n05/state",
+       "derived_from": [
+        "obs:s01:n05/state:t2"
+       ],
+       "epistemic_class": "SOURCE_OBSERVATION",
+       "reference_status": "RESOLVED",
+       "status": "DETERMINED",
+       "value": "OPEN"
+      },
+      {
+       "attribute_ref": "attr:n06/state",
+       "derived_from": [
+        "obs:s01:n06/state:t2"
+       ],
+       "epistemic_class": "SOURCE_OBSERVATION",
+       "reference_status": "RESOLVED",
+       "status": "DETERMINED",
+       "value": "NOMINAL"
+      },
+      {
+       "attribute_ref": "attr:n07/state",
+       "derived_from": [
+        "obs:s02:n07/state:t0"
+       ],
+       "epistemic_class": "HYPOTHESIS",
+       "reference_status": "RESOLVED",
+       "status": "DETERMINED",
+       "value": "STANDBY"
+      },
+      {
+       "attribute_ref": "attr:n08/state",
+       "derived_from": [
+        "rel:depends_on:n08:n06"
+       ],
+       "epistemic_class": "STRUCTURAL_DERIVATION",
+       "reference_status": "RESOLVED",
+       "status": "DETERMINED",
+       "value": "DEGRADED"
+      },
+      {
+       "attribute_ref": "attr:n09/state",
+       "derived_from": [],
+       "epistemic_class": "OPEN_REFERENCE",
+       "reference_status": "UNRESOLVED",
+       "status": "UNDETERMINED",
+       "value": null
+      },
+      {
+       "attribute_ref": "attr:n10/state",
+       "derived_from": [],
+       "epistemic_class": "OPEN_REFERENCE",
+       "reference_status": "TRUNCATED",
+       "status": "UNDETERMINED",
+       "value": null
+      }
+     ]
+    },
+    "previous_reconstruction_ref": {
+     "artifact_id": "art:7f1b80842c094c498ef2a94c1e5d011c",
+     "artifact_type": "reconstruction_result",
+     "content_hash": "sha256:4b0819898b08e2a94a6d020c697d40f69ba4f947a7e1137bdb0cff6d10f732e1"
+    },
+    "reconstruction_id": "recon:t2:a0",
+    "up_to_tick": 2
+   },
+   "provenance": {
+    "data_origin": "FIXTURE",
+    "producer_id": "fx.tx14.f05",
+    "producer_version": "1.0.2",
+    "source_field": "F05",
+    "source_refs": [
+     {
+      "artifact_id": "art:1e12a161084b2cfc0083c53726981898",
+      "artifact_type": "forward_result",
+      "content_hash": "sha256:8970fa2e7372fd5bd20e9676dcbbae6ceb498290794dc96567e79b685b8b427d"
+     },
+     {
+      "artifact_id": "art:422eb8e8dedaa4b27cda99ed4e6c286c",
+      "artifact_type": "inverse_result",
+      "content_hash": "sha256:3db06735ee9d65e931c64943a21cc127849ef9b495ea0cfc90e212d87fe9f3dd"
+     }
+    ]
+   },
+   "revision": 0,
+   "schema_version": "cira.reconstruction_result/1.0.2",
+   "tick": 2
+  },
+  {
+   "artifact_id": "art:f5ebbc250ed3b69d8cdbd2b2e4bf2567",
+   "artifact_type": "recovery_proposal",
+   "content_hash": "sha256:a6b95a6e18102f9ac3d1382794538516cb04c96ae4f953e2dacc38e8022958e4",
+   "experiment_id": "exp:fx_tx14_replay",
+   "logical_key": "prop:p1",
+   "payload": {
+    "description_from_engine": "fixture: close gate until authorization",
+    "proposal_id": "prop:p1",
+    "reconstruction_ref": {
+     "artifact_id": "art:7e5cc87b8dc539d9b910d49ba0de7961",
+     "artifact_type": "reconstruction_result",
+     "content_hash": "sha256:4e95740a12520c0a61aca53214ef5e19b28baa0a32995a6cabf0be59aecdfa0c"
+    },
+    "status": "PROPOSED",
+    "subject_refs": [
+     "node:n05",
+     "node:n09"
+    ]
+   },
+   "provenance": {
+    "data_origin": "FIXTURE",
+    "producer_id": "fx.tx14.f05",
+    "producer_version": "1.0.2",
+    "source_field": "F05",
+    "source_refs": [
+     {
+      "artifact_id": "art:7e5cc87b8dc539d9b910d49ba0de7961",
+      "artifact_type": "reconstruction_result",
+      "content_hash": "sha256:4e95740a12520c0a61aca53214ef5e19b28baa0a32995a6cabf0be59aecdfa0c"
+     }
+    ]
+   },
+   "revision": 0,
+   "schema_version": "cira.recovery_proposal/1.0.2",
+   "tick": 2
+  },
+  {
+   "artifact_id": "art:74be31a89ed6a766dc212b38ea6d5b54",
+   "artifact_type": "source_register",
+   "content_hash": "sha256:3b5d6f6e8737d8780ea15beb167cb2dd9c99dee3ae9448e9322b8b9ee879ebfa",
+   "experiment_id": "exp:fx_tx14_replay",
+   "logical_key": "t2",
+   "payload": {
+    "entries": [
+     {
+      "continuity": "CONTINUOUS",
+      "first_tick": 0,
+      "gaps": [],
+      "last_tick": 2,
+      "source_id": "src:s01"
+     },
+     {
+      "continuity": "INTERRUPTED",
+      "first_tick": 0,
+      "gaps": [
+       {
+        "from_tick": 1,
+        "to_tick": 2
+       }
+      ],
+      "last_tick": 0,
+      "source_id": "src:s02"
+     }
+    ]
+   },
+   "provenance": {
+    "data_origin": "SYNTHETIC",
+    "producer_id": "fx.tx14.f04",
+    "producer_version": "1.0.2",
+    "source_field": "F04",
+    "source_refs": [
+     {
+      "artifact_id": "art:3cf690ef86346b416d13064c69610b84",
+      "artifact_type": "observation_config",
+      "content_hash": "sha256:5a50b767b618a803fbcf52bfcb88457b57a9a9ed0ce9baec69cc7ef9e401b64d"
+     }
+    ]
+   },
+   "revision": 0,
+   "schema_version": "cira.source_register/1.0.2",
+   "tick": 2
+  },
+  {
+   "artifact_id": "art:023e10284a7e5ed22139843614d419a3",
+   "artifact_type": "sweep_run",
+   "content_hash": "sha256:cab268e7216ad129c37247682f2dca8498dd6f694cd3f60fc86e8ee2ff17613d",
+   "experiment_id": "exp:fx_tx14_replay",
+   "logical_key": "fwd:t2:a0",
+   "payload": {
+    "adapter": {
+     "adapter_id": "adapter.fixture",
+     "adapter_version": "1.0.2",
+     "capabilities": {
+      "forward": true,
+      "inverse": true,
+      "merge": false,
+      "trace": true
+     },
+     "engine_version": "none (fixture)",
+     "is_fixture": true,
+     "kind": "FIXTURE",
+     "operator_registry_ref": {
+      "artifact_id": "art:75f0e2bea81ccbe765f47b1ddecf7035",
+      "artifact_type": "operator_registry",
+      "content_hash": "sha256:f1c8d5daba08b465c1d576638f842db8f5896bcef4223022e42de46e5ddc247c"
+     }
+    },
+    "attempt": 0,
+    "context_version": "ctx:2",
+    "direction": "FORWARD",
+    "error": null,
+    "execution_status": "COMPLETED",
+    "input_bundle_ref": {
+     "artifact_id": "art:4ef9f5f83600988a6c63d910f6aa25ab",
+     "artifact_type": "observation_bundle",
+     "content_hash": "sha256:af84494e811af6c4ce87737ff098c990ae18e7226184e28f75365cd7061da1e9"
+    },
+    "sweep_id": "sweep:fwd:t2:a0",
+    "target_ref": null,
+    "termination": {
+     "budget": 10,
+     "engine_message": "fixture adapter: no engine executed",
+     "last_step_seq": 1,
+     "reason": "CONVERGED",
+     "steps_executed": 2
+    },
+    "up_to_tick": 2
+   },
+   "provenance": {
+    "data_origin": "FIXTURE",
+    "producer_id": "fx.tx14.f05",
+    "producer_version": "1.0.2",
+    "source_field": "F05",
+    "source_refs": [
+     {
+      "artifact_id": "art:4ef9f5f83600988a6c63d910f6aa25ab",
+      "artifact_type": "observation_bundle",
+      "content_hash": "sha256:af84494e811af6c4ce87737ff098c990ae18e7226184e28f75365cd7061da1e9"
+     }
+    ]
+   },
+   "revision": 0,
+   "schema_version": "cira.sweep_run/1.0.2",
+   "tick": 2
+  },
+  {
+   "artifact_id": "art:ff741db483367b67e011ee54612341fb",
+   "artifact_type": "sweep_run",
+   "content_hash": "sha256:f687ad4d82cf736ff685184ad1f20450caca2c6da1c69ea6729fb96a6d6687ad",
+   "experiment_id": "exp:fx_tx14_replay",
+   "logical_key": "fwd:t2:a1",
+   "payload": {
+    "adapter": {
+     "adapter_id": "adapter.local",
+     "adapter_version": "1.0.2",
+     "capabilities": {
+      "forward": true,
+      "inverse": true,
+      "merge": true,
+      "trace": true
+     },
+     "engine_version": null,
+     "is_fixture": false,
+     "kind": "LOCAL",
+     "operator_registry_ref": null
+    },
+    "attempt": 1,
+    "context_version": "ctx:2",
+    "direction": "FORWARD",
+    "error": {
+     "code": "ENGINE_UNAVAILABLE",
+     "field": "F05",
+     "message": "no local engine (DEP-02)",
+     "recovery": "RESWEEP",
+     "subject_refs": [],
+     "tick": 2
+    },
+    "execution_status": "BLOCKED",
+    "input_bundle_ref": {
+     "artifact_id": "art:4ef9f5f83600988a6c63d910f6aa25ab",
+     "artifact_type": "observation_bundle",
+     "content_hash": "sha256:af84494e811af6c4ce87737ff098c990ae18e7226184e28f75365cd7061da1e9"
+    },
+    "sweep_id": "sweep:fwd:t2:a1",
+    "target_ref": null,
+    "termination": null,
+    "up_to_tick": 2
+   },
+   "provenance": {
+    "data_origin": "SYNTHETIC",
+    "producer_id": "fx.tx14.f05",
+    "producer_version": "1.0.2",
+    "source_field": "F05",
+    "source_refs": [
+     {
+      "artifact_id": "art:4ef9f5f83600988a6c63d910f6aa25ab",
+      "artifact_type": "observation_bundle",
+      "content_hash": "sha256:af84494e811af6c4ce87737ff098c990ae18e7226184e28f75365cd7061da1e9"
+     }
+    ]
+   },
+   "revision": 0,
+   "schema_version": "cira.sweep_run/1.0.2",
+   "tick": 2
+  },
+  {
+   "artifact_id": "art:7547beb30b9e1a4c65c33b900be0d017",
+   "artifact_type": "sweep_run",
+   "content_hash": "sha256:bde5fccfcdbdbe507c6bf9b594aba070ce1eae647babb6f62722da7402f8a702",
+   "experiment_id": "exp:fx_tx14_replay",
+   "logical_key": "inv:t2:a0",
+   "payload": {
+    "adapter": {
+     "adapter_id": "adapter.fixture",
+     "adapter_version": "1.0.2",
+     "capabilities": {
+      "forward": true,
+      "inverse": true,
+      "merge": false,
+      "trace": true
+     },
+     "engine_version": "none (fixture)",
+     "is_fixture": true,
+     "kind": "FIXTURE",
+     "operator_registry_ref": {
+      "artifact_id": "art:75f0e2bea81ccbe765f47b1ddecf7035",
+      "artifact_type": "operator_registry",
+      "content_hash": "sha256:f1c8d5daba08b465c1d576638f842db8f5896bcef4223022e42de46e5ddc247c"
+     }
+    },
+    "attempt": 0,
+    "context_version": "ctx:2",
+    "direction": "INVERSE",
+    "error": null,
+    "execution_status": "COMPLETED",
+    "input_bundle_ref": {
+     "artifact_id": "art:4ef9f5f83600988a6c63d910f6aa25ab",
+     "artifact_type": "observation_bundle",
+     "content_hash": "sha256:af84494e811af6c4ce87737ff098c990ae18e7226184e28f75365cd7061da1e9"
+    },
+    "sweep_id": "sweep:inv:t2:a0",
+    "target_ref": {
+     "artifact_id": "art:7c38f81a37f42ff449f195417b0bff91",
+     "artifact_type": "target_definition",
+     "content_hash": "sha256:e1fd4f06448fff84a526afd3406bb22549ce2f3dbba96007ad3baf51c7d35501"
+    },
+    "termination": {
+     "budget": 10,
+     "engine_message": "fixture adapter: no engine executed",
+     "last_step_seq": 1,
+     "reason": "ENGINE_REPORTED_STOP",
+     "steps_executed": 2
+    },
+    "up_to_tick": 2
+   },
+   "provenance": {
+    "data_origin": "FIXTURE",
+    "producer_id": "fx.tx14.f05",
+    "producer_version": "1.0.2",
+    "source_field": "F05",
+    "source_refs": [
+     {
+      "artifact_id": "art:4ef9f5f83600988a6c63d910f6aa25ab",
+      "artifact_type": "observation_bundle",
+      "content_hash": "sha256:af84494e811af6c4ce87737ff098c990ae18e7226184e28f75365cd7061da1e9"
+     },
+     {
+      "artifact_id": "art:7c38f81a37f42ff449f195417b0bff91",
+      "artifact_type": "target_definition",
+      "content_hash": "sha256:e1fd4f06448fff84a526afd3406bb22549ce2f3dbba96007ad3baf51c7d35501"
+     }
+    ]
+   },
+   "revision": 0,
+   "schema_version": "cira.sweep_run/1.0.2",
+   "tick": 2
+  }
+ ],
+ "bundle_hash": "sha256:a744081645a816b6c33579975164df822485e1db1926bcf93477d1484d69c83c",
+ "bundle_version": "1.0.2",
+ "definitions": {
+  "annotations": {
+   "artifact_id": "art:913af010f72abc06c2513459ab1c325e",
+   "artifact_type": "consistency_annotation_set",
+   "content_hash": "sha256:19063ecaf3b86190e7b1fbc744e49e5248929c0d2778921a7d3a49455664cb21"
+  },
+  "experiment_definition": {
+   "artifact_id": "art:10dcd007597e95e8c756ae045a2d50f0",
+   "artifact_type": "experiment_definition",
+   "content_hash": "sha256:d0f0036159d089c18d7ae8181e0b931c19c521b198f79dd0a84301835bd86ec0"
+  },
+  "governance": {
+   "artifact_id": "art:f674f652ba9286aa8f4bf2c3e6bc539d",
+   "artifact_type": "governance_definition",
+   "content_hash": "sha256:58e720721313b95b0959325ca516dac17de95c28cf4cd858ac81f60fe3f249db"
+  },
+  "observation_config": {
+   "artifact_id": "art:3cf690ef86346b416d13064c69610b84",
+   "artifact_type": "observation_config",
+   "content_hash": "sha256:5a50b767b618a803fbcf52bfcb88457b57a9a9ed0ce9baec69cc7ef9e401b64d"
+  },
+  "operator_registry": {
+   "artifact_id": "art:75f0e2bea81ccbe765f47b1ddecf7035",
+   "artifact_type": "operator_registry",
+   "content_hash": "sha256:f1c8d5daba08b465c1d576638f842db8f5896bcef4223022e42de46e5ddc247c"
+  },
+  "scenario": {
+   "artifact_id": "art:d101553030de33caf52ae96eaaa99d89",
+   "artifact_type": "scenario_definition",
+   "content_hash": "sha256:c37b774fda6203b1b3b098b855c7a0cf58e44a639e8e1fcaf3aeb6b5ad110367"
+  },
+  "target": {
+   "artifact_id": "art:7c38f81a37f42ff449f195417b0bff91",
+   "artifact_type": "target_definition",
+   "content_hash": "sha256:e1fd4f06448fff84a526afd3406bb22549ce2f3dbba96007ad3baf51c7d35501"
+  },
+  "topology": {
+   "artifact_id": "art:6f68dd924cce56c149250876024a183c",
+   "artifact_type": "topology_definition",
+   "content_hash": "sha256:ed7575653013d98284d479f3bdcf48460ce2f5539d3aae0ca22adddfd9bff0a5"
+  },
+  "weight_set": {
+   "artifact_id": "art:bb08cb696e1f3543169f0d91a533a157",
+   "artifact_type": "weight_set",
+   "content_hash": "sha256:37d2da7d0c6865fec90bf393147bd7cf8838a46945910e6f37adac019651fb3f"
+  }
+ },
+ "events": [
+  {
+   "effects": [
+    {
+     "after": "OPEN",
+     "attribute_ref": "attr:n05/state",
+     "before": "CLOSED"
+    }
+   ],
+   "error": null,
+   "event_ref": "evt:e1",
+   "kind": "SET_ATTRIBUTE",
+   "seq": 0,
+   "status": "APPLIED",
+   "tick": 1
+  },
+  {
+   "effects": [],
+   "error": {
+    "code": "INVALID_TRANSITION",
+    "field": "F03",
+    "message": "role lacks permit (K-66)",
+    "recovery": "REPLAY_FROM_INITIAL",
+    "subject_refs": [
+     "attr:n09/state"
+    ],
+    "tick": 1
+   },
+   "event_ref": "evt:e2",
+   "kind": "APPLY_APPROVAL",
+   "seq": 1,
+   "status": "REJECTED",
+   "tick": 1
+  }
+ ],
+ "experiment_id": "exp:fx_tx14_replay",
+ "manifest": [
+  {
+   "artifact_id": "art:023e10284a7e5ed22139843614d419a3",
+   "artifact_type": "sweep_run",
+   "content_hash": "sha256:cab268e7216ad129c37247682f2dca8498dd6f694cd3f60fc86e8ee2ff17613d"
+  },
+  {
+   "artifact_id": "art:063f08e246123fa3565d370dad9ccc5a",
+   "artifact_type": "observation_record",
+   "content_hash": "sha256:a365d6873243e497c73cb953820923ffa8bf9b198b00281c32e582e3708c99c1"
+  },
+  {
+   "artifact_id": "art:0fa04ac36a8d0e94e91d9c302c8b8f11",
+   "artifact_type": "event_record",
+   "content_hash": "sha256:a2df5c54af9da3992a63dd5e9b340c17b6de632dad9395a1164c57e907422487"
+  },
+  {
+   "artifact_id": "art:10dcd007597e95e8c756ae045a2d50f0",
+   "artifact_type": "experiment_definition",
+   "content_hash": "sha256:d0f0036159d089c18d7ae8181e0b931c19c521b198f79dd0a84301835bd86ec0"
+  },
+  {
+   "artifact_id": "art:1e12a161084b2cfc0083c53726981898",
+   "artifact_type": "forward_result",
+   "content_hash": "sha256:8970fa2e7372fd5bd20e9676dcbbae6ceb498290794dc96567e79b685b8b427d"
+  },
+  {
+   "artifact_id": "art:22f88abc7d1e4fd4364d5e3031366c8b",
+   "artifact_type": "observation_bundle",
+   "content_hash": "sha256:141c9358159900e5c63158c00a7a230ff77d7ec5ccaaaf622f99d2bbbd6f175d"
+  },
+  {
+   "artifact_id": "art:3cf690ef86346b416d13064c69610b84",
+   "artifact_type": "observation_config",
+   "content_hash": "sha256:5a50b767b618a803fbcf52bfcb88457b57a9a9ed0ce9baec69cc7ef9e401b64d"
+  },
+  {
+   "artifact_id": "art:422eb8e8dedaa4b27cda99ed4e6c286c",
+   "artifact_type": "inverse_result",
+   "content_hash": "sha256:3db06735ee9d65e931c64943a21cc127849ef9b495ea0cfc90e212d87fe9f3dd"
+  },
+  {
+   "artifact_id": "art:4ef9f5f83600988a6c63d910f6aa25ab",
+   "artifact_type": "observation_bundle",
+   "content_hash": "sha256:af84494e811af6c4ce87737ff098c990ae18e7226184e28f75365cd7061da1e9"
+  },
+  {
+   "artifact_id": "art:5917148ef702ffc2285e8d94b1ef03e4",
+   "artifact_type": "actual_state",
+   "content_hash": "sha256:16d61d203741f9798420052140a7b10e68caa42214b9d029ea073e5eb98eae8e"
+  },
+  {
+   "artifact_id": "art:59baf764530846f2beb13906b1591577",
+   "artifact_type": "observable_rules",
+   "content_hash": "sha256:575a71d7b60d9e610522acccc3c5aad654639f89e4529bbc66117d533abc549b"
+  },
+  {
+   "artifact_id": "art:6f68dd924cce56c149250876024a183c",
+   "artifact_type": "topology_definition",
+   "content_hash": "sha256:ed7575653013d98284d479f3bdcf48460ce2f5539d3aae0ca22adddfd9bff0a5"
+  },
+  {
+   "artifact_id": "art:6ffb49e216260c110c70b701a2d46270",
+   "artifact_type": "sweep_run",
+   "content_hash": "sha256:b489c5918ec7767d783120aaae1ce2a0a94f3a29e68a86828088d48709c00a55"
+  },
+  {
+   "artifact_id": "art:74be31a89ed6a766dc212b38ea6d5b54",
+   "artifact_type": "source_register",
+   "content_hash": "sha256:3b5d6f6e8737d8780ea15beb167cb2dd9c99dee3ae9448e9322b8b9ee879ebfa"
+  },
+  {
+   "artifact_id": "art:7547beb30b9e1a4c65c33b900be0d017",
+   "artifact_type": "sweep_run",
+   "content_hash": "sha256:bde5fccfcdbdbe507c6bf9b594aba070ce1eae647babb6f62722da7402f8a702"
+  },
+  {
+   "artifact_id": "art:75f0e2bea81ccbe765f47b1ddecf7035",
+   "artifact_type": "operator_registry",
+   "content_hash": "sha256:f1c8d5daba08b465c1d576638f842db8f5896bcef4223022e42de46e5ddc247c"
+  },
+  {
+   "artifact_id": "art:77270fda2722529fc512330fe393f481",
+   "artifact_type": "immutable_topology",
+   "content_hash": "sha256:0578baed8aef5b407bdbed5e8aa256b875d343f6bc1fdb1aed56ff929eab51c4"
+  },
+  {
+   "artifact_id": "art:7c38f81a37f42ff449f195417b0bff91",
+   "artifact_type": "target_definition",
+   "content_hash": "sha256:e1fd4f06448fff84a526afd3406bb22549ce2f3dbba96007ad3baf51c7d35501"
+  },
+  {
+   "artifact_id": "art:7e5cc87b8dc539d9b910d49ba0de7961",
+   "artifact_type": "reconstruction_result",
+   "content_hash": "sha256:4e95740a12520c0a61aca53214ef5e19b28baa0a32995a6cabf0be59aecdfa0c"
+  },
+  {
+   "artifact_id": "art:7f1b80842c094c498ef2a94c1e5d011c",
+   "artifact_type": "reconstruction_result",
+   "content_hash": "sha256:4b0819898b08e2a94a6d020c697d40f69ba4f947a7e1137bdb0cff6d10f732e1"
+  },
+  {
+   "artifact_id": "art:8f773580e7da7e3a42414d4d7285b81c",
+   "artifact_type": "actual_state",
+   "content_hash": "sha256:edbd21813f8c941cfcf790039c001d3284e6c9da08ede886aac9d60b32173d4b"
+  },
+  {
+   "artifact_id": "art:913af010f72abc06c2513459ab1c325e",
+   "artifact_type": "consistency_annotation_set",
+   "content_hash": "sha256:19063ecaf3b86190e7b1fbc744e49e5248929c0d2778921a7d3a49455664cb21"
+  },
+  {
+   "artifact_id": "art:9b965d44debe305b44d45f2ff661a2a6",
+   "artifact_type": "event_record",
+   "content_hash": "sha256:105fe435ade3e207321bc36b098fdfd33ab3579f09f97c97584bee9353886020"
+  },
+  {
+   "artifact_id": "art:9cd37b9774c509ea486fbfbd6198663b",
+   "artifact_type": "comparison_report",
+   "content_hash": "sha256:68975fe2598eddf2d09426bebc65bf09623100ec8cb4412209df72c1de1159be"
+  },
+  {
+   "artifact_id": "art:a7451e9d5d24ee06bf27c7efff906fd2",
+   "artifact_type": "authority_record",
+   "content_hash": "sha256:2d3daaf5490f12835346cd87f4cb09b11437e8d6a431c8beb88f1b12724c090b"
+  },
+  {
+   "artifact_id": "art:afb5e4151d6e11e858456ccca59b7518",
+   "artifact_type": "sweep_run",
+   "content_hash": "sha256:5ec78a93d6a34087d5eb36dbbd7b03e35aca9928c7c1ec337b852edf1e7a8e8e"
+  },
+  {
+   "artifact_id": "art:b15d88c352023b66bcc90770a8a86227",
+   "artifact_type": "forward_result",
+   "content_hash": "sha256:cc41b2b2c0ebc9f0f40b5719e8a741fc03fa80b42b99655b0e19a1fedd4aef86"
+  },
+  {
+   "artifact_id": "art:b21a82236683e67e1449eeb4b88e1baa",
+   "artifact_type": "authority_record",
+   "content_hash": "sha256:1fde844d927ab009d6c8b5a57ba70cd1629c6e29f2197ce88f6fc04551ea7e45"
+  },
+  {
+   "artifact_id": "art:b226ef7cdcf3a5b06c61e6d0ef1e3723",
+   "artifact_type": "actual_state",
+   "content_hash": "sha256:6b5794299ebdd07c203a3bfb8378ab798f373fdde6183ab7d4372881f8c0ef64"
+  },
+  {
+   "artifact_id": "art:b42795b117801d59281f88a81561a182",
+   "artifact_type": "rule_evaluation_set",
+   "content_hash": "sha256:c430d5e798dd81e0e0d7f1cc0f6eefa063d86ada98513e9a8c4116f6a1743e8c"
+  },
+  {
+   "artifact_id": "art:b67c200288bd6f9b3d9bc7fd3c4f201a",
+   "artifact_type": "scenario_definition",
+   "content_hash": "sha256:478e87b93100905e31170f8e5a49c5f645d19456db71e053334e375f5dd94648"
+  },
+  {
+   "artifact_id": "art:bb08cb696e1f3543169f0d91a533a157",
+   "artifact_type": "weight_set",
+   "content_hash": "sha256:37d2da7d0c6865fec90bf393147bd7cf8838a46945910e6f37adac019651fb3f"
+  },
+  {
+   "artifact_id": "art:c62b034c3feec9398165640982f0c9db",
+   "artifact_type": "replay_report",
+   "content_hash": "sha256:66f3891996aff8d769eac91f849140da3d9106cb2b0b7121521c92d7b9ef6569"
+  },
+  {
+   "artifact_id": "art:cd8526c944705684379cdae7e32d7765",
+   "artifact_type": "observable_topology",
+   "content_hash": "sha256:20f563434c76fd5eefda57a733c0e430cdedf9a363e04ff28d311b4de0ca25da"
+  },
+  {
+   "artifact_id": "art:d101553030de33caf52ae96eaaa99d89",
+   "artifact_type": "scenario_definition",
+   "content_hash": "sha256:c37b774fda6203b1b3b098b855c7a0cf58e44a639e8e1fcaf3aeb6b5ad110367"
+  },
+  {
+   "artifact_id": "art:db81d3a94fec30a37c43e3460dbb94d6",
+   "artifact_type": "evaluation_report",
+   "content_hash": "sha256:f73ae8d07ed755eca5d2d668e22cacb5d031018f1878f333713ae6b0faf9d7d4"
+  },
+  {
+   "artifact_id": "art:e4921808270a49b6f59b62129c2a590e",
+   "artifact_type": "observation_record",
+   "content_hash": "sha256:7606e14511c4d679b5399cdf472c47922acc919091bfa85c17c368a483c2232d"
+  },
+  {
+   "artifact_id": "art:f5ebbc250ed3b69d8cdbd2b2e4bf2567",
+   "artifact_type": "recovery_proposal",
+   "content_hash": "sha256:a6b95a6e18102f9ac3d1382794538516cb04c96ae4f953e2dacc38e8022958e4"
+  },
+  {
+   "artifact_id": "art:f674f652ba9286aa8f4bf2c3e6bc539d",
+   "artifact_type": "governance_definition",
+   "content_hash": "sha256:58e720721313b95b0959325ca516dac17de95c28cf4cd858ac81f60fe3f249db"
+  },
+  {
+   "artifact_id": "art:f9d35115753536185704108d50aea428",
+   "artifact_type": "inverse_result",
+   "content_hash": "sha256:830e95cf28ee292daa67b7d866b31b6c8ad0b7ae60f043813a2d266315cd80b8"
+  },
+  {
+   "artifact_id": "art:ff741db483367b67e011ee54612341fb",
+   "artifact_type": "sweep_run",
+   "content_hash": "sha256:f687ad4d82cf736ff685184ad1f20450caca2c6da1c69ea6729fb96a6d6687ad"
+  }
+ ],
+ "stage_events": [
+  {
+   "error": null,
+   "seq": 0,
+   "stage": "DEFINITIONS",
+   "status": "RUNNING",
+   "tick": null
+  },
+  {
+   "error": null,
+   "seq": 1,
+   "stage": "DEFINITIONS",
+   "status": "COMPLETED",
+   "tick": null
+  },
+  {
+   "error": null,
+   "seq": 2,
+   "stage": "EMULATION",
+   "status": "RUNNING",
+   "tick": null
+  },
+  {
+   "error": null,
+   "seq": 3,
+   "stage": "EMULATION",
+   "status": "COMPLETED",
+   "tick": null
+  },
+  {
+   "error": null,
+   "seq": 4,
+   "stage": "OBSERVATION",
+   "status": "RUNNING",
+   "tick": null
+  },
+  {
+   "error": null,
+   "seq": 5,
+   "stage": "OBSERVATION",
+   "status": "COMPLETED",
+   "tick": null
+  },
+  {
+   "error": null,
+   "seq": 6,
+   "stage": "FORWARD",
+   "status": "RUNNING",
+   "tick": 1
+  },
+  {
+   "error": null,
+   "seq": 7,
+   "stage": "FORWARD",
+   "status": "COMPLETED",
+   "tick": 2
+  },
+  {
+   "error": null,
+   "seq": 8,
+   "stage": "INVERSE",
+   "status": "COMPLETED",
+   "tick": 2
+  },
+  {
+   "error": null,
+   "seq": 9,
+   "stage": "MERGE",
+   "status": "COMPLETED",
+   "tick": 2
+  },
+  {
+   "error": null,
+   "seq": 10,
+   "stage": "STABILITY",
+   "status": "RUNNING",
+   "tick": 2
+  },
+  {
+   "error": {
+    "code": "ENGINE_UNAVAILABLE",
+    "field": "F05",
+    "message": "no local engine (DEP-02)",
+    "recovery": "RESWEEP",
+    "subject_refs": [],
+    "tick": 2
+   },
+   "seq": 11,
+   "stage": "STABILITY",
+   "status": "BLOCKED",
+   "tick": 2
+  },
+  {
+   "error": null,
+   "seq": 12,
+   "stage": "EVALUATION",
+   "status": "RUNNING",
+   "tick": null
+  },
+  {
+   "error": null,
+   "seq": 13,
+   "stage": "EVALUATION",
+   "status": "PARTIAL",
+   "tick": null
+  },
+  {
+   "error": null,
+   "seq": 14,
+   "stage": "EXPORT",
+   "status": "COMPLETED",
+   "tick": null
+  }
+ ]
+}

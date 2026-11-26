@@ -1,0 +1,60 @@
+{
+  "fixture_id": "FX-Z-M02/M03/M04",
+  "purpose": "zero denominator: only ⊥",
+  "is_fixture": true,
+  "data_origin": "FIXTURE",
+  "kind": "zero_rules",
+  "state": {
+    "tick": 0,
+    "results": [
+      [
+        "rule:a",
+        "UNEVALUABLE"
+      ],
+      [
+        "rule:b",
+        "UNEVALUABLE"
+      ]
+    ]
+  },
+  "pair": {
+    "tick": 0,
+    "results": [
+      [
+        "rule:t",
+        "UNEVALUABLE"
+      ]
+    ]
+  },
+  "series": [
+    {
+      "function_ref": "svc:f",
+      "values": [
+        [
+          0,
+          "UNEVALUABLE"
+        ],
+        [
+          1,
+          "UNEVALUABLE"
+        ]
+      ]
+    }
+  ],
+  "expected": {
+    "M02": "UNDEFINED:ZERO_DENOMINATOR",
+    "M03": "UNDEFINED:ZERO_DENOMINATOR",
+    "M04": "UNDEFINED:ZERO_DENOMINATOR"
+  },
+  "expected_aux": {
+    "M02": {
+      "unevaluable_count": 2
+    },
+    "M03": {
+      "unevaluable_count": 1
+    },
+    "M04": {
+      "ticks_excluded": 2
+    }
+  }
+}

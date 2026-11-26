@@ -1,0 +1,312 @@
+{
+  "fixture_id": "FX-AGG",
+  "purpose": "aggregation of M01 over 3 ticks (1/8, 0/0, 2/4)",
+  "is_fixture": true,
+  "data_origin": "FIXTURE",
+  "kind": "aggregation",
+  "metric": "M01",
+  "policy": "include",
+  "weights": {
+    "default": "1",
+    "explicit": {}
+  },
+  "ticks": [
+    {
+      "tick": 0,
+      "sweep_tick": true,
+      "attrs": [
+        {
+          "attribute": "attr:n01/state",
+          "a_applicable": true,
+          "a_value": "V",
+          "o_status": "KNOWN",
+          "o_value": "V",
+          "r_status": "DETERMINED",
+          "r_value": "W",
+          "r_class": "STRUCTURAL_DERIVATION"
+        },
+        {
+          "attribute": "attr:n02/state",
+          "a_applicable": true,
+          "a_value": "V",
+          "o_status": "KNOWN",
+          "o_value": "V",
+          "r_status": "DETERMINED",
+          "r_value": "V",
+          "r_class": "STRUCTURAL_DERIVATION"
+        },
+        {
+          "attribute": "attr:n03/state",
+          "a_applicable": true,
+          "a_value": "V",
+          "o_status": "KNOWN",
+          "o_value": "V",
+          "r_status": "DETERMINED",
+          "r_value": "V",
+          "r_class": "STRUCTURAL_DERIVATION"
+        },
+        {
+          "attribute": "attr:n04/state",
+          "a_applicable": true,
+          "a_value": "V",
+          "o_status": "KNOWN",
+          "o_value": "V",
+          "r_status": "DETERMINED",
+          "r_value": "V",
+          "r_class": "STRUCTURAL_DERIVATION"
+        },
+        {
+          "attribute": "attr:n05/state",
+          "a_applicable": true,
+          "a_value": "V",
+          "o_status": "KNOWN",
+          "o_value": "V",
+          "r_status": "DETERMINED",
+          "r_value": "V",
+          "r_class": "STRUCTURAL_DERIVATION"
+        },
+        {
+          "attribute": "attr:n06/state",
+          "a_applicable": true,
+          "a_value": "V",
+          "o_status": "KNOWN",
+          "o_value": "V",
+          "r_status": "DETERMINED",
+          "r_value": "V",
+          "r_class": "STRUCTURAL_DERIVATION"
+        },
+        {
+          "attribute": "attr:n07/state",
+          "a_applicable": true,
+          "a_value": "V",
+          "o_status": "KNOWN",
+          "o_value": "V",
+          "r_status": "DETERMINED",
+          "r_value": "V",
+          "r_class": "STRUCTURAL_DERIVATION"
+        },
+        {
+          "attribute": "attr:n08/state",
+          "a_applicable": true,
+          "a_value": "V",
+          "o_status": "KNOWN",
+          "o_value": "V",
+          "r_status": "DETERMINED",
+          "r_value": "V",
+          "r_class": "STRUCTURAL_DERIVATION"
+        },
+        {
+          "attribute": "attr:n09/state",
+          "a_applicable": true,
+          "a_value": "V",
+          "o_status": "UNKNOWN",
+          "r_status": "UNDETERMINED",
+          "r_class": "OPEN_REFERENCE"
+        },
+        {
+          "attribute": "attr:n10/state",
+          "a_applicable": true,
+          "a_value": "V",
+          "o_status": "UNKNOWN",
+          "r_status": "UNDETERMINED",
+          "r_class": "OPEN_REFERENCE"
+        }
+      ]
+    },
+    {
+      "tick": 1,
+      "sweep_tick": true,
+      "attrs": [
+        {
+          "attribute": "attr:n01/state",
+          "a_applicable": true,
+          "a_value": "V",
+          "o_status": "UNKNOWN",
+          "r_status": "UNDETERMINED",
+          "r_class": "OPEN_REFERENCE"
+        },
+        {
+          "attribute": "attr:n02/state",
+          "a_applicable": true,
+          "a_value": "V",
+          "o_status": "UNKNOWN",
+          "r_status": "UNDETERMINED",
+          "r_class": "OPEN_REFERENCE"
+        },
+        {
+          "attribute": "attr:n03/state",
+          "a_applicable": true,
+          "a_value": "V",
+          "o_status": "UNKNOWN",
+          "r_status": "UNDETERMINED",
+          "r_class": "OPEN_REFERENCE"
+        },
+        {
+          "attribute": "attr:n04/state",
+          "a_applicable": true,
+          "a_value": "V",
+          "o_status": "UNKNOWN",
+          "r_status": "UNDETERMINED",
+          "r_class": "OPEN_REFERENCE"
+        },
+        {
+          "attribute": "attr:n05/state",
+          "a_applicable": true,
+          "a_value": "V",
+          "o_status": "UNKNOWN",
+          "r_status": "UNDETERMINED",
+          "r_class": "OPEN_REFERENCE"
+        },
+        {
+          "attribute": "attr:n06/state",
+          "a_applicable": true,
+          "a_value": "V",
+          "o_status": "UNKNOWN",
+          "r_status": "UNDETERMINED",
+          "r_class": "OPEN_REFERENCE"
+        },
+        {
+          "attribute": "attr:n07/state",
+          "a_applicable": true,
+          "a_value": "V",
+          "o_status": "UNKNOWN",
+          "r_status": "UNDETERMINED",
+          "r_class": "OPEN_REFERENCE"
+        },
+        {
+          "attribute": "attr:n08/state",
+          "a_applicable": true,
+          "a_value": "V",
+          "o_status": "UNKNOWN",
+          "r_status": "UNDETERMINED",
+          "r_class": "OPEN_REFERENCE"
+        },
+        {
+          "attribute": "attr:n09/state",
+          "a_applicable": true,
+          "a_value": "V",
+          "o_status": "UNKNOWN",
+          "r_status": "UNDETERMINED",
+          "r_class": "OPEN_REFERENCE"
+        },
+        {
+          "attribute": "attr:n10/state",
+          "a_applicable": true,
+          "a_value": "V",
+          "o_status": "UNKNOWN",
+          "r_status": "UNDETERMINED",
+          "r_class": "OPEN_REFERENCE"
+        }
+      ]
+    },
+    {
+      "tick": 2,
+      "sweep_tick": true,
+      "attrs": [
+        {
+          "attribute": "attr:n01/state",
+          "a_applicable": true,
+          "a_value": "V",
+          "o_status": "KNOWN",
+          "o_value": "V",
+          "r_status": "DETERMINED",
+          "r_value": "W",
+          "r_class": "STRUCTURAL_DERIVATION"
+        },
+        {
+          "attribute": "attr:n02/state",
+          "a_applicable": true,
+          "a_value": "V",
+          "o_status": "KNOWN",
+          "o_value": "V",
+          "r_status": "DETERMINED",
+          "r_value": "W",
+          "r_class": "STRUCTURAL_DERIVATION"
+        },
+        {
+          "attribute": "attr:n03/state",
+          "a_applicable": true,
+          "a_value": "V",
+          "o_status": "KNOWN",
+          "o_value": "V",
+          "r_status": "DETERMINED",
+          "r_value": "V",
+          "r_class": "STRUCTURAL_DERIVATION"
+        },
+        {
+          "attribute": "attr:n04/state",
+          "a_applicable": true,
+          "a_value": "V",
+          "o_status": "KNOWN",
+          "o_value": "V",
+          "r_status": "DETERMINED",
+          "r_value": "V",
+          "r_class": "STRUCTURAL_DERIVATION"
+        },
+        {
+          "attribute": "attr:n05/state",
+          "a_applicable": true,
+          "a_value": "V",
+          "o_status": "UNKNOWN",
+          "r_status": "UNDETERMINED",
+          "r_class": "OPEN_REFERENCE"
+        },
+        {
+          "attribute": "attr:n06/state",
+          "a_applicable": true,
+          "a_value": "V",
+          "o_status": "UNKNOWN",
+          "r_status": "UNDETERMINED",
+          "r_class": "OPEN_REFERENCE"
+        },
+        {
+          "attribute": "attr:n07/state",
+          "a_applicable": true,
+          "a_value": "V",
+          "o_status": "UNKNOWN",
+          "r_status": "UNDETERMINED",
+          "r_class": "OPEN_REFERENCE"
+        },
+        {
+          "attribute": "attr:n08/state",
+          "a_applicable": true,
+          "a_value": "V",
+          "o_status": "UNKNOWN",
+          "r_status": "UNDETERMINED",
+          "r_class": "OPEN_REFERENCE"
+        },
+        {
+          "attribute": "attr:n09/state",
+          "a_applicable": true,
+          "a_value": "V",
+          "o_status": "UNKNOWN",
+          "r_status": "UNDETERMINED",
+          "r_class": "OPEN_REFERENCE"
+        },
+        {
+          "attribute": "attr:n10/state",
+          "a_applicable": true,
+          "a_value": "V",
+          "o_status": "UNKNOWN",
+          "r_status": "UNDETERMINED",
+          "r_class": "OPEN_REFERENCE"
+        }
+      ]
+    }
+  ],
+  "expected": {
+    "PER_TICK": [
+      "1/8",
+      "UNDEFINED:ZERO_DENOMINATOR",
+      "1/2"
+    ],
+    "POOLED": "1/4",
+    "TIME_MEAN_EXPLICIT": "5/16"
+  },
+  "expected_aux": {
+    "TIME_MEAN_EXPLICIT": {
+      "ticks_included": 2,
+      "ticks_excluded": 1
+    }
+  }
+}

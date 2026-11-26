@@ -1,0 +1,15 @@
+{
+  "fixture_id": "FX-M03-R-FINAL",
+  "purpose": "tick set under schedule FINAL",
+  "is_fixture": true,
+  "data_origin": "FIXTURE",
+  "kind": "rules_transition",
+  "tick_count": 6,
+  "available_ticks": [
+    5
+  ],
+  "pairs": [],
+  "expected": {
+    "M03": "UNDEFINED:INPUT_MISSING"
+  }
+}

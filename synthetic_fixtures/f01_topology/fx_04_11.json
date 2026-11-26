@@ -1,0 +1,254 @@
+{
+  "topology_id": "topo:fx_04_11",
+  "version": "1.0.0",
+  "node_types": [
+    {
+      "type_id": "type:component",
+      "label": "Komponente"
+    }
+  ],
+  "value_domains": [
+    {
+      "domain_id": "dom:health",
+      "version": "1.0.0",
+      "symbols": [
+        "NOMINAL",
+        "DEGRADED",
+        "FAULTY",
+        "CRITICAL"
+      ]
+    },
+    {
+      "domain_id": "dom:mode",
+      "version": "1.0.0",
+      "symbols": [
+        "ACTIVE",
+        "STANDBY"
+      ]
+    },
+    {
+      "domain_id": "dom:gate",
+      "version": "1.0.0",
+      "symbols": [
+        "OPEN",
+        "CLOSED"
+      ]
+    },
+    {
+      "domain_id": "dom:authorization",
+      "version": "1.0.0",
+      "symbols": [
+        "AUTHORIZED",
+        "PENDING",
+        "DENIED"
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "node_id": "node:n01",
+      "node_type": "type:component",
+      "version": "1.0.0",
+      "label": "Komponente 01",
+      "attributes": [
+        {
+          "attribute_id": "attr:n01/state",
+          "name": "state",
+          "domain_ref": "dom:health",
+          "applicability": "APPLICABLE"
+        }
+      ]
+    },
+    {
+      "node_id": "node:n02",
+      "node_type": "type:component",
+      "version": "1.0.0",
+      "label": "Komponente 02",
+      "attributes": [
+        {
+          "attribute_id": "attr:n02/state",
+          "name": "state",
+          "domain_ref": "dom:health",
+          "applicability": "APPLICABLE"
+        }
+      ]
+    },
+    {
+      "node_id": "node:n03",
+      "node_type": "type:component",
+      "version": "1.0.0",
+      "label": "Komponente 03",
+      "attributes": [
+        {
+          "attribute_id": "attr:n03/state",
+          "name": "state",
+          "domain_ref": "dom:health",
+          "applicability": "APPLICABLE"
+        }
+      ]
+    },
+    {
+      "node_id": "node:n04",
+      "node_type": "type:component",
+      "version": "1.0.0",
+      "label": "Komponente 04",
+      "attributes": [
+        {
+          "attribute_id": "attr:n04/state",
+          "name": "state",
+          "domain_ref": "dom:mode",
+          "applicability": "APPLICABLE"
+        }
+      ]
+    },
+    {
+      "node_id": "node:n05",
+      "node_type": "type:component",
+      "version": "1.0.0",
+      "label": "Komponente 05",
+      "attributes": [
+        {
+          "attribute_id": "attr:n05/state",
+          "name": "state",
+          "domain_ref": "dom:gate",
+          "applicability": "APPLICABLE"
+        }
+      ]
+    },
+    {
+      "node_id": "node:n06",
+      "node_type": "type:component",
+      "version": "1.0.0",
+      "label": "Komponente 06",
+      "attributes": [
+        {
+          "attribute_id": "attr:n06/state",
+          "name": "state",
+          "domain_ref": "dom:health",
+          "applicability": "APPLICABLE"
+        }
+      ]
+    },
+    {
+      "node_id": "node:n07",
+      "node_type": "type:component",
+      "version": "1.0.0",
+      "label": "Komponente 07",
+      "attributes": [
+        {
+          "attribute_id": "attr:n07/state",
+          "name": "state",
+          "domain_ref": "dom:mode",
+          "applicability": "APPLICABLE"
+        }
+      ]
+    },
+    {
+      "node_id": "node:n08",
+      "node_type": "type:component",
+      "version": "1.0.0",
+      "label": "Komponente 08",
+      "attributes": [
+        {
+          "attribute_id": "attr:n08/state",
+          "name": "state",
+          "domain_ref": "dom:health",
+          "applicability": "APPLICABLE"
+        }
+      ]
+    },
+    {
+      "node_id": "node:n09",
+      "node_type": "type:component",
+      "version": "1.0.0",
+      "label": "Komponente 09",
+      "attributes": [
+        {
+          "attribute_id": "attr:n09/state",
+          "name": "state",
+          "domain_ref": "dom:authorization",
+          "applicability": "APPLICABLE"
+        }
+      ]
+    },
+    {
+      "node_id": "node:n10",
+      "node_type": "type:component",
+      "version": "1.0.0",
+      "label": "Komponente 10",
+      "attributes": [
+        {
+          "attribute_id": "attr:n10/state",
+          "name": "state",
+          "domain_ref": "dom:health",
+          "applicability": "APPLICABLE"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "relation_id": "rel:depends_on:n02:n01",
+      "relation_type": "depends_on",
+      "source": "node:n02",
+      "target": "node:n01",
+      "version": "1.0.0"
+    },
+    {
+      "relation_id": "rel:depends_on:n03:n02",
+      "relation_type": "depends_on",
+      "source": "node:n03",
+      "target": "node:n02",
+      "version": "1.0.0"
+    },
+    {
+      "relation_id": "rel:depends_on:n04:n03",
+      "relation_type": "depends_on",
+      "source": "node:n04",
+      "target": "node:n03",
+      "version": "1.0.0"
+    },
+    {
+      "relation_id": "rel:depends_on:n05:n04",
+      "relation_type": "depends_on",
+      "source": "node:n05",
+      "target": "node:n04",
+      "version": "1.0.0"
+    },
+    {
+      "relation_id": "rel:reports_to:n06:n05",
+      "relation_type": "reports_to",
+      "source": "node:n06",
+      "target": "node:n05",
+      "version": "1.0.0"
+    },
+    {
+      "relation_id": "rel:depends_on:n07:n04",
+      "relation_type": "depends_on",
+      "source": "node:n07",
+      "target": "node:n04",
+      "version": "1.0.0"
+    },
+    {
+      "relation_id": "rel:depends_on:n08:n06",
+      "relation_type": "depends_on",
+      "source": "node:n08",
+      "target": "node:n06",
+      "version": "1.0.0"
+    },
+    {
+      "relation_id": "rel:provides:n09:n05",
+      "relation_type": "provides",
+      "source": "node:n09",
+      "target": "node:n05",
+      "version": "1.0.0"
+    },
+    {
+      "relation_id": "rel:depends_on:n10:n08",
+      "relation_type": "depends_on",
+      "source": "node:n10",
+      "target": "node:n08",
+      "version": "1.0.0"
+    }
+  ]
+}

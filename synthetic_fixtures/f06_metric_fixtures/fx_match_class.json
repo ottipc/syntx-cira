@@ -1,0 +1,62 @@
+{
+  "fixture_id": "FX-MATCH-CLASS",
+  "purpose": "class assignment (K-47): one node set, 2 cases, 3 gaps",
+  "is_fixture": true,
+  "data_origin": "FIXTURE",
+  "kind": "gaps",
+  "tick": 2,
+  "rule_applies_to": {},
+  "cases": [
+    {
+      "case_id": "case:a",
+      "subject_refs": [
+        "attr:n04/state"
+      ],
+      "tick_from": 0
+    },
+    {
+      "case_id": "case:b",
+      "subject_refs": [
+        "node:n04"
+      ],
+      "tick_from": 2,
+      "tick_to": 2
+    }
+  ],
+  "gaps": [
+    {
+      "gap_id": "gap:x",
+      "tick": 2,
+      "subject_refs": [
+        "node:n04"
+      ]
+    },
+    {
+      "gap_id": "gap:y",
+      "tick": 2,
+      "subject_refs": [
+        "attr:n04/state"
+      ]
+    },
+    {
+      "gap_id": "gap:z",
+      "tick": 2,
+      "subject_refs": [
+        "obs:none:n04/state:t2"
+      ]
+    }
+  ],
+  "expected": {
+    "M07": "1",
+    "M08": "2/3"
+  },
+  "expected_aux": {
+    "M08": {
+      "tp": 2,
+      "fp": 1
+    },
+    "M07": {
+      "fn": 0
+    }
+  }
+}

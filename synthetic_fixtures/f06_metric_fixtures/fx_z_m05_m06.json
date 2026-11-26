@@ -1,0 +1,46 @@
+{
+  "fixture_id": "FX-Z-M05/M06",
+  "purpose": "zero denominator: all NOT_APPLICABLE",
+  "is_fixture": true,
+  "data_origin": "FIXTURE",
+  "kind": "attribute_spaces",
+  "policy": "include",
+  "weights": {
+    "default": "1",
+    "explicit": {}
+  },
+  "ticks": [
+    {
+      "tick": 0,
+      "sweep_tick": true,
+      "attrs": [
+        {
+          "attribute": "attr:n01/state",
+          "a_applicable": false,
+          "a_value": null,
+          "o_status": "NOT_APPLICABLE",
+          "r_status": "NOT_APPLICABLE"
+        },
+        {
+          "attribute": "attr:n02/state",
+          "a_applicable": false,
+          "a_value": null,
+          "o_status": "NOT_APPLICABLE",
+          "r_status": "NOT_APPLICABLE"
+        },
+        {
+          "attribute": "attr:n03/state",
+          "a_applicable": false,
+          "a_value": null,
+          "o_status": "NOT_APPLICABLE",
+          "r_status": "NOT_APPLICABLE"
+        }
+      ]
+    }
+  ],
+  "expected": {
+    "M05": "UNDEFINED:ZERO_DENOMINATOR",
+    "M06": "UNDEFINED:ZERO_DENOMINATOR",
+    "M01": "UNDEFINED:ZERO_DENOMINATOR"
+  }
+}

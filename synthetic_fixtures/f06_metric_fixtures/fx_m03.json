@@ -1,0 +1,49 @@
+{
+  "fixture_id": "FX-M03",
+  "purpose": "Temporal consistency: 4 pair evaluations",
+  "is_fixture": true,
+  "data_origin": "FIXTURE",
+  "kind": "rules_transition",
+  "tick_count": 3,
+  "available_ticks": [
+    0,
+    1,
+    2
+  ],
+  "pairs": [
+    {
+      "tick": 0,
+      "results": [
+        [
+          "rule:t0",
+          "TRUE"
+        ],
+        [
+          "rule:t1",
+          "FALSE"
+        ]
+      ]
+    },
+    {
+      "tick": 1,
+      "results": [
+        [
+          "rule:t0",
+          "TRUE"
+        ],
+        [
+          "rule:t1",
+          "UNEVALUABLE"
+        ]
+      ]
+    }
+  ],
+  "expected": {
+    "M03": "2/3"
+  },
+  "expected_aux": {
+    "M03": {
+      "unevaluable_count": 1
+    }
+  }
+}

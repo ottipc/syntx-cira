@@ -1,0 +1,72 @@
+{
+  "fixture_id": "FX-M04-2F",
+  "purpose": "two functions, pooled over (function, tick)",
+  "is_fixture": true,
+  "data_origin": "FIXTURE",
+  "kind": "functions",
+  "series": [
+    {
+      "function_ref": "svc:f1",
+      "values": [
+        [
+          0,
+          "TRUE"
+        ],
+        [
+          1,
+          "TRUE"
+        ],
+        [
+          2,
+          "FALSE"
+        ],
+        [
+          3,
+          "UNEVALUABLE"
+        ],
+        [
+          4,
+          "TRUE"
+        ],
+        [
+          5,
+          "FALSE"
+        ]
+      ]
+    },
+    {
+      "function_ref": "svc:f2",
+      "values": [
+        [
+          0,
+          "TRUE"
+        ],
+        [
+          1,
+          "TRUE"
+        ],
+        [
+          2,
+          "TRUE"
+        ],
+        [
+          3,
+          "TRUE"
+        ],
+        [
+          4,
+          "TRUE"
+        ],
+        [
+          5,
+          "TRUE"
+        ]
+      ]
+    }
+  ],
+  "expected": {
+    "M04:svc:f1": "3/5",
+    "M04:svc:f2": "1",
+    "M04": "9/11"
+  }
+}

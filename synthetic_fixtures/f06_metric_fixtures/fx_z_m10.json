@@ -1,0 +1,42 @@
+{
+  "fixture_id": "FX-Z-M10",
+  "purpose": "zero denominator: S = ∅ with W(D_ref) > 0; W(D_ref) = 0",
+  "is_fixture": true,
+  "data_origin": "FIXTURE",
+  "kind": "zero_stability",
+  "weights": {
+    "default": "1",
+    "explicit": {}
+  },
+  "cases": [
+    {
+      "reference": [
+        "attr:n01/state",
+        "attr:n02/state",
+        "attr:n03/state",
+        "attr:n04/state"
+      ],
+      "r1": [
+        [
+          "attr:n01/state",
+          "V"
+        ]
+      ],
+      "r2": [
+        [
+          "attr:n02/state",
+          "V"
+        ]
+      ],
+      "expected": "UNDEFINED:ZERO_DENOMINATOR",
+      "shared_coverage": "0"
+    },
+    {
+      "reference": [],
+      "r1": [],
+      "r2": [],
+      "expected": "UNDEFINED:ZERO_DENOMINATOR",
+      "shared_coverage": "UNDEFINED"
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "fixture_id": "FX-Z-M07/M08/M09",
+  "purpose": "zero denominator: no cases / no gaps / no baseline violation",
+  "is_fixture": true,
+  "data_origin": "FIXTURE",
+  "kind": "zero_gaps",
+  "tick": 0,
+  "rule_applies_to": {},
+  "cases_none": [],
+  "gaps_some": [
+    {
+      "gap_id": "gap:g",
+      "tick": 0,
+      "subject_refs": [
+        "node:n01"
+      ]
+    }
+  ],
+  "cases_some": [
+    {
+      "case_id": "case:c",
+      "subject_refs": [
+        "node:n01"
+      ],
+      "tick_from": 0
+    }
+  ],
+  "gaps_none": [],
+  "closure": {
+    "baseline": [
+      [
+        "rule:k1|node:n01",
+        "TRUE"
+      ]
+    ],
+    "recovery": [
+      [
+        "rule:k1|node:n01",
+        "FALSE"
+      ]
+    ]
+  },
+  "expected": {
+    "M07": "UNDEFINED:ZERO_DENOMINATOR",
+    "M08": "UNDEFINED:ZERO_DENOMINATOR",
+    "M09": "UNDEFINED:ZERO_DENOMINATOR"
+  },
+  "expected_aux": {
+    "M09": {
+      "new_inconsistencies": 1
+    }
+  }
+}

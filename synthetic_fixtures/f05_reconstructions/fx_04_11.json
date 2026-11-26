@@ -1,0 +1,67 @@
+{
+  "fixture_id": "FX-04.11-RECON",
+  "data_origin": "FIXTURE",
+  "is_fixture": true,
+  "note": "Test data for the FixtureAdapter. Not an engine result.",
+  "topology": "f01_topology/fx_04_11.json",
+  "values": [
+    {
+      "attribute_ref": "attr:n01/state",
+      "status": "DETERMINED",
+      "value": "NOMINAL",
+      "epistemic_class": "SOURCE_OBSERVATION"
+    },
+    {
+      "attribute_ref": "attr:n02/state",
+      "status": "DETERMINED",
+      "value": "NOMINAL",
+      "epistemic_class": "SOURCE_OBSERVATION"
+    },
+    {
+      "attribute_ref": "attr:n03/state",
+      "status": "DETERMINED",
+      "value": "DEGRADED",
+      "epistemic_class": "SOURCE_OBSERVATION"
+    },
+    {
+      "attribute_ref": "attr:n04/state",
+      "status": "DETERMINED",
+      "value": "ACTIVE",
+      "epistemic_class": "SOURCE_OBSERVATION"
+    },
+    {
+      "attribute_ref": "attr:n05/state",
+      "status": "DETERMINED",
+      "value": "CLOSED",
+      "epistemic_class": "SOURCE_OBSERVATION"
+    },
+    {
+      "attribute_ref": "attr:n06/state",
+      "status": "DETERMINED",
+      "value": "NOMINAL",
+      "epistemic_class": "SOURCE_OBSERVATION"
+    },
+    {
+      "attribute_ref": "attr:n07/state",
+      "status": "DETERMINED",
+      "value": "STANDBY",
+      "epistemic_class": "STRUCTURAL_DERIVATION"
+    },
+    {
+      "attribute_ref": "attr:n08/state",
+      "status": "DETERMINED",
+      "value": "DEGRADED",
+      "epistemic_class": "STRUCTURAL_DERIVATION"
+    },
+    {
+      "attribute_ref": "attr:n09/state",
+      "status": "UNDETERMINED",
+      "epistemic_class": "OPEN_REFERENCE"
+    },
+    {
+      "attribute_ref": "attr:n10/state",
+      "status": "UNDETERMINED",
+      "epistemic_class": "OPEN_REFERENCE"
+    }
+  ]
+}

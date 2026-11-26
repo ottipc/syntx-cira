@@ -1,0 +1,43 @@
+{
+  "fixture_id": "FX-SIGMA",
+  "purpose": "code points (K-31)",
+  "is_fixture": true,
+  "data_origin": "FIXTURE",
+  "kind": "sigma",
+  "sigma_cases": [
+    [
+      "Σ01",
+      true
+    ],
+    [
+      "Σ30",
+      true
+    ],
+    [
+      "Σ00",
+      false
+    ],
+    [
+      "Σ31",
+      false
+    ],
+    [
+      "∑01",
+      false
+    ],
+    [
+      "Ʃ01",
+      false
+    ]
+  ],
+  "symbol_cases": [
+    [
+      "∆",
+      true
+    ],
+    [
+      "Δ",
+      false
+    ]
+  ]
+}

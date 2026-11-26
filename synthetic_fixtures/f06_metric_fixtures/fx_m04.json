@@ -1,0 +1,47 @@
+{
+  "fixture_id": "FX-M04",
+  "purpose": "Functional continuity over 6 ticks",
+  "is_fixture": true,
+  "data_origin": "FIXTURE",
+  "kind": "functions",
+  "series": [
+    {
+      "function_ref": "svc:f1",
+      "values": [
+        [
+          0,
+          "TRUE"
+        ],
+        [
+          1,
+          "TRUE"
+        ],
+        [
+          2,
+          "FALSE"
+        ],
+        [
+          3,
+          "UNEVALUABLE"
+        ],
+        [
+          4,
+          "TRUE"
+        ],
+        [
+          5,
+          "FALSE"
+        ]
+      ]
+    }
+  ],
+  "expected": {
+    "M04:svc:f1": "3/5",
+    "M04": "3/5"
+  },
+  "expected_aux": {
+    "M04": {
+      "ticks_excluded": 1
+    }
+  }
+}

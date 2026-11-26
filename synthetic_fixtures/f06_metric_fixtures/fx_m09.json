@@ -1,0 +1,77 @@
+{
+  "fixture_id": "FX-M09",
+  "purpose": "GAP closure: 5 violations, 3 resolved, 2 persisting, 1 new",
+  "is_fixture": true,
+  "data_origin": "FIXTURE",
+  "kind": "closure",
+  "baseline": [
+    [
+      "rule:k1|node:n01",
+      "FALSE"
+    ],
+    [
+      "rule:k2|node:n01",
+      "FALSE"
+    ],
+    [
+      "rule:k3|node:n01",
+      "FALSE"
+    ],
+    [
+      "rule:k4|node:n01",
+      "FALSE"
+    ],
+    [
+      "rule:k5|node:n01",
+      "FALSE"
+    ],
+    [
+      "rule:k6|node:n01",
+      "TRUE"
+    ],
+    [
+      "rule:k7|node:n01",
+      "TRUE"
+    ]
+  ],
+  "recovery": [
+    [
+      "rule:k1|node:n01",
+      "TRUE"
+    ],
+    [
+      "rule:k2|node:n01",
+      "TRUE"
+    ],
+    [
+      "rule:k3|node:n01",
+      "TRUE"
+    ],
+    [
+      "rule:k4|node:n01",
+      "FALSE"
+    ],
+    [
+      "rule:k5|node:n01",
+      "FALSE"
+    ],
+    [
+      "rule:k6|node:n01",
+      "FALSE"
+    ],
+    [
+      "rule:k7|node:n01",
+      "TRUE"
+    ]
+  ],
+  "expected": {
+    "M09": "3/5"
+  },
+  "expected_aux": {
+    "M09": {
+      "persisting": 2,
+      "new_inconsistencies": 1,
+      "unevaluable_in_recovery": 0
+    }
+  }
+}

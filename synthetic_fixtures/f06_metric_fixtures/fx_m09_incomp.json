@@ -1,0 +1,32 @@
+{
+  "fixture_id": "FX-M09-INCOMP",
+  "purpose": "comparability (K-43): different governance version",
+  "is_fixture": true,
+  "data_origin": "FIXTURE",
+  "kind": "comparability",
+  "baseline": {
+    "scenario_id": "scn:fx_base",
+    "variant_kind": "BASELINE",
+    "variant_of": null,
+    "fixture_lineage_id": "lin:fx",
+    "topology_version": "1.0.0",
+    "governance_version": "1.0.0",
+    "tick_count": 6
+  },
+  "recovery": {
+    "scenario_id": "scn:fx_rec",
+    "variant_kind": "RECOVERY",
+    "variant_of": "scn:fx_base",
+    "fixture_lineage_id": "lin:fx",
+    "topology_version": "1.0.0",
+    "governance_version": "1.1.0",
+    "tick_count": 6
+  },
+  "tau": null,
+  "expected": {
+    "compatible": false,
+    "reasons": [
+      "governance version differs"
+    ]
+  }
+}

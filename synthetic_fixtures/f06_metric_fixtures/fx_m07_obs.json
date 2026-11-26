@@ -1,0 +1,106 @@
+{
+  "fixture_id": "FX-M07-OBS",
+  "purpose": "observable cases (K-46, K-57): 1 of 4 cases on an invisible node",
+  "is_fixture": true,
+  "data_origin": "FIXTURE",
+  "kind": "gaps",
+  "tick": 3,
+  "rule_applies_to": {
+    "rule:r_gate": [
+      "node:n05",
+      "node:n06"
+    ]
+  },
+  "cases": [
+    {
+      "case_id": "case:c1",
+      "subject_refs": [
+        "attr:n01/state"
+      ],
+      "tick_from": 0
+    },
+    {
+      "case_id": "case:c2",
+      "subject_refs": [
+        "node:n03"
+      ],
+      "tick_from": 0,
+      "tick_to": 5
+    },
+    {
+      "case_id": "case:c3",
+      "subject_refs": [
+        "attr:n05/state",
+        "attr:n06/state"
+      ],
+      "tick_from": 1
+    },
+    {
+      "case_id": "case:c4",
+      "subject_refs": [
+        "attr:n08/state"
+      ],
+      "tick_from": 0
+    }
+  ],
+  "gaps": [
+    {
+      "gap_id": "gap:g1",
+      "tick": 3,
+      "subject_refs": [
+        "obs:s01:n01/state:t3"
+      ]
+    },
+    {
+      "gap_id": "gap:g2",
+      "tick": 3,
+      "subject_refs": [
+        "node:n01"
+      ]
+    },
+    {
+      "gap_id": "gap:g3",
+      "tick": 3,
+      "subject_refs": [
+        "attr:n03/state"
+      ]
+    },
+    {
+      "gap_id": "gap:g4",
+      "tick": 3,
+      "subject_refs": [
+        "node:n05",
+        "node:n06"
+      ]
+    },
+    {
+      "gap_id": "gap:g5",
+      "tick": 3,
+      "subject_refs": [
+        "rule:r_gate"
+      ]
+    },
+    {
+      "gap_id": "gap:g6",
+      "tick": 3,
+      "subject_refs": [
+        "attr:n02/state"
+      ]
+    }
+  ],
+  "visible_nodes": [
+    "node:n01",
+    "node:n02",
+    "node:n03",
+    "node:n04",
+    "node:n05",
+    "node:n06",
+    "node:n07",
+    "node:n09",
+    "node:n10"
+  ],
+  "expected": {
+    "M07": "3/4",
+    "M07:OBSERVABLE_CASES": "1"
+  }
+}

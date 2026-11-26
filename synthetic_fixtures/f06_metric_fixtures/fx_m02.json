@@ -1,0 +1,238 @@
+{
+  "fixture_id": "FX-M02",
+  "purpose": "Relational Coherence: 7 STATE rules over Ω_O(04.11)",
+  "is_fixture": true,
+  "data_origin": "FIXTURE",
+  "kind": "rules_state",
+  "space": "O",
+  "governance": {
+    "governance_id": "gov:fx_m02",
+    "version": "1.0.0",
+    "topology": "f01_topology/fx_04_11.json",
+    "roles": [
+      {
+        "role_id": "role:operator",
+        "label": "Operator"
+      }
+    ],
+    "rules": [
+      {
+        "rule_id": "rule:r1",
+        "version": "1.0.0",
+        "kind": "STATE",
+        "applies_to": [
+          "node:n01"
+        ],
+        "expression": {
+          "op": "eq",
+          "attr": "attr:n01/state",
+          "value": "NOMINAL"
+        }
+      },
+      {
+        "rule_id": "rule:r2",
+        "version": "1.0.0",
+        "kind": "STATE",
+        "applies_to": [
+          "node:n04"
+        ],
+        "expression": {
+          "op": "eq",
+          "attr": "attr:n04/state",
+          "value": "ACTIVE"
+        }
+      },
+      {
+        "rule_id": "rule:r3",
+        "version": "1.0.0",
+        "kind": "STATE",
+        "applies_to": [
+          "node:n03"
+        ],
+        "expression": {
+          "op": "in",
+          "attr": "attr:n03/state",
+          "values": [
+            "DEGRADED",
+            "FAULTY"
+          ]
+        }
+      },
+      {
+        "rule_id": "rule:r4",
+        "version": "1.0.0",
+        "kind": "STATE",
+        "applies_to": [
+          "node:n05"
+        ],
+        "expression": {
+          "op": "eq",
+          "attr": "attr:n05/state",
+          "value": "CLOSED"
+        }
+      },
+      {
+        "rule_id": "rule:r5",
+        "version": "1.0.0",
+        "kind": "STATE",
+        "applies_to": [
+          "node:n06"
+        ],
+        "expression": {
+          "op": "eq",
+          "attr": "attr:n06/state",
+          "value": "DEGRADED"
+        }
+      },
+      {
+        "rule_id": "rule:r6",
+        "version": "1.0.0",
+        "kind": "STATE",
+        "applies_to": [
+          "node:n08"
+        ],
+        "expression": {
+          "op": "eq",
+          "attr": "attr:n08/state",
+          "value": "NOMINAL"
+        }
+      },
+      {
+        "rule_id": "rule:r7",
+        "version": "1.0.0",
+        "kind": "STATE",
+        "applies_to": [
+          "node:n09"
+        ],
+        "expression": {
+          "op": "implies",
+          "if": {
+            "op": "eq",
+            "attr": "attr:n09/state",
+            "value": "AUTHORIZED"
+          },
+          "then": {
+            "op": "eq",
+            "attr": "attr:n05/state",
+            "value": "OPEN"
+          }
+        }
+      }
+    ]
+  },
+  "ticks": [
+    {
+      "tick": 0,
+      "sweep_tick": true,
+      "attrs": [
+        {
+          "attribute": "attr:n01/state",
+          "a_applicable": true,
+          "a_value": "NOMINAL",
+          "o_status": "KNOWN",
+          "o_value": "NOMINAL",
+          "r_status": "DETERMINED",
+          "r_value": "NOMINAL",
+          "r_class": "SOURCE_OBSERVATION"
+        },
+        {
+          "attribute": "attr:n02/state",
+          "a_applicable": true,
+          "a_value": "NOMINAL",
+          "o_status": "KNOWN",
+          "o_value": "NOMINAL",
+          "r_status": "DETERMINED",
+          "r_value": "NOMINAL",
+          "r_class": "SOURCE_OBSERVATION"
+        },
+        {
+          "attribute": "attr:n03/state",
+          "a_applicable": true,
+          "a_value": "DEGRADED",
+          "o_status": "KNOWN",
+          "o_value": "DEGRADED",
+          "r_status": "DETERMINED",
+          "r_value": "DEGRADED",
+          "r_class": "SOURCE_OBSERVATION"
+        },
+        {
+          "attribute": "attr:n04/state",
+          "a_applicable": true,
+          "a_value": "ACTIVE",
+          "o_status": "KNOWN",
+          "o_value": "ACTIVE",
+          "r_status": "DETERMINED",
+          "r_value": "ACTIVE",
+          "r_class": "SOURCE_OBSERVATION"
+        },
+        {
+          "attribute": "attr:n05/state",
+          "a_applicable": true,
+          "a_value": "CLOSED",
+          "o_status": "KNOWN",
+          "o_value": "CLOSED",
+          "r_status": "DETERMINED",
+          "r_value": "CLOSED",
+          "r_class": "SOURCE_OBSERVATION"
+        },
+        {
+          "attribute": "attr:n06/state",
+          "a_applicable": true,
+          "a_value": "NOMINAL",
+          "o_status": "KNOWN",
+          "o_value": "NOMINAL",
+          "r_status": "DETERMINED",
+          "r_value": "NOMINAL",
+          "r_class": "SOURCE_OBSERVATION"
+        },
+        {
+          "attribute": "attr:n07/state",
+          "a_applicable": true,
+          "a_value": "STANDBY",
+          "o_status": "UNKNOWN",
+          "r_status": "DETERMINED",
+          "r_value": "STANDBY",
+          "r_class": "STRUCTURAL_DERIVATION"
+        },
+        {
+          "attribute": "attr:n08/state",
+          "a_applicable": true,
+          "a_value": "NOMINAL",
+          "o_status": "UNKNOWN",
+          "r_status": "DETERMINED",
+          "r_value": "DEGRADED",
+          "r_class": "STRUCTURAL_DERIVATION"
+        },
+        {
+          "attribute": "attr:n09/state",
+          "a_applicable": true,
+          "a_value": "AUTHORIZED",
+          "o_status": "UNKNOWN",
+          "r_status": "UNDETERMINED",
+          "r_class": "OPEN_REFERENCE"
+        },
+        {
+          "attribute": "attr:n10/state",
+          "a_applicable": true,
+          "a_value": "CRITICAL",
+          "o_status": "UNKNOWN",
+          "r_status": "UNDETERMINED",
+          "r_class": "OPEN_REFERENCE"
+        }
+      ]
+    }
+  ],
+  "expected_split": {
+    "TRUE": 4,
+    "FALSE": 1,
+    "UNEVALUABLE": 2
+  },
+  "expected": {
+    "M02": "4/5"
+  },
+  "expected_aux": {
+    "M02": {
+      "unevaluable_count": 2
+    }
+  }
+}

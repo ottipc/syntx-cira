@@ -1,0 +1,125 @@
+{
+  "fixture_id": "FX-04.11-HX",
+  "purpose": "hypothesis policy exclude/v1, n07 HYPOTHESIS",
+  "is_fixture": true,
+  "data_origin": "FIXTURE",
+  "kind": "attribute_spaces",
+  "topology": "f01_topology/fx_04_11.json",
+  "policy": "exclude",
+  "weights": {
+    "default": "1",
+    "explicit": {}
+  },
+  "ticks": [
+    {
+      "tick": 0,
+      "sweep_tick": true,
+      "attrs": [
+        {
+          "attribute": "attr:n01/state",
+          "a_applicable": true,
+          "a_value": "NOMINAL",
+          "o_status": "KNOWN",
+          "o_value": "NOMINAL",
+          "r_status": "DETERMINED",
+          "r_value": "NOMINAL",
+          "r_class": "SOURCE_OBSERVATION"
+        },
+        {
+          "attribute": "attr:n02/state",
+          "a_applicable": true,
+          "a_value": "NOMINAL",
+          "o_status": "KNOWN",
+          "o_value": "NOMINAL",
+          "r_status": "DETERMINED",
+          "r_value": "NOMINAL",
+          "r_class": "SOURCE_OBSERVATION"
+        },
+        {
+          "attribute": "attr:n03/state",
+          "a_applicable": true,
+          "a_value": "DEGRADED",
+          "o_status": "KNOWN",
+          "o_value": "DEGRADED",
+          "r_status": "DETERMINED",
+          "r_value": "DEGRADED",
+          "r_class": "SOURCE_OBSERVATION"
+        },
+        {
+          "attribute": "attr:n04/state",
+          "a_applicable": true,
+          "a_value": "ACTIVE",
+          "o_status": "KNOWN",
+          "o_value": "ACTIVE",
+          "r_status": "DETERMINED",
+          "r_value": "ACTIVE",
+          "r_class": "SOURCE_OBSERVATION"
+        },
+        {
+          "attribute": "attr:n05/state",
+          "a_applicable": true,
+          "a_value": "CLOSED",
+          "o_status": "KNOWN",
+          "o_value": "CLOSED",
+          "r_status": "DETERMINED",
+          "r_value": "CLOSED",
+          "r_class": "SOURCE_OBSERVATION"
+        },
+        {
+          "attribute": "attr:n06/state",
+          "a_applicable": true,
+          "a_value": "NOMINAL",
+          "o_status": "KNOWN",
+          "o_value": "NOMINAL",
+          "r_status": "DETERMINED",
+          "r_value": "NOMINAL",
+          "r_class": "SOURCE_OBSERVATION"
+        },
+        {
+          "attribute": "attr:n07/state",
+          "a_applicable": true,
+          "a_value": "STANDBY",
+          "o_status": "UNKNOWN",
+          "r_status": "DETERMINED",
+          "r_value": "STANDBY",
+          "r_class": "HYPOTHESIS"
+        },
+        {
+          "attribute": "attr:n08/state",
+          "a_applicable": true,
+          "a_value": "NOMINAL",
+          "o_status": "UNKNOWN",
+          "r_status": "DETERMINED",
+          "r_value": "DEGRADED",
+          "r_class": "STRUCTURAL_DERIVATION"
+        },
+        {
+          "attribute": "attr:n09/state",
+          "a_applicable": true,
+          "a_value": "AUTHORIZED",
+          "o_status": "UNKNOWN",
+          "r_status": "UNDETERMINED",
+          "r_class": "OPEN_REFERENCE"
+        },
+        {
+          "attribute": "attr:n10/state",
+          "a_applicable": true,
+          "a_value": "CRITICAL",
+          "o_status": "UNKNOWN",
+          "r_status": "UNDETERMINED",
+          "r_class": "OPEN_REFERENCE"
+        }
+      ]
+    }
+  ],
+  "expected": {
+    "M05": "7/10",
+    "M01": "1/7"
+  },
+  "expected_aux": {
+    "M01": {
+      "undetermined_count": 3,
+      "hypotheses_excluded": 1
+    }
+  }
+}
