@@ -28,3 +28,5 @@ Datum: 2026-11-26 · Phase 05 · Klasse F2 (ohne Semantikwirkung, E-07)
    `seconds_per_step` (10 s) aus `demo.steps.json`, also 80 s für 8 Schritte, im Präsentationsmodus. Reine Navigation
    (INV-FUN-07, kein POST); Escape, „Stop“ oder jede manuelle Navigation beenden die Wiedergabe. Belegt durch einen
    DOM-Test mit Zeitraffer und einen 80-s-Lauf in Chrome gegen das laufende Backend (TX31).
+6. **Lesen während eines Laufs.** `index.jsonl` ist append-only; Leser übernehmen nur zeilenendterminierte Datensätze,
+   eine unvollständige letzte Zeile ist ein laufendes Anhängen und noch nicht Teil des Index (IC-18).

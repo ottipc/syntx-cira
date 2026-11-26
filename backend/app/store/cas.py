@@ -63,21 +63,30 @@ class ArtifactStore:
 
     def _append(self, experiment_id: str, record: dict[str, Any]) -> None:
         record = dict(record, recorded_at=time.time())
+        line = json.dumps(record, ensure_ascii=False, sort_keys=True) + "\n"
         with self._lock, self._index_path(experiment_id).open("a", encoding="utf-8") as f:
-            f.write(json.dumps(record, ensure_ascii=False, sort_keys=True) + "\n")
+            f.write(line)  # one write per record; readers only take newline-terminated lines
+
+    @staticmethod
+    def _complete_lines(p: Path) -> list[str]:
+        """Records of an append-only index that are completely written. Every record ends with a newline; a last
+        line without one is an append still in progress (concurrent run) and is not yet part of the index (IC-18)."""
+        text = p.read_text(encoding="utf-8")
+        return [line for line in text.split("\n")[:-1] if line]
 
     def index(self, experiment_id: str) -> list[dict[str, Any]]:
         p = self._index_path(experiment_id)
         if not p.exists():
             return []
-        return [json.loads(line) for line in p.read_text(encoding="utf-8").splitlines() if line]
+        return [json.loads(line) for line in self._complete_lines(p)]
 
     def experiments(self) -> list[str]:
         out = []
         for d in sorted((self.root / "experiments").iterdir()):
             if (d / "index.jsonl").exists():
-                first = json.loads((d / "index.jsonl").read_text(encoding="utf-8").splitlines()[0])
-                out.append(first["experiment_id"])
+                lines = self._complete_lines(d / "index.jsonl")
+                if lines:
+                    out.append(json.loads(lines[0])["experiment_id"])
         return out
 
     # ---- envelopes -----------------------------------------------------------------------
