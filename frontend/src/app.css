@@ -35,8 +35,9 @@ button { font: inherit; color: inherit; }
   background: var(--col-surface-panel); border-bottom: var(--border-width-base) solid var(--col-border-hairline); z-index: var(--z-chrome); min-width: 0; }
 .zone-b { grid-area: b; background: var(--col-surface-field); border-right: var(--border-width-base) solid var(--col-border-hairline);
   overflow-y: auto; z-index: var(--z-chrome); }
-.zone-c { grid-area: c; overflow: auto; background: var(--col-surface-field); position: relative; z-index: var(--z-canvas);
-  min-width: var(--zone-c-min_width); padding: var(--space-16) var(--space-24); }
+.zone-c { grid-area: c; display: flex; flex-direction: column; overflow: hidden; background: var(--col-surface-field); position: relative;
+  z-index: var(--z-canvas); min-width: var(--zone-c-min_width); min-height: 0; }
+.zone-c-content { flex: 1 1 auto; min-height: 0; overflow: auto; padding: var(--space-16) var(--space-24); }
 .zone-d { grid-area: d; display: flex; align-items: center; gap: var(--space-12); padding: 0 var(--space-16);
   background: var(--col-surface-panel); border-top: var(--border-width-base) solid var(--col-border-hairline); z-index: var(--z-chrome); }
 .zone-e { grid-area: e; width: var(--zone-e-width); background: var(--col-surface-elevated); border-left: var(--border-width-base) solid var(--col-border-strong);
@@ -179,8 +180,8 @@ table.data th { font-size: var(--type-section-size); text-transform: var(--type-
 .topology .edge-unknown_open { stroke: var(--line-coupling-unknown-color); stroke-dasharray: var(--line-coupling-unknown-dash); }
 .topology .outside { fill: var(--col-surface-void); stroke-dasharray: var(--line-coupling-unknown-dash); }
 .toolbar { display: flex; gap: var(--space-8); align-items: center; flex-wrap: wrap; }
-.demo-bar { margin-left: auto; z-index: var(--z-demo); display: flex; gap: var(--space-12); align-items: center; min-width: 0;
-  background: var(--col-surface-elevated); border: var(--border-width-base) solid var(--col-border-strong); padding: var(--space-4) var(--space-12); }
+.demo-bar { flex: 0 0 auto; z-index: var(--z-demo); display: flex; gap: var(--space-12); align-items: center; min-width: 0;
+  background: var(--col-surface-elevated); border-top: var(--border-width-base) solid var(--col-border-strong); padding: var(--space-8) var(--space-24); }
 .narration { flex: 1; }
 .dialog { border: var(--border-width-base) solid var(--col-border-strong); background: var(--col-surface-panel); padding: var(--space-12); }
 .dialog label { display: block; margin-bottom: var(--space-8); }

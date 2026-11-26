@@ -1,18 +1,20 @@
-import type { ComponentType } from "react";
+import type { ComponentType, ReactNode } from "react";
 import { ep, useProjection } from "../access";
 import type { ExperimentsResponse } from "../access";
 import { useT } from "../language";
 import { ExecPill, IdText, OriginBadge } from "../semiontics";
 import { sessionUrl, useSession, type ViewKey } from "../session";
 
-/** Zone C: the active view module, or the experiment selection (no twelfth view, G05.2). */
-export function Workspace({ views }: { views: Readonly<Record<ViewKey, ComponentType>> }) {
+/** Zone C: the active view module, or the experiment selection (no twelfth view, G05.2); the demo bar sits at the
+ *  bottom edge of zone C, above zone D, and never covers data (G05.2, SEM-033). */
+export function Workspace({ views, demo }: { views: Readonly<Record<ViewKey, ComponentType>>; demo: ReactNode }) {
   const { session } = useSession();
   const V = views[session.view];
   return (
     <main className={`zone-c${session.mode === "presentation" ? " presentation-frame" : ""}`} data-zone="C"
       {...(session.mode === "presentation" ? { "data-sem": "SEM-036", "data-term": "mode.presentation.frame" } : {})}>
-      {session.experimentId === null ? <ExperimentSelect /> : <V />}
+      <div className="zone-c-content">{session.experimentId === null ? <ExperimentSelect /> : <V />}</div>
+      {demo}
     </main>
   );
 }

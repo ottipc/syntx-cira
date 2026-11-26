@@ -15,9 +15,9 @@ export function AppShell({ views, actions, demo }: { views: Readonly<Record<View
       <div className="shell" data-mode={session.mode}>
         <ContextBar actions={actions} />
         <ViewRail />
-        <Workspace views={views} />
+        <Workspace views={views} demo={demo} />
         <ProvenanceDrawer />
-        <footer className="zone-d" data-zone="D">{session.view !== "SCENARIO_COMPARISON" ? <TickScrubber /> : null}{demo}</footer>
+        <footer className="zone-d" data-zone="D">{session.view !== "SCENARIO_COMPARISON" ? <TickScrubber /> : null}</footer>
       </div>
     </ViewportGuard>
   );
