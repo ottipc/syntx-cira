@@ -187,9 +187,9 @@
   "schema_version": "cira.metrics_projection/1.0.2",
   "source_refs": [
    {
-    "artifact_id": "art:4a17bacee7eb3832445ea580da0ea734",
+    "artifact_id": "art:4bd4af2c94446fd4c876f2b145cb3268",
     "artifact_type": "evaluation_report",
-    "content_hash": "sha256:3e8b744c039ebf3ce76294fd73813f8f0821819e075f9f086b478f8b6423f952"
+    "content_hash": "sha256:388ca5eae4381337fe46cb4fa694b2bed985c24d7f25036bc846156c90039c67"
    }
   ],
   "tick": null
@@ -362,6 +362,14 @@
     "code": "METRIC_UNDEFINED",
     "field": "F06",
     "message": "M03 R POOLED: input missing",
+    "recovery": "RECOMPUTE",
+    "subject_refs": [],
+    "tick": null
+   },
+   {
+    "code": "METRIC_UNDEFINED",
+    "field": "F06",
+    "message": "M03 R TIME_MEAN_EXPLICIT: input missing",
     "recovery": "RECOMPUTE",
     "subject_refs": [],
     "tick": null
@@ -753,7 +761,15 @@
    {
     "code": "METRIC_UNDEFINED",
     "field": "F06",
-    "message": "M10 R1_R2 PER_TICK: input missing",
+    "message": "M10 R1_R2 POOLED: input missing",
+    "recovery": "RECOMPUTE",
+    "subject_refs": [],
+    "tick": null
+   },
+   {
+    "code": "METRIC_UNDEFINED",
+    "field": "F06",
+    "message": "M10 R1_R2 TIME_MEAN_EXPLICIT: input missing",
     "recovery": "RECOMPUTE",
     "subject_refs": [],
     "tick": null
@@ -1532,6 +1548,16 @@
     "members": [
      "0"
     ],
+    "reference_space_id": "space:tick:t0:all_functions",
+    "space_hash": "sha256:8ec40790a8cf03752d63b0543cb4d3275fb5d739510466168cbc91daf9bb47f7",
+    "tick": 0,
+    "weight_set_ref": null
+   },
+   {
+    "kind": "TICK",
+    "members": [
+     "0"
+    ],
     "reference_space_id": "space:tick:t0:rule:svc_gate",
     "space_hash": "sha256:8ec40790a8cf03752d63b0543cb4d3275fb5d739510466168cbc91daf9bb47f7",
     "tick": 0,
@@ -1545,6 +1571,16 @@
     "reference_space_id": "space:tick:t0:rule:svc_supply",
     "space_hash": "sha256:8ec40790a8cf03752d63b0543cb4d3275fb5d739510466168cbc91daf9bb47f7",
     "tick": 0,
+    "weight_set_ref": null
+   },
+   {
+    "kind": "TICK",
+    "members": [
+     "1"
+    ],
+    "reference_space_id": "space:tick:t1:all_functions",
+    "space_hash": "sha256:27d4a6e506f5527be4756845433b712cb98a63fadda365fa9f37f101587a22ae",
+    "tick": 1,
     "weight_set_ref": null
    },
    {
@@ -1572,6 +1608,16 @@
     "members": [
      "2"
     ],
+    "reference_space_id": "space:tick:t2:all_functions",
+    "space_hash": "sha256:5edb658d2219151be6be0b271c2b9665ff665f3726339f479144ad1c41caaf59",
+    "tick": 2,
+    "weight_set_ref": null
+   },
+   {
+    "kind": "TICK",
+    "members": [
+     "2"
+    ],
     "reference_space_id": "space:tick:t2:rule:svc_gate",
     "space_hash": "sha256:5edb658d2219151be6be0b271c2b9665ff665f3726339f479144ad1c41caaf59",
     "tick": 2,
@@ -1585,6 +1631,16 @@
     "reference_space_id": "space:tick:t2:rule:svc_supply",
     "space_hash": "sha256:5edb658d2219151be6be0b271c2b9665ff665f3726339f479144ad1c41caaf59",
     "tick": 2,
+    "weight_set_ref": null
+   },
+   {
+    "kind": "TICK",
+    "members": [
+     "3"
+    ],
+    "reference_space_id": "space:tick:t3:all_functions",
+    "space_hash": "sha256:b8573164537f534b52ccc3958e5e1d3d58c44a32c61544d3817fea660b519e8b",
+    "tick": 3,
     "weight_set_ref": null
    },
    {
@@ -1612,6 +1668,16 @@
     "members": [
      "4"
     ],
+    "reference_space_id": "space:tick:t4:all_functions",
+    "space_hash": "sha256:f92fbde3c5c3c5f5a8ae8d46c7c8ee89fa3e34d3c9486d698377e5a8114d1716",
+    "tick": 4,
+    "weight_set_ref": null
+   },
+   {
+    "kind": "TICK",
+    "members": [
+     "4"
+    ],
     "reference_space_id": "space:tick:t4:rule:svc_gate",
     "space_hash": "sha256:f92fbde3c5c3c5f5a8ae8d46c7c8ee89fa3e34d3c9486d698377e5a8114d1716",
     "tick": 4,
@@ -1625,6 +1691,16 @@
     "reference_space_id": "space:tick:t4:rule:svc_supply",
     "space_hash": "sha256:f92fbde3c5c3c5f5a8ae8d46c7c8ee89fa3e34d3c9486d698377e5a8114d1716",
     "tick": 4,
+    "weight_set_ref": null
+   },
+   {
+    "kind": "TICK",
+    "members": [
+     "5"
+    ],
+    "reference_space_id": "space:tick:t5:all_functions",
+    "space_hash": "sha256:f12c34a28094137af7a31e6435e63a488fa9b87ab3aa92c9024566f25a2adfe6",
+    "tick": 5,
     "weight_set_ref": null
    },
    {
@@ -1808,41 +1884,6 @@
      "shared_coverage": null,
      "shared_coverage_undefined": null,
      "stale_known": null,
-     "ticks_excluded": null,
-     "ticks_included": null,
-     "tp": null,
-     "undetermined_count": null,
-     "unevaluable_count": null,
-     "unevaluable_in_recovery": null
-    },
-    "case_subset": null,
-    "denominator": null,
-    "metric_id": "M01",
-    "numerator": null,
-    "reference_space": "space:attribute:to0",
-    "relation": "A_R",
-    "status": "UNDEFINED",
-    "tick": null,
-    "undefined_reason": "INPUT_MISSING",
-    "unit": "ratio",
-    "value": null,
-    "version": "1.0.0"
-   },
-   {
-    "aggregation": "TIME_MEAN_EXPLICIT",
-    "aux": {
-     "fn": null,
-     "fp": null,
-     "function_ref": null,
-     "hypotheses_excluded": null,
-     "new_inconsistencies": null,
-     "not_applicable_excluded": null,
-     "not_in_validity": null,
-     "observable_cases": null,
-     "persisting": null,
-     "shared_coverage": null,
-     "shared_coverage_undefined": null,
-     "stale_known": null,
      "ticks_excluded": 0,
      "ticks_included": 1,
      "tp": null,
@@ -1867,82 +1908,6 @@
     "undefined_reason": null,
     "unit": "ratio",
     "value": 0.8,
-    "version": "1.0.0"
-   },
-   {
-    "aggregation": "TIME_MEAN_EXPLICIT",
-    "aux": {
-     "fn": null,
-     "fp": null,
-     "function_ref": null,
-     "hypotheses_excluded": null,
-     "new_inconsistencies": null,
-     "not_applicable_excluded": null,
-     "not_in_validity": null,
-     "observable_cases": null,
-     "persisting": null,
-     "shared_coverage": null,
-     "shared_coverage_undefined": null,
-     "stale_known": null,
-     "ticks_excluded": 0,
-     "ticks_included": 1,
-     "tp": null,
-     "undetermined_count": null,
-     "unevaluable_count": null,
-     "unevaluable_in_recovery": null
-    },
-    "case_subset": null,
-    "denominator": {
-     "d": 1,
-     "n": 1
-    },
-    "metric_id": "M02",
-    "numerator": {
-     "d": 1,
-     "n": 1
-    },
-    "reference_space": "space:rule:to0:o",
-    "relation": "O",
-    "status": "EVALUATED",
-    "tick": null,
-    "undefined_reason": null,
-    "unit": "ratio",
-    "value": 1.0,
-    "version": "1.0.0"
-   },
-   {
-    "aggregation": "TIME_MEAN_EXPLICIT",
-    "aux": {
-     "fn": null,
-     "fp": null,
-     "function_ref": null,
-     "hypotheses_excluded": null,
-     "new_inconsistencies": null,
-     "not_applicable_excluded": null,
-     "not_in_validity": null,
-     "observable_cases": null,
-     "persisting": null,
-     "shared_coverage": null,
-     "shared_coverage_undefined": null,
-     "stale_known": null,
-     "ticks_excluded": null,
-     "ticks_included": null,
-     "tp": null,
-     "undetermined_count": null,
-     "unevaluable_count": null,
-     "unevaluable_in_recovery": null
-    },
-    "case_subset": null,
-    "denominator": null,
-    "metric_id": "M02",
-    "numerator": null,
-    "reference_space": "space:rule:to0:r",
-    "relation": "R",
-    "status": "UNDEFINED",
-    "tick": null,
-    "undefined_reason": "INPUT_MISSING",
-    "unit": "ratio",
-    "value": null,
     "version": "1.0.0"
    },
    {
@@ -2013,6 +1978,47 @@
      "d": 1,
      "n": 1
     },
+    "metric_id": "M02",
+    "numerator": {
+     "d": 1,
+     "n": 1
+    },
+    "reference_space": "space:rule:to0:o",
+    "relation": "O",
+    "status": "EVALUATED",
+    "tick": null,
+    "undefined_reason": null,
+    "unit": "ratio",
+    "value": 1.0,
+    "version": "1.0.0"
+   },
+   {
+    "aggregation": "TIME_MEAN_EXPLICIT",
+    "aux": {
+     "fn": null,
+     "fp": null,
+     "function_ref": null,
+     "hypotheses_excluded": null,
+     "new_inconsistencies": null,
+     "not_applicable_excluded": null,
+     "not_in_validity": null,
+     "observable_cases": null,
+     "persisting": null,
+     "shared_coverage": null,
+     "shared_coverage_undefined": null,
+     "stale_known": null,
+     "ticks_excluded": 0,
+     "ticks_included": 1,
+     "tp": null,
+     "undetermined_count": null,
+     "unevaluable_count": null,
+     "unevaluable_in_recovery": null
+    },
+    "case_subset": null,
+    "denominator": {
+     "d": 1,
+     "n": 1
+    },
     "metric_id": "M03",
     "numerator": {
      "d": 1,
@@ -2033,6 +2039,76 @@
      "fn": null,
      "fp": null,
      "function_ref": null,
+     "hypotheses_excluded": null,
+     "new_inconsistencies": null,
+     "not_applicable_excluded": null,
+     "not_in_validity": null,
+     "observable_cases": null,
+     "persisting": null,
+     "shared_coverage": null,
+     "shared_coverage_undefined": null,
+     "stale_known": null,
+     "ticks_excluded": null,
+     "ticks_included": null,
+     "tp": null,
+     "undetermined_count": null,
+     "unevaluable_count": null,
+     "unevaluable_in_recovery": null
+    },
+    "case_subset": null,
+    "denominator": null,
+    "metric_id": "M02",
+    "numerator": null,
+    "reference_space": "space:rule:to0:r",
+    "relation": "R",
+    "status": "UNDEFINED",
+    "tick": null,
+    "undefined_reason": "INPUT_MISSING",
+    "unit": "ratio",
+    "value": null,
+    "version": "1.0.0"
+   },
+   {
+    "aggregation": "TIME_MEAN_EXPLICIT",
+    "aux": {
+     "fn": null,
+     "fp": null,
+     "function_ref": null,
+     "hypotheses_excluded": null,
+     "new_inconsistencies": null,
+     "not_applicable_excluded": null,
+     "not_in_validity": null,
+     "observable_cases": null,
+     "persisting": null,
+     "shared_coverage": null,
+     "shared_coverage_undefined": null,
+     "stale_known": null,
+     "ticks_excluded": null,
+     "ticks_included": null,
+     "tp": null,
+     "undetermined_count": null,
+     "unevaluable_count": null,
+     "unevaluable_in_recovery": null
+    },
+    "case_subset": null,
+    "denominator": null,
+    "metric_id": "M03",
+    "numerator": null,
+    "reference_space": "space:transition:to0:r",
+    "relation": "R",
+    "status": "UNDEFINED",
+    "tick": null,
+    "undefined_reason": "INPUT_MISSING",
+    "unit": "ratio",
+    "value": null,
+    "version": "1.0.0"
+   },
+   {
+    "aggregation": "TIME_MEAN_EXPLICIT",
+    "aux": {
+     "fn": null,
+     "fp": null,
+     "function_ref": "rule:svc_gate",
      "hypotheses_excluded": null,
      "new_inconsistencies": null,
      "not_applicable_excluded": null,
@@ -2073,7 +2149,7 @@
     "aux": {
      "fn": null,
      "fp": null,
-     "function_ref": null,
+     "function_ref": "rule:svc_supply",
      "hypotheses_excluded": null,
      "new_inconsistencies": null,
      "not_applicable_excluded": null,
@@ -2124,6 +2200,82 @@
      "shared_coverage": null,
      "shared_coverage_undefined": null,
      "stale_known": null,
+     "ticks_excluded": 0,
+     "ticks_included": 1,
+     "tp": null,
+     "undetermined_count": null,
+     "unevaluable_count": null,
+     "unevaluable_in_recovery": null
+    },
+    "case_subset": null,
+    "denominator": {
+     "d": 1,
+     "n": 1
+    },
+    "metric_id": "M04",
+    "numerator": {
+     "d": 1,
+     "n": 1
+    },
+    "reference_space": "space:tick:to0:all_functions",
+    "relation": "A",
+    "status": "EVALUATED",
+    "tick": null,
+    "undefined_reason": null,
+    "unit": "ratio",
+    "value": 1.0,
+    "version": "1.0.0"
+   },
+   {
+    "aggregation": "TIME_MEAN_EXPLICIT",
+    "aux": {
+     "fn": null,
+     "fp": null,
+     "function_ref": null,
+     "hypotheses_excluded": null,
+     "new_inconsistencies": null,
+     "not_applicable_excluded": null,
+     "not_in_validity": null,
+     "observable_cases": null,
+     "persisting": null,
+     "shared_coverage": null,
+     "shared_coverage_undefined": null,
+     "stale_known": null,
+     "ticks_excluded": null,
+     "ticks_included": null,
+     "tp": null,
+     "undetermined_count": null,
+     "unevaluable_count": null,
+     "unevaluable_in_recovery": null
+    },
+    "case_subset": null,
+    "denominator": null,
+    "metric_id": "M01",
+    "numerator": null,
+    "reference_space": "space:attribute:to0",
+    "relation": "A_R",
+    "status": "UNDEFINED",
+    "tick": null,
+    "undefined_reason": "INPUT_MISSING",
+    "unit": "ratio",
+    "value": null,
+    "version": "1.0.0"
+   },
+   {
+    "aggregation": "TIME_MEAN_EXPLICIT",
+    "aux": {
+     "fn": null,
+     "fp": null,
+     "function_ref": null,
+     "hypotheses_excluded": null,
+     "new_inconsistencies": null,
+     "not_applicable_excluded": null,
+     "not_in_validity": null,
+     "observable_cases": null,
+     "persisting": null,
+     "shared_coverage": null,
+     "shared_coverage_undefined": null,
+     "stale_known": null,
      "ticks_excluded": null,
      "ticks_included": null,
      "tp": null,
@@ -2134,6 +2286,41 @@
     "case_subset": null,
     "denominator": null,
     "metric_id": "M05",
+    "numerator": null,
+    "reference_space": "space:attribute:to0",
+    "relation": "A_R",
+    "status": "UNDEFINED",
+    "tick": null,
+    "undefined_reason": "INPUT_MISSING",
+    "unit": "ratio",
+    "value": null,
+    "version": "1.0.0"
+   },
+   {
+    "aggregation": "TIME_MEAN_EXPLICIT",
+    "aux": {
+     "fn": null,
+     "fp": null,
+     "function_ref": null,
+     "hypotheses_excluded": null,
+     "new_inconsistencies": null,
+     "not_applicable_excluded": null,
+     "not_in_validity": null,
+     "observable_cases": null,
+     "persisting": null,
+     "shared_coverage": null,
+     "shared_coverage_undefined": null,
+     "stale_known": null,
+     "ticks_excluded": null,
+     "ticks_included": null,
+     "tp": null,
+     "undetermined_count": null,
+     "unevaluable_count": null,
+     "unevaluable_in_recovery": null
+    },
+    "case_subset": null,
+    "denominator": null,
+    "metric_id": "M11",
     "numerator": null,
     "reference_space": "space:attribute:to0",
     "relation": "A_R",
@@ -2314,10 +2501,10 @@
     },
     "case_subset": null,
     "denominator": null,
-    "metric_id": "M11",
+    "metric_id": "M10",
     "numerator": null,
-    "reference_space": "space:attribute:to0",
-    "relation": "A_R",
+    "reference_space": "space:attribute:to0:stability",
+    "relation": "R1_R2",
     "status": "UNDEFINED",
     "tick": null,
     "undefined_reason": "INPUT_MISSING",

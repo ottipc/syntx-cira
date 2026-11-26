@@ -6,7 +6,7 @@ the governance (evaluator), the annotations and the metric configuration. It com
 
 from __future__ import annotations
 
-from collections.abc import Mapping, Sequence
+from collections.abc import Callable, Mapping, Sequence
 from dataclasses import dataclass, field
 from fractions import Fraction
 
@@ -121,10 +121,13 @@ class Evaluator:
                                            message=f"{mid.value} {rel.value} {agg.value}: input missing",
                                            recovery=RecoveryAction.RECOMPUTE))
 
-    def series(self, mid: MetricId, rel: EvaluatedRelation, per: list[tuple[int, NumDen | None]], kind: ReferenceSpaceKind,
-               members: Sequence[str], subset: CaseSubset | None = None, suffix: str = "") -> None:
+    def series(self, mid: MetricId, rel: EvaluatedRelation, per: Sequence[tuple[int, NumDen | None]], kind: ReferenceSpaceKind,
+               members: Sequence[str], subset: CaseSubset | None = None, suffix: str = "",
+               tick_members: Callable[[int], Sequence[str]] | None = None) -> None:
+        """PER_TICK per element of the metric's tick set, then POOLED and TIME_MEAN_EXPLICIT over it (07.7)."""
         for t, nd in per:
-            self.add(mid, nd, rel, Aggregation.PER_TICK, self.space(kind, t, members, suffix), t, subset)
+            self.add(mid, nd, rel, Aggregation.PER_TICK, self.space(kind, t, tick_members(t) if tick_members else members, suffix),
+                     t, subset)
         avail = [nd for _, nd in per if nd is not None]
         pooled_space = self.space(kind, None, members, suffix)
         self.add(mid, aggregation.pooled(avail) if avail else None, rel, Aggregation.POOLED, pooled_space, None, subset)
@@ -233,20 +236,23 @@ class Evaluator:
             self.series(MetricId.M02, rel[sp], per2, ReferenceSpaceKind.RULE, state_ids, suffix=f":{sp.value}")
             if pairs:
                 self.series(MetricId.M03, rel[sp], per3, ReferenceSpaceKind.TRANSITION, trans_ids, suffix=f":{sp.value}")
-            else:
-                self.add(MetricId.M03, None, rel[sp], Aggregation.POOLED,
-                         self.space(ReferenceSpaceKind.TRANSITION, None, trans_ids, f":{sp.value}"), None)
+            else:  # no pair in the tick set (e.g. schedule FINAL/EXPLICIT): INPUT_MISSING for both aggregates (07.3)
+                self.series(MetricId.M03, rel[sp], [], ReferenceSpaceKind.TRANSITION, trans_ids, suffix=f":{sp.value}")
         # M04 (A_only/v1)
         series = tuple(FunctionSeries(function_ref=f, values=tuple(v)) for f, v in self.fn_results.items())
+        all_ticks = [str(t) for t in self.ticks]
         for s in series:
-            sid = self.space(ReferenceSpaceKind.TICK, None, [str(t) for t in self.ticks], f":{s.function_ref}")
-            self.add(MetricId.M04, m04.m04(s), EvaluatedRelation.A, Aggregation.POOLED, sid, None)
+            per4 = [(t, m04.m04(FunctionSeries(function_ref=s.function_ref, values=((t, r),)))) for t, r in s.values]
+            self.series(MetricId.M04, EvaluatedRelation.A, per4, ReferenceSpaceKind.TICK, all_ticks, suffix=f":{s.function_ref}",
+                        tick_members=lambda t: [str(t)])
+        by_tick: dict[int, list[tuple[int, str]]] = {}
+        for s in series:
             for t, r in s.values:
-                one = FunctionSeries(function_ref=s.function_ref, values=((t, r),))
-                self.add(MetricId.M04, m04.m04(one), EvaluatedRelation.A, Aggregation.PER_TICK,
-                         self.space(ReferenceSpaceKind.TICK, t, [str(t)], f":{s.function_ref}"), t)
-        self.add(MetricId.M04, m04.m04_pooled(series) if series else None, EvaluatedRelation.A, Aggregation.POOLED,
-                 self.space(ReferenceSpaceKind.TICK, None, [str(t) for t in self.ticks], ":all_functions"), None)
+                by_tick.setdefault(t, []).append((t, r))
+        per_all = [(t, m04.m04_pooled(tuple(FunctionSeries(function_ref=s.function_ref, values=tuple(v for v in s.values if v[0] == t))
+                                            for s in series))) for t in sorted(by_tick)]
+        self.series(MetricId.M04, EvaluatedRelation.A, per_all, ReferenceSpaceKind.TICK, all_ticks, suffix=":all_functions",
+                    tick_members=lambda t: [str(t)])
 
     # ---- attribute metrics ---------------------------------------------------------------------------------
     def attributes(self) -> list[AttributeMembership]:
@@ -321,12 +327,11 @@ class Evaluator:
 
     def stability(self) -> None:
         t = self.i.stability_tick
-        sid = self.space(ReferenceSpaceKind.ATTRIBUTE, t, self.universe, ":stability") if t is not None else \
-            self.space(ReferenceSpaceKind.ATTRIBUTE, None, self.universe, ":stability")
         r1 = self.r_vals(t, 0) if t is not None else None
         r2 = self.r_vals(t, 1) if t is not None else None
-        if t is None or r1 is None or r2 is None:
-            self.add(MetricId.M10, None, EvaluatedRelation.R1_R2, Aggregation.PER_TICK, sid, t)
+        if t is None or r1 is None or r2 is None:  # INPUT_MISSING without attempt = 1 (07.3)
+            self.series(MetricId.M10, EvaluatedRelation.R1_R2, [] if t is None else [(t, None)], ReferenceSpaceKind.ATTRIBUTE,
+                        self.universe, suffix=":stability")
             return
         av = self.a_vals(t)
         ref = tuple(a for a in self.universe if av[a][0])
@@ -334,8 +339,9 @@ class Evaluator:
         def det(r: Mapping[str, tuple[str, str | None, str | None]]) -> tuple[tuple[str, str], ...]:
             return tuple((a, str(v[1])) for a, v in sorted(r.items()) if v[0] == "DETERMINED" and a in ref
                          and (self.policy == "include" or v[2] != "HYPOTHESIS"))
-        self.add(MetricId.M10, m10.m10(StabilityView(reference=ref, r1=det(r1), r2=det(r2)), self.w),
-                 EvaluatedRelation.R1_R2, Aggregation.PER_TICK, sid, t)
+        # tick set = {stability tick}: PER_TICK, POOLED and TIME_MEAN_EXPLICIT over that one tick (07.3, 07.7)
+        self.series(MetricId.M10, EvaluatedRelation.R1_R2, [(t, m10.m10(StabilityView(reference=ref, r1=det(r1), r2=det(r2)), self.w))],
+                    ReferenceSpaceKind.ATTRIBUTE, self.universe, suffix=":stability")
 
     def run(self) -> EvaluationOutput:
         self.rules()

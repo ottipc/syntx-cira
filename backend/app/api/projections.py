@@ -5,7 +5,6 @@ from __future__ import annotations
 
 import json
 from collections.abc import Callable
-from fractions import Fraction
 from pathlib import Path
 from typing import Any
 
@@ -25,9 +24,7 @@ from ..core.delta import delta_state
 from ..core.errors import CiraError, ErrorCode
 from ..experiments.orchestrator import Orchestrator
 from ..metrics import DEFINITIONS
-from ..metrics.aggregation import pooled, time_mean
-from ..metrics.result import make_result
-from ..metrics.views import NumDen
+from ..metrics.aggregation import reaggregate
 from ..store import FieldReader
 from ..topology.validate import declared_applicability
 
@@ -231,23 +228,8 @@ class Projector:
             return tuple(r for r in rep.results if r.aggregation is agg and (tick is None or r.tick == tick))
         if to_tick is None:
             return tuple(r for r in rep.results if r.aggregation is agg)
-        groups: dict[tuple[Any, ...], list[MetricResult]] = {}
-        for r in rep.results:
-            if r.aggregation is Aggregation.PER_TICK and r.tick is not None and r.tick <= to_tick:
-                parts = r.reference_space.split(":")
-                groups.setdefault((r.metric_id.value, r.relation.value, r.case_subset.value if r.case_subset else "",
-                                   ":".join(parts[:2] + parts[3:])), []).append(r)
-        out = []
-        for key in sorted(groups):
-            rs = groups[key]
-            parts_nd = [NumDen(Fraction(r.numerator.n, r.numerator.d), Fraction(r.denominator.n, r.denominator.d))
-                        for r in rs if r.numerator is not None and r.denominator is not None]
-            nd = (pooled(parts_nd) if agg is Aggregation.POOLED else time_mean(parts_nd)) if parts_nd else None
-            base = rs[0].reference_space.split(":")
-            space = ":".join(base[:2] + [f"to{to_tick}"] + base[3:])
-            out.append(make_result(rs[0].metric_id, nd, relation=rs[0].relation, aggregation=agg, reference_space=space,
-                                   tick=None, case_subset=rs[0].case_subset))
-        return tuple(out)
+        # re-aggregation by the F06 kernel (07.7): same series, per-tick parts up to to_tick
+        return reaggregate(rep.results, agg, to_tick)
 
     # ---- #19 comparisons ---------------------------------------------------------------------------------
     def all_comparisons(self) -> list[tuple[dict[str, Any], Any]]:

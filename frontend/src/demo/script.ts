@@ -1,24 +1,23 @@
-// Demo script as a URL sequence (G05.3, INV-FUN-07): pure navigation, never a POST.
-import { sessionUrl, DEFAULT_SESSION, type SessionKey } from "../session";
+// Demo script as a URL sequence (G05.3, INV-FUN-07): pure navigation, never a POST. The steps are data
+// (demo.steps.json), shared with the backend demo-flow test that verifies every narrated claim (AK-11).
+import { sessionUrl, DEFAULT_SESSION, type SessionKey, type ViewKey } from "../session";
 import type { TermKey } from "../language";
 import type { SemId } from "../semiontics";
+import STEPS from "./demo.steps.json";
 
 export interface DemoConfig { baseline: string; recovery: string; comparisonId: string | null }
 export interface DemoStep { url: string; narration: TermKey; expect: readonly SemId[] }
 
+interface RawStep { n: number; view: string; tick: number; focus?: string; filter?: string; aggregation?: string; comparison?: boolean;
+  narration: string; expect: string[] }
+
 export function demoScript(c: DemoConfig): DemoStep[] {
-  const s = (patch: Partial<SessionKey>, step: number): string =>
-    sessionUrl({ ...DEFAULT_SESSION, experimentId: c.baseline, mode: "presentation", demoStep: step, ...patch });
-  return [
-    { url: s({ view: "SYSTEM_FIELD_OVERVIEW", tick: 0 }, 1), narration: "demo.1", expect: ["SEM-019", "SEM-020", "SEM-032"] },
-    { url: s({ view: "TEMPORAL_STATE_EXPLORER", tick: 1, focus: "attr:n09/state" }, 2), narration: "demo.2", expect: ["SEM-001", "SEM-004", "SEM-034"] },
-    { url: s({ view: "TEMPORAL_STATE_EXPLORER", tick: 3, filter: "open" }, 3), narration: "demo.3", expect: ["SEM-006", "SEM-007"] },
-    { url: s({ view: "TEMPORAL_STATE_EXPLORER", tick: 5, focus: "attr:n08/state" }, 4), narration: "demo.4", expect: ["SEM-003", "SEM-035"] },
-    { url: s({ view: "FORWARD_SWEEP_INSPECTOR", tick: 3 }, 5), narration: "demo.5", expect: ["SEM-027", "SEM-029", "SEM-013"] },
-    { url: s({ view: "STRUCTURAL_METRICS", aggregation: "POOLED" }, 6), narration: "demo.6", expect: ["SEM-021"] },
-    { url: s({ view: "SCENARIO_COMPARISON", comparisonId: c.comparisonId }, 7), narration: "demo.7", expect: ["SEM-010", "SEM-011", "SEM-021"] },
-    { url: s({ view: "SYSTEM_FIELD_OVERVIEW", tick: 5 }, 8), narration: "demo.8", expect: ["SEM-013", "SEM-019"] },
-  ];
+  return (STEPS.steps as RawStep[]).map((s) => {
+    const patch: Partial<SessionKey> = { view: s.view as ViewKey, tick: s.tick, focus: s.focus ?? null, filter: s.filter ?? null,
+      aggregation: (s.aggregation as SessionKey["aggregation"]) ?? null, comparisonId: s.comparison ? c.comparisonId : null };
+    return { url: sessionUrl({ ...DEFAULT_SESSION, experimentId: c.baseline, mode: "presentation", demoStep: s.n, ...patch }),
+             narration: s.narration as TermKey, expect: s.expect as SemId[] };
+  });
 }
 
 export const DEEP_PATHS: readonly { key: TermKey; views: readonly string[] }[] = [
