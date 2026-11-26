@@ -1,0 +1,70 @@
+{
+  "field_id": "F05",
+  "name": "F05_SYNTX_ENGINE",
+  "purpose": "Ω_R(t) = R(Ω_O(0:t)) via independent forward and inverse reconstruction",
+  "package": "app.syntx_adapter",
+  "state_space": "R",
+  "carriers": [
+    "SweepRun",
+    "SweepTrace",
+    "ReconstructedValue",
+    "StructuralGap",
+    "OpenRelation"
+  ],
+  "relations": [
+    "derived_from"
+  ],
+  "writes": [
+    "forward_result",
+    "inverse_result",
+    "operator_registry",
+    "reconstruction_result",
+    "recovery_proposal",
+    "sweep_run"
+  ],
+  "reads": [
+    "observable_rules",
+    "observable_topology",
+    "observation_bundle",
+    "source_register",
+    "target_definition"
+  ],
+  "ports": [
+    "run_sweeps"
+  ],
+  "stages": [
+    "FORWARD",
+    "INVERSE",
+    "MERGE",
+    "STABILITY"
+  ],
+  "invariants": [
+    "input only ObservationBundle + TargetDefinition (K-11)",
+    "forward without target_ref",
+    "inverse without forward reference",
+    "DETERMINED ⇒ class ≠ OPEN_REFERENCE (K-14)",
+    "SweepRun written once with final status (K-35)",
+    "no knowledge of Ω_A"
+  ],
+  "errors": [
+    "ENGINE_UNAVAILABLE"
+  ],
+  "requirements": [
+    "REQ-028",
+    "REQ-029",
+    "REQ-030",
+    "REQ-032",
+    "REQ-033",
+    "REQ-034",
+    "REQ-035",
+    "REQ-036",
+    "REQ-037"
+  ],
+  "couplings_out": [
+    "F06",
+    "F07"
+  ],
+  "couplings_in": [
+    "F04"
+  ]
+}

@@ -1,0 +1,75 @@
+{
+  "field_id": "F07",
+  "name": "F07_INTERFACE",
+  "purpose": "presentation and experiment control; computation-free projection field",
+  "package": "app.api",
+  "state_space": null,
+  "carriers": [
+    "ProjectionHeader",
+    "Block",
+    "ExperimentSession",
+    "ViewState",
+    "QueryEcho"
+  ],
+  "relations": [],
+  "writes": [],
+  "reads": [
+    "actual_state",
+    "authority_record",
+    "comparison_report",
+    "consistency_annotation_set",
+    "evaluation_report",
+    "event_record",
+    "experiment_definition",
+    "forward_result",
+    "governance_definition",
+    "immutable_topology",
+    "inverse_result",
+    "observable_rules",
+    "observable_topology",
+    "observation_bundle",
+    "observation_config",
+    "observation_record",
+    "operator_registry",
+    "reconstruction_result",
+    "recovery_proposal",
+    "replay_report",
+    "rule_evaluation_set",
+    "scenario_definition",
+    "source_register",
+    "sweep_run",
+    "target_definition",
+    "topology_definition",
+    "weight_set"
+  ],
+  "ports": [
+    "create_app"
+  ],
+  "stages": [],
+  "invariants": [
+    "single session source: URL (D-20)",
+    "projection checked by guard class (K-58)",
+    "NOT_AVAILABLE_AT_TICK is content (K-24)",
+    "visible data_origin on each block",
+    "no coupling to F05",
+    "no domain computation"
+  ],
+  "errors": [
+    "VIEW_DATA_UNAVAILABLE"
+  ],
+  "requirements": [
+    "REQ-054",
+    "REQ-055",
+    "REQ-056",
+    "REQ-057"
+  ],
+  "couplings_out": [],
+  "couplings_in": [
+    "F01",
+    "F02",
+    "F03",
+    "F04",
+    "F05",
+    "F06"
+  ]
+}

@@ -1,0 +1,62 @@
+{
+  "field_id": "F03",
+  "name": "F03_EMULATOR",
+  "purpose": "deterministic progression of predefined abstract test states",
+  "package": "app.emulator",
+  "state_space": "A",
+  "carriers": [
+    "ActualState",
+    "EventRecord",
+    "ScenarioDefinition",
+    "ConsistencyAnnotationSet"
+  ],
+  "relations": [],
+  "writes": [
+    "actual_state",
+    "consistency_annotation_set",
+    "event_record",
+    "experiment_definition",
+    "replay_report",
+    "scenario_definition"
+  ],
+  "reads": [
+    "authority_record",
+    "governance_definition",
+    "immutable_topology",
+    "topology_definition"
+  ],
+  "ports": [
+    "run_scenario",
+    "replay_report"
+  ],
+  "stages": [
+    "EMULATION"
+  ],
+  "invariants": [
+    "tick and seq strictly monotonic",
+    "values from declared domain",
+    "NOT_APPLICABLE constant (K-21)",
+    "same input ⇒ same artifact_id (K-03)",
+    "no dependency on F04/F05 or contracts.f05 (K-08)"
+  ],
+  "errors": [
+    "INVALID_TRANSITION"
+  ],
+  "requirements": [
+    "REQ-018",
+    "REQ-019",
+    "REQ-020",
+    "REQ-021",
+    "REQ-022",
+    "REQ-023"
+  ],
+  "couplings_out": [
+    "F04",
+    "F06",
+    "F07"
+  ],
+  "couplings_in": [
+    "F01",
+    "F02"
+  ]
+}

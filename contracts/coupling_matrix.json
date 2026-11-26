@@ -1,0 +1,560 @@
+{
+  "version": "1.0.2",
+  "description": "Single source for field coupling, artifact capabilities and import rules (Kap. 05.1, 05.3, 09.1; X-02). Generates backend/.importlinter and the store capability table.",
+  "fields": [
+    "F01",
+    "F02",
+    "F03",
+    "F04",
+    "F05",
+    "F06",
+    "F07"
+  ],
+  "field_packages": {
+    "F01": "app.topology",
+    "F02": "app.governance",
+    "F03": "app.emulator",
+    "F04": "app.observation",
+    "F05": "app.syntx_adapter",
+    "F06": "app.metrics",
+    "F07": "app.api"
+  },
+  "couplings": [
+    [
+      "F01",
+      "F02",
+      "TopologyRefs"
+    ],
+    [
+      "F01",
+      "F03",
+      "TopologyDefinition"
+    ],
+    [
+      "F01",
+      "F04",
+      "TopologyDefinition"
+    ],
+    [
+      "F01",
+      "F07",
+      "TopologyProjection"
+    ],
+    [
+      "F02",
+      "F03",
+      "GovernanceDefinition"
+    ],
+    [
+      "F02",
+      "F04",
+      "GovernanceDefinition"
+    ],
+    [
+      "F02",
+      "F06",
+      "GovernanceDefinition"
+    ],
+    [
+      "F02",
+      "F07",
+      "GovernanceProjection"
+    ],
+    [
+      "F03",
+      "F04",
+      "ActualState"
+    ],
+    [
+      "F03",
+      "F06",
+      "ReferenceState"
+    ],
+    [
+      "F03",
+      "F07",
+      "StateProjection"
+    ],
+    [
+      "F04",
+      "F05",
+      "ObservationBundle"
+    ],
+    [
+      "F04",
+      "F06",
+      "ObservationRecord"
+    ],
+    [
+      "F04",
+      "F07",
+      "ObservationProjection"
+    ],
+    [
+      "F05",
+      "F06",
+      "ReconstructionResult"
+    ],
+    [
+      "F05",
+      "F07",
+      "SweepTrace"
+    ],
+    [
+      "F06",
+      "F07",
+      "EvaluationReport"
+    ]
+  ],
+  "forbidden_couplings": [
+    [
+      "F03",
+      "F05"
+    ],
+    [
+      "F06",
+      "F05"
+    ],
+    [
+      "F07",
+      "F05"
+    ]
+  ],
+  "capabilities": {
+    "topology_definition": {
+      "W": [
+        "F01"
+      ],
+      "R": [
+        "F02",
+        "F03",
+        "F04",
+        "F06",
+        "F07"
+      ]
+    },
+    "immutable_topology": {
+      "W": [
+        "F01"
+      ],
+      "R": [
+        "F02",
+        "F03",
+        "F04",
+        "F06",
+        "F07"
+      ]
+    },
+    "governance_definition": {
+      "W": [
+        "F02"
+      ],
+      "R": [
+        "F03",
+        "F04",
+        "F06",
+        "F07"
+      ]
+    },
+    "authority_record": {
+      "W": [
+        "F02"
+      ],
+      "R": [
+        "F03",
+        "F07"
+      ]
+    },
+    "scenario_definition": {
+      "W": [
+        "F03"
+      ],
+      "R": [
+        "F03",
+        "F06",
+        "F07"
+      ]
+    },
+    "consistency_annotation_set": {
+      "W": [
+        "F03"
+      ],
+      "R": [
+        "F06",
+        "F07"
+      ]
+    },
+    "experiment_definition": {
+      "W": [
+        "F03"
+      ],
+      "R": [
+        "F03",
+        "F04",
+        "F06",
+        "F07"
+      ]
+    },
+    "actual_state": {
+      "W": [
+        "F03"
+      ],
+      "R": [
+        "F04",
+        "F06",
+        "F07"
+      ]
+    },
+    "event_record": {
+      "W": [
+        "F03"
+      ],
+      "R": [
+        "F06",
+        "F07"
+      ]
+    },
+    "observation_config": {
+      "W": [
+        "F04"
+      ],
+      "R": [
+        "F04",
+        "F06",
+        "F07"
+      ]
+    },
+    "observable_topology": {
+      "W": [
+        "F04"
+      ],
+      "R": [
+        "F05",
+        "F06",
+        "F07"
+      ]
+    },
+    "observable_rules": {
+      "W": [
+        "F04"
+      ],
+      "R": [
+        "F05",
+        "F06",
+        "F07"
+      ]
+    },
+    "source_register": {
+      "W": [
+        "F04"
+      ],
+      "R": [
+        "F05",
+        "F06",
+        "F07"
+      ]
+    },
+    "observation_bundle": {
+      "W": [
+        "F04"
+      ],
+      "R": [
+        "F05",
+        "F06",
+        "F07"
+      ]
+    },
+    "observation_record": {
+      "W": [
+        "F04"
+      ],
+      "R": [
+        "F06",
+        "F07"
+      ]
+    },
+    "target_definition": {
+      "W": [
+        "F04"
+      ],
+      "R": [
+        "F05",
+        "F06",
+        "F07"
+      ]
+    },
+    "sweep_run": {
+      "W": [
+        "F05"
+      ],
+      "R": [
+        "F06",
+        "F07"
+      ]
+    },
+    "forward_result": {
+      "W": [
+        "F05"
+      ],
+      "R": [
+        "F06",
+        "F07"
+      ]
+    },
+    "inverse_result": {
+      "W": [
+        "F05"
+      ],
+      "R": [
+        "F06",
+        "F07"
+      ]
+    },
+    "reconstruction_result": {
+      "W": [
+        "F05"
+      ],
+      "R": [
+        "F06",
+        "F07"
+      ]
+    },
+    "recovery_proposal": {
+      "W": [
+        "F05"
+      ],
+      "R": [
+        "F02",
+        "F06",
+        "F07"
+      ]
+    },
+    "operator_registry": {
+      "W": [
+        "F05"
+      ],
+      "R": [
+        "F07"
+      ]
+    },
+    "weight_set": {
+      "W": [
+        "F06"
+      ],
+      "R": [
+        "F06",
+        "F07"
+      ]
+    },
+    "rule_evaluation_set": {
+      "W": [
+        "F06"
+      ],
+      "R": [
+        "F07"
+      ]
+    },
+    "evaluation_report": {
+      "W": [
+        "F06"
+      ],
+      "R": [
+        "F07"
+      ]
+    },
+    "comparison_report": {
+      "W": [
+        "F06"
+      ],
+      "R": [
+        "F07"
+      ]
+    },
+    "replay_report": {
+      "W": [
+        "F03"
+      ],
+      "R": [
+        "F07"
+      ]
+    }
+  },
+  "import_rules": {
+    "app.syntx_adapter": {
+      "forbidden": [
+        "app.api",
+        "app.contracts.experiments",
+        "app.contracts.f03",
+        "app.contracts.f04_record",
+        "app.contracts.f06",
+        "app.contracts.f07",
+        "app.contracts.registry",
+        "app.emulator",
+        "app.experiments",
+        "app.metrics",
+        "app.observation",
+        "app.store"
+      ]
+    },
+    "app.emulator": {
+      "forbidden": [
+        "app.api",
+        "app.contracts.f04_public",
+        "app.contracts.f04_record",
+        "app.contracts.f05",
+        "app.experiments",
+        "app.metrics",
+        "app.observation",
+        "app.store",
+        "app.syntx_adapter"
+      ]
+    },
+    "app.observation": {
+      "forbidden": [
+        "app.api",
+        "app.contracts.f05",
+        "app.emulator",
+        "app.experiments",
+        "app.metrics",
+        "app.store",
+        "app.syntx_adapter"
+      ]
+    },
+    "app.metrics": {
+      "forbidden": [
+        "app.api",
+        "app.emulator",
+        "app.experiments",
+        "app.observation",
+        "app.syntx_adapter"
+      ]
+    },
+    "app.topology": {
+      "forbidden": [
+        "app.governance",
+        "app.emulator",
+        "app.observation",
+        "app.syntx_adapter",
+        "app.metrics"
+      ]
+    },
+    "app.governance": {
+      "forbidden": [
+        "app.emulator",
+        "app.observation",
+        "app.syntx_adapter",
+        "app.metrics"
+      ]
+    },
+    "app.core": {
+      "forbidden": [
+        "app.contracts",
+        "app.store",
+        "app.topology",
+        "app.governance",
+        "app.emulator",
+        "app.observation",
+        "app.syntx_adapter",
+        "app.metrics",
+        "app.experiments",
+        "app.api"
+      ]
+    },
+    "app.contracts.f05": {
+      "forbidden": [
+        "app.contracts.f03",
+        "app.contracts.f04_record",
+        "app.contracts.f06",
+        "app.contracts.f07"
+      ]
+    },
+    "app.contracts.f04_public": {
+      "forbidden": [
+        "app.contracts.f03",
+        "app.contracts.f04_record",
+        "app.contracts.f05"
+      ]
+    },
+    "app.contracts.f03": {
+      "forbidden": [
+        "app.contracts.f04_record",
+        "app.contracts.f05",
+        "app.contracts.f06",
+        "app.contracts.f07"
+      ]
+    },
+    "app.contracts.common": {
+      "forbidden": [
+        "app.contracts.f01",
+        "app.contracts.f02",
+        "app.contracts.f03",
+        "app.contracts.f04_public",
+        "app.contracts.f04_record",
+        "app.contracts.f05",
+        "app.contracts.f06",
+        "app.contracts.f07",
+        "app.contracts.experiments",
+        "app.contracts.registry"
+      ]
+    },
+    "app.contracts.f01": {
+      "forbidden": [
+        "app.contracts.f02",
+        "app.contracts.f03",
+        "app.contracts.f04_public",
+        "app.contracts.f04_record",
+        "app.contracts.f05",
+        "app.contracts.f06",
+        "app.contracts.f07",
+        "app.contracts.experiments",
+        "app.contracts.registry"
+      ]
+    },
+    "app.contracts.f02": {
+      "forbidden": [
+        "app.contracts.f03",
+        "app.contracts.f04_public",
+        "app.contracts.f04_record",
+        "app.contracts.f05",
+        "app.contracts.f06",
+        "app.contracts.f07",
+        "app.contracts.experiments",
+        "app.contracts.registry"
+      ]
+    },
+    "app.contracts.f04_record": {
+      "forbidden": [
+        "app.contracts.f05",
+        "app.contracts.f06",
+        "app.contracts.f07",
+        "app.contracts.registry"
+      ]
+    },
+    "app.store": {
+      "forbidden": [
+        "app.topology",
+        "app.governance",
+        "app.emulator",
+        "app.observation",
+        "app.syntx_adapter",
+        "app.metrics",
+        "app.experiments",
+        "app.api"
+      ]
+    },
+    "app.strategies": {
+      "forbidden": [
+        "app.topology",
+        "app.governance",
+        "app.emulator",
+        "app.observation",
+        "app.syntx_adapter",
+        "app.metrics",
+        "app.experiments",
+        "app.api",
+        "app.store"
+      ]
+    }
+  },
+  "import_rules_note": "Forbidden contracts are checked transitively. Field modules F03-F05 are pure: the orchestrator persists their outputs through the FieldWriter of that field (K-48). See docs/adr/ADR-0002."
+}

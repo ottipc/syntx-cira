@@ -1,0 +1,211 @@
+# GENERATED from contracts/coupling_matrix.json by scripts/gen_importlinter.py — do not edit (E-10)
+[importlinter]
+root_package = app
+include_external_packages = False
+
+[importlinter:contract:00-contracts-common]
+name = app.contracts.common must not import app.contracts.f01, app.contracts.f02, app.contracts.f03, app.contracts.f04_public, app.contracts.f04_record, app.contracts.f05, app.contracts.f06, app.contracts.f07, app.contracts.experiments, app.contracts.registry
+type = forbidden
+source_modules = app.contracts.common
+forbidden_modules =
+    app.contracts.experiments
+    app.contracts.f01
+    app.contracts.f02
+    app.contracts.f03
+    app.contracts.f04_public
+    app.contracts.f04_record
+    app.contracts.f05
+    app.contracts.f06
+    app.contracts.f07
+    app.contracts.registry
+
+[importlinter:contract:01-contracts-f01]
+name = app.contracts.f01 must not import app.contracts.f02, app.contracts.f03, app.contracts.f04_public, app.contracts.f04_record, app.contracts.f05, app.contracts.f06, app.contracts.f07, app.contracts.experiments, app.contracts.registry
+type = forbidden
+source_modules = app.contracts.f01
+forbidden_modules =
+    app.contracts.experiments
+    app.contracts.f02
+    app.contracts.f03
+    app.contracts.f04_public
+    app.contracts.f04_record
+    app.contracts.f05
+    app.contracts.f06
+    app.contracts.f07
+    app.contracts.registry
+
+[importlinter:contract:02-contracts-f02]
+name = app.contracts.f02 must not import app.contracts.f03, app.contracts.f04_public, app.contracts.f04_record, app.contracts.f05, app.contracts.f06, app.contracts.f07, app.contracts.experiments, app.contracts.registry
+type = forbidden
+source_modules = app.contracts.f02
+forbidden_modules =
+    app.contracts.experiments
+    app.contracts.f03
+    app.contracts.f04_public
+    app.contracts.f04_record
+    app.contracts.f05
+    app.contracts.f06
+    app.contracts.f07
+    app.contracts.registry
+
+[importlinter:contract:03-contracts-f03]
+name = app.contracts.f03 must not import app.contracts.f04_record, app.contracts.f05, app.contracts.f06, app.contracts.f07
+type = forbidden
+source_modules = app.contracts.f03
+forbidden_modules =
+    app.contracts.f04_record
+    app.contracts.f05
+    app.contracts.f06
+    app.contracts.f07
+
+[importlinter:contract:04-contracts-f04_public]
+name = app.contracts.f04_public must not import app.contracts.f03, app.contracts.f04_record, app.contracts.f05
+type = forbidden
+source_modules = app.contracts.f04_public
+forbidden_modules =
+    app.contracts.f03
+    app.contracts.f04_record
+    app.contracts.f05
+
+[importlinter:contract:05-contracts-f04_record]
+name = app.contracts.f04_record must not import app.contracts.f05, app.contracts.f06, app.contracts.f07, app.contracts.registry
+type = forbidden
+source_modules = app.contracts.f04_record
+forbidden_modules =
+    app.contracts.f05
+    app.contracts.f06
+    app.contracts.f07
+    app.contracts.registry
+
+[importlinter:contract:06-contracts-f05]
+name = app.contracts.f05 must not import app.contracts.f03, app.contracts.f04_record, app.contracts.f06, app.contracts.f07
+type = forbidden
+source_modules = app.contracts.f05
+forbidden_modules =
+    app.contracts.f03
+    app.contracts.f04_record
+    app.contracts.f06
+    app.contracts.f07
+
+[importlinter:contract:07-core]
+name = app.core must not import app.contracts, app.store, app.topology, app.governance, app.emulator, app.observation, app.syntx_adapter, app.metrics, app.experiments, app.api
+type = forbidden
+source_modules = app.core
+forbidden_modules =
+    app.api
+    app.contracts
+    app.emulator
+    app.experiments
+    app.governance
+    app.metrics
+    app.observation
+    app.store
+    app.syntx_adapter
+    app.topology
+
+[importlinter:contract:08-emulator]
+name = app.emulator must not import app.api, app.contracts.f04_public, app.contracts.f04_record, app.contracts.f05, app.experiments, app.metrics, app.observation, app.store, app.syntx_adapter
+type = forbidden
+source_modules = app.emulator
+forbidden_modules =
+    app.api
+    app.contracts.f04_public
+    app.contracts.f04_record
+    app.contracts.f05
+    app.experiments
+    app.metrics
+    app.observation
+    app.store
+    app.syntx_adapter
+
+[importlinter:contract:09-governance]
+name = app.governance must not import app.emulator, app.observation, app.syntx_adapter, app.metrics
+type = forbidden
+source_modules = app.governance
+forbidden_modules =
+    app.emulator
+    app.metrics
+    app.observation
+    app.syntx_adapter
+
+[importlinter:contract:10-metrics]
+name = app.metrics must not import app.api, app.emulator, app.experiments, app.observation, app.syntx_adapter
+type = forbidden
+source_modules = app.metrics
+forbidden_modules =
+    app.api
+    app.emulator
+    app.experiments
+    app.observation
+    app.syntx_adapter
+
+[importlinter:contract:11-observation]
+name = app.observation must not import app.api, app.contracts.f05, app.emulator, app.experiments, app.metrics, app.store, app.syntx_adapter
+type = forbidden
+source_modules = app.observation
+forbidden_modules =
+    app.api
+    app.contracts.f05
+    app.emulator
+    app.experiments
+    app.metrics
+    app.store
+    app.syntx_adapter
+
+[importlinter:contract:12-store]
+name = app.store must not import app.topology, app.governance, app.emulator, app.observation, app.syntx_adapter, app.metrics, app.experiments, app.api
+type = forbidden
+source_modules = app.store
+forbidden_modules =
+    app.api
+    app.emulator
+    app.experiments
+    app.governance
+    app.metrics
+    app.observation
+    app.syntx_adapter
+    app.topology
+
+[importlinter:contract:13-strategies]
+name = app.strategies must not import app.topology, app.governance, app.emulator, app.observation, app.syntx_adapter, app.metrics, app.experiments, app.api, app.store
+type = forbidden
+source_modules = app.strategies
+forbidden_modules =
+    app.api
+    app.emulator
+    app.experiments
+    app.governance
+    app.metrics
+    app.observation
+    app.store
+    app.syntx_adapter
+    app.topology
+
+[importlinter:contract:14-syntx_adapter]
+name = app.syntx_adapter must not import app.api, app.contracts.experiments, app.contracts.f03, app.contracts.f04_record, app.contracts.f06, app.contracts.f07, app.contracts.registry, app.emulator, app.experiments, app.metrics, app.observation, app.store
+type = forbidden
+source_modules = app.syntx_adapter
+forbidden_modules =
+    app.api
+    app.contracts.experiments
+    app.contracts.f03
+    app.contracts.f04_record
+    app.contracts.f06
+    app.contracts.f07
+    app.contracts.registry
+    app.emulator
+    app.experiments
+    app.metrics
+    app.observation
+    app.store
+
+[importlinter:contract:15-topology]
+name = app.topology must not import app.governance, app.emulator, app.observation, app.syntx_adapter, app.metrics
+type = forbidden
+source_modules = app.topology
+forbidden_modules =
+    app.emulator
+    app.governance
+    app.metrics
+    app.observation
+    app.syntx_adapter

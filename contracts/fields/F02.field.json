@@ -1,0 +1,63 @@
+{
+  "field_id": "F02",
+  "name": "F02_GOVERNANCE",
+  "purpose": "documented rules, roles, target conditions, approvals",
+  "package": "app.governance",
+  "state_space": null,
+  "carriers": [
+    "Rule",
+    "RoleDecl",
+    "Predicate",
+    "ApprovalRecord",
+    "AuthorityRecord"
+  ],
+  "relations": [
+    "applies_to",
+    "requires",
+    "permits"
+  ],
+  "writes": [
+    "authority_record",
+    "governance_definition"
+  ],
+  "reads": [
+    "immutable_topology",
+    "recovery_proposal",
+    "topology_definition"
+  ],
+  "ports": [
+    "validate_governance",
+    "evaluate_set",
+    "evaluate_rules"
+  ],
+  "stages": [
+    "DEFINITIONS"
+  ],
+  "invariants": [
+    "unique rule_id@version",
+    "applies_to resolvable against F01",
+    "requires acyclic",
+    "predicates reference declared attributes",
+    "TRANSITION leaves carry at (K-06)",
+    "validity inclusive, pairs valid at both ticks (K-07)"
+  ],
+  "errors": [
+    "INVALID_RULE",
+    "INVALID_TRANSITION"
+  ],
+  "requirements": [
+    "REQ-014",
+    "REQ-015",
+    "REQ-016",
+    "REQ-017"
+  ],
+  "couplings_out": [
+    "F03",
+    "F04",
+    "F06",
+    "F07"
+  ],
+  "couplings_in": [
+    "F01"
+  ]
+}

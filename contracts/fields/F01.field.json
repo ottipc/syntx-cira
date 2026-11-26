@@ -1,0 +1,57 @@
+{
+  "field_id": "F01",
+  "name": "F01_DOMAIN_TOPOLOGY",
+  "purpose": "typed directed graph G = (V, E, τV, τE) of abstract service components",
+  "package": "app.topology",
+  "state_space": null,
+  "carriers": [
+    "Node",
+    "Relation",
+    "NodeTypeDecl",
+    "ValueDomain",
+    "AttributeDecl"
+  ],
+  "relations": [
+    "depends_on",
+    "reports_to",
+    "provides"
+  ],
+  "writes": [
+    "immutable_topology",
+    "topology_definition"
+  ],
+  "reads": [],
+  "ports": [
+    "validate_topology",
+    "seal"
+  ],
+  "stages": [
+    "DEFINITIONS"
+  ],
+  "invariants": [
+    "unique ids per class",
+    "references resolvable",
+    "relation type from closed set",
+    "immutable per run",
+    "attribute domain declared",
+    "attribute_id starts with local node name",
+    "rel:<type>:<src>:<tgt> (K-01)",
+    "applicability constant (K-21)"
+  ],
+  "errors": [
+    "INVALID_TOPOLOGY"
+  ],
+  "requirements": [
+    "REQ-010",
+    "REQ-011",
+    "REQ-012",
+    "REQ-013"
+  ],
+  "couplings_out": [
+    "F02",
+    "F03",
+    "F04",
+    "F07"
+  ],
+  "couplings_in": []
+}

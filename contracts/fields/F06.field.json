@@ -1,0 +1,85 @@
+{
+  "field_id": "F06",
+  "name": "F06_METRICS",
+  "purpose": "M_t = M(Ω_A(t), Ω_O(t), Ω_R(t))",
+  "package": "app.metrics",
+  "state_space": null,
+  "carriers": [
+    "MetricDefinition",
+    "MetricResult",
+    "EvaluationReport",
+    "ReferenceSpace",
+    "WeightSet",
+    "GapMatch",
+    "ComparisonReport"
+  ],
+  "relations": [],
+  "writes": [
+    "comparison_report",
+    "evaluation_report",
+    "rule_evaluation_set",
+    "weight_set"
+  ],
+  "reads": [
+    "actual_state",
+    "consistency_annotation_set",
+    "event_record",
+    "experiment_definition",
+    "forward_result",
+    "governance_definition",
+    "immutable_topology",
+    "inverse_result",
+    "observable_rules",
+    "observable_topology",
+    "observation_bundle",
+    "observation_config",
+    "observation_record",
+    "reconstruction_result",
+    "recovery_proposal",
+    "scenario_definition",
+    "source_register",
+    "sweep_run",
+    "target_definition",
+    "topology_definition"
+  ],
+  "ports": [
+    "evaluate_experiment",
+    "compare_experiments"
+  ],
+  "stages": [
+    "EVALUATION"
+  ],
+  "invariants": [
+    "identical reference space per evaluation (space_hash)",
+    "value = numerator/denominator (K-15)",
+    "denominator 0 ⇒ UNDEFINED/null",
+    "⊥ and NOT_APPLICABLE counted separately",
+    "no aggregate index"
+  ],
+  "errors": [
+    "METRIC_UNDEFINED",
+    "COMPARISON_INCOMPATIBLE"
+  ],
+  "requirements": [
+    "REQ-039",
+    "REQ-040",
+    "REQ-041",
+    "REQ-042",
+    "REQ-043",
+    "REQ-044",
+    "REQ-045",
+    "REQ-046",
+    "REQ-047",
+    "REQ-048",
+    "REQ-050"
+  ],
+  "couplings_out": [
+    "F07"
+  ],
+  "couplings_in": [
+    "F02",
+    "F03",
+    "F04",
+    "F05"
+  ]
+}

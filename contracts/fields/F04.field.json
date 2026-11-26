@@ -1,0 +1,68 @@
+{
+  "field_id": "F04",
+  "name": "F04_OBSERVATION",
+  "purpose": "Ω_O(t) = O_θ(Ω_A(t)), θ versioned",
+  "package": "app.observation",
+  "state_space": "O",
+  "carriers": [
+    "Observation",
+    "ContextBundle",
+    "ObservationSource",
+    "SourceReferenceRegister"
+  ],
+  "relations": [
+    "observes",
+    "references",
+    "derived_from"
+  ],
+  "writes": [
+    "observable_rules",
+    "observable_topology",
+    "observation_bundle",
+    "observation_config",
+    "observation_record",
+    "source_register",
+    "target_definition"
+  ],
+  "reads": [
+    "actual_state",
+    "experiment_definition",
+    "governance_definition",
+    "immutable_topology",
+    "topology_definition"
+  ],
+  "ports": [
+    "observe"
+  ],
+  "stages": [
+    "OBSERVATION"
+  ],
+  "invariants": [
+    "KNOWN ⇔ value",
+    "KNOWN ⇒ source_id (K-09)",
+    "observed_at_tick ≤ tick",
+    "context version strictly monotonic",
+    "observation_id depends only on (source, attribute, tick) (K-38)",
+    "bundle provenance without F03 refs (K-41)",
+    "budget on cumulative bundle (K-12)"
+  ],
+  "errors": [
+    "CONTEXT_INCOMPLETE"
+  ],
+  "requirements": [
+    "REQ-024",
+    "REQ-025",
+    "REQ-026",
+    "REQ-027"
+  ],
+  "couplings_out": [
+    "F05",
+    "F06",
+    "F07"
+  ],
+  "couplings_in": [
+    "F01",
+    "F02",
+    "F03"
+  ]
+}
