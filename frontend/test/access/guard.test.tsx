@@ -78,6 +78,22 @@ describe("[TX27][T09][REQ-056] quarantine without stale data and reload", () => 
       expect(workspace(r.root).querySelector('[data-sem="SEM-028"]')).not.toBeNull();
     });
 
+  it("[TX27] while one projection of a block is pending the whole block is masked — no placeholder signs", async () => {
+    const server = newServer();
+    let release: () => void = () => undefined;
+    server.hold.set(canon(`/experiments/${EXP.baseline}/observations?tick=3`), new Promise<void>((r) => { release = r; }));
+    const r = await renderAt(`/exp/${EXP.baseline}/TEMPORAL_STATE_EXPLORER?tick=3`, server, false);
+    await act(async () => { await new Promise((x) => setTimeout(x, 50)); });
+    const w = workspace(r.root);
+    expect(w.querySelector('[data-state="LOADING"]')).not.toBeNull();
+    expect(w.querySelectorAll("[data-attribute]").length, "no partial grid").toBe(0);
+    expect(w.querySelector('[data-sem="SEM-009"]'), "no 'no reconstruction' claim while loading").toBeNull();
+    release();
+    await settle(r.root, r.client);
+    expect(w.querySelectorAll("[data-attribute]").length).toBeGreaterThan(0);
+    expect(w.querySelector('[data-state="LOADING"]')).toBeNull();
+  });
+
   it("[TX27][K-24] NOT_AVAILABLE_AT_TICK stays READY (content, not error)", async () => {
     for (const view of ["FORWARD_SWEEP_INSPECTOR", "INVERSE_SWEEP_INSPECTOR", "ARCHITECTURAL_CLOSURE_INSPECTOR", "TEMPORAL_STATE_EXPLORER"]) {
       const r = await renderAt(`/exp/${EXP.sparse}/${view}?tick=2`);

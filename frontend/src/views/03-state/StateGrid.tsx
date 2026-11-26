@@ -1,11 +1,12 @@
 import { useT } from "../../language";
-import { DeviationSeam, IdText, SpaceCell, SpaceHeader } from "../../semiontics";
+import { DeviationSeam, FocusRing, IdText, SpaceCell, SpaceHeader } from "../../semiontics";
 import type { RibbonVM, RowVM } from "./model";
 import { RuleRibbon } from "./RuleRibbon";
 import { SpaceColumnCell } from "./SpaceColumn";
 
-export function StateGrid({ rows, origins, ribbons, focus, rUnavailable, tick }: { rows: RowVM[]; origins: { a: string; o: string | null; r: string | null };
-  ribbons: RibbonVM[]; focus: string | null; rUnavailable: boolean; tick: number }) {
+export function StateGrid({ rows, origins, ribbons, focus, tick }: { rows: RowVM[]; origins: { a: string; o: string | null; r: string | null };
+  ribbons: RibbonVM[]; focus: string | null; tick: number }) {
+  // Ω_R is absent only when the server says NOT_AVAILABLE_AT_TICK: the view renders after all projections are verified
   const t = useT();
   return (
     <div className="state-grid" role="table" aria-label={t("view.03")}>
@@ -17,12 +18,13 @@ export function StateGrid({ rows, origins, ribbons, focus, rUnavailable, tick }:
       </div>
       {rows.map((row) => (
         <div key={row.attribute} className="contents" role="row" data-attribute={row.attribute}>
-          <div className="attr" role="rowheader"><IdText>{row.attribute}</IdText>{row.differs ? <DeviationSeam /> : null}</div>
+          <div className="attr" role="rowheader"><FocusRing active={focus === row.attribute}><IdText>{row.attribute}</IdText></FocusRing>
+            {row.differs ? <DeviationSeam /> : null}</div>
           <div className="contents" role="cell"><SpaceColumnCell c={row.a} space="A" focused={focus === row.attribute} /></div>
           <div className="contents" role="cell">{row.o ? <SpaceColumnCell c={row.o} space="O" focused={focus === row.attribute} />
             : <SpaceCell sem="SEM-009" space="O" term="avail.none" termParams={{ t: tick }} />}</div>
           <div className="contents" role="cell">{row.r ? <SpaceColumnCell c={row.r} space="R" focused={focus === row.attribute} />
-            : <SpaceCell sem="SEM-009" space="R" term={rUnavailable ? "avail.none" : "msg.loading"} termParams={{ t: tick }} />}</div>
+            : <SpaceCell sem="SEM-009" space="R" term="avail.none" termParams={{ t: tick }} />}</div>
         </div>
       ))}
       <div className="contents" role="row">

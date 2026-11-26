@@ -24,7 +24,9 @@ export function snapshot<T = unknown>(url: string): T {
 }
 export const hasSnapshot = (url: string): boolean => ROUTES.has(canon(url));
 
-export interface Server { requests: string[]; misses: string[]; posts: string[]; override: Map<string, (body: unknown) => unknown> }
+export interface Server { requests: string[]; misses: string[]; posts: string[]; override: Map<string, (body: unknown) => unknown>;
+  /** canonical URL → promise the response waits for (to observe LOADING) */
+  hold: Map<string, Promise<void>> }
 
 /** Install as global fetch. `override` maps a canonical URL to a body transformer (guard tests). */
 export function snapshotFetch(server: Server): typeof fetch {
@@ -37,6 +39,8 @@ export function snapshotFetch(server: Server): typeof fetch {
       return new Response(JSON.stringify({ code: "TEST_NO_POST" }), { status: 405, headers: { "Content-Type": "application/json" } });
     }
     server.requests.push(key);
+    const h = server.hold.get(key);
+    if (h) await h;
     const r = ROUTES.get(key);
     if (!r) {
       server.misses.push(key);

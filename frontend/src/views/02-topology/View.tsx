@@ -4,7 +4,7 @@ import { ep, useProjection } from "../../access";
 import type { MetricsProjection, ObservationProjection, ResultsProjection, StateProjection, TopologyProjection } from "../../access";
 import { useT } from "../../language";
 import { useSession } from "../../session";
-import { Guarded, ProvButton } from "../_common";
+import { GuardedAll, ProvButton } from "../_common";
 import { layout } from "./layout";
 import { Legend } from "./Legend";
 import { couplings, nodeStates } from "./model";
@@ -27,14 +27,14 @@ export function TopologyView() {
         <OverlayToolbar show={show} set={(k) => setShow({ ...show, [k]: !show[k] })}
           origins={{ a: st.data?.header.data_origin ?? null, o: ob.data?.observation.origin ?? null, r: rec?.origin ?? null }} />
       </div>
-      <Guarded v={tp}>{(p) => (
+      <GuardedAll vs={[tp, st, ob, rs, mt] as const}>{([p, s, o, r, m]) => (
         <>
-          <TopologyCanvas l={layout(p.topology)} focus={session.focus} show={show} coupling={couplings(rec)}
-            nodes={nodeStates(st.data, ob.status === "READY" ? ob.data : null, rs.status === "READY" ? rec : null, mt.data)} />
+          <TopologyCanvas l={layout(p.topology)} focus={session.focus} show={show} coupling={couplings(r.reconstruction)}
+            nodes={nodeStates(s, o, r.reconstruction, m)} />
           <Legend />
           <div className="row"><ProvButton title="view.02" header={p.header} raw={p.topology} /></div>
         </>
-      )}</Guarded>
+      )}</GuardedAll>
     </section>
   );
 }

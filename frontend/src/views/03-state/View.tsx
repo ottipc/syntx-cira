@@ -3,7 +3,7 @@ import { ep, useProjection } from "../../access";
 import type { GovernanceProjection, MetricsProjection, ObservationProjection, ResultsProjection, StateProjection } from "../../access";
 import { useT } from "../../language";
 import { sessionUrl, useSession } from "../../session";
-import { Guarded, ProvButton } from "../_common";
+import { GuardedAll, ProvButton } from "../_common";
 import { Filters } from "./Filters";
 import { buildRows, ribbon } from "./model";
 import { StateGrid } from "./StateGrid";
@@ -25,26 +25,25 @@ export function StateView() {
         <span className="mono-value">{t("ui.tick", { t: session.tick })} · {t("run.attempt", { n: session.attempt })}</span>
         <Filters />
       </div>
-      <Guarded v={st}>{(s) => {
-        const rec = rs.status === "READY" && rs.data ? rs.data.reconstruction : null;
-        const rows = buildRows(s, ob.status === "READY" ? ob.data : null, rec,
-          mt.status === "READY" && mt.data ? mt.data.report.attribute_membership ?? [] : [], session.filter);
+      <GuardedAll vs={[st, ob, rs, ga, go_, gr, mt] as const}>{([s, o, r, a, oo, rr, m]) => {
+        const rec = r.reconstruction;
+        const rows = buildRows(s, o, rec, m.report.attribute_membership ?? [], session.filter);
         return (
           <>
-            <StateGrid rows={rows} focus={session.focus} tick={session.tick} rUnavailable={rec?.availability === "NOT_AVAILABLE_AT_TICK"}
-              origins={{ a: s.header.data_origin, o: ob.data?.observation.origin ?? null, r: rec?.origin ?? null }}
-              ribbons={[ribbon("A", ga.data?.evaluations.content ?? null), ribbon("O", go_.data?.evaluations.content ?? null),
-                ribbon("R", gr.data?.evaluations.content ?? null)]} />
-            {rec?.availability === "NOT_AVAILABLE_AT_TICK" ? (
+            <StateGrid rows={rows} focus={session.focus} tick={session.tick}
+              origins={{ a: s.header.data_origin, o: o.observation.origin ?? null, r: rec.origin ?? null }}
+              ribbons={[ribbon("A", a.evaluations.content ?? null), ribbon("O", oo.evaluations.content ?? null),
+                ribbon("R", rr.evaluations.content ?? null)]} />
+            {rec.availability === "NOT_AVAILABLE_AT_TICK" ? (
               <p className="secondary">{t("avail.none", { t: session.tick })} ·{" "}
                 <a href={sessionUrl({ ...session, view: "EVENT_TIMELINE" })} onClick={(e) => { e.preventDefault(); goUrl(sessionUrl({ ...session, view: "EVENT_TIMELINE" })); }}>
                   {t("view.11")}</a></p>) : null}
             <div className="row"><ProvButton title="space.a" header={s.header} raw={s} />
-              {ob.data ? <ProvButton title="space.o" header={ob.data.header} raw={ob.data.observation} /> : null}
-              {rs.data ? <ProvButton title="space.r" header={rs.data.header} raw={rs.data.reconstruction} /> : null}</div>
+              <ProvButton title="space.o" header={o.header} raw={o.observation} />
+              <ProvButton title="space.r" header={r.header} raw={rec} /></div>
           </>
         );
-      }}</Guarded>
+      }}</GuardedAll>
     </section>
   );
 }

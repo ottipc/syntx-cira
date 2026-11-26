@@ -110,6 +110,16 @@ describe("[TX19][T09] view 03 cells carry the sign of their contract state", () 
   });
 });
 
+describe("[TX19] cross-view focus (SEM-034)", () => {
+  it("[TX19] the focused attribute of view 03 carries the focus sign, and only that one", async () => {
+    const a = "attr:n05/state";
+    const r = await renderAt(url(EXP.baseline, "TEMPORAL_STATE_EXPLORER", `tick=2&focus=${encodeURIComponent(a)}`));
+    const marks = [...workspace(r.root).querySelectorAll('[data-sem="SEM-034"]')];
+    expect(marks.length).toBe(1);
+    expect(marks[0]!.closest("[data-attribute]")?.getAttribute("data-attribute")).toBe(a);
+  });
+});
+
 describe("[TX19][AK-GUI-04] openness signs pairwise distinct, never violation colour", () => {
   it("[TX19] SEM-006/007/008/009/012/031 differ in glyph or pattern and never use eval.violation", async () => {
     const reg = await import("../../src/semiontics/generated/sem");

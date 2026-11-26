@@ -7,7 +7,7 @@ import { SessionProvider } from "../../src/session";
 import { type Server, snapshotFetch } from "./snapshots";
 
 export function newServer(): Server {
-  return { requests: [], misses: [], posts: [], override: new Map() };
+  return { requests: [], misses: [], posts: [], override: new Map(), hold: new Map() };
 }
 
 /** Waits until no block is LOADING and no query is in flight (bounded). */
@@ -22,13 +22,13 @@ export async function settle(root: HTMLElement, client: QueryClient, rounds = 60
   throw new Error("render did not settle");
 }
 
-export async function renderAt(url: string, server: Server = newServer()) {
+export async function renderAt(url: string, server: Server = newServer(), wait = true) {
   cleanup();
   vi.stubGlobal("fetch", snapshotFetch(server));
   window.history.replaceState(null, "", url);
   const client = new QueryClient({ defaultOptions: { queries: { retry: false, staleTime: Infinity, refetchOnWindowFocus: false } } });
   const r = render(<QueryClientProvider client={client}><SessionProvider><App /></SessionProvider></QueryClientProvider>);
-  await settle(r.container, client);
+  if (wait) await settle(r.container, client);
   return { ...r, client, server, root: r.container };
 }
 
