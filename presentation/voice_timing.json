@@ -1,0 +1,321 @@
+{
+ "voice": "am_michael",
+ "zones": [
+  [
+   "S01",
+   [
+    0.2,
+    9.0
+   ],
+   0.2,
+   8.67,
+   1.0
+  ],
+  [
+   "S02",
+   [
+    10.2,
+    34.0
+   ],
+   10.2,
+   30.42,
+   1.0
+  ],
+  [
+   "S03",
+   [
+    35.2,
+    69.0
+   ],
+   35.2,
+   67.39,
+   1.0
+  ],
+  [
+   "S04 F1+F2",
+   [
+    70.3,
+    112.0
+   ],
+   70.3,
+   104.72,
+   0.95
+  ],
+  [
+   "S04 F3a",
+   [
+    110.17,
+    120.0
+   ],
+   115.62,
+   119.4,
+   1.0
+  ],
+  [
+   "S04 zügig",
+   [
+    120.25,
+    149.0
+   ],
+   120.25,
+   148.88,
+   1.199
+  ],
+  [
+   "S05",
+   [
+    150.2,
+    169.0
+   ],
+   150.2,
+   168.86,
+   1.074
+  ],
+  [
+   "S06",
+   [
+    170.2,
+    179.0
+   ],
+   170.2,
+   175.79,
+   1.0
+  ]
+ ],
+ "sentences": [
+  {
+   "cue": "S01",
+   "start": 0.2,
+   "end": 2.2,
+   "text": "Imagine a hospital loses power."
+  },
+  {
+   "cue": "S01",
+   "start": 2.55,
+   "end": 4.28,
+   "text": "Some status reports arrive."
+  },
+  {
+   "cue": "S01",
+   "start": 4.63,
+   "end": 5.68,
+   "text": "Others are missing."
+  },
+  {
+   "cue": "S01",
+   "start": 6.58,
+   "end": 8.67,
+   "text": "What can the crisis team actually know?"
+  },
+  {
+   "cue": "S02",
+   "start": 10.2,
+   "end": 14.42,
+   "text": "In a crisis, decisions often depend on incomplete information."
+  },
+  {
+   "cue": "S02",
+   "start": 14.77,
+   "end": 18.55,
+   "text": "A missing report does not tell us whether a service is working."
+  },
+  {
+   "cue": "S02",
+   "start": 19.45,
+   "end": 25.31,
+   "text": "CIRA helps us study what can be recovered from the information we have, and what remains unknown."
+  },
+  {
+   "cue": "S02",
+   "start": 25.66,
+   "end": 30.42,
+   "text": "We do this in a controlled experiment with a completely synthetic service model."
+  },
+  {
+   "cue": "S03",
+   "start": 35.2,
+   "end": 36.47,
+   "text": "There are three parts."
+  },
+  {
+   "cue": "S03",
+   "start": 36.82,
+   "end": 40.72,
+   "text": "Ground Truth is the complete state of our synthetic experiment."
+  },
+  {
+   "cue": "S03",
+   "start": 41.07,
+   "end": 44.95,
+   "text": "Observation is the information we allow the AI to see."
+  },
+  {
+   "cue": "S03",
+   "start": 45.3,
+   "end": 49.63,
+   "text": "Reconstruction is what the AI can recover from that information."
+  },
+  {
+   "cue": "S03",
+   "start": 50.53,
+   "end": 53.13,
+   "text": "The AI never receives Ground Truth."
+  },
+  {
+   "cue": "S03",
+   "start": 53.48,
+   "end": 57.26,
+   "text": "We keep it separate so we can evaluate the result afterwards."
+  },
+  {
+   "cue": "S03",
+   "start": 57.61,
+   "end": 65.57,
+   "text": "That lets us measure how much the AI recovered, how closely it matches the original, and what remains unresolved."
+  },
+  {
+   "cue": "S03",
+   "start": 66.47,
+   "end": 67.39,
+   "text": "Here is CIRA."
+  },
+  {
+   "cue": "F1",
+   "start": 70.3,
+   "end": 73.11,
+   "text": "This recording shows test results from a fixture."
+  },
+  {
+   "cue": "F1",
+   "start": 73.46,
+   "end": 77.08,
+   "text": "On the left is Ground Truth, created for this experiment."
+  },
+  {
+   "cue": "F1",
+   "start": 77.43,
+   "end": 82.38,
+   "text": "Observation contains only the information made available to the AI."
+  },
+  {
+   "cue": "F1",
+   "start": 82.73,
+   "end": 86.93,
+   "text": "The two views let us see the difference between what exists and what is known."
+  },
+  {
+   "cue": "F2",
+   "start": 87.28,
+   "end": 89.64,
+   "text": "Now we can examine the Reconstruction."
+  },
+  {
+   "cue": "F2",
+   "start": 89.99,
+   "end": 97.15,
+   "text": "CIRA keeps the results of its different reconstruction methods separate and shows the combined result in violet."
+  },
+  {
+   "cue": "F2",
+   "start": 97.5,
+   "end": 104.72,
+   "text": "We can compare it with the information the AI received and with Ground Truth, without mixing them together."
+  },
+  {
+   "cue": "F3",
+   "start": 115.62,
+   "end": 117.55,
+   "text": "Some values may remain unknown."
+  },
+  {
+   "cue": "F3",
+   "start": 117.9,
+   "end": 119.4,
+   "text": "CIRA keeps those visible."
+  },
+  {
+   "cue": "F3",
+   "start": 120.25,
+   "end": 122.5,
+   "text": "Coverage tells us how much was recovered."
+  },
+  {
+   "cue": "F3",
+   "start": 122.85,
+   "end": 127.13,
+   "text": "Accuracy tells us how closely the recovered information matches Ground Truth."
+  },
+  {
+   "cue": "F3",
+   "start": 127.48,
+   "end": 131.77,
+   "text": "Each measure has its own basis, so we can understand the result in context."
+  },
+  {
+   "cue": "F4",
+   "start": 132.12,
+   "end": 135.01,
+   "text": "Each result is linked to the experiment that produced it."
+  },
+  {
+   "cue": "F4",
+   "start": 135.36,
+   "end": 136.9,
+   "text": "This makes the result traceable."
+  },
+  {
+   "cue": "F4",
+   "start": 137.8,
+   "end": 142.5,
+   "text": "In civilian crisis management, information like this could support human decisions."
+  },
+  {
+   "cue": "F4",
+   "start": 142.85,
+   "end": 145.87,
+   "text": "The decision itself remains with the people responsible."
+  },
+  {
+   "cue": "F4",
+   "start": 146.22,
+   "end": 148.88,
+   "text": "Our demonstration uses only synthetic data."
+  },
+  {
+   "cue": "S05",
+   "start": 150.2,
+   "end": 157.47,
+   "text": "For crisis management, CIRA explores how to make incomplete information more useful while keeping uncertainty visible."
+  },
+  {
+   "cue": "S05",
+   "start": 158.37,
+   "end": 165.74,
+   "text": "For AI research, it gives us a way to study how reconstruction changes when the available information changes."
+  },
+  {
+   "cue": "S05",
+   "start": 166.64,
+   "end": 168.86,
+   "text": "We can measure what the AI recovers."
+  },
+  {
+   "cue": "S06",
+   "start": 170.2,
+   "end": 170.74,
+   "text": "CIRA."
+  },
+  {
+   "cue": "S06",
+   "start": 171.09,
+   "end": 173.28,
+   "text": "Understanding incomplete information."
+  },
+  {
+   "cue": "S06",
+   "start": 174.18,
+   "end": 175.79,
+   "text": "CIRA — Powered by SYNTX."
+  }
+ ]
+}
