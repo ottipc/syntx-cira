@@ -78,7 +78,12 @@ button { font: inherit; color: inherit; }
 
 /* ---- view states ------------------------------------------------------------------------------------------------ */
 .view-head { display: flex; align-items: center; gap: var(--space-12); margin-bottom: var(--space-16); flex-wrap: wrap; }
-.loading-mask { opacity: var(--opacity-loading); pointer-events: none; transition: opacity var(--motion-loading) linear; }
+/* LOADING (MOT06, G3-14, U08): no text fade — the mask text keeps full contrast; a 2-px indeterminate line marks the
+   block as loading (static under reduced motion). Before v2 the whole block was drawn at opacity 0.35 (text 1.72 : 1). */
+.loading-mask { pointer-events: none; position: relative; padding-top: var(--space-4); }
+.loading-mask::before { content: ""; position: absolute; left: 0; top: 0; height: var(--border-width-emphasis); width: 33%; background: var(--ink-2);
+  animation: cira-loading-line 1200ms linear infinite; }
+@keyframes cira-loading-line { from { transform: translateX(0); } to { transform: translateX(200%); } }
 .quarantine { border: var(--border-width-emphasis) solid var(--col-eval-violation); background: var(--surface-block);
   padding: var(--space-16); max-width: calc(var(--space-32) * 12); z-index: var(--z-quarantine); position: relative; }
 .quarantine p { margin: 0 0 var(--space-8) 0; }
@@ -246,3 +251,9 @@ ul.plain { list-style: none; margin: 0; padding: 0; }
 /* panels: a hairline of brand light along the top edge (decorative) */
 .panel { border-top-color: color-mix(in srgb, var(--col-brand-core) 22%, var(--border-block)); }
 .layer > * { align-self: flex-start; }
+/* ---- absence carriers (architecture v2.0.3 04.5, U07): negative space on void, same footprint, motionless ---------- */
+.cell[data-sem="SEM-006"], .cell[data-sem="SEM-007"], .cell[data-sem="SEM-008"], .cell[data-sem="SEM-009"], .cell[data-sem="SEM-031"],
+.undefined-slot { background-color: var(--col-surface-void); }
+[data-attn="exempt"][data-sem="SEM-006"], [data-attn="exempt"][data-sem="SEM-007"], [data-attn="exempt"][data-sem="SEM-008"],
+[data-attn="exempt"][data-sem="SEM-009"], [data-attn="exempt"][data-sem="SEM-012"], [data-attn="exempt"][data-sem="SEM-022"],
+[data-attn="exempt"][data-sem="SEM-024"], [data-attn="exempt"][data-sem="SEM-031"] { transition: none; animation: none; }
