@@ -1351,3 +1351,7 @@ adr:
   title: Neurovisuelle GUI-Generation (Architektur v2.0.3)
   class: F2
   state: ACCEPTED
+- id: ADR-0009
+  title: Demo-Schritt 6 — Fokus auf Accuracy und Kontextführung in Ansicht 09
+  class: F2
+  state: ACCEPTED

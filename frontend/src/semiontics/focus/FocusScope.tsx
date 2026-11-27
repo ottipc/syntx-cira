@@ -46,7 +46,20 @@ export function FocusScope<VM>({ focus, vm, ids, resolveResonance, onFocus, susp
     if (!active || focus === null) return;
     // focus is a StableId (K-01: [a-z0-9_.:/-]), so it needs no escaping inside a quoted attribute selector
     const el = root.current?.querySelector(`[data-focus-id="${focus}"]`);
-    el?.scrollIntoView?.({ block: "nearest", inline: "nearest", behavior: "instant" });
+    if (!el) return;
+    // opt-in context carry (R13, architecture v2.0.3 F04, ADR-0009): a view may mark a group as `data-carry-anchor`;
+    // the group's head is brought to the top as long as the target then stays whole in view, otherwise the plain
+    // nearest carry applies (used by the view 09 metric bands)
+    const anchor = el.closest("[data-carry-anchor]");
+    if (anchor && anchor !== el) {
+      anchor.scrollIntoView?.({ block: "start", inline: "nearest", behavior: "instant" });
+      const port = scrollPort(el);
+      if (port) {
+        const a = el.getBoundingClientRect(), b = port.getBoundingClientRect();
+        if (a.top >= b.top && a.bottom <= b.bottom) return;
+      }
+    }
+    el.scrollIntoView?.({ block: "nearest", inline: "nearest", behavior: "instant" });
   }, [active, focus]);
   const ctx = useMemo<Ctx>(() => ({
     active, focus,
@@ -61,6 +74,15 @@ export function FocusScope<VM>({ focus, vm, ids, resolveResonance, onFocus, susp
       </div>
     </FocusCtx.Provider>
   );
+}
+
+/** Nearest vertically scrolling ancestor (the port the carry has to keep the target inside). */
+function scrollPort(el: Element): Element | null {
+  for (let p = el.parentElement; p; p = p.parentElement) {
+    const o = getComputedStyle(p).overflowY;
+    if ((o === "auto" || o === "scroll") && p.scrollHeight > p.clientHeight) return p;
+  }
+  return null;
 }
 
 /** A click on empty workspace clears the focus (04.2); clicks on items, controls and links never do. */

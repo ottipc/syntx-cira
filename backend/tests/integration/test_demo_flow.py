@@ -113,6 +113,13 @@ def test_step6_exact_fractions_no_overall_score(demo: dict[str, Any]) -> None:
     rep = m["report"]
     assert rep["data_origin"] == "FIXTURE"
     assert rep["results"]
+    # A5 (coupling architecture v0.5): the step focuses reconstruction accuracy; coverage shares its reference space, so
+    # it is linked to the focus (SEM-038) and both cards stand together in the carried band
+    assert s["focus"] == "metric:m11/a_r///"
+    by = {(r["metric_id"], r["relation"]): r for r in rep["results"]}
+    m11, m05 = by[("M11", "A_R")], by[("M05", "A_R")]
+    assert m11["status"] == m05["status"] == "EVALUATED"
+    assert m05["reference_space"] == m11["reference_space"]
     for r in rep["results"]:
         if r["status"] == "EVALUATED":
             assert r["numerator"] and r["denominator"] and r["denominator"]["n"] != 0

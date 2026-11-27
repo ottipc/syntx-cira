@@ -7,7 +7,7 @@ Implementation Release DEP-V3-01 vom 2026-11-27). `main` bleibt auf `ac5073b`.
 
 ## Rahmen
 - Keine Änderung an Backend, Verträgen, Schemas, Endpunkten, Anfragen, Metriken, eingefrorenen Bündeln,
-  `demo.steps.json`, Produktfilm oder `main`. Sichtbarer Text nur aus `cira.terms.yaml`; „SYNTX“ bleibt gesperrt.
+  `demo.steps.json`, Produktfilm oder `main`. Ausnahme: Demo-Schritt 6 nach ADR-0009 (Nachtrag F04). Sichtbarer Text nur aus `cira.terms.yaml`; „SYNTX“ bleibt gesperrt.
 - Generierte Dateien nur über die Generatoren (E-10). Keine Ignore-Einträge (E-16), keine gelockerten Tests (E-09).
 - Neue Zeichen (SEM-038) und Dekor (DEC-04…08) sind Registererweiterungen der Klasse F2 wie DEC-01–03 (ADR-0007).
 - Alles, was Verträge, die G03.3-Matrix oder eingefrorene Bündel berühren würde, wird F3 → `docs/change-requests/`.

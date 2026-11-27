@@ -66,10 +66,12 @@
       "view": "STRUCTURAL_METRICS",
       "tick": 5,
       "aggregation": "POOLED",
+      "focus": "metric:m11/a_r///",
       "narration": "demo.6",
       "expect": [
         "SEM-013",
-        "SEM-021"
+        "SEM-021",
+        "SEM-038"
       ]
     },
     {

@@ -19,6 +19,11 @@
 > was made precise (conditional independence, one bit per focus-state observation; 01.2a) and the owner decisions
 > OD-08–OD-15 were locked for ADR-0008. No calibration value changed.
 
+> **Post-implementation amendment F04 (2026-11-27, ADR-0009).** Demo step 6 focuses reconstruction accuracy (M11), and
+> view 09 carries the focused card with its band head into view (runtime flow R13, context carry). This restores the hard
+> anchor A5 of the film–presentation coupling architecture v0.5. Approved by the Owner, Gemini and GPT; the owner also
+> approved the view-specific deviation from the approved CSS-only variant. No other view, token or calibration value changed.
+
 ---
 
 ## 00 — Document control and execution record
@@ -78,6 +83,7 @@ from `ac5073b`. `main` stays frozen at `ac5073b`; OD-11 applies the presentation
 | F01 | R11 isolation law stated as **conditional independence**: ∂B/∂P \|_{b, stage, occupancy, env} = 0 replaces the unconditional ∂B/∂P = 0; B's total dependence on P is mediated only by occupancy (R10), the scope bit b (R11) and the guard bit q inside env (R9) | 01.2a, 03.13.3, 11.1 |
 | F02 | R11 defined as **one bit per focus-state observation**, distinguished from temporal sequences of observations and from the permitted geometric, occupancy and environmental inputs (R7, R9, R10, R12) | 01.2a, 08.3 V3T17 |
 | F03 | Owner decisions OD-08–OD-15 **adopted** and locked for ADR-0008 | 10 |
+| F04 | **Context carry (R13), post-implementation, ADR-0009:** an opt-in group anchor `data-carry-anchor` (N06 attribute contract, set by N10 in view 09 only) lets the focus carry bring the group head into view while the target stays whole; demo step 6 writes `focus=metric:m11/a_r///` | 03.6, 03.10, 03.11, 03.13.3, 03.13.4, 04.2, 05.8, 06.09, 08.3 |
 
 ### 00.6 Change log v2.0.2 → v2.0.3
 
@@ -563,9 +569,9 @@ across owners.
 | Purpose | Make the selected entity and its documented counterparts unmistakable while the rest stays readable. |
 | Components | `FocusScope` (provider, in `semiontics/focus`), `useFocusState(id)`, view `resolveResonance(focus, model)` (pure, in each `model.ts`), focus input handlers (click/keyboard → `go({ focus })`), `FocusAbsentChip`, `AttentionAxis`, `FocusFrame` / `ResonanceFrame` (row-shaped items: frame elements over the grid area, D07). **Decoupling (v2.0.1):** `FocusScope<VM>` receives `{ focus, vm, resolveResonance: (focus: StableId, vm: VM) => readonly StableId[] }` as props; it is generic over VM and imports nothing from `views/` or `contracts/generated` (G03.3 unchanged). |
 | Inputs | `Q.focus` (StableId or null), view model relation lists (from P), hover (CSS only). |
-| Outputs | `data-focus-scope="active\|idle"` on the view root; `data-focus-state="focused\|resonant\|attenuated\|neutral"` and `data-attn` on items; URL writes of `focus`. |
+| Outputs | `data-focus-scope="active\|idle"` on the view root; `data-focus-state="focused\|resonant\|attenuated\|neutral"` and `data-attn` on items; URL writes of `focus`; the scroll position of Zone C after a focus change (carry, F04). |
 | State | Focus machine (05.6.4): `NEUTRAL → FOCUS_LOCKED(target, resonant[])`, with `HOVER_PREVIEW` as a CSS-only overlay state and `SUSPENDED` under quarantine. |
-| Transformation rules | (1) Target = element whose `data-focus-id` equals `Q.focus`. (2) Resonant = ids returned by the view resolver from explicit relation fields only (04.4). (3) All other focusable items in the scope are attenuated; exempt primitives stay canonical. (4) If the target is not in the view: no attenuation, chip "focus not in this view". |
+| Transformation rules | (1) Target = element whose `data-focus-id` equals `Q.focus`. (2) Resonant = ids returned by the view resolver from explicit relation fields only (04.4). (3) All other focusable items in the scope are attenuated; exempt primitives stay canonical. (4) If the target is not in the view: no attenuation, chip "focus not in this view". (5) **Carry (F04):** the target is carried into the scroll port with `nearest`; if a view marked the target's group with `data-carry-anchor`, the group head is carried to the top first and kept only if the target is then whole in the port, otherwise `nearest` applies (04.2, R13). |
 | Boundaries | No similarity, no proximity, no inference; resonance never crosses the barrier (no Ω_A item resonates with an F05 output in views 05/06 — they are not in the same projection anyway); no container opacity. |
 | Dependencies | Construction: N01 (role variables), N05 (attribute contract of primitives). **Not N10** — N06 is generic; N10 imports N06 (03.13.2). |
 | Coupling | Runtime: receives focus id, vm and resolver as props (R3), emits `data-focus-state` (R4). Interaction: writes `Q.focus` (replace); N11 writes the same param; N08 tick change keeps it; N07 animates the change (120 ms). Runtime: exposes the scope-active bit b to N04 (R11) — the scope attribute it already writes; never the target. |
@@ -640,7 +646,7 @@ across owners.
 | Transformation rules | ViewModels stay pure selection (TX26); each view adds `resolveResonance` and `data-focus-id` on its focusable items; each view declares its composition class (`reserve`/`plate`, 05.17) and ends its information space at `--comp-tangent − gutter` when the fit is `reserve`. |
 | Boundaries | Same endpoints and parameters as `main` per view (request inventory test); no new data. |
 | Dependencies | Construction: N01, N02, N03, N05, N06, N07, N08, N09. |
-| Coupling | Runtime: R1–R3, R5, R8. Interaction: writes `Q.view`, `Q.filter`, `Q.aggregation`. Consumers: N11 (demo expectations per step), N12 (inventory and snapshots). |
+| Coupling | Runtime: R1–R3, R5, R8, R13 (view 09 marks each `MetricBand` as carry anchor, F04). Interaction: writes `Q.view`, `Q.filter`, `Q.aggregation`. Consumers: N11 (demo expectations per step), N12 (inventory and snapshots). |
 | Contracts | Request inventory per view (08.2, V2T01) equals `main`. |
 | Responsibilities | View rebuilds, unit tests per view. |
 | Verification | TX15, TX19, TX24, TX27, V2T01, V2T05, V2T10, V2T20, V2T21. |
@@ -658,8 +664,8 @@ across owners.
 | Transformation rules | Presentation type keeps its projected size (scale law, G3-45); steps, URLs, expectations and `seconds_per_step` unchanged; motion within a step ≤ 200 ms; playback stops on Escape, Stop or manual navigation. |
 | Boundaries | No second clock, no POST, no text "SYNTX" (stage signature belongs to the separate presentation artifact, not to the app). |
 | Dependencies | Construction: N01, N02, N04, N07, N10. |
-| Coupling | Interaction: writes `Q.view/focus/tick/mode` per step (steps 2 and 4 set focus, like a user); N12 (TX31). |
-| Contracts | `demo.steps.json` byte-identical to `main` unless an ADR changes it. |
+| Coupling | Interaction: writes `Q.view/focus/tick/mode` per step (steps 2, 4 and 6 set focus, like a user; step 6 since F04); N12 (TX31, V3T20). External: the product film is recorded from Play demo, so each step's composition is an input of the film–presentation coupling (v0.5, anchors A1–A6). |
+| Contracts | `demo.steps.json` byte-identical to `main` unless an ADR changes it. **ADR-0009** changes step 6 only: `focus = metric:m11/a_r///`, expectations SEM-013, SEM-021, SEM-038; view, tick, aggregation, narration and `seconds_per_step` unchanged. |
 | Responsibilities | Presentation styling, narration dock, parity. |
 | Verification | TX31 (both e2e runs, autoplay test), V2T11, TX28 presentation cases. |
 | Acceptance | 80-s Play run: 8 steps, each 10 s ± 0.5 s, expected signs per step present, 0 POST. |
@@ -752,11 +758,17 @@ DOM occupancy (boxes, text runs, overlays) ─▶ N04 budget masks only (0.11 / 
 | R10 | DOM occupancy → N04 | budget masks | SVG masks | position, size or presence of the emblem |
 | R11 (adopted v2.0.3) | N06 → N04 | **one bit**: some focus scope is active | `:has([data-focus-scope="active"])` | focus target id, resonant set, any value |
 | R12 (v2.0.3) | N02 → N03 | shadow vector from the anchor | `--light-dx/dy` on Zone C | any per-element or data-dependent light |
+| R13 (F04) | N10 → N06 | **carry anchor**: which group the focused item belongs to | `data-carry-anchor` on the group container (N06 attribute contract, F) + `scroll-margin-block-start` | values, ids or relations of P; any effect on focus states, resonance or attenuation; smooth scrolling; a second carry per transaction |
 
 Isolation laws (01.2, 01.2a) restated in this vocabulary: no direct R path from P to B — P reaches B only mediated by
 R10 (occupancy, budget only), the guard bit q in R9 and the scope bit b in R11, so ∂B/∂P |_{b, stage, occupancy, env} = 0;
 no R path from F or M to P; B's runtime inputs are geometry (R7, R12), environment (R9), occupancy for budgets (R10) and
 one boolean per focus-state observation (R11, measured: exactly two ambient states, 09.11).
+
+**R13 law (F04).** The carry only moves the scroll port of Zone C, once per committed focus change, instantly. Carry
+anchors are structural group containers declared by the view; N06 reads the attribute generically and imports nothing
+from `views/`, so the construction order (03.13.2) and the G03.3 matrix are unchanged. The target stays whole in view
+whenever it fits the port; with no anchor, carry is the plain `nearest` of v2.0.3. Only view 09 declares anchors.
 
 #### 03.13.4 Interaction coupling (I) — cycles only through Q
 
@@ -766,7 +778,7 @@ one boolean per focus-state observation (R11, measured: exactly two ambient stat
 | tick rail, ←/→ | N08 | `Q.tick` (push) | all timed blocks LOADING → verified → MOT05 | focus kept (05.8) |
 | rail link, chain card, jump link | N10 | `Q.view` (push) | MOT03; anchor unchanged (05.17) | `tick`, `lang`, `mode`, `focus` carried |
 | filter chips, aggregation | N10 | `Q.filter`, `Q.aggregation` | N10 | — |
-| demo step | N11 | `Q.view/focus/tick/mode` | as above | single clock |
+| demo step | N11 | `Q.view/focus/tick/mode` | as above; step 6: N06 carry with R13 | single clock |
 | drawer open/close | `_common` ProvButton (U state) | none | N03 overlay order; N04 occupancy → budget 0.11 under the drawer | no Q write; anchor unchanged (W0 excludes the drawer) |
 | quarantine, modal, hidden tab, reduced motion | environment | none | N07 priority → N04 SUSPENDED/STATIC | one-way |
 | focus scope active ↔ idle | N06 | none | N04 damping (MOT19) | one-way, one bit (R11) |
@@ -921,6 +933,24 @@ clicking empty workspace clears. Hover is CSS only: border hairline → border.s
 
 **Absent target.** `data-focus-scope="idle"`, nothing attenuated, a dismissible chip `focus.absent` ("Selected item is
 not shown in this view" / "Ausgewähltes Element ist in dieser Ansicht nicht enthalten") with the StableId in mono.
+
+**Context carry (F04, ADR-0009).** After each committed focus change the scope carries the target into the Zone C
+scroll port. By default this is `scrollIntoView({ block: "nearest" })`. A view may mark a group as context with
+`data-carry-anchor`; then the group head is carried to the top (`block: "start"`, inset `--space-16` through
+`scroll-margin-block-start`) and kept if the target is then whole in the port; otherwise the plain `nearest` carry
+follows. Only view 09 uses it: each metric band is an anchor, so a focused card stands with its band head and the
+cards of its band row above it.
+
+| Stage | Profile | Band head | M05 (resonant) | M11 (focused) | Observation band (M06) |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| 1920 × 1080 | reserve | in view | whole | whole | out of view |
+| 1600 × 900 | reserve | in view | whole | whole | out of view |
+| 1440 × 900 | collapsed | in view | whole | whole | out of view |
+| 1280 × 800 | collapsed | in view | whole | whole | out of view |
+
+Measured in presentation mode at demo step 6, reached like Play demo (step 5 → Next); V3T20. The CSS-only variant
+(`scroll-margin-block-end` on the card) held at 1920 × 1080 only (band head cut at 1600 × 900, M06 in view at both
+collapsed stages) and was replaced by the anchor rule (IC-25).
 
 ### 04.3 Token-dependent attenuation — implementation
 
@@ -1289,7 +1319,10 @@ barrier, gate, deviation seam.
 ### 05.8 Focus synchronization
 
 - One writer per frame: URL. `FocusScope` reads it; there is no second focus store.
-- Demo steps 2 and 4 write `focus` exactly as today; user input during playback stops the demo (existing).
+- Demo steps 2 and 4 write `focus` exactly as today; step 6 writes `focus=metric:m11/a_r///` (F04, ADR-0009); user
+  input during playback stops the demo (existing).
+- The carry (04.2) runs once per committed focus change, after the transaction; while LOADING there is no target and
+  no carry.
 - Tick change keeps focus; re-resolution happens after the new projection is verified (focus state follows the
   render transaction; while LOADING the scope is idle).
 - `replace: true` for focus writes so that Back still returns to the previous view (TX20 navigation remains as is).
@@ -1794,6 +1827,9 @@ what the server returns.
   `MetricBand` × 4 → `MetricCard` (`RationalMetric`, `RationalBar`, `UndefinedSlot`, aux list, `OriginBadge`).
 - **Focus/resonance:** card → complementary card (M01 ↔ M11) and cards sharing the same reference-space id; card
   click also opens Zone E with the reference space (existing provenance).
+- **Carry (F04):** every `MetricBand` is a carry anchor (R13). Focus on M11 (POOLED, A_R) brings the head
+  RECONSTRUCTION (REFERENCE × RECONSTRUCTED) to the top; M01 and M05 (same reference space, resonant) stand in the row
+  above, M11 is whole, the observation band (M06) leaves the frame.
 - **Card (D09):** header (id, term, relation, subset/function ref) · value block: fraction on its own line (28/36,
   35/45), `= decimal · target` subordinate, RationalBar 4 px beneath · explanation · formula; card padding = panel
   padding (G3-38). Class `reserve`: two card columns inside the information space.
@@ -1812,7 +1848,7 @@ what the server returns.
 - **Responsive:** 2 cards per row in the `reserve` composition, 3 when collapsed at wide widths, 2 (standard), 1–2
   (compact).
 - **Acceptance:** TX19 metrics tests unchanged and green; bar width = value × track ± 1 px; no bar for undefined;
-  demo step 6 (SEM-013/021).
+  demo step 6 (SEM-013/021, SEM-038 since F04) with M05 and M11 whole in view at all four stages (V3T20).
 
 ### 06.10 SCENARIO_COMPARISON
 
@@ -2100,6 +2136,7 @@ flow, aggregation identity), TX02, TX15, TX19, TX20, TX22–TX33, T09, AK-01–1
 | V3T17 | R11 bit width (F02): (a) single observation — drive focus acquire, target moves, tick change with focus kept, release, cross-view focus present/absent → the ambient's computed state (reserve opacity, glow opacity, breath play states, anchor) takes exactly two values, and the decor scene (without occupancy masks) is byte-identical across focus targets; (b) sequence — after any sequence of observations the settled ambient state equals the state reached from a fresh load with only the last observation | N04, N06 |
 | V3T18 | Light model consistency: vignette centre = anchor; panel shadow = `--light-dx/dy` derived from the anchor; no `box-shadow` on cells, absence carriers or frames; glow and emblem breath share one phase | N02, N03, N04 |
 | V3T19 | Responsive composition matrix: views 01/03/09 × {1920×1080, 1600×900, 1440×900, 1280×800} × {standard, presentation} → fit, stage class, scale, overflow (0 for 01/03), chain rows (1), clipped text (0), view 03 label lines (1) as in 09.11 | N02, N10, N11 |
+| V3T20 | Demo step 6 context carry (F04): step 5 → Next at 1920×1080, 1600×900, 1440×900, 1280×800 in presentation → M05 and M11 whole inside the Zone C port, band head in view, M06 out of view, M05 resonant, step line "Exact fractions, no overall score"; step 6 declares `focus=metric:m11/a_r///` | N06, N10, N11 |
 | V3T16 | Decor sum check: generator verifies every text token against the sum of all decor that can overlap under text (ring 0.11 + axis 0.06 must not co-occur under text) | N01, N04 |
 
 ### 08.4 Animation inspection

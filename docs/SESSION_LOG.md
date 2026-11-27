@@ -77,3 +77,9 @@
 - U30: Vergleich Branch vs `main` (relativ), Wahrnehmungs-Kit, Review-Paket, Gate Phase 05.
 - Gate Phase 05 (erster Lauf nach U30): **nicht bestanden** — V3T17(b) rot unter Last (Governor wechselte zwischen zwei Stichproben); Korrektur IC-24, Bericht dieses Laufs nicht übernommen, Gate neu gestartet.
 - Gate Phase 05 (zweiter Lauf, Commit `90d77e5`): **bestanden** — 1027 Tests, 0 fehlgeschlagen, 0 übersprungen, alle Drift-Prüfungen grün, Bericht `docs/test-reports/phase-05.json` (`sha256:7dbd652a…`). CP7.
+
+## 2026-11-27 — Demo-Schritt 6 und Kontextführung (ADR-0009, Nachtrag F04)
+- Schritt 6 fokussiert M11 (POOLED, A_R); M05 und M01 resonant. Ansicht 09 führt das fokussierte Band mit Kopf ins Bild (R13).
+- Variante B nur in CSS hielt nur bei 1920×1080 (IC-25); Gruppenanker-Regel vom Owner freigegeben.
+- V3T20 neu (4 Bühnen), Backend-Test Schritt 6 erweitert; `make verify` grün (785/785).
+- Film semiotic v2.1 per Play demo neu aufgenommen; A5 auf `main` erfüllt (`presentation/coupling/v2.1/`).

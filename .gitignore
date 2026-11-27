@@ -25,3 +25,7 @@ frontend/test-results/
 # Secrets
 .env
 .env.*
+
+# Office lock files
+.~lock.*#
+~$*
