@@ -75,3 +75,4 @@
 - U28: TX28 + 66 DE-Fälle (Befunde: Dokumentsprache, Leistenumbruch, kompakte Pille), TX29 auf 33 Baselines.
 - U29: V2T25 (Befund IC-23 Zeichenumrisse; Ansicht-03-Zeilen ohne `data-focus-id`), V2T22, V2T06-Stress.
 - U30: Vergleich Branch vs `main` (relativ), Wahrnehmungs-Kit, Review-Paket, Gate Phase 05.
+- Gate Phase 05 (erster Lauf nach U30): **nicht bestanden** — V3T17(b) rot unter Last (Governor wechselte zwischen zwei Stichproben); Korrektur IC-24, Bericht dieses Laufs nicht übernommen, Gate neu gestartet.

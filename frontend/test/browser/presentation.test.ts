@@ -76,12 +76,15 @@ describe("[V3T17] R11: the environment reads exactly one bit of the focus field"
     const op = (sel: string) => { const e = document.querySelector(sel); return e ? getComputedStyle(e).opacity : "none"; };
     const play = (sel: string) => { const e = document.querySelector(sel); return e ? getComputedStyle(e).animationPlayState : "none"; };
     const anchor = document.querySelector(".ambient")?.getAttribute("data-anchor");
-    return JSON.stringify({ reserve: op(".amb-reserve"), light: op(".amb-light"), emblem: play(".amb-emblem"), breath: play(".amb-light-breath"), anchor });
+    return JSON.stringify({ reserve: op(".amb-reserve"), light: op(".amb-light"), emblem: play(".amb-emblem"), breath: play(".amb-light-breath"), anchor,
+      governor: document.querySelector<HTMLElement>(".zone-c")?.dataset.ambient });
   });
   it("(a) single observations: one state for every active focus (any target, view, tick, resonant set), one for idle", async () => {
     const states = new Map<string, string[]>();
     const obs = async (path: string, label: string) => {
-      const p = await open(env, path, { width: 1920, height: 1080 }, "reduce");
+      // the frame-budget governor (05.6.3) is an independent input of the environment: a steady frame clock holds it
+      // constant so that only the focus bit varies (IC-24)
+      const p = await open(env, path, { width: 1920, height: 1080 }, "reduce", { initScript: "steady-frames" });
       await p.waitForTimeout(600);
       const s = await amb(p);
       const scope = await p.evaluate(() => document.querySelector(".focus-scope")?.getAttribute("data-focus-scope") ?? "none");
@@ -104,7 +107,7 @@ describe("[V3T17] R11: the environment reads exactly one bit of the focus field"
   }, 120000);
 
   it("(b) a sequence acquire → move → release adds no state: release returns to the idle state", async () => {
-    const p = await open(env, url("TEMPORAL_STATE_EXPLORER"), { width: 1920, height: 1080 }, "reduce");
+    const p = await open(env, url("TEMPORAL_STATE_EXPLORER"), { width: 1920, height: 1080 }, "reduce", { initScript: "steady-frames" });
     await p.waitForTimeout(400);
     const s0 = await amb(p);
     await p.click('[data-attribute="attr:n08/state"] .focus-handle'); await p.waitForTimeout(600);
