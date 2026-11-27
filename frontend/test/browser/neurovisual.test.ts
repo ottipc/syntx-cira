@@ -368,3 +368,40 @@ describe("[V2T17] space.actual only inside Ω_A signs", () => {
     expect(bad).toEqual([]);
   }, 60000);
 });
+
+describe("[V2T07][U22] number-first metrics and RationalBar", () => {
+  it.each([["standard", ""], ["presentation", "&mode=presentation"]])("%s: fraction anchors the card; bar width = value × track ± 1 px; no bar when undefined or outside [0, 1]; card padding = panel padding", async (_m, q) => {
+    for (const e of [EXP.baseline, EXP.sparse]) {
+      const p = await open(env, `/exp/${e}/STRUCTURAL_METRICS?tick=5${q}`, { width: 1920, height: 1080 });
+      await p.waitForTimeout(300);
+      const r = await p.evaluate(() => [...document.querySelectorAll<HTMLElement>(".metric-card")].map((c) => {
+        const frac = c.querySelector<HTMLElement>('[data-sem="SEM-021"] .fraction'), dec = c.querySelector<HTMLElement>(".decimal");
+        const bar = c.querySelector<HTMLElement>(".rational-bar"), fill = c.querySelector<HTMLElement>(".bar-fill");
+        const cs = getComputedStyle(c), fs = frac ? getComputedStyle(frac) : null;
+        const value = dec ? Number(dec.textContent!.replace("=", "").trim()) : null;
+        return { id: c.getAttribute("data-metric"), undef: !!c.querySelector('[data-sem="SEM-022"]'), value,
+          frac: fs ? { size: fs.fontSize, weight: fs.fontWeight, ownLine: frac!.getBoundingClientRect().bottom <= dec!.getBoundingClientRect().top + 1 } : null,
+          bar: bar ? { track: bar.getBoundingClientRect().width, fill: fill!.getBoundingClientRect().width, role: bar.getAttribute("role"), label: bar.getAttribute("aria-label"),
+            fracText: frac?.textContent } : null,
+          pad: [cs.paddingLeft, cs.paddingRight] };
+      }));
+      await p.context().close();
+      expect(r.length).toBeGreaterThan(5);
+      for (const c of r) {
+        expect(c.pad, `${c.id} padding`).toEqual(_m === "standard" ? ["16px", "16px"] : [c.pad[0], c.pad[0]]);
+        expect(c.pad[0]).not.toBe("0px");
+        if (c.undef) { expect(c.bar, `${c.id}: no bar when undefined`).toBeNull(); continue; }
+        expect(c.frac!.size).toBe(_m === "standard" ? "28px" : "35px");
+        expect(c.frac!.weight).toBe("600");
+        expect(c.frac!.ownLine, `${c.id}: fraction on its own line`).toBe(true);
+        if (c.value !== null && c.value >= 0 && c.value <= 1) {
+          expect(c.bar, `${c.id}: bar for a value in [0, 1]`).not.toBeNull();
+          expect(Math.abs(c.bar!.fill - c.value * c.bar!.track), `${c.id}: width = value × track`).toBeLessThanOrEqual(1);
+          expect(c.bar!.track).toBeLessThanOrEqual(_m === "standard" ? 256 : 320);
+          expect(c.bar!.role).toBe("img");
+          expect(c.bar!.label).toContain(c.bar!.fracText!);
+        } else expect(c.bar).toBeNull();
+      }
+    }
+  }, 90000);
+});

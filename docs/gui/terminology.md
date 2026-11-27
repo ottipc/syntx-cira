@@ -447,6 +447,8 @@
 | `focus` | SEM-034 | Focus | Fokus |  |
 | `focus.linked` | SEM-038 | Linked to selection | Mit Auswahl verknüpft | documented relation of the focused item (architecture v2.0.3, 04.4) |
 | `focus.absent` | FOCUS_ABSENT | Selected item is not shown in this view | Ausgewähltes Element ist in dieser Ansicht nicht enthalten | Q.focus set but not present in the view (04.2) |
+| `metric.bar` | RationalBar | {v} on a scale from 0 to 1 | {v} auf einer Skala von 0 bis 1 | accessible name of the optional 0–1 bar; repeats the exact fraction (03.9) |
+| `metric.complement` | M01/M11 | Accuracy is the complement of distance on the same determined subset | Genauigkeit ist das Komplement der Distanz auf derselben bestimmten Teilmenge | static catalog note beside M01 and M11 (04.9); a term, no calculation |
 | `delta` | SEM-023 | Change | Änderung |  |
 | `exec` | SEM-032 | Execution status | Ausführungsstatus |  |
 | `epi` | SEM-018 | Knowledge class | Wissensklasse |  |

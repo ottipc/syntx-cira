@@ -27,3 +27,4 @@ export { DeviationSeam } from "./primitives/DeviationSeam";
 export { Quarantine } from "./primitives/Quarantine";
 export { FocusHandle, FocusMarks, FocusScope, useFocusHandle, useFocusItem, useFocusScope, useFocusState, type FocusState } from "./focus/FocusScope";
 export { MotionBoundary, motionPhase, useMotionPhase, useReducedMotion, type BlockState, type MotionEvent, type MotionPhase } from "./motion/MotionBoundary";
+export { RationalBar } from "./primitives/RationalBar";

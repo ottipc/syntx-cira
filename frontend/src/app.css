@@ -199,8 +199,8 @@ table.data th { font-size: var(--type-section-size); text-transform: var(--type-
 .chain-link.cut { display: flex; justify-content: center; border-left: calc(var(--border-width-emphasis) * 2) double var(--col-eval-violation);
   border-right: calc(var(--border-width-emphasis) * 2) double var(--col-eval-violation); margin: 0 var(--space-4); flex-basis: var(--space-16); }
 .cut-glyph { color: var(--col-eval-violation); font-family: var(--font-mono); padding-top: var(--space-24); }
-.metric-card { display: grid; grid-template-columns: minmax(calc(var(--space-32) * 7), 1fr) 3fr; gap: var(--space-8); padding: var(--space-8) 0;
-  border-bottom: var(--border-width-base) solid var(--border-block); }
+/* metric card (U22, G3-38): the panel padding applies — card text never touches the card edge */
+.metric-card { display: flex; flex-direction: column; gap: var(--space-8); }
 /* the graph keeps its natural size (legibility, TX28); the panel scrolls horizontally instead of scaling it down */
 .topology { overflow-x: auto; }
 .topology svg { display: block; max-width: none; }
@@ -445,3 +445,31 @@ tr[data-stage-commit] > td { animation: mot-stage-tick var(--motion-focus) var(-
   box-shadow: 0 0 var(--space-8) color-mix(in srgb, var(--sign-focus) 35%, transparent);
   transition: transform var(--motion-scrub) var(--ease-settle), width var(--motion-scrub) var(--ease-settle); }
 .tick-ring[data-placed] { visibility: visible; }
+/* ---- number-first metrics (U22, D09, 04.9) ---- */
+:root {
+  --metric-value: 0;
+  --metric-hero-size: var(--cmp-metric-hero-size);
+  --metric-hero-line: var(--cmp-metric-hero-line);
+  --bar-max: var(--cmp-bar-track-max);
+}
+[data-mode='presentation'] {
+  --metric-hero-size: 35px;
+  --metric-hero-line: 45px;
+  --bar-max: 320px;
+}
+.metric-card .metric-value { display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-4); }
+.metric-card .metric-value .fraction { font-size: var(--metric-hero-size); line-height: var(--metric-hero-line); font-weight: 600;
+  font-variant-numeric: tabular-nums; color: var(--ink-1); }
+.metric-sub { display: flex; flex-wrap: wrap; align-items: baseline; column-gap: var(--space-8); }
+.metric-sub .decimal { color: var(--ink-2); white-space: nowrap; }
+.metric-sub .target { font-family: var(--type-mono-id-family); font-size: var(--type-mono-id-size); color: var(--ink-2); white-space: nowrap; }
+.rational-bar { position: relative; display: block; width: min(100%, var(--bar-max)); height: var(--cmp-bar-track-height);
+  background: var(--col-surface-field); margin-top: var(--space-4); }
+.bar-fill { position: absolute; left: 0; top: 0; bottom: 0; width: calc(var(--metric-value) * 100%); background: var(--ink-2); }
+.bar-cap { position: absolute; right: 0; top: calc(-1 * var(--space-4)); bottom: calc(-1 * var(--space-4)); width: var(--border-width-emphasis);
+  background: var(--ink-1); }
+.bar-target { position: absolute; top: calc(-1 * var(--space-4)); bottom: calc(-1 * var(--space-4)); width: var(--border-width-base); background: var(--ink-2); }
+.bar-target-start { left: 0; } .bar-target-end { right: 0; }
+/* MOT09 metric confirmation: the bar is at its final width in frame 1; the end cap confirms once per verified scope */
+[data-motion="entering"] .bar-cap { animation: mot-metric-confirm var(--motion-tick) var(--ease-settle); }
+@keyframes mot-metric-confirm { from { background-color: var(--sign-focus); transform: scaleY(1.5); } }

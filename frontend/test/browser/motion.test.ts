@@ -315,3 +315,28 @@ describe("[U21] MOT17 scrub ring", () => {
     checks(r);
   }, 60000);
 });
+
+describe("[U22] MOT09 metric confirmation", () => {
+  it("a new verified scope draws every bar at its final width in the first frame; only the end cap confirms (≤ motion.tick)", async () => {
+    const p = await open(env, url("STRUCTURAL_METRICS"));
+    await p.waitForTimeout(400);
+    const r = await p.evaluate(async () => {
+      const btn = [...document.querySelectorAll<HTMLButtonElement>(".zone-c-content .chip")].find((b) => b.getAttribute("aria-pressed") === "false" || b.getAttribute("aria-selected") === "false");
+      btn!.click();
+      // wait for the new scope's block to commit
+      for (let i = 0; i < 200 && !document.querySelector('[data-motion="entering"] .rational-bar'); i++) await new Promise((res) => requestAnimationFrame(res));
+      const w = () => [...document.querySelectorAll<HTMLElement>(".bar-fill")].map((f) => Math.round(f.getBoundingClientRect().width));
+      const first = w();
+      const caps = document.getAnimations().filter((a) => (a as CSSAnimation).animationName === "mot-metric-confirm").map((a) => Number(a.effect?.getTiming().duration));
+      const others = document.getAnimations().filter((a) => ((a.effect as KeyframeEffect).target as Element)?.closest?.(".rational-bar") && (a as CSSAnimation).animationName !== "mot-metric-confirm").length;
+      await new Promise((res) => setTimeout(res, 300));
+      return { first, last: w(), caps, others };
+    });
+    await p.context().close();
+    expect(r.first.length).toBeGreaterThan(0);
+    expect(r.first, "no growing bar (INV2-18)").toEqual(r.last);
+    expect(r.caps.length).toBeGreaterThan(0);
+    for (const d of r.caps) expect(d).toBe(MOTION.tick);
+    expect(r.others).toBe(0);
+  }, 60000);
+});

@@ -16,6 +16,7 @@ export function MetricCard({ m }: { m: MetricVM }) {
         {m.result.aux.function_ref ? <IdText>{m.result.aux.function_ref}</IdText> : null}</header>
       <MetricValue m={m} />
       <p className="secondary explain">{t(METRIC_EXPLAIN[m.id] ?? "metric.mid")}</p>
+      {m.id === "M01" || m.id === "M11" ? <p className="secondary explain" data-term="metric.complement">{t("metric.complement")}</p> : null}
       {m.def ? <p className="mono-id" data-datum="formula">{m.def.formula}</p> : null}
     </article>
   );

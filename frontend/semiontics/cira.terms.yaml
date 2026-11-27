@@ -2277,6 +2277,18 @@ terms:
   en: Selected item is not shown in this view
   de: Ausgewähltes Element ist in dieser Ansicht nicht enthalten
   meaning: 'Q.focus set but not present in the view (04.2)'
+- key: metric.bar
+  internal: RationalBar
+  en: "{v} on a scale from 0 to 1"
+  de: "{v} auf einer Skala von 0 bis 1"
+  meaning: 'accessible name of the optional 0–1 bar; repeats the exact fraction (03.9)'
+  params:
+  - v
+- key: metric.complement
+  internal: M01/M11
+  en: Accuracy is the complement of distance on the same determined subset
+  de: Genauigkeit ist das Komplement der Distanz auf derselben bestimmten Teilmenge
+  meaning: 'static catalog note beside M01 and M11 (04.9); a term, no calculation'
 - key: delta
   internal: SEM-023
   en: Change

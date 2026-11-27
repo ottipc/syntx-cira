@@ -444,6 +444,8 @@ export type TermKey =
   | "focus"
   | "focus.linked"
   | "focus.absent"
+  | "metric.bar"
+  | "metric.complement"
   | "delta"
   | "exec"
   | "epi"
@@ -912,6 +914,8 @@ export const TERMS: Readonly<Record<TermKey, TermEntry>> = {
   "focus": { en: "Focus", de: "Fokus", params: [] },
   "focus.linked": { en: "Linked to selection", de: "Mit Auswahl verknüpft", params: [] },
   "focus.absent": { en: "Selected item is not shown in this view", de: "Ausgewähltes Element ist in dieser Ansicht nicht enthalten", params: [] },
+  "metric.bar": { en: "{v} on a scale from 0 to 1", de: "{v} auf einer Skala von 0 bis 1", params: ["v"] },
+  "metric.complement": { en: "Accuracy is the complement of distance on the same determined subset", de: "Genauigkeit ist das Komplement der Distanz auf derselben bestimmten Teilmenge", params: [] },
   "delta": { en: "Change", de: "Änderung", params: [] },
   "exec": { en: "Execution status", de: "Ausführungsstatus", params: [] },
   "epi": { en: "Knowledge class", de: "Wissensklasse", params: [] },

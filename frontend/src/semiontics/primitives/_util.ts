@@ -19,3 +19,6 @@ export function lookup<K extends string>(table: Readonly<Record<K, SemId>>, key:
 
 /** Layout only (TX26 allowance in semiontics/): CSS grid line of the n-th body row below one header row. */
 export const gridRow = (index: number): number => index + 2;
+
+/** Exact rational as delivered by the server (numerator/denominator of a metric). */
+export interface Rat { n: number; d: number }
