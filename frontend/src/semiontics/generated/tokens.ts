@@ -2,9 +2,10 @@
 export const GRAPH = {"layer_gap": 72, "node_char_width": 7.8, "node_gap": 32, "node_height": 64, "node_min_width": 160, "node_padding": 12, "node_slot_chars": 12} as const;
 export const ZONE = {"a_height": 48, "b_collapsed": 56, "b_width": 220, "c_min_width": 760, "d_height": 52, "e_dock_from": 1600, "e_width": 360, "min_viewport_h": 720, "min_viewport_w": 1280} as const;
 export const Z = {"canvas": 10, "chrome": 20, "demo": 50, "drawer": 30, "quarantine": 40} as const;
-export const MOTION = {"ambient_drift": 36000, "brand_breath": 14000, "carry": 160, "decor_yield": 480, "drawer": 160, "focus": 120, "hover": 80, "loading": 100, "network_pulse": 9000, "quarantine": 0, "scrub": 140, "stage": 200, "tick": 180} as const;
+export const MOTION = {"0": 0, "ambient_drift": 36000, "brand_breath": 14000, "carry": 160, "decor_yield": 480, "drawer": 160, "focus": 120, "hover": 80, "loading": 100, "network_pulse": 9000, "quarantine": 0, "scrub": 140, "stage": 200, "tick": 180} as const;
 export const COMPONENT = {"attention_axis_focused": 2, "attention_axis_gutter": 8, "attention_axis_resonant": 1, "bar_track_height": 4, "bar_track_max": 256, "focus_border_width": 2, "focus_reticle_gap": 4, "focus_reticle_size": 6, "metric_hero_line": 36, "metric_hero_size": 28, "relation_linked_extra": 0.5, "resonance_offset": 3, "resonance_width": 1.5} as const;
 export const DECOR = {"alpha_damped": 0.14, "alpha_reserve": 0.2, "alpha_text": 0.11, "axis_alpha": 0.06, "drift_px": 8, "light_alpha": 0.05, "light_damped": 0.6, "light_radius": 1.25, "occupancy_pad": 14, "vignette_alpha": 0.4, "vignette_clear": 0.28} as const;
 export const COMP = {"anchor_cy": 0.5, "gutter": 24, "min_info": 880, "reserve": 0.32, "ring_h": 0.3, "ring_k": 0.4, "ring_max": 320, "ring_min": 84, "stage_short": 880} as const;
 export const LIGHT = {"shadow_alpha": 0.55, "shadow_bias": 4, "shadow_blur": 24, "shadow_length": 8, "shadow_spread": -6} as const;
 export const DEPTH = {"ambient": 0, "content": 1, "context": 4, "focus": 3, "quarantine": 6, "relational": 2} as const;
+export const EASING = {"exit": "cubic-bezier(0.4, 0, 1, 1)", "linear": "linear", "settle": "cubic-bezier(0.2, 0.8, 0.2, 1)", "sine": "ease-in-out"} as const;

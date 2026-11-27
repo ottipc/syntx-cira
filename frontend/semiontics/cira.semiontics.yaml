@@ -148,6 +148,7 @@ tokens:
     barrier: double 2 eval.violation
     recovery: double 1.5 ink.secondary diamond
   motion:
+    "0": 0
     tick: 180
     loading: 100
     quarantine: 0
@@ -256,6 +257,7 @@ tokens:
   easing:
     settle: cubic-bezier(0.2, 0.8, 0.2, 1)
     exit: cubic-bezier(0.4, 0, 1, 1)
+    linear: linear
     sine: ease-in-out
   # depth inside Zone C (05.5): one stacking context (isolation), L0 ambient … L9b quarantine
   depth:

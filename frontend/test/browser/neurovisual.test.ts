@@ -273,3 +273,22 @@ describe("[V2T21][U17] cross-view focus carry", () => {
     expect(r).toEqual({ id: "attr:n09/state", inView: true, scope: "active", scrolled: true });
   }, 90000);
 });
+
+describe("[U18] motion phase on blocks (05.6.2)", () => {
+  it("every READY block carries data-motion; it settles within motion.stage, and under reduced motion it is settled at once", async () => {
+    const p = await open(env, view("TEMPORAL_STATE_EXPLORER"), { width: 1440, height: 900 });
+    await p.waitForTimeout(260);
+    const a = await p.evaluate(() => [...document.querySelectorAll('[data-state="READY"]')].map((e) => e.getAttribute("data-motion")));
+    await p.context().close();
+    const q = await open(env, view("TEMPORAL_STATE_EXPLORER"), { width: 1440, height: 900 });
+    await q.emulateMedia({ reducedMotion: "reduce" });
+    await q.click('.zone-b a[href*="/OBSERVATION_INSPECTOR"]');
+    await q.waitForSelector('[data-state="READY"]');
+    const b = await q.evaluate(() => [...document.querySelectorAll('[data-state="READY"]')].map((e) => e.getAttribute("data-motion")));
+    await q.context().close();
+    expect(a.length).toBeGreaterThan(0);
+    expect(new Set(a)).toEqual(new Set(["settled"]));
+    expect(b.length).toBeGreaterThan(0);
+    expect(new Set(b)).toEqual(new Set(["settled"]));
+  }, 60000);
+});

@@ -480,7 +480,7 @@ def generate() -> dict[Path, str]:
         ROOT / "frontend/src/semiontics/generated/sem.ts": gen_sem_ts(doc, enums),
         ROOT / "frontend/src/semiontics/generated/tokens.ts": HEADER + "\n".join(
             f"export const {g.upper()} = {json.dumps({k.replace('.', '_'): v for k, v in doc['tokens'][g].items()}, sort_keys=True)} as const;"
-            for g in ("graph", "zone", "z", "motion", "component", "decor", "comp", "light", "depth") if g in doc["tokens"]) + "\n",
+            for g in ("graph", "zone", "z", "motion", "component", "decor", "comp", "light", "depth", "easing") if g in doc["tokens"]) + "\n",
         ROOT / "frontend/src/language/generated/terms.ts": gen_terms_ts(terms, enums, classified),
         ROOT / "frontend/test/generated/sem-cases.json": json.dumps(cases, ensure_ascii=False, indent=1) + "\n",
         ROOT / "docs/gui/semiontic-register.md": docs_register(doc),
