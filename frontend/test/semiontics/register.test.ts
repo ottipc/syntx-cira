@@ -139,7 +139,8 @@ describe("[TX23][AK-GUI-14] colour rules on the token set", () => {
       for (const s of cr.semantic as string[]) expect(de2000(col[d]!, col[s]!), `${d} / ${s}`).toBeGreaterThanOrEqual(cr.decorative_delta_e_min);
       for (const sem of reg.sems as J[]) expect(sem.channels.color, sem.id).not.toBe(d);
     }
-    expect((reg.decorative as J[]).map((d) => d.id)).toEqual(["DEC-01", "DEC-02", "DEC-03"]);
+    // ADR-0007: DEC-01–03; ADR-0008 (architecture v2.0.3): DEC-04 emblem, DEC-05 arcs, DEC-06 axes, DEC-07 vignette, DEC-08 light
+    expect((reg.decorative as J[]).map((d) => d.id)).toEqual(["DEC-01", "DEC-02", "DEC-03", "DEC-04", "DEC-05", "DEC-06", "DEC-07", "DEC-08"]);
   });
   it("[TX23] text over the neural field at its maximum opacity keeps ≥ 4.5 : 1", () => {
     const a = Number(reg.tokens.opacity[cr.network_max_opacity]);

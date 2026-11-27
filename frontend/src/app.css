@@ -236,14 +236,53 @@ button.link { background: none; border: 0; padding: 0; color: inherit; cursor: p
 .control-panel { position: absolute; top: calc(100% + var(--space-4)); right: 0; width: var(--zone-e-width); z-index: var(--z-drawer);
   max-height: calc(100vh - var(--zone-a-height) - var(--zone-d-height)); overflow-y: auto; }
 ul.plain { list-style: none; margin: 0; padding: 0; }
-/* DEC-02 neural field: behind all blocks of zone C; ≤ opacity.network.max (TX23 over-network contrast) */
-.neural-field { position: absolute; inset: 0; width: 100%; height: 100%; z-index: var(--depth-ambient); pointer-events: none; }
-.neural-field .nf-all { opacity: var(--opacity-network-max); }
-.neural-field .nf-lines path { stroke: var(--col-brand-core); stroke-width: var(--border-width-base); fill: none;
-  opacity: calc(var(--opacity-network-line) / var(--opacity-network-max)); }
-.neural-field .nf-nodes circle { fill: var(--col-brand-core); }
-.neural-field .nf-pulse { stroke: var(--col-brand-core); stroke-width: var(--border-width-emphasis); fill: none; opacity: 0;
+/* ---- ambient environment (architecture v2.0.3: DEC-02, DEC-04…DEC-08; U11–U12) -------------------------------------
+   Decoration only, beneath every block of Zone C. One scene at two budgets: 0.11 under text-bearing ground, 0.20 on reserve
+   ground (occupancy masks). Position and size from the stage anchor; light from the emblem; one bit of focus (MOT19). */
+:root {
+  --amb-ring-width: 1.5px;
+  /* runtime values written by the ambient field from the stage anchor; these are the pre-measurement defaults */
+  --amb-cx: 84%;
+  --amb-cy: 50%;
+  --light-dx: -8px;
+  --light-dy: 4px;
+  --comp-tangent: 68%;
+  --amb-drift: calc(var(--decor-drift-px) * 1px);
+  --amb-vignette-col: color-mix(in srgb, var(--col-surface-void) calc(var(--decor-vignette-alpha) * 100%), transparent);
+  --amb-shadow-col: color-mix(in srgb, var(--col-surface-void) calc(var(--light-shadow-alpha) * 100%), transparent);
+}
+.neural-field { position: absolute; inset: 0; z-index: var(--depth-ambient); pointer-events: none; }
+.amb-vignette { position: absolute; inset: 0; z-index: var(--depth-ambient); pointer-events: none;
+  background: radial-gradient(circle at var(--amb-cx) var(--amb-cy), transparent 0, transparent calc(var(--decor-vignette-clear) * 100%), var(--amb-vignette-col) 100%); }
+.ambient line, .ambient path, .ambient circle { vector-effect: non-scaling-stroke; }
+.amb-text { opacity: var(--decor-alpha-text); }
+.amb-reserve, .amb-light { transition: opacity var(--motion-decor-yield) var(--ease-settle, ease); }
+.amb-reserve { opacity: var(--decor-alpha-reserve); }
+.amb-axes line { stroke: var(--col-brand-core); stroke-width: var(--border-width-base); opacity: var(--decor-axis-alpha); shape-rendering: crispEdges; }
+.amb-lines path { stroke: var(--col-brand-core); stroke-width: var(--border-width-base); fill: none; opacity: 0.8; }
+.amb-nodes circle { fill: var(--col-brand-core); }
+.amb-pulse { stroke: var(--col-brand-core); stroke-width: var(--border-width-emphasis); fill: none; opacity: 0;
   animation: nf-pulse var(--motion-network-pulse) ease-in-out infinite; }
+.amb-rings circle, .amb-rings path { stroke: var(--col-brand-core); stroke-width: var(--amb-ring-width); fill: none; }
+.amb-rings path { opacity: 0.7; }
+.amb-light-0 { stop-color: var(--col-brand-core); stop-opacity: var(--decor-light-alpha); }
+.amb-light-1 { stop-color: var(--col-brand-core); stop-opacity: 0; }
+.amb-drift { animation: amb-drift var(--motion-ambient-drift) linear infinite; }
+.amb-emblem, .amb-light-breath { animation: amb-breath var(--motion-brand-breath) ease-in-out infinite; }
+@keyframes amb-drift { 0%, 100% { transform: translate(0, 0); } 25% { transform: translate(var(--amb-drift), 0); }
+  50% { transform: translate(var(--amb-drift), var(--amb-drift)); } 75% { transform: translate(0, var(--amb-drift)); } }
+@keyframes amb-breath { 0%, 100% { opacity: 0.72; } 50% { opacity: 1; } }
+/* R11 / MOT19: one bit — a focus scope is active — lowers the environment; nothing else of focus reaches it */
+.zone-c:has([data-focus-scope="active"]) .amb-reserve { opacity: var(--decor-alpha-damped); }
+.zone-c:has([data-focus-scope="active"]) .amb-light { opacity: var(--decor-light-damped); }
+.zone-c:has([data-focus-scope="active"]) .amb-emblem, .zone-c:has([data-focus-scope="active"]) .amb-light-breath { animation-play-state: paused; }
+/* governor (05.6.3) */
+.zone-c[data-ambient="suspended"] .ambient * { animation-play-state: paused; }
+.zone-c[data-ambient="static"] .ambient * { animation: none; }
+/* light model (05.18): one source; shadows fall away from it, only onto decor ground */
+.panel, .layer, .metric-card, .topology svg { box-shadow: var(--light-dx) var(--light-dy) var(--light-shadow-blur) var(--light-shadow-spread) var(--amb-shadow-col); }
+/* opaque plot ground (K8, G3-15, U13): ambient can never read as a graph edge */
+.topology svg { background: var(--col-surface-void); }
 .nf-delay-1 { animation-delay: calc(var(--motion-network-pulse) / -6); } .nf-delay-2 { animation-delay: calc(var(--motion-network-pulse) / -3); }
 .nf-delay-3 { animation-delay: calc(var(--motion-network-pulse) / -2); } .nf-delay-4 { animation-delay: calc(var(--motion-network-pulse) / -1.5); }
 .nf-delay-5 { animation-delay: calc(var(--motion-network-pulse) / -1.2); }

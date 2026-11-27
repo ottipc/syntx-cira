@@ -107,11 +107,17 @@ describe("[TX27][T09][REQ-056] quarantine without stale data and reload", () => 
 
 describe("[T09][REQ-055] one session reference: tick change is synchronous across blocks", () => {
   it("[T09] stepping the tick masks every timed block immediately, then all show the new tick", async () => {
-    const r = await renderAt(`/exp/${EXP.baseline}/TEMPORAL_STATE_EXPLORER?tick=3`);
+    // IC-20 (ADR-0008): the tick-4 state response is held until the mask has been observed, so the assertion no longer
+    // races the mock server's response under load; every expectation of the test is unchanged.
+    const server = newServer();
+    let release: () => void = () => undefined;
+    server.hold.set(canon(`/experiments/${EXP.baseline}/states?tick=4`), new Promise<void>((x) => { release = x; }));
+    const r = await renderAt(`/exp/${EXP.baseline}/TEMPORAL_STATE_EXPLORER?tick=3`, server);
     const next = r.root.querySelector('[data-zone="D"] [data-term="ui.next_sweep"], [data-zone="D"] button[aria-label*="next" i]');
     await act(async () => { window.dispatchEvent(new KeyboardEvent("keydown", { key: "ArrowRight" })); });
     expect(new URL(window.location.href).searchParams.get("tick")).toBe("4");
     expect(workspace(r.root).querySelector('[data-state="LOADING"]'), "masked until verified").not.toBeNull();
+    release();
     await settle(r.root, r.client);
     const st = snapshot<J>(`/experiments/${EXP.baseline}/states?tick=4`);
     for (const v of st.values) {

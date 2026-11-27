@@ -286,7 +286,7 @@ def gen_tokens_css(tok: dict[str, Any]) -> str:
         L.append(f"  {cssvar('z.' + k)}: {v};")
     for k, v in tok["zone"].items():
         L.append(f"  {cssvar('zone.' + k)}: {v}px;")
-    for group, prefix, unit in (("component", "cmp", "px"), ("decor", "decor", ""), ("comp", "comp", ""), ("light", "light", "px"), ("depth", "depth", "")):
+    for group, prefix, unit in (("component", "cmp", "px"), ("decor", "decor", ""), ("comp", "comp", ""), ("light", "light", "px"), ("depth", "depth", ""), ("easing", "ease", "")):
         for k, v in tok.get(group, {}).items():
             L.append(f"  {cssvar(prefix + '.' + k)}: {v}{'' if k.endswith('alpha') else unit};")
     L.append("}")

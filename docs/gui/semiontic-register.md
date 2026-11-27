@@ -52,3 +52,8 @@
 | DEC-01 | brand mark | zone A, favicon | emblem image (circle with antlers) in brand.core glow | none — identity of the workspace only; never a state, value or rule |
 | DEC-02 | neural field | zone C background, behind all blocks | fixed node mesh in brand.core at ≤ opacity network.max, slow pulse (none under reduced motion) | none — never encodes data; generated from a fixed seed, independent of any projection |
 | DEC-03 | chain connector | view 01 layer chain | brand.core line with glow between consecutive fields | only the fixed order F01 → F07; couplings and the barrier keep their own signs (SEM-019, SEM-037) |
+| DEC-04 | emblem watermark | zone C, at the stage anchor (05.17) | high-resolution calyx raster + two vector rings (ratio 0.914) in brand.core, at decor.alpha.text under text-bearing ground and decor.alpha.reserve on reserve ground; breathes with motion.brand.breath | none — identity only; its position is a function of the stage, never of content |
+| DEC-05 | radial arcs | zone C, centred on the emblem | concentric arc pairs (ratio 0.914), static | none — never a gauge, never around a value |
+| DEC-06 | emblem axes | zone C, reserve ground only | three vertical lines at the ring centre and both outer-ring tangents, brand.core at decor.axis.alpha | none — compositional geometry derived from the emblem |
+| DEC-07 | vignette | zone C, centred on the anchor | radial darkening toward the edges (void), static | none |
+| DEC-08 | emblem light | zone C, inside the reserve column | radial brand.core glow (decor.light.alpha → 0 within decor.light.radius × R); breathes with DEC-04; dims while a focus scope is active | none — the single light source of the workspace; never changes with data |

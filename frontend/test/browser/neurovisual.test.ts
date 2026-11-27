@@ -56,3 +56,51 @@ describe("[V3T09][U10] depth order inside Zone C (05.5)", () => {
     expect(r.overlap).toBe(0);
   }, 60000);
 });
+
+const VIEWS_ALL = ["SYSTEM_FIELD_OVERVIEW", "TOPOLOGY_GRAPH", "TEMPORAL_STATE_EXPLORER", "OBSERVATION_INSPECTOR", "FORWARD_SWEEP_INSPECTOR",
+  "INVERSE_SWEEP_INSPECTOR", "STRUCTURAL_GAP_INSPECTOR", "ARCHITECTURAL_CLOSURE_INSPECTOR", "STRUCTURAL_METRICS", "EVENT_TIMELINE"];
+
+describe("[V2T04][V3T02][U11–U13] decoration stays beneath data and carries no statement", () => {
+  it.each(VIEWS_ALL.map((v) => [v]))("%s: decor is aria-hidden, without data-sem and pointer events; magenta probe never inside a panel or the plot", async (v) => {
+    const p = await open(env, view(v), { width: 1440, height: 900 });
+    const meta = await p.evaluate(() => { const a = document.querySelector("svg.ambient")!;
+      return { hidden: a.getAttribute("aria-hidden"), sem: a.querySelectorAll("[data-sem]").length, pe: getComputedStyle(a).pointerEvents }; });
+    expect(meta).toEqual({ hidden: "true", sem: 0, pe: "none" });
+    // V3T02: test-only override — decor in pure magenta at full strength; panels and the plot ground must stay free of it
+    await p.addStyleTag({ content: ":root { --col-brand-core: #FF00FF !important; } .amb-text, .amb-reserve, .amb-axes line, .amb-light { opacity: 1 !important; } .amb-vignette { display: none; }" });
+    await p.waitForTimeout(150);
+    const boxes = await p.evaluate(() => [...document.querySelectorAll(".zone-c .panel, .zone-c .metric-card, .zone-c .topology svg, .zone-c .cell")]
+      .map((e) => e.getBoundingClientRect()).filter((r) => r.width > 4 && r.height > 4).map((r) => ({ x: r.x + 2, y: r.y + 2, w: r.width - 4, h: r.height - 4 })));
+    const png = await p.screenshot({ animations: "disabled" });
+    await p.context().close();
+    const { PNG } = await import("pngjs"); const img = PNG.sync.read(png);
+    let hits = 0;
+    for (const b of boxes) for (let y = Math.max(0, Math.floor(b.y)); y < Math.min(img.height, b.y + b.h); y += 2) for (let x = Math.max(0, Math.floor(b.x)); x < Math.min(img.width, b.x + b.w); x += 2) {
+      const i = (y * img.width + x) * 4; const r = img.data[i]!, g = img.data[i + 1]!, bl = img.data[i + 2]!;
+      if (r > 120 && bl > 120 && g < 60) hits++; }
+    expect(hits, "magenta decor pixels inside panels, cells or the plot ground").toBe(0);
+  }, 90000);
+});
+
+describe("[G3-31][U11] violation-coloured text never sits on decor ground", () => {
+  it.each(VIEWS_ALL.map((v) => [v]))("%s: every text run in eval.violation lies inside an opaque block", async (v) => {
+    const p = await open(env, view(v), { width: 1440, height: 900 });
+    const bad = await p.evaluate(() => {
+      const probe = document.createElement("span"); probe.style.color = "var(--col-eval-violation)"; document.body.append(probe); const viol = getComputedStyle(probe).color; probe.remove();
+      const out: string[] = [];
+      const tw = document.createTreeWalker(document.querySelector(".zone-c-content")!, NodeFilter.SHOW_TEXT);
+      for (let n = tw.nextNode(); n; n = tw.nextNode()) {
+        const txt = n.nodeValue?.trim() ?? ""; const el = n.parentElement!;
+        // glyph marks (single characters, or registered sign glyphs hidden from assistive technology) are graphics: ≥ 3 : 1,
+        // which eval.violation keeps over decor at 0.11 (4.20 : 1, V3T01); the rule is about language text
+        if (txt.length < 2 || el.closest('[aria-hidden="true"]') || getComputedStyle(el).color !== viol) continue;
+        let a: Element | null = el, opaque = false;
+        while (a && !a.classList.contains("zone-c-content")) { const bg = getComputedStyle(a).backgroundColor; if (/^rgb\(/.test(bg)) { opaque = true; break; } a = a.parentElement; }
+        if (!opaque) out.push(txt.slice(0, 40));
+      }
+      return out;
+    });
+    await p.context().close();
+    expect(bad).toEqual([]);
+  }, 60000);
+});

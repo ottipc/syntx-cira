@@ -253,6 +253,10 @@ tokens:
     shadow.spread: -6
     shadow.alpha: 0.55
   presentation_ref_height: 1080
+  easing:
+    settle: cubic-bezier(0.2, 0.8, 0.2, 1)
+    exit: cubic-bezier(0.4, 0, 1, 1)
+    sine: ease-in-out
   # depth inside Zone C (05.5): one stacking context (isolation), L0 ambient … L9b quarantine
   depth:
     ambient: 0
@@ -294,6 +298,31 @@ decorative:
   where: view 01 layer chain
   form: brand.core line with glow between consecutive fields
   meaning: only the fixed order F01 → F07; couplings and the barrier keep their own signs (SEM-019, SEM-037)
+- id: DEC-04
+  name: emblem watermark
+  where: zone C, at the stage anchor (05.17)
+  form: high-resolution calyx raster + two vector rings (ratio 0.914) in brand.core, at decor.alpha.text under text-bearing ground and decor.alpha.reserve on reserve ground; breathes with motion.brand.breath
+  meaning: none — identity only; its position is a function of the stage, never of content
+- id: DEC-05
+  name: radial arcs
+  where: zone C, centred on the emblem
+  form: concentric arc pairs (ratio 0.914), static
+  meaning: none — never a gauge, never around a value
+- id: DEC-06
+  name: emblem axes
+  where: zone C, reserve ground only
+  form: three vertical lines at the ring centre and both outer-ring tangents, brand.core at decor.axis.alpha
+  meaning: none — compositional geometry derived from the emblem
+- id: DEC-07
+  name: vignette
+  where: zone C, centred on the anchor
+  form: radial darkening toward the edges (void), static
+  meaning: none
+- id: DEC-08
+  name: emblem light
+  where: zone C, inside the reserve column
+  form: radial brand.core glow (decor.light.alpha → 0 within decor.light.radius × R); breathes with DEC-04; dims while a focus scope is active
+  meaning: none — the single light source of the workspace; never changes with data
 signified_enums:
 - StateSpace
 - Applicability

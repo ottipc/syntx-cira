@@ -1,5 +1,5 @@
 import type { ComponentType, ReactNode } from "react";
-import { NeuralField } from "./NeuralField";
+import { AmbientField } from "./AmbientField";
 import { ep, useProjection } from "../access";
 import type { ExperimentsResponse } from "../access";
 import { useT } from "../language";
@@ -14,7 +14,7 @@ export function Workspace({ views, demo }: { views: Readonly<Record<ViewKey, Com
   return (
     <main className={`zone-c${session.mode === "presentation" ? " presentation-frame" : ""}`} data-zone="C"
       {...(session.mode === "presentation" ? { "data-sem": "SEM-036", "data-term": "mode.presentation.frame" } : {})}>
-      <NeuralField />
+      <AmbientField />
       <div className="zone-c-content">{session.experimentId === null ? <ExperimentSelect /> : <V />}</div>
       {demo}
     </main>
