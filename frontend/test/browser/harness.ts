@@ -42,8 +42,10 @@ export async function stop(e: Env): Promise<void> {
 export async function open(e: Env, path: string, viewport = { width: 1440, height: 900 }, reducedMotion: "reduce" | "no-preference" = "no-preference"): Promise<Page> {
   const ctx = await e.browser.newContext({ viewport, reducedMotion, deviceScaleFactor: 1, locale: "en-US", timezoneId: "UTC" });
   const page = await ctx.newPage();
+  const requests: string[] = [];
   await page.route("**/*", async (route) => {
     const u = new URL(route.request().url());
+    if (u.origin === API) requests.push(`${route.request().method()} ${u.pathname}${u.search}`);
     if (u.origin === e.base) return route.continue();
     if (u.origin === API) {
       if (route.request().method() !== "GET") { e.posts.push(u.pathname); return route.fulfill({ status: 405, body: "{}" }); }
@@ -57,10 +59,12 @@ export async function open(e: Env, path: string, viewport = { width: 1440, heigh
   const errors: string[] = [];
   page.on("console", (m) => { if (m.type() === "error") errors.push(m.text()); });
   page.on("pageerror", (err) => errors.push(String(err)));
-  (page as Page & { cira?: { errors: string[] } }).cira = { errors };
+  (page as Page & { cira?: { errors: string[]; requests: string[] } }).cira = { errors, requests };
   await page.goto(e.base + path, { waitUntil: "networkidle" });
   await page.evaluate(() => document.fonts.ready.then(() => undefined));
   await page.waitForFunction(() => document.querySelector('[data-state="LOADING"]') === null && document.querySelector('[data-zone="C"]') !== null);
   return page;
 }
 export const consoleErrors = (p: Page): string[] => (p as Page & { cira?: { errors: string[] } }).cira?.errors ?? [];
+/** API requests the page made (method, path and query), in order — for the request inventory (V3T03). */
+export const apiRequests = (p: Page): string[] => (p as Page & { cira?: { requests: string[] } }).cira?.requests ?? [];

@@ -33,3 +33,5 @@ Implementation Release DEP-V3-01 vom 2026-11-27). `main` bleibt auf `ac5073b`.
 | Einheit | Datum | Inhalt | Nachweis |
 |---|---|---|---|
 | U00 | 2026-11-27 | Branch ab `ac5073b`, Architektur v2.0.3 abgelegt, ADR-Rahmen, NEXT/SESSION_LOG | `make verify` grün (Ausgangslage) |
+| U01 | 2026-11-27 | Request- und Feld-Inventar je Sicht von `ac5073b` (`frontend/test/inventory/main-ac5073b.json`, geschrieben nur per `CIRA_WRITE_INVENTORY=1`, nie grün); Harness zeichnet API-Anfragen auf | V3T03/V2T01: 23 Tests grün |
+| U02 | 2026-11-27 | Inspektionsläufe außerhalb von `verify`: `npm run inspect` (132er-Matrix 11 Sichten × 3 Viewports × EN/DE × 2 Modi), `npm run inspect:perf` (Frame-Intervalle, Long Tasks); Selbsttest der Matrix | Matrix-Selbsttest grün; Probelauf Sicht 01: 12 PNG |
