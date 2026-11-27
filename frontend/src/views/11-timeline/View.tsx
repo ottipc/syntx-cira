@@ -3,7 +3,7 @@ import { ep, useProjection } from "../../access";
 import { useT } from "../../language";
 import { FocusScope, OriginBadge } from "../../semiontics";
 import { useSession } from "../../session";
-import { Guarded, ProvButton } from "../_common";
+import { Guarded, ProvButton, ViewFrame } from "../_common";
 import { DualTrackList } from "./DualTrackList";
 import { type EventsProjection, resolveResonance, resonanceVM } from "./model";
 
@@ -12,19 +12,18 @@ export function TimelineView() {
   const { session, setFocus } = useSession();
   const ev = useProjection<EventsProjection>(ep.events(session));
   return (
-    <section aria-labelledby="v11">
+    <ViewFrame id="v11" title="view.11" composition="plate" head={<>
+      {session.from !== null && session.to !== null ? <span className="mono-value">{t("ui.range", { a: session.from, b: session.to })}</span> : null}
+      {ev.data ? <><OriginBadge origin={ev.data.header.data_origin} /><ProvButton title="view.11" header={ev.data.header} raw={ev.data} /></> : null}</>}>
       <Guarded v={ev}>{(e) => (
         <div className="stack">
-          <div className="view-head"><h1 id="v11" className="view-title">{t("view.11")}</h1>
-            {session.from !== null && session.to !== null ? <span className="mono-value">{t("ui.range", { a: session.from, b: session.to })}</span> : null}
-            <OriginBadge origin={e.header.data_origin} /><ProvButton title="view.11" header={e.header} raw={e} /></div>
           <FocusScope focus={session.focus} vm={resonanceVM(e)} resolveResonance={resolveResonance} onFocus={setFocus}
             ids={resonanceVM(e).items.map((x) => x.id)}>
           <DualTrackList e={e} />
           </FocusScope>
         </div>
       )}</Guarded>
-    </section>
+    </ViewFrame>
   );
 }
 export default TimelineView;

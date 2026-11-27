@@ -503,3 +503,11 @@ tr[data-stage-commit] > td { animation: mot-stage-tick var(--motion-focus) var(-
 /* views 07–08 (U25, 06.07/06.08) */
 .subject-link { color: inherit; text-decoration: underline; text-decoration-color: var(--col-border-strong); text-underline-offset: var(--space-4); margin-right: var(--space-4); }
 .quadrants { gap: var(--space-24); }
+/* views 09–11 (U26, 06.09–06.11) */
+.scope-badge { color: var(--ink-2); }
+/* view 09: two card columns while the reserve fit holds */
+.zone-c[data-view="STRUCTURAL_METRICS"][data-fit="reserve"] .grid-3 { grid-template-columns: 1fr 1fr; }
+/* view 11: the active tick group carries a neutral band (same Q.tick as the Zone D ring, RES-08) */
+.timeline-ground tr[data-active-tick] > td { background-color: var(--col-surface-focus); }
+.timeline-ground tr[data-active-tick] > td:first-child { box-shadow: inset var(--border-width-emphasis) 0 0 var(--sign-focus); }
+.timeline-ground td.mono-value { white-space: nowrap; }

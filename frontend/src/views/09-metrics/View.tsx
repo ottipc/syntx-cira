@@ -3,7 +3,7 @@ import { ep, useProjection } from "../../access";
 import { useT } from "../../language";
 import { FocusScope, OriginBadge } from "../../semiontics";
 import { useSession } from "../../session";
-import { Guarded, ProvButton } from "../_common";
+import { Guarded, ProvButton, ViewFrame } from "../_common";
 import { AggregationBar } from "./AggregationBar";
 import { MetricBand } from "./MetricBand";
 import { bands, type ExperimentViewResponse, type MetricsProjection, resolveResonance, resonanceVM } from "./model";
@@ -15,9 +15,9 @@ export function MetricsView() {
   const x = useProjection<ExperimentViewResponse>(ep.experiment(session));
   const mt = useProjection<MetricsProjection>(ep.metrics(session));
   return (
-    <section aria-labelledby="v09">
-      <div className="view-head"><h1 id="v09" className="view-title">{t("view.09")}</h1>
-        <AggregationBar lastTick={x.data?.experiment.ticks.last ?? session.tick} /></div>
+    <ViewFrame id="v09" title="view.09" composition="reserve" head={<>
+      <AggregationBar lastTick={x.data?.experiment.ticks.last ?? session.tick} />
+      {(session.aggregation ?? "POOLED") !== "PER_TICK" ? <span className="chip scope-badge" data-term="guard.timeless">{t("guard.timeless")}</span> : null}</>}>
       <Guarded v={mt}>{(m) => (
         <div className="stack">
           <div className="row"><OriginBadge origin={m.report.data_origin} />
@@ -32,7 +32,7 @@ export function MetricsView() {
           <p className="secondary micro">{t("metric.closure_in_comparison")}</p>
         </div>
       )}</Guarded>
-    </section>
+    </ViewFrame>
   );
 }
 export default MetricsView;

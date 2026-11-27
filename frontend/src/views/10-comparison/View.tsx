@@ -3,7 +3,7 @@ import { ep, useProjection } from "../../access";
 import { useT } from "../../language";
 import { FocusScope } from "../../semiontics";
 import { useSession } from "../../session";
-import { Guarded, ProvButton } from "../_common";
+import { Guarded, ProvButton, ViewFrame } from "../_common";
 import { BucketBoard } from "./BucketBoard";
 import { ComparisonBanner } from "./ComparisonBanner";
 import { ComparisonSelector } from "./ComparisonSelector";
@@ -16,9 +16,9 @@ export function ComparisonView() {
   const list = useProjection<ComparisonsResponse>(ep.comparisons(session));
   const cmp = useProjection<ComparisonResponse>(session.comparisonId ? ep.comparison(session) : null);
   return (
-    <section aria-labelledby="v10">
-      <div className="view-head"><h1 id="v10" className="view-title">{t("view.10")}</h1>
-        <Guarded v={list}>{(l) => <ComparisonSelector list={l} />}</Guarded></div>
+    <ViewFrame id="v10" title="view.10" composition="reserve" head={<>
+      <Guarded v={list}>{(l) => <ComparisonSelector list={l} />}</Guarded>
+      <span className="chip scope-badge" data-term="guard.timeless">{t("guard.timeless")}</span></>}>
       {session.comparisonId === null ? <p className="secondary">{t("cmp.none")}</p> : (
         <Guarded v={cmp}>{(c) => (
           <div className="stack">
@@ -33,7 +33,7 @@ export function ComparisonView() {
             <ProvButton title="view.10" header={c.header} raw={c.comparison} />
           </div>
         )}</Guarded>)}
-    </section>
+    </ViewFrame>
   );
 }
 export default ComparisonView;

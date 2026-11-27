@@ -4,7 +4,7 @@
 import type { Page } from "playwright-core";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
 import { resonanceCases } from "../helpers/resonanceCases";
-import { EXP } from "../helpers/snapshots";
+import { CMP, EXP } from "../helpers/snapshots";
 import { type Env, open, start, stop } from "./harness";
 
 let env: Env;
@@ -448,5 +448,40 @@ describe("[V3T12][U23] composition fit and view 01 chain", () => {
     expect(r.fit).toBe("reserve");
     expect(r.composition).toBe("plate");
     expect(r.share).toBeGreaterThan(0.95);
+  }, 60000);
+});
+
+describe("[U26] views 09, 10, 11", () => {
+  it("11: the active tick group band and the Zone D ring share Q.tick; a tick change moves both", async () => {
+    const p = await open(env, view("EVENT_TIMELINE"), { width: 1440, height: 900 });
+    await p.waitForTimeout(250);
+    const read = () => p.evaluate(() => ({
+      ring: document.querySelector('.tick-btn[aria-current="true"]')?.getAttribute("data-tick"),
+      band: [...new Set([...document.querySelectorAll('[data-track="scenario"] tr[data-active-tick] td.mono-value')].map((td) => td.textContent))],
+      composition: document.querySelector(".zone-c-content > section")?.getAttribute("data-composition") }));
+    const a = await read();
+    await p.keyboard.press("ArrowLeft");
+    await p.waitForSelector('[data-state="READY"]');
+    await p.waitForTimeout(250);
+    const b = await read();
+    await p.context().close();
+    expect(a.composition).toBe("plate");
+    expect(a.ring).toBe("3");
+    expect(a.band).toEqual(["t = 3"]);
+    expect(b.ring).toBe("2");
+    expect(b.band).toEqual(["t = 2"]);
+  }, 60000);
+  it("09: two card columns at the reserve fit, timeless badge when pooled; 10: timeless badge, reserve", async () => {
+    const p = await open(env, view("STRUCTURAL_METRICS"), { width: 1920, height: 1080 });
+    await p.waitForTimeout(250);
+    const r = await p.evaluate(() => ({ cols: getComputedStyle(document.querySelector(".grid-3")!).gridTemplateColumns.split(" ").length,
+      badge: !!document.querySelector('.view-head [data-term="guard.timeless"]'), fit: document.querySelector<HTMLElement>(".zone-c")!.dataset.fit }));
+    await p.goto(p.url().replace("STRUCTURAL_METRICS", "SCENARIO_COMPARISON") + `&comparisonId=${encodeURIComponent(CMP)}`);
+    await p.waitForSelector("[data-bucket]");
+    const c = await p.evaluate(() => ({ badge: !!document.querySelector('.view-head [data-term="guard.timeless"]'),
+      composition: document.querySelector(".zone-c-content > section")?.getAttribute("data-composition") }));
+    await p.context().close();
+    expect(r).toEqual({ cols: 2, badge: true, fit: "reserve" });
+    expect(c).toEqual({ badge: true, composition: "reserve" });
   }, 60000);
 });
