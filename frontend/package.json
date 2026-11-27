@@ -3,7 +3,7 @@
   "private": true,
   "version": "1.0.2",
   "type": "module",
-  "description": "CIRA workspace (F07) \u2014 computation-free projection field",
+  "description": "CIRA workspace (F07) — computation-free projection field",
   "scripts": {
     "dev": "vite",
     "build": "vite build",

@@ -70,3 +70,8 @@
 - Befund U27: Präsentationsmodus skalierte bisher nichts (Tokens bei `:root` aufgelöst, G3-29/G3-37) — jetzt Gesetz je
   Token in der Präsentationsschale; Rundungsartefakt 34,9996 px durch aufgerundeten vh-Koeffizienten behoben.
 - `make verify` grün; CP6.
+
+## 2026-11-27 — GUI-Generation v2, U28–U30 (CP7)
+- U28: TX28 + 66 DE-Fälle (Befunde: Dokumentsprache, Leistenumbruch, kompakte Pille), TX29 auf 33 Baselines.
+- U29: V2T25 (Befund IC-23 Zeichenumrisse; Ansicht-03-Zeilen ohne `data-focus-id`), V2T22, V2T06-Stress.
+- U30: Vergleich Branch vs `main` (relativ), Wahrnehmungs-Kit, Review-Paket, Gate Phase 05.

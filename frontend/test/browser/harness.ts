@@ -17,21 +17,23 @@ const TYPES: Record<string, string> = { ".html": "text/html", ".js": "text/javas
   ".woff": "font/woff", ".svg": "image/svg+xml", ".json": "application/json" };
 export const CHROME = process.env.CIRA_CHROME ?? "/usr/bin/google-chrome";
 
-export interface Env { browser: Browser; base: string; server: Server; misses: string[]; blocked: string[]; posts: string[] }
+export interface Env { browser: Browser; base: string; server: Server; misses: string[]; blocked: string[]; posts: string[]; dist: string }
 
-export async function start(): Promise<Env> {
-  execFileSync("npx", ["vite", "build", "--outDir", dist, "--emptyOutDir", "--logLevel", "error"], { cwd: app, stdio: "pipe" });
+export async function start(opts: { appDir?: string } = {}): Promise<Env> {
+  // `appDir` builds another checkout of the frontend (V2T15/V2T23: `main` under the same conditions)
+  const src = opts.appDir ?? app, out = opts.appDir ? join(opts.appDir, "test-results", "browser-dist") : dist;
+  execFileSync("npx", ["vite", "build", "--outDir", out, "--emptyOutDir", "--logLevel", "error"], { cwd: src, stdio: "pipe" });
   const server = createServer((req, res) => {
     const p = decodeURIComponent((req.url ?? "/").split("?")[0]!);
-    let f = join(dist, p);
-    if (!f.startsWith(dist) || !existsSync(f) || statSync(f).isDirectory()) f = join(dist, "index.html");
+    let f = join(out, p);
+    if (!f.startsWith(out) || !existsSync(f) || statSync(f).isDirectory()) f = join(out, "index.html");
     res.writeHead(200, { "Content-Type": TYPES[extname(f)] ?? "application/octet-stream" });
     createReadStream(f).pipe(res);
   });
   await new Promise<void>((r) => server.listen(0, "127.0.0.1", r));
   const base = `http://127.0.0.1:${(server.address() as AddressInfo).port}`;
   const browser = await chromium.launch({ executablePath: CHROME, args: ["--no-sandbox", "--font-render-hinting=none", "--disable-lcd-text"] });
-  return { browser, base, server, misses: [], blocked: [], posts: [] };
+  return { browser, base, server, misses: [], blocked: [], posts: [], dist: out };
 }
 
 export async function stop(e: Env): Promise<void> {
