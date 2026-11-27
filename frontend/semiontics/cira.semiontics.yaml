@@ -253,6 +253,14 @@ tokens:
     shadow.spread: -6
     shadow.alpha: 0.55
   presentation_ref_height: 1080
+  # depth inside Zone C (05.5): one stacking context (isolation), L0 ambient … L9b quarantine
+  depth:
+    ambient: 0
+    content: 1
+    relational: 2
+    focus: 3
+    context: 4
+    quarantine: 6
   # decor budgets checked against every text token allowed on decor ground (eval.violation is excluded by lint, G3-31)
   decor_rules:
     ground: surface.field
@@ -1132,6 +1140,19 @@ sems:
   primitive: RelationEdgePath
   term: cpl
   exclusion: coupling status, separate from topology relation type (GK-04, ADR-0005)
+- id: SEM-038
+  name: Linked to selection
+  channels:
+    shape: outline-offset-solid
+    color: ink.secondary
+    glyph: null
+    pattern: null
+  binds:
+  - flag: Focus.resonant
+  views: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+  primitive: ResonanceMark
+  term: focus.linked
+  exclusion: never a similarity, never a value agreement; only documented relations of the focused item (04.4)
 unsigned_values:
   ContentAvailability:
   - AVAILABLE

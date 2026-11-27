@@ -20,5 +20,7 @@ export { ContinuityBand } from "./primitives/ContinuityBand";
 export { BarrierLine } from "./primitives/BarrierLine";
 export { RecoveryGateLine } from "./primitives/RecoveryGateLine";
 export { FocusRing } from "./primitives/FocusRing";
+export { ResonanceMark } from "./primitives/ResonanceMark";
+export { ABSENCE, EXEMPT } from "./primitives/_util";
 export { DeviationSeam } from "./primitives/DeviationSeam";
 export { Quarantine } from "./primitives/Quarantine";

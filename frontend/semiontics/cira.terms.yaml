@@ -2267,6 +2267,16 @@ terms:
   en: Focus
   de: Fokus
   meaning: ''
+- key: focus.linked
+  internal: SEM-038
+  en: Linked to selection
+  de: Mit Auswahl verknüpft
+  meaning: 'documented relation of the focused item (architecture v2.0.3, 04.4)'
+- key: focus.absent
+  internal: FOCUS_ABSENT
+  en: Selected item is not shown in this view
+  de: Ausgewähltes Element ist in dieser Ansicht nicht enthalten
+  meaning: 'Q.focus set but not present in the view (04.2)'
 - key: delta
   internal: SEM-023
   en: Change

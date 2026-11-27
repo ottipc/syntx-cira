@@ -37,7 +37,8 @@ export type SemId =
   | "SEM-034"
   | "SEM-035"
   | "SEM-036"
-  | "SEM-037";
+  | "SEM-037"
+  | "SEM-038";
 
 export interface SemEntry { id: SemId; name: string; shape: string; color: string; glyph: string | null;
   pattern: string | null; views: readonly number[]; primitive: string; term: string; exclusion: string }
@@ -79,6 +80,7 @@ export const SEM: Readonly<Record<SemId, SemEntry>> = {
   "SEM-035": { id: "SEM-035", name: "Deviation seam", shape: "seam", color: "eval.violation", glyph: "┆", pattern: null, views: [2, 3], primitive: "DeviationSeam", term: "dev.mismatch", exclusion: "never computed on the client" },
   "SEM-036": { id: "SEM-036", name: "Presentation frame", shape: "frame", color: "border.strong", glyph: null, pattern: null, views: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], primitive: "PresentationFrame", term: "mode.presentation", exclusion: "no change of meaning" },
   "SEM-037": { id: "SEM-037", name: "Coupling line", shape: "line", color: "space.reconstructed", glyph: null, pattern: null, views: [2, 5, 6, 8], primitive: "RelationEdgePath", term: "cpl", exclusion: "coupling status, separate from topology relation type (GK-04, ADR-0005)" },
+  "SEM-038": { id: "SEM-038", name: "Linked to selection", shape: "outline-offset-solid", color: "ink.secondary", glyph: null, pattern: null, views: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], primitive: "ResonanceMark", term: "focus.linked", exclusion: "never a similarity, never a value agreement; only documented relations of the focused item (04.4)" },
 };
 
 export const SEM_StateSpace = {
@@ -202,6 +204,7 @@ export const SEM_ViewStatus = {
 
 export const SEM_FLAG = {
   "AttributeMembership.delta": "SEM-035",
+  "Focus.resonant": "SEM-038",
   "Node.outside_theta": "SEM-031",
   "ProjectedValue.stale": "SEM-005",
   "Session.demo_step": "SEM-033",
@@ -236,6 +239,7 @@ export const SEM_BY_PRIMITIVE: Readonly<Record<string, readonly SemId[]>> = {
   "RationalMetric": ["SEM-021"],
   "RecoveryGateLine": ["SEM-020"],
   "RelationEdgePath": ["SEM-037"],
+  "ResonanceMark": ["SEM-038"],
   "RuleDiamond": ["SEM-010", "SEM-011", "SEM-012"],
   "SpaceCell": ["SEM-004", "SEM-005", "SEM-006", "SEM-007", "SEM-008", "SEM-009", "SEM-031"],
   "SpaceHeader": ["SEM-001", "SEM-002", "SEM-003"],

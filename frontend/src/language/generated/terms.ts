@@ -442,6 +442,8 @@ export type TermKey =
   | "view_status.ready"
   | "view_status.unavailable"
   | "focus"
+  | "focus.linked"
+  | "focus.absent"
   | "delta"
   | "exec"
   | "epi"
@@ -908,6 +910,8 @@ export const TERMS: Readonly<Record<TermKey, TermEntry>> = {
   "view_status.ready": { en: "Ready", de: "Bereit", params: [] },
   "view_status.unavailable": { en: "Data could not be verified", de: "Daten nicht verifiziert", params: [] },
   "focus": { en: "Focus", de: "Fokus", params: [] },
+  "focus.linked": { en: "Linked to selection", de: "Mit Auswahl verknüpft", params: [] },
+  "focus.absent": { en: "Selected item is not shown in this view", de: "Ausgewähltes Element ist in dieser Ansicht nicht enthalten", params: [] },
   "delta": { en: "Change", de: "Änderung", params: [] },
   "exec": { en: "Execution status", de: "Ausführungsstatus", params: [] },
   "epi": { en: "Knowledge class", de: "Wissensklasse", params: [] },

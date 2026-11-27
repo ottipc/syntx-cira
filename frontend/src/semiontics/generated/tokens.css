@@ -191,6 +191,12 @@
   --light-shadow-blur: 24px;
   --light-shadow-spread: -6px;
   --light-shadow-alpha: 0.55;
+  --depth-ambient: 0;
+  --depth-content: 1;
+  --depth-relational: 2;
+  --depth-focus: 3;
+  --depth-context: 4;
+  --depth-quarantine: 6;
 }
 html[data-profile='projector'] { --col-surface-void: #000000; --col-surface-field: #04070A; --col-surface-panel: #111A22; --col-border-hairline: #2A3A4B; --col-border-strong: #546D86; --col-attn-tint-actual: #08161E; --col-attn-tint-observed: #18140A; --col-attn-tint-reconstructed: #121020; --pattern-open-hatch-opacity: 0.18; --pattern-outside-crosshatch-opacity: 0.16; }
 [data-mode='presentation'] { --scale: 1.25; }

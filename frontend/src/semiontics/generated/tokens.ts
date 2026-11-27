@@ -7,3 +7,4 @@ export const COMPONENT = {"attention_axis_focused": 2, "attention_axis_gutter": 
 export const DECOR = {"alpha_damped": 0.14, "alpha_reserve": 0.2, "alpha_text": 0.11, "axis_alpha": 0.06, "drift_px": 8, "light_alpha": 0.05, "light_damped": 0.6, "light_radius": 1.25, "occupancy_pad": 14, "vignette_alpha": 0.4, "vignette_clear": 0.28} as const;
 export const COMP = {"anchor_cy": 0.5, "gutter": 24, "min_info": 880, "reserve": 0.32, "ring_h": 0.3, "ring_k": 0.4, "ring_max": 320, "ring_min": 84, "stage_short": 880} as const;
 export const LIGHT = {"shadow_alpha": 0.55, "shadow_bias": 4, "shadow_blur": 24, "shadow_length": 8, "shadow_spread": -6} as const;
+export const DEPTH = {"ambient": 0, "content": 1, "context": 4, "focus": 3, "quarantine": 6, "relational": 2} as const;

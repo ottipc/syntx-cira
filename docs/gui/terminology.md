@@ -445,6 +445,8 @@
 | `view_status.ready` | READY | Ready | Bereit |  |
 | `view_status.unavailable` | VIEW_DATA_UNAVAILABLE | Data could not be verified | Daten nicht verifiziert |  |
 | `focus` | SEM-034 | Focus | Fokus |  |
+| `focus.linked` | SEM-038 | Linked to selection | Mit Auswahl verknüpft | documented relation of the focused item (architecture v2.0.3, 04.4) |
+| `focus.absent` | FOCUS_ABSENT | Selected item is not shown in this view | Ausgewähltes Element ist in dieser Ansicht nicht enthalten | Q.focus set but not present in the view (04.2) |
 | `delta` | SEM-023 | Change | Änderung |  |
 | `exec` | SEM-032 | Execution status | Ausführungsstatus |  |
 | `epi` | SEM-018 | Knowledge class | Wissensklasse |  |

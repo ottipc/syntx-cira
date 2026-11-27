@@ -41,6 +41,7 @@
 | SEM-035 | Deviation seam | seam | `eval.violation` | ┆ | — | AttributeMembership.delta | 2, 3 | DeviationSeam | `dev.mismatch` | never computed on the client |
 | SEM-036 | Presentation frame | frame | `border.strong` | — | — | Session.mode_presentation | 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 | PresentationFrame | `mode.presentation` | no change of meaning |
 | SEM-037 | Coupling line | line | `space.reconstructed` | — | — | CouplingStatus=EFFECTIVE/POSSIBLE/UNKNOWN_OPEN | 2, 5, 6, 8 | RelationEdgePath | `cpl` | coupling status, separate from topology relation type (GK-04, ADR-0005) |
+| SEM-038 | Linked to selection | outline-offset-solid | `ink.secondary` | — | — | Focus.resonant | 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 | ResonanceMark | `focus.linked` | never a similarity, never a value agreement; only documented relations of the focused item (04.4) |
 
 ## Decoration (no sign)
 
