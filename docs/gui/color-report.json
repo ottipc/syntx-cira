@@ -353,5 +353,55 @@
    "surface.field + brand.core @ 0.08",
    4.54
   ]
- ]
+ ],
+ "focus": {
+  "ink.primary": 14.41,
+  "ink.secondary": 7.02,
+  "ink.muted": 5.3,
+  "space.actual": 7.94,
+  "space.observed": 7.92,
+  "space.reconstructed": 6.25,
+  "eval.coherent": 9.14,
+  "eval.partial": 11.28,
+  "eval.violation": 4.63
+ },
+ "transitions": {
+  "attenuate.primary": 8.0455,
+  "attenuate.secondary": 6.0746,
+  "attenuate.muted": 5.6766,
+  "attenuate.violation": 4.9611,
+  "attenuate.tint.actual": 4.9221,
+  "attenuate.tint.secondary": 5.5629,
+  "focus.violation": 4.6318,
+  "focus.muted": 5.2998
+ },
+ "decor": {
+  "ink.primary @ alpha.text": 13.06,
+  "ink.secondary @ alpha.text": 6.36,
+  "ink.muted @ alpha.text": 4.8,
+  "space.actual @ alpha.text": 7.19,
+  "space.observed @ alpha.text": 7.17,
+  "space.reconstructed @ alpha.text": 5.66,
+  "eval.coherent @ alpha.text": 8.28,
+  "eval.partial @ alpha.text": 10.22,
+  "ink.primary @ axis.alpha": 14.75,
+  "ink.secondary @ axis.alpha": 7.18,
+  "ink.muted @ axis.alpha": 5.42,
+  "space.actual @ axis.alpha": 8.13,
+  "space.observed @ axis.alpha": 8.11,
+  "space.reconstructed @ axis.alpha": 6.4,
+  "eval.coherent @ axis.alpha": 9.35,
+  "eval.partial @ axis.alpha": 11.55,
+  "eval.violation @ alpha.text (excluded)": 4.2
+ },
+ "projector": {
+  "edge": {
+   "surface.void": 3.909,
+   "surface.field": 3.759,
+   "surface.panel": 3.272,
+   "surface.focus": 3.165,
+   "surface.elevated": 3.068
+  },
+  "text_min": 4.79
+ }
 }

@@ -20,6 +20,11 @@
   --col-eval-violation: #F43F5E;
   --col-eval-partial: #A3E635;
   --col-brand-core: #BFEFF4;
+  --col-surface-focus: #141D27;
+  --col-attn-tint-actual: #0B1922;
+  --col-attn-tint-observed: #1A160E;
+  --col-attn-tint-reconstructed: #151424;
+  --col-attn-border-hairline: #131C24;
   --col-open-epistemic: var(--col-ink-secondary);
   --col-open-absent: var(--col-ink-muted);
   --font-sans: 'IBM Plex Sans', sans-serif;
@@ -92,6 +97,13 @@
   --motion-drawer: 160ms;
   --motion-stage: 200ms;
   --motion-network-pulse: 9000ms;
+  --motion-hover: 80ms;
+  --motion-focus: 120ms;
+  --motion-scrub: 140ms;
+  --motion-carry: 160ms;
+  --motion-brand-breath: 14000ms;
+  --motion-ambient-drift: 36000ms;
+  --motion-decor-yield: 480ms;
   --opacity-loading: 0.35;
   --opacity-network-line: 0.06;
   --opacity-network-max: 0.08;
@@ -141,6 +153,45 @@
   --zone-e-dock_from: 1600px;
   --zone-min_viewport_w: 1280px;
   --zone-min_viewport_h: 720px;
+  --cmp-focus-reticle-size: 6px;
+  --cmp-focus-reticle-gap: 4px;
+  --cmp-focus-border-width: 2px;
+  --cmp-resonance-width: 1.5px;
+  --cmp-resonance-offset: 3px;
+  --cmp-relation-linked-extra: 0.5px;
+  --cmp-attention-axis-focused: 2px;
+  --cmp-attention-axis-resonant: 1px;
+  --cmp-attention-axis-gutter: 8px;
+  --cmp-bar-track-height: 4px;
+  --cmp-bar-track-max: 256px;
+  --cmp-metric-hero-size: 28px;
+  --cmp-metric-hero-line: 36px;
+  --decor-alpha-text: 0.11;
+  --decor-alpha-reserve: 0.2;
+  --decor-alpha-damped: 0.14;
+  --decor-axis-alpha: 0.06;
+  --decor-light-alpha: 0.05;
+  --decor-light-radius: 1.25;
+  --decor-light-damped: 0.6;
+  --decor-occupancy-pad: 14;
+  --decor-drift-px: 8;
+  --decor-vignette-alpha: 0.4;
+  --decor-vignette-clear: 0.28;
+  --comp-reserve: 0.32;
+  --comp-ring-k: 0.4;
+  --comp-ring-h: 0.3;
+  --comp-anchor-cy: 0.5;
+  --comp-ring-min: 84;
+  --comp-ring-max: 320;
+  --comp-min-info: 880;
+  --comp-stage-short: 880;
+  --comp-gutter: 24;
+  --light-shadow-length: 8px;
+  --light-shadow-bias: 4px;
+  --light-shadow-blur: 24px;
+  --light-shadow-spread: -6px;
+  --light-shadow-alpha: 0.55;
 }
+html[data-profile='projector'] { --col-surface-void: #000000; --col-surface-field: #04070A; --col-surface-panel: #111A22; --col-border-hairline: #2A3A4B; --col-border-strong: #546D86; --col-attn-tint-actual: #08161E; --col-attn-tint-observed: #18140A; --col-attn-tint-reconstructed: #121020; --pattern-open-hatch-opacity: 0.18; --pattern-outside-crosshatch-opacity: 0.16; }
 [data-mode='presentation'] { --scale: 1.25; }
-@media (prefers-reduced-motion: reduce) { :root { --motion-tick: 0ms; --motion-loading: 0ms; --motion-quarantine: 0ms; --motion-drawer: 0ms; --motion-stage: 0ms; --motion-network-pulse: 0ms; } }
+@media (prefers-reduced-motion: reduce) { :root { --motion-tick: 0ms; --motion-loading: 0ms; --motion-quarantine: 0ms; --motion-drawer: 0ms; --motion-stage: 0ms; --motion-network-pulse: 0ms; --motion-hover: 0ms; --motion-focus: 0ms; --motion-scrub: 0ms; --motion-carry: 0ms; --motion-brand-breath: 0ms; --motion-ambient-drift: 0ms; --motion-decor-yield: 0ms; } }

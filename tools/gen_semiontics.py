@@ -115,8 +115,75 @@ def ciede2000(c1: str, c2: str) -> float:
     return math.sqrt((dLp / Sl) ** 2 + (dCp / Sc) ** 2 + (dHp / Sh) ** 2 + Rt * (dCp / Sc) * (dHp / Sh))
 
 
+def _mix(a: str, b: str, t: float) -> str:
+    """sRGB 8-bit mix t·a + (1−t)·b, rounded half to even (declared rounding of derived tokens)."""
+    A, B = _rgb(a), _rgb(b)
+    return "#" + "".join(f"{round((A[i] * t + B[i] * (1 - t)) * 255):02X}" for i in range(3))
+
+
+def resolve(tok: dict[str, Any]) -> dict[str, str]:
+    """Colour table including derived tokens (v1.1.0 `derive`, architecture v2.0.3 05.1 T1)."""
+    col = dict(tok["color"])
+    for k, d in tok.get("derive", {}).items():
+        if d["op"] == "mix":
+            col[k] = _mix(col[d["a"]], col[d["b"]], float(d["t"]))
+        elif d["op"] == "lightest_on_path":
+            best = col[d["from"]]
+            for i in range(1001):
+                c = _mix(col[d["to"]], col[d["from"]], i / 1000)
+                if all(contrast(col[f], c) >= m for f, m in d["keep"].items()):
+                    best = c
+            col[k] = best
+        else:
+            raise SystemExit(f"gen_semiontics: unknown derive op {d['op']}")
+    return col
+
+
+def neuro_report(tok: dict[str, Any], col: dict[str, str]) -> tuple[dict[str, Any], list[str]]:
+    """v1.1.0 checks: focus/attenuated grounds, transition path minima, decor budgets, graphic inks, projector profile."""
+    rules, out, errs = tok["contrast_rules"], {}, []
+    if "derive" not in tok:
+        return out, errs
+    tmin, gmin = rules["text_min"], rules["graphic_min"]
+    texts = rules["text_tokens"] + rules["text_tokens_field_panel"]
+    out["focus"] = {t: round(contrast(col[t], col["surface.focus"]), 2) for t in texts}
+    out["transitions"] = {}
+    for name, (f0, f1, b0, b1) in tok.get("transitions", {}).items():
+        m = min(contrast(_mix(col[f1], col[f0], i / 200), _mix(col[b1], col[b0], i / 200)) for i in range(201))
+        out["transitions"][name] = round(m, 4)
+        if m < tmin:
+            errs.append(f"V3T01: transition {name} minimum {m:.2f} < {tmin}")
+    dr, dec = tok["decor_rules"], tok["decor"]
+    out["decor"] = {}
+    for key in ("alpha.text", "axis.alpha"):
+        g = _mix(col["brand.core"], col[dr["ground"]], float(dec[key]))
+        for t in dr["text_on_decor"]:
+            c = contrast(col[t], g)
+            out["decor"][f"{t} @ {key}"] = round(c, 2)
+            if c < tmin:
+                errs.append(f"V3T01: {t} on decor ({key}) = {c:.2f}")
+    for t in dr["excluded_from_decor_ground"]:
+        out["decor"][f"{t} @ alpha.text (excluded)"] = round(contrast(col[t], _mix(col["brand.core"], col[dr["ground"]], float(dec["alpha.text"]))), 2)
+    for t in list(out["focus"]):
+        if out["focus"][t] < tmin:
+            errs.append(f"V3T01: {t} on surface.focus = {out['focus'][t]}")
+    surfaces = ["surface.void", "surface.field", "surface.panel", "surface.focus", "surface.elevated"]
+    for g_ in dr["graphic_inks"]:
+        for s_ in surfaces:
+            if contrast(col[g_], col[s_]) < gmin:
+                errs.append(f"V3T01: graphic {g_} on {s_} < {gmin}")
+    p = {**col, **{k: v for k, v in tok.get("profile_projector", {}).items() if isinstance(v, str) and v.startswith("#")}}
+    out["projector"] = {"edge": {s_: round(contrast(p["border.strong"], p[s_]), 3) for s_ in surfaces}, "text_min": round(min(
+        contrast(p[t], p[s_]) for t in texts for s_ in ("surface.void", "surface.field", "surface.panel")), 2)}
+    if min(out["projector"]["edge"].values()) < dr["projector_edge_min"]:
+        errs.append("V3T01: projector edge below the graphic minimum")
+    if out["projector"]["text_min"] < tmin:
+        errs.append("V3T01: projector text below 4.5")
+    return out, errs
+
+
 def color_report(tok: dict[str, Any]) -> tuple[dict[str, Any], list[str]]:
-    col, rules = tok["color"], tok["contrast_rules"]
+    col, rules = resolve(tok), tok["contrast_rules"]
     out: dict[str, Any] = {"text": [], "tints": [], "pairs": []}
     errs = []
     for s in rules["text_surfaces"]:
@@ -161,7 +228,9 @@ def color_report(tok: dict[str, Any]) -> tuple[dict[str, Any], list[str]]:
         out["text"].append([t, "surface.field (graphic)", c])
         if c < rules["graphic_min"]:
             errs.append(f"TX23: graphic {t} = {c} < {rules['graphic_min']}")
-    return out, errs
+    nrep, nerr = neuro_report(tok, col)
+    out.update(nrep)
+    return out, errs + nerr
 
 
 # ---- generation --------------------------------------------------------------------------------------------------
@@ -171,7 +240,7 @@ def cssvar(name: str) -> str:
 
 def gen_tokens_css(tok: dict[str, Any]) -> str:
     L = [HEADER, ":root {"]
-    for k, v in tok["color"].items():
+    for k, v in resolve(tok).items():
         L.append(f"  {cssvar('col.' + k)}: {v};")
     for k, v in tok["alias"].items():
         L.append(f"  {cssvar('col.' + k)}: var({cssvar('col.' + v)});")
@@ -214,7 +283,13 @@ def gen_tokens_css(tok: dict[str, Any]) -> str:
         L.append(f"  {cssvar('z.' + k)}: {v};")
     for k, v in tok["zone"].items():
         L.append(f"  {cssvar('zone.' + k)}: {v}px;")
+    for group, prefix, unit in (("component", "cmp", "px"), ("decor", "decor", ""), ("comp", "comp", ""), ("light", "light", "px")):
+        for k, v in tok.get(group, {}).items():
+            L.append(f"  {cssvar(prefix + '.' + k)}: {v}{'' if k.endswith('alpha') else unit};")
     L.append("}")
+    if tok.get("profile_projector"):
+        L.append("html[data-profile='projector'] { " + " ".join(
+            f"{cssvar('col.' + k) if not k.startswith('pattern.') else cssvar(k)}: {v};" for k, v in tok["profile_projector"].items()) + " }")
     L.append("[data-mode='presentation'] { --scale: %s; }" % tok["presentation_scale"])
     L.append("@media (prefers-reduced-motion: reduce) { :root { " +
              " ".join(f"{cssvar('motion.' + k)}: 0ms;" for k in tok["motion"]) + " } }")
@@ -402,7 +477,7 @@ def generate() -> dict[Path, str]:
         ROOT / "frontend/src/semiontics/generated/sem.ts": gen_sem_ts(doc, enums),
         ROOT / "frontend/src/semiontics/generated/tokens.ts": HEADER + "\n".join(
             f"export const {g.upper()} = {json.dumps({k.replace('.', '_'): v for k, v in doc['tokens'][g].items()}, sort_keys=True)} as const;"
-            for g in ("graph", "zone", "z", "motion")) + "\n",
+            for g in ("graph", "zone", "z", "motion", "component", "decor", "comp", "light") if g in doc["tokens"]) + "\n",
         ROOT / "frontend/src/language/generated/terms.ts": gen_terms_ts(terms, enums, classified),
         ROOT / "frontend/test/generated/sem-cases.json": json.dumps(cases, ensure_ascii=False, indent=1) + "\n",
         ROOT / "docs/gui/semiontic-register.md": docs_register(doc),
