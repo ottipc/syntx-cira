@@ -5,7 +5,7 @@ import { AuthorizeDialog } from "../../control/AuthorizeDialog";
 import { useT } from "../../language";
 import { ConflictBracket, FocusHandle, FocusScope, GapMark, IdText, OriginBadge, RecoveryGateLine, RuleDiamond, SpaceCell } from "../../semiontics";
 import { useSession } from "../../session";
-import { FocusBox, FocusIdCell, FocusTr, Guarded, ProvButton } from "../_common";
+import { FocusBox, FocusIdCell, FocusTr, Guarded, ProvButton, ViewFrame } from "../_common";
 import { DECISION, evaluations, type GovernanceProjection, REASON, RESULT, resolveResonance, resonanceVM, type ResultsProjection } from "./model";
 import { Quadrant, QuadrantGrid } from "./QuadrantGrid";
 
@@ -16,8 +16,7 @@ export function ClosureView() {
   const rs = useProjection<ResultsProjection>(ep.results(session, "merged"));
   const gv = useProjection<GovernanceProjection>(ep.governance(session, "R"));
   return (
-    <section aria-labelledby="v08">
-      <div className="view-head"><h1 id="v08" className="view-title">{t("view.08")}</h1><span className="mono-value">{t("ui.tick", { t: session.tick })}</span></div>
+    <ViewFrame id="v08" title="view.08" composition="reserve" head={<span className="mono-value">{t("ui.tick", { t: session.tick })}</span>}>
       <Guarded v={rs}>{(r) => {
         const c = r.reconstruction.availability === "AVAILABLE" ? r.reconstruction.content : null;
         const origin = r.reconstruction.origin ?? "SYNTHETIC";
@@ -26,12 +25,10 @@ export function ClosureView() {
             vm={resonanceVM(r.proposals, c?.output.gaps ?? [], c?.merge.conflicts ?? [])}
             ids={[...r.proposals.map((p) => p.proposal_id), ...(c?.output.gaps ?? []).map((g) => g.gap_id), ...(c?.merge.conflicts ?? []).map((x) => x.attribute_ref)]}>
           <QuadrantGrid>
-            <Quadrant term="ui.quadrant.closure">
-              <Guarded v={gv}>{(g) => (
-                <table className="data"><tbody>{evaluations(g).map((e) => (
-                  <tr key={e.rule_ref} data-rule={e.rule_ref}><td><IdText>{e.rule_ref}</IdText></td>
-                    <td><RuleDiamond sem={RESULT[e.result].sem} term={RESULT[e.result].term} reason={e.result === "TRUE" ? null : REASON[e.reason]} /></td></tr>
-                ))}</tbody></table>)}</Guarded>
+            <Quadrant term="ui.quadrant.gaps">
+              {c ? (c.output.gaps.length ? <ul className="stack">{c.output.gaps.map((g) => (
+                <FocusBox as="li" key={g.gap_id} id={g.gap_id} className="row"><FocusHandle id={g.gap_id}><IdText>{g.gap_id}</IdText></FocusHandle><GapMark status={g.status} sources={g.source_refs.length} /></FocusBox>))}</ul>
+                : <p className="secondary">{t("msg.no_data")}</p>) : <SpaceCell sem="SEM-009" space="R" term="avail.none" termParams={{ t: session.tick }} />}
             </Quadrant>
             <Quadrant term="ui.quadrant.disagreements">
               {c ? (c.merge.conflicts.length ? <ul className="stack">{c.merge.conflicts.map((x) => (
@@ -39,10 +36,12 @@ export function ClosureView() {
                   <ConflictBracket forward={x.forward ?? null} inverse={x.inverse ?? null} resolution={x.resolution} origin={origin} /></FocusBox>))}</ul>
                 : <p className="secondary">{t("msg.no_data")}</p>) : <SpaceCell sem="SEM-009" space="R" term="avail.none" termParams={{ t: session.tick }} />}
             </Quadrant>
-            <Quadrant term="ui.quadrant.gaps">
-              {c ? (c.output.gaps.length ? <ul className="stack">{c.output.gaps.map((g) => (
-                <FocusBox as="li" key={g.gap_id} id={g.gap_id} className="row"><FocusHandle id={g.gap_id}><IdText>{g.gap_id}</IdText></FocusHandle><GapMark status={g.status} sources={g.source_refs.length} /></FocusBox>))}</ul>
-                : <p className="secondary">{t("msg.no_data")}</p>) : <SpaceCell sem="SEM-009" space="R" term="avail.none" termParams={{ t: session.tick }} />}
+            <Quadrant term="ui.quadrant.closure">
+              <Guarded v={gv}>{(g) => (
+                <table className="data"><tbody>{evaluations(g).map((e) => (
+                  <tr key={e.rule_ref} data-rule={e.rule_ref}><td><IdText>{e.rule_ref}</IdText></td>
+                    <td><RuleDiamond sem={RESULT[e.result].sem} term={RESULT[e.result].term} reason={e.result === "TRUE" ? null : REASON[e.reason]} /></td></tr>
+                ))}</tbody></table>)}</Guarded>
             </Quadrant>
             <Quadrant term="ui.quadrant.recovery">
               <RecoveryGateLine />
@@ -63,7 +62,7 @@ export function ClosureView() {
           </FocusScope>
         );
       }}</Guarded>
-    </section>
+    </ViewFrame>
   );
 }
 export default ClosureView;

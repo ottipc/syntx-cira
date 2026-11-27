@@ -500,3 +500,6 @@ tr[data-stage-commit] > td { animation: mot-stage-tick var(--motion-focus) var(-
 /* views 04–06 (U24, 06.04–06.06) */
 .grid-5-7 { grid-template-columns: 5fr 7fr; }
 .run-header .row { flex-wrap: wrap; }
+/* views 07–08 (U25, 06.07/06.08) */
+.subject-link { color: inherit; text-decoration: underline; text-decoration-color: var(--col-border-strong); text-underline-offset: var(--space-4); margin-right: var(--space-4); }
+.quadrants { gap: var(--space-24); }

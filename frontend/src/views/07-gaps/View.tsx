@@ -3,7 +3,7 @@ import { ep, useProjection } from "../../access";
 import { useT } from "../../language";
 import { FocusScope, OriginBadge, SpaceCell } from "../../semiontics";
 import { useSession } from "../../session";
-import { Guarded, ProvButton } from "../_common";
+import { Guarded, ProvButton, ViewFrame } from "../_common";
 import { ClassList } from "./ClassList";
 import { GapDetail } from "./GapDetail";
 import { MatchSummary } from "./MatchSummary";
@@ -17,8 +17,7 @@ export function GapsView() {
   const mt = useProjection<MetricsProjection>(ep.metrics({ ...session, aggregation: "POOLED", toTick: null }));
   const rs = useProjection<ResultsProjection>(ep.results(session, "merged"));
   return (
-    <section aria-labelledby="v07">
-      <div className="view-head"><h1 id="v07" className="view-title">{t("view.07")}</h1><SubsetToggle /></div>
+    <ViewFrame id="v07" title="view.07" composition="reserve" head={<SubsetToggle />}>
       <Guarded v={mt}>{(m) => (
         <div className="stack">
           <div className="row"><OriginBadge origin={m.report.data_origin} /><ProvButton title="view.07" header={m.header} raw={m.report.gap_matches} strategies={m.report.strategies} /></div>
@@ -35,7 +34,7 @@ export function GapsView() {
           </FocusScope>
         </div>
       )}</Guarded>
-    </section>
+    </ViewFrame>
   );
 }
 export default GapsView;
