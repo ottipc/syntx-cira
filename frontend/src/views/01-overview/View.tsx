@@ -4,7 +4,7 @@ import type { ExperimentViewResponse, FieldsResponse } from "../../access";
 import { useT } from "../../language";
 import { ExecPill, FocusScope, OriginBadge } from "../../semiontics";
 import { useSession } from "../../session";
-import { Guarded, ProvButton } from "../_common";
+import { Guarded, ProvButton, ViewFrame } from "../_common";
 import { BarrierOverlay } from "./BarrierOverlay";
 import { ConfigSnapshot } from "./ConfigSnapshot";
 import { LayerChain } from "./LayerChain";
@@ -18,12 +18,11 @@ export function OverviewView() {
   const x = useProjection<ExperimentViewResponse>(ep.experiment(session));
   const f = useProjection<FieldsResponse>(ep.fields(session, true));
   return (
-    <section aria-labelledby="v01">
+    <ViewFrame id="v01" title="view.01" composition="reserve" head={x.data ? <>
+      <ExecPill status={x.data.experiment.status} /><OriginBadge origin={x.data.experiment.data_origin} />
+      <ProvButton title="view.01" header={x.data.header} raw={x.data.experiment} /></> : null}>
       <Guarded v={x}>{(e) => (
         <>
-          <div className="view-head"><h1 id="v01" className="view-title">{t("view.01")}</h1>
-            <ExecPill status={e.experiment.status} /><OriginBadge origin={e.experiment.data_origin} />
-            <ProvButton title="view.01" header={e.header} raw={e.experiment} /></div>
           <FocusScope focus={session.focus} onFocus={setFocus} resolveResonance={resolveResonance}
             vm={resonanceVM(f.data)}
             ids={[...(f.data?.manifests ?? []).map((m) => fieldFocusId(m.field_id)), ...STAGES.map(stageId)]}>
@@ -37,7 +36,7 @@ export function OverviewView() {
           </FocusScope>
         </>
       )}</Guarded>
-    </section>
+    </ViewFrame>
   );
 }
 export default OverviewView;

@@ -3,3 +3,4 @@ export { ProvButton } from "./ProvButton";
 export { MetricValue } from "./MetricValue";
 export { metricVMs, METRIC_TERM, METRIC_EXPLAIN, type MetricVM } from "./model";
 export { FocusBox, FocusIdCell, FocusTr } from "./FocusParts";
+export { ViewFrame, type Composition } from "./ViewFrame";

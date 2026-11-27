@@ -12,7 +12,7 @@ export function Workspace({ views, demo }: { views: Readonly<Record<ViewKey, Com
   const { session } = useSession();
   const V = views[session.view];
   return (
-    <main className={`zone-c${session.mode === "presentation" ? " presentation-frame" : ""}`} data-zone="C"
+    <main className={`zone-c${session.mode === "presentation" ? " presentation-frame" : ""}`} data-zone="C" data-view={session.view}
       {...(session.mode === "presentation" ? { "data-sem": "SEM-036", "data-term": "mode.presentation.frame" } : {})}>
       <AmbientField />
       <div className="zone-c-content">{session.experimentId === null ? <ExperimentSelect /> : <V />}</div>

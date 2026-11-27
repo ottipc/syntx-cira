@@ -473,3 +473,27 @@ tr[data-stage-commit] > td { animation: mot-stage-tick var(--motion-focus) var(-
 /* MOT09 metric confirmation: the bar is at its final width in frame 1; the end cap confirms once per verified scope */
 [data-motion="entering"] .bar-cap { animation: mot-metric-confirm var(--motion-tick) var(--ease-settle); }
 @keyframes mot-metric-confirm { from { background-color: var(--sign-focus); transform: scaleY(1.5); } }
+/* ---- composition (U23, 05.17): reserve views end the information space one gutter left of the left ring tangent ---- */
+.zone-c-content { scrollbar-gutter: stable; }
+.zone-c[data-fit="reserve"] .zone-c-content > section[data-composition="reserve"] { max-width: calc(var(--comp-tangent) - var(--space-24) - var(--space-24)); }
+/* view 01 chain rhythm (06.01, G3-40, IC-22): applies whatever the fit — card basis 3.4 × space-32 (108.8 px at scale 1,
+   136 px at 1.25; seven cards + six links = 857.6 px ≤ comp.min.info 880), 16 px links, 8 px side padding */
+.zone-c[data-view="SYSTEM_FIELD_OVERVIEW"] .layer { flex: 1 1 calc(var(--space-32) * 3.4); min-width: calc(var(--space-32) * 3.4);
+  padding-left: var(--space-8); padding-right: var(--space-8); }
+.zone-c[data-view="SYSTEM_FIELD_OVERVIEW"] .chain-link { flex-basis: var(--space-16); }
+.zone-c[data-view="SYSTEM_FIELD_OVERVIEW"] .chain-link.cut { flex-basis: var(--space-16); }
+/* vertical rhythm (G3-39): the cascade keeps order and direction with half steps (last 16), chain padding 16, block padding 8,
+   head gap 12 */
+.zone-c[data-view="SYSTEM_FIELD_OVERVIEW"] .layer-chain { padding-bottom: var(--space-16); }
+.zone-c[data-view="SYSTEM_FIELD_OVERVIEW"] .cascade-1 { margin-top: calc(var(--space-4) / 2); }
+.zone-c[data-view="SYSTEM_FIELD_OVERVIEW"] .cascade-2 { margin-top: var(--space-4); }
+.zone-c[data-view="SYSTEM_FIELD_OVERVIEW"] .cascade-3 { margin-top: calc(var(--space-4) * 1.5); }
+.zone-c[data-view="SYSTEM_FIELD_OVERVIEW"] .cascade-4 { margin-top: var(--space-8); }
+.zone-c[data-view="SYSTEM_FIELD_OVERVIEW"] .cascade-5 { margin-top: var(--space-12); }
+.zone-c[data-view="SYSTEM_FIELD_OVERVIEW"] .cascade-6 { margin-top: var(--space-16); }
+.zone-c[data-view="SYSTEM_FIELD_OVERVIEW"] .grid-2 .panel { padding-top: var(--space-8); padding-bottom: var(--space-8); }
+.zone-c[data-view="SYSTEM_FIELD_OVERVIEW"] .view-head { margin-bottom: var(--space-12); }
+/* short stage (Zone C < 880 px): the lower band becomes a triptych — pipeline · open information · configuration */
+.zone-c[data-view="SYSTEM_FIELD_OVERVIEW"][data-stage="short"] .grid-2 { grid-template-columns: 1.2fr 1fr 1fr; align-items: stretch; }
+.zone-c[data-view="SYSTEM_FIELD_OVERVIEW"][data-stage="short"] .grid-2 > .stack { display: contents; }
+.zone-c[data-view="SYSTEM_FIELD_OVERVIEW"][data-stage="short"] .grid-2 > .stack > * { margin-top: 0; }

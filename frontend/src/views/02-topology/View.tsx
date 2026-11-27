@@ -4,7 +4,7 @@ import { ep, useProjection } from "../../access";
 import type { MetricsProjection, ObservationProjection, ResultsProjection, StateProjection, TopologyProjection } from "../../access";
 import { useT } from "../../language";
 import { useSession } from "../../session";
-import { GuardedAll, ProvButton } from "../_common";
+import { GuardedAll, ProvButton, ViewFrame } from "../_common";
 import { layout } from "./layout";
 import { Legend } from "./Legend";
 import { couplings, nodeStates, resolveResonance, resonanceVM } from "./model";
@@ -23,11 +23,9 @@ export function TopologyView() {
   const mt = useProjection<MetricsProjection>(ep.metricsTick(session));
   const rec = rs.data?.reconstruction ?? null;
   return (
-    <section aria-labelledby="v02">
-      <div className="view-head"><h1 id="v02" className="view-title">{t("view.02")}</h1>
+    <ViewFrame id="v02" title="view.02" composition="plate" head={
         <OverlayToolbar show={show} set={(k) => setShow({ ...show, [k]: !show[k] })}
-          origins={{ a: st.data?.header.data_origin ?? null, o: ob.data?.observation.origin ?? null, r: rec?.origin ?? null }} />
-      </div>
+          origins={{ a: st.data?.header.data_origin ?? null, o: ob.data?.observation.origin ?? null, r: rec?.origin ?? null }} />}>
       <GuardedAll vs={[tp, st, ob, rs, mt] as const}>{([p, s, o, r, m]) => (
         <>
           <FocusScope focus={session.focus} vm={resonanceVM(p.topology)} resolveResonance={resolveResonance} onFocus={setFocus}
@@ -39,7 +37,7 @@ export function TopologyView() {
           <div className="row"><ProvButton title="view.02" header={p.header} raw={p.topology} /></div>
         </>
       )}</GuardedAll>
-    </section>
+    </ViewFrame>
   );
 }
 export default TopologyView;

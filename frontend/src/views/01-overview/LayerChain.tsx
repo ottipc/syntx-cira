@@ -20,7 +20,7 @@ export function LayerChain({ layers }: { layers: LayerVM[] }) {
               ? <span className="chain-link cut" data-sem="SEM-019" aria-hidden="true"><span className="cut-glyph">‖</span></span>
               : <span className="chain-link" aria-hidden="true" />}
             <Layer l={l} i={i}>
-              <a className="layer-open" href={href} onClick={(e) => { e.preventDefault(); goUrl(href); }} data-term={l.viewTerm}>▸ {t(l.viewTerm)}</a>
+              <a className="layer-open" href={href} onClick={(e) => { e.preventDefault(); goUrl(href); }} data-term={l.viewTerm}>{"▸\u00a0"}{t(l.viewTerm)}</a>
             </Layer>
           </Fragment>
         );

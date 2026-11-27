@@ -405,3 +405,48 @@ describe("[V2T07][U22] number-first metrics and RationalBar", () => {
     }
   }, 90000);
 });
+
+describe("[V3T12][U23] composition fit and view 01 chain", () => {
+  const measure = (p: Page) => p.evaluate(() => {
+    const zone = document.querySelector<HTMLElement>(".zone-c")!, z = zone.getBoundingClientRect();
+    const sec = document.querySelector<HTMLElement>(".zone-c-content > section")!, content = document.querySelector<HTMLElement>(".zone-c-content")!;
+    const layers = [...document.querySelectorAll<HTMLElement>(".layer")].map((l) => l.getBoundingClientRect());
+    return { fit: zone.dataset.fit, composition: sec.dataset.composition, share: (sec.getBoundingClientRect().right - z.left) / z.width,
+      rows: layers.length ? new Set(layers.map((b) => b.top < layers[0]!.bottom)).size : 0, cards: layers.length,
+      overflow: content.scrollHeight - content.clientHeight, hOverflow: content.scrollWidth - content.clientWidth };
+  });
+  it.each([["standard", "", 0.698], ["presentation", "&mode=presentation", 0.694]] as const)("1920×1080 %s: seven cards in one row, 0 px overflow, information share ±0.01", async (_m, q, share) => {
+    const p = await open(env, view("SYSTEM_FIELD_OVERVIEW", q), { width: 1920, height: 1080 });
+    await p.waitForTimeout(300);
+    const r = await measure(p);
+    await p.context().close();
+    expect(r.fit).toBe("reserve");
+    expect(r.composition).toBe("reserve");
+    expect(r.cards).toBe(7);
+    expect(r.rows, "one chain row").toBe(1);
+    expect(r.overflow, "vertical overflow").toBe(0);
+    expect(r.hOverflow).toBe(0);
+    expect(Math.abs(r.share - share)).toBeLessThanOrEqual(0.01);
+  }, 60000);
+  it.each([[1920, 1080, "reserve", "reserve"], [1600, 900, "reserve", "reserve"], [1440, 900, "collapsed", "collapsed"], [1280, 800, "collapsed", "collapsed"]] as const)(
+    "%i×%i: fit %s (standard) / %s (presentation); collapsed = full width", async (w, h, std, pres) => {
+      for (const [q, want] of [["", std], ["&mode=presentation", pres]] as const) {
+        const p = await open(env, view("SYSTEM_FIELD_OVERVIEW", q), { width: w, height: h });
+        await p.waitForTimeout(250);
+        const r = await measure(p);
+        await p.context().close();
+        expect(r.fit, `${w}×${h}${q}`).toBe(want);
+        if (want === "collapsed") expect(r.share).toBeGreaterThan(0.9);
+        expect(r.rows, `${w}×${h}${q}: one chain row`).toBe(1);
+      }
+    }, 90000);
+  it("view 02 is a plate: full width at the reserve fit", async () => {
+    const p = await open(env, view("TOPOLOGY_GRAPH"), { width: 1920, height: 1080 });
+    await p.waitForTimeout(250);
+    const r = await measure(p);
+    await p.context().close();
+    expect(r.fit).toBe("reserve");
+    expect(r.composition).toBe("plate");
+    expect(r.share).toBeGreaterThan(0.95);
+  }, 60000);
+});
