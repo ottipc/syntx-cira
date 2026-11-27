@@ -302,12 +302,11 @@ ul.plain { list-style: none; margin: 0; padding: 0; }
 /* ---- focus & resonance field (architecture v2.0.3, 04.2–04.4, 04.12; U14–U15) ------------------------------------
    Hierarchy on independent channels: focused (2 px primary outline, reticles, focus surface, bright gutter segment) ·
    resonant (SEM-038: 1.5 px secondary at 3 px gap, secondary gutter segment) · neutral · attenuated (role remap). */
-:root { --focus-reticle: var(--cmp-focus-reticle-size); --focus-reticle-gap: var(--cmp-focus-reticle-gap); --state-row-gap: var(--space-8);
+:root { --focus-reticle: var(--cmp-focus-reticle-size); --focus-reticle-gap: var(--cmp-focus-reticle-gap);
   --svg-unit: 1px; /* line tokens are unitless SVG widths */ }
 [data-mode='presentation'] {
   --focus-reticle: 8px;
   --focus-reticle-gap: 5px;
-  --state-row-gap: 10px;
 }
 .focus-scope { display: contents; }
 .focus-absent { color: var(--ink-2); margin: 0 0 var(--space-8) 0; }
@@ -325,7 +324,7 @@ ul.plain { list-style: none; margin: 0; padding: 0; }
 [data-focus-state="attenuated"] > .attr, [data-focus-state="attenuated"] .cell:not([data-attn="exempt"]) { color: var(--ink-1); }
 [data-focus-state] .cell, [data-focus-state] .attr, [data-focus-state] .mono-value, [data-focus-state] .cell-term, [data-focus-state] .mono-id {
   transition: background-color var(--motion-focus) var(--ease-settle), color var(--motion-focus) var(--ease-settle), border-color var(--motion-focus) var(--ease-settle); }
-.state-grid { position: relative; row-gap: var(--state-row-gap); }
+.state-grid { position: relative; row-gap: var(--space-8); } /* 8 → 10 px in presentation by the scale law */
 .state-grid .attr { position: relative; }
 .state-grid .attr .mono-id { color: var(--ink-2); }
 [data-focus-state="focused"] > .attr .mono-id { color: var(--ink-1); }
@@ -446,24 +445,14 @@ tr[data-stage-commit] > td { animation: mot-stage-tick var(--motion-focus) var(-
   transition: transform var(--motion-scrub) var(--ease-settle), width var(--motion-scrub) var(--ease-settle); }
 .tick-ring[data-placed] { visibility: visible; }
 /* ---- number-first metrics (U22, D09, 04.9) ---- */
-:root {
-  --metric-value: 0;
-  --metric-hero-size: var(--cmp-metric-hero-size);
-  --metric-hero-line: var(--cmp-metric-hero-line);
-  --bar-max: var(--cmp-bar-track-max);
-}
-[data-mode='presentation'] {
-  --metric-hero-size: 35px;
-  --metric-hero-line: 45px;
-  --bar-max: 320px;
-}
+:root { --metric-value: 0; }
 .metric-card .metric-value { display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-4); }
-.metric-card .metric-value .fraction { font-size: var(--metric-hero-size); line-height: var(--metric-hero-line); font-weight: 600;
+.metric-card .metric-value .fraction { font-size: var(--cmp-metric-hero-size); line-height: var(--cmp-metric-hero-line); font-weight: 600;
   font-variant-numeric: tabular-nums; color: var(--ink-1); }
 .metric-sub { display: flex; flex-wrap: wrap; align-items: baseline; column-gap: var(--space-8); }
 .metric-sub .decimal { color: var(--ink-2); white-space: nowrap; }
 .metric-sub .target { font-family: var(--type-mono-id-family); font-size: var(--type-mono-id-size); color: var(--ink-2); white-space: nowrap; }
-.rational-bar { position: relative; display: block; width: min(100%, var(--bar-max)); height: var(--cmp-bar-track-height);
+.rational-bar { position: relative; display: block; width: min(100%, var(--cmp-bar-track-max)); height: var(--cmp-bar-track-height);
   background: var(--col-surface-field); margin-top: var(--space-4); }
 .bar-fill { position: absolute; left: 0; top: 0; bottom: 0; width: calc(var(--metric-value) * 100%); background: var(--ink-2); }
 .bar-cap { position: absolute; right: 0; top: calc(-1 * var(--space-4)); bottom: calc(-1 * var(--space-4)); width: var(--border-width-emphasis);
@@ -511,3 +500,15 @@ tr[data-stage-commit] > td { animation: mot-stage-tick var(--motion-focus) var(-
 .timeline-ground tr[data-active-tick] > td { background-color: var(--col-surface-focus); }
 .timeline-ground tr[data-active-tick] > td:first-child { box-shadow: inset var(--border-width-emphasis) 0 0 var(--sign-focus); }
 .timeline-ground td.mono-value { white-space: nowrap; }
+/* ---- presentation scale (U27, G3-37): text that inherits its size re-reads the scaled token on the shell ---- */
+.shell { font-size: var(--type-body-size); line-height: var(--type-body-line); }
+/* view 03 label composition (P0-R3, 06.03, carried over from U15): origin badge under the space title, seam under the
+   attribute id, chips break below the term; terms and values never break inside */
+.state-grid .space-header { display: grid; grid-template-columns: auto 1fr; column-gap: var(--space-8); row-gap: var(--space-4); align-items: center; }
+.state-grid .space-header > .origin { grid-column: 2; justify-self: start; }
+.state-grid .attr { flex-direction: column; align-items: flex-start; justify-content: center; gap: calc(var(--space-4) / 2); }
+.state-grid .cell { flex-wrap: wrap; row-gap: calc(var(--space-4) / 2); }
+.state-grid .cell .cell-term, .state-grid .cell .mono-value { white-space: nowrap; }
+/* view 01 at true presentation scale (U27, P0-R3 rhythm): the view link in a field card is micro type; bottom padding 8 */
+.layer-open { font-family: var(--font-mono); font-size: var(--type-mono-id-size); line-height: var(--type-mono-id-line); color: var(--ink-2); }
+.zone-c[data-view="SYSTEM_FIELD_OVERVIEW"] .zone-c-content { padding-bottom: var(--space-8); }

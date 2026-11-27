@@ -293,7 +293,24 @@ def gen_tokens_css(tok: dict[str, Any]) -> str:
     if tok.get("profile_projector"):
         L.append("html[data-profile='projector'] { " + " ".join(
             f"{cssvar('col.' + k) if not k.startswith('pattern.') else cssvar(k)}: {v};" for k, v in tok["profile_projector"].items()) + " }")
-    L.append("[data-mode='presentation'] { --scale: %s; }" % tok["presentation_scale"])
+    # presentation scale law (architecture v2.0.3, 05.9, G3-45/G3-48): scale = clamp(1, 1.25 × H / 1080, 1.25), emitted
+    # per token in pure CSS as clamp(B px, (1.25·B / 10.8) vh, 1.25·B px) — no script, no layout shift. Tokens declared at
+    # :root resolve there, so the scaled values are re-declared on the presentation shell itself.
+    mx, ref = tok["presentation_scale"], tok["presentation_ref_height"]
+    # the vh coefficient is rounded up (6 decimals) so that at the reference height the maximum is reached exactly
+    law = lambda b: f"clamp({b}px, {math.ceil(mx * b * 100 / ref * 1e6) / 1e6}vh, {round(mx * b, 4):g}px)"
+    P = ["[data-mode='presentation'] {"]
+    for k, v in tok["type"].items():
+        n = cssvar("type." + k)
+        P += [f"  {n}-size: {law(v['size'])};", f"  {n}-line: {law(v['line'])};"]
+    for g in tok["space"]["grid"]:
+        P.append(f"  --space-{g}: {law(g)};")
+    P.append(f"  --space-unit: {law(u)};")
+    for k in ("metric.hero.size", "metric.hero.line", "bar.track.max"):
+        if k in tok.get("component", {}):
+            P.append(f"  {cssvar('cmp.' + k)}: {law(tok['component'][k])};")
+    P.append("}")
+    L += P
     L.append("@media (prefers-reduced-motion: reduce) { :root { " +
              " ".join(f"{cssvar('motion.' + k)}: 0ms;" for k in tok["motion"]) + " } }")
     return "\n".join(L) + "\n"

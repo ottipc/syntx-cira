@@ -63,3 +63,10 @@
 - Befund Testumgebung: Software-Renderer ≈ 37 ms/Frame mit aktivem Umgebungsfeld → Governor schaltet korrekt auf static;
   Harness-Skript `steady-frames` nur für V2T18.
 - `make verify` 631/631, 0 Skips. CP5.
+
+## 2026-11-27 — GUI-Generation v2, U21–U27 (CP6)
+- U21 TickRail, U22 RationalBar/Metrikkarten, U23 ViewFrame/Komposition (Korrektur IC-22: Kettenbasis wie in P0-R2
+  gemessen), U24–U26 alle Ansichten in ViewFrame mit Kompositionsklasse, U27 Präsentationsskalengesetz in reinem CSS.
+- Befund U27: Präsentationsmodus skalierte bisher nichts (Tokens bei `:root` aufgelöst, G3-29/G3-37) — jetzt Gesetz je
+  Token in der Präsentationsschale; Rundungsartefakt 34,9996 px durch aufgerundeten vh-Koeffizienten behoben.
+- `make verify` grün; CP6.

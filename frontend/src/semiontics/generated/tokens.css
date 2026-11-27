@@ -204,5 +204,30 @@
   --ease-sine: ease-in-out;
 }
 html[data-profile='projector'] { --col-surface-void: #000000; --col-surface-field: #04070A; --col-surface-panel: #111A22; --col-border-hairline: #2A3A4B; --col-border-strong: #546D86; --col-attn-tint-actual: #08161E; --col-attn-tint-observed: #18140A; --col-attn-tint-reconstructed: #121020; --pattern-open-hatch-opacity: 0.18; --pattern-outside-crosshatch-opacity: 0.16; }
-[data-mode='presentation'] { --scale: 1.25; }
+[data-mode='presentation'] {
+  --type-display-size: clamp(18px, 2.083334vh, 22.5px);
+  --type-display-line: clamp(24px, 2.777778vh, 30px);
+  --type-section-size: clamp(13px, 1.50463vh, 16.25px);
+  --type-section-line: clamp(18px, 2.083334vh, 22.5px);
+  --type-body-size: clamp(13px, 1.50463vh, 16.25px);
+  --type-body-line: clamp(19px, 2.199075vh, 23.75px);
+  --type-mono-value-size: clamp(13px, 1.50463vh, 16.25px);
+  --type-mono-value-line: clamp(18px, 2.083334vh, 22.5px);
+  --type-mono-id-size: clamp(11px, 1.273149vh, 13.75px);
+  --type-mono-id-line: clamp(16px, 1.851852vh, 20px);
+  --type-mono-operator-size: clamp(14px, 1.620371vh, 17.5px);
+  --type-mono-operator-line: clamp(18px, 2.083334vh, 22.5px);
+  --type-micro-size: clamp(10px, 1.157408vh, 12.5px);
+  --type-micro-line: clamp(14px, 1.620371vh, 17.5px);
+  --space-4: clamp(4px, 0.462963vh, 5px);
+  --space-8: clamp(8px, 0.925926vh, 10px);
+  --space-12: clamp(12px, 1.388889vh, 15px);
+  --space-16: clamp(16px, 1.851852vh, 20px);
+  --space-24: clamp(24px, 2.777778vh, 30px);
+  --space-32: clamp(32px, 3.703704vh, 40px);
+  --space-unit: clamp(4px, 0.462963vh, 5px);
+  --cmp-metric-hero-size: clamp(28px, 3.240741vh, 35px);
+  --cmp-metric-hero-line: clamp(36px, 4.166667vh, 45px);
+  --cmp-bar-track-max: clamp(256px, 29.62963vh, 320px);
+}
 @media (prefers-reduced-motion: reduce) { :root { --motion-0: 0ms; --motion-tick: 0ms; --motion-loading: 0ms; --motion-quarantine: 0ms; --motion-drawer: 0ms; --motion-stage: 0ms; --motion-network-pulse: 0ms; --motion-hover: 0ms; --motion-focus: 0ms; --motion-scrub: 0ms; --motion-carry: 0ms; --motion-brand-breath: 0ms; --motion-ambient-drift: 0ms; --motion-decor-yield: 0ms; } }

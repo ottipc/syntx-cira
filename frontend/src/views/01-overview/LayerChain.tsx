@@ -20,7 +20,9 @@ export function LayerChain({ layers }: { layers: LayerVM[] }) {
               ? <span className="chain-link cut" data-sem="SEM-019" aria-hidden="true"><span className="cut-glyph">‖</span></span>
               : <span className="chain-link" aria-hidden="true" />}
             <Layer l={l} i={i}>
-              <a className="layer-open" href={href} onClick={(e) => { e.preventDefault(); goUrl(href); }} data-term={l.viewTerm}>{"▸\u00a0"}{t(l.viewTerm)}</a>
+              {/* the ordinal opens the field's view; its accessible name starts with the visible text (TX32) */}
+              <a className="layer-open" href={href} onClick={(e) => { e.preventDefault(); goUrl(href); }} data-term={l.viewTerm}
+                aria-label={`${l.id.slice(1)} ▸ ${t(l.viewTerm)}`}>{l.id.slice(1)}{"\u00a0▸"}</a>
             </Layer>
           </Fragment>
         );
@@ -37,11 +39,10 @@ function Layer({ l, i, children }: { l: LayerVM; i: number; children: React.Reac
   return (
     <div className={`layer cascade-${i}`} data-term={l.term} data-field={l.id} {...f.attrs}>
       <FocusMarks id={id} />
-      <FocusHandle id={id}><span className="layer-id" aria-hidden="true">{l.id.slice(1)}</span>
-        <span className="space-title">{t(l.term)}</span></FocusHandle>
+      {children}
+      <FocusHandle id={id}><span className="space-title">{t(l.term)}</span></FocusHandle>
       {l.space === "A" || l.space === "O" || l.space === "R" ? <SpaceHeader space={l.space} origin={null} /> : null}
       {l.status ? <ExecPill status={l.status} /> : null}
-      {children}
     </div>
   );
 }
