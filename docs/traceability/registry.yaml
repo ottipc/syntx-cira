@@ -1347,3 +1347,7 @@ adr:
   title: Marke und Dekor im Arbeitsbereich
   class: F2
   state: ACCEPTED
+- id: ADR-0008
+  title: Neurovisuelle GUI-Generation (Architektur v2.0.3)
+  class: F2
+  state: ACCEPTED

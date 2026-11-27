@@ -1,5 +1,13 @@
 # NEXT
 
+## GUI-Generation v2 (Branch `feature/semiontic-gui-v2`, ADR-0008)
+
+Architektur v2.0.3 eingefroren, Owner Implementation Release erteilt (2026-11-27). Einheiten U00–U30 nach
+Kapitel 09.2/12 der Architektur. Stand: **U00 erledigt**; nächste Einheit **U01** (Request- und DOM-Term-Inventar von
+`ac5073b`). `main` bleibt auf `ac5073b`; Übergabe je Checkpoint als Git-Bundle.
+
+## Vorher offen (unverändert)
+
 Phasen 01–05 abgeschlossen (Gate 05 bestanden, Report `docs/test-reports/phase-05.json`). Offen und außerhalb dieser
 Umgebung bzw. dieses Mandats:
 

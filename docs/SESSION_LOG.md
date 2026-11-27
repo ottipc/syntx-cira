@@ -33,3 +33,9 @@
 - Nach Gate 05: freihändige 80-s-Demo („Play demo“), IC-18 (Lesen während Lauf), Push durch OB von seinem Rechner.
 - Gestaltung nach Auftrag OB (ADR-0007): Logo-Zeichen (ohne Schriftzug), Markenfarbe, neuronales Feld, Kette in Sicht 01,
   Dekor als eigener bedeutungsfreier Registerabschnitt mit Prüfungen.
+
+## 2026-11-27 — GUI-Generation v2, U00
+- Freeze der Architektur v2.0.3 (F01–F03) nach Freigabe Owner, GPT, Gemini und Claude; Owner Implementation Release.
+- Branch `feature/semiontic-gui-v2` ab `ac5073b` (der lokale README-Commit `5641f17` ist nicht Teil des Branches).
+- Ausgangslage auf dem Branch: `make verify` grün (vitest 483/483, pytest grün, 0 Lint-Befunde).
+- ADR-0008-Rahmen mit den eingefrorenen Owner-Entscheidungen; Architektur unter `docs/architecture/gui-v2/`.
