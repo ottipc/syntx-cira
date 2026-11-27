@@ -512,3 +512,7 @@ tr[data-stage-commit] > td { animation: mot-stage-tick var(--motion-focus) var(-
 /* view 01 at true presentation scale (U27, P0-R3 rhythm): the view link in a field card is micro type; bottom padding 8 */
 .layer-open { font-family: var(--font-mono); font-size: var(--type-mono-id-size); line-height: var(--type-mono-id-line); color: var(--ink-2); }
 .zone-c[data-view="SYSTEM_FIELD_OVERVIEW"] .zone-c-content { padding-bottom: var(--space-8); }
+/* DE strings (U28, G3-21): long compounds in the rail break inside the word instead of leaving Zone B; the chain's status
+   pill is compact, and a field card is never narrower than its widest unbreakable content */
+.rail a > span:last-child { min-width: 0; hyphens: auto; overflow-wrap: anywhere; }
+.layer .exec { letter-spacing: normal; padding: 0 var(--space-4); }

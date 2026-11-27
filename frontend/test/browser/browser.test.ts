@@ -34,8 +34,9 @@ const zones = (p: Page) => p.evaluate(() => Object.fromEntries(["A", "B", "C", "
 describe("[TX28][AK-GUI-15] geometry in the browser", () => {
   const cases: [string, number, number, string][] = [];
   for (const v of VIEW_IDS) for (const vp of VIEWPORTS) for (const mode of ["standard", "presentation"]) cases.push([v, vp.width, vp.height, mode]);
-  it.each(cases)("[TX28] %s %ix%i %s: zones, no clipped text, no overlapping signs, 4-px grid", async (view, width, height, mode) => {
-    const p = await open(env, path(view, mode === "presentation" ? "&mode=presentation" : ""), { width, height });
+  // one geometry check for EN (unchanged cases) and DE (G3-21: 11 views × 3 viewports × 2 modes)
+  const geometry = async (view: string, width: number, height: number, mode: string, lang: "en" | "de") => {
+    const p = await open(env, path(view, `${mode === "presentation" ? "&mode=presentation" : ""}${lang === "de" ? "&lang=de" : ""}`), { width, height });
     const z = await zones(p);
     expect(z.A).toMatchObject({ x: 0, y: 0, w: width, h: ZONE.a_height });
     expect(z.D).toMatchObject({ x: 0, y: height - ZONE.d_height, w: width, h: ZONE.d_height });
@@ -129,8 +130,11 @@ describe("[TX28][AK-GUI-15] geometry in the browser", () => {
     expect(env.misses).toEqual([]);
     expect(env.blocked, "offline: no request beyond app and local API (AK-GUI-20)").toEqual([]);
     expect(consoleErrors(p)).toEqual([]);
+    if (lang === "de") expect(await p.evaluate(() => document.documentElement.lang), "German catalog active").toBe("de");
     await p.context().close();
-  }, 60000);
+  };
+  it.each(cases)("[TX28] %s %ix%i %s: zones, no clipped text, no overlapping signs, 4-px grid", async (view, width, height, mode) => geometry(view, width, height, mode, "en"), 60000);
+  it.each(cases)("[TX28] DE %s %ix%i %s: zones, no clipped text, no overlapping signs, 4-px grid", async (view, width, height, mode) => geometry(view, width, height, mode, "de"), 60000);
 
   it("[TX28] drawer E docks at ≥ 1600 px and overlays below; it sits above the workspace", async () => {
     for (const [width, docked] of [[1920, true], [1440, false]] as const) {
@@ -183,12 +187,16 @@ describe("[TX28][AK-GUI-15] geometry in the browser", () => {
 });
 
 describe("[TX29][AK-GUI-16] visual regression against approved baselines", () => {
-  it.each(VIEW_IDS.map((v) => [v]))("[TX29] %s 1440×900", async (view) => {
-    const p = await open(env, path(view), { width: 1440, height: 900 });
+  // extended set (V2T14, G3-13): 1440×900 EN (file `<view>.png`) + 1920×1080 presentation EN + 1280×720 DE
+  const SETS = [["1440×900", { width: 1440, height: 900 }, "", ""], ["1920×1080 presentation", { width: 1920, height: 1080 }, "&mode=presentation", "__1920x1080__presentation"],
+    ["1280×720 DE", { width: 1280, height: 720 }, "&lang=de", "__1280x720__de"]] as const;
+  const cases29 = SETS.flatMap(([label, vp, extra, suffix]) => VIEW_IDS.map((v) => [v, label, vp, extra, suffix] as const));
+  it.each(cases29)("[TX29] %s %s", async (view, _label, vp, extra, suffix) => {
+    const p = await open(env, path(view, extra), vp);
     await p.mouse.move(0, 0);
     const shot = PNG.sync.read(await p.screenshot({ fullPage: false, animations: "disabled", caret: "hide" }));
     await p.context().close();
-    const file = join(BASELINES, `${view}.png`);
+    const file = join(BASELINES, `${view}${suffix}.png`);
     mkdirSync(BASELINES, { recursive: true });
     if (UPDATE) {
       writeFileSync(file, PNG.sync.write(shot));
@@ -199,7 +207,7 @@ describe("[TX29][AK-GUI-16] visual regression against approved baselines", () =>
     expect([shot.width, shot.height]).toEqual([base.width, base.height]);
     const diff = new PNG({ width: base.width, height: base.height });
     const n = pixelmatch(base.data, shot.data, diff.data, base.width, base.height, { threshold: 0.1 });
-    if (n > 0) { mkdirSync(OUTPUT, { recursive: true }); writeFileSync(join(OUTPUT, `${view}.diff.png`), PNG.sync.write(diff)); writeFileSync(join(OUTPUT, `${view}.png`), PNG.sync.write(shot)); }
+    if (n > 0) { mkdirSync(OUTPUT, { recursive: true }); writeFileSync(join(OUTPUT, `${view}${suffix}.diff.png`), PNG.sync.write(diff)); writeFileSync(join(OUTPUT, `${view}${suffix}.png`), PNG.sync.write(shot)); }
     expect(n / (base.width * base.height), "differing pixel share (tolerance 0.1 %)").toBeLessThanOrEqual(0.001);
   }, 60000);
 });
