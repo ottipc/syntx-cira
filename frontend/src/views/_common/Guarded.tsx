@@ -9,6 +9,12 @@ const refsOf = (...ds: unknown[]): string | undefined => {
   return ids.length ? [...new Set(ids)].join(" ") : undefined;
 };
 
+/** Tick of the verified projections a block was drawn from (header.tick; absent for timeless blocks). */
+const tickOf = (...ds: unknown[]): string | undefined => {
+  const ts = ds.map((d) => (d as { header?: { tick?: number | null } } | null)?.header?.tick).filter((x): x is number => typeof x === "number");
+  return ts.length ? [...new Set(ts)].join(" ") : undefined;
+};
+
 /** Block-level view state (06.7, G03.14): LOADING masks, VIEW_DATA_UNAVAILABLE quarantines without old data. */
 export function Guarded<T>({ v, children, skeleton }: { v: Verified<T>; children: (d: T) => ReactNode; skeleton?: ReactNode }) {
   const t = useT();
@@ -19,7 +25,7 @@ export function Guarded<T>({ v, children, skeleton }: { v: Verified<T>; children
     return <Quarantine requested={v.guard && !v.guard.ok ? `${v.guard.reason} ${v.guard.requested}` : v.spec.url}
       received={v.guard && !v.guard.ok ? v.guard.received : "—"} onReload={v.refetch} />;
   }
-  return <div data-state="READY" data-motion={motion} data-source-refs={refsOf(v.data)}>{children(v.data)}</div>;
+  return <div data-state="READY" data-motion={motion} data-source-refs={refsOf(v.data)} data-header-tick={tickOf(v.data)}>{children(v.data)}</div>;
 }
 
 type Data<V> = { [K in keyof V]: V[K] extends Verified<infer T> ? T : never };
@@ -32,5 +38,5 @@ export function GuardedAll<V extends readonly Verified<unknown>[]>({ vs, childre
   const motion = useMotionPhase(failed ? "VIEW_DATA_UNAVAILABLE" : loading ? "LOADING" : "READY", vs.map((v) => v.data));
   if (failed) return <Guarded v={failed}>{() => null}</Guarded>;
   if (loading) return <Guarded v={loading}>{() => null}</Guarded>;
-  return <div data-state="READY" data-motion={motion} data-source-refs={refsOf(...vs.map((v) => v.data))}>{children(vs.map((v) => v.data) as unknown as Data<V>)}</div>;
+  return <div data-state="READY" data-motion={motion} data-source-refs={refsOf(...vs.map((v) => v.data))} data-header-tick={tickOf(...vs.map((v) => v.data))}>{children(vs.map((v) => v.data) as unknown as Data<V>)}</div>;
 }

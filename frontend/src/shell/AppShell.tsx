@@ -1,6 +1,6 @@
 import type { ComponentType, ReactNode } from "react";
 import { useSession, type ViewKey } from "../session";
-import { TickScrubber } from "../time";
+import { TickRail } from "../time";
 import { ContextBar } from "./ContextBar";
 import { ProvenanceDrawer } from "./ProvenanceDrawer";
 import { ViewportGuard } from "./ViewportGuard";
@@ -17,7 +17,7 @@ export function AppShell({ views, actions, demo }: { views: Readonly<Record<View
         <ViewRail />
         <Workspace views={views} demo={demo} />
         <ProvenanceDrawer />
-        <footer className="zone-d" data-zone="D">{session.view !== "SCENARIO_COMPARISON" ? <TickScrubber /> : null}</footer>
+        <footer className="zone-d" data-zone="D">{session.view !== "SCENARIO_COMPARISON" ? <TickRail /> : null}</footer>
       </div>
     </ViewportGuard>
   );

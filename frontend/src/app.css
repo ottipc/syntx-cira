@@ -430,3 +430,18 @@ tr[data-stage-commit] > td { animation: mot-stage-tick var(--motion-focus) var(-
 /* MOT18 export confirmation: the delivered hash settles in */
 .export-hash { display: inline-block; animation: mot-export var(--motion-carry) var(--ease-settle); }
 @keyframes mot-export { from { transform: translateY(calc(-1 * var(--space-4))); } }
+/* ---- tick rail (U21, 03.8): one track, nodes, a neutral luminous ring on Q.tick (MOT17) ---- */
+:root {
+  --ring-x: 0px;
+  --ring-w: 0px;
+}
+.tick-track { position: relative; display: flex; align-items: center; gap: var(--space-4); }
+.tick-track::before { content: ""; position: absolute; left: 0; right: 0; top: 50%; height: var(--border-width-base);
+  background: var(--col-border-strong); pointer-events: none; }
+.tick-track .tick-btn { position: relative; }
+.tick-btn[aria-current="true"] { border-color: transparent; }
+.tick-ring { position: absolute; top: 0; bottom: 0; left: 0; width: var(--ring-w); transform: translateX(var(--ring-x));
+  border: var(--border-width-emphasis) solid var(--sign-focus); pointer-events: none; z-index: 1; visibility: hidden;
+  box-shadow: 0 0 var(--space-8) color-mix(in srgb, var(--sign-focus) 35%, transparent);
+  transition: transform var(--motion-scrub) var(--ease-settle), width var(--motion-scrub) var(--ease-settle); }
+.tick-ring[data-placed] { visibility: visible; }

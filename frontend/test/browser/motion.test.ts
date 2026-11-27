@@ -293,3 +293,25 @@ describe("[V2T18] 10 s with the ambient field active: absence, provenance, barri
     expect(r.looping).toBe(0);
   }, 60000);
 });
+
+describe("[U21] MOT17 scrub ring", () => {
+  it("the ring moves by transform within motion.scrub; exempt carriers untouched; snaps on rapid change", async () => {
+    const p = await open(env, url("TOPOLOGY_GRAPH"));
+    await p.waitForTimeout(300);
+    const t = await p.evaluate(async () => {
+      window.dispatchEvent(new KeyboardEvent("keydown", { key: "ArrowRight" }));
+      await new Promise((r) => requestAnimationFrame(r)); await new Promise((r) => requestAnimationFrame(r));
+      const ring = document.querySelector(".tick-ring")!;
+      const tr = ring.getAnimations().map((a) => [(a as CSSTransition).transitionProperty, Number(a.effect?.getTiming().duration ?? 0)] as const);
+      // rapid change: a second step while the first runs restarts from the current position, one transition per property
+      window.dispatchEvent(new KeyboardEvent("keydown", { key: "ArrowRight" }));
+      await new Promise((r) => requestAnimationFrame(r));
+      return { tr, during: ring.getAnimations().length };
+    });
+    const r = await audit(p, `window.dispatchEvent(new KeyboardEvent("keydown", { key: "ArrowLeft" }))`, "", 14);
+    await p.context().close();
+    expect(t.tr.some(([prop, d]) => prop === "transform" && d === MOTION.scrub)).toBe(true);
+    expect(t.during).toBeLessThanOrEqual(2);
+    checks(r);
+  }, 60000);
+});

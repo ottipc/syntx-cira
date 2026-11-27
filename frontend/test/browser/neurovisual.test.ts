@@ -292,3 +292,79 @@ describe("[U18] motion phase on blocks (05.6.2)", () => {
     expect(new Set(b)).toEqual(new Set(["settled"]));
   }, 60000);
 });
+
+describe("[U21] tick rail (03.8)", () => {
+  it("the ring sits on the active node, is neutral ink.primary (never space.actual), follows Q.tick by transform (MOT17)", async () => {
+    const p = await open(env, view("TEMPORAL_STATE_EXPLORER"), { width: 1440, height: 900 });
+    const geo = () => p.evaluate(() => {
+      const ring = document.querySelector<HTMLElement>(".tick-ring")!, node = document.querySelector<HTMLElement>('.tick-btn[aria-current="true"]')!;
+      const a = ring.getBoundingClientRect(), b = node.getBoundingClientRect(), s = getComputedStyle(ring);
+      const ink = (v: string) => { const d = document.createElement("i"); d.style.color = `var(${v})`; document.body.append(d); const c = getComputedStyle(d).color; d.remove(); return c; };
+      return { dx: Math.round(a.left - b.left), dw: Math.round(a.width - b.width), c: s.borderTopColor, primary: ink("--col-ink-primary"), actual: ink("--col-space-actual"),
+        tr: s.transitionProperty, dur: s.transitionDuration, tick: node.getAttribute("data-tick"), visible: s.visibility };
+    });
+    const a = await geo();
+    await p.keyboard.press("ArrowRight");
+    await p.waitForTimeout(400);
+    const b = await geo();
+    await p.context().close();
+    for (const g of [a, b]) { expect(Math.abs(g.dx)).toBe(0); expect(Math.abs(g.dw)).toBe(0); expect(g.c).toBe(g.primary); expect(g.c).not.toBe(g.actual); expect(g.visible).toBe("visible"); }
+    expect([a.tick, b.tick]).toEqual(["3", "4"]);
+    expect(a.tr).toContain("transform");
+    expect(a.dur.split(", ")[0]).toBe("0.14s");
+  }, 60000);
+});
+
+describe("[V2T06] guard under rapid navigation", () => {
+  it("20 tick changes in 2 s with randomized response delays: every READY block's header tick equals Q.tick in every frame", async () => {
+    const p = await open(env, view("TEMPORAL_STATE_EXPLORER"), { width: 1440, height: 900 }, "no-preference", { jitterMs: 400 });
+    await p.waitForSelector('[data-state="READY"][data-header-tick]');
+    const r = await p.evaluate(async () => {
+      let bad = 0, frames = 0, readySeen = 0; const notes: string[] = [];
+      let stop = false;
+      const watch = async () => { while (!stop) { await new Promise((res) => requestAnimationFrame(res)); frames++;
+        const q = new URL(location.href).searchParams.get("tick");
+        for (const b of document.querySelectorAll('[data-state="READY"][data-header-tick]')) {
+          readySeen++; const h = b.getAttribute("data-header-tick")!.split(" ");
+          if (h.some((x) => x !== q)) { bad++; if (notes.length < 5) notes.push(`${h.join("/")} vs ${q}`); }
+        } } };
+      const w = watch();
+      const keys = ["ArrowRight", "ArrowLeft", "ArrowLeft", "ArrowRight", "ArrowRight", "ArrowLeft", "ArrowLeft", "ArrowLeft", "ArrowRight", "ArrowRight",
+        "ArrowRight", "ArrowLeft", "ArrowRight", "ArrowLeft", "ArrowLeft", "ArrowRight", "ArrowLeft", "ArrowRight", "ArrowRight", "ArrowLeft"];
+      for (const k of keys) { window.dispatchEvent(new KeyboardEvent("keydown", { key: k })); await new Promise((res) => setTimeout(res, 100)); }
+      await new Promise((res) => setTimeout(res, 1500));
+      stop = true; await w;
+      return { bad, frames, readySeen, notes, final: new URL(location.href).searchParams.get("tick"),
+        settled: [...document.querySelectorAll('[data-state="READY"][data-header-tick]')].map((b) => b.getAttribute("data-header-tick")) };
+    });
+    await p.context().close();
+    expect(r.frames).toBeGreaterThan(30);
+    expect(r.readySeen).toBeGreaterThan(0);
+    expect(r.bad, r.notes.join("; ")).toBe(0);
+    expect(r.settled.length).toBeGreaterThan(0);
+    for (const h of r.settled) expect(h!.split(" ").every((x) => x === r.final)).toBe(true);
+  }, 60000);
+});
+
+describe("[V2T17] space.actual only inside Ω_A signs", () => {
+  it.each(["SYSTEM_FIELD_OVERVIEW", "TOPOLOGY_GRAPH", "TEMPORAL_STATE_EXPLORER", "OBSERVATION_INSPECTOR", "FORWARD_SWEEP_INSPECTOR", "STRUCTURAL_GAP_INSPECTOR",
+    "ARCHITECTURAL_CLOSURE_INSPECTOR", "STRUCTURAL_METRICS", "EVENT_TIMELINE"])("%s (incl. Zones A, B, D)", async (v) => {
+    const p = await open(env, view(v), { width: 1440, height: 900 });
+    await p.waitForTimeout(250);
+    const bad = await p.evaluate(() => {
+      const d = document.createElement("i"); d.style.color = "var(--col-space-actual)"; document.body.append(d); const A = getComputedStyle(d).color; d.remove();
+      const props = ["color", "backgroundColor", "borderTopColor", "borderRightColor", "borderBottomColor", "borderLeftColor", "outlineColor", "fill", "stroke"] as const;
+      const inA = (e: Element) => e.closest('[data-space="A"], .cell-a, .shape-a, .delta-a, .slot-a, [data-sem="SEM-001"], [data-sem="SEM-023"][data-space="A"]') !== null;
+      const out: string[] = [];
+      for (const e of document.querySelectorAll("*")) {
+        if (e.closest(".ambient")) continue;
+        const s = getComputedStyle(e);
+        const hit = props.filter((k) => { const v = s[k] as string; return v === A && !(k.startsWith("border") && s[(k.replace("Color", "Width")) as "borderTopWidth"] === "0px"); });
+        if (hit.length && !inA(e)) out.push(`${e.tagName}.${(e.getAttribute("class") ?? "").slice(0, 30)}[${hit.join(",")}]`);
+      }
+      return out;
+    });
+    await p.context().close();
+    expect(bad).toEqual([]);
+  }, 60000);
+});

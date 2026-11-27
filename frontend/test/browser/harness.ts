@@ -40,7 +40,7 @@ export async function stop(e: Env): Promise<void> {
 }
 
 export async function open(e: Env, path: string, viewport = { width: 1440, height: 900 }, reducedMotion: "reduce" | "no-preference" = "no-preference",
-  opts: { delayMs?: number; settle?: boolean; initScript?: "slow-frames" | "steady-frames" } = {}): Promise<Page> {
+  opts: { delayMs?: number; jitterMs?: number; settle?: boolean; initScript?: "slow-frames" | "steady-frames" } = {}): Promise<Page> {
   const ctx = await e.browser.newContext({ viewport, reducedMotion, deviceScaleFactor: 1, locale: "en-US", timezoneId: "UTC" });
   // test-only main-thread load for the frame-budget governor (V3T07): every animation frame blocks for 40 ms
   if (opts.initScript === "slow-frames") await ctx.addInitScript(() => { const loop = () => { const t = performance.now(); while (performance.now() - t < 40) { /* busy */ } requestAnimationFrame(loop); }; requestAnimationFrame(loop); });
@@ -52,6 +52,9 @@ export async function open(e: Env, path: string, viewport = { width: 1440, heigh
   });
   const page = await ctx.newPage();
   const requests: string[] = [];
+  // randomized but reproducible response delays (V2T06): seeded LCG, 0…jitterMs per API response
+  let seed = 20261127;
+  const jitter = () => { seed = (seed * 1103515245 + 12345) % 2147483648; return opts.jitterMs ? (seed / 2147483648) * opts.jitterMs : 0; };
   await page.route("**/*", async (route) => {
     const u = new URL(route.request().url());
     if (u.origin === API) requests.push(`${route.request().method()} ${u.pathname}${u.search}`);
@@ -61,6 +64,7 @@ export async function open(e: Env, path: string, viewport = { width: 1440, heigh
       const r = ROUTES.get(canon(u.pathname + u.search));
       if (!r) { e.misses.push(u.pathname + u.search); return route.fulfill({ status: 404, contentType: "application/json", body: "{}" }); }
       if (opts.delayMs) await new Promise((res) => setTimeout(res, opts.delayMs));
+      if (opts.jitterMs) await new Promise((res) => setTimeout(res, jitter()));
       return route.fulfill({ status: r.status, contentType: "application/json", body: readFileSync(join(snaps, r.file), "utf-8") });
     }
     e.blocked.push(u.href);

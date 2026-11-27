@@ -1,2 +1,2 @@
-export { TickScrubber } from "./TickScrubber";
+export { TickRail } from "./TickRail";
 export { neighbours, tickRange } from "./ticks";
