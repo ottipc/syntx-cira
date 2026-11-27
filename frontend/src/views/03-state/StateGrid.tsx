@@ -11,7 +11,7 @@ function Row({ row, index, focus, tick }: { row: RowVM; index: number; focus: st
   const s = useFocusState(row.attribute);
   const focused = focus === row.attribute;
   return (
-    <div className="contents" role="row" data-attribute={row.attribute} data-focus-state={s} {...(row.changed ? { "data-changed": "" } : {})}>
+    <div className="contents" role="row" data-attribute={row.attribute} data-focus-id={row.attribute} data-focus-state={s} {...(row.changed ? { "data-changed": "" } : {})}>
       <div className="attr" role="rowheader">
         <FocusHandle id={row.attribute}><FocusRing active={focused}><IdText>{row.attribute}</IdText></FocusRing></FocusHandle>
         {row.differs ? <DeviationSeam /> : null}

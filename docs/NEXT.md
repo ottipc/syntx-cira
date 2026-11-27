@@ -3,9 +3,9 @@
 ## GUI-Generation v2 (Branch `feature/semiontic-gui-v2`, ADR-0008)
 
 Architektur v2.0.3 eingefroren, Owner Implementation Release erteilt (2026-11-27). Einheiten U00–U30 nach
-Kapitel 09.2/12 der Architektur. Stand: **U00–U28 erledigt** (CP1–CP6 getaggt `v2-cp1…6`; U14 FocusScope, U15 Fokusfeld
+Kapitel 09.2/12 der Architektur. Stand: **U00–U29 erledigt** (CP1–CP6 getaggt `v2-cp1…6`; U14 FocusScope, U15 Fokusfeld
 Ansicht 03, U16 Resolver und Fokusfeld in allen übrigen Ansichten, U17 ansichtsübergreifender Fokus). Nächste Einheit
-**U29** (V2T25 Kontrastmatrix, V2T22, V2T06-Stress), dann U30 (Perf, Größe, Review-Paket, Gate) → CP7.
+**U30** (Perf-Läufe V2T23, Größendifferenz V2T15, Wahrnehmungs-Kit, Review-Paket, `make gate PHASE=05`) → CP7.
 Vermerkt für U27: Schließen der Zone E mit Bewegung.
 `main` bleibt auf `ac5073b`; Übergabe je Checkpoint als Git-Bundle.
 

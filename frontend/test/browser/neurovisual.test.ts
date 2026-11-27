@@ -485,3 +485,37 @@ describe("[U26] views 09, 10, 11", () => {
     expect(c).toEqual({ badge: true, composition: "reserve" });
   }, 60000);
 });
+
+describe("[V2T06][U29] guard stress: ticks and views interleaved", () => {
+  it("60 tick/view changes in 3 s with delays up to 600 ms: no frame shows a READY block whose header tick ≠ Q.tick; the end state settles", async () => {
+    const p = await open(env, view("TEMPORAL_STATE_EXPLORER"), { width: 1440, height: 900 }, "no-preference", { jitterMs: 600 });
+    await p.waitForSelector('[data-state="READY"][data-header-tick]');
+    const r = await p.evaluate(async () => {
+      let bad = 0, frames = 0, ready = 0, stop = false; const notes: string[] = [];
+      const watch = async () => { while (!stop) { await new Promise((res) => requestAnimationFrame(res)); frames++;
+        const q = new URL(location.href).searchParams.get("tick");
+        for (const b of document.querySelectorAll('[data-state="READY"][data-header-tick]')) {
+          ready++; const h = b.getAttribute("data-header-tick")!.split(" ");
+          if (h.some((x) => x !== q)) { bad++; if (notes.length < 5) notes.push(`${location.pathname.split("/").pop()} ${h.join("/")} vs ${q}`); } } } };
+      const w = watch();
+      const views = ["TOPOLOGY_GRAPH", "TEMPORAL_STATE_EXPLORER", "OBSERVATION_INSPECTOR", "EVENT_TIMELINE", "ARCHITECTURAL_CLOSURE_INSPECTOR"];
+      let seed = 7; const rnd = () => { seed = (seed * 1103515245 + 12345) % 2147483648; return seed / 2147483648; };
+      for (let i = 0; i < 60; i++) {
+        if (rnd() < 0.3) (document.querySelector<HTMLAnchorElement>(`.zone-b a[href*="/${views[Math.floor(rnd() * views.length)]}"]`))?.click();
+        else window.dispatchEvent(new KeyboardEvent("keydown", { key: rnd() < 0.5 ? "ArrowLeft" : "ArrowRight" }));
+        await new Promise((res) => setTimeout(res, 50));
+      }
+      await new Promise((res) => setTimeout(res, 2500));
+      stop = true; await w;
+      const q = new URL(location.href).searchParams.get("tick");
+      return { bad, frames, ready, notes, loading: document.querySelectorAll('[data-state="LOADING"]').length,
+        final: [...document.querySelectorAll('[data-state="READY"][data-header-tick]')].map((b) => b.getAttribute("data-header-tick")!.split(" ").every((x) => x === q)) };
+    });
+    await p.context().close();
+    expect(r.frames).toBeGreaterThan(60);
+    expect(r.ready).toBeGreaterThan(0);
+    expect(r.bad, r.notes.join("; ")).toBe(0);
+    expect(r.loading, "every block settled").toBe(0);
+    expect(r.final.every(Boolean)).toBe(true);
+  }, 90000);
+});

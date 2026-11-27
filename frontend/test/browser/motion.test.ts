@@ -6,7 +6,7 @@
 import type { Page } from "playwright-core";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
 import { MOTION } from "../../src/semiontics/generated/tokens";
-import { EXP } from "../helpers/snapshots";
+import { EXP, snapshot } from "../helpers/snapshots";
 import { type Env, open, start, stop } from "./harness";
 
 let env: Env;
@@ -338,5 +338,46 @@ describe("[U22] MOT09 metric confirmation", () => {
     expect(r.caps.length).toBeGreaterThan(0);
     for (const d of r.caps) expect(d).toBe(MOTION.tick);
     expect(r.others).toBe(0);
+  }, 60000);
+});
+
+describe("[V2T22] quarantine supremacy", () => {
+  it("header mismatch while ambient active, focus locked, drawer open, presentation: quarantined at once, on top, ambient suspended", async () => {
+    const p = await open(env, url("TEMPORAL_STATE_EXPLORER", "&focus=attr:n08/state&mode=presentation"), { width: 1920, height: 1080 }, "no-preference",
+      { initScript: "steady-frames" });
+    await p.waitForSelector('[data-focus-scope="active"]');
+    await p.click('.zone-c-content button[data-term="prov.drawer"]');
+    await p.waitForTimeout(300);
+    const before = await p.evaluate(() => ({ ambient: document.querySelector<HTMLElement>(".zone-c")!.dataset.ambient, drawer: !document.querySelector(".zone-e")!.hasAttribute("hidden") }));
+    // the next tick's state projection answers with the wrong tick in its header (guard mismatch)
+    const tampered = JSON.stringify({ ...snapshot<Record<string, unknown> & { header: Record<string, unknown> }>(`/experiments/${EXP.baseline}/states?tick=4`),
+      header: { ...snapshot<{ header: Record<string, unknown> }>(`/experiments/${EXP.baseline}/states?tick=4`).header, tick: 3 } });
+    await p.route("http://127.0.0.1:8000/experiments/**/states?tick=4", (r) => r.fulfill({ status: 200, contentType: "application/json", body: tampered }));
+    const r = await p.evaluate(async () => {
+      const seen: { frame: number; q: boolean; ambient?: string; top?: boolean; anims?: number }[] = [];
+      let frame = 0, appeared = -1;
+      window.dispatchEvent(new KeyboardEvent("keydown", { key: "ArrowRight" }));
+      while (frame < 240) {
+        await new Promise((res) => requestAnimationFrame(res)); frame++;
+        const q = document.querySelector<HTMLElement>(".quarantine");
+        if (q && appeared < 0) appeared = frame;
+        if (q) {
+          const b = q.getBoundingClientRect();
+          const hit = document.elementFromPoint(b.left + b.width / 2, b.top + b.height / 2);
+          seen.push({ frame, q: true, ambient: document.querySelector<HTMLElement>(".zone-c")!.dataset.ambient, top: !!hit && q.contains(hit), anims: q.getAnimations({ subtree: true }).length });
+          if (seen.length >= 3) break;
+        }
+      }
+      // in the frame the quarantine appeared, no READY block of the old tick may be shown next to it
+      return { appeared, seen, readyOld: document.querySelectorAll('[data-state="READY"][data-header-tick="3"]').length, scope: document.querySelector('[data-focus-scope="active"]') !== null };
+    });
+    await p.context().close();
+    expect(before).toEqual({ ambient: "active", drawer: true });
+    expect(r.appeared, "quarantine appeared").toBeGreaterThan(0);
+    for (const s of r.seen) { expect(s.top, "nothing in Zone C painted above the quarantine").toBe(true); expect(s.anims, "MOT07: no motion").toBe(0); }
+    expect(r.seen[0]!.ambient === "suspended" || r.seen[1]!.ambient === "suspended", "ambient suspended within one frame").toBe(true);
+    expect(r.seen.at(-1)!.ambient).toBe("suspended");
+    expect(r.readyOld, "no block of the old tick stays READY beside the quarantine").toBe(0);
+    expect(r.scope, "no attenuation while quarantined").toBe(false);
   }, 60000);
 });

@@ -516,3 +516,10 @@ tr[data-stage-commit] > td { animation: mot-stage-tick var(--motion-focus) var(-
    pill is compact, and a field card is never narrower than its widest unbreakable content */
 .rail a > span:last-child { min-width: 0; hyphens: auto; overflow-wrap: anywhere; }
 .layer .exec { letter-spacing: normal; padding: 0 var(--space-4); }
+/* sign outlines (U29, V2T25, IC-23): border.strong measured 1.73–2.03 : 1 against the panel, below the graphic limit.
+   The registered colour is the sign's ink (SEM-014/018 ink.secondary; SEM-027/032 ink.primary on their text); the outline
+   is drawn in ink.secondary (7.52 : 1), one tier below primary text, so frames never compete with the datum they hold */
+.origin-synthetic { border-color: var(--ink-2); }
+.epi, .chip[data-sem="SEM-018"] { border-color: var(--ink-2); }
+.engine-token { border-color: var(--ink-2); }
+.exec { border-color: var(--ink-2); }
