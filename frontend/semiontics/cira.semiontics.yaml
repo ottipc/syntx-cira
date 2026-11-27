@@ -1,5 +1,5 @@
 # SSOT of the visual and semiontic identity (G04.1). Hand-maintained. Generated outputs: tools/gen_semiontics.py
-version: 1.0.1
+version: 1.1.0
 source: Package v1.0.2 G03.12, G03.13; GREF SEM-001–030
 tokens:
   color:
@@ -154,6 +154,13 @@ tokens:
     drawer: 160
     stage: 200
     network.pulse: 9000
+    hover: 80
+    focus: 120
+    scrub: 140
+    carry: 160
+    brand.breath: 14000
+    ambient.drift: 36000
+    decor.yield: 480
   graph:
     node.char_width: 7.8
     node.slot_chars: 12
@@ -183,6 +190,86 @@ tokens:
     network.line: 0.06
     network.max: 0.08
     glow: 0.45
+  # ---- v1.1.0: neurovisual GUI generation (architecture v2.0.3, ADR-0008) ----------------------------------------
+  # Derived colours are formulas; the generator resolves them before any check (05.1 T1). Never type their values.
+  derive:
+    surface.focus: {op: lightest_on_path, from: surface.panel, to: surface.elevated, keep: {eval.violation: 4.6}}
+    attn.tint.actual: {op: mix, a: space.actual.tint, b: surface.field, t: 0.5}
+    attn.tint.observed: {op: mix, a: space.observed.tint, b: surface.field, t: 0.5}
+    attn.tint.reconstructed: {op: mix, a: space.reconstructed.tint, b: surface.field, t: 0.5}
+    attn.border.hairline: {op: mix, a: border.hairline, b: surface.field, t: 0.55}
+  # Enhanced Projector Contrast profile (05.15): overrides under html[data-profile="projector"]
+  profile_projector:
+    surface.void: '#000000'
+    surface.field: '#04070A'
+    surface.panel: '#111A22'
+    border.hairline: '#2A3A4B'
+    border.strong: '#546D86'
+    attn.tint.actual: '#08161E'
+    attn.tint.observed: '#18140A'
+    attn.tint.reconstructed: '#121020'
+    pattern.open.hatch.opacity: 0.18
+    pattern.outside.crosshatch.opacity: 0.16
+  component:
+    focus.reticle.size: 6
+    focus.reticle.gap: 4
+    focus.border.width: 2
+    resonance.width: 1.5
+    resonance.offset: 3
+    relation.linked.extra: 0.5
+    attention.axis.focused: 2
+    attention.axis.resonant: 1
+    attention.axis.gutter: 8
+    bar.track.height: 4
+    bar.track.max: 256
+    metric.hero.size: 28
+    metric.hero.line: 36
+  decor:
+    alpha.text: 0.11
+    alpha.reserve: 0.20
+    alpha.damped: 0.14
+    axis.alpha: 0.06
+    light.alpha: 0.05
+    light.radius: 1.25
+    light.damped: 0.6
+    occupancy.pad: 14
+    drift.px: 8
+    vignette.alpha: 0.40
+    vignette.clear: 0.28
+  comp:
+    reserve: 0.32
+    ring.k: 0.40
+    ring.h: 0.30
+    anchor.cy: 0.50
+    ring.min: 84
+    ring.max: 320
+    min.info: 880
+    stage.short: 880
+    gutter: 24
+  light:
+    shadow.length: 8
+    shadow.bias: 4
+    shadow.blur: 24
+    shadow.spread: -6
+    shadow.alpha: 0.55
+  presentation_ref_height: 1080
+  # decor budgets checked against every text token allowed on decor ground (eval.violation is excluded by lint, G3-31)
+  decor_rules:
+    ground: surface.field
+    text_on_decor: [ink.primary, ink.secondary, ink.muted, space.actual, space.observed, space.reconstructed, eval.coherent, eval.partial]
+    excluded_from_decor_ground: [eval.violation]
+    graphic_inks: [ink.primary, ink.secondary]
+    projector_edge_min: 3.0
+  # animated colour pairs (05.11): [foreground from, foreground to, ground from, ground to]; the generator proves the path minimum
+  transitions:
+    attenuate.primary: [ink.primary, ink.secondary, surface.panel, surface.field]
+    attenuate.secondary: [ink.secondary, ink.muted, surface.panel, surface.field]
+    attenuate.muted: [ink.muted, ink.muted, surface.panel, surface.field]
+    attenuate.violation: [eval.violation, eval.violation, surface.panel, surface.field]
+    attenuate.tint.actual: [ink.muted, ink.muted, space.actual.tint, attn.tint.actual]
+    attenuate.tint.secondary: [ink.secondary, ink.muted, space.actual.tint, attn.tint.actual]
+    focus.violation: [eval.violation, eval.violation, surface.panel, surface.focus]
+    focus.muted: [ink.muted, ink.muted, surface.panel, surface.focus]
 decorative:
 - id: DEC-01
   name: brand mark
