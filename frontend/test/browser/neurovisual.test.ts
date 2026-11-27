@@ -104,3 +104,29 @@ describe("[G3-31][U11] violation-coloured text never sits on decor ground", () =
     expect(bad).toEqual([]);
   }, 60000);
 });
+
+describe("[V3T07][U11] ambient governor (05.6.3)", () => {
+  const state = (p: Page) => p.evaluate(() => document.querySelector<HTMLElement>(".zone-c")!.dataset.ambient);
+  it("active at rest; suspended on hidden tab, open modal and quarantine; back to active when they end", async () => {
+    const p = await open(env, view("SYSTEM_FIELD_OVERVIEW"));
+    await p.waitForTimeout(400);
+    expect(await state(p)).toBe("active");
+    await p.evaluate(() => { Object.defineProperty(document, "visibilityState", { configurable: true, get: () => "hidden" }); document.dispatchEvent(new Event("visibilitychange")); });
+    await p.waitForTimeout(200); expect(await state(p)).toBe("suspended");
+    await p.evaluate(() => { Object.defineProperty(document, "visibilityState", { configurable: true, get: () => "visible" }); document.dispatchEvent(new Event("visibilitychange")); });
+    await p.waitForTimeout(200); expect(await state(p)).toBe("active");
+    await p.evaluate(() => { const d = document.createElement("div"); d.setAttribute("role", "dialog"); d.id = "t-modal"; document.body.append(d); });
+    await p.waitForTimeout(200); expect(await state(p)).toBe("suspended");
+    await p.evaluate(() => document.getElementById("t-modal")!.remove());
+    await p.waitForTimeout(200); expect(await state(p)).toBe("active");
+    await p.evaluate(() => { const q = document.createElement("div"); q.dataset.state = "VIEW_DATA_UNAVAILABLE"; q.id = "t-q"; document.querySelector(".zone-c-content")!.append(q); });
+    await p.waitForTimeout(200); expect(await state(p)).toBe("suspended");
+    await p.context().close();
+  }, 60000);
+  it("an exceeded frame budget (p95 > 33.3 ms over 120 frames) makes the environment static for the session", async () => {
+    const p = await open(env, view("SYSTEM_FIELD_OVERVIEW"), undefined, undefined, { initScript: "slow-frames" });
+    await p.waitForFunction(() => document.querySelector<HTMLElement>(".zone-c")?.dataset.ambient === "static", undefined, { timeout: 20000 });
+    expect(await state(p)).toBe("static");
+    await p.context().close();
+  }, 60000);
+});

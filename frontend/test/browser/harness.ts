@@ -40,8 +40,10 @@ export async function stop(e: Env): Promise<void> {
 }
 
 export async function open(e: Env, path: string, viewport = { width: 1440, height: 900 }, reducedMotion: "reduce" | "no-preference" = "no-preference",
-  opts: { delayMs?: number; settle?: boolean } = {}): Promise<Page> {
+  opts: { delayMs?: number; settle?: boolean; initScript?: "slow-frames" } = {}): Promise<Page> {
   const ctx = await e.browser.newContext({ viewport, reducedMotion, deviceScaleFactor: 1, locale: "en-US", timezoneId: "UTC" });
+  // test-only main-thread load for the frame-budget governor (V3T07): every animation frame blocks for 40 ms
+  if (opts.initScript === "slow-frames") await ctx.addInitScript(() => { const loop = () => { const t = performance.now(); while (performance.now() - t < 40) { /* busy */ } requestAnimationFrame(loop); }; requestAnimationFrame(loop); });
   const page = await ctx.newPage();
   const requests: string[] = [];
   await page.route("**/*", async (route) => {
