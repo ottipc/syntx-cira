@@ -59,3 +59,14 @@ export function ribbon(space: "A" | "O" | "R", set: RuleEvaluationSet | null): R
   if (!set) return { space, available: false, t: 0, f: 0, u: 0 };
   return { space, available: true, t: set.summary.true, f: set.summary.false, u: set.summary.unevaluable };
 }
+
+/** View 03 resonance (architecture v2.0.3, 04.4, D08): attributes read by the same rule as the focused attribute.
+ *  Pure selection on ids (TX26): no counting, no arithmetic. Source: RuleEvaluation.input_attribute_refs of the A/O/R
+ *  evaluation sets the view already loads. */
+export interface ResonanceVM03 { inputs: readonly (readonly string[])[] }
+export function resonanceVM(sets: readonly (RuleEvaluationSet | null)[]): ResonanceVM03 {
+  return { inputs: sets.flatMap((s) => s?.evaluations ?? []).map((e) => e.input_attribute_refs) };
+}
+export function resolveResonance(focus: string, vm: ResonanceVM03): readonly string[] {
+  return [...new Set(vm.inputs.filter((refs) => refs.includes(focus)).flat())].filter((x) => x !== focus);
+}

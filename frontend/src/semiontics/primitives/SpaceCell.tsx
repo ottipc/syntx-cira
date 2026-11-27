@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import { useT, type TermKey, type TParams } from "../../language";
 import { SEM, type SemId } from "../generated/sem";
-import { semAttrs } from "./_util";
+import { ABSENCE, semAttrs } from "./_util";
 
 export interface SpaceCellProps {
   sem: SemId;
@@ -18,7 +18,7 @@ export function SpaceCell({ sem, space, value, term, termParams, sub, focused }:
   const t = useT();
   const e = SEM[sem];
   return (
-    <div className={`cell cell-${space.toLowerCase()} sem-${sem.toLowerCase()}${focused ? " is-focused" : ""}`}
+    <div className={`cell cell-${space.toLowerCase()} sem-${sem.toLowerCase()}${focused && !ABSENCE.has(sem) ? " is-focused" : ""}`}
       {...semAttrs(sem, term ?? undefined)}>
       {e.glyph ? <span className="cell-glyph" aria-hidden="true">{e.glyph}</span> : null}
       {value ? <span className="mono-value" data-datum="value">{value}</span> : null}

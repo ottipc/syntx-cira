@@ -9,6 +9,9 @@
   --ink-1: var(--col-ink-primary); --ink-2: var(--col-ink-secondary); --ink-3: var(--col-ink-muted);
   --surface-block: var(--col-surface-panel); --border-block: var(--col-border-hairline);
   --tint-a: var(--col-space-actual-tint); --tint-o: var(--col-space-observed-tint); --tint-r: var(--col-space-reconstructed-tint);
+  /* canonical focus signs (never remapped: SEM-034 geometry, SEM-038, attention axis) and the attenuated ink steps */
+  --sign-focus: var(--col-ink-primary); --sign-linked: var(--col-ink-secondary); --sign-axis: var(--col-border-hairline);
+  --attn-ink-1: var(--col-ink-secondary); --attn-ink-2: var(--col-ink-muted);
 }
 
 html, body, #root { height: 100%; }
@@ -296,3 +299,57 @@ ul.plain { list-style: none; margin: 0; padding: 0; }
 [data-attn="exempt"][data-sem="SEM-006"], [data-attn="exempt"][data-sem="SEM-007"], [data-attn="exempt"][data-sem="SEM-008"],
 [data-attn="exempt"][data-sem="SEM-009"], [data-attn="exempt"][data-sem="SEM-012"], [data-attn="exempt"][data-sem="SEM-022"],
 [data-attn="exempt"][data-sem="SEM-024"], [data-attn="exempt"][data-sem="SEM-031"] { transition: none; animation: none; }
+/* ---- focus & resonance field (architecture v2.0.3, 04.2–04.4, 04.12; U14–U15) ------------------------------------
+   Hierarchy on independent channels: focused (2 px primary outline, reticles, focus surface, bright gutter segment) ·
+   resonant (SEM-038: 1.5 px secondary at 3 px gap, secondary gutter segment) · neutral · attenuated (role remap). */
+:root { --focus-reticle: var(--cmp-focus-reticle-size); --focus-reticle-gap: var(--cmp-focus-reticle-gap); --state-row-gap: var(--space-8); }
+[data-mode='presentation'] {
+  --focus-reticle: 8px;
+  --focus-reticle-gap: 5px;
+  --state-row-gap: 10px;
+}
+.focus-scope { display: contents; }
+.focus-absent { color: var(--ink-2); margin: 0 0 var(--space-8) 0; }
+.focus-handle { background: none; border: 0; padding: 0; color: inherit; font: inherit; cursor: pointer; text-align: left; }
+.focus-ring { outline: none; }
+.cell.is-focused { outline: none; }
+/* attenuation: roles step down; chromatic signs and the exempt set stay canonical (K1, K2) */
+[data-focus-state="attenuated"] {
+  --ink-1: var(--attn-ink-1); --ink-2: var(--attn-ink-2); --ink-3: var(--attn-ink-2);
+  --surface-block: var(--col-surface-field); --border-block: var(--col-attn-border-hairline);
+  --tint-a: var(--col-attn-tint-actual); --tint-o: var(--col-attn-tint-observed); --tint-r: var(--col-attn-tint-reconstructed);
+}
+/* colour is set on non-exempt carriers only: an inherited colour must not reach an absence carrier (INV2-07) */
+[data-focus-state="attenuated"] > .attr, [data-focus-state="attenuated"] .cell:not([data-attn="exempt"]) { color: var(--ink-1); }
+[data-focus-state] .cell, [data-focus-state] .attr, [data-focus-state] .mono-value, [data-focus-state] .cell-term, [data-focus-state] .mono-id {
+  transition: background-color var(--motion-focus) var(--ease-settle), color var(--motion-focus) var(--ease-settle), border-color var(--motion-focus) var(--ease-settle); }
+.state-grid { position: relative; row-gap: var(--state-row-gap); }
+.state-grid .attr { position: relative; }
+.state-grid .attr .mono-id { color: var(--ink-2); }
+[data-focus-state="focused"] > .attr .mono-id { color: var(--ink-1); }
+[data-focus-state="focused"] > .attr { background-color: var(--col-surface-focus); }
+.row-frame { position: absolute; pointer-events: none; z-index: var(--depth-focus); grid-column: 1 / -1;
+  grid-row: attr(data-row type(<integer>)) / span 1; }
+.row-frame-focused { inset: calc(-1 * var(--cmp-focus-border-width)); border: var(--cmp-focus-border-width) solid var(--sign-focus);
+  transition: border-color var(--motion-focus) var(--ease-settle); }
+.row-frame-focused::after { content: ""; position: absolute; inset: calc(-1 * (var(--focus-reticle-gap) + var(--cmp-focus-border-width)));
+  --g: var(--sign-focus); --L: var(--focus-reticle); --T: var(--cmp-focus-border-width);
+  background:
+    linear-gradient(var(--g), var(--g)) top left / var(--L) var(--T) no-repeat, linear-gradient(var(--g), var(--g)) top left / var(--T) var(--L) no-repeat,
+    linear-gradient(var(--g), var(--g)) top right / var(--L) var(--T) no-repeat, linear-gradient(var(--g), var(--g)) top right / var(--T) var(--L) no-repeat,
+    linear-gradient(var(--g), var(--g)) bottom left / var(--L) var(--T) no-repeat, linear-gradient(var(--g), var(--g)) bottom left / var(--T) var(--L) no-repeat,
+    linear-gradient(var(--g), var(--g)) bottom right / var(--L) var(--T) no-repeat, linear-gradient(var(--g), var(--g)) bottom right / var(--T) var(--L) no-repeat; }
+/* SEM-038 canonical geometry (D01): solid 1.5 px ink.secondary, inner edge 3 px outside the host */
+.resonance-frame { position: absolute; pointer-events: none; z-index: var(--depth-relational);
+  inset: calc(-1 * (var(--cmp-resonance-offset) + var(--cmp-resonance-width)));
+  /* inset spread instead of border: Chrome snaps border widths to whole device pixels (1.5 px → 1 px at DPR 1) */
+  box-shadow: inset 0 0 0 var(--cmp-resonance-width) var(--sign-linked); }
+.resonance { fill: none; stroke: var(--sign-linked); stroke-width: var(--cmp-resonance-width); }
+/* gutter attention axis (04.12): hairline while a focus is locked; bright segment at the focused row, secondary at linked rows */
+.focus-scope[data-focus-scope="active"] .state-grid::before { content: ""; position: absolute; top: 0; bottom: 0;
+  left: calc(-1 * var(--space-8)); width: var(--border-width-base); background: var(--sign-axis); }
+[data-focus-state="focused"] > .attr::before { content: ""; position: absolute; top: calc(-1 * var(--space-16)); bottom: calc(-1 * var(--space-16));
+  left: calc(-1 * var(--space-8)); width: var(--cmp-attention-axis-focused);
+  background: linear-gradient(to bottom, transparent, var(--sign-focus) 28%, var(--sign-focus) 72%, transparent); }
+[data-focus-state="resonant"] > .attr::before { content: ""; position: absolute; top: 0; bottom: 0; left: calc(-1 * var(--space-8));
+  width: var(--cmp-attention-axis-resonant); background: var(--sign-linked); }

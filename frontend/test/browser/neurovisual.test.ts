@@ -130,3 +130,50 @@ describe("[V3T07][U11] ambient governor (05.6.3)", () => {
     await p.context().close();
   }, 60000);
 });
+
+describe("[V2T19][V3T14][V2T18][U15] view 03 focus field", () => {
+  it("one focused row with a 2-px ink.primary frame; co-read rows carry SEM-038 at 1.5 px / 3 px; others attenuated; absence untouched", async () => {
+    const p = await open(env, view("TEMPORAL_STATE_EXPLORER"), { width: 1920, height: 1080 });
+    const sig = () => p.evaluate(() => [...document.querySelectorAll('.cell[data-attn="exempt"]')].map((c) => { const s = getComputedStyle(c);
+      return [s.backgroundColor, s.backgroundImage, s.color, s.borderLeft, s.outlineStyle, s.transform, s.opacity].join("|"); }).join("\n"));
+    const before = await sig();
+    await p.evaluate(() => { (window as unknown as { __m: number }).__m = 0; const mo = new MutationObserver((r) => { (window as unknown as { __m: number }).__m += r.length; });
+      document.querySelectorAll('.cell[data-attn="exempt"]').forEach((c) => mo.observe(c, { attributes: true, attributeFilter: ["style", "class"] })); });
+    await p.click('[data-attribute="attr:n08/state"] .focus-handle');
+    await p.waitForTimeout(400);
+    const r = await p.evaluate(() => {
+      const rows = [...document.querySelectorAll<HTMLElement>("[data-attribute]")];
+      const frame = document.querySelector(".row-frame-focused")!, fs = getComputedStyle(frame);
+      const res = [...document.querySelectorAll<HTMLElement>('[data-sem="SEM-038"]')];
+      const host = (el: Element) => el.closest("[data-attribute]")!.querySelector(".attr")!.getBoundingClientRect();
+      return {
+        scope: document.querySelector(".focus-scope")!.getAttribute("data-focus-scope"),
+        url: new URL(location.href).searchParams.get("focus"),
+        focused: rows.filter((x) => x.dataset.focusState === "focused").map((x) => x.dataset.attribute),
+        resonant: rows.filter((x) => x.dataset.focusState === "resonant").map((x) => x.dataset.attribute),
+        attenuated: rows.filter((x) => x.dataset.focusState === "attenuated").length,
+        frame: { w: fs.borderTopWidth, style: fs.borderTopStyle, c: fs.borderTopColor },
+        res: res.map((e) => { const s = getComputedStyle(e), b = e.getBoundingClientRect(), h = host(e);
+          const m = /^(rgba?\([^)]*\)) 0px 0px 0px ([\d.]+)px inset$/.exec(s.boxShadow);
+          const w = m ? parseFloat(m[2] ?? "") : NaN;
+          return { w: `${w}px`, style: m ? "solid" : s.boxShadow, c: m?.[1] ?? "", gap: Math.round((h.top - b.top - w) * 10) / 10 }; }),
+        ink: (() => { const d = document.createElement("i"); d.style.color = "var(--col-ink-secondary)"; document.body.append(d); const c = getComputedStyle(d).color;
+          d.style.color = "var(--col-ink-primary)"; const c2 = getComputedStyle(d).color; d.remove(); return { secondary: c, primary: c2 }; })(),
+        opacity: [...document.querySelectorAll<HTMLElement>(".zone-c-content *")].filter((e) => e.childNodes.length && getComputedStyle(e).opacity !== "1" && e.textContent?.trim()).length,
+        mut: (window as unknown as { __m: number }).__m,
+      };
+    });
+    const after = await sig();
+    await p.context().close();
+    expect(r.scope).toBe("active");
+    expect(r.url).toBe("attr:n08/state");
+    expect(r.focused).toEqual(["attr:n08/state"]);
+    expect(r.resonant.length).toBeGreaterThan(0);
+    expect(r.attenuated).toBeGreaterThan(0);
+    expect(r.frame).toEqual({ w: "2px", style: "solid", c: r.ink.primary });
+    for (const x of r.res) { expect(x.w).toBe("1.5px"); expect(x.style).toBe("solid"); expect(x.c).toBe(r.ink.secondary); expect(x.gap).toBeCloseTo(3, 0); }
+    expect(r.opacity, "no text-bearing element below opacity 1 (INV2-21)").toBe(0);
+    expect(r.mut, "absence carriers: no style/class mutation").toBe(0);
+    expect(after).toBe(before);
+  }, 60000);
+});

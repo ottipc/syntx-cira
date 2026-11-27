@@ -39,3 +39,10 @@
 - Branch `feature/semiontic-gui-v2` ab `ac5073b` (der lokale README-Commit `5641f17` ist nicht Teil des Branches).
 - Ausgangslage auf dem Branch: `make verify` grün (vitest 483/483, pytest grün, 0 Lint-Befunde).
 - ADR-0008-Rahmen mit den eingefrorenen Owner-Entscheidungen; Architektur unter `docs/architecture/gui-v2/`.
+
+## 2026-11-27 — GUI-Generation v2, U01–U15
+- U01–U13 einzeln committet (siehe ADR-0008, Tabelle); Checkpoints CP1 (pixelgleich), CP2, CP3 getaggt und als Bundle übergeben.
+- Korrekturen IC-19 (Registerliste DEC-01…08) und IC-20 (T09 deterministisch durch gehaltene Antwort; Erwartungen unverändert).
+- U14/U15: Fokusfeld Ansicht 03. Befund: Chrome zeichnet 1,5-px-Rahmen als 1 px → SEM-038 als `inset`-Schatten; ererbte
+  Textfarbe der gedämpften Zeile erreichte Abwesenheitsträger → Farbe nur auf nicht ausgenommene Zellen gesetzt.
+- `make verify`: 560/560 vitest, pytest grün, 0 Skips, 0 Lint-Befunde.

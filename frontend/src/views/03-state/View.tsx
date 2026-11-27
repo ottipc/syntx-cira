@@ -5,12 +5,13 @@ import { useT } from "../../language";
 import { sessionUrl, useSession } from "../../session";
 import { GuardedAll, ProvButton } from "../_common";
 import { Filters } from "./Filters";
-import { buildRows, ribbon } from "./model";
+import { buildRows, resolveResonance, resonanceVM, ribbon } from "./model";
+import { FocusScope } from "../../semiontics";
 import { StateGrid } from "./StateGrid";
 
 export function StateView() {
   const t = useT();
-  const { session, goUrl } = useSession();
+  const { session, goUrl, setFocus } = useSession();
   const st = useProjection<StateProjection>(ep.states(session));
   const ob = useProjection<ObservationProjection>(ep.observations(session));
   const rs = useProjection<ResultsProjection>(ep.results(session, "merged"));
@@ -30,10 +31,13 @@ export function StateView() {
         const rows = buildRows(s, o, rec, m.report.attribute_membership ?? [], session.filter);
         return (
           <>
+            <FocusScope focus={session.focus} vm={resonanceVM([a.evaluations.content ?? null, oo.evaluations.content ?? null, rr.evaluations.content ?? null])}
+              ids={rows.map((x) => x.attribute)} resolveResonance={resolveResonance} onFocus={setFocus}>
             <StateGrid rows={rows} focus={session.focus} tick={session.tick}
               origins={{ a: s.header.data_origin, o: o.observation.origin ?? null, r: rec.origin ?? null }}
               ribbons={[ribbon("A", a.evaluations.content ?? null), ribbon("O", oo.evaluations.content ?? null),
                 ribbon("R", rr.evaluations.content ?? null)]} />
+            </FocusScope>
             {rec.availability === "NOT_AVAILABLE_AT_TICK" ? (
               <p className="secondary">{t("avail.none", { t: session.tick })} ·{" "}
                 <a href={sessionUrl({ ...session, view: "EVENT_TIMELINE" })} onClick={(e) => { e.preventDefault(); goUrl(sessionUrl({ ...session, view: "EVENT_TIMELINE" })); }}>

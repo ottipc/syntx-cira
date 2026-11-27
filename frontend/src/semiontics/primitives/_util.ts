@@ -16,3 +16,6 @@ export function semAttrs(id: SemId, term?: string): Record<string, string> {
 export function lookup<K extends string>(table: Readonly<Record<K, SemId>>, key: string): SemId | null {
   return (table as Readonly<Record<string, SemId>>)[key] ?? null;
 }
+
+/** Layout only (TX26 allowance in semiontics/): CSS grid line of the n-th body row below one header row. */
+export const gridRow = (index: number): number => index + 2;

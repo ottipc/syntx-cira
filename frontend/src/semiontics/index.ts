@@ -21,6 +21,8 @@ export { BarrierLine } from "./primitives/BarrierLine";
 export { RecoveryGateLine } from "./primitives/RecoveryGateLine";
 export { FocusRing } from "./primitives/FocusRing";
 export { ResonanceMark } from "./primitives/ResonanceMark";
+export { FocusFrame } from "./primitives/FocusFrame";
 export { ABSENCE, EXEMPT } from "./primitives/_util";
 export { DeviationSeam } from "./primitives/DeviationSeam";
 export { Quarantine } from "./primitives/Quarantine";
+export { FocusHandle, FocusScope, useFocusScope, useFocusState, type FocusState } from "./focus/FocusScope";
