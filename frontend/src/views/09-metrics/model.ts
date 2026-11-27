@@ -20,3 +20,15 @@ export function bands(m: MetricsProjection): { term: TermKey; items: MetricVM[] 
   const all = metricVMs(m.report.results, m.definitions);
   return BANDS.map((b) => ({ term: b.term, items: all.filter((x) => b.relations.includes(x.relation as EvaluatedRelation)) }));
 }
+
+/** View 09 resonance (04.4): the catalog's complementary pair M01 ↔ M11 (static catalog relation) and cards that share
+ *  the same `reference_space` id. A card is identified by its StableId-shaped focus id. Equality on ids only (TX26). */
+const COMPLEMENT: Readonly<Record<string, string>> = { M01: "M11", M11: "M01" };
+export interface ResonanceVM09 { cards: readonly { key: string; id: string; space: string }[] }
+export function resonanceVM(m: MetricsProjection): ResonanceVM09 {
+  return { cards: bands(m).flatMap((b) => b.items).map((x) => ({ key: x.focusId, id: x.id, space: x.result.reference_space })) };
+}
+export function resolveResonance(focus: string, vm: ResonanceVM09): readonly string[] {
+  const f = vm.cards.find((c) => c.key === focus);
+  return f ? vm.cards.filter((c) => c.key !== focus && (c.id === COMPLEMENT[f.id] || c.space === f.space)).map((c) => c.key) : [];
+}

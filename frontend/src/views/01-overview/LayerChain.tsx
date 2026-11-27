@@ -1,8 +1,8 @@
 import { Fragment } from "react";
 import { useT } from "../../language";
-import { ExecPill, SpaceHeader } from "../../semiontics";
+import { ExecPill, FocusHandle, FocusMarks, SpaceHeader, useFocusItem } from "../../semiontics";
 import { sessionUrl, useSession, VIEW_IDS, type ViewKey } from "../../session";
-import type { LayerVM } from "./model";
+import { fieldFocusId, type LayerVM } from "./model";
 
 /** The seven fields as one chain F01 → F07 (DEC-03 links show only this fixed order). Between observation (F04) and
  *  engine (F05) the chain is cut by the barrier sign (SEM-019): only Ω_O passes, never Ω_A. */
@@ -19,15 +19,29 @@ export function LayerChain({ layers }: { layers: LayerVM[] }) {
             {i === 0 ? null : l.id === "F05"
               ? <span className="chain-link cut" data-sem="SEM-019" aria-hidden="true"><span className="cut-glyph">‖</span></span>
               : <span className="chain-link" aria-hidden="true" />}
-            <a className={`layer cascade-${i}`} href={href} onClick={(e) => { e.preventDefault(); goUrl(href); }} data-term={l.term} data-field={l.id}>
-              <span className="layer-id" aria-hidden="true">{l.id.slice(1)}</span>
-              <span className="space-title">{t(l.term)}</span>
-              {l.space === "A" || l.space === "O" || l.space === "R" ? <SpaceHeader space={l.space} origin={null} /> : null}
-              {l.status ? <ExecPill status={l.status} /> : null}
-            </a>
+            <Layer l={l} i={i}>
+              <a className="layer-open" href={href} onClick={(e) => { e.preventDefault(); goUrl(href); }} data-term={l.viewTerm}>▸ {t(l.viewTerm)}</a>
+            </Layer>
           </Fragment>
         );
       })}
+    </div>
+  );
+}
+
+/** One field card: its title is the focus handle (04.2: card title in 01), the link opens the field's view. */
+function Layer({ l, i, children }: { l: LayerVM; i: number; children: React.ReactNode }) {
+  const t = useT();
+  const id = fieldFocusId(l.id);
+  const f = useFocusItem(id);
+  return (
+    <div className={`layer cascade-${i}`} data-term={l.term} data-field={l.id} {...f.attrs}>
+      <FocusMarks id={id} />
+      <FocusHandle id={id}><span className="layer-id" aria-hidden="true">{l.id.slice(1)}</span>
+        <span className="space-title">{t(l.term)}</span></FocusHandle>
+      {l.space === "A" || l.space === "O" || l.space === "R" ? <SpaceHeader space={l.space} origin={null} /> : null}
+      {l.status ? <ExecPill status={l.status} /> : null}
+      {children}
     </div>
   );
 }

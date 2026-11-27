@@ -94,7 +94,7 @@ button { font: inherit; color: inherit; }
 .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-16); }
 .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: var(--space-16); }
 .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-12); }
-.stack > * + * { margin-top: var(--space-12); }
+.stack > * + *, .stack > * + .focus-scope > :first-child, .stack > .focus-scope > * + * { margin-top: var(--space-12); }
 .row { display: flex; gap: var(--space-8); align-items: baseline; flex-wrap: wrap; }
 table.data { border-collapse: collapse; width: 100%; }
 table.data th, table.data td { text-align: left; padding: var(--space-4) var(--space-8); border-bottom: var(--border-width-base) solid var(--border-block);
@@ -302,7 +302,8 @@ ul.plain { list-style: none; margin: 0; padding: 0; }
 /* ---- focus & resonance field (architecture v2.0.3, 04.2–04.4, 04.12; U14–U15) ------------------------------------
    Hierarchy on independent channels: focused (2 px primary outline, reticles, focus surface, bright gutter segment) ·
    resonant (SEM-038: 1.5 px secondary at 3 px gap, secondary gutter segment) · neutral · attenuated (role remap). */
-:root { --focus-reticle: var(--cmp-focus-reticle-size); --focus-reticle-gap: var(--cmp-focus-reticle-gap); --state-row-gap: var(--space-8); }
+:root { --focus-reticle: var(--cmp-focus-reticle-size); --focus-reticle-gap: var(--cmp-focus-reticle-gap); --state-row-gap: var(--space-8);
+  --svg-unit: 1px; /* line tokens are unitless SVG widths */ }
 [data-mode='presentation'] {
   --focus-reticle: 8px;
   --focus-reticle-gap: 5px;
@@ -310,7 +311,8 @@ ul.plain { list-style: none; margin: 0; padding: 0; }
 }
 .focus-scope { display: contents; }
 .focus-absent { color: var(--ink-2); margin: 0 0 var(--space-8) 0; }
-.focus-handle { background: none; border: 0; padding: 0; color: inherit; font: inherit; cursor: pointer; text-align: left; }
+.focus-handle { background: none; border: 0; padding: 0; color: inherit; font: inherit; cursor: pointer; text-align: left;
+  display: inline-flex; align-items: baseline; gap: var(--space-4); } /* no own line box: the handle takes the height of its id */
 .focus-ring { outline: none; }
 .cell.is-focused { outline: none; }
 /* attenuation: roles step down; chromatic signs and the exempt set stay canonical (K1, K2) */
@@ -330,9 +332,10 @@ ul.plain { list-style: none; margin: 0; padding: 0; }
 [data-focus-state="focused"] > .attr { background-color: var(--col-surface-focus); }
 .row-frame { position: absolute; pointer-events: none; z-index: var(--depth-focus); grid-column: 1 / -1;
   grid-row: attr(data-row type(<integer>)) / span 1; }
-.row-frame-focused { inset: calc(-1 * var(--cmp-focus-border-width)); border: var(--cmp-focus-border-width) solid var(--sign-focus);
+.focus-frame { position: absolute; pointer-events: none; z-index: var(--depth-focus); }
+.row-frame-focused, .focus-frame { inset: calc(-1 * var(--cmp-focus-border-width)); border: var(--cmp-focus-border-width) solid var(--sign-focus);
   transition: border-color var(--motion-focus) var(--ease-settle); }
-.row-frame-focused::after { content: ""; position: absolute; inset: calc(-1 * (var(--focus-reticle-gap) + var(--cmp-focus-border-width)));
+.row-frame-focused::after, .focus-frame::after { content: ""; position: absolute; inset: calc(-1 * (var(--focus-reticle-gap) + var(--cmp-focus-border-width)));
   --g: var(--sign-focus); --L: var(--focus-reticle); --T: var(--cmp-focus-border-width);
   background:
     linear-gradient(var(--g), var(--g)) top left / var(--L) var(--T) no-repeat, linear-gradient(var(--g), var(--g)) top left / var(--T) var(--L) no-repeat,
@@ -353,3 +356,20 @@ ul.plain { list-style: none; margin: 0; padding: 0; }
   background: linear-gradient(to bottom, transparent, var(--sign-focus) 28%, var(--sign-focus) 72%, transparent); }
 [data-focus-state="resonant"] > .attr::before { content: ""; position: absolute; top: 0; bottom: 0; left: calc(-1 * var(--space-8));
   width: var(--cmp-attention-axis-resonant); background: var(--sign-linked); }
+/* focusable items in views 01, 02, 04–11 (U16): hosts position their frame elements; the SEM-034 outline of the earlier
+   generation is replaced by the frame inside a scope (one geometry for focus everywhere) */
+[data-focus-id]:not(.contents) { position: relative; }
+.focus-scope .is-focused { outline: none; }
+.focus-frame-svg rect, .focus-frame-svg path { fill: none; stroke: var(--sign-focus); stroke-width: var(--cmp-focus-border-width); }
+.topology [data-focus-id] { cursor: pointer; }
+.topology [data-focus-id]:focus-visible { outline: none; }
+.topology [data-focus-id]:focus-visible .node-box { stroke: var(--sign-focus); }
+.topology [data-relation][data-focus-state="resonant"] .edge {
+  stroke-width: calc(var(--line-topology-depends_on-width) * var(--svg-unit) + var(--cmp-relation-linked-extra)); }
+.topology [data-relation][data-focus-state="resonant"] .edge-effective {
+  stroke-width: calc(var(--line-coupling-effective-width) * var(--svg-unit) + var(--cmp-relation-linked-extra)); }
+.focus-handle:focus-visible { outline: var(--border-width-emphasis) solid var(--sign-focus); outline-offset: var(--space-4); }
+/* view 01 field card (U16): title = focus handle, link to the field's view below */
+.layer .focus-handle { display: flex; flex-direction: column; gap: var(--space-4); }
+.layer-open { color: var(--ink-2); text-decoration: none; }
+.layer-open:hover { color: var(--ink-1); text-decoration: underline; text-underline-offset: var(--space-4); }

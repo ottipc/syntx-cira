@@ -3,6 +3,7 @@
 // projection snapshots. Grows unit by unit (U07 …).
 import type { Page } from "playwright-core";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
+import { resonanceCases } from "../helpers/resonanceCases";
 import { EXP } from "../helpers/snapshots";
 import { type Env, open, start, stop } from "./harness";
 
@@ -176,4 +177,55 @@ describe("[V2T19][V3T14][V2T18][U15] view 03 focus field", () => {
     expect(r.mut, "absence carriers: no style/class mutation").toBe(0);
     expect(after).toBe(before);
   }, 60000);
+});
+
+describe("[V2T20][V3T14][U16] focus field in every view (browser)", () => {
+  // focus per view: the first focusable id whose resolver finds a resonant item on screen (else the first id)
+  const cs = resonanceCases().map((c) => ({ ...c, focus: c.ids.find((f) => c.resolve(f).some((x) => c.ids.includes(x))) ?? c.ids[0]! }));
+  it.each(cs.filter((c) => c.view !== "03").map((c) => [c.view, c] as const))("view %s: target framed, resonance = resolver ∩ screen with SEM-038, rest attenuated, exempt untouched", async (_v, c) => {
+    const url = (f: string | null) => `/exp/${EXP.baseline}/${c.key}?${c.query}${f ? `&focus=${encodeURIComponent(f)}` : ""}`;
+    const exemptSig = () => [...document.querySelectorAll('[data-attn="exempt"]')].map((e) => { const s = getComputedStyle(e);
+      return [s.color, s.backgroundColor, s.backgroundImage, s.borderTop, s.outlineStyle, s.opacity, s.fill, s.stroke].join("|"); });
+    const p0 = await open(env, url(null), { width: 1920, height: 1080 });
+    const before = await p0.evaluate(exemptSig);
+    const idle = await p0.evaluate(() => [document.querySelectorAll("[data-focus-state]").length, document.querySelector(".focus-scope")?.getAttribute("data-focus-scope")] as const);
+    await p0.context().close();
+    const p = await open(env, url(c.focus), { width: 1920, height: 1080 });
+    await p.waitForTimeout(300);
+    const after = await p.evaluate(exemptSig);
+    const r = await p.evaluate(() => {
+      const items = [...document.querySelectorAll<HTMLElement | SVGElement>("[data-focus-id]")];
+      const by = (st: string) => items.filter((x) => x.getAttribute("data-focus-state") === st);
+      const edgeW = (x: Element) => parseFloat(getComputedStyle(x.querySelector(".edge")!).strokeWidth);
+      const plainEdge = by("attenuated").find((x) => x instanceof SVGElement && x.hasAttribute("data-relation"));
+      const res = by("resonant").map((x) => {
+        // a resonant relation is not outlined: its connecting line gains +0.5 px (RES-06), style class unchanged
+        if (x instanceof SVGElement && x.hasAttribute("data-relation")) return { id: x.getAttribute("data-focus-id"), w: plainEdge ? `${edgeW(x) - edgeW(plainEdge) + 1}px` : "1.5px" };
+        const m = x.querySelector(":scope > .resonance-frame, :scope > td > .resonance-frame, :scope > rect.resonance");
+        if (!m) return { id: x.getAttribute("data-focus-id"), w: "none" };
+        const s = getComputedStyle(m);
+        if (m instanceof SVGElement) return { id: x.getAttribute("data-focus-id"), w: s.strokeWidth };
+        const k = /([\d.]+)px inset$/.exec(s.boxShadow); return { id: x.getAttribute("data-focus-id"), w: k ? `${k[1]}px` : s.boxShadow }; });
+      const frames = by("focused").map((x) => !!x.querySelector(":scope > .focus-frame, :scope > td > .focus-frame, :scope > .focus-frame-svg"));
+      return {
+        scope: document.querySelector(".focus-scope")?.getAttribute("data-focus-scope"),
+        focused: [...new Set(by("focused").map((x) => x.getAttribute("data-focus-id")))], frames,
+        resonant: [...new Set(by("resonant").map((x) => x.getAttribute("data-focus-id")))].sort(), res,
+        attenuated: by("attenuated").length, onScreen: [...new Set(items.map((x) => x.getAttribute("data-focus-id")))],
+        opacity: [...document.querySelectorAll<HTMLElement>(".zone-c-content *")].filter((e) => e.textContent?.trim() && getComputedStyle(e).opacity !== "1").length,
+        absent: !!document.querySelector(".focus-absent"),
+      };
+    });
+    await p.context().close();
+    expect(idle, "no focus → no item state, scope idle").toEqual([0, "idle"]);
+    expect(r.absent).toBe(false);
+    expect(r.scope).toBe("active");
+    expect(r.focused).toEqual([c.focus]);
+    expect(r.frames.every(Boolean), "every focused item carries the SEM-034 frame").toBe(true);
+    expect(r.resonant).toEqual([...c.resolve(c.focus)].filter((x) => r.onScreen.includes(x)).sort());
+    for (const x of r.res) expect(x.w, `SEM-038 on ${x.id}`).toBe("1.5px");
+    if (c.resolve(c.focus).some((x) => c.ids.includes(x))) expect(r.resonant.length).toBeGreaterThan(0);
+    expect(r.opacity, "INV2-21").toBe(0);
+    expect(after, "absence and other exempt carriers unchanged").toEqual(before);
+  }, 90000);
 });

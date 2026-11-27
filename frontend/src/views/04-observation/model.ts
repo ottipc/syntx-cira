@@ -18,3 +18,13 @@ export function rows(b: ObservationProjectionBody): ObsRow[] {
     return { id: o.observation_id, attribute: o.attribute_ref, sem: "SEM-006", value: null, term: "obs.unknown", source: null };
   });
 }
+
+/** View 04 resonance (04.4): the source of an observation and the observations of a source (`source_id` of the context
+ *  observations, `source_register.entries`). Pure selection on ids (TX26). */
+export interface ResonanceVM04 { pairs: readonly (readonly [string, string])[] }
+export function resonanceVM(rs: readonly ObsRow[]): ResonanceVM04 {
+  return { pairs: rs.flatMap((r) => (r.source ? [[r.id, r.source] as const] : [])) };
+}
+export function resolveResonance(focus: string, vm: ResonanceVM04): readonly string[] {
+  return [...new Set(vm.pairs.flatMap(([o, s]) => (o === focus ? [s] : s === focus ? [o] : [])))];
+}

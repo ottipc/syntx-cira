@@ -29,3 +29,18 @@ export function matchMetrics(m: MetricsProjection, observableOnly: boolean): Met
 export function openGaps(gaps: readonly StructuralGap[] | undefined): StructuralGap[] {
   return [...(gaps ?? [])].sort((a, b) => (a.gap_id < b.gap_id ? -1 : 1));
 }
+
+/** View 07 resonance (04.4): the server's GapMatch pairs (case ↔ gap) and a gap's `source_refs`. Case rows are
+ *  identified by their case id (a false positive has none and keeps its gap id). Pure selection on ids (TX26). */
+export interface ResonanceVM07 { pairs: readonly (readonly [string, string])[]; sources: readonly (readonly [string, readonly string[]])[] }
+export const caseRowId = (g: GapMatch): string => g.case_id ?? g.gap_id ?? "";
+export function resonanceVM(m: MetricsProjection, gaps: readonly StructuralGap[]): ResonanceVM07 {
+  return {
+    pairs: m.report.gap_matches.flatMap((g) => (g.case_id && g.gap_id ? [[g.case_id, g.gap_id] as const] : [])),
+    sources: gaps.map((g) => [g.gap_id, g.source_refs] as const),
+  };
+}
+export function resolveResonance(focus: string, vm: ResonanceVM07): readonly string[] {
+  return [...new Set([...vm.pairs.flatMap(([c, g]) => (c === focus ? [g] : g === focus ? [c] : [])),
+    ...vm.sources.flatMap(([g, s]) => (g === focus ? s : []))])];
+}

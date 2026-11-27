@@ -25,4 +25,4 @@ export { FocusFrame } from "./primitives/FocusFrame";
 export { ABSENCE, EXEMPT } from "./primitives/_util";
 export { DeviationSeam } from "./primitives/DeviationSeam";
 export { Quarantine } from "./primitives/Quarantine";
-export { FocusHandle, FocusScope, useFocusScope, useFocusState, type FocusState } from "./focus/FocusScope";
+export { FocusHandle, FocusMarks, FocusScope, useFocusHandle, useFocusItem, useFocusScope, useFocusState, type FocusState } from "./focus/FocusScope";

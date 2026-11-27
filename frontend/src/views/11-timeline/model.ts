@@ -23,3 +23,16 @@ export function errorTerms(e: { code: string; recovery: string } | null | undefi
   const rec = (TermMaps.TERM_RecoveryAction as Record<string, TermKey>)[e.recovery];
   return code && rec ? [code, rec] : null;
 }
+
+/** View 11 resonance (04.4): `tick` of scenario events and pipeline stage events — an item resonates with the items of
+ *  the same tick (both tracks; the tracks stay separate). Stage events carry no id; they are addressed as
+ *  `pipeline:<seq>` (StableId form, K-01). Equality on ticks and ids only (TX26). */
+export const stageEventId = (s: { seq: number }): string => `pipeline:${s.seq}`;
+export interface ResonanceVM11 { items: readonly { id: string; tick: number | null }[] }
+export function resonanceVM(e: EventsProjection): ResonanceVM11 {
+  return { items: [...e.events.map((x) => ({ id: x.event_ref, tick: x.tick })), ...e.stage_events.map((s) => ({ id: stageEventId(s), tick: s.tick ?? null }))] };
+}
+export function resolveResonance(focus: string, vm: ResonanceVM11): readonly string[] {
+  const f = vm.items.find((x) => x.id === focus);
+  return f && f.tick !== null ? vm.items.filter((x) => x.id !== focus && x.tick === f.tick).map((x) => x.id) : [];
+}

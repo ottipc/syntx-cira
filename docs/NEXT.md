@@ -3,8 +3,9 @@
 ## GUI-Generation v2 (Branch `feature/semiontic-gui-v2`, ADR-0008)
 
 Architektur v2.0.3 eingefroren, Owner Implementation Release erteilt (2026-11-27). Einheiten U00–U30 nach
-Kapitel 09.2/12 der Architektur. Stand: **U00–U15 erledigt** (CP1–CP3 getaggt `v2-cp1…3`; U14 FocusScope, U15 Fokusfeld
-Ansicht 03 als Pilot). Nächste Einheit **U16** (Resonanz-Resolver der übrigen Sichten nach 04.4, danach U17 Carry → CP4).
+Kapitel 09.2/12 der Architektur. Stand: **U00–U16 erledigt** (CP1–CP3 getaggt `v2-cp1…3`; U14 FocusScope, U15 Fokusfeld
+Ansicht 03, U16 Resolver und Fokusfeld in allen übrigen Ansichten). Nächste Einheit **U17** (ansichtsübergreifender Fokus,
+V2T21) → CP4.
 `main` bleibt auf `ac5073b`; Übergabe je Checkpoint als Git-Bundle.
 
 Offen aus U15 für spätere Einheiten: schmale Attributspalte in Ansicht 03 bei DE-Präsentation 1280×720 (Umbruch

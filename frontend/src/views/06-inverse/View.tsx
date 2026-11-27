@@ -2,16 +2,17 @@
 import { ep, useProjection } from "../../access";
 import type { ResultsProjection, TraceProjection } from "../../access";
 import { useT } from "../../language";
-import { IdText, SpaceCell } from "../../semiontics";
+import { FocusScope, IdText, SpaceCell } from "../../semiontics";
 import { useSession } from "../../session";
 import { Guarded, ProvButton } from "../_common";
+import { resolveRunResonance, runResonanceVM } from "../_common/model";
 import { OutputTabs, RunHeader, TraceTimeline } from "../_common/RunParts";
 import { inverseOf } from "./model";
 import { TargetAssessment } from "./TargetAssessment";
 
 export function InverseView() {
   const t = useT();
-  const { session } = useSession();
+  const { session, setFocus } = useSession();
   const rs = useProjection<ResultsProjection>(ep.results(session, "inverse"));
   const tr = useProjection<TraceProjection>(ep.trace(session, "inv"));
   return (
@@ -23,8 +24,11 @@ export function InverseView() {
           <div className="stack">
             <RunHeader run={f.run} origin={f.origin} title="view.06"><span>· {t("target")}</span>
               {f.run.target_ref ? <IdText>{f.run.target_ref.artifact_id}</IdText> : null}<span>· {t("target.basis")}</span></RunHeader>
+            <FocusScope focus={session.focus} vm={runResonanceVM(tr.data, f.ta)} resolveResonance={resolveRunResonance} onFocus={setFocus}
+              ids={[...f.ta.map((g) => g.goal_id), ...(tr.data?.trace.content?.steps ?? []).map((x) => x.step_id), ...f.out.values.map((v) => v.attribute_ref)]}>
             <TargetAssessment items={f.ta} />
             <div className="grid-2"><Guarded v={tr}>{(x) => <TraceTimeline tr={x} independentNote />}</Guarded><OutputTabs out={f.out} /></div>
+            </FocusScope>
             <ProvButton title="run.inverse" header={r.header} raw={r.inverse} />
           </div>
         );

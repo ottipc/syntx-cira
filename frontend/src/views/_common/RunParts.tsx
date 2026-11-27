@@ -2,7 +2,8 @@
 import { useState } from "react";
 import type { SweepOutput, SweepRun, TraceProjection } from "./model";
 import { useT, type TermKey } from "../../language";
-import { EngineToken, EpistemicChip, ExecPill, GapMark, IdText, OriginBadge, SpaceCell, TerminationSeal } from "../../semiontics";
+import { EngineToken, EpistemicChip, ExecPill, FocusHandle, GapMark, IdText, OriginBadge, SpaceCell, TerminationSeal } from "../../semiontics";
+import { FocusBox, FocusIdCell, FocusTr } from "./FocusParts";
 
 export function RunHeader({ run, origin, title, children }: { run: SweepRun; origin: string; title: TermKey; children?: React.ReactNode }) {
   const t = useT();
@@ -34,11 +35,11 @@ export function TraceTimeline({ tr, independentNote }: { tr: TraceProjection; in
           const opKey = op ? `${op.namespace}:${opDatum ?? ""}:${op.registry_version}` : null;
           const sig = s.sigma_ref;
           return (
-            <li key={s.step_id} data-step={s.step_id} className="stack">
-              <div className="row"><IdText>{`#${s.step_seq}`}</IdText><EpistemicChip cls={s.epistemic_class} /></div>
+            <FocusBox as="li" key={s.step_id} id={s.step_id} data-step={s.step_id} className="stack">
+              <div className="row"><FocusHandle id={s.step_id}><IdText>{`#${s.step_seq}`}</IdText></FocusHandle><EpistemicChip cls={s.epistemic_class} /></div>
               {sig ? <EngineToken kind="field" datum={sig.sigma_id} label={labels.get(`SIGMA:${sig.sigma_id}:${sig.registry_version}`) ?? null} /> : null}
               {op && opDatum ? <EngineToken kind="operator" datum={opDatum} label={opKey ? labels.get(opKey) ?? null : null} opaque={"code" in op} /> : null}
-            </li>
+            </FocusBox>
           );
         })}
       </ol>
@@ -56,10 +57,10 @@ export function OutputTabs({ out }: { out: SweepOutput }) {
       <div className="toolbar" role="tablist">{TABS.map(([k, term]) => (
         <button key={k} type="button" role="tab" className="chip" aria-selected={tab === k} onClick={() => setTab(k)} data-term={term}>{t(term)}</button>))}</div>
       {tab === "values" ? <table className="data"><tbody>{out.values.map((v) => (
-        <tr key={v.attribute_ref}><td><IdText>{v.attribute_ref}</IdText></td>
+        <FocusTr key={v.attribute_ref} id={v.attribute_ref}><FocusIdCell id={v.attribute_ref} />
           <td><SpaceCell sem={v.status === "DETERMINED" ? "SEM-003" : v.status === "NOT_APPLICABLE" ? "SEM-008" : "SEM-007"} space="R"
             value={v.value ?? null} term={v.status === "DETERMINED" ? null : v.status === "NOT_APPLICABLE" ? "app.na" : "rec.undetermined"}
-            sub={v.epistemic_class ? <EpistemicChip cls={v.epistemic_class} /> : null} /></td></tr>))}</tbody></table> : null}
+            sub={v.epistemic_class ? <EpistemicChip cls={v.epistemic_class} /> : null} /></td></FocusTr>))}</tbody></table> : null}
       {tab === "relations" ? <table className="data"><tbody>{(out.relations ?? []).map((r) => (
         <tr key={r.relation_key} data-sem="SEM-037"><td><IdText>{r.relation_key}</IdText></td><td>{t(r.coupling_status === "EFFECTIVE" ? "cpl.effective" : r.coupling_status === "POSSIBLE" ? "cpl.possible" : "cpl.unknown_open")}</td>
           <td><EpistemicChip cls={r.epistemic_class} /></td></tr>))}</tbody></table> : null}

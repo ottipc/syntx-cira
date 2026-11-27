@@ -8,12 +8,13 @@ import { Guarded, ProvButton } from "../_common";
 import { BudgetGauge } from "./BudgetGauge";
 import { ContextChain } from "./ContextChain";
 import { ContinuityMatrix } from "./ContinuityMatrix";
-import { rows } from "./model";
+import { resolveResonance, resonanceVM, rows } from "./model";
+import { FocusScope } from "../../semiontics";
 import { ObservationTable } from "./ObservationTable";
 
 export function ObservationView() {
   const t = useT();
-  const { session } = useSession();
+  const { session, setFocus } = useSession();
   const ob = useProjection<ObservationProjection>(ep.observations(session));
   const x = useProjection<ExperimentViewResponse>(ep.experiment(session));
   const ticks = x.data ? x.data.experiment.ticks.last : session.tick;
@@ -26,6 +27,8 @@ export function ObservationView() {
             {o.observation.content ? <span className="mono-id">{t("obs.revision")} {String(o.observation.content.revision)}</span> : null}
             <OriginBadge origin={o.header.data_origin} /><ProvButton title="view.04" header={o.header} raw={o.observation} /></div>
           {o.observation.availability === "AVAILABLE" && o.observation.content ? (
+            <FocusScope focus={session.focus} vm={resonanceVM(rows(o.observation.content))} resolveResonance={resolveResonance} onFocus={setFocus}
+              ids={[...o.observation.content.context.observations.map((x) => x.observation_id), ...o.observation.content.source_register.entries.map((x) => x.source_id)]}>
             <div className="stack">
               <div className="grid-3"><ContextChain c={o.observation.content.context} /><BudgetGauge b={o.observation.content} /></div>
               <div className="grid-2">
@@ -33,6 +36,7 @@ export function ObservationView() {
                 <ObservationTable rows={rows(o.observation.content)} tick={session.tick} />
               </div>
             </div>
+            </FocusScope>
           ) : <p className="secondary">{t("msg.no_data")}</p>}
         </>
       )}</Guarded>

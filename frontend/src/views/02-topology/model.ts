@@ -47,3 +47,15 @@ export function nodeStates(st: StateProjection | null, ob: ObservationProjection
 export function couplings(rec: BlockReconstructionResult | null): Map<string, string> {
   return new Map((rec?.content?.output.relations ?? []).map((r) => [r.relation_key, r.coupling_status] as const));
 }
+
+/** View 02 resonance (architecture v2.0.3, 04.4): `topology.relations[].source/target`. A node resonates with its 1-hop
+ *  neighbours and the connecting relations; a relation with its two endpoints. Pure selection on ids (TX26). */
+export interface ResonanceVM02 { relations: readonly { id: string; source: string; target: string }[] }
+export function resonanceVM(t: { relations: readonly { relation_id: string; source: string; target: string }[] }): ResonanceVM02 {
+  return { relations: t.relations.map((r) => ({ id: r.relation_id, source: r.source, target: r.target })) };
+}
+export function resolveResonance(focus: string, vm: ResonanceVM02): readonly string[] {
+  const out = vm.relations.flatMap((r) => r.id === focus ? [r.source, r.target]
+    : r.source === focus ? [r.id, r.target] : r.target === focus ? [r.id, r.source] : []);
+  return [...new Set(out)];
+}

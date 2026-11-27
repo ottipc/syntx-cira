@@ -7,13 +7,14 @@ import { useSession } from "../../session";
 import { GuardedAll, ProvButton } from "../_common";
 import { layout } from "./layout";
 import { Legend } from "./Legend";
-import { couplings, nodeStates } from "./model";
+import { couplings, nodeStates, resolveResonance, resonanceVM } from "./model";
+import { FocusScope } from "../../semiontics";
 import { OverlayToolbar } from "./OverlayToolbar";
 import { TopologyCanvas } from "./TopologyCanvas";
 
 export function TopologyView() {
   const t = useT();
-  const { session } = useSession();
+  const { session, setFocus } = useSession();
   const [show, setShow] = useState({ a: true, o: true, r: true });
   const tp = useProjection<TopologyProjection>(ep.topology(session));
   const st = useProjection<StateProjection>(ep.states(session));
@@ -29,8 +30,11 @@ export function TopologyView() {
       </div>
       <GuardedAll vs={[tp, st, ob, rs, mt] as const}>{([p, s, o, r, m]) => (
         <>
+          <FocusScope focus={session.focus} vm={resonanceVM(p.topology)} resolveResonance={resolveResonance} onFocus={setFocus}
+            ids={[...p.topology.nodes.map((n) => n.node_id), ...p.topology.relations.map((x) => x.relation_id)]}>
           <TopologyCanvas l={layout(p.topology)} focus={session.focus} show={show} coupling={couplings(r.reconstruction)}
             nodes={nodeStates(s, o, r.reconstruction, m)} />
+          </FocusScope>
           <Legend />
           <div className="row"><ProvButton title="view.02" header={p.header} raw={p.topology} /></div>
         </>

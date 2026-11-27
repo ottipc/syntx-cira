@@ -47,4 +47,24 @@ describe("[V3T05] FocusScope", () => {
     act(() => { window.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape" })); });
     expect(on).toHaveBeenLastCalledWith(null);
   });
+  it("a click on empty workspace clears; a click on an item or a control does not", () => {
+    const on = vi.fn();
+    const { container } = render(
+      <FocusScope focus="a" vm={VM} ids={["a", "b"]} resolveResonance={resolve} onFocus={on}>
+        <p data-empty="1">free area</p><div data-focus-id="b"><span data-inside="1">b</span></div><button type="button" data-ctl="1">x</button>
+      </FocusScope>);
+    fireEvent.click(container.querySelector("[data-inside]")!);
+    fireEvent.click(container.querySelector("[data-ctl]")!);
+    expect(on).not.toHaveBeenCalled();
+    fireEvent.click(container.querySelector("[data-empty]")!);
+    expect(on).toHaveBeenLastCalledWith(null);
+  });
+  it("Escape inside an open modal dialog belongs to the dialog and keeps the focus", () => {
+    const on = vi.fn();
+    ui("a", on);
+    const d = document.createElement("div"); d.setAttribute("role", "dialog"); d.setAttribute("aria-modal", "true"); document.body.append(d);
+    act(() => { window.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape" })); });
+    d.remove();
+    expect(on).not.toHaveBeenCalled();
+  });
 });

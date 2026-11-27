@@ -19,3 +19,16 @@ export function buckets(c: ComparisonReport): BucketVM[] {
 export function comparisonMetrics(c: ComparisonReport): MetricVM[] {
   return metricVMs(c.results, []);
 }
+
+/** View 10 resonance (04.4): bucket entries are `(rule_id, scope)` keys of both experiments' buckets; an entry
+ *  resonates with entries of the same rule id in another bucket. Selection by id equality (TX26). */
+export interface ResonanceVM10 { entries: readonly { key: string; rule: string; bucket: string }[] }
+/** Focus id of a bucket entry as a StableId (K-01): `rule:x|node:a,node:b` → `rule:x/node:a/node:b`. */
+export const entryFocusId = (key: string): string => key.replace("|", "/").split(",").join("/");
+export function resonanceVM(bs: readonly BucketVM[]): ResonanceVM10 {
+  return { entries: bs.flatMap((b) => b.items.map((key) => ({ key: entryFocusId(key), rule: key.split("|")[0] ?? key, bucket: b.term }))) };
+}
+export function resolveResonance(focus: string, vm: ResonanceVM10): readonly string[] {
+  const f = vm.entries.filter((e) => e.key === focus);
+  return [...new Set(vm.entries.filter((e) => f.some((x) => x.rule === e.rule && x.bucket !== e.bucket)).map((e) => e.key))];
+}
