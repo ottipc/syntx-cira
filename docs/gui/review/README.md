@@ -30,7 +30,7 @@ Präsentation EN, 1280×720 DE). Letzter Lauf: **780/780, 0 Skips** (vor U30-Dok
 
 IC-19 Registerliste DEC-01…08 · IC-20 T09 deterministisch · IC-21 TX28 misst Schublade nach ihrer Bewegung ·
 IC-22 Kettenbasis wie in P0-R2 gemessen (Architekturtext 136 px ist der Wert bei Skala 1,25) · IC-23 Zeichenumrisse
-SEM-014/018/027/032 in `ink.secondary` (V2T25).
+SEM-014/018/027/032 in `ink.secondary` (V2T25) · IC-24 V3T17 hält den Governor konstant.
 
 ## Baselines und Sichtprüfung
 
@@ -55,6 +55,12 @@ Lauf `u30`, headless Chrome mit Software-Rendering, gleiche Umgebung, nacheinand
 - **V2T23 Laufzeit:** Median gleich; p95/p99 auf dem Branch höher, solange das Umfeld läuft — der Software-Renderer
   braucht dafür ≈ 37 ms je Frame (U20). Der Governor schaltet das Umfeld nach 120 Frames korrekt auf `static` (05.6.3).
   Keine Long Tasks in beiden Ständen. Absolute Budgets (05.13) nur auf Referenz-Hardware messbar (DEP-V3-05).
+
+## Gate
+
+`make gate PHASE=05` auf Commit `90d77e5`: **bestanden** — 1027 Tests (Backend + Frontend), 0 fehlgeschlagen, 0 übersprungen,
+alle Drift-Prüfungen grün; Bericht `docs/test-reports/phase-05.json`, Hash `sha256:7dbd652a…`. Der erste Gate-Lauf nach U30 war
+rot (V3T17 unter Last, Korrektur IC-24) und wurde nicht übernommen.
 
 ## Offen / extern
 
