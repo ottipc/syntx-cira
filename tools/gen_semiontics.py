@@ -177,6 +177,9 @@ def neuro_report(tok: dict[str, Any], col: dict[str, str]) -> tuple[dict[str, An
         contrast(p[t], p[s_]) for t in texts for s_ in ("surface.void", "surface.field", "surface.panel")), 2)}
     if min(out["projector"]["edge"].values()) < dr["projector_edge_min"]:
         errs.append("V3T01: projector edge below the graphic minimum")
+    dz = tok.get("depth", {})
+    if dz and not (dz["ambient"] < dz["content"] < dz["relational"] < dz["focus"] < dz["context"] < dz["quarantine"]):
+        errs.append("V3T09: depth order violates 05.5")
     if out["projector"]["text_min"] < tmin:
         errs.append("V3T01: projector text below 4.5")
     return out, errs
@@ -283,7 +286,7 @@ def gen_tokens_css(tok: dict[str, Any]) -> str:
         L.append(f"  {cssvar('z.' + k)}: {v};")
     for k, v in tok["zone"].items():
         L.append(f"  {cssvar('zone.' + k)}: {v}px;")
-    for group, prefix, unit in (("component", "cmp", "px"), ("decor", "decor", ""), ("comp", "comp", ""), ("light", "light", "px")):
+    for group, prefix, unit in (("component", "cmp", "px"), ("decor", "decor", ""), ("comp", "comp", ""), ("light", "light", "px"), ("depth", "depth", "")):
         for k, v in tok.get(group, {}).items():
             L.append(f"  {cssvar(prefix + '.' + k)}: {v}{'' if k.endswith('alpha') else unit};")
     L.append("}")
@@ -477,7 +480,7 @@ def generate() -> dict[Path, str]:
         ROOT / "frontend/src/semiontics/generated/sem.ts": gen_sem_ts(doc, enums),
         ROOT / "frontend/src/semiontics/generated/tokens.ts": HEADER + "\n".join(
             f"export const {g.upper()} = {json.dumps({k.replace('.', '_'): v for k, v in doc['tokens'][g].items()}, sort_keys=True)} as const;"
-            for g in ("graph", "zone", "z", "motion", "component", "decor", "comp", "light") if g in doc["tokens"]) + "\n",
+            for g in ("graph", "zone", "z", "motion", "component", "decor", "comp", "light", "depth") if g in doc["tokens"]) + "\n",
         ROOT / "frontend/src/language/generated/terms.ts": gen_terms_ts(terms, enums, classified),
         ROOT / "frontend/test/generated/sem-cases.json": json.dumps(cases, ensure_ascii=False, indent=1) + "\n",
         ROOT / "docs/gui/semiontic-register.md": docs_register(doc),

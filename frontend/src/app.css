@@ -44,8 +44,8 @@ button { font: inherit; color: inherit; }
 .zone-b { grid-area: b; background: var(--col-surface-field); border-right: var(--border-width-base) solid var(--border-block);
   overflow-y: auto; z-index: var(--z-chrome); }
 .zone-c { grid-area: c; display: flex; flex-direction: column; overflow: hidden; background: var(--col-surface-field); position: relative;
-  z-index: var(--z-canvas); min-width: var(--zone-c-min_width); min-height: 0; }
-.zone-c-content { position: relative; z-index: 1; flex: 1 1 auto; min-height: 0; overflow: auto; padding: var(--space-16) var(--space-24); }
+  isolation: isolate; z-index: var(--z-canvas); min-width: var(--zone-c-min_width); min-height: 0; }
+.zone-c-content { position: relative; z-index: var(--depth-content); flex: 1 1 auto; min-height: 0; overflow: auto; padding: var(--space-16) var(--space-24); }
 .zone-d { grid-area: d; display: flex; align-items: center; gap: var(--space-12); padding: 0 var(--space-16);
   background: var(--surface-block); border-top: var(--border-width-base) solid var(--border-block); z-index: var(--z-chrome); }
 .zone-e { grid-area: e; width: var(--zone-e-width); background: var(--col-surface-elevated); border-left: var(--border-width-base) solid var(--col-border-strong);
@@ -84,7 +84,7 @@ button { font: inherit; color: inherit; }
 .loading-mask::before { content: ""; position: absolute; left: 0; top: 0; height: var(--border-width-emphasis); width: 33%; background: var(--ink-2);
   animation: cira-loading-line 1200ms linear infinite; }
 @keyframes cira-loading-line { from { transform: translateX(0); } to { transform: translateX(200%); } }
-.quarantine { border: var(--border-width-emphasis) solid var(--col-eval-violation); background: var(--surface-block);
+.quarantine { position: relative; z-index: var(--depth-quarantine); border: var(--border-width-emphasis) solid var(--col-eval-violation); background: var(--surface-block);
   padding: var(--space-16); max-width: calc(var(--space-32) * 12); z-index: var(--z-quarantine); position: relative; }
 .quarantine p { margin: 0 0 var(--space-8) 0; }
 .panel { background: var(--surface-block); border: var(--border-width-base) solid var(--border-block); padding: var(--space-12) var(--space-16); }
@@ -237,7 +237,7 @@ button.link { background: none; border: 0; padding: 0; color: inherit; cursor: p
   max-height: calc(100vh - var(--zone-a-height) - var(--zone-d-height)); overflow-y: auto; }
 ul.plain { list-style: none; margin: 0; padding: 0; }
 /* DEC-02 neural field: behind all blocks of zone C; ≤ opacity.network.max (TX23 over-network contrast) */
-.neural-field { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
+.neural-field { position: absolute; inset: 0; width: 100%; height: 100%; z-index: var(--depth-ambient); pointer-events: none; }
 .neural-field .nf-all { opacity: var(--opacity-network-max); }
 .neural-field .nf-lines path { stroke: var(--col-brand-core); stroke-width: var(--border-width-base); fill: none;
   opacity: calc(var(--opacity-network-line) / var(--opacity-network-max)); }

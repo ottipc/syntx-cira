@@ -39,3 +39,20 @@ describe("[V3T08][U08] loading state keeps text contrast (G3-14)", () => {
     expect(contrast(r.color, r.bg)).toBeGreaterThanOrEqual(4.5);
   }, 60000);
 });
+
+describe("[V3T09][U10] depth order inside Zone C (05.5)", () => {
+  it.each([["SYSTEM_FIELD_OVERVIEW"], ["TEMPORAL_STATE_EXPLORER"], ["STRUCTURAL_METRICS"]])("%s: one stacking context, decor below content, demo bar never over content", async (v) => {
+    const p = await open(env, view(v, "&mode=presentation"), { width: 1440, height: 900 });
+    const r = await p.evaluate(() => {
+      const z = document.querySelector<HTMLElement>(".zone-c")!, c = z.querySelector<HTMLElement>(".zone-c-content")!;
+      const decor = z.querySelector<HTMLElement>(".neural-field, .ambient");
+      const demo = z.querySelector<HTMLElement>(".demo-bar"); const cr = c.getBoundingClientRect(), dr = demo?.getBoundingClientRect();
+      return { iso: getComputedStyle(z).isolation, decorZ: decor ? Number(getComputedStyle(decor).zIndex) : -1, contentZ: Number(getComputedStyle(c).zIndex),
+        overlap: dr ? Math.max(0, Math.min(cr.bottom, dr.bottom) - Math.max(cr.top, dr.top)) : 0 };
+    });
+    await p.context().close();
+    expect(r.iso).toBe("isolate");
+    expect(r.decorZ).toBeLessThan(r.contentZ);
+    expect(r.overlap).toBe(0);
+  }, 60000);
+});

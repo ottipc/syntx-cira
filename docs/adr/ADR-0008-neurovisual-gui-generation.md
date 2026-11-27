@@ -41,3 +41,5 @@ Implementation Release DEP-V3-01 vom 2026-11-27). `main` bleibt auf `ac5073b`.
 | U06 | 2026-11-27 | Ausnahmeset in `semAttrs` (`data-attn="exempt"` für 006–009, 011–017, 019, 020, 022, 024, 028, 031, 035); Rollen-Lint | V3T04 grün |
 | U07 | 2026-11-27 | Abwesenheitsträger (Zellen, UndefinedSlot) auf `surface.void`, ohne Übergang und Animation | V2T08-Teil grün; 4 Baselines nach Sichtprüfung ersetzt (`docs/gui/inspection/U07-U08.md`) |
 | U08 | 2026-11-27 | LOADING ohne Text-Ausblendung (G3-14): Maske deckend, 2-px-Ladelinie; vorher Text bei 0,35 Deckkraft = 1,72 : 1 | V3T08 grün (Kontrast ≥ 4,5 bei verzögerter Antwort) |
+| U09 | 2026-11-27 | SEM-038 „Linked to selection“ (Kanäle outline-offset-solid · ink.secondary, Sichten 1–11, Primitive `ResonanceMark`), Begriffe `focus.linked`, `focus.absent` (EN/DE) | TX22/TX24 grün (Sammellauf mit U10: 524/524) |
+| U10 | 2026-11-27 | Tiefen-Tokens `depth.*` (Ordnung vom Generator geprüft), Zone C als eigener Stapelkontext (`isolation: isolate`), Quarantäne zuoberst | V3T09 grün; TX29 pixelgleich |
