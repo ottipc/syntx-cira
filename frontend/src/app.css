@@ -379,3 +379,39 @@ tr[data-focus-state="focused"] > td:first-child::before { content: ""; position:
   background: linear-gradient(to bottom, transparent, var(--sign-focus) 28%, var(--sign-focus) 72%, transparent); pointer-events: none; }
 tr[data-focus-state="resonant"] > td:first-child::before { content: ""; position: absolute; top: 0; bottom: 0; left: calc(-1 * var(--space-8));
   width: var(--cmp-attention-axis-resonant); background: var(--sign-linked); pointer-events: none; }
+/* ---- motion classes (architecture v2.0.3, 05.7; U19) ----------------------------------------------------------------
+   Allow-list: transform, border-color, outline-color, box-shadow, stroke(-width), background-color/color on proven pairs.
+   Never: text opacity, number animation, motion on absence signs, OriginBadge, barrier, gate, seam. */
+/* MOT03 view entry: the outer view block only, transform only (K5), on route change */
+.zone-c-content > section { animation: mot-view-entry var(--motion-stage) var(--ease-settle); }
+@keyframes mot-view-entry { from { transform: translateY(var(--space-4)); } }
+/* MOT04 focus lock: frame colour transparent → ink.primary, reticles scale 0.985 → 1; ink tiers on proven pairs */
+.focus-frame, .row-frame-focused { animation: mot-focus-lock var(--motion-focus) var(--ease-settle); }
+@keyframes mot-focus-lock { from { border-color: transparent; transform: scale(0.985); } }
+.focus-frame-svg rect, .focus-frame-svg path { animation: mot-focus-lock-svg var(--motion-focus) var(--ease-settle); }
+@keyframes mot-focus-lock-svg { from { stroke: transparent; } }
+[data-focus-id]:not(.contents) { transition: color var(--motion-focus) var(--ease-settle), background-color var(--motion-focus) var(--ease-settle); }
+[data-focus-state="attenuated"]:not(.contents) { color: var(--ink-1); }
+/* an absence or other exempt carrier that would inherit the attenuated ink keeps its canonical ink (zero specificity:
+   a carrier's own colour rule always wins) */
+:where([data-focus-state="attenuated"] [data-attn="exempt"]) { color: var(--ink-1); }
+/* MOT14 focus carry: on view mount with a present target the reticles settle in motion.carry */
+.focus-scope[data-carry] .focus-frame, .focus-scope[data-carry] .row-frame-focused,
+.focus-scope[data-carry] .focus-frame-svg rect, .focus-scope[data-carry] .focus-frame-svg path { animation-duration: var(--motion-carry); }
+/* MOT11 resonance: SEM-038 colour transparent → ink.secondary; connecting relation +0.5 px */
+.resonance-frame { animation: mot-resonance var(--motion-focus) var(--ease-settle); }
+@keyframes mot-resonance { from { box-shadow: inset 0 0 0 var(--cmp-resonance-width) transparent; } }
+.resonance { animation: mot-resonance-svg var(--motion-focus) var(--ease-settle); }
+@keyframes mot-resonance-svg { from { stroke: transparent; } }
+.topology .edge { transition: stroke-width var(--motion-focus) var(--ease-settle); }
+/* MOT05 tick commit (view 03): border of cells the server lists as changed, 2 px ink.primary → canonical, once */
+.state-grid[data-tick-commit] [data-changed] .cell:not([data-attn="exempt"]) { animation: mot-tick-commit var(--motion-tick) var(--ease-settle); }
+@keyframes mot-tick-commit { from { border-left-color: var(--sign-focus); } }
+/* MOT07 quarantine: immediate, no motion of its own */
+.quarantine { animation: none; transition: none; }
+/* MOT08 drawer: Zone E enters by transform */
+.zone-e:not([hidden]) { animation: mot-drawer var(--motion-drawer) var(--ease-settle); }
+@keyframes mot-drawer { from { transform: translateX(var(--space-16)); } }
+/* MOT13 hover: border hairline → strong, never attenuates */
+.panel, .layer, .metric-card { transition: border-color var(--motion-hover) var(--ease-settle); }
+.metric-card[data-focus-id]:hover { border-color: var(--col-border-strong); }

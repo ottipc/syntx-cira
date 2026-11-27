@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useT } from "../../language";
 import { DeviationSeam, FocusFrame, FocusHandle, FocusRing, IdText, ResonanceMark, SpaceCell, SpaceHeader, useFocusState } from "../../semiontics";
 import type { RibbonVM, RowVM } from "./model";
@@ -10,7 +11,7 @@ function Row({ row, index, focus, tick }: { row: RowVM; index: number; focus: st
   const s = useFocusState(row.attribute);
   const focused = focus === row.attribute;
   return (
-    <div className="contents" role="row" data-attribute={row.attribute} data-focus-state={s}>
+    <div className="contents" role="row" data-attribute={row.attribute} data-focus-state={s} {...(row.changed ? { "data-changed": "" } : {})}>
       <div className="attr" role="rowheader">
         <FocusHandle id={row.attribute}><FocusRing active={focused}><IdText>{row.attribute}</IdText></FocusRing></FocusHandle>
         {row.differs ? <DeviationSeam /> : null}
@@ -26,12 +27,14 @@ function Row({ row, index, focus, tick }: { row: RowVM; index: number; focus: st
   );
 }
 
-export function StateGrid({ rows, origins, ribbons, focus, tick }: { rows: RowVM[]; origins: { a: string; o: string | null; r: string | null };
-  ribbons: RibbonVM[]; focus: string | null; tick: number }) {
+export function StateGrid({ rows, origins, ribbons, focus, tick, commit = false }: { rows: RowVM[]; origins: { a: string; o: string | null; r: string | null };
+  ribbons: RibbonVM[]; focus: string | null; tick: number;
+  /** MOT05: this grid shows a tick different from the previously shown one (one-shot border confirmation) */ commit?: boolean }) {
   // Ω_R is absent only when the server says NOT_AVAILABLE_AT_TICK: the view renders after all projections are verified
   const t = useT();
+  const [tickCommit] = useState(commit); // captured at mount (the grid is keyed by tick): later renders never cancel it
   return (
-    <div className="state-grid" role="table" aria-label={t("view.03")}>
+    <div className="state-grid" role="table" aria-label={t("view.03")} {...(tickCommit ? { "data-tick-commit": "" } : {})}>
       <div className="contents" role="row">
         <div className="section-title" role="columnheader">{t("ui.attribute")}</div>
         <div className="contents" role="columnheader"><SpaceHeader space="A" origin={origins.a} /></div>

@@ -136,6 +136,8 @@ describe("[TX28][AK-GUI-15] geometry in the browser", () => {
     for (const [width, docked] of [[1920, true], [1440, false]] as const) {
       const p = await open(env, path("TEMPORAL_STATE_EXPLORER"), { width, height: 900 });
       await p.click('[data-term="prov.drawer"]');
+      // geometry of the docked/overlaid drawer is its settled state: wait for its entry motion (MOT08, IC-21)
+      await p.evaluate(() => Promise.all(document.querySelector(".zone-e")!.getAnimations().map((a) => a.finished)));
       const z = await zones(p);
       expect(z.E).not.toBeNull();
       expect(z.E!.w).toBe(ZONE.e_width);

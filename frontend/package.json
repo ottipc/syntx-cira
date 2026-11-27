@@ -17,7 +17,8 @@
     "browser": "node test/browser/run.mjs",
     "verify": "npm run -s gen:contracts:check && npm run -s typecheck && npm run -s lint:arch && npm run -s test:report",
     "inspect": "vitest run --config vitest.inspect.config.ts test/inspection/screens.inspect.ts",
-    "inspect:perf": "vitest run --config vitest.inspect.config.ts test/inspection/perf.inspect.ts"
+    "inspect:perf": "vitest run --config vitest.inspect.config.ts test/inspection/perf.inspect.ts",
+    "inspect:motion": "vitest run --config vitest.inspect.config.ts test/inspection/motion.inspect.ts"
   },
   "dependencies": {
     "@fontsource/dejavu-mono": "5.3.0",

@@ -1,4 +1,5 @@
 // View 03 — State comparison (G04.4). SEM-001–009, 018, 023, 031, 035; endpoints #12, #5, #6, #11, #7 PER_TICK.
+import { useEffect, useRef } from "react";
 import { ep, useProjection } from "../../access";
 import type { GovernanceProjection, MetricsProjection, ObservationProjection, ResultsProjection, StateProjection } from "../../access";
 import { useT } from "../../language";
@@ -19,6 +20,10 @@ export function StateView() {
   const go_ = useProjection<GovernanceProjection>(ep.governance(session, "O"));
   const gr = useProjection<GovernanceProjection>(ep.governance(session, "R"));
   const mt = useProjection<MetricsProjection>(ep.metricsTick(session));
+  // MOT05: the tick of the grid last shown; a grid for a different tick confirms its changed cells once
+  const shown = useRef<number | null>(null);
+  const ready = [st, ob, rs, ga, go_, gr, mt].every((v) => v.status === "READY");
+  useEffect(() => { if (ready) shown.current = session.tick; });
   return (
     <section aria-labelledby="v03">
       <div className="view-head">
@@ -33,7 +38,7 @@ export function StateView() {
           <>
             <FocusScope focus={session.focus} vm={resonanceVM([a.evaluations.content ?? null, oo.evaluations.content ?? null, rr.evaluations.content ?? null])}
               ids={rows.map((x) => x.attribute)} resolveResonance={resolveResonance} onFocus={setFocus}>
-            <StateGrid rows={rows} focus={session.focus} tick={session.tick}
+            <StateGrid key={session.tick} rows={rows} focus={session.focus} tick={session.tick} commit={shown.current !== null && shown.current !== session.tick}
               origins={{ a: s.header.data_origin, o: o.observation.origin ?? null, r: rec.origin ?? null }}
               ribbons={[ribbon("A", a.evaluations.content ?? null), ribbon("O", oo.evaluations.content ?? null),
                 ribbon("R", rr.evaluations.content ?? null)]} />
