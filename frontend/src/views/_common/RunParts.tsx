@@ -5,13 +5,17 @@ import { useT, type TermKey } from "../../language";
 import { EngineToken, EpistemicChip, ExecPill, FocusHandle, GapMark, IdText, OriginBadge, SpaceCell, TerminationSeal } from "../../semiontics";
 import { FocusBox, FocusIdCell, FocusTr } from "./FocusParts";
 
-export function RunHeader({ run, origin, title, children }: { run: SweepRun; origin: string; title: TermKey; children?: React.ReactNode }) {
+/** Run identity in the view's title row (ViewFrame head): sweep id, execution status, origin. */
+export function RunTitle({ run, origin }: { run: SweepRun; origin: string }) {
+  return <><IdText>{run.sweep_id}</IdText><ExecPill status={run.execution_status} /><OriginBadge origin={origin} /></>;
+}
+
+/** Run header card (06.05/06.06): adapter, target statement, context, termination seal. */
+export function RunHeader({ run, children }: { run: SweepRun; children?: React.ReactNode }) {
   const t = useT();
   const adapterTerm: Record<string, TermKey> = { FIXTURE: "adapter.fixture", LOCAL: "adapter.local", API: "adapter.api", IMPORT: "adapter.import" };
   return (
-    <div className="stack">
-      <div className="view-head"><h1 className="view-title">{t(title)}</h1><IdText>{run.sweep_id}</IdText>
-        <ExecPill status={run.execution_status} /><OriginBadge origin={origin} /></div>
+    <div className="panel run-header stack">
       <div className="row secondary">
         <span>{t("run.adapter")}</span><IdText>{run.adapter.adapter_id}</IdText><span>({t(adapterTerm[run.adapter.kind] ?? "adapter.fixture")})</span>
         {children}<span>· {t("run.context")}</span><IdText>{run.context_version}</IdText>

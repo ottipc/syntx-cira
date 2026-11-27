@@ -497,3 +497,6 @@ tr[data-stage-commit] > td { animation: mot-stage-tick var(--motion-focus) var(-
 .zone-c[data-view="SYSTEM_FIELD_OVERVIEW"][data-stage="short"] .grid-2 { grid-template-columns: 1.2fr 1fr 1fr; align-items: stretch; }
 .zone-c[data-view="SYSTEM_FIELD_OVERVIEW"][data-stage="short"] .grid-2 > .stack { display: contents; }
 .zone-c[data-view="SYSTEM_FIELD_OVERVIEW"][data-stage="short"] .grid-2 > .stack > * { margin-top: 0; }
+/* views 04–06 (U24, 06.04–06.06) */
+.grid-5-7 { grid-template-columns: 5fr 7fr; }
+.run-header .row { flex-wrap: wrap; }
