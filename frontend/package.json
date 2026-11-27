@@ -3,7 +3,7 @@
   "private": true,
   "version": "1.0.2",
   "type": "module",
-  "description": "CIRA workspace (F07) — computation-free projection field",
+  "description": "CIRA workspace (F07) \u2014 computation-free projection field",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -15,7 +15,9 @@
     "test": "vitest run",
     "test:report": "vitest run --reporter=dot --reporter=json --outputFile.json=test-results/vitest-raw.json; node scripts/vitest-report.mjs",
     "browser": "node test/browser/run.mjs",
-    "verify": "npm run -s gen:contracts:check && npm run -s typecheck && npm run -s lint:arch && npm run -s test:report"
+    "verify": "npm run -s gen:contracts:check && npm run -s typecheck && npm run -s lint:arch && npm run -s test:report",
+    "inspect": "vitest run --config vitest.inspect.config.ts test/inspection/screens.inspect.ts",
+    "inspect:perf": "vitest run --config vitest.inspect.config.ts test/inspection/perf.inspect.ts"
   },
   "dependencies": {
     "@fontsource/dejavu-mono": "5.3.0",
