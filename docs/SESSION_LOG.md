@@ -46,3 +46,11 @@
 - U14/U15: Fokusfeld Ansicht 03. Befund: Chrome zeichnet 1,5-px-Rahmen als 1 px → SEM-038 als `inset`-Schatten; ererbte
   Textfarbe der gedämpften Zeile erreichte Abwesenheitsträger → Farbe nur auf nicht ausgenommene Zellen gesetzt.
 - `make verify`: 560/560 vitest, pytest grün, 0 Skips, 0 Lint-Befunde.
+
+## 2026-11-27 — GUI-Generation v2, U16–U17 (CP4)
+- U16: Resolver aller Ansichten gegen Snapshots mit unabhängigem Orakel (V3T06/V2T20); Befund: Fokus-Ids müssen StableIds
+  sein (K-01), sonst verwirft der URL-Parser sie — Felder, Stufen, Metrikkarten, Eimer-Einträge, Stufenereignisse
+  erhalten StableId-Formen; Resolver 09/11 lieferten den Fokus selbst mit (durch Test gefunden, behoben).
+- Zwei Layoutbefunde vor Baseline-Ersatz behoben (Stapelabstand durch Scope-Hülle, Griff ohne eigene Zeilenbox);
+  2 Baselines ersetzt (01, 07) mit Protokoll `docs/gui/inspection/U16.md`.
+- U17: Fokus-Carry (V2T21), CP4. `make verify` 589/589, 0 Skips.

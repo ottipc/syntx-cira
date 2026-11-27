@@ -373,3 +373,9 @@ ul.plain { list-style: none; margin: 0; padding: 0; }
 .layer .focus-handle { display: flex; flex-direction: column; gap: var(--space-4); }
 .layer-open { color: var(--ink-2); text-decoration: none; }
 .layer-open:hover { color: var(--ink-1); text-decoration: underline; text-underline-offset: var(--space-4); }
+/* attention axis for row-shaped items in tables (04.12): bright segment beside the focused row, secondary beside linked rows */
+tr[data-focus-state="focused"] > td:first-child::before { content: ""; position: absolute; top: calc(-1 * var(--space-16)); bottom: calc(-1 * var(--space-16));
+  left: calc(-1 * var(--space-8)); width: var(--cmp-attention-axis-focused);
+  background: linear-gradient(to bottom, transparent, var(--sign-focus) 28%, var(--sign-focus) 72%, transparent); pointer-events: none; }
+tr[data-focus-state="resonant"] > td:first-child::before { content: ""; position: absolute; top: 0; bottom: 0; left: calc(-1 * var(--space-8));
+  width: var(--cmp-attention-axis-resonant); background: var(--sign-linked); pointer-events: none; }

@@ -67,4 +67,20 @@ describe("[V3T05] FocusScope", () => {
     d.remove();
     expect(on).not.toHaveBeenCalled();
   });
+  it("MOT14 carry: a present target is scrolled into view on mount; an absent one moves nothing", () => {
+    const spy = vi.fn();
+    const orig = Element.prototype.scrollIntoView;
+    Element.prototype.scrollIntoView = spy;
+    const tree = (f: string) => (
+      <FocusScope focus={f} vm={VM} ids={["a", "b"]} resolveResonance={resolve} onFocus={vi.fn()}>
+        <div data-focus-id="a">a</div><div data-focus-id="b">b</div>
+      </FocusScope>);
+    const r = render(tree("b"));
+    expect(spy).toHaveBeenCalledTimes(1);
+    expect(spy.mock.instances[0]).toBe(r.container.querySelector('[data-focus-id="b"]'));
+    r.unmount(); spy.mockClear();
+    render(tree("zz"));
+    expect(spy).not.toHaveBeenCalled();
+    Element.prototype.scrollIntoView = orig;
+  });
 });

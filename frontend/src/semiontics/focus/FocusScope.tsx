@@ -1,7 +1,7 @@
 // Focus & resonance field N06 (architecture v2.0.3, 03.6, 04.2–04.4). Generic over the view model: the view passes the
 // focus id, its focusable ids, a pure resolver and a writer — this module imports nothing from views, contracts or
 // session (G03.3 unchanged, C10). It emits `data-focus-scope` (the one bit R11 reads) and per-item focus states.
-import { createContext, useContext, useEffect, useMemo, type KeyboardEvent as ReactKeyboardEvent, type MouseEvent, type ReactNode } from "react";
+import { createContext, useContext, useEffect, useLayoutEffect, useMemo, useRef, type KeyboardEvent as ReactKeyboardEvent, type MouseEvent, type ReactNode } from "react";
 import { useT } from "../../language";
 import { FocusFrame } from "../primitives/FocusFrame";
 import { ResonanceMark } from "../primitives/ResonanceMark";
@@ -35,6 +35,15 @@ export function FocusScope<VM>({ focus, vm, ids, resolveResonance, onFocus, susp
     window.addEventListener("keydown", k);
     return () => window.removeEventListener("keydown", k);
   }, [focus, onFocus]);
+  // MOT14 focus carry (04.11): when the view mounts with a present target, or the target changes, bring it into view
+  // (instant; the settle motion is added with the motion layer). Nothing moves when the target is absent.
+  const root = useRef<HTMLDivElement>(null);
+  useLayoutEffect(() => {
+    if (!active || focus === null) return;
+    // focus is a StableId (K-01: [a-z0-9_.:/-]), so it needs no escaping inside a quoted attribute selector
+    const el = root.current?.querySelector(`[data-focus-id="${focus}"]`);
+    el?.scrollIntoView?.({ block: "nearest", inline: "nearest", behavior: "instant" });
+  }, [active, focus]);
   const ctx = useMemo<Ctx>(() => ({
     active, focus,
     state: (id) => (!active ? undefined : id === focus ? "focused" : resonant.has(id) ? "resonant" : "attenuated"),
@@ -42,7 +51,7 @@ export function FocusScope<VM>({ focus, vm, ids, resolveResonance, onFocus, susp
   }), [active, focus, resonant, onFocus]);
   return (
     <FocusCtx.Provider value={ctx}>
-      <div className="focus-scope" data-focus-scope={active ? "active" : "idle"} onClick={active ? (e: MouseEvent) => { if (isEmpty(e.target)) onFocus(null); } : undefined}>
+      <div ref={root} className="focus-scope" data-focus-scope={active ? "active" : "idle"} onClick={active ? (e: MouseEvent) => { if (isEmpty(e.target)) onFocus(null); } : undefined}>
         {focus !== null && !present ? <p className="focus-absent" role="status" data-term="focus.absent">{t("focus.absent")} <span className="mono-id">{focus}</span></p> : null}
         {children}
       </div>

@@ -229,3 +229,47 @@ describe("[V2T20][V3T14][U16] focus field in every view (browser)", () => {
     expect(after, "absence and other exempt carriers unchanged").toEqual(before);
   }, 90000);
 });
+
+describe("[V2T21][U17] cross-view focus carry", () => {
+  it("02 (focus=node:n08) → 03 → 07: focus stays in the URL; target framed where present, chip and no damping where absent", async () => {
+    const p = await open(env, view("TOPOLOGY_GRAPH", "&focus=node:n08"), { width: 1440, height: 900 });
+    const state = () => p.evaluate(() => ({
+      focus: new URL(location.href).searchParams.get("focus"),
+      scope: document.querySelector(".focus-scope")?.getAttribute("data-focus-scope") ?? null,
+      focused: [...document.querySelectorAll('[data-focus-state="focused"]')].map((e) => e.getAttribute("data-focus-id")),
+      attenuated: document.querySelectorAll('[data-focus-state="attenuated"]').length,
+      chip: document.querySelector(".focus-absent")?.textContent ?? null,
+      envDamped: !!document.querySelector('.zone-c:has([data-focus-scope="active"])'),
+    }));
+    const s02 = await state();
+    const go = async (v: string) => { await p.click(`.zone-b a[href*="/${v}"]`); await p.waitForSelector(".focus-scope"); await p.waitForTimeout(250); };
+    await go("TEMPORAL_STATE_EXPLORER");
+    const s03 = await state();
+    await go("STRUCTURAL_GAP_INSPECTOR");
+    const s07 = await state();
+    await p.context().close();
+    expect(s02).toMatchObject({ focus: "node:n08", scope: "active", focused: ["node:n08"], envDamped: true });
+    for (const s of [s03, s07]) {
+      expect(s.focus, "focus survives the view change").toBe("node:n08");
+      expect(s.scope).toBe("idle");
+      expect(s.focused).toEqual([]);
+      expect(s.attenuated, "nothing attenuated when the target is absent").toBe(0);
+      expect(s.chip).toContain("node:n08");
+      expect(s.envDamped, "R11: damping follows the scope, not the URL").toBe(false);
+    }
+  }, 90000);
+
+  it("MOT14: a carried target below the fold is scrolled into the viewport after the view change (03 attr → 06 output)", async () => {
+    const p = await open(env, view("TEMPORAL_STATE_EXPLORER", "&focus=attr:n09/state"), { width: 1280, height: 720 });
+    await p.click('.zone-b a[href*="/INVERSE_SWEEP_INSPECTOR"]');
+    await p.waitForSelector('[data-focus-state="focused"]');
+    await p.waitForTimeout(250);
+    const r = await p.evaluate(() => {
+      const el = document.querySelector('[data-focus-state="focused"]')!, b = el.getBoundingClientRect();
+      const sc = [...document.querySelectorAll<HTMLElement>("*")].filter((x) => x.scrollTop > 0).length;
+      return { id: el.getAttribute("data-focus-id"), inView: b.top >= 0 && b.bottom <= innerHeight, scope: document.querySelector(".focus-scope")!.getAttribute("data-focus-scope"), scrolled: sc > 0 };
+    });
+    await p.context().close();
+    expect(r).toEqual({ id: "attr:n09/state", inView: true, scope: "active", scrolled: true });
+  }, 90000);
+});
