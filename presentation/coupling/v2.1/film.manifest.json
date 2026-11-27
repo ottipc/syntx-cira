@@ -1,0 +1,348 @@
+{
+  "artifact": "film.manifest.json (v2.1)",
+  "field": "K1 Filmfeld",
+  "architecture": "SYNTX_CIRA_Film_Presentation_Coupling_Architecture_v0.5_FROZEN.md",
+  "film": {
+    "path": "video/CIRA_Product_Film_80s_semiotic_v2.1.mp4",
+    "sha256": "53e75f4312b4466b2501fa4704bc16d549dc05ed763701f9408cd3e02be6cc38",
+    "bytes": 2762130,
+    "commit": null,
+    "origin": "FIXTURE",
+    "origin_term": "origin.fixture — Test fixture — not an engine result",
+    "recorded_with": "Play demo (frontend/src/demo/demo.steps.json, 8 × 10 s), feature/semiontic-gui-v2 4e08ec7 + Schritt-6-Korrektur (Variante B)",
+    "recording": {
+      "renderer": "Chrome headless (Browser-Harness, Projektionssnapshots exp:0c7da892f472-0), presentation mode, 1920 × 1080, deviceScaleFactor 1",
+      "capture": "CDP Page.screencast, JPEG q100, Zeitstempel je gemaltem Frame",
+      "start": "Klick auf ▶ Play demo (80 s) per DOM-Klick, kein Mauszeiger, kein Hover",
+      "trim_s_after_first_stop_demo_frame": 0.25,
+      "click_to_frame0_ms": 342.0,
+      "cfr_build": "Frame k = letzter gemalter Frame ≤ Ursprung + k/30 s; 2400 Frames",
+      "encoding": "einmalige Kodierung der Aufnahme: libx264 High, yuv420p, CRF 18, preset veryfast, 30/1 CFR, faststart; keine Umkodierung eines Vorgängerfilms",
+      "captured_frames": 151,
+      "distinct_frames_used": 130
+    }
+  },
+  "stream": {
+    "codec": "h264",
+    "profile": "High",
+    "pix_fmt": "yuv420p",
+    "width": 1920,
+    "height": 1080,
+    "aspect": "16:9",
+    "fps": "30/1",
+    "constant_frame_rate": true,
+    "time_base": "1/15360",
+    "audio_streams": 0
+  },
+  "timing": {
+    "frames": 2400,
+    "first_pts": 0,
+    "last_pts": 1228288,
+    "frame_duration_s": 0.03333333333333333,
+    "media_duration_s_from_pts": 80.0,
+    "container_duration_s": 80.0,
+    "canonical_s04_s": 80.0,
+    "delta_s": 0.0,
+    "delta_frames": 0.0,
+    "delta_within_one_frame": true
+  },
+  "keyframes": {
+    "frames": [
+      0,
+      250,
+      500,
+      750,
+      1000,
+      1250,
+      1500,
+      1750,
+      2000,
+      2250
+    ],
+    "seconds": [
+      0.0,
+      8.3333,
+      16.6667,
+      25.0,
+      33.3333,
+      41.6667,
+      50.0,
+      58.3333,
+      66.6667,
+      75.0
+    ],
+    "keyframes_at_20_40_60": false,
+    "note": "Stufe B (verlustfreie Teilung ohne Neukodierung) setzt Keyframes bei 20/40/60 s voraus."
+  },
+  "step_detection": {
+    "method": "mittlere absolute Grauwertdifferenz aufeinanderfolgender Frames, 160×90",
+    "threshold": 1.0,
+    "cluster_gap_frames": 15,
+    "steps_found": 8,
+    "steps_expected": 8,
+    "ok": true
+  },
+  "step_events": [
+    {
+      "step": 1,
+      "onset_frame": 0,
+      "settle_frame": 0,
+      "nominal_start_s": 0,
+      "onset_s": 0.0,
+      "settle_s": 0.0,
+      "visible_window_film_s": [
+        0.0,
+        9.9667
+      ],
+      "visible_window_stage_s": [
+        70.0,
+        79.9667
+      ],
+      "onset_offset_frames": 0
+    },
+    {
+      "step": 2,
+      "onset_frame": 299,
+      "settle_frame": 315,
+      "nominal_start_s": 10,
+      "onset_s": 9.9667,
+      "settle_s": 10.5,
+      "visible_window_film_s": [
+        10.5,
+        20.0
+      ],
+      "visible_window_stage_s": [
+        80.5,
+        90.0
+      ],
+      "onset_offset_frames": -1
+    },
+    {
+      "step": 3,
+      "onset_frame": 600,
+      "settle_frame": 606,
+      "nominal_start_s": 20,
+      "onset_s": 20.0,
+      "settle_s": 20.2,
+      "visible_window_film_s": [
+        20.2,
+        30.0667
+      ],
+      "visible_window_stage_s": [
+        90.2,
+        100.0667
+      ],
+      "onset_offset_frames": 0
+    },
+    {
+      "step": 4,
+      "onset_frame": 902,
+      "settle_frame": 909,
+      "nominal_start_s": 30,
+      "onset_s": 30.0667,
+      "settle_s": 30.3,
+      "visible_window_film_s": [
+        30.3,
+        40.1333
+      ],
+      "visible_window_stage_s": [
+        100.3,
+        110.1333
+      ],
+      "onset_offset_frames": 2
+    },
+    {
+      "step": 5,
+      "onset_frame": 1204,
+      "settle_frame": 1217,
+      "nominal_start_s": 40,
+      "onset_s": 40.1333,
+      "settle_s": 40.5667,
+      "visible_window_film_s": [
+        40.5667,
+        50.2
+      ],
+      "visible_window_stage_s": [
+        110.5667,
+        120.2
+      ],
+      "onset_offset_frames": 4
+    },
+    {
+      "step": 6,
+      "onset_frame": 1506,
+      "settle_frame": 1515,
+      "nominal_start_s": 50,
+      "onset_s": 50.2,
+      "settle_s": 50.5,
+      "visible_window_film_s": [
+        50.5,
+        60.2
+      ],
+      "visible_window_stage_s": [
+        120.5,
+        130.2
+      ],
+      "onset_offset_frames": 6
+    },
+    {
+      "step": 7,
+      "onset_frame": 1806,
+      "settle_frame": 1812,
+      "nominal_start_s": 60,
+      "onset_s": 60.2,
+      "settle_s": 60.4,
+      "visible_window_film_s": [
+        60.4,
+        70.2667
+      ],
+      "visible_window_stage_s": [
+        130.4,
+        140.2667
+      ],
+      "onset_offset_frames": 6
+    },
+    {
+      "step": 8,
+      "onset_frame": 2108,
+      "settle_frame": 2117,
+      "nominal_start_s": 70,
+      "onset_s": 70.2667,
+      "settle_s": 70.5667,
+      "visible_window_film_s": [
+        70.5667,
+        80.0
+      ],
+      "visible_window_stage_s": [
+        140.5667,
+        150.0
+      ],
+      "onset_offset_frames": 8
+    }
+  ],
+  "stills": [
+    {
+      "step": 1,
+      "frame": 150,
+      "film_s": 5.0,
+      "file": "stills/step_1.png",
+      "sha256": "0666156dd901ee66902299e66cf7cc0b11e3d95b552f0c8fc629f86962e06ac7"
+    },
+    {
+      "step": 2,
+      "frame": 449,
+      "film_s": 14.9667,
+      "file": "stills/step_2.png",
+      "sha256": "57d4a1160bb59c4bca588a9bd04fb9e138db15ef32f843e46ff8254de1e0eaa0"
+    },
+    {
+      "step": 3,
+      "frame": 750,
+      "film_s": 25.0,
+      "file": "stills/step_3.png",
+      "sha256": "e5e7fc840edf61c7dd827c2634cce4b7746d756d401b09fac2d1f1d88bc625f8"
+    },
+    {
+      "step": 4,
+      "frame": 1052,
+      "film_s": 35.0667,
+      "file": "stills/step_4.png",
+      "sha256": "7850496968627de049ffd3881606f9875227dff51937f231c0de0154f58e1e49"
+    },
+    {
+      "step": 5,
+      "frame": 1354,
+      "film_s": 45.1333,
+      "file": "stills/step_5.png",
+      "sha256": "132d0eb3f313b5bc4445ac78d8cb5478b7588fdfc07d984d2142cbb0bcd5c271"
+    },
+    {
+      "step": 6,
+      "frame": 1656,
+      "film_s": 55.2,
+      "file": "stills/step_6.png",
+      "sha256": "8fa0f1ac9161bd34f5a20e77892ae4807e7d96036f3915a9f6140814f7c0e75b"
+    },
+    {
+      "step": 7,
+      "frame": 1956,
+      "film_s": 65.2,
+      "file": "stills/step_7.png",
+      "sha256": "cf71107fe86b0ba735e487a5dce2b6af1e0377e8a6fcba69d4471ad550b86182"
+    },
+    {
+      "step": 8,
+      "frame": 2258,
+      "film_s": 75.2667,
+      "file": "stills/step_8.png",
+      "sha256": "89562b8652638295c3b37a8429634f2621150eeb0e869491c4919985e6402045"
+    }
+  ],
+  "identity_class": {
+    "html_stage": "bitgleich (Stufe A)",
+    "pptx_fallback": "bitgleich (Stufe A, ein Video auf S04)"
+  },
+  "replaces": {
+    "path": "video/CIRA_Product_Film_80s_semiotic_v2.mp4",
+    "sha256": "9ad2e0067678e1b090a09514dc147a7685773310618efcf9096b8c80df1c7d64",
+    "reason": "A5 verletzt (Schritt 6 ohne M05/M11)"
+  },
+  "equivalence_steps_1_5_7_8": {
+    "class": "semantisch und strukturell äquivalent (GPT-Präzisierung), keine Pixelidentität",
+    "same": "Ansicht, Tick, Filter, Fokus, Herkunftsbadge, Datenwerte, Schrittzeile, Zonenaufbau je Schritt",
+    "differs": "Schriftrasterung und Zeilenumbrüche (Aufnahme rendert die gebündelte IBM Plex Sans; v2-Aufnahme anderer Renderer), Ambient-Linienfeld (dynamisches Umgebungselement)",
+    "still_diff_mean_gray": {
+      "1": 6.23,
+      "2": 6.18,
+      "3": 5.06,
+      "4": 6.15,
+      "5": 8.16,
+      "7": 4.16,
+      "8": 5.85
+    }
+  },
+  "anchor_check": {
+    "A1": {
+      "window": "Schritte 1–8",
+      "result": "erfüllt",
+      "evidence": "Badge TEST FIXTURE in jeder Ansicht"
+    },
+    "A2": {
+      "window": "Schritte 1–2",
+      "result": "erfüllt",
+      "evidence": "Referenzspalte links im Zustandsvergleich (Schritt 2)"
+    },
+    "A3": {
+      "window": "Schritte 2–4",
+      "result": "erfüllt",
+      "evidence": "violette Spalte Reconstructed state"
+    },
+    "A4": {
+      "window": "Schritte 3–5",
+      "result": "erfüllt",
+      "evidence": "Schritt 5: attr:n09 Not determined · OPEN REFERENCE"
+    },
+    "A5a/A5b": {
+      "window_definition": "beginnt mit der vollständig sichtbaren, stabilisierten Metrikkomposition (GPT-Präzisierung)",
+      "step6_onset_film_s": 50.2,
+      "composition_stable_frame": 1530,
+      "window_film_s": [
+        51.0,
+        60.2
+      ],
+      "window_stage_s": [
+        121.0,
+        130.2
+      ],
+      "window_length_s": 9.2,
+      "result": "erfüllt",
+      "evidence": "Ab Frame 1530 statisch bis Schritt 7: Bandkopf RECONSTRUCTION (REFERENCE × RECONSTRUCTED) oben, M05 Coverage 53/60 und M11 Accuracy 48/53 vollständig im Bild, M11 fokussiert (SEM-034), M05 und M01 resonant (SEM-038), M06 außerhalb; Schrittzeile „Exact fractions, no overall score“",
+      "speech_budget": "A5a + A5b ≈ 6,9 s (Probedurchlauf 2,25 s + 0,35 s + 4,28 s) < 9,2 s"
+    },
+    "A6": {
+      "window": "Schritt 7",
+      "result": "erfüllt",
+      "evidence": "Recovery loop via human authorization"
+    }
+  }
+}

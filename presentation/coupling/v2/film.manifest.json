@@ -1,0 +1,314 @@
+{
+  "artifact": "film.manifest.json",
+  "field": "K1 Filmfeld",
+  "architecture": "SYNTX_CIRA_Film_Presentation_Coupling_Architecture_v0.5_FROZEN.md",
+  "film": {
+    "path": "video/CIRA_Product_Film_80s_semiotic_v2.mp4",
+    "sha256": "9ad2e0067678e1b090a09514dc147a7685773310618efcf9096b8c80df1c7d64",
+    "bytes": 4248957,
+    "commit": null,
+    "origin": "FIXTURE",
+    "origin_term": "origin.fixture — Test fixture — not an engine result",
+    "recorded_with": "Play demo (frontend/src/demo/demo.steps.json, 8 × 10 s)",
+    "source": "Upload „CIRA-Demo-semiotic_v2.mp4“ (2026-11-27), aufgenommen mit der semiotischen GUI v2 (feature/semiontic-gui-v2)"
+  },
+  "stream": {
+    "codec": "h264",
+    "profile": "High",
+    "pix_fmt": "yuv420p",
+    "width": 1920,
+    "height": 1080,
+    "aspect": "16:9",
+    "fps": "30/1",
+    "constant_frame_rate": true,
+    "time_base": "1/15360",
+    "audio_streams": 0
+  },
+  "timing": {
+    "frames": 2400,
+    "first_pts": 0,
+    "last_pts": 1228288,
+    "frame_duration_s": 0.03333333333333333,
+    "media_duration_s_from_pts": 80.0,
+    "container_duration_s": 80.0,
+    "canonical_s04_s": 80.0,
+    "delta_s": 0.0,
+    "delta_frames": 0.0,
+    "delta_within_one_frame": true
+  },
+  "keyframes": {
+    "frames": [
+      0,
+      250,
+      500,
+      750,
+      1000,
+      1201,
+      1451,
+      1701,
+      1951,
+      2104,
+      2354
+    ],
+    "seconds": [
+      0.0,
+      8.3333,
+      16.6667,
+      25.0,
+      33.3333,
+      40.0333,
+      48.3667,
+      56.7,
+      65.0333,
+      70.1333,
+      78.4667
+    ],
+    "keyframes_at_20_40_60": false,
+    "note": "Stufe B (verlustfreie Teilung ohne Neukodierung) setzt Keyframes bei 20/40/60 s voraus."
+  },
+  "step_detection": {
+    "method": "mittlere absolute Grauwertdifferenz aufeinanderfolgender Frames, 160×90",
+    "threshold": 1.0,
+    "cluster_gap_frames": 15,
+    "steps_found": 8,
+    "steps_expected": 8,
+    "ok": true
+  },
+  "step_events": [
+    {
+      "step": 1,
+      "onset_frame": 0,
+      "settle_frame": 0,
+      "nominal_start_s": 0,
+      "onset_s": 0.0,
+      "settle_s": 0.0,
+      "visible_window_film_s": [
+        0.0,
+        9.9333
+      ],
+      "visible_window_stage_s": [
+        70.0,
+        79.9333
+      ],
+      "onset_offset_frames": 0
+    },
+    {
+      "step": 2,
+      "onset_frame": 298,
+      "settle_frame": 299,
+      "nominal_start_s": 10,
+      "onset_s": 9.9333,
+      "settle_s": 9.9667,
+      "visible_window_film_s": [
+        9.9667,
+        19.9333
+      ],
+      "visible_window_stage_s": [
+        79.9667,
+        89.9333
+      ],
+      "onset_offset_frames": -2
+    },
+    {
+      "step": 3,
+      "onset_frame": 598,
+      "settle_frame": 598,
+      "nominal_start_s": 20,
+      "onset_s": 19.9333,
+      "settle_s": 19.9333,
+      "visible_window_film_s": [
+        19.9333,
+        29.9667
+      ],
+      "visible_window_stage_s": [
+        89.9333,
+        99.9667
+      ],
+      "onset_offset_frames": -2
+    },
+    {
+      "step": 4,
+      "onset_frame": 899,
+      "settle_frame": 902,
+      "nominal_start_s": 30,
+      "onset_s": 29.9667,
+      "settle_s": 30.0667,
+      "visible_window_film_s": [
+        30.0667,
+        40.0333
+      ],
+      "visible_window_stage_s": [
+        100.0667,
+        110.0333
+      ],
+      "onset_offset_frames": -1
+    },
+    {
+      "step": 5,
+      "onset_frame": 1201,
+      "settle_frame": 1201,
+      "nominal_start_s": 40,
+      "onset_s": 40.0333,
+      "settle_s": 40.0333,
+      "visible_window_film_s": [
+        40.0333,
+        50.0333
+      ],
+      "visible_window_stage_s": [
+        110.0333,
+        120.0333
+      ],
+      "onset_offset_frames": 1
+    },
+    {
+      "step": 6,
+      "onset_frame": 1501,
+      "settle_frame": 1508,
+      "nominal_start_s": 50,
+      "onset_s": 50.0333,
+      "settle_s": 50.2667,
+      "visible_window_film_s": [
+        50.2667,
+        60.1333
+      ],
+      "visible_window_stage_s": [
+        120.2667,
+        130.1333
+      ],
+      "onset_offset_frames": 1
+    },
+    {
+      "step": 7,
+      "onset_frame": 1804,
+      "settle_frame": 1807,
+      "nominal_start_s": 60,
+      "onset_s": 60.1333,
+      "settle_s": 60.2333,
+      "visible_window_film_s": [
+        60.2333,
+        70.1333
+      ],
+      "visible_window_stage_s": [
+        130.2333,
+        140.1333
+      ],
+      "onset_offset_frames": 4
+    },
+    {
+      "step": 8,
+      "onset_frame": 2104,
+      "settle_frame": 2104,
+      "nominal_start_s": 70,
+      "onset_s": 70.1333,
+      "settle_s": 70.1333,
+      "visible_window_film_s": [
+        70.1333,
+        80.0
+      ],
+      "visible_window_stage_s": [
+        140.1333,
+        150.0
+      ],
+      "onset_offset_frames": 4
+    }
+  ],
+  "stills": [
+    {
+      "step": 1,
+      "frame": 150,
+      "film_s": 5.0,
+      "file": "stills/step_1.png",
+      "sha256": "dcd51cf4dbee98240197b1fdd7189f7b11127a83c746c0708b6faf57193ecf6d"
+    },
+    {
+      "step": 2,
+      "frame": 448,
+      "film_s": 14.9333,
+      "file": "stills/step_2.png",
+      "sha256": "edc3ea46d6e1ce03a6b1eabdd9aba5610fed3c0f638323bb220ded86334d2d33"
+    },
+    {
+      "step": 3,
+      "frame": 748,
+      "film_s": 24.9333,
+      "file": "stills/step_3.png",
+      "sha256": "c4dac3d48f8b8aa14bff81559179545e55e5c4c203f864470d0714171d718bde"
+    },
+    {
+      "step": 4,
+      "frame": 1049,
+      "film_s": 34.9667,
+      "file": "stills/step_4.png",
+      "sha256": "c6517235bdea715080423059ce5113362b24efd74110c6c0a753fa40ab2cf506"
+    },
+    {
+      "step": 5,
+      "frame": 1351,
+      "film_s": 45.0333,
+      "file": "stills/step_5.png",
+      "sha256": "d2dfeb4ad32c2dcd790666f1356e73f66890d8253f81bfe7d1c39afb4726c517"
+    },
+    {
+      "step": 6,
+      "frame": 1651,
+      "film_s": 55.0333,
+      "file": "stills/step_6.png",
+      "sha256": "275779421cec01b5e1d29ef1029635926e1543b6d5f0a77f49be8479c8c35b13"
+    },
+    {
+      "step": 7,
+      "frame": 1954,
+      "film_s": 65.1333,
+      "file": "stills/step_7.png",
+      "sha256": "592cd8f8e26938d86c0c3d8d92f4caeae7fe064d5ac2e9ace7273e881e9fa5b7"
+    },
+    {
+      "step": 8,
+      "frame": 2254,
+      "film_s": 75.1333,
+      "file": "stills/step_8.png",
+      "sha256": "74afc5b765d374e50b4c1f0b9f65defcfdd8aac06ac1b89670d138b732cc3c7f"
+    }
+  ],
+  "identity_class": {
+    "html_stage": "bitgleich (Stufe A)",
+    "pptx_fallback": "bitgleich (Stufe A, ein Video auf S04)"
+  },
+  "replaces": {
+    "film": "video/CIRA_Product_Film_80s.mp4",
+    "sha256": "d16ffa72476b3352bf299c55bafab99ce669c953861eade26a5c185afba8ea31",
+    "note": "Austausch nach Architektur v0.5, Abschnitt 11"
+  },
+  "anchor_check": {
+    "A1": {
+      "window": "Schritte 1–8",
+      "result": "erfüllt",
+      "evidence": "Badge TEST FIXTURE in jeder Ansicht"
+    },
+    "A2": {
+      "window": "Schritte 1–2",
+      "result": "erfüllt",
+      "evidence": "Referenzspalte links im Zustandsvergleich (Schritt 2)"
+    },
+    "A3": {
+      "window": "Schritte 2–4",
+      "result": "erfüllt",
+      "evidence": "violette Spalte Reconstructed state"
+    },
+    "A4": {
+      "window": "Schritte 3–5",
+      "result": "erfüllt",
+      "evidence": "Schritt 5: attr:n09 Not determined · OPEN REFERENCE"
+    },
+    "A5a/A5b": {
+      "window": "Schritt 6, Bühne 120,267–130,133 s",
+      "result": "VERLETZT",
+      "evidence": "Metrikansicht zeigt im gesamten Schritt 6 nur die Gruppe REFERENCE STATE · Ω_A (M02, M03, M04); M05 Coverage und M11 Accuracy sind nicht im Bild (kein Scrollen, Frames 1508–1803 statisch)"
+    },
+    "A6": {
+      "window": "Schritt 7",
+      "result": "erfüllt",
+      "evidence": "Recovery loop via human authorization"
+    }
+  }
+}

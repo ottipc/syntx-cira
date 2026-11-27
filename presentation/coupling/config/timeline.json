@@ -1,0 +1,34 @@
+{
+  "version": "1.0.1",
+  "durationMs": 180000,
+  "transitionMs": 200,
+  "states": [
+    { "id": "S01", "startMs": 0,      "endMs": 10000,  "function": "Hook",                  "entry": "fade" },
+    { "id": "S02", "startMs": 10000,  "endMs": 35000,  "function": "Problem",               "entry": "fade" },
+    { "id": "S03", "startMs": 35000,  "endMs": 70000,  "function": "Principle",             "entry": "fade" },
+    { "id": "S04", "startMs": 70000,  "endMs": 150000, "function": "Product demonstration", "entry": "cut"  },
+    { "id": "S05", "startMs": 150000, "endMs": 170000, "function": "Impact",                "entry": "fade" },
+    { "id": "S06", "startMs": 170000, "endMs": 180000, "function": "Signature",             "entry": "fade" }
+  ],
+  "cues": [
+    { "id": "S01", "stateId": "S01", "startMs": 0,      "endMs": 10000,  "speechStartMs": 200,    "speechEndMs": 9000 },
+    { "id": "S02", "stateId": "S02", "startMs": 10000,  "endMs": 35000,  "speechStartMs": 10200,  "speechEndMs": 34000 },
+    { "id": "S03", "stateId": "S03", "startMs": 35000,  "endMs": 70000,  "speechStartMs": 35200,  "speechEndMs": 69000 },
+    { "id": "F1",  "stateId": "S04", "startMs": 70000,  "endMs": 90000,  "speechStartMs": 70000,  "speechEndMs": 89000 },
+    { "id": "F2",  "stateId": "S04", "startMs": 90000,  "endMs": 110000, "speechStartMs": 90000,  "speechEndMs": 109000 },
+    { "id": "F3",  "stateId": "S04", "startMs": 110000, "endMs": 130000, "speechStartMs": 110000, "speechEndMs": 129000 },
+    { "id": "F4",  "stateId": "S04", "startMs": 130000, "endMs": 150000, "speechStartMs": 130000, "speechEndMs": 149000 },
+    { "id": "S05", "stateId": "S05", "startMs": 150000, "endMs": 170000, "speechStartMs": 150200, "speechEndMs": 169000 },
+    { "id": "S06", "stateId": "S06", "startMs": 170000, "endMs": 180000, "speechStartMs": 170200, "speechEndMs": 179000 }
+  ],
+  "film": {
+    "stateId": "S04",
+    "offsetMs": 70000,
+    "durationMs": 80000,
+    "fps": 30,
+    "frames": 2400,
+    "cutsMs": [0, 20000, 40000, 60000, 80000],
+    "driftToleranceMs": 250,
+    "durationToleranceMs": 33.34
+  }
+}

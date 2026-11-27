@@ -1,0 +1,390 @@
+{
+ "results": [
+  {
+   "id": "P1",
+   "check": "Fallback video/CIRA_Product_Film_80s.mp4",
+   "ok": true,
+   "hard": true,
+   "detail": "sha256 gleich"
+  },
+  {
+   "id": "P1",
+   "check": "Fallback presentation/CIRA_EDTH2026_MANUAL.pptx",
+   "ok": true,
+   "hard": true,
+   "detail": "sha256 gleich"
+  },
+  {
+   "id": "P1",
+   "check": "Fallback presentation/CIRA_EDTH2026_AUTO_180s.pptx",
+   "ok": true,
+   "hard": true,
+   "detail": "sha256 gleich"
+  },
+  {
+   "id": "P1",
+   "check": "Fallback presentation/CIRA_EDTH2026_Probe_180s.mp4",
+   "ok": true,
+   "hard": true,
+   "detail": "sha256 gleich"
+  },
+  {
+   "id": "P1",
+   "check": "Fallback presentation/CIRA_EDTH2026_Probe_180s_Stimme.mp4",
+   "ok": true,
+   "hard": true,
+   "detail": "sha256 gleich"
+  },
+  {
+   "id": "P1",
+   "check": "Fallback presentation/CIRA_EDTH2026_Probe_180s_Stimme_CLEAN.mp4",
+   "ok": true,
+   "hard": true,
+   "detail": "sha256 gleich"
+  },
+  {
+   "id": "P1",
+   "check": "Fallback presentation/CIRA_EDTH2026_Sprechtext_180s.mp3",
+   "ok": true,
+   "hard": true,
+   "detail": "sha256 gleich"
+  },
+  {
+   "id": "P1",
+   "check": "Fallback presentation/voice_timing.json",
+   "ok": true,
+   "hard": true,
+   "detail": "sha256 gleich"
+  },
+  {
+   "id": "P1",
+   "check": "Fallback presentation/coupling/film.manifest.json",
+   "ok": true,
+   "hard": true,
+   "detail": "sha256 gleich"
+  },
+  {
+   "id": "P1",
+   "check": "Fallback video/CIRA_Product_Film_80s_semiotic_v2.mp4",
+   "ok": true,
+   "hard": true,
+   "detail": "sha256 gleich"
+  },
+  {
+   "id": "P1",
+   "check": "Fallback presentation/fallback/semiotic_v2_A5_verletzt/CIRA_EDTH2026_MANUAL_v2.pptx",
+   "ok": true,
+   "hard": true,
+   "detail": "sha256 gleich"
+  },
+  {
+   "id": "P1",
+   "check": "Fallback presentation/fallback/semiotic_v2_A5_verletzt/CIRA_EDTH2026_AUTO_180s_v2.pptx",
+   "ok": true,
+   "hard": true,
+   "detail": "sha256 gleich"
+  },
+  {
+   "id": "P2",
+   "check": "Film: H.264 High 1920×1080 yuv420p",
+   "ok": true,
+   "hard": true,
+   "detail": ""
+  },
+  {
+   "id": "P2",
+   "check": "Film: 30/1 konstant, 2400 Frames, 80,000 s, kein Ton (I3)",
+   "ok": true,
+   "hard": true,
+   "detail": "2400 Frames, 80.000000 s"
+  },
+  {
+   "id": "P2",
+   "check": "Manifest bindet den Film (sha256, I8)",
+   "ok": true,
+   "hard": true,
+   "detail": "53e75f4312b4466b"
+  },
+  {
+   "id": "P3",
+   "check": "8 Schrittereignisse, monoton",
+   "ok": true,
+   "hard": true,
+   "detail": ""
+  },
+  {
+   "id": "P3",
+   "check": "Ankerprüfung A1–A6 erfüllt",
+   "ok": true,
+   "hard": true,
+   "detail": "A1: erfüllt, A2: erfüllt, A3: erfüllt, A4: erfüllt, A5a/A5b: erfüllt, A6: erfüllt"
+  },
+  {
+   "id": "P3",
+   "check": "A5-Fenster liegt in Schritt 6",
+   "ok": true,
+   "hard": true,
+   "detail": "121.0–130.2 s"
+  },
+  {
+   "id": "P4",
+   "check": "Zustände lückenlos 0–180 000 ms",
+   "ok": true,
+   "hard": true,
+   "detail": ""
+  },
+  {
+   "id": "P4",
+   "check": "S04 = Filmdauer 80 s",
+   "ok": true,
+   "hard": true,
+   "detail": ""
+  },
+  {
+   "id": "P5",
+   "check": "MANUAL_v2: 6 Folien, Video startet mit der Folie, Abspieldauer = Zustand",
+   "ok": true,
+   "hard": true,
+   "detail": "[10000, 25000, 35000, 80000, 20000, 10000]"
+  },
+  {
+   "id": "P5",
+   "check": "MANUAL_v2: S04-Medium bitgleich Film v2.1 (I2)",
+   "ok": true,
+   "hard": true,
+   "detail": ""
+  },
+  {
+   "id": "P5",
+   "check": "MANUAL_v2: S01–S03, S05, S06 bitgleich mit v1",
+   "ok": true,
+   "hard": true,
+   "detail": ""
+  },
+  {
+   "id": "P5",
+   "check": "MANUAL_v2: S04 ohne Zeitwechsel (I13), sonst Zeit = Timeline",
+   "ok": true,
+   "hard": true,
+   "detail": "[10000, 25000, 35000, None, 20000, None]"
+  },
+  {
+   "id": "P5",
+   "check": "MANUAL_v2: Narration S01–S03, S05, S06 wortgleich in den Notizen (I1)",
+   "ok": true,
+   "hard": true,
+   "detail": ""
+  },
+  {
+   "id": "P5",
+   "check": "MANUAL_v2: Narration F1–F4 wortgleich in S04 (I1, F1 = fixture)",
+   "ok": true,
+   "hard": true,
+   "detail": ""
+  },
+  {
+   "id": "P5",
+   "check": "MANUAL_v2: kein „Illustrative“ in S04 (I4)",
+   "ok": true,
+   "hard": true,
+   "detail": ""
+  },
+  {
+   "id": "P5",
+   "check": "MANUAL_v2: A5-Hinweis = gemessenes Fenster",
+   "ok": true,
+   "hard": true,
+   "detail": "2:01,0–2:10,2"
+  },
+  {
+   "id": "P5",
+   "check": "AUTO_180s_v2: 6 Folien, Video startet mit der Folie, Abspieldauer = Zustand",
+   "ok": true,
+   "hard": true,
+   "detail": "[10000, 25000, 35000, 80000, 20000, 10000]"
+  },
+  {
+   "id": "P5",
+   "check": "AUTO_180s_v2: S04-Medium bitgleich Film v2.1 (I2)",
+   "ok": true,
+   "hard": true,
+   "detail": ""
+  },
+  {
+   "id": "P5",
+   "check": "AUTO_180s_v2: S01–S03, S05, S06 bitgleich mit v1",
+   "ok": true,
+   "hard": true,
+   "detail": ""
+  },
+  {
+   "id": "P5",
+   "check": "AUTO_180s_v2: alle Wechsel nach Zeit, Klick gesperrt (Owner-Abweichung von I13), Σ = 180 s",
+   "ok": true,
+   "hard": true,
+   "detail": "[10000, 25000, 35000, 80000, 20000, None]"
+  },
+  {
+   "id": "P5",
+   "check": "AUTO_180s_v2: Narration S01–S03, S05, S06 wortgleich in den Notizen (I1)",
+   "ok": true,
+   "hard": true,
+   "detail": ""
+  },
+  {
+   "id": "P5",
+   "check": "AUTO_180s_v2: Narration F1–F4 wortgleich in S04 (I1, F1 = fixture)",
+   "ok": true,
+   "hard": true,
+   "detail": ""
+  },
+  {
+   "id": "P5",
+   "check": "AUTO_180s_v2: kein „Illustrative“ in S04 (I4)",
+   "ok": true,
+   "hard": true,
+   "detail": ""
+  },
+  {
+   "id": "P5",
+   "check": "AUTO_180s_v2: A5-Hinweis = gemessenes Fenster",
+   "ok": true,
+   "hard": true,
+   "detail": "2:01,0–2:10,2"
+  },
+  {
+   "id": "P6",
+   "check": "Sprachprobe v2.1: Sätze je Cue = Narration (fixture)",
+   "ok": true,
+   "hard": true,
+   "detail": "358 Wörter"
+  },
+  {
+   "id": "P6",
+   "check": "Sprachprobe v2.1: Wortlaut identisch mit v1-Probe",
+   "ok": true,
+   "hard": true,
+   "detail": ""
+  },
+  {
+   "id": "P7",
+   "check": "Sätze in 0–180 s, ohne Überlappung",
+   "ok": true,
+   "hard": true,
+   "detail": ""
+  },
+  {
+   "id": "P7",
+   "check": "S01–S03, S05, S06 im eigenen Zustand",
+   "ok": true,
+   "hard": true,
+   "detail": ""
+  },
+  {
+   "id": "P7",
+   "check": "F1–F4 innerhalb S04 (70–150 s)",
+   "ok": true,
+   "hard": true,
+   "detail": ""
+  },
+  {
+   "id": "P7",
+   "check": "A5a und A5b satzvollständig im A5-Fenster (I10, hart)",
+   "ok": true,
+   "hard": true,
+   "detail": "121.20–123.32 s; 123.67–127.80 s"
+  },
+  {
+   "id": "P7",
+   "check": "A1 „This recording shows …“ in Schritt 1–8 (weich)",
+   "ok": true,
+   "hard": false,
+   "detail": "70.30–73.11 s, Fenster 70.00–150.00 s"
+  },
+  {
+   "id": "P7",
+   "check": "A2 „On the left is Ground Truth …“ in Schritt 1–2 (weich)",
+   "ok": true,
+   "hard": false,
+   "detail": "73.46–77.08 s, Fenster 70.00–90.00 s"
+  },
+  {
+   "id": "P7",
+   "check": "A3 „combined result in violet …“ in Schritt 2–4 (weich)",
+   "ok": true,
+   "hard": false,
+   "detail": "89.99–97.15 s, Fenster 80.50–110.13 s"
+  },
+  {
+   "id": "P7",
+   "check": "A4 „Some values may remain unknown …“ in Schritt 3–5 (weich)",
+   "ok": true,
+   "hard": false,
+   "detail": "115.62–117.55 s, Fenster 90.20–120.20 s"
+  },
+  {
+   "id": "P7",
+   "check": "A4 „CIRA keeps those visible …“ in Schritt 3–5 (weich)",
+   "ok": true,
+   "hard": false,
+   "detail": "117.90–119.40 s, Fenster 90.20–120.20 s"
+  },
+  {
+   "id": "P7",
+   "check": "A6 „remains with the people responsible …“ in Schritt 7 (weich)",
+   "ok": false,
+   "hard": false,
+   "detail": "143.06–145.96 s, Fenster 130.40–140.27 s"
+  },
+  {
+   "id": "P8",
+   "check": "Sprachprobe-Video: Bild und Ton je 180,000 s",
+   "ok": true,
+   "hard": true,
+   "detail": ""
+  },
+  {
+   "id": "P8",
+   "check": "Sprechtext-MP3: 180 s (+ Encoder-Auffüllung ≤ 0,06 s)",
+   "ok": true,
+   "hard": true,
+   "detail": "180.048000"
+  },
+  {
+   "id": "P8",
+   "check": "Tonspur: still zwischen A4 und Fensterbeginn, Sprache in A5a",
+   "ok": true,
+   "hard": true,
+   "detail": "RMS 0.00000 vor 121,0 s · 0.065 in A5a"
+  },
+  {
+   "id": "P9",
+   "check": "Probe-Video: 5400 Frames, 30/1, 180 s",
+   "ok": true,
+   "hard": true,
+   "detail": ""
+  },
+  {
+   "id": "P9",
+   "check": "S04 im Probe-Video = Film v2.1; außerhalb = v1-Probe",
+   "ok": true,
+   "hard": true,
+   "detail": "max. Grauwertdifferenz 0.084 / 0.174"
+  },
+  {
+   "id": "P10",
+   "check": "v1-Fassungen tragen den v1-Film",
+   "ok": true,
+   "hard": true,
+   "detail": ""
+  },
+  {
+   "id": "P10",
+   "check": "v2-Fallback-Fassung trägt den v2-Film",
+   "ok": true,
+   "hard": true,
+   "detail": ""
+  }
+ ],
+ "hard_failures": 0
+}
