@@ -39,7 +39,8 @@ export async function stop(e: Env): Promise<void> {
   await new Promise<void>((r) => e.server.close(() => r()));
 }
 
-export async function open(e: Env, path: string, viewport = { width: 1440, height: 900 }, reducedMotion: "reduce" | "no-preference" = "no-preference"): Promise<Page> {
+export async function open(e: Env, path: string, viewport = { width: 1440, height: 900 }, reducedMotion: "reduce" | "no-preference" = "no-preference",
+  opts: { delayMs?: number; settle?: boolean } = {}): Promise<Page> {
   const ctx = await e.browser.newContext({ viewport, reducedMotion, deviceScaleFactor: 1, locale: "en-US", timezoneId: "UTC" });
   const page = await ctx.newPage();
   const requests: string[] = [];
@@ -51,6 +52,7 @@ export async function open(e: Env, path: string, viewport = { width: 1440, heigh
       if (route.request().method() !== "GET") { e.posts.push(u.pathname); return route.fulfill({ status: 405, body: "{}" }); }
       const r = ROUTES.get(canon(u.pathname + u.search));
       if (!r) { e.misses.push(u.pathname + u.search); return route.fulfill({ status: 404, contentType: "application/json", body: "{}" }); }
+      if (opts.delayMs) await new Promise((res) => setTimeout(res, opts.delayMs));
       return route.fulfill({ status: r.status, contentType: "application/json", body: readFileSync(join(snaps, r.file), "utf-8") });
     }
     e.blocked.push(u.href);
@@ -60,6 +62,7 @@ export async function open(e: Env, path: string, viewport = { width: 1440, heigh
   page.on("console", (m) => { if (m.type() === "error") errors.push(m.text()); });
   page.on("pageerror", (err) => errors.push(String(err)));
   (page as Page & { cira?: { errors: string[]; requests: string[] } }).cira = { errors, requests };
+  if (opts.settle === false) { await page.goto(e.base + path, { waitUntil: "commit" }); return page; }
   await page.goto(e.base + path, { waitUntil: "networkidle" });
   await page.evaluate(() => document.fonts.ready.then(() => undefined));
   await page.waitForFunction(() => document.querySelector('[data-state="LOADING"]') === null && document.querySelector('[data-zone="C"]') !== null);
