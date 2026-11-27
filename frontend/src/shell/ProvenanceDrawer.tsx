@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { isTermKey, useT } from "../language";
 import { useProvenance } from "../provenance";
 import { IdText, OriginBadge } from "../semiontics";
@@ -5,9 +6,25 @@ import { TechnicalRecord } from "./TechnicalRecord";
 
 /** Zone E (G03.10): renders the Provenance selection (IC-10: rendering lives in Shell per G03.3). */
 
+/** MOT16 provenance echo (RES-09): while a source artifact is hovered, focused or pinned in Zone E, every block in
+ *  Zone C drawn from it carries the canonical SEM-038 frame. Read-only; nothing else changes. */
+function useEcho(id: string | null) {
+  useEffect(() => {
+    if (id === null) return undefined;
+    // artifact ids are StableIds ([a-z0-9_.:/-]): safe inside a quoted attribute selector
+    const els = [...document.querySelectorAll<HTMLElement>(`.zone-c [data-source-refs~="${id}"]`)];
+    for (const e of els) { e.setAttribute("data-echo", ""); if (!e.hasAttribute("data-sem")) e.setAttribute("data-sem", "SEM-038"); }
+    return () => { for (const e of els) { e.removeAttribute("data-echo"); if (e.getAttribute("data-sem") === "SEM-038") e.removeAttribute("data-sem"); } };
+  }, [id]);
+}
+
 export function ProvenanceDrawer() {
   const t = useT();
   const { selection, close } = useProvenance();
+  const [hover, setHover] = useState<string | null>(null);
+  const [pinned, setPinned] = useState<string | null>(null);
+  useEcho(selection ? hover ?? pinned : null);
+  useEffect(() => { setHover(null); setPinned(null); }, [selection]);
   return (
     <aside className="zone-e" hidden={selection === null} aria-label={t("prov.drawer")} data-zone="E">
       {selection ? (
@@ -25,7 +42,11 @@ export function ProvenanceDrawer() {
           <div className="section-title">{t("prov.sources")}</div>
           <ul className="stack">
             {(selection.refs ?? selection.header.source_refs ?? []).map((r) => (
-              <li key={r.artifact_id}><IdText>{r.artifact_id}</IdText> <IdText>{r.artifact_type}</IdText><br /><IdText>{r.content_hash}</IdText></li>
+              <li key={r.artifact_id} className="echo-source">
+                <button type="button" className="focus-handle" aria-pressed={pinned === r.artifact_id}
+                  onMouseEnter={() => setHover(r.artifact_id)} onMouseLeave={() => setHover(null)} onFocus={() => setHover(r.artifact_id)} onBlur={() => setHover(null)}
+                  onClick={() => setPinned(pinned === r.artifact_id ? null : r.artifact_id)}>
+                  <IdText>{r.artifact_id}</IdText> <IdText>{r.artifact_type}</IdText></button><br /><IdText>{r.content_hash}</IdText></li>
             ))}
           </ul>
           {selection.strategies && selection.strategies.length > 0 ? (

@@ -54,3 +54,12 @@
 - Zwei Layoutbefunde vor Baseline-Ersatz behoben (Stapelabstand durch Scope-Hülle, Griff ohne eigene Zeilenbox);
   2 Baselines ersetzt (01, 07) mit Protokoll `docs/gui/inspection/U16.md`.
 - U17: Fokus-Carry (V2T21), CP4. `make verify` 589/589, 0 Skips.
+
+## 2026-11-27 — GUI-Generation v2, U18–U20 (CP5)
+- U18: Motion-Tokens, Phasenmaschine, MotionBoundary, `data-motion` an Blöcken.
+- U19: MOT03/04/05/07/08/11/13/14 mit Bildaudit (08.4) und Kontaktbögen; Korrektur IC-21 (TX28 misst Schublade nach
+  ihrer Eintrittsbewegung, Erwartungen unverändert).
+- U20: MOT10/12/15/16/18, V2T09, V2T18, V3T14; MOT09/MOT17 an ihre Träger in U22/U21 gebunden.
+- Befund Testumgebung: Software-Renderer ≈ 37 ms/Frame mit aktivem Umgebungsfeld → Governor schaltet korrekt auf static;
+  Harness-Skript `steady-frames` nur für V2T18.
+- `make verify` 631/631, 0 Skips. CP5.

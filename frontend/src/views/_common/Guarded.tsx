@@ -3,6 +3,12 @@ import type { Verified } from "../../access";
 import { useT } from "../../language";
 import { type BlockState, Quarantine, useMotionPhase } from "../../semiontics";
 
+/** Artifact ids a block was drawn from (header.source_refs), for the provenance echo (RES-09, MOT16). */
+const refsOf = (...ds: unknown[]): string | undefined => {
+  const ids = ds.flatMap((d) => ((d as { header?: { source_refs?: readonly { artifact_id: string }[] } } | null)?.header?.source_refs ?? []).map((r) => r.artifact_id));
+  return ids.length ? [...new Set(ids)].join(" ") : undefined;
+};
+
 /** Block-level view state (06.7, G03.14): LOADING masks, VIEW_DATA_UNAVAILABLE quarantines without old data. */
 export function Guarded<T>({ v, children, skeleton }: { v: Verified<T>; children: (d: T) => ReactNode; skeleton?: ReactNode }) {
   const t = useT();
@@ -13,7 +19,7 @@ export function Guarded<T>({ v, children, skeleton }: { v: Verified<T>; children
     return <Quarantine requested={v.guard && !v.guard.ok ? `${v.guard.reason} ${v.guard.requested}` : v.spec.url}
       received={v.guard && !v.guard.ok ? v.guard.received : "—"} onReload={v.refetch} />;
   }
-  return <div data-state="READY" data-motion={motion}>{children(v.data)}</div>;
+  return <div data-state="READY" data-motion={motion} data-source-refs={refsOf(v.data)}>{children(v.data)}</div>;
 }
 
 type Data<V> = { [K in keyof V]: V[K] extends Verified<infer T> ? T : never };
@@ -26,5 +32,5 @@ export function GuardedAll<V extends readonly Verified<unknown>[]>({ vs, childre
   const motion = useMotionPhase(failed ? "VIEW_DATA_UNAVAILABLE" : loading ? "LOADING" : "READY", vs.map((v) => v.data));
   if (failed) return <Guarded v={failed}>{() => null}</Guarded>;
   if (loading) return <Guarded v={loading}>{() => null}</Guarded>;
-  return <div data-state="READY" data-motion={motion}>{children(vs.map((v) => v.data) as unknown as Data<V>)}</div>;
+  return <div data-state="READY" data-motion={motion} data-source-refs={refsOf(...vs.map((v) => v.data))}>{children(vs.map((v) => v.data) as unknown as Data<V>)}</div>;
 }

@@ -415,3 +415,18 @@ tr[data-focus-state="resonant"] > td:first-child::before { content: ""; position
 /* MOT13 hover: border hairline → strong, never attenuates */
 .panel, .layer, .metric-card { transition: border-color var(--motion-hover) var(--ease-settle); }
 .metric-card[data-focus-id]:hover { border-color: var(--col-border-strong); }
+/* ---- motion classes U20 (05.7) ---- */
+/* MOT10 stage tick: border confirmation on a stage row whose status changed while RUNNING */
+tr[data-stage-commit] > td { animation: mot-stage-tick var(--motion-focus) var(--ease-settle); }
+@keyframes mot-stage-tick { from { border-bottom-color: var(--sign-focus); } }
+/* MOT15 overlay toggle: slots switch instantly; the chip confirms with its border */
+.chip { transition: border-color var(--motion-focus) var(--ease-settle), color var(--motion-focus) var(--ease-settle); }
+/* MOT16 provenance echo: canonical SEM-038 geometry on blocks drawn from the hovered/pinned source */
+[data-echo] { position: relative; }
+[data-echo]::after { content: ""; position: absolute; pointer-events: none; z-index: var(--depth-relational);
+  inset: calc(-1 * (var(--cmp-resonance-offset) + var(--cmp-resonance-width)));
+  box-shadow: inset 0 0 0 var(--cmp-resonance-width) var(--sign-linked); animation: mot-resonance var(--motion-focus) var(--ease-settle); }
+.echo-source .focus-handle { flex-wrap: wrap; }
+/* MOT18 export confirmation: the delivered hash settles in */
+.export-hash { display: inline-block; animation: mot-export var(--motion-carry) var(--ease-settle); }
+@keyframes mot-export { from { transform: translateY(calc(-1 * var(--space-4))); } }

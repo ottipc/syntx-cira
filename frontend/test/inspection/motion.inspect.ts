@@ -19,6 +19,9 @@ const CASES: [string, string, string][] = [
   ["MOT04-svg-node", "TOPOLOGY_GRAPH", `document.querySelector('[data-node="node:n08"]').dispatchEvent(new MouseEvent("click", { bubbles: true }))`],
   ["MOT05-tick-commit", "TEMPORAL_STATE_EXPLORER", `[...document.querySelectorAll('[data-zone="D"] button')].find((b) => b.textContent.trim().startsWith("t4")).click()`],
   ["MOT08-drawer", "STRUCTURAL_METRICS", `document.querySelector('.zone-c-content button[data-term="prov.drawer"]').click()`],
+  ["MOT15-overlay-chip", "TOPOLOGY_GRAPH", `document.querySelectorAll('.toolbar button.chip[aria-pressed]')[1].click()`],
+  ["MOT16-provenance-echo", "STRUCTURAL_METRICS", `document.querySelector('.zone-c-content button[data-term="prov.drawer"]').click(); setTimeout(() => document.querySelector('.echo-source button').click(), 200)`],
+  ["MOT18-export", "STRUCTURAL_METRICS", `document.querySelector('button[data-term="action.export"]').click()`],
 ];
 
 describe("motion contact sheets", () => {

@@ -143,3 +143,153 @@ describe("[U19] frame audit of the motion classes (08.4)", () => {
     checks(r);
   }, 60000);
 });
+
+/** V3T14: every SEM-038 carrier on screen renders one solid 1.5 px ink.secondary stroke whose inner edge lies 3 px
+ *  outside its host — frame element (box), inflated rect (SVG) or echo frame (::after of the block) */
+async function sem038(p: Page) {
+  return p.evaluate(() => {
+    const ink = (() => { const d = document.createElement("i"); d.style.color = "var(--col-ink-secondary)"; document.body.append(d); const c = getComputedStyle(d).color; d.remove(); return c; })();
+    return [...document.querySelectorAll<Element>('[data-sem="SEM-038"]')].map((e) => {
+      if (e instanceof SVGRectElement) {
+        const s = getComputedStyle(e), host = e.parentElement!.querySelector<SVGRectElement>(".node-box")!;
+        const gap = -Number(e.getAttribute("x")) - 0.75 - Number(getComputedStyle(host).strokeWidth.replace("px", "")) / 2;
+        return { kind: "svg", w: s.strokeWidth, c: s.stroke, dash: s.strokeDasharray, gap: Math.round(gap * 100) / 100, ink };
+      }
+      const echo = e.hasAttribute("data-echo");
+      const s = getComputedStyle(e, echo ? "::after" : null);
+      const m = /^(rgba?\([^)]*\)) 0px 0px 0px ([\d.]+)px inset$/.exec(s.boxShadow);
+      // host: the table row, the focusable box, or — for a row-shaped grid item (view 03) — its row header
+      const h = e.closest("tr, [data-focus-id]:not(.contents)") ?? e.closest("[data-attribute]")?.querySelector(".attr") ?? e.parentElement!;
+      const host = echo ? e.getBoundingClientRect() : h.getBoundingClientRect();
+      const inset = parseFloat(s.top);
+      const gap = echo ? -inset - (m ? parseFloat(m[2]!) : 0) : Math.round((host.top - e.getBoundingClientRect().top - (m ? parseFloat(m[2]!) : 0)) * 10) / 10;
+      return { kind: echo ? "echo" : "box", w: m ? `${m[2]}px` : s.boxShadow, c: m ? m[1] : "", dash: s.borderTopStyle === "dashed" || s.outlineStyle === "dashed" ? "dashed" : "none", gap, ink };
+    });
+  });
+}
+const geometryOk = (xs: Awaited<ReturnType<typeof sem038>>) => {
+  for (const x of xs) {
+    expect(x.w, `${x.kind} width`).toBe("1.5px");
+    expect(x.c, `${x.kind} ink`).toBe(x.ink);
+    expect(x.dash, `${x.kind} never dashed`).toBe("none");
+    expect(x.gap, `${x.kind} inner edge 3 px outside the host`).toBeCloseTo(3, 0);
+  }
+};
+
+describe("[U20][V3T14] SEM-038 has one geometry everywhere (focus resonance, SVG, provenance echo)", () => {
+  it("views 02, 03, 04, 07 with focus, and the provenance echo in 09", async () => {
+    const all: Awaited<ReturnType<typeof sem038>> = [];
+    for (const [v, f] of [["TOPOLOGY_GRAPH", "node:n08"], ["TEMPORAL_STATE_EXPLORER", "attr:n08/state"], ["OBSERVATION_INSPECTOR", "src:s01"],
+      ["STRUCTURAL_GAP_INSPECTOR", "case:gate_unauthorized"]] as const) {
+      const p = await open(env, url(v, `&focus=${encodeURIComponent(f)}`));
+      await p.waitForTimeout(300);
+      all.push(...await sem038(p));
+      await p.context().close();
+    }
+    const p = await open(env, url("STRUCTURAL_METRICS"));
+    await p.click('.zone-c-content button[data-term="prov.drawer"]');
+    await p.hover(".echo-source button");
+    await p.waitForTimeout(250);
+    const echo = await sem038(p);
+    const hoverOff = async () => { await p.mouse.move(0, 0); await p.waitForTimeout(50); return p.evaluate(() => document.querySelectorAll("[data-echo]").length); };
+    const after = await hoverOff();
+    await p.context().close();
+    expect(all.some((x) => x.kind === "svg") && all.some((x) => x.kind === "box")).toBe(true);
+    expect(echo.filter((x) => x.kind === "echo").length, "the echo frames the blocks drawn from the source").toBeGreaterThan(0);
+    geometryOk([...all, ...echo]);
+    expect(after, "the echo ends with the hover").toBe(0);
+  }, 120000);
+});
+
+describe("[U20] frame audit MOT12/15/16/18", () => {
+  it("MOT15 overlay chip (02): slots switch instantly, chip border confirms within motion.focus", async () => {
+    const p = await open(env, url("TOPOLOGY_GRAPH"));
+    await p.waitForTimeout(250);
+    const before = await p.evaluate(() => document.querySelectorAll('svg [data-space="O"]').length);
+    const r = await audit(p, `document.querySelectorAll('.toolbar button.chip[aria-pressed]')[1].click()`, "", 12);
+    const after = await p.evaluate(() => document.querySelectorAll('svg [data-space="O"]').length);
+    await p.context().close();
+    checks(r);
+    expect(before === after, "one overlay was switched in the first frames").toBe(false);
+  }, 60000);
+
+  it("MOT16 provenance echo: SEM-038 colour settles within motion.focus; exempt carriers untouched", async () => {
+    const p = await open(env, url("STRUCTURAL_METRICS"));
+    await p.click('.zone-c-content button[data-term="prov.drawer"]');
+    await p.waitForTimeout(250);
+    const r = await audit(p, `document.querySelector('.echo-source button').click()`);
+    const pinned = await p.evaluate(() => document.querySelectorAll("[data-echo]").length);
+    await p.context().close();
+    checks(r);
+    expect(pinned, "a click pins the echo").toBeGreaterThan(0);
+  }, 60000);
+
+  it("MOT18 export: the delivered hash settles in within motion.carry", async () => {
+    const p = await open(env, url("STRUCTURAL_METRICS"));
+    await p.waitForTimeout(250);
+    const r = await audit(p, `document.querySelector('button[data-term="action.export"]').click()`, "", 30);
+    const shown = await p.evaluate(() => !!document.querySelector('[data-testid="bundle-hash"]'));
+    await p.context().close();
+    expect(shown).toBe(true);
+    checks(r, { ...TOKEN, "mot-export": MOTION.carry });
+    expect(r.anims.some(([n]) => n === "mot-export")).toBe(true);
+  }, 60000);
+
+  it("MOT12 demo cadence: a demo step change runs only view entry / focus / carry, each ≤ 200 ms", async () => {
+    const p = await open(env, url("SYSTEM_FIELD_OVERVIEW"));
+    await p.waitForTimeout(250);
+    const r = await audit(p, `document.querySelector('.demo-bar button[data-term="action.resume_demo"], .demo-bar button[data-term="action.next"]').click()`, "", 20);
+    await p.context().close();
+    checks(r);
+    for (const [n, d] of r.anims) { expect(["mot-view-entry", "mot-focus-lock", "mot-focus-lock-svg", "mot-resonance", "mot-resonance-svg"]).toContain(n); expect(d).toBeLessThanOrEqual(200); }
+  }, 60000);
+});
+
+describe("[V2T09] reduced motion: same text and signs, nothing running", () => {
+  const VIEWS = ["SYSTEM_FIELD_OVERVIEW", "TOPOLOGY_GRAPH", "TEMPORAL_STATE_EXPLORER", "OBSERVATION_INSPECTOR", "FORWARD_SWEEP_INSPECTOR",
+    "INVERSE_SWEEP_INSPECTOR", "STRUCTURAL_GAP_INSPECTOR", "ARCHITECTURAL_CLOSURE_INSPECTOR", "STRUCTURAL_METRICS", "EVENT_TIMELINE"];
+  it.each(VIEWS)("%s", async (v) => {
+    const dom = (p: Page) => p.evaluate(() => ({ text: document.querySelector(".zone-c-content")!.textContent!.replace(/\s+/g, " ").trim(),
+      sems: [...document.querySelectorAll("[data-sem]")].map((e) => e.getAttribute("data-sem")).join(","), running: document.getAnimations().filter((a) => a.playState === "running").length }));
+    const n = await open(env, url(v));
+    await n.waitForTimeout(400);
+    const a = await dom(n);
+    await n.context().close();
+    const r = await open(env, url(v), { width: 1440, height: 900 }, "reduce");
+    await r.waitForTimeout(400);
+    const b = await dom(r);
+    await r.context().close();
+    expect(b.text).toBe(a.text);
+    expect(b.sems).toBe(a.sems);
+    expect(b.running, "no running animation under reduced motion").toBe(0);
+  }, 60000);
+});
+
+describe("[V2T18] 10 s with the ambient field active: absence, provenance, barrier and seam never mutate; no looping animation on a sign", () => {
+  it.each(["SYSTEM_FIELD_OVERVIEW", "TEMPORAL_STATE_EXPLORER"])("%s", async (v) => {
+    // the software renderer would trip the frame budget (correctly → static); a steady rAF clock keeps the field active
+    const p = await open(env, url(v), { width: 1440, height: 900 }, "no-preference", { initScript: "steady-frames" });
+    await p.waitForTimeout(300);
+    const r = await p.evaluate(async () => {
+      const nodes = [...document.querySelectorAll('[data-attn="exempt"]')];
+      const sig = (e: Element) => { const s = getComputedStyle(e); return [s.transform, s.opacity, s.color, s.backgroundColor, s.borderTopColor, s.outlineColor].join("|"); };
+      const start = nodes.map(sig);
+      let muts = 0;
+      const mo = new MutationObserver((rs) => { muts += rs.length; });
+      nodes.forEach((n) => mo.observe(n, { attributes: true, childList: true, characterData: true, subtree: true }));
+      const changed = new Set<number>();
+      const t0 = performance.now();
+      while (performance.now() - t0 < 10000) { await new Promise((res) => setTimeout(res, 250)); nodes.forEach((n, i) => { if (sig(n) !== start[i]) changed.add(i); }); }
+      mo.disconnect();
+      const looping = document.getAnimations().filter((a) => a.effect?.getTiming().iterations === Infinity)
+        .map((a) => (a.effect as KeyframeEffect).target as Element).filter((t) => t.closest("[data-sem]") !== null).length;
+      return { n: nodes.length, muts, changed: changed.size, ambient: document.querySelector(".zone-c")!.getAttribute("data-ambient"), looping };
+    });
+    await p.context().close();
+    expect(r.ambient).toBe("active");
+    expect(r.n).toBeGreaterThan(0);
+    expect(r.muts).toBe(0);
+    expect(r.changed).toBe(0);
+    expect(r.looping).toBe(0);
+  }, 60000);
+});
